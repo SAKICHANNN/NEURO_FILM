@@ -23448,3 +23448,36 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   looks, strength/effects, recipes/receipts and `film-inspired / Look
   Approximation` claims remain unchanged. No calibrated-stock, physical-film,
   cross-platform or public-release claim and no push.
+
+### 2026-09-02 - U7.20F preserves legal Windows filenames through native launchers
+
+- **Node and routing:** `ULT > U7 productization > U7.20F`, DRPT L2 / Mode C,
+  R1 local. `dev-research-reliability` was the sole writer; router, structure
+  and agent-log disciplines were read-only secondary checks. The long-lived
+  Look Approximation Goal remains active; no leaf Goal was created, completed
+  or replaced. Both parallel tasks avoided the exact installer/test and shared
+  documentation paths.
+- **Trigger and invariant:** the current receipt-bound `.cmd` launcher changed
+  the legal filename `%TEMP% & (film) 100%.png` into an environment-expanded
+  path before Python received argv. Direct batch probes confirm `%*` and `%~1`
+  cannot faithfully carry this combination. Freeze `b89d77e7` requires literal
+  percent tokens and shell metacharacters to survive CLI and desktop launch,
+  with unchanged repository, dependency, tracked-state and hostile-environment
+  validation and no filename-substitution instructions.
+- **Repair:** implementation `525f2104` uses the fixed runtime's vendored
+  distlib launcher builder to emit native console executables from generated,
+  self-contained Python sources. Receipt v3 makes `kmcfm-look.exe` and
+  `kmcfm-desktop.exe` primary and binds the executables, native sources,
+  Python launchers and retained `.cmd` compatibility files. README commit
+  `002f1735` moves user commands to `.exe` and limits `.cmd` compatibility to
+  ordinary paths. No renderer, UI, catalog or colour code changed.
+- **Verification and boundary:** a fresh P-backed offline runtime preserves the
+  exact special input/output names through CLI, records those literal paths in
+  the strict recipe, retains `film-inspired / look-approximation`, returns the
+  unchanged four-look catalog, and starts/exits native desktop with zero owned
+  process residue. Clean behavioral coverage passes 266/266 with one explicit
+  historical HP5 normalized-recipe deselection; the known cross-module Tk
+  lifetime case passes 1/1 in isolation. The 19 focused installer/parent tests,
+  Ruff, compileall and diff checks also pass. Claim remains private,
+  repository-bound Windows Look Approximation mechanics—not calibrated stock,
+  physical film, standalone/public release or cross-platform parity; no push.
