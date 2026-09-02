@@ -1,0 +1,47 @@
+{
+  "contract_id": "U1_5H_STRICT_SDR_AVIF_INGRESS_V1",
+  "status": "FROZEN_BEFORE_IMPLEMENTATION",
+  "node": "ULT > U1 > U1.5 > U1.5H",
+  "official_sdr_fixture": {
+    "repository": "https://github.com/AOMediaCodec/libavif",
+    "commit": "265f1524ef5fa9a736005a73a75430a1ac35cfe5",
+    "path": "tests/data/io/kodim03_yuv420_8bpc.avif",
+    "url": "https://raw.githubusercontent.com/AOMediaCodec/libavif/265f1524ef5fa9a736005a73a75430a1ac35cfe5/tests/data/io/kodim03_yuv420_8bpc.avif",
+    "size": 25430,
+    "sha256": "e69c973a3ddf635412c9a0c6cda66798102d0030303614873b337f658983ef5d",
+    "width": 768,
+    "height": 512
+  },
+  "accepted_subset": {
+    "major_brand": "avif",
+    "required_compatible_brand": "avif",
+    "primary_item_type": "av01",
+    "image_item_count": 1,
+    "bits_per_channel": [8, 8, 8],
+    "nclx": {
+      "colour_primaries": 1,
+      "transfer_characteristics": 13,
+      "matrix_coefficients": 6,
+      "full_range": true
+    },
+    "pillow_mode": "RGB",
+    "frame_count": 1,
+    "alpha": false
+  },
+  "negative_bindings": {
+    "p278_config": "configs/p278_libavif_gainmap_avif_compatibility_v1.json",
+    "required_fixture_count": 6,
+    "reject_item_types": ["grid", "iden", "iovl", "tmap"],
+    "reject_reference_types": ["dimg", "auxl", "prem"],
+    "reject_brands": ["avis", "msf1", "tmap"]
+  },
+  "limits": {
+    "maximum_top_level_boxes": 64,
+    "maximum_child_boxes": 4096,
+    "maximum_meta_payload_bytes": 8388608,
+    "maximum_item_count": 128,
+    "maximum_property_count": 256
+  },
+  "claim_ceiling": "Strict single-image 8-bit sRGB-NCLX AVIF input compatibility for deterministic film-inspired / Look Approximation rendering only; no arbitrary AVIF/HEIF, HDR/gain-map, AVIF output, calibrated-stock, or physical-film claim"
+}
+
