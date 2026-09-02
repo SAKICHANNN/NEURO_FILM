@@ -6,7 +6,7 @@
   "dependency": {
     "name": "pi-heif",
     "version": "1.4.0",
-    "windows_cp312_wheel_bytes": 2407596,
+    "windows_cp312_wheel_bytes": 2383230,
     "windows_cp312_wheel_sha256": "81cb473227b2da35bfd7c69a12764f664d91e44b0ec2547cdfe5ca6b8b52cab9",
     "required_bundled_license": "LGPLv3",
     "forbidden_product_dependency": "pillow-heif"

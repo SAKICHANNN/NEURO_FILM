@@ -18,7 +18,7 @@ SDR structure are explicit.
   `0cf18cabbdacc70cf080f6b7528cd2543c2c9ebe`, 792,052 bytes, SHA-256
   `73f604d7353df4848505a1f45a5517f736857fe047372f95c2f3d671df92c22c`.
 - Decoder dependency: decode-only `pi-heif==1.4.0`; the exact Windows CPython
-  3.12 wheel is 2,407,596 bytes with SHA-256
+  3.12 wheel is 2,383,230 bytes with SHA-256
   `81cb473227b2da35bfd7c69a12764f664d91e44b0ec2547cdfe5ca6b8b52cab9`.
   Its bundled notice identifies only LGPLv3 `libheif` and `libde265`. The
   encoder-bearing `pillow-heif` wheel is explicitly forbidden from the product
@@ -30,6 +30,12 @@ SDR structure are explicit.
 The pre-contract investigation decoded the positive fixture once in an isolated
 P-backed scratch environment to establish feasibility and the independent
 oracle below. This is product defect repair, not a sealed scientific cohort.
+
+The frozen draft transcribed the wheel size as 2,407,596 bytes. Before formal
+execution, the retained exact wheel and official PyPI 1.4.0 JSON both proved
+2,383,230 bytes while retaining the already frozen filename and SHA-256. This
+source-identity correction changes no dependency, fixture, implementation,
+success gate, stop rule or claim.
 
 ## Frozen admissible subset
 
