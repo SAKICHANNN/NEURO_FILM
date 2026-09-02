@@ -1,0 +1,18 @@
+{
+  "schema_version": "neuro-film.u7-20g-exif-oriented-jpeg-preview.v1",
+  "orientation_values": [1, 2, 3, 4, 5, 6, 7, 8],
+  "axis_swap_values": [5, 6, 7, 8],
+  "orientation_operation": "lossless-axis-transform-after-decoder-scale",
+  "invalid_orientation_policy": "fail-closed",
+  "gates": {
+    "all_orientation_values_supported": true,
+    "oriented_geometry_exact": true,
+    "scaled_decode_covers_requested_oriented_geometry": true,
+    "orientation_step_resampling_allowed": false,
+    "identity_behavior_unchanged": true,
+    "invalid_orientation_rejects": true,
+    "full_resolution_product_drift_allowed": false,
+    "claim_ceiling_exact": true
+  },
+  "claim_ceiling": "Private EXIF Orientation 1-8 JPEG preview compatibility for deterministic film-inspired / Look Approximation only."
+}
