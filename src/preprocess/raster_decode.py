@@ -12,6 +12,7 @@ import tifffile
 from PIL import Image, ImageCms, ImageOps, UnidentifiedImageError
 
 from .adobe_rgb_icc import AdobeRGBICCError, decode_adobe_rgb16_to_linear_rec2020
+from .avif_sdr import StrictSdrAvifError, inspect_strict_sdr_avif, looks_like_avif
 from .color_management import REC2020_SDR_CICP, rec2020_to_linear_rec2020
 from .output_encode import (
     normalized_icc_profile_sha256,
@@ -39,7 +40,7 @@ _MODE_BIT_DEPTH = {
     "F": 32,
 }
 
-_UNSUPPORTED_DYNAMIC_RANGE_FORMATS = {"HEIF", "HEIC", "AVIF"}
+_UNSUPPORTED_DYNAMIC_RANGE_FORMATS = {"HEIF", "HEIC"}
 _GAIN_MAP_PAYLOAD_MARKERS = (
     b"http://ns.adobe.com/hdr-gain-map/1.0/",
     b"hdrgm:version",
@@ -301,8 +302,15 @@ def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -
     signals: list[str] = []
     if inspection.format_name in _UNSUPPORTED_DYNAMIC_RANGE_FORMATS:
         signals.append(f"container:{inspection.format_name}")
+    if inspection.format_name == "AVIF" and inspection.hdr_metadata.get(
+        "strict_sdr_avif"
+    ) != "accepted":
+        reason = str(inspection.hdr_metadata.get("strict_sdr_avif_reason", "untrusted"))
+        signals.append(f"container:AVIF:{reason}")
     for key in sorted(inspection.hdr_metadata, key=lambda value: str(value).casefold()):
         lowered = str(key).casefold()
+        if lowered.startswith("strict_sdr_avif") or lowered == "nclx_identity":
+            continue
         if lowered == "cicp" and inspection.hdr_metadata[key] == REC2020_SDR_CICP.hex():
             continue
         if lowered in {"icc", "icc_profile"}:
@@ -319,20 +327,75 @@ def unsupported_dynamic_range_signals(path: Path, inspection: InputInspection) -
 
 def inspect_raster(path: Path) -> InputInspection:
     warnings: list[DecodeWarning] = []
+    strict_avif = None
+    if looks_like_avif(path):
+        try:
+            strict_avif = inspect_strict_sdr_avif(path)
+        except StrictSdrAvifError as exc:
+            reason = str(exc)
+            inspection = InputInspection(
+                path=path,
+                exists=path.exists(),
+                source_kind="raster",
+                format_name="AVIF",
+                source_profile=SourceProfile("unknown", "AVIF SDR identity rejected"),
+                transfer_state="unknown",
+                hdr_metadata={
+                    "strict_sdr_avif": "rejected",
+                    "strict_sdr_avif_reason": reason,
+                },
+                warnings=[],
+            )
+            inspection.warnings.append(
+                DecodeWarning(
+                    "unsupported_dynamic_range",
+                    "HDR/gain-map reconstruction is not implemented; signals="
+                    f"container:AVIF:{reason}",
+                )
+            )
+            return inspection
     try:
         cicp = _png_cicp(path)
         with Image.open(path) as image:
-            profile = _source_profile(image, cicp)
+            if strict_avif is not None:
+                if (
+                    image.format != "AVIF"
+                    or image.mode != "RGB"
+                    or getattr(image, "n_frames", 1) != 1
+                    or image.width != strict_avif.width
+                    or image.height != strict_avif.height
+                    or "transparency" in image.info
+                ):
+                    raise StrictSdrAvifError(
+                        "Pillow AVIF metadata disagrees with strict container inspection"
+                    )
+                profile = SourceProfile(
+                    "nclx",
+                    "AVIF NCLX primaries=1 transfer=13 matrix=6 full-range",
+                    7,
+                )
+                warnings.append(
+                    DecodeWarning(
+                        "strict_sdr_avif_ingress",
+                        "Admitted a single-image 8-bit sRGB-NCLX AVIF before pixel decode.",
+                    )
+                )
+            else:
+                profile = _source_profile(image, cicp)
             if profile.kind == "assumed_srgb":
                 warnings.append(DecodeWarning("assumed_srgb", profile.description))
-            if image.format in {"HEIF", "HEIC", "AVIF"}:
+            if image.format in {"HEIF", "HEIC"}:
                 warnings.append(
                     DecodeWarning(
                         "limited_heif_hdr",
                         "HEIF/AVIF HDR or gain-map reconstruction is not implemented in this backend.",
                     )
                 )
-            bit_depth = _MODE_BIT_DEPTH.get(image.mode)
+            bit_depth = (
+                strict_avif.bits_per_channel[0]
+                if strict_avif is not None
+                else _MODE_BIT_DEPTH.get(image.mode)
+            )
             if image.format == "TIFF":
                 try:
                     with tifffile.TiffFile(path) as tif:
@@ -347,6 +410,14 @@ def inspect_raster(path: Path) -> InputInspection:
                     bit_depth = _png_bit_depth(path)
                 except (OSError, ValueError):
                     warnings.append(DecodeWarning("png_bit_depth_unknown", "PNG IHDR bit depth could not be read."))
+            hdr_metadata = _hdr_metadata(image, cicp)
+            if strict_avif is not None:
+                hdr_metadata.update(
+                    {
+                        "strict_sdr_avif": "accepted",
+                        "nclx_identity": "1/13/6/full",
+                    }
+                )
             inspection = InputInspection(
                 path=path,
                 exists=True,
@@ -361,7 +432,7 @@ def inspect_raster(path: Path) -> InputInspection:
                 frame_count=getattr(image, "n_frames", 1),
                 source_profile=profile,
                 transfer_state="display_referred",
-                hdr_metadata=_hdr_metadata(image, cicp),
+                hdr_metadata=hdr_metadata,
                 warnings=warnings,
             )
             signals = unsupported_dynamic_range_signals(path, inspection)
@@ -377,7 +448,28 @@ def inspect_raster(path: Path) -> InputInspection:
                     )
                 )
             return inspection
-    except UnidentifiedImageError:
+    except StrictSdrAvifError as exc:
+        reason = str(exc)
+        return InputInspection(
+            path=path,
+            exists=path.exists(),
+            source_kind="raster",
+            format_name="AVIF",
+            source_profile=SourceProfile("unknown", "AVIF SDR identity rejected"),
+            transfer_state="unknown",
+            hdr_metadata={
+                "strict_sdr_avif": "rejected",
+                "strict_sdr_avif_reason": reason,
+            },
+            warnings=[
+                DecodeWarning(
+                    "unsupported_dynamic_range",
+                    "HDR/gain-map reconstruction is not implemented; signals="
+                    f"container:AVIF:{reason}",
+                )
+            ],
+        )
+    except (RuntimeError, UnidentifiedImageError):
         return InputInspection(path=path, exists=path.exists(), source_kind="unknown")
 
 
@@ -745,7 +837,10 @@ def load_raster_working_image(path: Path) -> WorkingImage:
             oriented = ImageOps.exif_transpose(raw_image)
             oriented = _reject_or_strip_alpha(oriented, inspection, warnings)
             alpha_policy = "absent"
-            rgb_image = _convert_with_icc(oriented, warnings)
+            if inspection.format_name == "AVIF":
+                rgb_image = oriented.convert("RGB")
+            else:
+                rgb_image = _convert_with_icc(oriented, warnings)
             arr = np.asarray(rgb_image, dtype=np.float32) / 255.0
     pixels = _srgb_to_linear(np.clip(arr, 0.0, 1.0))
     return WorkingImage(

@@ -7,10 +7,10 @@ from pathlib import Path
 import numpy as np
 import pytest
 from PIL import Image, features
-from src.preprocess.avif_sdr import StrictSdrAvifError, inspect_strict_sdr_avif
 
 from src.inference import replay_style_safe_recipe_to_file
 from src.preprocess import inspect_input, load_working_image
+from src.preprocess.avif_sdr import StrictSdrAvifError, inspect_strict_sdr_avif
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/render_film.py"
@@ -81,7 +81,7 @@ def test_non_sdr_or_non_8bit_avif_rejects_before_pixels(
     _rgb_avif(path)
     data = path.read_bytes()
     if mutation == "ten_bit":
-        data = _replace_after(data, b"pixi", 1, b"\x0a\x0a\x0a")
+        data = _replace_after(data, b"pixi", 5, b"\x0a\x0a\x0a")
     else:
         data = _replace_after(data, b"nclx", 2, (16).to_bytes(2, "big"))
     path.write_bytes(data)
@@ -107,6 +107,33 @@ def test_alpha_and_sequence_avif_reject_before_working_pixels(tmp_path: Path) ->
         inspect_strict_sdr_avif(sequence)
     with pytest.raises(ValueError, match="refusing SDR fallback"):
         load_working_image(sequence)
+
+
+@pytest.mark.parametrize(
+    ("mutation", "message"),
+    [
+        ("truncated", "truncated|invalid"),
+        ("icc", "NCLX"),
+        ("unknown_property", "unsupported.*property"),
+    ],
+)
+def test_malformed_or_ambiguous_avif_rejects_before_pixels(
+    tmp_path: Path, mutation: str, message: str
+) -> None:
+    path = tmp_path / f"{mutation}.avif"
+    _rgb_avif(path)
+    data = path.read_bytes()
+    if mutation == "truncated":
+        data = data[:80]
+    elif mutation == "icc":
+        data = data.replace(b"nclx", b"prof", 1)
+    else:
+        data = data.replace(b"av1C", b"zzzz", 1)
+    path.write_bytes(data)
+    with pytest.raises(StrictSdrAvifError, match=message):
+        inspect_strict_sdr_avif(path)
+    with pytest.raises(ValueError, match="refusing SDR fallback"):
+        load_working_image(path)
 
 
 def test_all_p278_gainmap_and_structural_fixtures_remain_rejected() -> None:
@@ -149,10 +176,10 @@ def test_product_cli_and_recipe_replay_accept_strict_sdr_avif(tmp_path: Path) ->
     import json
 
     recipe = json.loads(recipe_path.read_text(encoding="utf-8"))
-    assert recipe["claim"]["mode"] == "film-inspired"
-    assert "Look Approximation" in recipe["claim"]["label"]
+    assert recipe["claim"]["output_label"] == "film-inspired"
+    assert recipe["claim"]["evidence_grade"] == "look-approximation"
+    assert recipe["claim"]["calibrated_reference_allowed"] is False
     replay_style_safe_recipe_to_file(
         recipe, profile_path=PROFILE, output_path=replay, root=ROOT
     )
     assert replay.read_bytes() == output.read_bytes()
-

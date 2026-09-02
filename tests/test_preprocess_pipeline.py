@@ -336,17 +336,22 @@ def test_unknown_profiled_png16_fails_closed(tmp_path: Path) -> None:
         load_working_image(path)
 
 
-def test_avif_inspects_but_fails_closed_before_sdr_fallback(tmp_path: Path) -> None:
+def test_strict_sdr_avif_inspects_and_loads_without_assumed_profile(tmp_path: Path) -> None:
     if not features.check("avif"):
         pytest.skip("Pillow AVIF support is unavailable")
     path = tmp_path / "sample.avif"
     _rgb_fixture(path)
     inspection = inspect_input(path)
     assert inspection.format_name == "AVIF"
-    warning = next(w for w in inspection.warnings if w.code == "unsupported_dynamic_range")
-    assert "container:AVIF" in warning.message
-    with pytest.raises(ValueError, match="refusing SDR fallback"):
-        load_working_image(path)
+    assert inspection.source_profile.kind == "nclx"
+    assert inspection.hdr_metadata["strict_sdr_avif"] == "accepted"
+    assert not any(
+        warning.code == "unsupported_dynamic_range" for warning in inspection.warnings
+    )
+    assert not any(warning.code == "assumed_srgb" for warning in inspection.warnings)
+    image = load_working_image(path)
+    assert image.pixels.shape == (8, 10, 3)
+    assert image.bit_depth_in == 8
 
 
 @pytest.mark.parametrize(
