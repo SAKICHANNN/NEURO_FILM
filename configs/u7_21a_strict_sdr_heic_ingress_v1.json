@@ -1,0 +1,95 @@
+{
+  "schema_id": "kmcfm.u7-21a-strict-sdr-heic-ingress.v1",
+  "node_id": "U7.21A",
+  "source_repository": "https://github.com/bigcat88/pillow_heif",
+  "source_commit": "16c3dd8249f56fa07ab4f1350bd73e7a20b95bb1",
+  "dependency": {
+    "name": "pi-heif",
+    "version": "1.4.0",
+    "windows_cp312_wheel_bytes": 2407596,
+    "windows_cp312_wheel_sha256": "81cb473227b2da35bfd7c69a12764f664d91e44b0ec2547cdfe5ca6b8b52cab9",
+    "required_bundled_license": "LGPLv3",
+    "forbidden_product_dependency": "pillow-heif"
+  },
+  "source_root": "data/external/u7_21a_strict_sdr_heic_v1",
+  "fixtures": [
+    {
+      "role": "positive_display_p3_icc",
+      "path": "heif_other__arrow.heic",
+      "source_path": "tests/images/heif_other/arrow.heic",
+      "git_blob": "0cf18cabbdacc70cf080f6b7528cd2543c2c9ebe",
+      "bytes": 792052,
+      "sha256": "73f604d7353df4848505a1f45a5517f736857fe047372f95c2f3d671df92c22c"
+    },
+    {
+      "role": "reject_auxiliary_depth_gainmap",
+      "path": "heif_other__pug.heic",
+      "bytes": 1299081,
+      "sha256": "1ddce96766efbfa0f6bdf634bdab26bdeff831393df8d67f4cdc7b7a7afebc67"
+    },
+    {
+      "role": "reject_auxiliary_gainmap",
+      "path": "heif_special__aux_YCbCr.heic",
+      "bytes": 1172244,
+      "sha256": "8deae321c3b6424f97ab5d57d022e0a79ac35278149c0de7796261b8981f50b0"
+    },
+    {
+      "role": "reject_sequence",
+      "path": "heif_other__nokia__bird_burst.heic",
+      "bytes": 470071,
+      "sha256": "b9cb7666f3cbd7d9240816befd1d7406f66cfd69c85440b091da37fe70743c14"
+    },
+    {
+      "role": "reject_alpha",
+      "path": "heif__RGBA_8__128x128.heif",
+      "bytes": 16015,
+      "sha256": "df634be2fa51f3d9a244dc9c987d7179411814e7b171bc40273a4486181c559f"
+    },
+    {
+      "role": "reject_high_bit_depth",
+      "path": "heif__RGB_10__128x128.heif",
+      "bytes": 11637,
+      "sha256": "7fbf1573c1e5c1693953b31bb287327c53eaefa74a6f1324e7391a08b3ed1e73"
+    },
+    {
+      "role": "reject_missing_colour_identity",
+      "path": "heif__RGB_8__128x128.heif",
+      "bytes": 6647,
+      "sha256": "b1f3c0578b52525e95d1db617286879aee76779eb2e507fc57d3ce2a3ab527f9"
+    },
+    {
+      "role": "reject_corrupted",
+      "path": "heif_corrupted__corrupted.heic",
+      "bytes": 4785,
+      "sha256": "a3a2cc3c5367fb61e02f52330cab9568c469cc8e08f909ad24b7993add1f630e"
+    },
+    {
+      "role": "reject_truncated",
+      "path": "heif_truncated__truncated.heic",
+      "bytes": 3657,
+      "sha256": "6ad78dff7607565a7cd945d2bdd60c654b5b2900ea7bce2415c6db14a5610288"
+    }
+  ],
+  "strict_subset": {
+    "mimetype": "image/heic",
+    "top_level_images": 1,
+    "primary_index": 0,
+    "mode": "RGB",
+    "bit_depth": 8,
+    "auxiliary_images": 0,
+    "depth_images": 0,
+    "accepted_colour_identity": [
+      "parseable_nonempty_icc",
+      "nclx_1_13_6_full"
+    ]
+  },
+  "oracle": {
+    "oriented_width": 3024,
+    "oriented_height": 4032,
+    "srgb8_sha256": "cdb91bfabe81c965abd49b4aa21fb157dea79579af2d12b7fb845cf1907ed624",
+    "linear_f32_sha256": "068b9e4ed3b091be6ceefe3d75a814c5acaa3791f407bc705b6a201bcf52440a"
+  },
+  "canonical_ektar_065_sha256": "fc51547d1e00a0a4a36dce96847afe09d27b3b531b65172d3f32fa2a46d2087d",
+  "stop_rule": "Any failure closes U7.21A without changing the source, dependency, strict subset, colour identity, bit depth, auxiliary policy, renderer, look, strength, gates or output format.",
+  "claim_ceiling": "Private strict single-image 8-bit colour-identified SDR HEIC compatibility for deterministic film-inspired / Look Approximation only; no arbitrary HEIF/HEIC, sequence, alpha, HDR/gain-map, camera-colour accuracy, calibrated stock, physical-film, public release, standalone package or cross-platform claim."
+}
