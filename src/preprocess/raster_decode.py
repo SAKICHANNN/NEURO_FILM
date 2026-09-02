@@ -699,20 +699,28 @@ def load_jpeg_preview_working_image(
         raise ValueError("scaled preview decode requires a single-frame JPEG")
     if inspection.has_alpha:
         raise ValueError("scaled preview decode does not accept alpha")
-    if inspection.orientation not in {None, 1}:
-        raise ValueError(
-            "scaled preview decode requires identity EXIF orientation"
-        )
+    orientation = inspection.orientation or 1
+    if orientation not in range(1, 9):
+        raise ValueError("scaled preview decode has invalid EXIF orientation")
     if inspection.bit_depth != 8:
         raise ValueError("scaled preview decode requires 8-bit JPEG samples")
-    if target_width > inspection.width or target_height > inspection.height:
+    swaps_axes = orientation in {5, 6, 7, 8}
+    source_width = inspection.height if swaps_axes else inspection.width
+    source_height = inspection.width if swaps_axes else inspection.height
+    if target_width > source_width or target_height > source_height:
         raise ValueError("scaled preview decode cannot upsample")
 
     with Image.open(path) as image:
-        image.draft("RGB", (target_width, target_height))
-        if image.width < target_width or image.height < target_height:
+        decoder_target = (
+            (target_height, target_width)
+            if swaps_axes
+            else (target_width, target_height)
+        )
+        image.draft("RGB", decoder_target)
+        oriented = ImageOps.exif_transpose(image)
+        if oriented.width < target_width or oriented.height < target_height:
             raise ValueError("JPEG decoder scaling undershot requested preview dimensions")
-        rgb_image = _convert_with_icc(image, warnings)
+        rgb_image = _convert_with_icc(oriented, warnings)
         arr = np.asarray(rgb_image, dtype=np.float32) / 255.0
     warnings.append(
         DecodeWarning(

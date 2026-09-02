@@ -177,8 +177,15 @@ def render_three_stock_previews_to_directory(
         guardrails_by_style[style] = load_guardrail_config(guardrails_path, style)
 
     inspection = inspect_input(input_path)
-    source_width = inspection.width
-    source_height = inspection.height
+    orientation = inspection.orientation or 1
+    if orientation not in range(1, 9):
+        raise ThreeStockPreviewError("input has invalid EXIF orientation")
+    if orientation in {5, 6, 7, 8}:
+        source_width = inspection.height
+        source_height = inspection.width
+    else:
+        source_width = inspection.width
+        source_height = inspection.height
     if source_width < 1 or source_height < 1:
         raise ThreeStockPreviewError("input dimensions could not be inspected")
     preview_width, preview_height = preview_dimensions(
