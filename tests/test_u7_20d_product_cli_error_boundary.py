@@ -66,7 +66,7 @@ def test_product_cli_file_errors_are_one_safe_line_without_traceback(
         output,
     )
 
-    assert completed.returncode == 2
+    assert completed.returncode == 1
     assert completed.stdout == ""
     assert completed.stderr == f"K-MCFM render stopped safely: {expected}\n"
     assert "Traceback" not in completed.stderr
