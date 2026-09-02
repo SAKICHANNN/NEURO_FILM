@@ -318,10 +318,15 @@ def _report(order: str) -> dict[str, Any]:
     }
     expected_claim = {
         "calibrated_reference_allowed": False,
-        "data_grade": "none",
+        "claim_ceiling": (
+            "evidence-bounded deterministic Look Approximation catalog; no "
+            "stock response, calibration or authenticity claim"
+        ),
+        "color_state_policy": "look_approximation_only",
         "evidence_grade": "look-approximation",
-        "method": "heuristic",
+        "input_color_state": "display_referred",
         "output_label": "film-inspired",
+        "render_mode": "Style-safe",
     }
     gates = {
         "receipt_v4_exact": smoke["receipt"]["schema"] == config["receipt_schema"],
