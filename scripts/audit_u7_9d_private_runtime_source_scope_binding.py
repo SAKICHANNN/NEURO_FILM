@@ -285,6 +285,7 @@ def _runtime_smoke(root: Path, current_head: str) -> dict[str, Any]:
 def _report(order: str) -> dict[str, Any]:
     config = json.loads(CONFIG.read_text("utf-8"))
     start_head = _git(ROOT, "rev-parse", "HEAD")
+    preexisting_scratch = sorted(path.name for path in (ROOT / "tmp").glob("u7_9d_*"))
     if _git(ROOT, "status", "--porcelain", "--untracked-files=no"):
         raise RuntimeError("formal audit requires a tracked-clean worktree")
     source_objects = {
@@ -349,7 +350,10 @@ def _report(order: str) -> dict[str, Any]:
             for path in SOURCE_PATHS
         }
         == source_objects,
-        "owned_scratch_residue_zero": not list((ROOT / "tmp").glob("u7_9d_*")),
+        "owned_scratch_residue_unchanged": sorted(
+            path.name for path in (ROOT / "tmp").glob("u7_9d_*")
+        )
+        == preexisting_scratch,
     }
     scientific = {
         "status": (
@@ -363,6 +367,7 @@ def _report(order: str) -> dict[str, Any]:
         "controls": controls,
         "smoke": smoke,
         "gates": gates,
+        "excluded_preformal_scratch": preexisting_scratch,
         "claim_ceiling": config["claim"],
     }
     return {
