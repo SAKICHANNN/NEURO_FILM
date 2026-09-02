@@ -19,22 +19,22 @@ The renderer is currently a safe engineering baseline, not yet a calibrated repr
 
 ## Product Look Approximation CLI
 
-For a private Windows CPython 3.12 installation, create a repository-bound
-runtime under the P-backed `outputs` junction. The destination must not already
-exist. The installer uses only the exact binary product dependencies, runs
+The current verified private Windows CPython 3.12 runtime is installed under
+the P-backed `outputs` junction. Set its versioned path once for the commands
+below. The installer uses only the exact binary product dependencies, runs
 `pip check`, rejects the research/ML dependency graph, and publishes native
 Windows command-line and desktop executables plus one receipt that binds those
 executables, their self-contained launcher sources, the Python launchers and
 compatibility command files:
 
 ```powershell
-py -3.12 scripts\install_product_runtime.py outputs\private-product-runtime
+$runtime = ".\outputs\private-product-runtime-u7-9d-78d4931"
 ```
 
 List the authoritative product catalog without reading an image:
 
 ```powershell
-.\outputs\private-product-runtime\kmcfm-look.exe --list-product-looks
+& "$runtime\kmcfm-look.exe" --list-product-looks
 ```
 
 Render one explicitly selected film-inspired Look Approximation. The available
@@ -43,7 +43,7 @@ product look labels, not claims of calibrated stock response or physical-film
 reproduction.
 
 ```powershell
-.\outputs\private-product-runtime\kmcfm-look.exe input.jpg `
+& "$runtime\kmcfm-look.exe" input.jpg `
   --product-look portra_400 `
   --look-amount 0.75 `
   --write-recipe `
@@ -66,7 +66,7 @@ or power-loss atomicity.
 Inspect all current controls with:
 
 ```powershell
-.\outputs\private-product-runtime\kmcfm-look.exe --help
+& "$runtime\kmcfm-look.exe" --help
 ```
 
 ### Native repository desktop workflow
@@ -75,7 +75,7 @@ The installed private runtime exposes the same native workflow from any current
 directory while the bound repository commit and requirements remain exact:
 
 ```powershell
-.\outputs\private-product-runtime\kmcfm-desktop.exe --input input.jpg
+& "$runtime\kmcfm-desktop.exe" --input input.jpg
 ```
 
 Use the `.exe` launchers for exact Windows argument fidelity, including legal
@@ -122,11 +122,22 @@ uses the already selected representative. `1:1` describes spatial sampling;
 the window converts the crop to an RGB8 viewer image and does not claim exact
 16-bit sample codes or display calibration.
 
-The private runtime is deliberately repository-bound: every launch verifies
-the installed source commit, tracked-clean state and requirements hash. After a
-source update, install into a new absent destination rather than mutating the
-old runtime. This is not a standalone or public installer; the repository has
-no root license, so public distribution remains closed.
+The private runtime is deliberately repository-bound. Every launch requires
+the current `HEAD` to descend from the installed commit, requires all tracked
+files to be clean, and verifies that `src/`, `configs/`, both product
+entrypoints and `requirements-product-v2.txt` remain exact to the installed
+commit. Committed documentation, evidence and test-only descendants therefore
+remain runnable; any product-scope change still fails closed. After a product
+scope update, install into a new absent versioned destination rather than
+mutating an old runtime:
+
+```powershell
+py -3.12 scripts\install_product_runtime.py `
+  outputs\private-product-runtime-<new-version>
+```
+
+This is not a standalone or public installer; the repository has no root
+license, so public distribution remains closed.
 
 For repository development, the equivalent manual dependency command remains:
 

@@ -50,3 +50,11 @@ def test_u7_9d_evidence_preserves_claim_and_cleanup_truth() -> None:
     assert cleanup["deletion_blocked_before_execution_by_platform_policy"] is True
     assert cleanup["files_deleted"] == 0
     assert cleanup["future_scientific_or_product_authority"] is False
+
+
+def test_u7_9d_readme_points_to_verified_versioned_runtime_and_policy() -> None:
+    readme = (ROOT / "README.md").read_text("utf-8")
+    assert "private-product-runtime-u7-9d-78d4931" in readme
+    assert "current `HEAD` to descend from the installed commit" in readme
+    assert "Committed documentation, evidence and test-only descendants" in readme
+    assert "private-product-runtime\\kmcfm-look.exe" not in readme
