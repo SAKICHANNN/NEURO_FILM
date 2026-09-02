@@ -1,0 +1,45 @@
+{
+  "schema": "kmcfm.u8-2a-private-product-runtime-sbom-contract.v1",
+  "input": {
+    "receipt": "outputs/private-product-runtime-u1-5h-73e720c/product-runtime.json",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v3",
+    "receipt_sha256": "aa3a97686f9172de139f07edf0be784a23d86d9da85042d0cdda9bbbdb21f9c9",
+    "requirements_sha256": "78b2ec79ffd4053c42c90a5db765baf715fed261efa39a5e762e013145718517",
+    "source_commit": "73e720c56ffe3cbe7d54868d16c1c7a8f33097a3"
+  },
+  "formats": {
+    "cyclonedx": "1.7",
+    "spdx": "SPDX-2.3"
+  },
+  "canonical_creation_time": "1980-01-01T00:00:00Z",
+  "output": {
+    "directory": "outputs/u8_2a_private_product_runtime_sbom",
+    "cyclonedx": "kmcfm-private-runtime.cdx.json",
+    "spdx": "kmcfm-private-runtime.spdx.json"
+  },
+  "gates": {
+    "receipt_identity_exact": true,
+    "runtime_containment_exact": true,
+    "installed_inventory_complete": true,
+    "receipt_versions_exact": true,
+    "metadata_and_license_hashes_exact": true,
+    "dependency_edges_exact": true,
+    "cross_format_identity_exact": true,
+    "project_license_noassertion": true,
+    "private_look_approximation_claim_exact": true,
+    "forward_reverse_byte_exact": true,
+    "create_only_foreign_preservation": true,
+    "owned_residue_zero": true
+  },
+  "claim_ceiling": {
+    "status": "PASS_PRIVATE_RUNTIME_SBOM_READINESS",
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "legal_clearance": false,
+    "vulnerability_analysis": false
+  },
+  "stop_rule": "Fail closed without omitting installed components, inferring licence expressions, replacing foreign destinations, rebuilding the runtime, or claiming public-release readiness."
+}
