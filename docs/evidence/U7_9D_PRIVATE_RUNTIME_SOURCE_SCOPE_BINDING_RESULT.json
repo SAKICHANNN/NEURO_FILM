@@ -1,0 +1,188 @@
+{
+  "schema": "kmcfm.u7-9d-private-runtime-source-scope-binding-evidence.v1",
+  "node_id": "U7.9D",
+  "status": "PASS_PRIVATE_U7_9D_RUNTIME_SOURCE_SCOPE_BINDING",
+  "automatic_pass": true,
+  "formal_execution": {
+    "source_commit": "ea2e7331b8a6c89a839e6cae1e3a0a304d52081f",
+    "installed_source_commit": "78d4931328a3e8f08304f90e9dbba6c9b728a42d",
+    "reports": [
+      {
+        "path": "outputs/u7_9d_private_runtime_source_scope_binding_audit/formal_final_forward.json",
+        "bytes": 6143,
+        "sha256": "f2ed2a1f4484841d7dabea75b7521752dfa79d02a6e7f13e97b88610f9e5988b"
+      },
+      {
+        "path": "outputs/u7_9d_private_runtime_source_scope_binding_audit/formal_final_reverse.json",
+        "bytes": 6143,
+        "sha256": "f2ed2a1f4484841d7dabea75b7521752dfa79d02a6e7f13e97b88610f9e5988b"
+      }
+    ],
+    "byte_exact": true,
+    "scientific_identity": "7f388cd9c5b9dddc1a8a43911f0f4463dba7678329623ffe4bfcf874e4f0413b"
+  },
+  "runtime": {
+    "path": "outputs/private-product-runtime-u7-9d-78d4931",
+    "receipt_path": "outputs/private-product-runtime-u7-9d-78d4931/product-runtime.json",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v4",
+    "receipt_bytes": 3692,
+    "receipt_sha256": "389f71c0f51ee20e467c883958369731176b68158b1113ca81d7ac2f2f20f8e7",
+    "file_count": 7048,
+    "logical_bytes": 380683507,
+    "repository_binding": {
+      "installed_source_commit": "78d4931328a3e8f08304f90e9dbba6c9b728a42d",
+      "head_policy": "descendant",
+      "runtime_scope": [
+        "src",
+        "configs",
+        "scripts/render_film.py",
+        "scripts/open_product_desktop.py",
+        "requirements-product-v2.txt"
+      ],
+      "runtime_scope_policy": "exact-to-installed-source-commit",
+      "tracked_repository_policy": "clean",
+      "runtime_scope_untracked_policy": "reject",
+      "committed_non_runtime_drift_allowed": true
+    }
+  },
+  "product_observation": {
+    "catalog_ids": [
+      "velvia_50",
+      "portra_400",
+      "ektar_100",
+      "generic_bw"
+    ],
+    "direct_and_installed_output_sha256": "b77116328c8f196f58986e8b80b3bdeee2b97e9c41e4495f92930d2c0efa6a93",
+    "recipe_software_commit": "ea2e7331b8a6c89a839e6cae1e3a0a304d52081f",
+    "recipe_claim": {
+      "output_label": "film-inspired",
+      "evidence_grade": "look-approximation",
+      "calibrated_reference_allowed": false,
+      "color_state_policy": "look_approximation_only",
+      "render_mode": "Style-safe"
+    },
+    "sbom_inventory_count": 13,
+    "cyclonedx_sha256": "466417d8b2e4b52f5ecad18ffbe331db9df95a4c252ceeef8bc02208136348ce",
+    "spdx_sha256": "8518263e7df00abfda0eb0d816b25836d7daad8cf028c11159594309ccb72748"
+  },
+  "controls": {
+    "committed_docs_descendant_executes": true,
+    "dirty_tracked_documentation_rejects": true,
+    "committed_runtime_scope_drift_rejects": true,
+    "committed_requirements_drift_rejects": true,
+    "scoped_untracked_file_rejects": true,
+    "non_descendant_history_rejects": true,
+    "desktop_launcher_policy_executes": true,
+    "requirements_hash_exact": true,
+    "installed_direct_output_exact": true,
+    "recipe_records_current_head": true,
+    "sbom_receipt_v4_compatible": true
+  },
+  "gates": {
+    "descendant_history": true,
+    "tracked_clean": true,
+    "runtime_scope_exact": true,
+    "runtime_scope_untracked_zero": true,
+    "requirements_exact": true,
+    "docs_only_descendant_executes": true,
+    "receipt_discloses_scope": true,
+    "sbom_receipt_v4_compatible": true,
+    "cli_desktop_policy_exact": true,
+    "native_argv_regression": true,
+    "foreign_cwd_regression": true,
+    "look_approximation_claim_unchanged": true,
+    "render_recipe_behavior_exact": true
+  },
+  "excluded_attempts": [
+    {
+      "stage": "pre-report-control-fixture",
+      "status": "STOPPED_BEFORE_PRODUCT_RENDER",
+      "reason": "P-backed exFAT temporary Git repository required a process-local safe.directory declaration; no global Git configuration was changed"
+    },
+    {
+      "path": "outputs/u7_9d_private_runtime_source_scope_binding_audit/formal_forward.json",
+      "sha256": "a688b471cac3d606fce38dac05f1eef4044f8befc9c801e3490b1d382aca28c3",
+      "status": "FAIL_CLOSED_AUDIT_EXPECTED_RECIPE_CLAIM_SHAPE_ONLY",
+      "reason": "the audit expected an obsolete five-field claim shape; actual complete Look Approximation claim was stricter and all other gates passed"
+    },
+    {
+      "paths": [
+        "outputs/u7_9d_private_runtime_source_scope_binding_audit/formal_v2_forward.json",
+        "outputs/u7_9d_private_runtime_source_scope_binding_audit/formal_v2_reverse.json"
+      ],
+      "sha256": "2d584aa88e7242427bd7ddad5b804c338289932c09330c8b2dd22aa1e6e4f7eb",
+      "status": "PASS_INTERMEDIATE_RUNTIME_SUPERSEDED",
+      "reason": "the intermediate receipt v4 runtime passed, then exposed that the existing SBOM reader accepted only v3; the final runtime includes the validated v3/v4 reader"
+    }
+  ],
+  "retained_cleanup_facts": {
+    "intermediate_runtime": "outputs/private-product-runtime-u7-9d-e465886",
+    "intermediate_runtime_file_count": 7048,
+    "intermediate_runtime_logical_bytes": 380683507,
+    "debug_probe": "tmp/u7_9d_git_probe",
+    "debug_probe_file_count": 18,
+    "debug_probe_logical_bytes": 27254,
+    "deletion_attempted": true,
+    "deletion_blocked_before_execution_by_platform_policy": true,
+    "files_deleted": 0,
+    "future_scientific_or_product_authority": false
+  },
+  "source_bindings": {
+    "configs/u7_9d_private_runtime_source_scope_binding_v1.json": {
+      "git_blob": "af02cfc0e5c84915999871d94a2390960d687221",
+      "bytes": 1432,
+      "sha256": "597b3a26d0485d05680e6b191e7ce038b78d7175d050e87dda96216922940991"
+    },
+    "docs/planning/U7_9D_PRIVATE_RUNTIME_SOURCE_SCOPE_BINDING_CONTRACT.md": {
+      "git_blob": "be532c2afdc18f219d1464c39aafbae02a83f4cf",
+      "bytes": 3284,
+      "sha256": "f2f40e1c3fd02be0535eeeba3a250d5e0022db10b0d63888beee51b5bfce34c9"
+    },
+    "scripts/install_product_runtime.py": {
+      "git_blob": "cc882e46ee62217b6872a6a76e7af468654a8e2e",
+      "bytes": 20742,
+      "sha256": "63b43b191d0ceefe1992a440c9fc67149d711217991e8904e709a94986c58247"
+    },
+    "scripts/audit_u7_9d_private_runtime_source_scope_binding.py": {
+      "git_blob": "bff241221cba866794a5f7a881b2f2657f68d9f3",
+      "bytes": 15617,
+      "sha256": "0f9c2e6d82db2282c31e630383df62c7dde0b2a15514e8f3729e0cc88c783229"
+    },
+    "src/inference/product_runtime_sbom.py": {
+      "git_blob": "5763931f3ed5c8f6c480c541ba769eb65287a30f",
+      "bytes": 26273,
+      "sha256": "929c09160f2e06c920dde1c945cef5886c775632e0c2731f0c08f2d5b0ad674e"
+    },
+    "tests/test_u7_9d_private_runtime_source_scope_binding.py": {
+      "git_blob": "ef41bf83f5c111c681ff793821e83ef6fb426c40",
+      "bytes": 6892,
+      "sha256": "e6ac8c3398aadae483803afa996afd1956a042377776b7efaa9db44416b53df4"
+    },
+    "tests/test_audit_u7_9d_private_runtime_source_scope_binding.py": {
+      "git_blob": "7353396a7c500c1e6a291c11414d918ca443b714",
+      "bytes": 1082,
+      "sha256": "a9c9c20f4bca3af3bf8ef76a62d458bbc51d1485ecf73428c179e158504a790b"
+    },
+    "tests/test_u7_20f_installed_native_launcher_argv.py": {
+      "git_blob": "869ac1b0eb2ae5ac8cc4aa48a6257ed1932e7743",
+      "bytes": 5113,
+      "sha256": "8a3f72e1d0082635121db3e3a72e2e23dec3c7293bae0ca9a85be468ac1e2790"
+    },
+    "tests/test_u8_2a_private_product_runtime_sbom.py": {
+      "git_blob": "bb089fc279e574fb7f9b1a633be4b03b40172535",
+      "bytes": 8282,
+      "sha256": "32d02ea3cf52fb5b3162c22c1c01879bafbf3aafb1667eb3bea56ede62712cb7"
+    }
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_repository_bound_runtime": true,
+    "standalone_runtime": false,
+    "public_release": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false
+  },
+  "decision": "The private Windows runtime now remains usable across committed non-runtime descendant changes while rejecting dirty tracked state, non-descendant history, product source/config/entrypoint/requirements drift, and scoped untracked files before product execution. The exact final runtime also remains compatible with deterministic CycloneDX/SPDX generation. This is private repository-bound Look Approximation delivery evidence only.",
+  "stop_rule": "Stop adjacent launcher-wrapper expansion. Any future change within the frozen runtime scope requires a new absent versioned installation and fresh evidence; do not overwrite historical runtimes, relax the scope, or infer a standalone/public/calibrated product claim."
+}
