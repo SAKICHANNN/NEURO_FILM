@@ -16,19 +16,20 @@ from typing import Any
 
 import numpy as np
 
-
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.inference import replay_style_safe_recipe_to_file  # noqa: E402
-from src.preprocess import inspect_input, load_working_image  # noqa: E402
-from src.preprocess import raster_decode  # noqa: E402
-from src.preprocess.avif_sdr import (  # noqa: E402
+from src.inference import replay_style_safe_recipe_to_file
+from src.preprocess import (
+    inspect_input,
+    load_working_image,
+    raster_decode,
+)
+from src.preprocess.avif_sdr import (
     StrictSdrAvifError,
     inspect_strict_sdr_avif,
 )
-
 
 CONFIG = ROOT / "configs/u1_5h_strict_sdr_avif_ingress_v1.json"
 SOURCE = ROOT / "data/external/u1_5h_strict_sdr_avif_v1/kodim03_yuv420_8bpc.avif"
