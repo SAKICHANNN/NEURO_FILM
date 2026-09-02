@@ -69,6 +69,13 @@ def _write_create_only(path: Path, payload: dict[str, Any]) -> None:
         handle.write(encoded)
 
 
+def _canonical_json_sha256(payload: dict[str, Any]) -> str:
+    encoded = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode(
+        "utf-8"
+    )
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def _verified_config() -> dict[str, Any]:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     if config["contract_id"] != "U1_5H_STRICT_SDR_AVIF_INGRESS_V1":
@@ -195,6 +202,8 @@ def _audit_product(config: dict[str, Any]) -> dict[str, Any]:
         replay_sha = _sha256(replay)
         if output.read_bytes() != replay.read_bytes():
             raise AssertionError("AVIF product recipe replay differs")
+        normalized_recipe = json.loads(json.dumps(recipe))
+        normalized_recipe["output"]["path"] = "<owned-output>"
         return {
             "container": {
                 "width": strict.width,
@@ -210,7 +219,8 @@ def _audit_product(config: dict[str, Any]) -> dict[str, Any]:
             "working_min": float(np.min(working.pixels)),
             "working_max": float(np.max(working.pixels)),
             "output_sha256": output_sha,
-            "recipe_sha256": _sha256(recipe_path),
+            "recipe_output_path_bound": recipe["output"]["path"] == str(output),
+            "recipe_semantic_sha256": _canonical_json_sha256(normalized_recipe),
             "replay_sha256": replay_sha,
             "claim": claim,
         }
@@ -295,4 +305,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
