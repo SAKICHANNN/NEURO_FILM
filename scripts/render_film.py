@@ -804,8 +804,6 @@ def main() -> int:
             )
         else:
             preflight_product_primary_output(args.input, args.output)
-    if not args.input.is_file():
-        raise ValueError("input must be an existing file")
     working = load_working_image(args.input)
     output_claim = resolve_look_approximation_claim(working)
     if analytic_runtime is None:
@@ -1131,7 +1129,10 @@ def _run_cli() -> int:
         return main()
     except Exception as exc:  # noqa: BLE001 - terminal product error boundary
         detail = " ".join(str(exc).split()) or exc.__class__.__name__
-        print(f"K-MCFM render stopped safely: {detail}", file=sys.stderr)
+        print(
+            f"K-MCFM render stopped safely: {exc.__class__.__name__}: {detail}",
+            file=sys.stderr,
+        )
         return 1
 
 

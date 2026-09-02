@@ -50,9 +50,11 @@ def test_product_cli_file_errors_are_one_safe_line_without_traceback(
     output = tmp_path / "result.png"
     if case == "missing-input":
         source.unlink()
-        expected = "input must be an existing file"
+        expected_type = "FileNotFoundError"
+        expected = "No such file or directory"
     else:
         output.write_bytes(b"foreign-output")
+        expected_type = "ProductRenderTransactionError"
         expected = "product output destination must not already exist"
 
     completed = _run(
@@ -68,7 +70,11 @@ def test_product_cli_file_errors_are_one_safe_line_without_traceback(
 
     assert completed.returncode == 1
     assert completed.stdout == ""
-    assert completed.stderr == f"K-MCFM render stopped safely: {expected}\n"
+    assert completed.stderr.startswith(
+        f"K-MCFM render stopped safely: {expected_type}: "
+    )
+    assert expected in completed.stderr
+    assert len(completed.stderr.splitlines()) == 1
     assert "Traceback" not in completed.stderr
     assert not output.with_suffix(".recipe.json").exists()
     if case == "missing-input":
