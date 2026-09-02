@@ -23420,3 +23420,31 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   checks pass. This is only a truthful local CLI error boundary; it does not
   change calibration, physical-film, stock-distinguishability or public
   release claims, and no push occurred.
+
+### 2026-09-02 - U7.20E preserves caller-relative paths in the installed CLI
+
+- **Node and routing:** `ULT > U7 productization > U7.20E`, DRPT L2 / Mode C,
+  R1 local. `dev-research-reliability` was the sole writer; router, structure
+  and agent-log disciplines were read-only secondary checks. The long-lived
+  Look Approximation Goal remains active; no leaf Goal was created. Both
+  parallel tasks confirmed the installer/current-test paths were disjoint.
+- **Trigger and invariant:** the installed `kmcfm-look.cmd` passed relative
+  media paths unchanged while launching its child with repository-root cwd.
+  From a foreign directory, an existing `source.png` therefore failed as
+  missing and no caller-local output was produced. Freeze `059ffdc1` requires
+  Unicode/space relative input and output paths to resolve against caller cwd,
+  match direct bytes and leave the repository untouched while retaining every
+  repository/requirements/tracked-state gate.
+- **Repair and propagation:** `5c4bd5b0` changes the generated launcher's child
+  cwd from the bound root to `Path.cwd()`; renderer and desktop scripts already
+  bind their repository assets through absolute `ROOT`. Parent test update
+  `9bd721ee` continues reconstructing historical U7.9A bytes and proves the
+  current launcher differs by exactly that one line. Receipt hashes and source
+  commit continue to bind the new launcher bytes.
+- **Verification and boundary:** focused installed-runtime tests pass 16/16;
+  broader ingress/catalog/CLI/native-desktop behavior passes 125/125 with one
+  explicitly deselected stale HP5 normalized-recipe binding. Ruff, compileall
+  and diff checks pass. This changes filesystem interpretation only: pixels,
+  looks, strength/effects, recipes/receipts and `film-inspired / Look
+  Approximation` claims remain unchanged. No calibrated-stock, physical-film,
+  cross-platform or public-release claim and no push.
