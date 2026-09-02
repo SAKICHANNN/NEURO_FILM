@@ -42,6 +42,20 @@ def test_u8_2a_builder_surface_exists() -> None:
     assert callable(sbom.validate_sbom_documents)
 
 
+def test_u8_2a_formal_audit_binds_all_owned_sources() -> None:
+    from scripts import audit_u8_2a_private_product_runtime_sbom as audit
+
+    assert audit.CONFIG == CONFIG
+    assert {path.as_posix() for path in audit.SOURCE_PATHS} == {
+        "configs/u8_2a_private_product_runtime_sbom_v1.json",
+        "docs/planning/U8_2A_PRIVATE_PRODUCT_RUNTIME_SBOM_CONTRACT.md",
+        "scripts/audit_u8_2a_private_product_runtime_sbom.py",
+        "scripts/build_private_product_runtime_sbom.py",
+        "src/inference/product_runtime_sbom.py",
+        "tests/test_u8_2a_private_product_runtime_sbom.py",
+    }
+
+
 def test_u8_2a_cross_format_documents_are_deterministic() -> None:
     from src.inference import product_runtime_sbom as sbom
 
