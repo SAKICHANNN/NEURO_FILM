@@ -23366,3 +23366,28 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   warning and `look-approximation` evidence. Ruff, compileall and diff checks
   pass. No new format, pixel behavior, calibrated-stock, physical-film or
   public-release claim; no push.
+
+### 2026-09-02 - U7.20C clears invalidated desktop previews after safe errors
+
+- **Node and routing:** `ULT > U7 productization > U7.20C`, DRPT L2 / Mode C,
+  R1 local. `dev-research-reliability` was the sole writer; router, structure
+  and agent-log disciplines were read-only secondary checks. The long-lived
+  Look Approximation Goal remains active; no leaf Goal was created. Both
+  parallel tasks confirmed exact code and shared-doc ownership.
+- **Trigger and invariant:** the current UI retained all three old Look cards
+  after `_show_error` had invalidated preview authority, cleared selection and
+  disabled export/detail. The input-basis image was cleared, so the resulting
+  window visually suggested that stale processed previews were still usable.
+  Freeze `285911b2` requires every invalidated preview widget to clear while
+  retaining the owned workflow workspace for a deliberate rerender.
+- **Repair:** implementation `89dd6cec` replaces the partial error cleanup
+  with the existing `_clear_preview_widgets` path. It clears the input basis,
+  Look cards, detail window and Tk image references; renderer, workspace,
+  inputs, looks, controls, recipes and output paths are unchanged.
+- **Verification and boundary:** the frozen regression fails 1/1 on the
+  parent and passes after repair. Fresh-process U7.10A/U7.12A/B/F/G/U7.14A,
+  U7.15A-C/U7.16A/U7.17A/U7.18A behavioral suites pass 118/118. Ruff,
+  compileall and diff checks pass. This is only truthful native-desktop state
+  recovery for deterministic `film-inspired / Look Approximation`; no pixel,
+  calibration, physical-film, stock-distinguishability or release claim and
+  no push.
