@@ -22,9 +22,10 @@ The renderer is currently a safe engineering baseline, not yet a calibrated repr
 For a private Windows CPython 3.12 installation, create a repository-bound
 runtime under the P-backed `outputs` junction. The destination must not already
 exist. The installer uses only the exact binary product dependencies, runs
-`pip check`, rejects the research/ML dependency graph, and publishes separate
-command-line and desktop launchers plus one receipt that binds all four command
-and Python launcher files:
+`pip check`, rejects the research/ML dependency graph, and publishes native
+Windows command-line and desktop executables plus one receipt that binds those
+executables, their self-contained launcher sources, the Python launchers and
+compatibility command files:
 
 ```powershell
 py -3.12 scripts\install_product_runtime.py outputs\private-product-runtime
@@ -33,7 +34,7 @@ py -3.12 scripts\install_product_runtime.py outputs\private-product-runtime
 List the authoritative product catalog without reading an image:
 
 ```powershell
-.\outputs\private-product-runtime\kmcfm-look.cmd --list-product-looks
+.\outputs\private-product-runtime\kmcfm-look.exe --list-product-looks
 ```
 
 Render one explicitly selected film-inspired Look Approximation. The available
@@ -42,7 +43,7 @@ product look labels, not claims of calibrated stock response or physical-film
 reproduction.
 
 ```powershell
-.\outputs\private-product-runtime\kmcfm-look.cmd input.jpg `
+.\outputs\private-product-runtime\kmcfm-look.exe input.jpg `
   --product-look portra_400 `
   --look-amount 0.75 `
   --write-recipe `
@@ -58,7 +59,7 @@ or power-loss atomicity.
 Inspect all current controls with:
 
 ```powershell
-.\outputs\private-product-runtime\kmcfm-look.cmd --help
+.\outputs\private-product-runtime\kmcfm-look.exe --help
 ```
 
 ### Native repository desktop workflow
@@ -67,8 +68,13 @@ The installed private runtime exposes the same native workflow from any current
 directory while the bound repository commit and requirements remain exact:
 
 ```powershell
-.\outputs\private-product-runtime\kmcfm-desktop.cmd --input input.jpg
+.\outputs\private-product-runtime\kmcfm-desktop.exe --input input.jpg
 ```
+
+Use the `.exe` launchers for exact Windows argument fidelity, including legal
+file names containing literal percent signs, ampersands or parentheses. The
+older `.cmd` launchers remain receipt-bound for compatibility with ordinary
+paths, but Windows batch parsing cannot preserve every legal file name.
 
 For repository development, open the workflow directly from the product
 environment. An optional supported input can be selected at startup; otherwise
