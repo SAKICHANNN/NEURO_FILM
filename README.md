@@ -50,6 +50,13 @@ reproduction.
   --output result.png
 ```
 
+Input compatibility includes a deliberately narrow ordinary-AVIF subset:
+single-image, 8-bit RGB AVIF with explicit full-range sRGB NCLX identity.
+Sequence, alpha, ICC, ambiguous or higher-bit-depth AVIF, HEIF/HEIC, HDR and
+gain-map containers still fail closed before image pixels. This is SDR input
+compatibility only; output remains PNG/JPEG/TIFF and the selected result remains
+`film-inspired / Look Approximation`.
+
 Optional deterministic `--grain`, `--halation` and `--dust` controls remain
 available. Add `--write-layers` and `--write-metrics` when those auxiliary
 artifacts are wanted; the product path publishes every requested artifact

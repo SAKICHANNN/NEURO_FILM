@@ -23481,3 +23481,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Ruff, compileall and diff checks also pass. Claim remains private,
   repository-bound Windows Look Approximation mechanics—not calibrated stock,
   physical film, standalone/public release or cross-platform parity; no push.
+
+### 2026-09-02 - U1.5H admits a strict ordinary SDR AVIF subset
+
+- **Node and routing:** `ULT > U1 > U1.5 > U1.5H`, DRPT L2 / Mode C, R1
+  local. `dev-research-reliability` was the sole writer; router, research,
+  structure and agent-log disciplines were read-only secondary checks. The
+  long-lived Look Approximation Goal remains active; no leaf Goal was created.
+  Both parallel tasks reserved and avoided every U1.5H code, test, evidence and
+  shared-document path.
+- **Defect and freeze:** production rejected every AVIF even when the file was
+  an ordinary 8-bit SDR still. Freeze `4decf5cb` requires metadata-first
+  ISO-BMFF proof of exactly one primary `av01`, three 8-bit channels, explicit
+  NCLX `1/13/6/full`, no alpha/sequence/ICC/derived image/HDR/gain map, plus an
+  independent Pillow format/mode/frame/dimension check before pixels.
+- **Implementation and evidence:** `9ba69d4f` adds the bounded private parser
+  and integrates only its accepted subset with `WorkingImage`; HEIF/HEIC and
+  all unproved AVIF remain fail-closed. The exact official libavif fixture at
+  commit `265f1524...cfe5` is 25,430 bytes / SHA `e69c973a...3ef5d` and lives
+  under the P-backed repo-relative data junction. Evidence commit `18f0416d`
+  records a finite 768x512 linear-sRGB WorkingImage, Ektar product output
+  `f44b135b...66906`, and byte-identical recipe replay.
+- **Negative controls and correction:** all six exact P278 gain-map/structural
+  fixtures reject before any Pillow call, including the no-`tmap`-brand case.
+  Initial complete reports differed only because strict recipes bind distinct
+  owned temporary output paths. Report-only correction `40961925` normalizes
+  that path to an explicit placeholder; from-zero V2 reports are byte-exact at
+  5,134 bytes / SHA `e17c0081...b052`, without changing source, pixels, gates,
+  output or replay.
+- **Verification and boundary:** 99 current ingress/gain-map/product/recipe and
+  historical-binding behavioral tests pass; Ruff, compileall, JSON and diff
+  checks pass. A wider diagnostic retained exact PNG outputs but found four
+  obsolete U7.2M normalized-recipe oracle assertions; old evidence was not
+  rewritten and those assertions are not an AVIF gate. Claim is strictly
+  single-image 8-bit sRGB-NCLX AVIF input compatibility for deterministic
+  `film-inspired / Look Approximation`, not arbitrary AVIF/HEIF, HDR/gain-map,
+  AVIF output, calibrated stock response or physical-film reproduction. No
+  push.
