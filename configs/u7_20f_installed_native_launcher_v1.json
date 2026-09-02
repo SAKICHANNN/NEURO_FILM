@@ -1,0 +1,40 @@
+{
+  "schema": "kmcfm.u7-20f-installed-native-launcher-contract.v1",
+  "parent_receipt_schema": "kmcfm.private-product-runtime-receipt.v2",
+  "receipt_schema": "kmcfm.private-product-runtime-receipt.v3",
+  "source_date_epoch": 315532800,
+  "launchers": {
+    "cli": {
+      "native_name": "kmcfm-look.exe",
+      "native_source_name": "kmcfm-look.py",
+      "compatibility_name": "kmcfm-look.cmd"
+    },
+    "desktop": {
+      "native_name": "kmcfm-desktop.exe",
+      "native_source_name": "kmcfm-desktop.py",
+      "compatibility_name": "kmcfm-desktop.cmd"
+    }
+  },
+  "gates": {
+    "native_windows_argv_literal": true,
+    "percent_environment_token_literal": true,
+    "shell_metacharacters_literal": true,
+    "native_launchers_receipt_bound": true,
+    "compatibility_launchers_retained_and_bound": true,
+    "repository_and_requirements_binding_unchanged": true,
+    "hostile_python_environment_isolation_unchanged": true,
+    "cli_render_and_recipe_exact": true,
+    "desktop_smoke_exact": true,
+    "foreign_destination_preserved": true,
+    "owned_residue_zero": true
+  },
+  "stop_rule": "Fail closed without filename substitution, shell escaping instructions, renderer changes, or a public/standalone packaging claim.",
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "standalone_installer": false
+  }
+}
