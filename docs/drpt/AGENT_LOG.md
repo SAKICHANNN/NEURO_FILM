@@ -23518,3 +23518,35 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   `film-inspired / Look Approximation`, not arbitrary AVIF/HEIF, HDR/gain-map,
   AVIF output, calibrated stock response or physical-film reproduction. No
   push.
+
+### 2026-09-02 - U8.2A binds the private installed runtime to deterministic SBOMs
+
+- **Node and routing:** `ULT > U8 release and expansion > U8.2A`, DRPT L2 /
+  Mode C, R1 local. `dev-research-reliability` was the sole writer; router,
+  research, structure and agent-log disciplines were read-only secondary
+  checks. The long-lived Look Approximation Goal remains active; no leaf Goal
+  was created. Both parallel tasks reserved and avoided every U8.2A source,
+  output and shared-document path.
+- **Gap and freeze:** U8.2 required SPDX/CycloneDX inventory, while the exact
+  installed private runtime had only a package-version receipt. Freeze
+  `71306f94` binds receipt v3 SHA `aa3a9768...f9c9`, its twelve required
+  packages, all actually installed distributions, installed Core Metadata and
+  licence-file hashes. It forbids inferred licence expressions, host paths,
+  omitted components, timestamps/random IDs and any public-release claim.
+- **Implementation and formal evidence:** `a4f2237b` adds an offline canonical
+  CycloneDX 1.7 / SPDX 2.3 builder with active dependency edges and shared
+  create-only publication; `3006ee19` adds a formal controller that verifies
+  exact official schemas and foreign-destination rollback. Forward/reverse
+  committed-head reports are byte-exact at 6,909 bytes / SHA
+  `1632e9f2...299e`; all gates pass. The two canonical P-backed outputs are
+  66,066 bytes / `51748291...4fbf` and 71,428 bytes /
+  `38b7b26b...5757`. Evidence commit `786d13de` binds the reports, source Git
+  objects, schema identities, runtime inventory and published files.
+- **Verification and boundary:** focused evidence and generation tests pass
+  8/8; installation, startup isolation, native argv and strict SDR AVIF
+  adjacent coverage passes 36/36. Ruff, compileall, JSON, official JSON Schema
+  and diff checks pass. K-MCFM and CPython remain `NOASSERTION`, package legacy
+  licence text is evidence only, and U8.2 remains pending on the owner-selected
+  root licence plus datasheet/cards/release audit. This is private runtime
+  inventory—not legal clearance, vulnerability analysis, signing, calibrated
+  stock evidence, physical-film reproduction or public release; no push.
