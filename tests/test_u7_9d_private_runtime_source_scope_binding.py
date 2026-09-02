@@ -41,7 +41,9 @@ def _project(tmp_path: Path) -> tuple[Path, str, Path]:
     _write(
         root / "scripts/render_film.py",
         "import json, subprocess\n"
-        "head = subprocess.run(['git','rev-parse','HEAD'], check=True, "
+        "from pathlib import Path\n"
+        "root = Path(__file__).resolve().parents[1]\n"
+        "head = subprocess.run(['git','-C',str(root),'rev-parse','HEAD'], check=True, "
         "capture_output=True, text=True).stdout.strip()\n"
         "print(json.dumps({'argv': __import__('sys').argv[1:], 'head': head}, "
         "sort_keys=True))\n",
@@ -165,7 +167,7 @@ def test_dirty_tracked_documentation_and_scoped_untracked_reject(tmp_path: Path)
     _write(root / "docs/note.md", "dirty\n")
     completed = _run(launcher)
     assert completed.returncode == 2
-    assert "tracked project files changed" in completed.stderr
+    assert "tracked repository drift" in completed.stderr
 
     _git(root, "restore", "docs/note.md")
     _write(root / "src/untracked.py", "VALUE = 2\n")
@@ -190,4 +192,4 @@ def test_non_descendant_history_rejects(tmp_path: Path) -> None:
     completed = _run(launcher)
 
     assert completed.returncode == 2
-    assert "repository history drift" in completed.stderr
+    assert "repository commit drift" in completed.stderr

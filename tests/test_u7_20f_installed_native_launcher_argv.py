@@ -108,7 +108,22 @@ def test_runtime_receipt_promotes_native_commands_and_binds_cmd_compatibility(
     )
     receipt = installer.install_product_runtime(destination)
 
-    assert receipt["schema"] == "kmcfm.private-product-runtime-receipt.v3"
+    assert receipt["schema"] == "kmcfm.private-product-runtime-receipt.v4"
+    assert receipt["repository_binding"] == {
+        "installed_source_commit": expected_commit,
+        "head_policy": "descendant",
+        "runtime_scope": [
+            "src",
+            "configs",
+            "scripts/render_film.py",
+            "scripts/open_product_desktop.py",
+            "requirements-product-v2.txt",
+        ],
+        "runtime_scope_policy": "exact-to-installed-source-commit",
+        "tracked_repository_policy": "clean",
+        "runtime_scope_untracked_policy": "reject",
+        "committed_non_runtime_drift_allowed": True,
+    }
     assert receipt["launcher"] == receipt["launchers"]["cli"]["command"]
     for role, prefix in (("cli", "kmcfm-look"), ("desktop", "kmcfm-desktop")):
         row = receipt["launchers"][role]

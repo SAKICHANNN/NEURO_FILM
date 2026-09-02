@@ -22,6 +22,9 @@ DESKTOP_CONFIG_PATH = (
     ROOT / "configs" / "u7_10b_installed_runtime_desktop_launch_v1.json"
 )
 NATIVE_CONFIG_PATH = ROOT / "configs" / "u7_20f_installed_native_launcher_v1.json"
+SCOPE_CONFIG_PATH = (
+    ROOT / "configs" / "u7_9d_private_runtime_source_scope_binding_v1.json"
+)
 
 _IMPORTS = {
     "imageio": "imageio",
@@ -240,17 +243,35 @@ def _launcher_source(
     source_commit: str,
     requirements_path: Path,
     requirements_sha256: str,
+    runtime_scope: Sequence[str] | None = None,
     entrypoint: Path | None = None,
 ) -> str:
     if entrypoint is not None and (
         entrypoint.is_absolute() or ".." in entrypoint.parts
     ):
         raise ValueError("launcher entrypoint must be repository-relative")
+    if runtime_scope is None:
+        runtime_scope = (
+            "src",
+            "configs",
+            "scripts/render_film.py",
+            "scripts/open_product_desktop.py",
+            "requirements-product-v2.txt",
+        )
+    normalized_scope = tuple(str(item).replace("\\", "/") for item in runtime_scope)
+    if not normalized_scope or any(
+        not item
+        or Path(item).is_absolute()
+        or ".." in Path(item).parts
+        for item in normalized_scope
+    ):
+        raise ValueError("runtime scope must contain repository-relative paths")
     values = {
         "project_root": str(project_root),
         "source_commit": source_commit,
         "requirements_path": str(requirements_path),
         "requirements_sha256": requirements_sha256,
+        "runtime_scope": normalized_scope,
     }
     if entrypoint is not None:
         values["entrypoint"] = entrypoint.as_posix()
@@ -285,14 +306,42 @@ head = subprocess.run(
     ["git", "-C", str(root), "rev-parse", "HEAD"],
     check=False, capture_output=True, text=True, encoding="utf-8"
 )
-if head.returncode or head.stdout.strip() != BOUND["source_commit"]:
-    fail("repository commit drift")
+if head.returncode:
+    fail("repository HEAD is unavailable")
+current_head = head.stdout.strip()
+history = subprocess.run(
+    ["git", "-C", str(root), "merge-base", "--is-ancestor",
+     BOUND["source_commit"], current_head],
+    check=False, capture_output=True, text=True, encoding="utf-8"
+)
+if history.returncode == 1:
+    fail("repository commit drift: history is not descendant")
+if history.returncode:
+    fail("repository history validation failed")
 dirty = subprocess.run(
     ["git", "-C", str(root), "status", "--porcelain", "--untracked-files=no"],
     check=False, capture_output=True, text=True, encoding="utf-8"
 )
 if dirty.returncode or dirty.stdout.strip():
     fail("tracked repository drift")
+scope_diff = subprocess.run(
+    ["git", "-C", str(root), "diff", "--quiet", BOUND["source_commit"],
+     "--", *BOUND["runtime_scope"]],
+    check=False, capture_output=True, text=True, encoding="utf-8"
+)
+if scope_diff.returncode == 1:
+    fail("runtime source scope drift")
+if scope_diff.returncode:
+    fail("runtime source scope validation failed")
+scope_status = subprocess.run(
+    ["git", "-C", str(root), "status", "--porcelain=v1",
+     "--untracked-files=all", "--", *BOUND["runtime_scope"]],
+    check=False, capture_output=True, text=True, encoding="utf-8"
+)
+if scope_status.returncode:
+    fail("runtime source scope status failed")
+if any(line.startswith("?? ") for line in scope_status.stdout.splitlines()):
+    fail("untracked runtime source scope")
 {entry_source}
 environment = {{
     key: value
@@ -355,8 +404,14 @@ def install_product_runtime(
     native_config = json.loads(
         (project_root / NATIVE_CONFIG_PATH.relative_to(ROOT)).read_text("utf-8")
     )
+    scope_config = json.loads(
+        (project_root / SCOPE_CONFIG_PATH.relative_to(ROOT)).read_text("utf-8")
+    )
     if native_config["parent_receipt_schema"] != desktop_config["receipt_schema"]:
         raise RuntimeError("native launcher parent receipt schema mismatch")
+    if scope_config["parent_receipt_schema"] != native_config["receipt_schema"]:
+        raise RuntimeError("source-scope parent receipt schema mismatch")
+    runtime_scope = tuple(scope_config["runtime_scope"])
     git_directory = project_root / ".git"
     if (
         destination == project_root
@@ -431,6 +486,7 @@ def install_product_runtime(
                 source_commit=source_commit,
                 requirements_path=requirements,
                 requirements_sha256=config["requirements"]["sha256"],
+                runtime_scope=runtime_scope,
                 entrypoint=(
                     Path(launcher_config["entrypoint"])
                     if role == "desktop"
@@ -474,7 +530,7 @@ def install_product_runtime(
             }
         launcher_cmd = Path(launchers["cli"]["command"])
         receipt = {
-            "schema": native_config["receipt_schema"],
+            "schema": scope_config["receipt_schema"],
             "source_commit": source_commit,
             "project_root": str(project_root),
             "requirements": {
@@ -490,6 +546,15 @@ def install_product_runtime(
             "launcher": str(launcher_cmd),
             "launchers": launchers,
             "claim": config["claim"],
+            "repository_binding": {
+                "installed_source_commit": source_commit,
+                "head_policy": "descendant",
+                "runtime_scope": list(runtime_scope),
+                "runtime_scope_policy": "exact-to-installed-source-commit",
+                "tracked_repository_policy": "clean",
+                "runtime_scope_untracked_policy": "reject",
+                "committed_non_runtime_drift_allowed": True,
+            },
             "repository_bound": True,
             "public_distribution": False,
         }
