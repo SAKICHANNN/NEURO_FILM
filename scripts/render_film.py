@@ -635,6 +635,8 @@ def main() -> int:
         }
         print(json.dumps(payload, sort_keys=True, separators=(",", ":")))
         return 0
+    if not args.input.is_file():
+        raise ValueError("input must be an existing file")
     style_was_explicit = args.style is not None
     if args.style is None:
         args.style = "velvia_50"
@@ -1124,5 +1126,14 @@ def main() -> int:
     return 0
 
 
+def _run_cli() -> int:
+    try:
+        return main()
+    except Exception as exc:  # noqa: BLE001 - terminal product error boundary
+        detail = " ".join(str(exc).split()) or exc.__class__.__name__
+        print(f"K-MCFM render stopped safely: {detail}", file=sys.stderr)
+        return 2
+
+
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(_run_cli())
