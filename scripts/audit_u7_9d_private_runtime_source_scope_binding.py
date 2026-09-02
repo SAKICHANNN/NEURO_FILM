@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -53,11 +54,16 @@ def _canonical_sha256(value: Any) -> str:
 
 
 def _run(
-    command: list[str], *, cwd: Path, timeout: int = 120
+    command: list[str],
+    *,
+    cwd: Path,
+    timeout: int = 120,
+    environment: dict[str, str] | None = None,
 ) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         command,
         cwd=cwd,
+        env=environment,
         check=False,
         capture_output=True,
         text=True,
@@ -68,7 +74,18 @@ def _run(
 
 
 def _git(root: Path, *arguments: str) -> str:
-    completed = _run(["git", "-C", str(root), *arguments], cwd=root, timeout=30)
+    completed = _run(
+        [
+            "git",
+            "-c",
+            f"safe.directory={root.resolve()}",
+            "-C",
+            str(root),
+            *arguments,
+        ],
+        cwd=root,
+        timeout=30,
+    )
     if completed.returncode:
         raise RuntimeError(completed.stderr.strip())
     return completed.stdout.strip()
@@ -151,7 +168,19 @@ def _control(control: str, root: Path) -> dict[str, Any]:
         expected = (2, "repository commit drift")
     else:
         raise ValueError(control)
-    completed = _run([sys.executable, "-I", str(launcher)], cwd=root.parent)
+    environment = dict(os.environ)
+    environment.update(
+        {
+            "GIT_CONFIG_COUNT": "1",
+            "GIT_CONFIG_KEY_0": "safe.directory",
+            "GIT_CONFIG_VALUE_0": str(root.resolve()),
+        }
+    )
+    completed = _run(
+        [sys.executable, "-I", str(launcher)],
+        cwd=root.parent,
+        environment=environment,
+    )
     observed = completed.stdout if completed.returncode == 0 else completed.stderr
     passed = completed.returncode == expected[0] and expected[1] in observed
     return {

@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import tempfile
 from pathlib import Path
 
 from scripts import audit_u7_9d_private_runtime_source_scope_binding as audit
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_formal_fixture_controls_are_order_independent(tmp_path: Path) -> None:
@@ -20,3 +23,9 @@ def test_formal_fixture_controls_are_order_independent(tmp_path: Path) -> None:
     assert sorted(forward, key=lambda row: row["name"]) == sorted(
         reverse, key=lambda row: row["name"]
     )
+
+
+def test_formal_fixture_runs_on_repo_relative_p_backed_scratch() -> None:
+    with tempfile.TemporaryDirectory(prefix="u7_9d_test_", dir=ROOT / "tmp") as raw:
+        row = audit._control("docs_descendant", Path(raw) / "control")
+    assert row["passed"] is True
