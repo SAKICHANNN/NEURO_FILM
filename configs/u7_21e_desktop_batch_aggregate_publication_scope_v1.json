@@ -1,0 +1,13 @@
+{
+  "schema": "kmcfm.u7-21e-desktop-batch-aggregate-publication-scope.v1",
+  "input_count": 2,
+  "look_id": "ektar_100",
+  "look_amount": 0.625,
+  "cases": ["success", "post-aggregate-drift"],
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false
+  }
+}
