@@ -638,7 +638,11 @@ def main() -> int:
         return 0
     product_source_commit: str | None = None
     product_runtime_scope: tuple[str, ...] = ()
-    if args.product_look is not None:
+    product_profile = ROOT / "configs/render_profiles/safe_rich_product_v1.json"
+    product_invocation = args.product_look is not None or (
+        args.use_render_profile and args.render_profile.resolve() == product_profile
+    )
+    if product_invocation:
         product_source_commit = _source_commit(ROOT)
         product_runtime_scope = _load_product_runtime_scope(ROOT)
         _validate_runtime_source_scope(
