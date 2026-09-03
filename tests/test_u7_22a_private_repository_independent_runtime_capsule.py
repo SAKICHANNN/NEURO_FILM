@@ -151,8 +151,8 @@ def test_config_keeps_private_look_approximation_ceiling() -> None:
     assert config["capsule"]["maximum_logical_bytes"] == 64 * 1024 * 1024
 
 
-def test_external_git_text_materializes_with_frozen_windows_line_endings() -> None:
-    assert builder._windows_worktree_text(b"a\nb\n") == b"a\r\nb\r\n"
-    assert builder._windows_worktree_text(b"a\r\nb\r\n") == b"a\r\nb\r\n"
-    with pytest.raises(RuntimeError, match="must be text"):
-        builder._windows_worktree_text(b"a\x00b")
+def test_committed_blob_archive_ignores_host_autocrlf() -> None:
+    root = Path(__file__).resolve().parents[1]
+    path = "configs/color_rendering_profiles.yaml"
+    commit = product_desktop._source_commit(root)
+    assert builder._committed_blobs(commit, [path])[path] == (root / path).read_bytes()

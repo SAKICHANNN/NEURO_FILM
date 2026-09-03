@@ -67,7 +67,16 @@ def _committed_blobs(commit: str, paths: Sequence[str]) -> dict[str, bytes]:
     requested = {str(path).replace("\\", "/") for path in paths}
     roots = sorted({"src" if name.startswith("src/") else name for name in requested})
     result = subprocess.run(
-        ["git", "archive", "--format=tar", commit, "--", *roots],
+        [
+            "git",
+            "-c",
+            "core.autocrlf=false",
+            "archive",
+            "--format=tar",
+            commit,
+            "--",
+            *roots,
+        ],
         cwd=ROOT,
         check=False,
         capture_output=True,
@@ -100,14 +109,6 @@ def _canonical(payload: Mapping[str, Any]) -> bytes:
     return (json.dumps(payload, sort_keys=True, separators=(",", ":")) + "\n").encode(
         "utf-8"
     )
-
-
-def _windows_worktree_text(data: bytes) -> bytes:
-    """Materialize one tracked text blob under the frozen Windows CRLF policy."""
-
-    if b"\x00" in data:
-        raise RuntimeError("capsule external source must be text")
-    return data.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
 
 
 def _normal_directory(path: Path, identity: tuple[int, int]) -> bool:
@@ -313,7 +314,7 @@ def build_capsule(destination: Path | None = None) -> dict[str, Any]:
         external: dict[str, dict[str, object]] = {}
         for relative in external_names:
             target = destination.joinpath(*str(relative).split("/"))
-            _write_new(target, _windows_worktree_text(blobs[relative]))
+            _write_new(target, blobs[relative])
             external[str(relative)] = _identity(target)
         (destination / "tmp").mkdir()
         manifest = {
