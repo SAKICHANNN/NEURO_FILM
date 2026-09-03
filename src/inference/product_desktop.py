@@ -71,6 +71,7 @@ _DEFAULT_SESSION_BINDINGS = (
     "src/inference/product_look_catalog.py",
     "src/inference/render_contract.py",
 )
+_RUNTIME_SCOPE_CONFIG = "configs/u7_9d_private_runtime_source_scope_binding_v1.json"
 
 CommandRunner = Callable[
     [Sequence[str], Path, Mapping[str, str]], subprocess.CompletedProcess[str]
@@ -185,6 +186,7 @@ class DesktopPreviewState:
     output_seal: _DirectorySeal
     files: tuple[_FileSeal, ...]
     session_bindings: tuple[_FileSeal, ...]
+    runtime_scope: tuple[str, ...]
     root: Path
     source_commit: str
 
@@ -341,6 +343,91 @@ def _source_commit(root: Path) -> str:
     ):
         raise ProductDesktopError("source commit identity is unavailable")
     return commit
+
+
+def _load_product_runtime_scope(root: Path) -> tuple[str, ...]:
+    """Load the one authoritative repository-bound product runtime scope."""
+
+    try:
+        payload = json.loads((Path(root) / _RUNTIME_SCOPE_CONFIG).read_text("utf-8"))
+        if not isinstance(payload, dict):
+            raise ProductDesktopError("runtime source scope invalid")
+        rows = payload["runtime_scope"]
+    except (OSError, UnicodeError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise ProductDesktopError("runtime source scope invalid") from exc
+    if (
+        payload.get("schema") != "kmcfm.u7-9d-private-runtime-source-scope-binding.v1"
+        or not isinstance(rows, list)
+        or not rows
+    ):
+        raise ProductDesktopError("runtime source scope invalid")
+    scope: list[str] = []
+    for item in rows:
+        if not isinstance(item, str) or not item or "\\" in item:
+            raise ProductDesktopError("runtime source scope invalid")
+        relative = PurePosixPath(item)
+        if relative.is_absolute() or ".." in relative.parts or "." in relative.parts:
+            raise ProductDesktopError("runtime source scope invalid")
+        scope.append(relative.as_posix())
+    if len(set(scope)) != len(scope):
+        raise ProductDesktopError("runtime source scope invalid")
+    return tuple(scope)
+
+
+def _validate_runtime_source_scope(
+    root: Path, source_commit: str, runtime_scope: Sequence[str]
+) -> None:
+    """Reject product-source drift within one long-lived desktop session."""
+
+    project_root = Path(root).resolve(strict=True)
+    scope: list[str] = []
+    for item in runtime_scope:
+        if not isinstance(item, str) or not item or "\\" in item:
+            raise ProductDesktopError("runtime source scope invalid")
+        relative = PurePosixPath(item)
+        if relative.is_absolute() or ".." in relative.parts or "." in relative.parts:
+            raise ProductDesktopError("runtime source scope invalid")
+        scope.append(relative.as_posix())
+    if not scope or len(set(scope)) != len(scope):
+        raise ProductDesktopError("runtime source scope invalid")
+    if _source_commit(project_root) != source_commit:
+        raise ProductDesktopError("preview renderer session changed")
+    difference = subprocess.run(
+        (
+            "git",
+            "-C",
+            str(project_root),
+            "diff",
+            "--quiet",
+            source_commit,
+            "--",
+            *scope,
+        ),
+        check=False,
+        capture_output=True,
+    )
+    if difference.returncode == 1:
+        raise ProductDesktopError("runtime source scope changed")
+    if difference.returncode != 0:
+        raise ProductDesktopError("runtime source scope validation failed")
+    status = subprocess.run(
+        (
+            "git",
+            "-C",
+            str(project_root),
+            "status",
+            "--porcelain=v1",
+            "--untracked-files=all",
+            "--",
+            *scope,
+        ),
+        check=False,
+        capture_output=True,
+    )
+    if status.returncode != 0:
+        raise ProductDesktopError("runtime source scope validation failed")
+    if status.stdout.strip():
+        raise ProductDesktopError("runtime source scope changed")
 
 
 def _bounded_look_amount(value: object) -> float:
@@ -641,6 +728,7 @@ class ProductDesktopWorkflow:
         export_tile_workers: int | None = None,
         png_compression: int = 6,
         session_binding_paths: Sequence[Path] | None = None,
+        runtime_scope: Sequence[str] | None = None,
     ) -> None:
         self.root = Path(root).resolve(strict=True)
         self.scratch_root = Path(scratch_root).resolve(strict=True)
@@ -679,6 +767,11 @@ class ProductDesktopWorkflow:
             else tuple(
                 Path(path).resolve(strict=True) for path in session_binding_paths
             )
+        )
+        self.runtime_scope = (
+            _load_product_runtime_scope(self.root)
+            if runtime_scope is None
+            else tuple(runtime_scope)
         )
         if self.max_preview_pixels < 1 or self.tile_size < 1 or self.tile_workers < 1:
             raise ProductDesktopError("preview resource limits must be positive")
@@ -745,10 +838,11 @@ class ProductDesktopWorkflow:
                     "previous preview workspace ownership changed"
                 )
             self._state = None
+            source_commit = _source_commit(self.root)
+            _validate_runtime_source_scope(self.root, source_commit, self.runtime_scope)
             session_bindings = tuple(
                 _seal_file(path) for path in self.session_binding_paths
             )
-            source_commit = _source_commit(self.root)
             workspace = self.scratch_root / (
                 f"u7-10a-preview-{os.getpid()}-{uuid.uuid4().hex}"
             )
@@ -938,6 +1032,7 @@ class ProductDesktopWorkflow:
             output_seal=output_seal,
             files=files,
             session_bindings=session_bindings,
+            runtime_scope=self.runtime_scope,
             root=self.root,
             source_commit=source_commit,
         )
@@ -1484,9 +1579,10 @@ class ProductDesktopWorkflow:
 
     @staticmethod
     def _validate_session(state: DesktopPreviewState) -> None:
-        if _source_commit(state.root) != state.source_commit or not all(
-            _file_matches(seal) for seal in state.session_bindings
-        ):
+        _validate_runtime_source_scope(
+            state.root, state.source_commit, state.runtime_scope
+        )
+        if not all(_file_matches(seal) for seal in state.session_bindings):
             raise ProductDesktopError("preview renderer session changed")
 
     @staticmethod
