@@ -1017,7 +1017,7 @@ def main() -> int:
                 },
                 "dust": {"strength": args.dust, "seed": args.seed + 17},
             }
-            commit = subprocess.check_output(
+            commit = product_source_commit or subprocess.check_output(
                 ["git", "rev-parse", "HEAD"],
                 cwd=ROOT,
                 text=True,
