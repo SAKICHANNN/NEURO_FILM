@@ -326,6 +326,17 @@ def _run_command(
 
 
 def _source_commit(root: Path) -> str:
+    from .runtime_source_capsule import (
+        RuntimeSourceCapsuleError,
+        capsule_source_commit,
+        has_git_identity,
+    )
+
+    if not has_git_identity(root):
+        try:
+            return capsule_source_commit(root)
+        except RuntimeSourceCapsuleError as exc:
+            raise ProductDesktopError("source commit identity is unavailable") from exc
     completed = subprocess.run(
         ["git", "rev-parse", "HEAD"],
         cwd=root,
@@ -378,6 +389,19 @@ def _validate_runtime_source_scope(
     root: Path, source_commit: str, runtime_scope: Sequence[str]
 ) -> None:
     """Reject product-source drift within one long-lived desktop session."""
+
+    from .runtime_source_capsule import (
+        RuntimeSourceCapsuleError,
+        has_git_identity,
+        validate_capsule_runtime_scope,
+    )
+
+    if not has_git_identity(root):
+        try:
+            validate_capsule_runtime_scope(root, source_commit, runtime_scope)
+        except RuntimeSourceCapsuleError as exc:
+            raise ProductDesktopError("runtime source scope changed") from exc
+        return
 
     project_root = Path(root).resolve(strict=True)
     scope: list[str] = []
