@@ -76,6 +76,43 @@ _RUNTIME_SCOPE_CONFIG = "configs/u7_9d_private_runtime_source_scope_binding_v1.j
 CommandRunner = Callable[
     [Sequence[str], Path, Mapping[str, str]], subprocess.CompletedProcess[str]
 ]
+
+
+def _default_session_binding_paths(root: Path) -> tuple[Path, ...]:
+    """Resolve repository files or their exact capsule archive equivalents."""
+
+    from .runtime_source_capsule import (
+        RuntimeSourceCapsuleError,
+        has_git_identity,
+        verify_runtime_source_capsule,
+    )
+
+    root = Path(root).resolve(strict=True)
+    if has_git_identity(root):
+        return tuple(
+            (root / relative).resolve(strict=True)
+            for relative in _DEFAULT_SESSION_BINDINGS
+        )
+    try:
+        payload = verify_runtime_source_capsule(root)
+    except RuntimeSourceCapsuleError as exc:
+        raise ProductDesktopError(
+            "preview renderer session bindings unavailable"
+        ) from exc
+    external = payload["external_files"]
+    relative_paths = [
+        relative for relative in _DEFAULT_SESSION_BINDINGS if relative in external
+    ]
+    if relative_paths != list(_DEFAULT_SESSION_BINDINGS[:6]):
+        raise ProductDesktopError("preview renderer session bindings unavailable")
+    return tuple(
+        (root / relative).resolve(strict=True) for relative in relative_paths
+    ) + (
+        (root / "runtime-source-capsule.json").resolve(strict=True),
+        (root / str(payload["archive"]["path"])).resolve(strict=True),
+    )
+
+
 PreviewRenderer = Callable[..., dict[str, Any]]
 BatchProgress = Callable[[int, int, str], None]
 
@@ -783,10 +820,7 @@ class ProductDesktopWorkflow:
         )
         self.png_compression = int(png_compression)
         self.session_binding_paths = (
-            tuple(
-                (self.root / relative).resolve(strict=True)
-                for relative in _DEFAULT_SESSION_BINDINGS
-            )
+            _default_session_binding_paths(self.root)
             if session_binding_paths is None
             else tuple(
                 Path(path).resolve(strict=True) for path in session_binding_paths

@@ -34,6 +34,11 @@ def _capsule(tmp_path: Path) -> tuple[Path, dict[str, str], str]:
     python.write_bytes(b"python")
     archive = root / "product-source.zip"
     archive.write_bytes(b"archive")
+    external_paths = product_desktop._DEFAULT_SESSION_BINDINGS[:6]
+    for relative in external_paths:
+        path = root / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(relative, "utf-8")
     config = root / "configs/u7_9d_private_runtime_source_scope_binding_v1.json"
     config.write_text(
         json.dumps(
@@ -55,9 +60,10 @@ def _capsule(tmp_path: Path) -> tuple[Path, dict[str, str], str]:
             "member_count": 1,
         },
         "external_files": {
+            **{relative: _identity(root / relative) for relative in external_paths},
             "configs/u7_9d_private_runtime_source_scope_binding_v1.json": _identity(
                 config
-            )
+            ),
         },
         "parent_runtime": {
             "receipt": {"path": receipt.name, **_identity(receipt)},
@@ -101,6 +107,11 @@ def test_capsule_identity_drives_product_source_checks(
     scope = product_desktop._load_product_runtime_scope(root)
     assert scope == ("src", "configs")
     product_desktop._validate_runtime_source_scope(root, commit, scope)
+    bindings = product_desktop._default_session_binding_paths(root)
+    assert bindings[-2:] == (
+        root / "runtime-source-capsule.json",
+        root / "product-source.zip",
+    )
 
     (root / "configs/u7_9d_private_runtime_source_scope_binding_v1.json").write_text(
         "drift", "utf-8"
