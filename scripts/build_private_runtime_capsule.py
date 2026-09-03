@@ -102,6 +102,14 @@ def _canonical(payload: Mapping[str, Any]) -> bytes:
     )
 
 
+def _windows_worktree_text(data: bytes) -> bytes:
+    """Materialize one tracked text blob under the frozen Windows CRLF policy."""
+
+    if b"\x00" in data:
+        raise RuntimeError("capsule external source must be text")
+    return data.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+
+
 def _normal_directory(path: Path, identity: tuple[int, int]) -> bool:
     return (
         os.path.lexists(path)
@@ -305,7 +313,7 @@ def build_capsule(destination: Path | None = None) -> dict[str, Any]:
         external: dict[str, dict[str, object]] = {}
         for relative in external_names:
             target = destination.joinpath(*str(relative).split("/"))
-            _write_new(target, blobs[relative])
+            _write_new(target, _windows_worktree_text(blobs[relative]))
             external[str(relative)] = _identity(target)
         (destination / "tmp").mkdir()
         manifest = {
@@ -354,7 +362,11 @@ def build_capsule(destination: Path | None = None) -> dict[str, Any]:
             )
             command = destination / f"{stem}.cmd"
             _write_new(
-                command, f'@echo off\r\n"{python}" -I "{source}" %*\r\n'.encode()
+                command,
+                (
+                    f'@echo off\r\n"%~dp0..\\runtime\\Scripts\\python.exe" '
+                    f'-I "%~dp0{source.name}" %*\r\n'
+                ).encode(),
             )
             native_source = destination / "native-launcher-sources" / f"{stem}.py"
             _write_new(

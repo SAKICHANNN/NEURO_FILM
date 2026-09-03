@@ -149,3 +149,10 @@ def test_config_keeps_private_look_approximation_ceiling() -> None:
     }
     assert config["capsule"]["maximum_materialized_files"] < 100
     assert config["capsule"]["maximum_logical_bytes"] == 64 * 1024 * 1024
+
+
+def test_external_git_text_materializes_with_frozen_windows_line_endings() -> None:
+    assert builder._windows_worktree_text(b"a\nb\n") == b"a\r\nb\r\n"
+    assert builder._windows_worktree_text(b"a\r\nb\r\n") == b"a\r\nb\r\n"
+    with pytest.raises(RuntimeError, match="must be text"):
+        builder._windows_worktree_text(b"a\x00b")
