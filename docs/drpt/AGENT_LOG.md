@@ -23638,3 +23638,53 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Approximation` only—not arbitrary JPEG/EXIF, camera colour, calibrated stock,
   physical film, standalone/public packaging or cross-platform parity. Stop
   adjacent EXIF/preview expansion; no push.
+
+### 2026-09-03 - U7.21A admits strict SDR HEIC into the private Look Approximation product
+
+- **Node and routing:** `ULT > U7 delivery > U7.21A`, DRPT L2 / Mode C,
+  local execution. `dev-research-reliability` was the sole writer; router,
+  DRPT, structure and agent-log disciplines were read-only secondary checks.
+  The long-lived Look Approximation Goal remains active, and parallel tasks
+  reserved the U7.21A and shared-document paths without overlap.
+- **Freeze and implementation:** freeze `e4211387` requires one 8-bit RGB
+  primary image and an explicit supported SDR colour identity before decode,
+  with fail-closed sequence, alpha, high-bit-depth, missing/ambiguous profile,
+  auxiliary/depth/gain-map/HDR, corrupt and truncated controls. Implementation
+  `5f9ad62a` adds a private `pi-heif` inspection/decode boundary without global
+  Pillow registration and routes the resulting owned linear float32 image
+  through the unchanged deterministic product renderer. Runtime binding
+  `9fcd5e7a` adds the exact product dependency and import probe.
+- **Dependency correction:** the exact official `pi-heif==1.4.0` Windows
+  CPython 3.12 wheel is 2,383,230 bytes / SHA `81cb4732...cab9`. Commit
+  `37cfd066` corrects an erroneous draft byte count before formal execution;
+  source roles, decoder, fixtures, gates and claim are unchanged. Bundled
+  native-library notices remain retained with the P-backed wheelhouse.
+- **Formal evidence:** audit `7862ac10` produces forward/reverse reports that
+  are byte-identical at 8,469 bytes / SHA `5783fcfe...9092`; all formal gates
+  pass. The exact 12MP Display-P3 iPhone HEIC renders and replays to PNG SHA
+  `dafa1db8...e2f6` through the public CLI with `film-inspired /
+  look-approximation`, calibrated=false. A validation-only synthetic exact
+  sRGB NCLX fixture also passes but is not product or scientific admission.
+  Three desktop previews are distinct, and the canonical pre-HEIC Ektar
+  output remains byte-identical. Evidence commit `3a3ad424` binds the sources,
+  reports, dependencies and gates.
+- **Runtime and storage truth:** a complete absent-path installation at
+  `outputs/private-product-runtime-u7-21a-7862ac1` contains 7,084 files /
+  386,834,264 logical bytes, binds source `7862ac10...aa85`, records receipt
+  SHA `4f1f92e0...9505`, and reproduces the formal 12MP output through the
+  native CLI. Its catalog retains the Velvia display-proxy and Portra/Ektar
+  legacy unpaired-data-gap labels. Exact cleanup of the installed probe under
+  `tmp/u7_21a_installed_probe` was rejected by platform policy before
+  execution; zero files were removed and the 8,816,871-byte pair is explicitly
+  non-authoritative. P remains the only durable artifact location.
+- **Verification and boundary:** implementation plus adjacent coverage passes
+  41/41; audit/evidence coverage passes 16/16. A wider behavioral regression
+  passes 143 tests and exposes one pre-existing historical normalized HP5
+  recipe-hash mismatch; current HP5 image bytes still match, and old evidence
+  was not rewritten. New/touched files pass Ruff with two recorded pre-existing
+  raster findings excluded, format, compile, JSON and diff checks. Claim is
+  private strict SDR HEIC compatibility for deterministic `film-inspired /
+  Look Approximation` only—not arbitrary HEIF/HEIC, HDR/gain-map support,
+  camera colour, calibrated stock response, physical film, standalone/public
+  packaging or cross-platform parity. README commit `4b701c82` publishes the
+  versioned private runtime path; no push.
