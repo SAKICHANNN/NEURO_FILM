@@ -1,0 +1,51 @@
+{
+  "schema": "kmcfm.u8-2b-private-look-approximation-fact-cards-contract.v1",
+  "input": {
+    "runtime_receipt": "outputs/private-product-runtime-u7-21e-8f07545/product-runtime.json",
+    "runtime_receipt_sha256": "548a80583811329260083bd37d0abd122b033141b1c358ef700f07ee044ea756",
+    "profile": "configs/render_profiles/safe_rich_product_v1.json",
+    "profile_sha256": "09722cb48c55d1c4c460220c9f59b9ced81801c1b6fe856708a27f5cc99d39fe",
+    "root_license": "LICENSE",
+    "root_license_expected": "absent"
+  },
+  "evidence": {
+    "catalog": {
+      "path": "docs/evidence/U7_2E_PRODUCT_LOOK_CATALOG_RESULT.json",
+      "sha256": "af51992278ba40950cce07310cb3dcf4b9d9675a41ad7e6fb50c323c4f744d3c"
+    },
+    "cli": {
+      "path": "docs/evidence/U7_2F_PRODUCT_LOOK_CLI_RESULT.json",
+      "sha256": "8e95ab23f8cd5b7653e29508613a38b4b18e9e45995eddf35d823eaedac05180"
+    },
+    "generic_bw_veto": {
+      "path": "docs/evidence/U7_2G_GENERIC_BW_SEVERE_VETO_RESULT.json",
+      "sha256": "bc60330790a2d7f0bde8ceb9b969923acfde93bffe31d761b7a6c222c5b4f332"
+    },
+    "discovery": {
+      "path": "docs/evidence/U7_2K_PRODUCT_LOOK_CLI_DISCOVERY_RESULT.json",
+      "sha256": "e588dcc6c67e1146c8ba613d31856e6dc76e59b8f7fa256791b9ebff6390963d"
+    },
+    "runtime_scope": {
+      "path": "docs/evidence/U7_21E_DESKTOP_BATCH_AGGREGATE_PUBLICATION_SCOPE_RESULT.json",
+      "sha256": "88d920761c6fee43d24495926b65ead1cf64f134eb801d6bd9e5f671d74449a1"
+    }
+  },
+  "output": {
+    "directory": "outputs/u8_2b_private_look_approximation_fact_cards",
+    "filename": "kmcfm-private-look-approximation-fact-cards.json"
+  },
+  "required_card_order": ["product", "data", "model", "profiles", "release"],
+  "required_profile_order": ["velvia_50", "portra_400", "ektar_100", "generic_bw"],
+  "claim_ceiling": {
+    "status": "PASS_PRIVATE_LOOK_APPROXIMATION_FACT_CARDS",
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "legal_clearance": false,
+    "population_preference": false,
+    "universal_safety": false
+  },
+  "stop_rule": "Fail closed without inferring a root licence, hiding unavailable looks, upgrading evidence, changing assets, rebuilding the runtime, or claiming release readiness."
+}
