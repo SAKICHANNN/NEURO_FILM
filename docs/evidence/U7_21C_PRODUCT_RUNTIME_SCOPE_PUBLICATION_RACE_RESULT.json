@@ -1,0 +1,111 @@
+{
+  "schema": "kmcfm.u7-21c-product-runtime-scope-publication-race-evidence.v1",
+  "node_id": "U7.21C",
+  "status": "PASS_PRIVATE_U7_21C_PRODUCT_RUNTIME_SCOPE_PUBLICATION_RACE",
+  "automatic_pass": true,
+  "formal_execution": {
+    "source_commit": "be3189d05662deea9ffeb49950b968a0e50146cf",
+    "reports": [
+      {
+        "path": "outputs/u7_21c_product_runtime_scope_publication_race/formal-forward.json",
+        "bytes": 2740,
+        "sha256": "c48beb042d0c0b51f90fb2b22151112f2cf25f16900b118b57823312cd577207"
+      },
+      {
+        "path": "outputs/u7_21c_product_runtime_scope_publication_race/formal-reverse.json",
+        "bytes": 2740,
+        "sha256": "c48beb042d0c0b51f90fb2b22151112f2cf25f16900b118b57823312cd577207"
+      }
+    ],
+    "byte_exact": true,
+    "scientific_identity": "c48beb042d0c0b51f90fb2b22151112f2cf25f16900b118b57823312cd577207"
+  },
+  "observations": {
+    "product_entrypoints": [
+      "--product-look ektar_100",
+      "--use-render-profile configs/render_profiles/safe_rich_product_v1.json"
+    ],
+    "validation_points": [
+      "product_invocation_start",
+      "immediately_before_product_bundle_publication"
+    ],
+    "shortcut_validation_calls": 2,
+    "explicit_profile_validation_calls": 2,
+    "legacy_validation_calls": 0,
+    "successful_output_sha256": "fc51547d1e00a0a4a36dce96847afe09d27b3b531b65172d3f32fa2a46d2087d",
+    "drift_returncode": 1,
+    "drift_output_count": 0,
+    "drift_recipe_count": 0,
+    "drift_stage_residue_count": 0,
+    "renderer_algorithm_changed": false
+  },
+  "regression": {
+    "dedicated_and_audit_tests_passed": 5,
+    "clean_parent_transaction_tests_passed": 71,
+    "clean_parent_capability_skips": 4,
+    "ruff_passed": true,
+    "json_passed": true,
+    "diff_check_passed": true,
+    "excluded_development_events": [
+      "The first implementation recognized only --product-look and failed 18 explicit-profile parent cases before correction 0e2cb1ac3; no formal report existed and the frozen product behavior and gates were unchanged.",
+      "A later parent run overlapped creation of the U7.21C config under the protected configs scope. Four long renders were correctly rejected at publication, yielding 67 passes and 4 capability skips; a clean committed-head rerun passed 71 with the same 4 skips.",
+      "The first audit drift injector replaced the source-commit probe and therefore rejected at the first validation instead of the second. Correction be3189d05 changed only the test injection, then reran the complete formal audit from zero."
+    ]
+  },
+  "installed_runtime": {
+    "path": "outputs/private-product-runtime-u7-21c-be3189d",
+    "installed_source_commit": "be3189d05662deea9ffeb49950b968a0e50146cf",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v4",
+    "receipt_bytes": 3726,
+    "receipt_sha256": "6bdc07dea875514640cc92f47997532da89d5334035a8604c1a7ec631a74c290",
+    "authoritative_file_count": 7084,
+    "authoritative_logical_bytes": 386834264,
+    "runtime_scope_policy": "exact-to-installed-source-commit",
+    "runtime_scope_untracked_policy": "reject",
+    "catalog_launch": "pass",
+    "desktop_help_launch": "pass",
+    "available_colour_looks": [
+      "velvia_50",
+      "portra_400",
+      "ektar_100"
+    ],
+    "generic_bw_availability": "blocked_severe_artifact",
+    "p_free_bytes_after_install": 63713050624
+  },
+  "gates": {
+    "authoritative_scope_reused": true,
+    "product_start_validation": true,
+    "prepublication_validation": true,
+    "shortcut_and_explicit_profile_covered": true,
+    "second_validation_rejects": true,
+    "drift_publication_zero": true,
+    "drift_stage_residue_zero": true,
+    "legacy_policy_isolated": true,
+    "formal_reports_byte_exact": true,
+    "clean_parent_behavior_preserved": true,
+    "installed_runtime_bound": true,
+    "claim_ceiling_exact": true
+  },
+  "source_bindings": {
+    "docs/planning/U7_21C_PRODUCT_RUNTIME_SCOPE_PUBLICATION_RACE_CONTRACT.md": {"git_blob": "d1912262ec76bf308ec801e39e8778c67353d529", "bytes": 2195, "sha256": "7b99a882908c81da5e9e0b55eadcc2bc5b256327e30939cef9a13606541cb3b5"},
+    "configs/u7_21c_product_runtime_scope_publication_race_v1.json": {"git_blob": "fbbbd3e039ffd47d9283636503d4d8bf964ba6e4", "bytes": 675, "sha256": "54a6b718c5d3e75f1965437c60d1808f2ba01d59a04c59b879c731295f4c66cb"},
+    "configs/u7_9d_private_runtime_source_scope_binding_v1.json": {"git_blob": "af02cfc0e5c84915999871d94a2390960d687221", "bytes": 1432, "sha256": "597b3a26d0485d05680e6b191e7ce038b78d7175d050e87dda96216922940991"},
+    "scripts/render_film.py": {"git_blob": "b339a2f0621cbb9d0b10130e3e07fe9d61bd6543", "bytes": 45185, "sha256": "beb33cdfdef78c34b0015230f4cc08ed823342c0c92e84b7b59cbf8b43eb6a7e"},
+    "src/inference/product_desktop.py": {"git_blob": "1b4b7a0925382572c1327406d4dc2fe77cb851ac", "bytes": 64114, "sha256": "933b9aacbc86221f845e8de92ed4b3ac6292ec1680e60ff6d30ca64a97805d1d"},
+    "tests/test_u7_21c_product_runtime_scope_publication_race.py": {"git_blob": "bef86a82ba251bbfc55df98b5ee8d418161b1a0e", "bytes": 4041, "sha256": "f74694524252e14cf7ee91a08e79d2f5c0e6b0a218e9d5d283f4031dd89b6201"},
+    "scripts/audit_u7_21c_product_runtime_scope_publication_race.py": {"git_blob": "e5cbeafedddeaeef0f4294c99cfba1869fbb8751", "bytes": 7839, "sha256": "bb35146626487e7a733a64d090429be56915ce938399a9ccd01e6b5966fb8b78"},
+    "tests/test_audit_u7_21c_product_runtime_scope_publication_race.py": {"git_blob": "d7911aaea462a7e170014c224f1bed910464f341", "bytes": 555, "sha256": "2ae0a712ae9799e8b7783e99df09508ee39459964a4041dbada2f78807adca2d"}
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_product_runtime_scope_publication_consistency": true,
+    "render_algorithm_change": false,
+    "new_input_or_output_format": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "standalone_package": false,
+    "cross_platform_parity": false
+  }
+}
