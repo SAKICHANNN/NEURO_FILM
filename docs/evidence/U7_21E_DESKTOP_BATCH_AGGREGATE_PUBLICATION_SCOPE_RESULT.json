@@ -1,0 +1,85 @@
+{
+  "schema": "kmcfm.u7-21e-desktop-batch-aggregate-publication-scope-evidence.v1",
+  "node_id": "U7.21E",
+  "status": "PASS_PRIVATE_U7_21E_DESKTOP_BATCH_AGGREGATE_PUBLICATION_SCOPE",
+  "automatic_pass": true,
+  "formal_execution": {
+    "source_commit": "8f0754597b9368a615a5fd3aacc87d26af9c6336",
+    "reports": [
+      {"path": "outputs/u7_21e_desktop_batch_aggregate_publication_scope/formal-forward.json", "bytes": 1905, "sha256": "5178518970793e73f1e95326273eefef5b3e9139ea46ea0fa9c8cb0b9f98487b"},
+      {"path": "outputs/u7_21e_desktop_batch_aggregate_publication_scope/formal-reverse.json", "bytes": 1905, "sha256": "5178518970793e73f1e95326273eefef5b3e9139ea46ea0fa9c8cb0b9f98487b"}
+    ],
+    "byte_exact": true,
+    "scientific_identity": "5178518970793e73f1e95326273eefef5b3e9139ea46ea0fa9c8cb0b9f98487b"
+  },
+  "observations": {
+    "input_count": 2,
+    "success_post_aggregate_scope_validations": 1,
+    "success_directory_published": true,
+    "drift_post_aggregate_scope_validations": 1,
+    "drift_error": "runtime source scope changed",
+    "drift_destination_count": 0,
+    "drift_stage_residue_count": 0,
+    "preview_cleanup": true
+  },
+  "regression": {
+    "focused_and_audit_tests_passed": 2,
+    "parent_batch_tests_passed": 48,
+    "ruff_passed": true,
+    "compile_passed": true,
+    "json_passed": true,
+    "diff_check_passed": true,
+    "excluded_events": [
+      "The frozen preimplementation regression published instead of raising and therefore failed exactly once, reproducing the defect.",
+      "Two postimplementation attempts stopped before aggregate staging because the protected product_desktop.py edit was not yet committed; child CLIs correctly rejected runtime-scope drift. The clean committed-head test passed.",
+      "The first audit report included temporary-path-dependent batch and receipt hashes. Report-only correction 8f075459 removed those non-scientific fields; source, product behavior, cases and gates were unchanged before formal replay."
+    ]
+  },
+  "installed_runtime": {
+    "path": "outputs/private-product-runtime-u7-21e-8f07545",
+    "installed_source_commit": "8f0754597b9368a615a5fd3aacc87d26af9c6336",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v4",
+    "receipt_bytes": 3726,
+    "receipt_sha256": "548a80583811329260083bd37d0abd122b033141b1c358ef700f07ee044ea756",
+    "authoritative_file_count": 7084,
+    "authoritative_logical_bytes": 386834264,
+    "catalog_launch": "pass",
+    "desktop_help_launch": "pass",
+    "available_colour_looks": ["velvia_50", "portra_400", "ektar_100"],
+    "generic_bw_availability": "blocked_severe_artifact",
+    "p_free_bytes_after_install": 55197564928
+  },
+  "gates": {
+    "aggregate_receipt_staged_before_final_validation": true,
+    "success_final_scope_validation_once": true,
+    "success_publication_complete": true,
+    "drift_final_scope_validation_once": true,
+    "drift_publication_zero": true,
+    "stage_residue_zero": true,
+    "parent_batch_behavior_preserved": true,
+    "formal_reports_byte_exact": true,
+    "installed_runtime_bound": true,
+    "claim_ceiling_exact": true
+  },
+  "source_bindings": {
+    "docs/planning/U7_21E_DESKTOP_BATCH_AGGREGATE_PUBLICATION_SCOPE_CONTRACT.md": {"git_blob": "cabdbc63e53fd0018571dea7a03167d653ce316a", "bytes": 1736, "sha256": "c47a68814e54fe6c2e2a712ebda99c9573c8ce0798d8f4e46ec5d87a34e8b842"},
+    "configs/u7_21e_desktop_batch_aggregate_publication_scope_v1.json": {"git_blob": "8958a72753353519099ac096fe70965bcc169c40", "bytes": 365, "sha256": "9cf3fbb31dbe8fa87387c4df5c1a3d994a6335b9105a8e915f68aadc78af661a"},
+    "configs/u7_9d_private_runtime_source_scope_binding_v1.json": {"git_blob": "af02cfc0e5c84915999871d94a2390960d687221", "bytes": 1432, "sha256": "597b3a26d0485d05680e6b191e7ce038b78d7175d050e87dda96216922940991"},
+    "src/inference/product_desktop.py": {"git_blob": "9f79683645e2362d64a2ae6a317b3128da3e02d1", "bytes": 64160, "sha256": "f78bd1c7fcd37db0ecc32e41eb65488256f7954d88a22448d49d0acb672566d6"},
+    "scripts/render_film.py": {"git_blob": "4e1bc4331381a1c0a7e9b08210f42efb7d3c6089", "bytes": 45210, "sha256": "a63c82fe128459436faca3c3cc1d1f3a37204dd9dfe5bf8fb95cb562de564c9c"},
+    "tests/test_u7_21e_desktop_batch_aggregate_publication_scope.py": {"git_blob": "7c5d73531c253b6cb13295e2c1ba391fed089895", "bytes": 1757, "sha256": "a57232d0e9bedcfa8fa8a42f9efb14f249d5dcdecbccc79894d66a4cd6931895"},
+    "scripts/audit_u7_21e_desktop_batch_aggregate_publication_scope.py": {"git_blob": "62a23705d8ba203f560abb6fe401a89942a316eb", "bytes": 6738, "sha256": "62619206dab250147df46ab0c92333e07203a4d4ce32b289ac2fbb83f837cf22"},
+    "tests/test_audit_u7_21e_desktop_batch_aggregate_publication_scope.py": {"git_blob": "7597b2c9e32fab1a39872e45057fa405d26c6786", "bytes": 471, "sha256": "6fe63c810c3030c4ebfe4e9842d1b930a841674549162db641aa584d53fdb757"}
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_batch_publication_scope_consistency": true,
+    "pixel_or_look_change": false,
+    "batch_schema_change": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "cross_platform_parity": false
+  }
+}
