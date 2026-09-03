@@ -28,7 +28,7 @@ executables, their self-contained launcher sources, the Python launchers and
 compatibility command files:
 
 ```powershell
-$runtime = ".\outputs\private-product-runtime-u7-20g-5f1482f"
+$runtime = ".\outputs\private-product-runtime-u7-21a-7862ac1"
 ```
 
 List the authoritative product catalog without reading an image:
@@ -50,12 +50,15 @@ reproduction.
   --output result.png
 ```
 
-Input compatibility includes a deliberately narrow ordinary-AVIF subset:
-single-image, 8-bit RGB AVIF with explicit full-range sRGB NCLX identity.
-Sequence, alpha, ICC, ambiguous or higher-bit-depth AVIF, HEIF/HEIC, HDR and
-gain-map containers still fail closed before image pixels. This is SDR input
-compatibility only; output remains PNG/JPEG/TIFF and the selected result remains
-`film-inspired / Look Approximation`.
+Input compatibility includes deliberately narrow ordinary-AVIF and HEIC
+subsets. AVIF requires a single 8-bit RGB image with explicit full-range sRGB
+NCLX identity. HEIC requires a single 8-bit RGB `image/heic` primary with no
+alpha, auxiliary/depth image, HDR/gain-map metadata or sequence, plus either a
+parseable embedded ICC profile or exact full-range sRGB NCLX. Ambiguous,
+higher-bit-depth or otherwise unsupported HEIF/HEIC and AVIF inputs still fail
+closed before image pixels. This is SDR input compatibility only; output
+remains PNG/JPEG/TIFF and the selected result remains `film-inspired / Look
+Approximation`.
 
 Optional deterministic `--grain`, `--halation` and `--dust` controls remain
 available. Add `--write-layers` and `--write-metrics` when those auxiliary
@@ -226,4 +229,4 @@ The repository does not currently contain a root `LICENSE` file. Older documents
 
 ---
 
-*Last updated: 2026-09-02. Current default: deterministic content-safe Look Approximation renderer. FARO/FilmStyleSafe supports evaluation and product safety; calibrated named-stock work remains a separately gated future branch.*
+*Last updated: 2026-09-03. Current default: deterministic content-safe Look Approximation renderer. FARO/FilmStyleSafe supports evaluation and product safety; calibrated named-stock work remains a separately gated future branch.*
