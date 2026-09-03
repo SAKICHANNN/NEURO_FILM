@@ -23756,3 +23756,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   recipe/receipt semantics and `film-inspired / Look Approximation` claims are
   unchanged. It is not calibrated-stock evidence, physical-film reproduction,
   standalone/public packaging or cross-platform parity. No push.
+
+### 2026-09-04 - U7.21C closes the product publication runtime-scope race
+
+- **Node and routing:** `ULT > U7 delivery > U7.21C`, DRPT L2 / Mode C,
+  local execution. `dev-research-reliability` was the sole writer; router,
+  DRPT, structure and agent-log disciplines were read-only secondary checks.
+  The two parallel tasks were notified before the exact tracker/log window.
+- **Defect and repair:** U7.21B protected desktop operations before render, but
+  a long product render could still publish after `src`, `configs`, either
+  product entrypoint or pinned requirements changed. Commits `de276f49` and
+  `0e2cb1ac` make both `--product-look` and the explicit safe-rich product
+  profile bind HEAD plus the exact U7.9D scope at invocation start, then
+  revalidate after all bundle members are staged and immediately before the
+  existing create-only transaction publishes. Legacy non-product rendering
+  performs zero scope validations.
+- **Formal evidence:** freeze `89678c74`/`3b1af468`, audit
+  `e73aa7ab`/`be3189d0` and evidence `52c86442` produce forward/reverse reports
+  that are byte-identical at 2,740 bytes / SHA `c48beb04...7207`. Both product
+  routes validate twice and reproduce Ektar output SHA `fc51547d...087d`;
+  injected drift at the second check returns 1 with zero image, recipe or stage
+  residue. All eleven gates pass.
+- **Corrections and regression truth:** the first implementation recognized
+  only the shortcut and failed 18 explicit-profile parent cases before
+  correction. A later parent run overlapped creation of the new config inside
+  the protected scope and correctly rejected four publications; it is not
+  represented as a clean regression pass. From a clean committed HEAD, the
+  complete selected transaction chain passes 71 tests with four capability
+  skips. Dedicated/audit/evidence coverage passes 7/7; Ruff, JSON and diff
+  checks pass.
+- **Runtime and boundary:** new absent-path P-backed installation
+  `outputs/private-product-runtime-u7-21c-be3189d` contains 7,084 files /
+  386,834,264 logical bytes, binds source `be3189d0...46cf`, and has receipt SHA
+  `6bdc07de...c290`. Native catalog and desktop help pass; Velvia 50, Portra
+  400 and Ektar 100 remain available only as `film-inspired / Look
+  Approximation`, while generic B&W remains severe-artifact blocked. No pixel,
+  Look, format, recipe/receipt, calibration, public-package or cross-platform
+  claim changed. No push.
