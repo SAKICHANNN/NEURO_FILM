@@ -1,7 +1,7 @@
 # U7.21C Product Runtime-Scope Publication Race Contract
 
-Status: frozen before implementation  
-Parent: U7.21B desktop runtime-scope session binding  
+Status: frozen before implementation
+Parent: U7.21B desktop runtime-scope session binding
 Claim ceiling: private deterministic `film-inspired / Look Approximation`
 
 ## Defect
