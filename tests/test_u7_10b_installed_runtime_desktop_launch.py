@@ -60,7 +60,7 @@ def test_launcher_source_binds_desktop_entrypoint_and_rejects_escape() -> None:
         )
 
 
-def test_cli_launcher_preserves_historical_u7_9a_bytes_except_caller_cwd_fix(
+def test_cli_launcher_preserves_historical_u7_9a_launch_semantics_with_descendant_guards(
     tmp_path: Path,
 ) -> None:
     historical_source = subprocess.run(
@@ -111,7 +111,16 @@ def test_cli_launcher_preserves_historical_u7_9a_bytes_except_caller_cwd_fix(
     current = installer._launcher_source(**arguments)
     assert "    cwd=root,\n" in expected
     assert "    cwd=Path.cwd(),\n" in current
-    assert current.replace("    cwd=Path.cwd(),\n", "    cwd=root,\n") == expected
+    assert '"runtime_scope"' not in expected
+    assert '"runtime_scope"' in current
+    assert "runtime source scope drift" in current
+    for invariant in (
+        "raise SystemExit(subprocess.call(\n",
+        '[sys.executable, "-I", str(entry), *sys.argv[1:]],',
+        "env=environment,\n))\n",
+    ):
+        assert invariant in expected
+        assert invariant in current
 
 
 def test_success_receipt_binds_both_command_and_python_launchers(
@@ -148,7 +157,10 @@ def test_success_receipt_binds_both_command_and_python_launchers(
     monkeypatch.setattr(installer, "_checked", checked)
     receipt = installer.install_product_runtime(destination)
 
-    assert receipt["schema"] == "kmcfm.private-product-runtime-receipt.v3"
+    assert receipt["schema"] == "kmcfm.private-product-runtime-receipt.v4"
+    assert receipt["repository_binding"]["runtime_scope_policy"] == (
+        "exact-to-installed-source-commit"
+    )
     assert receipt["launcher"] == receipt["launchers"]["cli"]["command"]
     assert set(receipt["launchers"]) == {"cli", "desktop"}
     expected = {
