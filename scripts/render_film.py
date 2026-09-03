@@ -53,6 +53,11 @@ from src.inference import (
     sha256_file,
     validate_render_recipe,
 )
+from src.inference.product_desktop import (
+    _load_product_runtime_scope,
+    _source_commit,
+    _validate_runtime_source_scope,
+)
 from src.inference.product_execution_policy import resolve_product_execution_policy
 from src.inference.product_render_transaction import (
     preflight_product_primary_output,
@@ -405,13 +410,9 @@ def _locked_physical_halation_controls(
             args.halation_color_response, base_controls.color_response
         ),
         profile=_arg_or(args.halation_profile, base_controls.profile),
-        amount=args.halation
-        if args.halation_amount is None
-        else args.halation_amount,
+        amount=args.halation if args.halation_amount is None else args.halation_amount,
         impact=_arg_or(args.halation_impact, base_controls.impact),
-        anti_halation=_arg_or(
-            args.halation_anti_halation, base_controls.anti_halation
-        ),
+        anti_halation=_arg_or(args.halation_anti_halation, base_controls.anti_halation),
         source_selectivity=_arg_or(
             args.halation_source_selectivity,
             base_controls.source_selectivity,
@@ -635,6 +636,14 @@ def main() -> int:
         }
         print(json.dumps(payload, sort_keys=True, separators=(",", ":")))
         return 0
+    product_source_commit: str | None = None
+    product_runtime_scope: tuple[str, ...] = ()
+    if args.product_look is not None:
+        product_source_commit = _source_commit(ROOT)
+        product_runtime_scope = _load_product_runtime_scope(ROOT)
+        _validate_runtime_source_scope(
+            ROOT, product_source_commit, product_runtime_scope
+        )
     style_was_explicit = args.style is not None
     if args.style is None:
         args.style = "velvia_50"
@@ -1119,6 +1128,10 @@ def main() -> int:
                     json.dumps(metrics, indent=2), encoding="utf-8"
                 )
         if product_bundle_transaction is not None:
+            assert product_source_commit is not None
+            _validate_runtime_source_scope(
+                ROOT, product_source_commit, product_runtime_scope
+            )
             product_bundle_transaction.publish()
     print(args.output)
     return 0
