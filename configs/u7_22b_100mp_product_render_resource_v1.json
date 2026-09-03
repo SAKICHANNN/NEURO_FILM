@@ -1,0 +1,44 @@
+{
+  "schema": "kmcfm.u7-22b-100mp-product-render-resource-contract.v1",
+  "node_id": "U7.22B",
+  "pre_contract_head": "5d04a9f13b69b167c0cca9d2046621d1cf725f5f",
+  "source": {
+    "path": "outputs/eval/u6_p8ch_100mp_native_thomas_png_v1/performance-1.png",
+    "bytes": 545168196,
+    "sha256": "17fcc4f2073de7490f205184f8fdc5bb85a810e8283b6559a3cbf16f3894b5f9",
+    "width": 10000,
+    "height": 10000,
+    "mode": "RGB",
+    "icc_sha256": "217fe48ec958c667f8eef725aa27198f465df95d7662593b90d0a1cc30114356",
+    "parent_evidence": {
+      "path": "docs/evidence/U6_P8CH_100MP_NATIVE_THOMAS_PNG_RESULT.json",
+      "bytes": 1504,
+      "sha256": "1a81f7d8e3d45083fed721febd16c76232172cb0c8a08918408a57146c44c5de"
+    }
+  },
+  "candidate": {
+    "entrypoint": "scripts/render_film.py",
+    "product_look": "ektar_100",
+    "look_amount": 0.65,
+    "output_bit_depth": 8,
+    "tile_size": 512,
+    "tile_workers": 8,
+    "write_recipe": true,
+    "effects": {"grain": 0.0, "halation": 0.0, "dust": 0.0},
+    "runs_per_report": 2
+  },
+  "gates": {
+    "maximum_worker_wall_seconds": 600.0,
+    "maximum_process_tree_rss_bytes": 17179869184,
+    "maximum_second_to_first_wall_ratio": 1.25,
+    "require_exact_output_bytes": true,
+    "require_exact_decoded_rgb8": true,
+    "require_exact_normalized_recipe": true,
+    "require_source_immutable": true,
+    "require_zero_owned_residue": true,
+    "require_forward_reverse_report_byte_identity": true
+  },
+  "decision_if_pass": "PASS_PRIVATE_U7_22B_ONE_SOURCE_100MP_PRODUCT_RENDER_RESOURCE",
+  "decision_if_fail": "FAIL_CLOSED_U7_22B_100MP_PRODUCT_RENDER_RESOURCE",
+  "claim_ceiling": "One exact 100MP sRGB artifact through one unchanged private Windows/Python Ektar 100 Look Approximation route; not arbitrary 100MP support, image quality, calibrated stock response, physical film, public release, redistribution or cross-platform parity."
+}
