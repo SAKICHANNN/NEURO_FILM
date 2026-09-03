@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import os
 import subprocess
@@ -37,10 +36,6 @@ def _source(path: Path, offset: int) -> None:
         axis=-1,
     ).astype(np.uint8)
     Image.fromarray(rgb, mode="RGB").save(path)
-
-
-def _sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def _workflow(root: Path) -> ProductDesktopWorkflow:
@@ -113,9 +108,7 @@ def _case(root: Path, case: str, config: dict[str, object]) -> dict[str, object]
     if receipt is not None:
         row.update(
             {
-                "batch_id": receipt.batch_id,
                 "job_count": receipt.job_count,
-                "receipt_sha256": _sha256(receipt.receipt_path),
                 "claim": receipt.receipt["claim"],
                 "member_names": sorted(path.name for path in destination.iterdir()),
             }
