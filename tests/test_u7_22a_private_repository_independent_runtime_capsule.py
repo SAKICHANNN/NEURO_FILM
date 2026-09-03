@@ -132,7 +132,7 @@ def test_launcher_is_root_relative_and_revalidates_before_import() -> None:
     assert source.index("external source identity changed") < source.index(
         "runpy.run_path"
     )
-    assert 'root.name == "native-launcher-sources"' in source
+    assert "root = Path(sys.argv[0]).resolve().parent" in source
     assert 'os.environ["KMCFM_PRIVATE_CAPSULE_MANIFEST"]' in source
 
 
