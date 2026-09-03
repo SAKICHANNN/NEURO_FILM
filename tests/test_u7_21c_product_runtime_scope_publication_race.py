@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 import numpy as np
+import pytest
 from PIL import Image
 
 from scripts import render_film
@@ -72,8 +73,9 @@ def test_mid_render_scope_drift_rejects_before_bundle_publication(
     assert not tuple(tmp_path.glob(".*.stage*"))
 
 
+@pytest.mark.parametrize("selector", ["shortcut", "explicit-profile"])
 def test_successful_product_render_validates_twice_and_remains_exact(
-    tmp_path: Path, monkeypatch
+    tmp_path: Path, monkeypatch, selector: str
 ) -> None:  # type: ignore[no-untyped-def]
     source = tmp_path / "source.png"
     output = tmp_path / "output.png"
@@ -89,14 +91,24 @@ def test_successful_product_render_validates_twice_and_remains_exact(
     monkeypatch.setattr(
         render_film, "_validate_runtime_source_scope", recording_validator
     )
+    selection = (
+        ("--product-look", "ektar_100")
+        if selector == "shortcut"
+        else (
+            "--use-render-profile",
+            "--render-profile",
+            str(render_film.ROOT / "configs/render_profiles/safe_rich_product_v1.json"),
+            "--style",
+            "ektar_100",
+        )
+    )
     monkeypatch.setattr(
         sys,
         "argv",
         [
             "render_film.py",
             str(source),
-            "--product-look",
-            "ektar_100",
+            *selection,
             "--look-amount",
             "0.65",
             "--output",
