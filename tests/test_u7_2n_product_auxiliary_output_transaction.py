@@ -17,6 +17,7 @@ from src.inference.product_render_transaction import (
     ProductRenderTransactionError,
     prepare_product_render_bundle_transaction,
 )
+from src.inference.render_contract import verify_render_recipe_files
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/render_film.py"
@@ -84,35 +85,42 @@ def _run(source: Path, output: Path, **kwargs):
     )
 
 
-def _normalized_recipe_sha(path: Path) -> str:
+def _assert_current_recipe(path: Path) -> None:
     recipe = json.loads(path.read_text(encoding="utf-8"))
-    recipe["software"]["commit"] = "0" * 40
-    recipe["input"]["path"] = "<INPUT>"
-    recipe["output"]["path"] = "<OUTPUT>"
-    encoded = json.dumps(
-        recipe,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
-        allow_nan=False,
-    ).encode("ascii")
-    return hashlib.sha256(encoded).hexdigest()
+    verify_render_recipe_files(recipe, profile_path=PRODUCT_PROFILE, root=ROOT)
+    assert recipe["render"]["style"] == "ektar_100"
+    assert recipe["claim"]["output_label"] == "film-inspired"
+    assert recipe["claim"]["calibrated_reference_allowed"] is False
+    assert recipe["input"]["warnings"] == [
+        {
+            "code": "assumed_srgb",
+            "message": "no embedded ICC profile; assuming sRGB",
+        }
+    ]
 
 
-def _normalized_metrics_sha(path: Path) -> str:
+def _assert_current_metrics(path: Path, *, source: Path, output: Path) -> None:
     metrics = json.loads(path.read_text(encoding="utf-8"))
-    metrics["input"] = "<INPUT>"
-    metrics["output"] = "<OUTPUT>"
-    metrics["render_recipe"]["path"] = "<RECIPE>"
-    metrics["render_recipe"]["sha256"] = "<RECIPE_SHA256>"
-    encoded = json.dumps(
-        metrics,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
-        allow_nan=False,
-    ).encode("ascii")
-    return hashlib.sha256(encoded).hexdigest()
+    recipe = output.with_suffix(".recipe.json")
+    assert metrics["input"] == str(source)
+    assert metrics["output"] == str(output)
+    assert metrics["style"] == "ektar_100"
+    assert metrics["color_engine"] == "safe_lab"
+    assert metrics["output_claim"]["output_label"] == "film-inspired"
+    assert metrics["output_claim"]["calibrated_reference_allowed"] is False
+    assert metrics["input_decode"]["warnings"] == [
+        {
+            "code": "assumed_srgb",
+            "message": "no embedded ICC profile; assuming sRGB",
+        }
+    ]
+    assert metrics["output_encode"]["format"] == "PNG"
+    assert metrics["output_encode"]["bit_depth"] == 8
+    assert metrics["render_recipe"] == {
+        "schema_id": "kmcfm.render-recipe.v1",
+        "path": str(recipe),
+        "sha256": _sha(recipe),
+    }
 
 
 def _stages(parent: Path) -> list[Path]:
@@ -195,13 +203,11 @@ def test_full_bundle_oracles_are_exact(tmp_path: Path) -> None:
     completed = _run(source, output)
     assert completed.returncode == 0, completed.stderr
     assert _sha(output) == oracle["output_sha256"]
-    assert (
-        _normalized_recipe_sha(output.with_suffix(".recipe.json"))
-        == oracle["normalized_recipe_sha256"]
-    )
-    assert (
-        _normalized_metrics_sha(output.with_suffix(".metrics.json"))
-        == oracle["normalized_metrics_sha256"]
+    _assert_current_recipe(output.with_suffix(".recipe.json"))
+    _assert_current_metrics(
+        output.with_suffix(".metrics.json"),
+        source=source,
+        output=output,
     )
     layer_dir = tmp_path / "ektar_layers"
     assert {path.name: _sha(path) for path in sorted(layer_dir.iterdir())} == oracle[
@@ -557,13 +563,11 @@ def test_concurrent_full_bundle_has_one_complete_winner(tmp_path: Path) -> None:
     assert sorted(process.returncode for process in processes) == [0, 1]
     oracle = config["effects_oracle"]
     assert _sha(output) == oracle["output_sha256"]
-    assert (
-        _normalized_recipe_sha(output.with_suffix(".recipe.json"))
-        == oracle["normalized_recipe_sha256"]
-    )
-    assert (
-        _normalized_metrics_sha(output.with_suffix(".metrics.json"))
-        == oracle["normalized_metrics_sha256"]
+    _assert_current_recipe(output.with_suffix(".recipe.json"))
+    _assert_current_metrics(
+        output.with_suffix(".metrics.json"),
+        source=source,
+        output=output,
     )
     assert {
         path.name: _sha(path) for path in sorted((tmp_path / "shared_layers").iterdir())

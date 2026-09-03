@@ -16,6 +16,7 @@ from src.inference.product_render_transaction import (
     ProductRenderTransactionError,
     prepare_product_image_recipe_transaction,
 )
+from src.inference.render_contract import verify_render_recipe_files
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "scripts/render_film.py"
@@ -66,19 +67,18 @@ def _run(source: Path, output: Path, *, style: str = "velvia_50"):
     )
 
 
-def _normalized_recipe_sha(path: Path) -> str:
+def _assert_current_recipe(path: Path, *, style: str) -> None:
     recipe = json.loads(path.read_text(encoding="utf-8"))
-    recipe["software"]["commit"] = "0" * 40
-    recipe["input"]["path"] = "<INPUT>"
-    recipe["output"]["path"] = "<OUTPUT>"
-    encoded = json.dumps(
-        recipe,
-        sort_keys=True,
-        separators=(",", ":"),
-        ensure_ascii=True,
-        allow_nan=False,
-    ).encode("ascii")
-    return hashlib.sha256(encoded).hexdigest()
+    verify_render_recipe_files(recipe, profile_path=PRODUCT_PROFILE, root=ROOT)
+    assert recipe["render"]["style"] == style
+    assert recipe["claim"]["output_label"] == "film-inspired"
+    assert recipe["claim"]["calibrated_reference_allowed"] is False
+    assert recipe["input"]["warnings"] == [
+        {
+            "code": "assumed_srgb",
+            "message": "no embedded ICC profile; assuming sRGB",
+        }
+    ]
 
 
 def _stages(parent: Path) -> list[Path]:
@@ -183,7 +183,7 @@ def test_pair_output_and_recipe_oracles_are_exact(
     assert completed.returncode == 0, completed.stderr
     oracle = config["prechange_oracle"][style]
     assert _sha(output) == oracle["output_sha256"]
-    assert _normalized_recipe_sha(recipe) == oracle["normalized_recipe_sha256"]
+    _assert_current_recipe(recipe, style=style)
     payload = json.loads(recipe.read_text(encoding="utf-8"))
     assert payload["output"]["path"] == str(output.resolve())
     assert payload["output"]["sha256"] == _sha(output)
@@ -336,7 +336,7 @@ def test_concurrent_product_pair_has_one_complete_winner(tmp_path: Path) -> None
     assert sorted(process.returncode for process in processes) == [0, 1]
     oracle = config["prechange_oracle"]["velvia_50"]
     assert _sha(output) == oracle["output_sha256"]
-    assert _normalized_recipe_sha(recipe) == oracle["normalized_recipe_sha256"]
+    _assert_current_recipe(recipe, style="velvia_50")
     assert source.read_bytes() == before
     assert _stages(tmp_path) == []
     failed = next(

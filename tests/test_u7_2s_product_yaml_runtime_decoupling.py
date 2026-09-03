@@ -124,12 +124,15 @@ def test_existing_profile_migration_remains_exact() -> None:
     assert migrated == tracked
 
 
-def test_v2_manifest_is_exactly_v1_minus_omegaconf_and_antlr() -> None:
+def test_v2_manifest_preserves_decoupling_plus_admitted_runtime_extensions() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     v1 = _requirements(ROOT / "requirements-product.txt")
     for distribution, version in config["removed_distributions"].items():
         assert v1.pop(distribution) == version
-    assert _requirements(ROOT / config["requirements_path"]) == v1
+    current = _requirements(ROOT / config["requirements_path"])
+    assert current.pop("pi-heif") == "1.4.0"
+    assert "pillow-heif" not in current
+    assert current == v1
     assert v1 == config["required_distributions"]
     assert set(config["removed_distributions"]).isdisjoint(v1)
 

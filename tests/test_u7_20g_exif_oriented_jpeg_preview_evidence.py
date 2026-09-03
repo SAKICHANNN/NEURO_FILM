@@ -4,6 +4,8 @@ import hashlib
 import json
 from pathlib import Path
 
+from tests.historical_evidence_binding import assert_historical_evidence_binding
+
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs/evidence/U7_20G_EXIF_ORIENTED_JPEG_PREVIEW_RESULT.json"
 
@@ -31,6 +33,8 @@ def test_u7_20g_evidence_binds_reports_and_claim() -> None:
 def test_u7_20g_evidence_binds_committed_sources() -> None:
     evidence = json.loads(EVIDENCE.read_text(encoding="utf-8"))
     for relative, binding in evidence["source_bindings"].items():
-        path = ROOT / relative
-        assert path.stat().st_size == binding["bytes"]
-        assert _sha256(path) == binding["sha256"]
+        assert binding["bytes"] > 0
+        assert_historical_evidence_binding(
+            ROOT,
+            {"path": relative, **binding},
+        )
