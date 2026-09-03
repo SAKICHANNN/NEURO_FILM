@@ -286,7 +286,7 @@ def validate_product_fact_cards(
     if bundle.get("card_order") != order:
         raise ProductFactCardError("fact-card order mismatch")
     cards = bundle.get("cards")
-    if not isinstance(cards, Mapping) or list(cards) != order:
+    if not isinstance(cards, Mapping) or set(cards) != set(order):
         raise ProductFactCardError("fact-card membership mismatch")
     profiles = cards["profiles"]
     if (

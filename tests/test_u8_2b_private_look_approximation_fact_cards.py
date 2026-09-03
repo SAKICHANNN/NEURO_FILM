@@ -81,6 +81,8 @@ def test_u8_2b_bundle_is_deterministic_complete_and_honest() -> None:
     second = cards.build_product_fact_cards(**reordered)
     assert cards.canonical_json(first) == cards.canonical_json(second)
     assert list(first["cards"]) == first["card_order"]
+    parsed = json.loads(cards.canonical_json(first))
+    cards.validate_product_fact_cards(parsed, config=inputs["config"])
     assert [row["look_id"] for row in first["cards"]["profiles"]] == [
         "velvia_50",
         "portra_400",

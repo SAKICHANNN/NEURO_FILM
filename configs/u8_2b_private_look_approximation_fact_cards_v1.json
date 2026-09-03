@@ -31,7 +31,7 @@
     }
   },
   "output": {
-    "directory": "outputs/u8_2b_private_look_approximation_fact_cards",
+    "directory": "outputs/u8_2b_private_look_approximation_fact_cards/v2",
     "filename": "kmcfm-private-look-approximation-fact-cards.json"
   },
   "required_card_order": ["product", "data", "model", "profiles", "release"],
