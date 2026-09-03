@@ -1416,6 +1416,7 @@ class ProductDesktopWorkflow:
                 expected_names.add("batch.json")
                 if {entry.name for entry in stage.iterdir()} != expected_names:
                     raise ProductDesktopError("batch receipt member set drifted")
+                self._validate_session(state)
                 if os.path.lexists(destination):
                     raise ProductDesktopError("batch destination appeared")
                 os.rename(stage, destination)

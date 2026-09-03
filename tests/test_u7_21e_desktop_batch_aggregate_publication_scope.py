@@ -18,8 +18,6 @@ def test_scope_drift_after_aggregate_receipt_rejects_before_directory_publicatio
 ) -> None:
     first, second = _inputs(tmp_path)
     workflow = _workflow(tmp_path)
-    _, bound = workflow.render_batch_previews((first, second), 0.625)
-    destination = tmp_path / "batch"
     aggregate_staged = False
     original_write = desktop_module._write_bound_json
 
@@ -38,6 +36,8 @@ def test_scope_drift_after_aggregate_receipt_rejects_before_directory_publicatio
     monkeypatch.setattr(
         desktop_module, "_validate_runtime_source_scope", reject_after_aggregate
     )
+    _, bound = workflow.render_batch_previews((first, second), 0.625)
+    destination = tmp_path / "batch"
 
     with pytest.raises(ProductDesktopError, match="runtime source scope changed"):
         workflow.export_batch(bound, "ektar_100", destination)
