@@ -111,6 +111,26 @@ def _canonical(payload: Mapping[str, Any]) -> bytes:
     )
 
 
+def _materialize_blob(data: bytes, expected_sha256: str | None) -> bytes:
+    """Select the unique committed or Windows-text identity required by assets."""
+
+    if expected_sha256 is None:
+        return data
+    candidates = [data]
+    if b"\x00" not in data:
+        windows = data.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+        if windows != data:
+            candidates.append(windows)
+    matches = [
+        candidate
+        for candidate in candidates
+        if hashlib.sha256(candidate).hexdigest() == expected_sha256
+    ]
+    if len(matches) != 1:
+        raise RuntimeError("committed asset cannot materialize its frozen identity")
+    return matches[0]
+
+
 def _normal_directory(path: Path, identity: tuple[int, int]) -> bool:
     return (
         os.path.lexists(path)
@@ -309,12 +329,24 @@ def build_capsule(destination: Path | None = None) -> dict[str, Any]:
         source_names = _source_names(head, config)
         external_names = [str(item) for item in config["capsule"]["external_paths"]]
         blobs = _committed_blobs(head, [*source_names, *external_names])
+        product_profile = json.loads(
+            blobs["configs/render_profiles/safe_rich_product_v1.json"]
+        )
+        expected_hashes = {
+            str(row["path"]): str(row["sha256"]) for row in product_profile["assets"]
+        }
+        expected_hashes["requirements-product-v2.txt"] = str(
+            parent_receipt["requirements"]["sha256"]
+        )
         archive_path = destination / config["capsule"]["archive_name"]
         members = _build_archive(archive_path, source_names, blobs, config)
         external: dict[str, dict[str, object]] = {}
         for relative in external_names:
             target = destination.joinpath(*str(relative).split("/"))
-            _write_new(target, blobs[relative])
+            _write_new(
+                target,
+                _materialize_blob(blobs[relative], expected_hashes.get(relative)),
+            )
             external[str(relative)] = _identity(target)
         (destination / "tmp").mkdir()
         manifest = {

@@ -156,3 +156,14 @@ def test_committed_blob_archive_ignores_host_autocrlf() -> None:
     path = "configs/color_rendering_profiles.yaml"
     commit = product_desktop._source_commit(root)
     assert builder._committed_blobs(commit, [path])[path] == (root / path).read_bytes()
+
+
+def test_asset_materialization_requires_unique_frozen_identity() -> None:
+    raw = b"a\nb\n"
+    windows = b"a\r\nb\r\n"
+    assert builder._materialize_blob(raw, hashlib.sha256(raw).hexdigest()) == raw
+    assert (
+        builder._materialize_blob(raw, hashlib.sha256(windows).hexdigest()) == windows
+    )
+    with pytest.raises(RuntimeError, match="frozen identity"):
+        builder._materialize_blob(raw, "0" * 64)
