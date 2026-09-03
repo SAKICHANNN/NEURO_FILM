@@ -1,0 +1,47 @@
+{
+  "schema": "kmcfm.u7-22a-private-repository-independent-runtime-capsule.v1",
+  "node_id": "U7.22A",
+  "source_parent_commit": "0d298dda3177c37cbded70da8730e7dfc31ba6c1",
+  "parent_runtime": {
+    "path": "outputs/private-product-runtime-u7-21e-8f07545",
+    "receipt_name": "product-runtime.json",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v4",
+    "receipt_bytes": 3726,
+    "receipt_sha256": "548a80583811329260083bd37d0abd122b033141b1c358ef700f07ee044ea756",
+    "python_path": "runtime/Scripts/python.exe",
+    "python_bytes": 274424,
+    "python_sha256": "0b471133e110cfb53a061cad528ce8e517d7b9ac41a0a396c39ad795a487fc14"
+  },
+  "capsule": {
+    "directory_prefix": "capsule-u7-22a-",
+    "manifest_name": "runtime-source-capsule.json",
+    "archive_name": "product-source.zip",
+    "source_glob": "src/**/*.py",
+    "archive_extra_paths": [
+      "scripts/pipeline_color_baseline.py"
+    ],
+    "external_paths": [
+      "scripts/render_film.py",
+      "scripts/open_product_desktop.py",
+      "requirements-product-v2.txt",
+      "configs/render_profiles/safe_rich_v1.json",
+      "configs/render_profiles/safe_rich_product_v1.json",
+      "configs/color_rendering_profiles.yaml",
+      "configs/film_color_stats.json",
+      "configs/color_guardrails.json",
+      "configs/u7_9d_private_runtime_source_scope_binding_v1.json"
+    ],
+    "maximum_materialized_files": 99,
+    "maximum_logical_bytes": 67108864,
+    "source_date_epoch": 1767225600
+  },
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "repository_independent_private_runtime": true,
+    "public_release": false,
+    "redistribution_authorized": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false
+  }
+}
