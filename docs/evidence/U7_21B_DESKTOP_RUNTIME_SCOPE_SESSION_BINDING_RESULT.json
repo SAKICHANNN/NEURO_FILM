@@ -1,0 +1,115 @@
+{
+  "schema": "kmcfm.u7-21b-desktop-runtime-scope-session-binding-evidence.v1",
+  "node_id": "U7.21B",
+  "status": "PASS_PRIVATE_U7_21B_DESKTOP_RUNTIME_SCOPE_SESSION_BINDING",
+  "automatic_pass": true,
+  "formal_execution": {
+    "source_commit": "47242f8cd5d2cdb73bfea16de1e6dbb71715a160",
+    "reports": [
+      {
+        "path": "outputs/u7_21b_desktop_runtime_scope_session_binding/formal-forward.json",
+        "bytes": 2857,
+        "sha256": "40a1399845cd8aac5338f8bc00deb98032aae6b84e7aa40ae03facaaf9d0a526"
+      },
+      {
+        "path": "outputs/u7_21b_desktop_runtime_scope_session_binding/formal-reverse.json",
+        "bytes": 2857,
+        "sha256": "40a1399845cd8aac5338f8bc00deb98032aae6b84e7aa40ae03facaaf9d0a526"
+      }
+    ],
+    "byte_exact": true,
+    "scientific_identity": "40a1399845cd8aac5338f8bc00deb98032aae6b84e7aa40ae03facaaf9d0a526"
+  },
+  "observations": {
+    "authoritative_scope": [
+      "src",
+      "configs",
+      "scripts/render_film.py",
+      "scripts/open_product_desktop.py",
+      "requirements-product-v2.txt"
+    ],
+    "accepted": ["clean", "outside_scope_document_change"],
+    "rejected": [
+      "modified_runtime_source",
+      "staged_runtime_source",
+      "deleted_runtime_source",
+      "untracked_runtime_source",
+      "descendant_head",
+      "invalid_scope"
+    ],
+    "validation_points": [
+      "before_preview_decode",
+      "before_preview_read",
+      "before_detail_read",
+      "before_single_export",
+      "before_batch_export"
+    ],
+    "individual_session_binding_seals_retained": true,
+    "renderer_or_export_command_after_rejection": 0
+  },
+  "regression": {
+    "desktop_parent_and_audit_tests_passed": 112,
+    "fresh_process_gui_test_passed": 1,
+    "dedicated_and_audit_tests_passed": 8,
+    "ruff_passed": true,
+    "json_passed": true,
+    "diff_check_passed": true,
+    "disclosed_environment_event": "One combined-suite GUI case stopped at tk.Tk because the host Tcl 8.6 library file was temporarily unavailable; the same case passed in a fresh process. No product command or assertion ran in the stopped case."
+  },
+  "installed_runtime": {
+    "path": "outputs/private-product-runtime-u7-21b-47242f8",
+    "installed_source_commit": "47242f8cd5d2cdb73bfea16de1e6dbb71715a160",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v4",
+    "receipt_bytes": 3726,
+    "receipt_sha256": "214586edb98a6a445849d033507499bc7a6cf569eaaf90cbd3c3878a634ad68f",
+    "authoritative_file_count": 7084,
+    "authoritative_logical_bytes": 386834264,
+    "runtime_scope_policy": "exact-to-installed-source-commit",
+    "runtime_scope_untracked_policy": "reject",
+    "catalog_launch": "pass",
+    "desktop_help_launch": "pass",
+    "p_free_bytes_after_install": 67970793472
+  },
+  "excluded_preformal_event": {
+    "description": "The first formal attempt placed temporary Git repositories under the exFAT-backed outputs root and stopped at fixture git-config before a report existed. Formal scratch moved to the system temporary root; reports remain on P-backed outputs.",
+    "reports_created": 0,
+    "scientific_cases_completed": 0,
+    "product_source_changed": false,
+    "gate_changed": false
+  },
+  "gates": {
+    "authoritative_scope_reused": true,
+    "pre_preview_scope_validation": true,
+    "session_operation_scope_validation": true,
+    "modified_staged_deleted_untracked_reject": true,
+    "descendant_head_reject": true,
+    "outside_scope_document_change_allowed": true,
+    "individual_binding_seals_retained": true,
+    "formal_reports_byte_exact": true,
+    "desktop_parent_behavior_preserved": true,
+    "installed_runtime_bound": true,
+    "claim_ceiling_exact": true
+  },
+  "source_bindings": {
+    "docs/planning/U7_21B_DESKTOP_RUNTIME_SCOPE_SESSION_BINDING_CONTRACT.md": {"git_blob": "95aed8471db48dfd881f32392dc1c0896a4f0e3e", "bytes": 2833, "sha256": "7ba81133f5e9081abb11dbbb323ca161e4b7954cf7bd5c28fe3a9eadbd2ba9eb"},
+    "configs/u7_21b_desktop_runtime_scope_session_binding_v1.json": {"git_blob": "96d613aa2a23bb7f3517ea22c76a639867c64fe6", "bytes": 717, "sha256": "67fc0160f28ad4b104cb31d830c5ef44477b0162da44c755a30166571b1ca496"},
+    "configs/u7_9d_private_runtime_source_scope_binding_v1.json": {"git_blob": "af02cfc0e5c84915999871d94a2390960d687221", "bytes": 1432, "sha256": "597b3a26d0485d05680e6b191e7ce038b78d7175d050e87dda96216922940991"},
+    "src/inference/product_desktop.py": {"git_blob": "1b4b7a0925382572c1327406d4dc2fe77cb851ac", "bytes": 64114, "sha256": "933b9aacbc86221f845e8de92ed4b3ac6292ec1680e60ff6d30ca64a97805d1d"},
+    "scripts/audit_u7_21b_desktop_runtime_scope_session_binding.py": {"git_blob": "4fb3f359d70191d1bbf3b86e18d9f379d2817d44", "bytes": 8446, "sha256": "16fd3f621fd0e8e130c4adc5ef65f6f2054aef59e490403854e7664c64fce138"},
+    "tests/test_u7_21b_desktop_runtime_scope_session_binding.py": {"git_blob": "c438d7df7fcc68cbd8bbec277dc74cddfe3d8261", "bytes": 3877, "sha256": "46b4e4c5752af98f7645b0ad9745aee65e808dab2883276e4d65b005a458e585"},
+    "tests/test_audit_u7_21b_desktop_runtime_scope_session_binding.py": {"git_blob": "b4efdb972318a02dd5d5958c8e6ea5ce7ccb3931", "bytes": 647, "sha256": "bcf81c7304529eb86c088eb5f7cf3c4c0e20be816221cd3f0a127b9a0bcd0414"},
+    "tests/test_u7_10b_installed_runtime_desktop_launch.py": {"git_blob": "280c31f53922821ae1d7556f9b90e117ecb35bd7", "bytes": 9264, "sha256": "baa5f3b14993929367fa84e9322fcc73e40f7929582c8222cabcd747a5acfd71"}
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "desktop_session_runtime_source_consistency": true,
+    "render_algorithm_change": false,
+    "new_input_or_output_format": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "standalone_package": false,
+    "cross_platform_parity": false
+  }
+}
