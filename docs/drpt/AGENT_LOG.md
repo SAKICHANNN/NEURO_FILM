@@ -23824,3 +23824,45 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   and generic B&W remains severe-artifact blocked. No pixel, Look, format,
   recipe schema, calibration, public-package or cross-platform claim changed.
   No push.
+
+### 2026-09-04 - U7.21E closes desktop batch aggregate publication drift
+
+- **Node and routing:** `ULT > U7 delivery > U7.21E`, DRPT L2 / Mode C,
+  local execution. `dev-research-reliability` was the sole writer; router,
+  DRPT, structure, agent-log and code-review disciplines were read-only
+  secondary checks. Both parallel tasks were notified before this exact
+  tracker/log propagation window.
+- **Defect and repair:** after validating every child export, desktop batch
+  export wrote aggregate `batch.json` and could publish the staged directory
+  without revalidating the full U7.21B runtime scope. Freeze `a38d408d`
+  injects drift immediately after aggregate-receipt creation and reproduced
+  the defect as one expected failing regression. Implementation `dc9436b4`
+  adds one `_validate_session(state)` after aggregate member validation and
+  immediately before the create-only directory transaction.
+- **Formal evidence:** audit `baf58d25` plus report-only normalization
+  `8f075459` produce forward/reverse reports that are byte-identical at 1,905
+  bytes / SHA `51785189...487b`. The success case performs exactly one
+  post-aggregate validation and publishes normally; the drift case performs
+  exactly one, raises `runtime source scope changed`, publishes zero
+  destination entries and leaves zero stage residue. All ten gates pass.
+  Evidence `7a05e6ac` has tracked SHA `88d92076...49a1` and binds the eight
+  committed source artifacts plus both formal reports and the installed
+  runtime receipt.
+- **Corrections and verification:** two post-repair attempts correctly stopped
+  in child CLIs while the protected core was intentionally uncommitted and are
+  excluded from product results. The first audit report contained
+  temporary-path-dependent batch and receipt hashes; `8f075459` removed only
+  those non-scientific fields before accepted formal replay. Selected parent
+  batch/transaction coverage passes 48/48; dedicated/audit/evidence coverage
+  passes 4/4. Ruff, JSON and diff checks pass.
+- **Runtime and boundary:** new P-backed runtime
+  `outputs/private-product-runtime-u7-21e-8f07545` binds source
+  `8f075459...6336`, contains 7,084 files / 386,834,264 logical bytes and has
+  receipt SHA `548a8058...a756`. Catalog and desktop help pass; Velvia 50,
+  Portra 400 and Ektar 100 remain available only as `film-inspired / Look
+  Approximation`, while generic B&W remains severe-artifact blocked. This is
+  private aggregate publication-scope consistency only; no pixel, Look,
+  format, batch-schema, recipe, calibration, public-package or cross-platform
+  claim changed. To limit exFAT allocation growth, adjacent micro-fixes will
+  not install another full runtime unless protected core changes make this
+  runtime unusable. No push.
