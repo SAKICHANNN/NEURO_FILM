@@ -1,0 +1,114 @@
+{
+  "schema": "kmcfm.u8-2b-private-look-approximation-fact-cards-evidence.v1",
+  "node_id": "U8.2B",
+  "status": "PASS_PRIVATE_LOOK_APPROXIMATION_FACT_CARDS",
+  "automatic_pass": true,
+  "formal_execution": {
+    "source_commit": "f17906e366a70b6aa102156d38aa7fd0950da0f6",
+    "reports": [
+      {
+        "path": "outputs/u8_2b_private_look_approximation_fact_cards/v2/formal-forward.json",
+        "bytes": 3002,
+        "sha256": "95428484e31602ed9be7993ab2123c40b235a74802ae93d1cd1ba613423c4676"
+      },
+      {
+        "path": "outputs/u8_2b_private_look_approximation_fact_cards/v2/formal-reverse.json",
+        "bytes": 3002,
+        "sha256": "95428484e31602ed9be7993ab2123c40b235a74802ae93d1cd1ba613423c4676"
+      }
+    ],
+    "byte_exact": true
+  },
+  "published_artifact": {
+    "path": "outputs/u8_2b_private_look_approximation_fact_cards/v2/kmcfm-private-look-approximation-fact-cards.json",
+    "bytes": 4916,
+    "sha256": "0e3dd1c599b5320ceebe59a980cc0f43112b4749dcead8c76337bbb6b84ba74b",
+    "repo_relative": true,
+    "p_backed": true,
+    "schema": "kmcfm.private-look-approximation-fact-cards.v1"
+  },
+  "facts": {
+    "card_order": ["product", "data", "model", "profiles", "release"],
+    "profile_order": ["velvia_50", "portra_400", "ektar_100", "generic_bw"],
+    "available_colour_looks": ["velvia_50", "portra_400", "ektar_100"],
+    "generic_bw_availability": "blocked_severe_artifact",
+    "root_license": "unresolved",
+    "product_training_dataset": null,
+    "learned_final_rgb_generator": false,
+    "public_release": false
+  },
+  "gates": {
+    "runtime_receipt_identity_exact": true,
+    "profile_identity_exact": true,
+    "evidence_identities_exact": true,
+    "root_license_unresolved_exact": true,
+    "catalog_complete_ordered_unique": true,
+    "available_colour_looks_claim_exact": true,
+    "generic_bw_severe_veto_exact": true,
+    "data_model_limitations_explicit": true,
+    "canonical_repeat_exact": true,
+    "overclaim_rejected": true,
+    "create_only_success_exact": true,
+    "create_only_foreign_preserved": true,
+    "owned_stage_residue_zero": true,
+    "claim_ceiling_exact": true,
+    "formal_reports_byte_exact": true
+  },
+  "verification": {
+    "focused_and_audit_tests_passed": 10,
+    "adjacent_catalog_and_sbom_tests_passed": 30,
+    "ruff_passed": true,
+    "compile_passed": true,
+    "json_passed": true,
+    "diff_check_passed": true
+  },
+  "excluded_events": {
+    "initial_candidate": "The first canonical artifact and reports had valid science and identical bytes, but evidence replay exposed that the validator incorrectly treated JSON object key order as semantic. They are excluded.",
+    "correction": "Commit f17906e36 validates card membership as a set while preserving explicit card_order, adds serialized roundtrip coverage, and moves accepted artifacts to an absent v2 directory. Inputs, cards, claims and gates are unchanged."
+  },
+  "source_bindings": {
+    "configs/u8_2b_private_look_approximation_fact_cards_v1.json": {
+      "git_blob": "165b6685dbdeca6b043e21148545d13aa1da1511",
+      "bytes": 2330,
+      "sha256": "5c4d14cb124fa69077ab9d00d7654beb03ac185057237b729c79568609cee338"
+    },
+    "docs/planning/U8_2B_PRIVATE_LOOK_APPROXIMATION_FACT_CARDS_CONTRACT.md": {
+      "git_blob": "3eb4a1b6cc937a57d18b999bee109def716d7378",
+      "bytes": 3602,
+      "sha256": "7f93ccd983be2c4a194318b5c1a8737d622b6ebd94ab6fd986b3ef763f0b5686"
+    },
+    "scripts/audit_u8_2b_private_look_approximation_fact_cards.py": {
+      "git_blob": "dee1e1d2e038631b2df560e6dbb37b1fec4c555d",
+      "bytes": 5871,
+      "sha256": "07f3dcbd12028d84d26aa91348728034ba250c4a21f3914c7a0984548a284b8c"
+    },
+    "scripts/build_private_product_fact_cards.py": {
+      "git_blob": "8a0a4243954bcb722feb47d349f3f49c203aeba4",
+      "bytes": 2571,
+      "sha256": "7c50cc00545e6c7cc37fe43ec5cb997fde21de4dfe0d57b769d5273b3cc7caed"
+    },
+    "src/inference/product_fact_cards.py": {
+      "git_blob": "8e2eafee9918405ccb6bd29e6c962730f09eafd1",
+      "bytes": 13506,
+      "sha256": "0eca0746a3cb3496332e48257c0c4cfde5a96fd2e3f9ad968d42cd6d2e3f1f35"
+    },
+    "tests/test_u8_2b_private_look_approximation_fact_cards.py": {
+      "git_blob": "4fea29fc62a071a71efa0dc39382ed146deef3ac",
+      "bytes": 6168,
+      "sha256": "e4cb3a9823e7cd00558b9b78cff864084ee07a896dc476e216de6d43f63ed958"
+    }
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_fact_card_readiness": true,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "legal_clearance": false,
+    "population_preference": false,
+    "universal_safety": false,
+    "installer_certification": false,
+    "cross_platform_parity": false
+  }
+}
