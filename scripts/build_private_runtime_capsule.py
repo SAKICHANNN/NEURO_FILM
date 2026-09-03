@@ -181,6 +181,8 @@ from pathlib import Path
 
 BOUND = json.loads({bound!r})
 root = Path(__file__).resolve().parent
+if root.name == "native-launcher-sources":
+    root = root.parent
 manifest = root / "runtime-source-capsule.json"
 
 def fail(message):
