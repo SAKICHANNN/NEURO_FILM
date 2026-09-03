@@ -1,0 +1,84 @@
+{
+  "schema": "kmcfm.u7-21d-product-recipe-commit-snapshot-evidence.v1",
+  "node_id": "U7.21D",
+  "status": "PASS_PRIVATE_U7_21D_PRODUCT_RECIPE_COMMIT_SNAPSHOT",
+  "automatic_pass": true,
+  "formal_execution": {
+    "source_commit": "43cc4a7caf05a76022bf282f662f5c6d3d3d92ce",
+    "reports": [
+      {"path": "outputs/u7_21d_product_recipe_commit_snapshot/formal-forward.json", "bytes": 2936, "sha256": "c3a7ded19f57cdb24a4dc63ae310c8c3178366ac3b95750bddcf99518616c0d4"},
+      {"path": "outputs/u7_21d_product_recipe_commit_snapshot/formal-reverse.json", "bytes": 2936, "sha256": "c3a7ded19f57cdb24a4dc63ae310c8c3178366ac3b95750bddcf99518616c0d4"}
+    ],
+    "byte_exact": true,
+    "scientific_identity": "c3a7ded19f57cdb24a4dc63ae310c8c3178366ac3b95750bddcf99518616c0d4"
+  },
+  "observations": {
+    "product_routes": ["shortcut", "explicit-profile"],
+    "product_recipe_commit": "1111111111111111111111111111111111111111",
+    "product_recipe_live_head_reads": 0,
+    "legacy_recipe_commit": "2222222222222222222222222222222222222222",
+    "legacy_recipe_live_head_reads": 1,
+    "all_commands_succeeded": true,
+    "stage_residue_count": 0,
+    "renderer_algorithm_changed": false
+  },
+  "regression": {
+    "dedicated_and_audit_tests_passed": 4,
+    "clean_parent_transaction_tests_passed": 69,
+    "clean_parent_capability_skips": 4,
+    "ruff_passed": true,
+    "json_passed": true,
+    "diff_check_passed": true,
+    "excluded_events": [
+      "The frozen preimplementation regression produced two expected product failures and one legacy pass, directly reproducing the defect.",
+      "A combined U7.21C/U7.21D run performed before the protected render_film.py change was committed produced two expected U7.21C runtime-scope rejections; the clean committed-head parent run passed.",
+      "The first formal shell command was rejected before execution because it requested deletion of an empty system-temporary scratch root. The accepted audit uses TemporaryDirectory children under the existing system TEMP and leaves zero owned residue."
+    ]
+  },
+  "installed_runtime": {
+    "path": "outputs/private-product-runtime-u7-21d-43cc4a7",
+    "installed_source_commit": "43cc4a7caf05a76022bf282f662f5c6d3d3d92ce",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v4",
+    "receipt_bytes": 3726,
+    "receipt_sha256": "77aa39daee0dbf5fb00767aa7ed61901f61e1b867e9ebf3f714741d84653d14f",
+    "authoritative_file_count": 7084,
+    "authoritative_logical_bytes": 386834264,
+    "catalog_launch": "pass",
+    "desktop_help_launch": "pass",
+    "available_colour_looks": ["velvia_50", "portra_400", "ektar_100"],
+    "generic_bw_availability": "blocked_severe_artifact",
+    "p_free_bytes_after_install": 59455307776
+  },
+  "gates": {
+    "product_recipes_use_invocation_commit": true,
+    "product_recipe_live_head_reads_zero": true,
+    "legacy_recipe_live_head_semantics_retained": true,
+    "u7_21c_scope_validations_retained": true,
+    "formal_reports_byte_exact": true,
+    "clean_parent_behavior_preserved": true,
+    "installed_runtime_bound": true,
+    "stage_residue_zero": true,
+    "claim_ceiling_exact": true
+  },
+  "source_bindings": {
+    "docs/planning/U7_21D_PRODUCT_RECIPE_COMMIT_SNAPSHOT_CONTRACT.md": {"git_blob": "d1214eacb5b5a881bd915ad3d1d0a8b4cafb1c59", "bytes": 2322, "sha256": "aea6d35266d708559dd4c911250d9c18fe5ec9b367ba3c4ac4a77a3d5aed33b5"},
+    "configs/u7_21d_product_recipe_commit_snapshot_v1.json": {"git_blob": "595009861721f5ca7f0513bded2ffc96e8cc3ffd", "bytes": 447, "sha256": "6cceab5b028dfecc3efd058aae83c5b95f4fb44b3823f4f93e51d361a8e74cd7"},
+    "configs/u7_9d_private_runtime_source_scope_binding_v1.json": {"git_blob": "af02cfc0e5c84915999871d94a2390960d687221", "bytes": 1432, "sha256": "597b3a26d0485d05680e6b191e7ce038b78d7175d050e87dda96216922940991"},
+    "scripts/render_film.py": {"git_blob": "4e1bc4331381a1c0a7e9b08210f42efb7d3c6089", "bytes": 45210, "sha256": "a63c82fe128459436faca3c3cc1d1f3a37204dd9dfe5bf8fb95cb562de564c9c"},
+    "src/inference/product_desktop.py": {"git_blob": "1b4b7a0925382572c1327406d4dc2fe77cb851ac", "bytes": 64114, "sha256": "933b9aacbc86221f845e8de92ed4b3ac6292ec1680e60ff6d30ca64a97805d1d"},
+    "tests/test_u7_21d_product_recipe_commit_snapshot.py": {"git_blob": "de94d0a4fd7a6fb15d6d5dfd66ee131543e1f228", "bytes": 2349, "sha256": "cc689d7f707df7639cc88f04a0b544e3f2dd57d9fd79d2f1b233b89fbd694ca8"},
+    "scripts/audit_u7_21d_product_recipe_commit_snapshot.py": {"git_blob": "39c26661f9f359ce2ee20c3950c7513995ca80b8", "bytes": 5595, "sha256": "4a2b41dc15309fb95a932941bc170f23501f8e6cc03830b2b8a7a79d6e966075"},
+    "tests/test_audit_u7_21d_product_recipe_commit_snapshot.py": {"git_blob": "0d9f9a22bf5ca9d5d630685fe7f422c860584563", "bytes": 433, "sha256": "66004ae9c04e581898e13450a08e9cb74b9ce214e45109386f18c44a7d34c592"}
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "private_product_recipe_commit_consistency": true,
+    "render_algorithm_change": false,
+    "recipe_schema_change": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "cross_platform_parity": false
+  }
+}
