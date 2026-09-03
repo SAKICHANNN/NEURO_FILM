@@ -345,7 +345,7 @@ def build_capsule(destination: Path | None = None) -> dict[str, Any]:
             ("cli", "scripts/render_film.py", "kmcfm-capsule-look"),
             ("desktop", "scripts/open_product_desktop.py", "kmcfm-capsule-desktop"),
         ):
-            source = destination / f"{stem}.py"
+            source = destination / f"{stem}-launch.py"
             _write_new(
                 source,
                 _launcher_source(
