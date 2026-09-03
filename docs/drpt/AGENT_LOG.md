@@ -23903,3 +23903,45 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   reproduction, population preference, universal safety, signing, installer
   certification or cross-platform parity. U8.2 remains pending on the owner's
   root-licence decision and a final release audit. No push.
+
+### 2026-09-04 - U7.22A closes repository-dependent private runtime launch
+
+- **Node and routing:** `ULT > U7 delivery > U7.22A`, DRPT L2 / Mode C,
+  local execution. The ready product gap was that U7.9/U7.21E isolated Python
+  dependencies but still launched source through the original repository and
+  Git. `dev-research-reliability` was the sole writer; router, DRPT,
+  structure, agent-log and code-review disciplines were read-only secondary
+  checks. Both parallel tasks cleared the exact tracker/log window.
+- **Implementation:** freeze `fb42bdf5` and core `d59292f5` add a deterministic
+  source capsule which reuses the exact U7.21E interpreter/dependencies rather
+  than creating a second environment. The accepted capsule contains 20 files
+  / 4,558,997 logical bytes: tracked Python source in one 4,256,360-byte ZIP,
+  required external configs/entrypoints, two native launchers and a manifest
+  that binds the parent receipt/Python plus every capsule artifact. Repository
+  desktop behavior remains unchanged; capsule sessions seal the archive,
+  manifest and external files.
+- **Formal evidence:** from committed source `4d9e9db0`, forward/reverse
+  reports are byte-identical at 7,153 bytes / SHA `9f2450ac...c494e`.
+  Manifest `51f100b9...0809`, source archive `c23a16e8...c64a`, capsule
+  receipt `f9d30c06...9387`, look launcher `aedb5de4...a79c` and desktop
+  launcher `5c474490...69e4` are exact across both builds. In a foreign
+  P-backed cwd with only a Git trap on `PATH`, all three available colour
+  Looks match direct output and strict recipe bytes, replay exactly, desktop
+  smoke passes and Git invocations remain zero. All eighteen formal gates,
+  tamper controls, ownership controls and cleanup gates pass. Evidence
+  `58cdfdd9` binds both reports, both capsules and seven committed sources.
+- **Corrections and verification:** the preserved excluded chain covers a
+  source/target native-name collision, two incorrect native-root derivations,
+  archive line-ending/profile-asset identity mismatches, and a desktop
+  loose-source seal incompatible with ZIP-only source. The first formal
+  7,153-byte report at SHA `648386a2...ccb9` failed only because the auditor
+  expected a nonexistent recipe key; `4d9e9db0` asserts the actual frozen
+  `calibrated_reference_allowed` field without changing inputs, outputs,
+  roles or gates. Focused/evidence and parent runtime/desktop/SBOM coverage
+  passes 37/37; Ruff, compile, JSON and diff checks pass.
+- **Boundary:** this is private repository-independent Windows runtime
+  mechanics only. It does not choose a root licence, authorize redistribution,
+  sign a package, prove cross-platform parity, change pixels/Looks, or support
+  calibrated stock response/physical-film reproduction. Velvia 50, Portra 400
+  and Ektar 100 remain `film-inspired / Look Approximation`; generic B&W
+  remains severe-artifact blocked. No push.
