@@ -1,0 +1,11 @@
+{
+  "schema_version": "neuro-film.u7-21c-product-runtime-scope-publication-race.v1",
+  "authoritative_scope_config": "configs/u7_9d_private_runtime_source_scope_binding_v1.json",
+  "canonical_product_output_sha256": "fc51547d1e00a0a4a36dce96847afe09d27b3b531b65172d3f32fa2a46d2087d",
+  "product_entries": ["product-look-shortcut", "explicit-product-profile"],
+  "required_validation_count": 2,
+  "injected_second_validation_error": "runtime source scope changed",
+  "injected_failure_publication_count": 0,
+  "legacy_validation_count": 0,
+  "claim_ceiling": "Private product runtime-scope publication consistency for deterministic film-inspired / Look Approximation only."
+}
