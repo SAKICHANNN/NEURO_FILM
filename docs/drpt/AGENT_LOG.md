@@ -23712,3 +23712,47 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Two exact P-backed diagnostic roots contain 38,451 bytes; platform policy
   rejected exact recursive removal before execution, so zero files were
   deleted and the residue remains non-authoritative. No push.
+
+### 2026-09-04 - U7.21B binds desktop sessions to the full product runtime scope
+
+- **Node and routing:** `ULT > U7 delivery > U7.21B`, DRPT L2 / Mode C,
+  local execution. `dev-research-reliability` was the sole writer; router,
+  DRPT, structure and agent-log disciplines were read-only secondary checks.
+  Parallel producer/consumer tasks acknowledged the exact owned paths and did
+  not overlap the core, tests, audit, evidence or shared-doc window.
+- **Defect:** the installed launcher already protected the U7.9D runtime scope,
+  but a long-lived desktop session sealed only eleven individual assets and
+  the current HEAD. An uncommitted change to an unsealed decoder, encoder or
+  runtime configuration could therefore affect export while the session still
+  recorded the unchanged commit.
+- **Repair:** freeze `09c4d56a` requires the desktop to reuse—not duplicate—the
+  exact U7.9D scope. Core commit `701a29c1` validates that scope before preview
+  decode and before every preview read, detail read, single export and batch
+  export. Modified, staged, deleted and untracked members plus HEAD changes
+  reject before renderer/export execution; outside-scope document changes are
+  allowed and the original individual session seals remain active.
+- **Historical-test propagation:** U7.10B still asserted receipt v3 and
+  byte-identity to a pre-U7.9D launcher. Commit `25e6374e` preserves the old
+  launch/cwd semantics while explicitly admitting the later receipt-v4 and
+  runtime-scope guards; it does not change the installer or old evidence.
+- **Formal evidence:** audit commit `47242f8c` creates forward/reverse reports
+  that are byte-identical at 2,857 bytes / SHA `40a13998...0a526`; all ten
+  gates pass. The first pre-formal attempt put temporary Git fixtures on the
+  exFAT outputs root and stopped at fixture configuration before any report or
+  case result; accepted runs use owned system-temporary scratch and retain the
+  reports on P. Evidence commit `159e9e09` binds all inputs and this correction.
+- **Runtime and verification:** new absent-path install
+  `outputs/private-product-runtime-u7-21b-47242f8` contains 7,084 files /
+  386,834,264 logical bytes, binds source `47242f8c...a160`, and has receipt SHA
+  `214586ed...d68f`. Native catalog and desktop help launch successfully; the
+  three colour Looks remain available and generic B&W remains severe-artifact
+  blocked. Dedicated/audit/evidence coverage passes 10/10. Parent desktop and
+  audit coverage passes 112 tests plus the one GUI case in a fresh process.
+  One combined run stopped at `tk.Tk` because a host Tcl library file was
+  temporarily unavailable; no product command/assertion ran and it is not
+  counted as a product pass. Ruff, JSON and diff checks pass.
+- **Boundary:** this is private desktop session-to-runtime-source consistency
+  only. Pixels, input/output formats, Look definitions, strength/effects,
+  recipe/receipt semantics and `film-inspired / Look Approximation` claims are
+  unchanged. It is not calibrated-stock evidence, physical-film reproduction,
+  standalone/public packaging or cross-platform parity. No push.
