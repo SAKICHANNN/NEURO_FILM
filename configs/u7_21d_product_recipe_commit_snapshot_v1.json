@@ -1,0 +1,13 @@
+{
+  "schema": "kmcfm.u7-21d-product-recipe-commit-snapshot.v1",
+  "frozen_commit": "1111111111111111111111111111111111111111",
+  "transient_commit": "2222222222222222222222222222222222222222",
+  "product_routes": ["shortcut", "explicit-profile"],
+  "legacy_route": "legacy",
+  "claim": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false
+  }
+}
