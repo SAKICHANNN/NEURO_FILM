@@ -397,7 +397,7 @@ def audit(scratch_root: Path, order: str) -> dict[str, object]:
         row["look_id"] for row in catalog["looks"] if row["availability"] == "available"
     ]
     expected_claim = {
-        "calibrated_stock_response": False,
+        "calibrated_reference_allowed": False,
         "color_state_policy": "look_approximation_only",
         "evidence_grade": "look-approximation",
         "input_color_state": "display_referred",
