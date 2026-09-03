@@ -5,11 +5,13 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
 import os
 import shutil
 import subprocess
 import sys
+import tarfile
 import time
 import zipfile
 from collections.abc import Mapping, Sequence
@@ -61,16 +63,31 @@ def _checked(command: Sequence[str], *, cwd: Path = ROOT) -> str:
     return result.stdout
 
 
-def _git_blob(commit: str, relative: str) -> bytes:
+def _committed_blobs(commit: str, paths: Sequence[str]) -> dict[str, bytes]:
+    requested = {str(path).replace("\\", "/") for path in paths}
+    roots = sorted({"src" if name.startswith("src/") else name for name in requested})
     result = subprocess.run(
-        ["git", "show", f"{commit}:{relative}"],
+        ["git", "archive", "--format=tar", commit, "--", *roots],
         cwd=ROOT,
         check=False,
         capture_output=True,
     )
     if result.returncode != 0:
-        raise RuntimeError(f"committed source blob unavailable: {relative}")
-    return result.stdout
+        raise RuntimeError("committed source archive is unavailable")
+    blobs: dict[str, bytes] = {}
+    with tarfile.open(fileobj=io.BytesIO(result.stdout), mode="r:") as archive:
+        for member in archive.getmembers():
+            name = member.name.replace("\\", "/")
+            if not member.isfile() or name not in requested:
+                continue
+            handle = archive.extractfile(member)
+            if handle is None:
+                raise RuntimeError(f"committed source blob unavailable: {name}")
+            blobs[name] = handle.read()
+    missing = requested - set(blobs)
+    if missing:
+        raise RuntimeError(f"committed source blobs unavailable: {sorted(missing)}")
+    return blobs
 
 
 def _write_new(path: Path, data: bytes) -> None:
@@ -111,7 +128,7 @@ def _zip_info(name: str, epoch: int, *, directory: bool = False) -> zipfile.ZipI
     return info
 
 
-def _build_archive(path: Path, commit: str, config: Mapping[str, Any]) -> list[str]:
+def _source_names(commit: str, config: Mapping[str, Any]) -> list[str]:
     source_names = [
         line.strip().replace("\\", "/")
         for line in _checked(
@@ -123,6 +140,15 @@ def _build_archive(path: Path, commit: str, config: Mapping[str, Any]) -> list[s
     source_names = sorted(set(source_names))
     if not source_names or "src/__init__.py" not in source_names:
         raise RuntimeError("capsule source inventory is incomplete")
+    return source_names
+
+
+def _build_archive(
+    path: Path,
+    source_names: Sequence[str],
+    blobs: Mapping[str, bytes],
+    config: Mapping[str, Any],
+) -> list[str]:
     epoch = int(config["capsule"]["source_date_epoch"])
     with (
         path.open("xb") as raw,
@@ -132,7 +158,7 @@ def _build_archive(path: Path, commit: str, config: Mapping[str, Any]) -> list[s
     ):
         archive.writestr(_zip_info("scripts/__init__.py", epoch), b"")
         for name in source_names:
-            archive.writestr(_zip_info(name, epoch), _git_blob(commit, name))
+            archive.writestr(_zip_info(name, epoch), blobs[name])
     return ["scripts/__init__.py", *source_names]
 
 
@@ -271,12 +297,15 @@ def build_capsule(destination: Path | None = None) -> dict[str, Any]:
     destination.mkdir()
     owned = _entry_identity(destination)
     try:
+        source_names = _source_names(head, config)
+        external_names = [str(item) for item in config["capsule"]["external_paths"]]
+        blobs = _committed_blobs(head, [*source_names, *external_names])
         archive_path = destination / config["capsule"]["archive_name"]
-        members = _build_archive(archive_path, head, config)
+        members = _build_archive(archive_path, source_names, blobs, config)
         external: dict[str, dict[str, object]] = {}
-        for relative in config["capsule"]["external_paths"]:
+        for relative in external_names:
             target = destination.joinpath(*str(relative).split("/"))
-            _write_new(target, _git_blob(head, str(relative)))
+            _write_new(target, blobs[relative])
             external[str(relative)] = _identity(target)
         (destination / "tmp").mkdir()
         manifest = {
@@ -333,12 +362,36 @@ def build_capsule(destination: Path | None = None) -> dict[str, Any]:
                 _native_launcher_source(source.read_text("utf-8")).encode("utf-8"),
             )
             native = destination / f"{stem}.exe"
-            _write_native_console_script(
-                python=python,
-                source=native_source,
-                destination=native,
-                source_date_epoch=int(config["capsule"]["source_date_epoch"]),
-            )
+            native_output: list[str] = []
+
+            def native_runner(  # type: ignore[no-untyped-def]
+                command, cwd, environment, _output=native_output
+            ):
+                result = subprocess.run(
+                    list(command),
+                    cwd=cwd,
+                    env=environment,
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                )
+                _output.append(result.stdout)
+                return result
+
+            try:
+                _write_native_console_script(
+                    python=python,
+                    source=native_source,
+                    destination=native,
+                    source_date_epoch=int(config["capsule"]["source_date_epoch"]),
+                    runner=native_runner,
+                )
+            except RuntimeError as exc:
+                raise RuntimeError(
+                    f"native launcher publication failed: {native_output[-1:]!r}"
+                ) from exc
             launchers[role] = {
                 "entrypoint": entrypoint,
                 "python": {"path": source.name, **_identity(source)},
