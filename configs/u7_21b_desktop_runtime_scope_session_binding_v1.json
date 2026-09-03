@@ -1,0 +1,21 @@
+{
+    "schema_version": "neuro-film.u7-21b-desktop-runtime-scope-session-binding.v1",
+    "authoritative_scope_config": "configs/u7_9d_private_runtime_source_scope_binding_v1.json",
+    "required_rejections": [
+        "modified",
+        "staged",
+        "deleted",
+        "untracked",
+        "descendant_head",
+        "invalid_scope"
+    ],
+    "outside_scope_change_allowed": true,
+    "validation_points": [
+        "before_preview_decode",
+        "before_preview_read",
+        "before_detail_read",
+        "before_single_export",
+        "before_batch_export"
+    ],
+    "claim_ceiling": "Private desktop session-to-runtime-source consistency for deterministic film-inspired / Look Approximation only."
+}
