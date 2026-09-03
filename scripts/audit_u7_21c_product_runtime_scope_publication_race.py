@@ -64,7 +64,6 @@ def _run(
 ) -> tuple[int, str, str, int]:
     original_argv = sys.argv
     original_validate = render_film._validate_runtime_source_scope
-    original_commit = render_film._source_commit
     calls = 0
 
     def validator(root: Path, commit: str, scope: tuple[str, ...]) -> None:
@@ -72,13 +71,13 @@ def _run(
         calls += 1
         if forbid_validation:
             raise AssertionError("legacy crossed product runtime-scope policy")
-        if reject_second and calls == 2:
-            raise ProductDesktopError("runtime source scope changed")
+        if reject_second:
+            if calls == 2:
+                raise ProductDesktopError("runtime source scope changed")
+            return
         original_validate(root, commit, scope)
 
     render_film._validate_runtime_source_scope = validator
-    if reject_second:
-        render_film._source_commit = lambda _root: "1" * 40
     sys.argv = ["render_film.py", *arguments]
     stdout = io.StringIO()
     stderr = io.StringIO()
@@ -88,7 +87,6 @@ def _run(
     finally:
         sys.argv = original_argv
         render_film._validate_runtime_source_scope = original_validate
-        render_film._source_commit = original_commit
     return returncode, stdout.getvalue(), stderr.getvalue(), calls
 
 
