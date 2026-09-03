@@ -1,0 +1,97 @@
+{
+  "schema": "kmcfm.u7-22a-private-repository-independent-runtime-capsule-evidence.v1",
+  "node_id": "U7.22A",
+  "status": "PASS_PRIVATE_U7_22A_REPOSITORY_INDEPENDENT_RUNTIME_CAPSULE",
+  "automatic_pass": true,
+  "formal_execution": {
+    "source_commit": "4d9e9db0f1b3c86a03329acaf64a3441f85e40d7",
+    "reports": [
+      {"path": "outputs/u7_22a_private_repository_independent_runtime_capsule/v2/formal-forward.json", "bytes": 7153, "sha256": "9f2450ac0f624713845ccad8d16b3d1887adbdc2f031b1f7a22bf5495b1c494e"},
+      {"path": "outputs/u7_22a_private_repository_independent_runtime_capsule/v2/formal-reverse.json", "bytes": 7153, "sha256": "9f2450ac0f624713845ccad8d16b3d1887adbdc2f031b1f7a22bf5495b1c494e"}
+    ],
+    "byte_exact": true,
+    "scientific_identity": "9f2450ac0f624713845ccad8d16b3d1887adbdc2f031b1f7a22bf5495b1c494e"
+  },
+  "capsules": [
+    {
+      "path": "outputs/private-product-runtime-u7-21e-8f07545/capsule-u7-22a-formal-forward-4d9e9db0f",
+      "materialized_file_count": 20,
+      "logical_bytes": 4558997
+    },
+    {
+      "path": "outputs/private-product-runtime-u7-21e-8f07545/capsule-u7-22a-formal-reverse-4d9e9db0f",
+      "materialized_file_count": 20,
+      "logical_bytes": 4558997
+    }
+  ],
+  "artifact_identity": {
+    "manifest": {"path": "runtime-source-capsule.json", "bytes": 2106, "sha256": "51f100b9e5d396143093fd35022c02bea24c50e1fe626d280a1c0a988c910809"},
+    "source_archive": {"path": "product-source.zip", "bytes": 4256360, "sha256": "c23a16e84931016e960fdcbf44031f484258a00956e0f92898a91642e0e6c64a"},
+    "capsule_receipt": {"path": "capsule-receipt.json", "bytes": 2138, "sha256": "f9d30c060d2ee5fa3c9f6a01146ac2ee3474573b0eb3e602cbbc8ea265689387"},
+    "look_launcher": {"path": "kmcfm-capsule-look.exe", "bytes": 110792, "sha256": "aedb5de497006051c702f7f25812f94f29c2b9c2dfb9cf5d300849ac4fc3a79c"},
+    "desktop_launcher": {"path": "kmcfm-capsule-desktop.exe", "bytes": 110801, "sha256": "5c4744900515ca5d6c2d435644e68b76b8f2b6423292a3ae1b93b99605e869e4"}
+  },
+  "observations": {
+    "available_colour_looks": ["velvia_50", "portra_400", "ektar_100"],
+    "blocked_look": "generic_bw",
+    "direct_outputs_exact": 3,
+    "direct_recipes_exact": 3,
+    "capsule_replays_exact": 3,
+    "desktop_smoke": true,
+    "git_trap_invocations": 0,
+    "second_environment_created": false,
+    "source_checkout_path_embedded": false,
+    "p_free_bytes_after_formal": 55009869824
+  },
+  "gates": {
+    "formal_reports_byte_exact": true,
+    "capsule_artifacts_byte_exact": true,
+    "manifest_verified": true,
+    "parent_runtime_bound": true,
+    "repository_independent_execution": true,
+    "git_unavailable_and_unused": true,
+    "three_outputs_direct_exact": true,
+    "three_recipes_direct_exact": true,
+    "three_replays_exact": true,
+    "desktop_smoke": true,
+    "tamper_controls": true,
+    "ownership_controls": true,
+    "capsule_tmp_clean": true,
+    "second_environment_absent": true,
+    "source_checkout_path_absent": true,
+    "materialized_file_count_bounded": true,
+    "logical_bytes_bounded": true,
+    "claim_ceiling_exact": true,
+    "public_release_false": true
+  },
+  "regression": {
+    "excluded_events": [
+      "The first native publication attempt used colliding source and target names and stopped without a final capsule; its owned staging residue was cleaned.",
+      "Two native launcher candidates derived the capsule root from the embedded launcher module path rather than argv[0]; both stopped before accepted formal execution.",
+      "Early archive candidates inherited checkout line-ending conversion or materialized profile assets from working-tree bytes; the accepted builder disables archive autocrlf and resolves frozen asset bytes by exact recorded SHA-256.",
+      "The first desktop capsule session tried to seal source modules that intentionally exist only inside product-source.zip; the accepted session seals the archive, manifest and external files while repository mode remains unchanged.",
+      "The first formal report was 7153 bytes at SHA-256 648386a20204522dc78f8bc46be64dd3a84ca75a940df01a4dd69f1b5da5ccb9 and failed only because the auditor expected a nonexistent calibrated_stock_response recipe key; the accepted assertion uses calibrated_reference_allowed without changing source, outputs, roles or gates."
+    ]
+  },
+  "source_bindings": {
+    "docs/planning/U7_22A_PRIVATE_REPOSITORY_INDEPENDENT_RUNTIME_CAPSULE_CONTRACT.md": {"git_blob": "23990832f4acea93095bd8708770fe488f71e03f", "bytes": 4840, "sha256": "0aaed8fa961e02fc6cd19445e5473b4260db642d3bd14713737a062e40073bbc"},
+    "configs/u7_22a_private_repository_independent_runtime_capsule_v1.json": {"git_blob": "ea1af9931a9e45e08d914efe05a5e1ffbf791303", "bytes": 2117, "sha256": "d8abb9bdb2e2eb8da1564d6259e846a1640d708ef1f52b60dfb87e566f66620e"},
+    "src/inference/runtime_source_capsule.py": {"git_blob": "146711c856d06c4f863f1d4f95cac07b3b317cff", "bytes": 8547, "sha256": "85f2f59bc5779c30792c073d049b223ab8684f162e39ff9dd54981cec7d86384"},
+    "src/inference/product_desktop.py": {"git_blob": "432ac0a678a653280259308aec49018c310e0aab", "bytes": 66141, "sha256": "d22d4186dd4c76a64579e11d07ab8994e79dc6eaa9b214df5580af2b8d32a32b"},
+    "scripts/build_private_runtime_capsule.py": {"git_blob": "e2d475893e552e07fae93e7e587fe4bebcae44c4", "bytes": 18677, "sha256": "950a9fe7f9262e4f8d50b0d4564b47a54d26434b9318f93a550590a99f2241ab"},
+    "scripts/audit_u7_22a_private_repository_independent_runtime_capsule.py": {"git_blob": "a91a3d3fc7d6e9815ca7a1d5f5426b8a28ba1a14", "bytes": 17006, "sha256": "491079867104d805baf732c2ecadfba6809bb496187e6afc97320e68927fe0c4"},
+    "tests/test_u7_22a_private_repository_independent_runtime_capsule.py": {"git_blob": "8358e22680bf5d484516cfeab3e4fdd7de062294", "bytes": 6618, "sha256": "e60f08a8c88cbbce2b4e6f89562aedf3caeaafd6da62e206521d8a3f4e296b5a"}
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "repository_independent_private_runtime": true,
+    "pixel_or_look_change": false,
+    "public_release": false,
+    "redistribution_authorized": false,
+    "signed_installer": false,
+    "cross_platform_parity": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false
+  }
+}
