@@ -138,3 +138,26 @@ def test_u8_2b_publication_is_create_only(tmp_path: Path) -> None:
         cards.publish_product_fact_cards(destination, payload)
     assert destination.read_bytes() == payload
     assert not list(tmp_path.glob(".cards.json.u8-2b-*.stage"))
+
+
+def test_u8_2b_formal_audit_binds_owned_sources() -> None:
+    from scripts import audit_u8_2b_private_look_approximation_fact_cards as audit
+
+    assert {path.as_posix() for path in audit.SOURCE_PATHS} == {
+        "configs/u8_2b_private_look_approximation_fact_cards_v1.json",
+        "docs/planning/U8_2B_PRIVATE_LOOK_APPROXIMATION_FACT_CARDS_CONTRACT.md",
+        "scripts/audit_u8_2b_private_look_approximation_fact_cards.py",
+        "scripts/build_private_product_fact_cards.py",
+        "src/inference/product_fact_cards.py",
+        "tests/test_u8_2b_private_look_approximation_fact_cards.py",
+    }
+
+
+def test_u8_2b_forward_reverse_reports_are_exact(tmp_path: Path) -> None:
+    from scripts import audit_u8_2b_private_look_approximation_fact_cards as audit
+
+    forward = audit.run_audit(CONFIG, "forward")
+    reverse = audit.run_audit(CONFIG, "reverse")
+    assert audit.canonical_json(forward) == audit.canonical_json(reverse)
+    assert forward["status"] == "PASS_PRIVATE_LOOK_APPROXIMATION_FACT_CARDS"
+    assert all(forward["gates"].values())
