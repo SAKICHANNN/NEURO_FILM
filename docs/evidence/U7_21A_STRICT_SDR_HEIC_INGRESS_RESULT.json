@@ -1,0 +1,150 @@
+{
+  "schema": "kmcfm.u7-21a-strict-sdr-heic-ingress-evidence.v1",
+  "node_id": "U7.21A",
+  "status": "PASS_PRIVATE_U7_21A_STRICT_SDR_HEIC_INGRESS",
+  "automatic_pass": true,
+  "formal_execution": {
+    "source_commit": "7862ac10c573e6775d6abf156fd6aa61afecaa85",
+    "reports": [
+      {
+        "path": "outputs/u7_21a_strict_sdr_heic_ingress_audit/formal_forward.json",
+        "bytes": 8469,
+        "sha256": "5783fcfeb31b954bbb9194e82cf1a33d73e041daa439d293a4141dd726939092"
+      },
+      {
+        "path": "outputs/u7_21a_strict_sdr_heic_ingress_audit/formal_reverse.json",
+        "bytes": 8469,
+        "sha256": "5783fcfeb31b954bbb9194e82cf1a33d73e041daa439d293a4141dd726939092"
+      }
+    ],
+    "byte_exact": true,
+    "scientific_identity": "5783fcfeb31b954bbb9194e82cf1a33d73e041daa439d293a4141dd726939092"
+  },
+  "dependency": {
+    "distribution": "pi-heif",
+    "version": "1.4.0",
+    "wheel": "pi_heif-1.4.0-cp312-cp312-win_amd64.whl",
+    "wheel_bytes": 2383230,
+    "wheel_sha256": "81cb473227b2da35bfd7c69a12764f664d91e44b0ec2547cdfe5ca6b8b52cab9",
+    "bundled_libraries": {
+      "libheif": "LGPLv3",
+      "libde265": "LGPLv3"
+    },
+    "x265_present": false,
+    "source_identity_correction": "Frozen draft size 2407596 was corrected before formal execution to official-PyPI and retained-wheel size 2383230; filename, SHA, version, implementation, gates and claim were unchanged."
+  },
+  "observations": {
+    "positive_source": {
+      "path": "data/external/u7_21a_strict_sdr_heic_v1/heif_other__arrow.heic",
+      "bytes": 792052,
+      "sha256": "73f604d7353df4848505a1f45a5517f736857fe047372f95c2f3d671df92c22c",
+      "geometry": [3024, 4032],
+      "decoded_shape": [4032, 3024, 3],
+      "mode": "RGB",
+      "bit_depth": 8,
+      "frames": 1,
+      "colour_identity": "embedded Display P3 ICC",
+      "icc_bytes": 548,
+      "container_exif_orientation": 6,
+      "product_orientation": 1,
+      "decoded_srgb8_sha256": "cdb91bfabe81c965abd49b4aa21fb157dea79579af2d12b7fb845cf1907ed624",
+      "linear_f32_sha256": "068b9e4ed3b091be6ceefe3d75a814c5acaa3791f407bc705b6a201bcf52440a",
+      "owned_finite_linear_srgb": true
+    },
+    "negative_controls": 8,
+    "negative_controls_rejected": 8,
+    "public_product": {
+      "look": "ektar_100",
+      "look_amount": 0.65,
+      "output_bytes": 8813526,
+      "output_sha256": "dafa1db8a2d25b56fd68c57e9671fbc4f262c8280f426e1849613478eb02e2f6",
+      "recipe_replay_byte_exact": true,
+      "output_label": "film-inspired",
+      "evidence_grade": "look-approximation",
+      "calibrated_reference_allowed": false
+    },
+    "desktop_preview": {
+      "pixels": 47628,
+      "geometry": [189, 252],
+      "styles": ["velvia_50", "portra_400", "ektar_100"],
+      "claim": "non-calibrated Look Approximations"
+    },
+    "canonical_preexisting_ektar_065_sha256": "fc51547d1e00a0a4a36dce96847afe09d27b3b531b65172d3f32fa2a46d2087d"
+  },
+  "installed_runtime": {
+    "path": "outputs/private-product-runtime-u7-21a-7862ac1",
+    "installed_source_commit": "7862ac10c573e6775d6abf156fd6aa61afecaa85",
+    "receipt_schema": "kmcfm.private-product-runtime-receipt.v4",
+    "receipt_bytes": 3726,
+    "receipt_sha256": "4f1f92e04d55db73e1bc2ca0e90ba3761f41387c1b504b4921a33ee54b809505",
+    "authoritative_file_count": 7084,
+    "authoritative_logical_bytes": 386834264,
+    "requirements_sha256": "b7bcba085eb32682a13d2902a3f1e3b6b61d8403716a491950ff0280657abd00",
+    "pi_heif_version": "1.4.0",
+    "native_cli_sha256": "cc8a025e05219d1054ad5dc993668673de0e96b19784221498c7d8959d583894",
+    "native_desktop_sha256": "28ad917e5068d16f5c3ad2dfd506ee033cc3ec75a6f77195231cf4cbcc02e2c5",
+    "catalog_launch": "pass",
+    "desktop_help_launch": "pass",
+    "installed_heic_output_sha256": "dafa1db8a2d25b56fd68c57e9671fbc4f262c8280f426e1849613478eb02e2f6",
+    "installed_heic_matches_formal": true,
+    "retained_non_authoritative_probe_files": [
+      {
+        "path": "tmp/u7_21a_installed_probe/installed-ektar.png",
+        "bytes": 8813526,
+        "sha256": "dafa1db8a2d25b56fd68c57e9671fbc4f262c8280f426e1849613478eb02e2f6"
+      },
+      {
+        "path": "tmp/u7_21a_installed_probe/installed-ektar.recipe.json",
+        "bytes": 3345,
+        "sha256": "82b50d2bfc3425ab8eb040e6ead7dc0c67b99b729ce9b96df6fa15b3553a0ea7"
+      }
+    ],
+    "probe_cleanup_attempted": true,
+    "probe_cleanup_blocked_before_execution_by_platform_policy": true,
+    "probe_files_deleted": 0,
+    "probe_files_have_product_or_scientific_authority": false,
+    "p_free_bytes_after_install": 72343879680
+  },
+  "gates": {
+    "source_identities_exact": true,
+    "source_immutable": true,
+    "decode_only_wheel_exact": true,
+    "positive_metadata_exact": true,
+    "positive_srgb8_exact": true,
+    "positive_linear_f32_exact": true,
+    "negative_controls_reject": true,
+    "public_ektar_recipe_replay_exact": true,
+    "look_approximation_claim_exact": true,
+    "bounded_three_look_preview": true,
+    "canonical_preexisting_output_exact": true,
+    "formal_reports_byte_exact": true,
+    "new_runtime_absent_before_install": true,
+    "new_runtime_distribution_set_exact": true,
+    "native_cli_heic_output_exact": true,
+    "native_desktop_help_launch": true
+  },
+  "source_bindings": {
+    "docs/planning/U7_21A_STRICT_SDR_HEIC_INGRESS_CONTRACT.md": {"git_blob": "115502bcdc5da9b79182932f30dadb4c651308ed", "bytes": 4959, "sha256": "9a287b7bd0f2f7895314632cb259e0ff7249311ded00accd0a1707a32ac54a75"},
+    "configs/u7_21a_strict_sdr_heic_ingress_v1.json": {"git_blob": "3a448a470d1351a9dd4794d8f94edb201925aa15", "bytes": 4357, "sha256": "4b92f94d48dc997e46bccbdfac8b978110a07f32c1796030066275c187f44a96"},
+    "requirements-product-v2.txt": {"git_blob": "273237273b404c44472b60767b0efa9f8435d868", "bytes": 372, "sha256": "b7bcba085eb32682a13d2902a3f1e3b6b61d8403716a491950ff0280657abd00"},
+    "src/preprocess/heic_sdr.py": {"git_blob": "91d94ab944b72a0fe94dcd1e87732d268bda13d9", "bytes": 8776, "sha256": "a0eb5ffdff07d545e34486776518c4ad8bdedc361cf324ea85f4356413d08ddd"},
+    "src/preprocess/raster_decode.py": {"git_blob": "9e66180c1c276da77c7b82e79ebcea578bde65c7", "bytes": 39968, "sha256": "7779b1985912696c5c26d31f7aab59e2b4460ea27994584992b4084f2c007200"},
+    "scripts/install_product_runtime.py": {"git_blob": "8c3b3760284898c08deb30f7ded646c28a5a28b7", "bytes": 20768, "sha256": "8f16b586df7ef34b2002f977226e93fa78c1eb8e3bc87f9006320b6b9140ef09"},
+    "scripts/audit_u7_21a_strict_sdr_heic_ingress.py": {"git_blob": "66447065d4430c6a3d3877d639523940454341a1", "bytes": 14460, "sha256": "9d053db7588c3a930bbad59cfdba7806660403ae11571fac3cc5de43a37defe0"},
+    "tests/test_u7_21a_strict_sdr_heic_ingress.py": {"git_blob": "dbcc58099839310029ecef54658e6505cf76b26a", "bytes": 5806, "sha256": "eb900d98ffa1a7eb37d3f5d1eddc6aacd9e71c50f6930f34c26bff9936d81df2"},
+    "tests/test_audit_u7_21a_strict_sdr_heic_ingress.py": {"git_blob": "2deadef6fc1ad3f80f09cc91c5c272861b0779f6", "bytes": 1079, "sha256": "5bbff3ec4753e6915818b3c364eecb44be1da2b2c5d93770bb621f6cdb7ccdff"}
+  },
+  "claim_ceiling": {
+    "mode": "film-inspired",
+    "evidence_grade": "look-approximation",
+    "strict_single_image_8bit_colour_identified_sdr_heic": true,
+    "arbitrary_heif_heic": false,
+    "sequence_alpha_hdr_gainmap": false,
+    "camera_colour_accuracy": false,
+    "calibrated_stock_response": false,
+    "physical_film_reproduction": false,
+    "public_release": false,
+    "standalone_package": false,
+    "cross_platform_parity": false
+  }
+}
