@@ -23688,3 +23688,27 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   camera colour, calibrated stock response, physical film, standalone/public
   packaging or cross-platform parity. README commit `4b701c82` publishes the
   versioned private runtime path; no push.
+
+### 2026-09-04 - Product regression tests follow descendant-safe evidence semantics
+
+- **Defect and boundary:** the U7.21A-wide product run exposed nine historical
+  test assertions that treated later valid source, recipe-warning or exact
+  dependency evolution as corruption of immutable earlier evidence. Isolated
+  replay of historical U7.2I code reproduced the current HP5 PNG byte-for-byte;
+  the only recipe change was the intentional later removal of one duplicate
+  missing-ICC warning. No product implementation, formal evidence, frozen
+  output oracle, look definition or claim was changed.
+- **Repair:** commits `c46e9d5c` and `49f295a0` keep historical evidence bound
+  through `assert_historical_evidence_binding`, retain exact image/layer SHA
+  oracles and atomicity checks, and validate descendant recipes/metrics through
+  their current schemas, replay/input bindings and semantic fields. The frozen
+  requirements relationship still preserves every U7.2S dependency while
+  allowing only the separately admitted exact `pi-heif==1.4.0` addition.
+- **Verification and cleanup truth:** the complete `test_u7_2*.py` product
+  chain passes 332 tests with 4 capability skips in 361.05 seconds; the five
+  touched tests pass Ruff and the tree passes `git diff --check`. The installed
+  U7.21A native catalog still exposes available Velvia 50, Portra 400 and Ektar
+  100 Look Approximations while `generic_bw` remains severe-artifact blocked.
+  Two exact P-backed diagnostic roots contain 38,451 bytes; platform policy
+  rejected exact recursive removal before execution, so zero files were
+  deleted and the residue remains non-authoritative. No push.
