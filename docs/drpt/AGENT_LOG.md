@@ -23866,3 +23866,40 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   claim changed. To limit exFAT allocation growth, adjacent micro-fixes will
   not install another full runtime unless protected core changes make this
   runtime unusable. No push.
+
+### 2026-09-04 - U8.2B publishes exact private product fact cards
+
+- **Node and routing:** `ULT > U8 release readiness > U8.2B`, DRPT L2 /
+  Mode C, local execution. After U7.21E closed, a current tracker review found
+  U8.2 factual release material—not another transaction wrapper—to be the next
+  ready product leaf. `dev-research-reliability` remained the sole writer;
+  router, DRPT, structure, agent-log and code-review disciplines were read-only
+  secondary checks.
+- **Freeze and implementation:** contract/config `22832613` bind the exact
+  U7.21E runtime receipt, safe-rich product profile, authoritative product
+  catalog and five historical evidence identities while requiring root
+  `LICENSE` to remain absent. Core `621424fb` and audit `8d594b16` generate and
+  validate deterministic product/data/model/profile/release cards, then
+  publish the canonical JSON through the existing create-only primitive.
+- **Factual result:** the bundle lists exactly Velvia 50, Portra 400 and Ektar
+  100 as available `film-inspired / look-approximation` colour rows; generic
+  B&W remains `blocked_severe_artifact` with its exact reason/evidence. It
+  records no calibrated-stock product corpus, no learned final-RGB generator,
+  unresolved root licence, legal clearance false and public release false.
+  Cards never upgrade product claims or availability.
+- **Correction and formal evidence:** the initial candidate reports and
+  artifact had unchanged valid facts but failed evidence roundtrip because the
+  validator treated canonical JSON object-key order as semantic. Correction
+  `f17906e3` validates membership as a set while preserving the explicit
+  `card_order`, adds serialized roundtrip coverage, and reruns into a new v2
+  output directory. Accepted forward/reverse reports are byte-identical at
+  3,002 bytes / SHA `95428484...4676`; all fourteen gates pass. The P-backed
+  canonical artifact is 4,916 bytes / SHA `0e3dd1c5...a74b`. Evidence
+  `20e42a53` has tracked SHA `d1e951a9...c24e6`.
+- **Verification and boundary:** focused/evidence and adjacent catalog/SBOM
+  coverage passes 43/43; Ruff, compile, JSON and diff checks pass. U8.2B is
+  private factual-card readiness only—not root-licence selection, legal
+  clearance, public release, calibrated stock response, physical-film
+  reproduction, population preference, universal safety, signing, installer
+  certification or cross-platform parity. U8.2 remains pending on the owner's
+  root-licence decision and a final release audit. No push.
