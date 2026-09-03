@@ -23793,3 +23793,34 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   Approximation`, while generic B&W remains severe-artifact blocked. No pixel,
   Look, format, recipe/receipt, calibration, public-package or cross-platform
   claim changed. No push.
+
+### 2026-09-04 - U7.21D binds product recipes to the invocation commit
+
+- **Node and defect:** `ULT > U7 delivery > U7.21D`, DRPT L2 / Mode C. A
+  read-only product-boundary review found that U7.21C froze one invocation
+  commit but strict recipe construction independently ran `git rev-parse HEAD`.
+  A transient HEAD could therefore be serialized even if the repository
+  returned to the protected snapshot before final publication.
+- **Repair and proof:** freeze `a1883c67` reproduces the defect on both product
+  routes (`2 failed, 1 passed`). Implementation `5479dfbd` makes only product
+  recipes reuse `product_source_commit`; legacy recipes retain one live read.
+  Audit `43cc4a7c` injects distinct frozen/transient commits. Forward/reverse
+  reports are byte-identical at 2,936 bytes / SHA `c3a7ded1...c0d4`: shortcut
+  and explicit-profile recipes record the frozen commit with zero live reads,
+  legacy records the transient commit with one read, and all seven gates pass.
+- **Regression and disclosure:** selected clean parent transaction coverage
+  passes 69 tests with four capability skips; dedicated/audit/evidence coverage
+  passes 6/6. The expected preimplementation failures and two U7.21C rejects
+  while `render_film.py` was intentionally uncommitted are excluded rather than
+  represented as passes. A first formal shell command was blocked before
+  execution because it requested scratch-root deletion; the accepted audit
+  uses auto-cleaned `TemporaryDirectory` children and leaves zero owned
+  residue. Ruff, JSON and diff checks pass.
+- **Runtime and boundary:** evidence `97cfa221`; new absent-path P-backed
+  runtime `outputs/private-product-runtime-u7-21d-43cc4a7` binds source
+  `43cc4a7c...92ce`, contains 7,084 files / 386,834,264 logical bytes and has
+  receipt SHA `77aa39da...d14f`. Native catalog and desktop help pass; the three
+  colour Looks remain available only as `film-inspired / Look Approximation`,
+  and generic B&W remains severe-artifact blocked. No pixel, Look, format,
+  recipe schema, calibration, public-package or cross-platform claim changed.
+  No push.
