@@ -2,6 +2,23 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 stronger creative development after owner rejection
+
+- Owner judged first previews too subtle; retained them without promotion.
+- Primary reliability workflow; design/research and lightweight governance
+  secondary. Added optional bounded creative black/white endpoints to private
+  core, preserving original defaults; separate bold config and runner option.
+- Same eight development inputs, 72 arms plus comparison sheets, no reserved
+  pixel/RAW/network reads. Report identity and visual limitations recorded in
+  LOOK2 plan. Precommit exploratory execution is explicitly not formal replay.
+- Three reviewed overview scenes show distinct grades but yellow cast,
+  purple-to-blue hue movement and backlit shadow-loss concerns. No promotion.
+- 66 core/development/behavioral tests PASS, 2 CLI tests deselected. Existing
+  product core/GUI, historical evidence and foreign U7.22B changes untouched.
+- Next action is photographic refinement and stronger basic controls, not
+  additional wrappers or stock naming. Existing structure preserved; no
+  external approval required for local development, public release remains out.
+
 ## 2026-09-05 - LOOK2 product-value direction and independent creative core
 
 - Trigger/parent: user approved rebuilding the long-lived Look Approximation

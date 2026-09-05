@@ -120,6 +120,36 @@ not a reset of the shared checkout. Keep one long-lived Goal across these steps.
 
 ## Core verification, 2026-09-05
 
+### Development feedback and stronger directions
+
+The owner rejected development-01 as visually too subtle. This is direct
+product-value evidence against those settings, regardless of implementation
+tests. They are retained unchanged, not promoted. Development-02-bold uses the
+same eight development photos, with explicit creative black/white endpoints
+and three separately named grades (cyan matte, sunbleached print, deep chrome).
+This is ordinary declared creative development, not a rescue of a frozen
+scientific experiment. No confirmation images were read.
+
+Eight photos / nine arms were rendered at maximum side 512. Report:
+`outputs/creative_look_v2_development/development-02-bold/report.json`, SHA256
+`c71b2329523997a263493af1665ccd0faa42635b30be016d4a1f80dc0a8aaab5`.
+The report binds working-file hashes; this was a precommit development run,
+not a clean-committed-head formal evaluation. Autonomous labelled overview
+review of hayfield, orchids and courtyard shows clearly different grades,
+but cyan changes purple petals to blue, warm print gives broad yellow casts,
+and deep chrome darkens the backlit flower subject. No photographic safety or
+preference pass is claimed. Warm print introduces quantized endpoints in all
+eight rows; cyan/deep introduce none in these previews. Endpoint counts are
+diagnostics, not counts of severe artifacts.
+
+Next: inspect large development images/crops and distinguish intentional colour
+design from unwanted casts and shadow loss. Compare against strength-matched
+basic controls before freezing candidates and reading confirmation roles.
+Do not advance all three merely because they differ. Product integration stays
+closed. Core compatibility, new endpoint scalar oracle/tiles/validation and
+behavioral adjacent tests: 66 PASS, 2 CLI tests deselected. No stock inference,
+new data, GUI change or full-resolution performance claim.
+
 `python -B -m pytest -q -p no:cacheprovider tests/test_creative_look_v2.py
 tests/test_u7_2c_three_stock_look_amount.py -k 'not cli'`: 57 passed,
 2 deselected (CLI/full media not involved in this private core change).

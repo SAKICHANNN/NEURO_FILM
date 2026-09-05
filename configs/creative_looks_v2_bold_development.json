@@ -1,0 +1,32 @@
+{
+  "schema": "kmcfm.creative-look-v2-development.v1",
+  "status": "development-not-product-approved",
+  "input_domain": "encoded-display-srgb-f32",
+  "claim": "Original creative grades; not physical film or paper simulation",
+  "looks": {
+    "cyan_matte": {
+      "tone": [0.18, 0.83],
+      "shadow": [-0.5, 0.18, 0.5],
+      "highlight": [0.1, 0.0, -0.1],
+      "chroma": -0.9,
+      "black": [0.018, 0.075, 0.105],
+      "white": [0.96, 0.98, 1.0]
+    },
+    "sunbleached_print": {
+      "tone": [0.52, 0.91],
+      "shadow": [0.4, 0.04, -0.35],
+      "highlight": [0.45, 0.03, -0.5],
+      "chroma": -0.65,
+      "black": [0.085, 0.045, 0.025],
+      "white": [1.0, 0.94, 0.82]
+    },
+    "deep_chrome": {
+      "tone": [0.055, 0.945],
+      "shadow": [-0.35, 0.03, 0.3],
+      "highlight": [0.3, 0.0, -0.25],
+      "chroma": 1.4,
+      "black": [0.006, 0.01, 0.016],
+      "white": [0.994, 0.99, 0.985]
+    }
+  }
+}

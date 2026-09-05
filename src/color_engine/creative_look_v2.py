@@ -43,6 +43,8 @@ class CreativeLookV2:
     shadow: tuple[float, float, float]
     highlight: tuple[float, float, float]
     chroma: float
+    black: tuple[float, float, float] = (0.0, 0.0, 0.0)
+    white: tuple[float, float, float] = (1.0, 1.0, 1.0)
 
     def __post_init__(self) -> None:
         tone = _vector(self.tone, 2, 0.05, 0.95, "tone")
@@ -54,6 +56,8 @@ class CreativeLookV2:
             self, "highlight", _vector(self.highlight, 3, -0.5, 0.5, "highlight")
         )
         object.__setattr__(self, "chroma", _number(self.chroma, -1.0, 1.5, "chroma"))
+        object.__setattr__(self, "black", _vector(self.black, 3, 0.0, 0.2, "black"))
+        object.__setattr__(self, "white", _vector(self.white, 3, 0.8, 1.0, "white"))
 
 
 def render_creative_look_v2(
@@ -101,6 +105,11 @@ def render_creative_look_v2(
     )
     gain = np.exp(log_gain)
     candidate = toned * gain / (1.0 + toned * (gain - 1.0))
+    # Explicit creative print endpoints, not a calibrated paper/film response.
+    # Default endpoints preserve the original development operator exactly.
+    candidate = np.asarray(spec.black) + candidate * (
+        np.asarray(spec.white) - np.asarray(spec.black)
+    )
     result = np.ascontiguousarray(
         (1.0 - strength) * x + strength * candidate, dtype=np.float32
     )

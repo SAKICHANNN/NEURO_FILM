@@ -74,7 +74,9 @@ def save_png(path: Path, image: Image.Image) -> str:
     return sha(path.read_bytes())
 
 
-def compare(run_id: str) -> Path:
+def compare(
+    run_id: str, creative_config: str = "creative_looks_v2_development.json"
+) -> Path:
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", run_id):
         raise ValueError("run id must be a simple absent directory name")
     config = read_json(CONFIG)
@@ -94,7 +96,12 @@ def compare(run_id: str) -> Path:
             raise ValueError(f"source bytes drift: {row['id']}")
         inputs[row["id"]] = data
 
-    creative_path = ROOT / "configs/creative_looks_v2_development.json"
+    if creative_config not in (
+        "creative_looks_v2_development.json",
+        "creative_looks_v2_bold_development.json",
+    ):
+        raise ValueError("unrecognized development config")
+    creative_path = ROOT / "configs" / creative_config
     creative = read_json(creative_path)
     specs = {name: CreativeLookV2(**row) for name, row in creative["looks"].items()}
     profile = load_render_profile(
@@ -203,5 +210,8 @@ def compare(run_id: str) -> Path:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run-id", required=True)
+    parser.add_argument(
+        "--creative-config", default="creative_looks_v2_development.json"
+    )
     args = parser.parse_args()
-    print(compare(args.run_id))
+    print(compare(args.run_id, args.creative_config))

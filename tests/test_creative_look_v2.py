@@ -48,8 +48,50 @@ def _oracle(pixel: np.ndarray, spec: CreativeLookV2, amount: float) -> list[floa
         # Algebraically equivalent denominator in independent scalar form.
         e = math.exp(exponent)
         target = value * e / ((1 - value) + value * e)
+        target = spec.black[i] + target * (spec.white[i] - spec.black[i])
         output.append((1 - amount) * float(pixel[i]) + amount * target)
     return output
+
+
+@pytest.mark.parametrize("name", ["cyan_matte", "sunbleached_print", "deep_chrome"])
+def test_bold_endpoints_oracle_and_tiles(name):
+    rows = json.loads(
+        (ROOT / "configs/creative_looks_v2_bold_development.json").read_text()
+    )
+    spec = CreativeLookV2(**rows["looks"][name])
+    source = np.random.default_rng(617).random((17, 19, 3), dtype=np.float32)
+    result = render_creative_look_v2(source, spec)
+    expected = np.asarray(
+        [_oracle(p, spec, 1) for p in source.reshape(-1, 3)], dtype=np.float32
+    ).reshape(source.shape)
+    np.testing.assert_array_equal(result, expected)
+    np.testing.assert_array_equal(
+        result,
+        np.concatenate(
+            [
+                render_creative_look_v2(source[:8], spec),
+                render_creative_look_v2(source[8:], spec),
+            ]
+        ),
+    )
+    np.testing.assert_array_equal(
+        render_creative_look_v2(source, spec, amount=0), source
+    )
+    endpoints = render_creative_look_v2(
+        np.asarray([[[0, 0, 0], [1, 1, 1]]], dtype=np.float32), spec
+    )
+    np.testing.assert_array_equal(
+        endpoints[0], np.asarray([spec.black, spec.white], dtype=np.float32)
+    )
+    assert np.isfinite(result).all() and result.min() >= 0 and result.max() <= 1
+
+
+@pytest.mark.parametrize(
+    "field,value", [("black", [-0.1, 0, 0]), ("white", [1, 1.1, 1]), ("black", [0, 0])]
+)
+def test_invalid_creative_endpoints(field, value):
+    with pytest.raises(CreativeLookError):
+        CreativeLookV2((0.3, 0.7), (0, 0, 0), (0, 0, 0), 0, **{field: value})
 
 
 def test_development_config_is_not_a_stock_or_product_approval() -> None:
