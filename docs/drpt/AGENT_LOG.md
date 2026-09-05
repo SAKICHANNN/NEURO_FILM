@@ -2,6 +2,30 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 portrait development coverage and tonal diagnosis
+
+- Primary dev-research-reliability; Exa source verification, structure/DRPT/log
+  secondary. Previous conversational reassurance alone was no progress; this
+  turn locked actual sources, implemented intake, tested and rendered a local
+  diagnostic. No new Goal or product-level success claim.
+- `a66d51746` locks three CC0 Commons modern portraits (16,120,004 B) to
+  development only, before original download. `165532dc9` adds bounded
+  size/SHA1/revision/license checking plus existing ICC-aware preview ingress.
+  Two separated requests returned 429 on first original: only 10,834 B official
+  metadata retained; no image/partial body, no mirror or repeated retry loop.
+- `6e68e001a` separately locks existing scikit-image NASA public-domain portrait
+  to local development smoke; four source-sized views completed, network0,
+  confirmation0. Actual overview shows warm global wash affects face/background
+  together, cool also pales face; neither is promoted or tuned on old reserve.
+- 61 portrait/core tests plus 18 behavioral/control tests PASS, 2 CLI tests
+  deselected; Ruff/check-format/diff verified. Not a photographic safety result.
+- Next design should differentiate colour relationships/tonal structure rather
+  than amplify global casts. Old assessment no-promotion remains authoritative;
+  next independent confirmation needs suitable new coverage. Product/v1/core,
+  foreign U7.22B modified test/untracked runner and existing .codex/tmp untouched.
+  Existing structure preserved; no public distribution, outreach, purchase or
+  dependency changes; no human approval required for this local development.
+
 ## 2026-09-05 - LOOK2 reserved assessment no-promotion decision
 
 - Locked refined parameters/core before first reserve access at 85fbf71c3;

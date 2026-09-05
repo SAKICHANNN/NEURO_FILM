@@ -85,10 +85,33 @@ capacity, final-RGB generation and further wrappers as substitutes for value.
 | Direction and candidate contract | DONE | Plan/config frozen at `32c552180`; active authority corrected, old evidence unchanged | Scoped plan commit; revert only owned files |
 | Private core | DONE | 44 synthetic tests pass; with v1 non-CLI behavior, 57 pass / 2 CLI tests deselected. No photographic value claim | Core/test commit; no product imports to undo |
 | Photo development | IN_PROGRESS | Lock `creative_looks_v2_photo_development_v1.json` before pixels; first 8 hash-ranked rows from parent RF3.D0's 16, never the extra manifest row | Separate source/run commit; outputs under P-backed outputs/ |
-| Confirmation | NOT_STARTED | Freeze parameters, metrics, rubric and source-disjoint confirmation before first confirmatory render | Immutable report/observations; no tuning or revote |
+| First reserved assessment | COMPLETE_NO_PROMOTION | Eight reserved images consumed only after lock; neither refined grade met preference gate. Preserve result; no tuning on these images. See LOOK2_RESERVED_ASSESSMENT_01_REVIEW.md | 85fbf71c3 freeze; f95e537cf review |
+| Next candidate confirmation | NOT_READY | Requires a meaningfully redesigned candidate, adequate people/detail development coverage and a new prelocked assessment population | No new assessment reads or promotion |
 | Product integration | NOT_STARTED | Only surviving looks; catalog/recipe/preview/export regressions, full-resolution severe checks and ordinary-photo resource measurements | Separate opt-in integration commit |
 
 ## Photo evaluation readiness (not yet ready)
+
+Local portrait diagnostic completed from `6e68e001a`, using the existing NASA
+512x512 fixture, zero network/confirmation reads. Outputs and source credit:
+`outputs/creative_look_v2_development/portrait-local-smoke-01/`.
+The complete four-panel 1024x1080 image was inspected at source resolution:
+identity / contrast 1.15 / unchanged cool / unchanged warm. Labelled autonomous
+development observation, not a blind vote: warm visibly yellows/brightens face
+and background together; cool separates dark areas but also pales the face.
+The basic contrast control deepens black clothing/helmet and is not universally
+preferable. No severe-safety or preference promotion is inferred from one image.
+Mean RGB8 change (16.91 cool, 21.71 warm) is visible but not a value score.
+
+This supports a different next design question: can hue-selective colour
+relationships and deliberate tonal contrast give a distinct treatment without
+applying the same wash to faces and neutral highlights? Test on development
+only, include simple fixed selectable presets, and keep oracle complexity tests
+separate from usefulness. No learned segmentation, face identity inference or
+new model is required merely to try a bounded colour-coordinate operator.
+Do not revise either failed refined config or rerender the consumed assessment.
+The three Commons portraits remain transport-pending (two 429s, zero retained
+image bodies); this does not block local design, and the single NASA fixture
+does not close the broader people/full-resolution coverage gap.
 
 The initial labelled development uses eight existing CC0 digital display
 derivatives, no raw decode/download. The config locks their parent manifest and
