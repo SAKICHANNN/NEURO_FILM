@@ -15,6 +15,7 @@ class OrderedHueLook:
     mapped_hue: tuple[float, ...]
     green_logsat: float = -0.4
     blue_logsat: float = -0.15
+    value_lift: float = 0.0
 
     def __post_init__(self) -> None:
         for name in ("source_hue", "mapped_hue"):
@@ -32,6 +33,7 @@ class OrderedHueLook:
             raise ValueError("hue secants outside [0.25,3]")
         for name in ("green_logsat", "blue_logsat"):
             object.__setattr__(self, name, _finite(getattr(self, name), -1, 1))
+        object.__setattr__(self, "value_lift", _finite(self.value_lift, 0, 0.5))
 
 
 def map_ordered_hue(
@@ -75,10 +77,12 @@ def map_ordered_hue(
 def render_ordered_hue_look(
     encoded_srgb: np.ndarray, spec: OrderedHueLook, *, amount: float = 1
 ) -> np.ndarray:
-    """Owned bounded float32 RGB; retains HSV value, not physical luminance.
+    """Owned bounded float32 RGB; optional monotone HSV-value lift.
 
     This version deliberately leaves the historical hue/tone kernel untouched.
     HSV conversion is explicit float64; one final float32 cast, no RGB clamp.
+    Zero lift retains HSV value, not physical luminance. Lift v+k*v*(1-v)
+    retains endpoints and has derivative >= 1-k >= 0.5.
     """
     if not isinstance(spec, OrderedHueLook):
         raise TypeError("invalid ordered hue specification")
@@ -116,6 +120,8 @@ def render_ordered_hue_look(
     )
     scaled = saturation * gain
     saturation = scaled / (1 - saturation + scaled)
+    if spec.value_lift:
+        value = value + strength * spec.value_lift * value * (1 - value)
     mapped = map_ordered_hue(hue, spec, amount=strength) % 360
     k = (mapped[..., None] / 60 + np.array([5.0, 3.0, 1.0])) % 6
     shape = np.maximum(0, np.minimum(np.minimum(k, 4 - k), 1))

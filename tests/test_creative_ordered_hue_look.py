@@ -1,7 +1,7 @@
 import colorsys
 import json
 import math
-from dataclasses import asdict
+from dataclasses import asdict, replace
 from itertools import pairwise
 from pathlib import Path
 
@@ -53,6 +53,7 @@ def scalar_rgb(rgb, look, amount):
     )
     scale = s * math.exp(exponent)
     s = scale / (1 - s + scale)
+    v = v + amount * look.value_lift * v * (1 - v)
     return colorsys.hsv_to_rgb(
         ((1 - amount) * h + amount * scalar_hue(h, look)) / 360, s, v
     )
@@ -124,6 +125,27 @@ def test_warm_purple_and_grey_unchanged_owned_and_finite():
     np.testing.assert_array_equal(x, before)
 
 
+@pytest.mark.parametrize("amount", [0, 0.5, 1])
+def test_daylight_lift_scalar_monotone_and_no_shadow_darkening(amount):
+    look = replace(spec(), value_lift=0.32)
+    x = np.random.default_rng(44).random((19, 31, 3), dtype=np.float32)
+    expected = np.array(
+        [scalar_rgb(p, look, amount) for p in x.reshape(-1, 3)], np.float32
+    ).reshape(x.shape)
+    y = render_ordered_hue_look(x, look, amount=amount)
+    np.testing.assert_allclose(y, expected, atol=1e-7, rtol=0)
+    v = x.max(-1).astype(np.float64)
+    np.testing.assert_array_equal(
+        y.max(-1), (v + amount * 0.32 * v * (1 - v)).astype(np.float32)
+    )
+    ramp = np.repeat(np.linspace(0, 1, 65536, dtype=np.float32)[None, :, None], 3, -1)
+    lifted = render_ordered_hue_look(ramp, look, amount=amount)
+    assert np.all(np.diff(lifted[0, :, 0]) > 0)
+    assert np.all(lifted >= ramp)
+    np.testing.assert_array_equal(lifted[..., 0], lifted[..., 1])
+    assert lifted.min() == 0 and lifted.max() == 1
+
+
 @pytest.mark.parametrize(
     "change",
     [
@@ -132,6 +154,8 @@ def test_warm_purple_and_grey_unchanged_owned_and_finite():
         {"mapped_hue": [0, 90, 360]},
         {"source_hue": [1, 90, 360]},
         {"green_logsat": float("nan")},
+        {"value_lift": -0.1},
+        {"value_lift": 0.6},
         {"blue_logsat": True},
         {"source_hue": [0, 1, 360], "mapped_hue": [0, 300, 360]},
     ],

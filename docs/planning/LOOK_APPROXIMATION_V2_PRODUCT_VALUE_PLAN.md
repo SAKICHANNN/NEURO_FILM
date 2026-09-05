@@ -6,6 +6,19 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+Ordered-only completed at `89cb40dd9`, nine labelled development overview sheets
+reviewed: report `development-08-ordered/report.json` SHA256
+`12fdc909888689b02f0d6a71395506cc52d5db87f6c445f337abb838dfe4ed38`.
+Foliage/flower backgrounds distinct without extra petal darkening; most other
+photos remain weak (per-image RGB8 MAE .11..2.60 is descriptive, not salience).
+No broad Look-value pass. Preserve this version. A separate declared creative
+iteration adds only `value_lift=.32`, v'=v+k*v*(1-v), to open midtones without
+darkening HSV value or changing endpoints. Existing hue anchors/saturation stay
+unchanged; original/v1/basic controls plus EXACT lift-only and colour-only arms
+must be shown. One authored daylight direction, not a tuned grid, stock claim or
+assessment rescue. No new confirmation reads. This tests whether useful colour
+relationships plus subject readability form an appealing grade beyond lift alone.
+
 Ordered-hue development, 2026-09-05: retain all prior kernels/configs. Add one
 private order-preserving hue spline with positive segment derivatives, fixed
 HSV value and bounded saturation-odds adjustment. Fixed hue anchors in degrees:

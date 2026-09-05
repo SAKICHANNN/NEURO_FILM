@@ -180,9 +180,10 @@ def compare(
         "creative_hue_look_development_v1.json",
         "creative_hue_look_development_v2.json",
         "creative_ordered_hue_development_v1.json",
+        "creative_ordered_hue_development_v2.json",
     ):
         raise ValueError("unrecognized development config")
-    ordered_mode = creative_config == "creative_ordered_hue_development_v1.json"
+    ordered_mode = creative_config.startswith("creative_ordered_hue_development_")
     hue_mode = (
         creative_config.startswith("creative_hue_look_development_") or ordered_mode
     )
@@ -310,6 +311,17 @@ def compare(
             )
         for name, spec in specs.items():
             arms[f"{arm_prefix}-{name}"] = render(source, spec, amount=config["amount"])
+            if ordered_mode and spec.value_lift:
+                arms[f"lift-only-{name}"] = render(
+                    source,
+                    replace(
+                        spec, mapped_hue=spec.source_hue, green_logsat=0, blue_logsat=0
+                    ),
+                    amount=config["amount"],
+                )
+                arms[f"colour-only-{name}"] = render(
+                    source, replace(spec, value_lift=0), amount=config["amount"]
+                )
             if subject_detail:
                 arms[f"tone-only-{name}"] = render(
                     source,
