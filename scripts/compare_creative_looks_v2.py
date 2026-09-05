@@ -179,6 +179,7 @@ def compare(
     if creative_config not in (
         "creative_looks_v2_development.json",
         "creative_looks_v2_bold_development.json",
+        "creative_looks_v2_refined_development.json",
     ):
         raise ValueError("unrecognized development config")
     creative_path = ROOT / "configs" / creative_config

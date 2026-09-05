@@ -1,0 +1,25 @@
+{
+  "schema": "kmcfm.creative-look-v2-development.v1",
+  "status": "development-not-product-approved",
+  "input_domain": "encoded-display-srgb-f32",
+  "claim": "Original creative colour; not calibrated film",
+  "development_reason": "Keep distinct warm/cool directions, lift dark subjects and restore near-neutral white; retire deep_chrome from this candidate set",
+  "looks": {
+    "cool_matte_daylight": {
+      "tone": [0.32, 0.86],
+      "shadow": [-0.2, 0.14, 0.4],
+      "highlight": [0.3, 0.02, -0.2],
+      "chroma": -0.6,
+      "black": [0.018, 0.045, 0.06],
+      "white": [0.99, 0.994, 0.998]
+    },
+    "warm_daylight": {
+      "tone": [0.43, 0.89],
+      "shadow": [0.5, 0.08, -0.4],
+      "highlight": [0.15, 0.015, -0.15],
+      "chroma": -0.25,
+      "black": [0.055, 0.032, 0.022],
+      "white": [0.997, 0.988, 0.975]
+    }
+  }
+}

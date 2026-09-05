@@ -122,6 +122,35 @@ not a reset of the shared checkout. Keep one long-lived Goal across these steps.
 
 ### Development feedback and stronger directions
 
+Development-04b narrows to two explicitly creative grades in
+`configs/creative_looks_v2_refined_development.json`: cool matte daylight and
+warm daylight. The deep grade is not carried forward. Changes lift lower tones
+and use near-neutral white endpoints, rather than repeating the strong yellow
+paper-white tint. All eight labelled overview sheets were inspected: orchid
+detail and rail-yard visibility improve versus the bold settings; warm/cool
+casts remain intentional and clearly visible in neutral interiors. This is
+author judgement, not blind preference. Neither is approved for integration.
+
+Report `outputs/creative_look_v2_development/development-04b-refined/report.json`
+SHA256 `1291ebd26f149b1062a933ea272d0ea725c6a0a49cc90f7e609c1f3c2803f365`;
+8 development inputs x 8 arms, no reserved/RAW/network reads. Both candidates
+have zero newly quantized endpoint components on all eight previews, which is
+not a general severe-artifact guarantee. Corrected verification is 68 PASS,
+2 CLI tests deselected; monotone ramp and near-neutral-white checks included.
+
+Transparent development lineage: first `development-04-refined` ran despite a
+failed new low-grey channel-lift assertion because the shell commands were not
+success-chained. Cool shadow red was 0.08683 for 0.10010 input. That report is
+retained, not an accepted verification. Adjusted only cool shadow-red log gain
+from -0.5 to -0.2, preserved the assertion, then success-gated tests before 04b.
+No old scientific gate or product parameter was changed.
+
+Next stop on development tuning: freeze these two candidates for assessment,
+with sensible closest-basic controls as well as magnitude-matched diagnostics.
+The current eight development scenes lack meaningful skin coverage; a positive
+result on them cannot authorize a general portrait/photo product. Prospectively
+lock appropriate assessment roles before any additional candidate image reads.
+
 Development-03-detail keeps the bold parameters unchanged and reads only the
 same eight development display derivatives, now at their available maximum
 1600 side (not original RAW/full sensor resolution). It adds 1:1 centre crops,

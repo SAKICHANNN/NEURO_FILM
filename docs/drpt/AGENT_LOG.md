@@ -2,6 +2,21 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 two-grade tonal refinement
+
+- Continued substantive development from crop findings: separate refined config
+  narrows to cool/warm daylight, lifts dark subjects, restores near-neutral white.
+  Existing core, bold config, v1 and closed scientific results unchanged.
+- All eight 04b overview sheets reviewed; no newly quantized endpoint components
+  for either candidate. Labels/preview scale and absent skin coverage prevent
+  promotion. Report hash and initial failing grey-lift development attempt are
+  recorded in LOOK2 plan; assertion retained and parameter corrected.
+- 68 focused/behavioral PASS, 2 CLI deselected; Ruff/diff check. Primary reliability
+  workflow, visual design/research secondary; standard existing file placement.
+- Next freeze candidates and assessment roles; do not tune endlessly on eight
+  photos or infer portrait safety. No external permission required; no GUI,
+  public release, stock calibration or data acquisition performed.
+
 ## 2026-09-05 - LOOK2 detail and basic-operator reality check
 
 - Prior turn made implementation/photo progress. Continued within the same

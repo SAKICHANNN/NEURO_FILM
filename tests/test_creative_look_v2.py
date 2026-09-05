@@ -94,6 +94,26 @@ def test_invalid_creative_endpoints(field, value):
         CreativeLookV2((0.3, 0.7), (0, 0, 0), (0, 0, 0), 0, **{field: value})
 
 
+def test_refined_grade_ramps_and_white_intent():
+    config = json.loads(
+        (ROOT / "configs/creative_looks_v2_refined_development.json").read_text()
+    )
+    assert len(config["looks"]) == 2
+    ramp = np.repeat(
+        np.linspace(0, 1, 4097, dtype=np.float32)[None, :, None], 3, axis=2
+    )
+    for row in config["looks"].values():
+        spec = CreativeLookV2(**row)
+        result = render_creative_look_v2(ramp, spec)
+        assert np.min(np.diff(result, axis=1)) >= 0
+        assert np.max(np.diff(result, axis=1)) < 0.001
+        assert np.ptp(result[0, -1]) < 0.03
+        assert np.all(result[0, 410] > ramp[0, 410])
+        np.testing.assert_array_equal(
+            render_creative_look_v2(ramp, spec, amount=0), ramp
+        )
+
+
 def test_development_config_is_not_a_stock_or_product_approval() -> None:
     config = json.loads(CONFIG.read_text(encoding="utf-8"))
     assert config["status"] == "development-not-product-approved"
