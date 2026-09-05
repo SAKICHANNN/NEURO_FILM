@@ -17,6 +17,26 @@ transitions lose visible detail? This is targeted diagnostic selection based on
 known problems, not a random/held-out photographic safety or preference test.
 No promotion decision follows from a three-image ablation alone.
 
+Completed `development-07-subject-detail` at `63de997da`: 31 files /
+135,860,837 logical bytes. Report SHA256
+`d41b4adabe207284e591b63ae36da17d4554197c8ce956647951c218ed0fe813`.
+Original/full/colour-only views of all three scenes reviewed at available
+1600-side resolution. Removing the value curve restores backlit purple petal
+and rail-yard shadow readability while retaining the cooler background colour
+relationship; courtyard foliage shifts remain clearly visible. This does not
+prove preference or exhaustive artifact absence. A scalar purple probe also
+isolates darkening to the tone stage (full equals tone-only, colour-only identity).
+
+A separate whole-hue-domain diagnostic found a design defect not covered by
+continuity/bounds tests: for foliage-v2, dHout/dHin reaches -0.5 on the declining
+green mask. At 0.001-degree sampling, reversed hue order spans 116.623--148.376
+degrees (8.8206% of hue circle). This is a structural colour-order risk, not a
+confirmed severe artifact count on photographs. Retain old config/core/reports
+unchanged and do NOT promote this parameterization. Next development must use
+an explicitly order-preserving colour remap and avoid the unnecessary shadow
+darkening; test the remap before photographs. No new candidate is implemented
+or assessed yet. This changes the next design action, not old assessment gates.
+
 2026-09-05 hue-selective development review: `02462e3c7` / `2ac32f5d1`
 implement one private petrol direction; `568c9a248` separately corrects its
 development foliage coverage. Both configurations remain intact. Nine known

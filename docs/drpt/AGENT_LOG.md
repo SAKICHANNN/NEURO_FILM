@@ -2,6 +2,26 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 subject detail separates tone loss and hue-order risk
+
+- Reliability primary, design/DRPT/structure/log secondary. Extended the existing
+  comparison runner only (`63de997da`) for three known development subjects at
+  available 1600 side, with colour-only/tone-only ablations. No new product core.
+- `development-07-subject-detail/report.json` SHA `d41b4ada...fe813`, 31 files /
+  135,860,837 B retained. Original/full/colour-only large views of orchids,
+  rail-yard and courtyard inspected. Colour-only keeps brighter petal/shadow
+  detail with background separation; no aesthetic/safety promotion claimed.
+- Dense hue diagnostic proves foliage-v2 reverses hue order (minimum slope
+  -0.5), despite passing continuity/bounds tests. Added explicit known-defect
+  regression and a scalar purple ablation test. Next must preserve colour order
+  and subject readability, not keep increasing mask strength. Old results intact.
+- No network/RAW/reserve, no product/default/API or repository-structure change;
+  unrelated foreign 100MP work left untouched. Human approval not required for
+  these bounded local diagnostics. Goal remains active/incomplete.
+- Verification: 94 focused/behavioral PASS, 2 CLI deselected; Ruff/format and
+  diff checks pass. The known-defect test passing records the defect faithfully,
+  not its repair. No full photographic confirmation or 12--24MP product run.
+
 ## 2026-09-05 - LOOK2 hue-selective creative direction, not promotion
 
 - Reliability primary; design/art-direction and DRPT/log/structure secondary.
