@@ -2,6 +2,24 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 fixed jade independent landscape value failure
+
+- Reliability primary; design/ML/DRPT/structure/log secondary. Freeze/config,
+  existing runner and tests committed `4a8ddf687` before assessment pixels.
+- Ten historical eligible BH0S derivatives, disjoint from LOOK2 development
+  and assessment-01. Nine fixed arms; no candidate tuning. Report SHA256
+  `5056f84411fedf1880c9a7d951b4e84b7bb751420cef81faece047d0ebe6ddd2`.
+- All sheets and full available original/candidate images reviewed. Two clear
+  autonomous labelled wins out of ten, below six required; no confirmed severe
+  artifact at available scale. Not blind, population preference or skin proof.
+  Correct old zero-people wording additively: incidental Nikon people exist.
+- Review: `docs/evidence/LOOK2_ORDERED_ASSESSMENT_02_REVIEW.md`; active LOOK2
+  plan updated. Candidate not promoted; no assessment tuning or replacement.
+  Next direction is authored tonal/colour appearance, not jade slider rescue.
+- 133 focused/behavioural PASS, 2 deselected, Ruff/format/diff PASS; run exit 0.
+  Product defaults/old evidence unchanged. Foreign U7.22B files preserved.
+  Goal remains active/incomplete; no human approval needed for this local leaf.
+
 ## 2026-09-05 - LOOK2 ordered hue repair and bounded daylight development
 
 - Reliability primary; design/DRPT/structure/log secondary. Private ordered

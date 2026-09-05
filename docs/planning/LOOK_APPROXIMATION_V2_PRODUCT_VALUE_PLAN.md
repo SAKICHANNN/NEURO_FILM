@@ -6,6 +6,21 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+Assessment-02 completed: **VALUE FAIL / no promotion**, 2/10 clear autonomous
+labelled wins against original and actual fixed controls, below frozen 6/10.
+All ten sheets and full available original/candidate images reviewed; no
+confirmed severe candidate artifact at the available 1600-pixel scale. This
+does not certify original-resolution safety or skin. Review and exact report
+identity: `docs/evidence/LOOK2_ORDERED_ASSESSMENT_02_REVIEW.md`.
+The historical description "zero people" was too strong: Nikon has incidental
+small people, but there is no usable portrait/skin evaluation. Frozen report
+is preserved and this correction is additive. Stop this candidate's assessment
+and parameter rescue. Ordered hue remains a private engineering primitive,
+not a successful product Look. Next development should begin with an explicit
+authored photographic appearance and integrated tonal/colour relationships,
+not more jade-strength tuning or wrappers. Assessment-01/02 stay excluded from
+development. Existing product defaults and frozen research evidence unchanged.
+
 Assessment-02 is now frozen in `creative_ordered_hue_assessment_v1.json` before
 any of its pixel reads this turn. Reuse all ten historically eligible BH0S
 CC0 display derivatives, excluding the historical untrustworthy Canon decode;
