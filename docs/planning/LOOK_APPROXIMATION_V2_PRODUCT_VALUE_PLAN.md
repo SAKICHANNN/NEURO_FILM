@@ -44,6 +44,33 @@ Do not wait for physical-film photos, email replies or the calibration branch.
 
 ## Design hypothesis and alternatives
 
+### Hue-selective development direction (2026-09-05)
+
+Try one original `petrol_contrast` direction, separately versioned in
+`creative_hue_look_development_v1.json`, not revisions to the failed V2 settings.
+Visual intention: teal environment / stable warm-hue subjects / defined shadows;
+avoid uniform yellow/cyan washes and lifted grey blacks. Private pointwise HSV
+colour-coordinate map: smooth compact-support hue weights centred at 140 and
+235 degrees, radius 65; green +35 degrees, blue -20; saturation odds multiplied
+by exp(-.40*green_weight-.15*blue_weight). Hue and saturation at 0..75 degrees
+remain unchanged. This is **not** skin detection or universal skin protection.
+Bezier tone [0,.20,.82,1] on V creates contrast without a raised black endpoint.
+Amount is a convex RGB blend, zero is exact owned identity; no spatial/ML work.
+HSV is a design coordinate, not perceptual or radiometric truth. Risks include
+green/blue hue compression, artificial vegetation, changed saturated highlights
+and quantized dark-detail loss. Scalar coloursys oracle, greys/warm hue, boundary,
+continuity, ownership and tile/order checks precede photographs.
+
+Reuse eight development derivatives plus the source-locked local NASA portrait;
+all nine are development, no old reserve access. Compare original, three v1
+looks, fixed saturation/contrast and candidate; no candidate-fitted oracle needed
+for this design review. First 512-side overview identifies obvious defects, not
+promotion. A useful direction must then survive detail inspection and separate
+new assessment. Primary reliability workflow, visual-art-direction secondary;
+new private core/config/test and narrow existing comparison-runner extension.
+No product API, v1 semantics, failed assessment or foreign U7.22B paths change.
+Do not judge success by whether a new core exists or its tests pass.
+
 The candidate uses explicit tonal shape and luminance-zone RGB relationships,
 not legacy unpaired film means/stds. Three tentative directions are amber-soft,
 cool-clear and copper-rich. These names describe design intent, not measured

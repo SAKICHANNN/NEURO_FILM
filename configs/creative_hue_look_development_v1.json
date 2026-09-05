@@ -1,0 +1,24 @@
+{
+  "schema": "kmcfm.creative-hue-look-development.v1",
+  "status": "development-only-not-product-approved",
+  "intent": "Petrol/teal environment, stable warm hue, defined shadow contrast; no global lifted-black colour wash. Original creative design, not film calibration or skin detection.",
+  "looks": {
+    "petrol_contrast": {
+      "tone": [0.20, 0.82],
+      "green_shift": 35.0,
+      "blue_shift": -20.0,
+      "green_logsat": -0.40,
+      "blue_logsat": -0.15
+    }
+  },
+  "additional_development": {
+    "id": "nasa_portrait_development",
+    "decoded_path": "outputs/creative_look_v2_development/portrait-local-smoke-01/identity.png",
+    "decoded_bytes": 440803,
+    "decoded_sha256": "eecb0b4567b9699e99672388f44639586b81bb396fec8ca80fd59ca4705319d1",
+    "width": 512,
+    "height": 512,
+    "role": "previously-consumed-development-only",
+    "credit": "NASA / scikit-image public-domain astronaut fixture; no endorsement or population claim"
+  }
+}
