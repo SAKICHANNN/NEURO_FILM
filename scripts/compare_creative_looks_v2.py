@@ -156,6 +156,7 @@ def compare(
     run_id: str,
     creative_config: str = "creative_looks_v2_development.json",
     detail: bool = False,
+    assessment: bool = False,
 ) -> Path:
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", run_id):
         raise ValueError("run id must be a simple absent directory name")
@@ -165,6 +166,25 @@ def compare(
         raise ValueError("manifest hash mismatch")
     parent = read_json(ROOT / config["parent_population"])
     selected = select_development(config, json.loads(manifest_bytes), parent)
+    lock = None
+    if assessment:
+        lock = read_json(ROOT / "configs/creative_looks_v2_assessment_v1.json")
+        if creative_config != lock["candidate_config"]:
+            raise ValueError("assessment candidate mismatch")
+        for path, expected in (
+            (ROOT / "configs" / creative_config, lock["candidate_sha256"]),
+            (ROOT / "src/color_engine/creative_look_v2.py", lock["core_sha256"]),
+        ):
+            if sha(path.read_bytes()) != expected:
+                raise ValueError("frozen candidate drift before image access")
+        by_id = {r["id"]: r for r in json.loads(manifest_bytes)}
+        selected = [by_id[name] for name in config["reserved_ids"]]
+        if any(
+            r["rights_scope"] != config["required_rights_scope"]
+            or r["decoded_color_state"] != config["required_color_state"]
+            for r in selected
+        ):
+            raise ValueError("assessment source rights/colour drift")
     # Preflight all selected bodies BEFORE any decode; do not open reserve files.
     inputs = {}
     for row in selected:
@@ -196,6 +216,8 @@ def compare(
         ROOT / "src/color_engine/creative_look_v2.py",
     ]
     bindings += [ROOT / row["path"] for row in profile["assets"]]
+    if assessment:
+        bindings.append(ROOT / "configs/creative_looks_v2_assessment_v1.json")
     bindings.append(ROOT / "configs/render_profiles/safe_rich_product_v1.json")
     source_commit = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
@@ -207,11 +229,13 @@ def compare(
     out = output_parent / run_id
     out.mkdir(exist_ok=False)
     report = {
-        "status": "DEVELOPMENT_ONLY_NO_PROMOTION_DECISION",
+        "status": "RESERVED_ASSESSMENT_PENDING_VISUAL_REVIEW"
+        if assessment
+        else "DEVELOPMENT_ONLY_NO_PROMOTION_DECISION",
         "source_commit": source_commit,
         "bindings": {str(p.relative_to(ROOT)): sha(p.read_bytes()) for p in bindings},
         "prior_exposure": config["prior_exposure"],
-        "reserved_pixel_reads": 0,
+        "reserved_pixel_reads": len(selected) if assessment else 0,
         "raw_reads": 0,
         "network_reads": 0,
         "rows": [],
@@ -222,7 +246,9 @@ def compare(
             if image.mode != "RGB" or image.size != (row["width"], row["height"]):
                 raise ValueError("decoded derivative header drift")
             image.thumbnail(
-                (1600, 1600)
+                (lock["maximum_side"], lock["maximum_side"])
+                if assessment
+                else (1600, 1600)
                 if detail
                 else (config["maximum_side"], config["maximum_side"]),
                 Image.Resampling.LANCZOS,
@@ -252,7 +278,30 @@ def compare(
             source, contrast=config["simple_controls"]["contrast"]
         )
         h, w = source.shape[:2]
-        sheet = Image.new("RGB", (w * 3, (h + 24) * 3), "#181818")
+        if assessment:
+            for name in specs:
+                target = arms[f"v2-{name}"]
+                controls, _ = matched_controls(source, target)
+                arms[f"affine-{name}"] = controls["affine"]
+                x, y = source[::8, ::8], target[::8, ::8]
+                scores = [
+                    (
+                        float(
+                            np.square(
+                                simple_control(x, saturation=s, contrast=c) - y
+                            ).mean()
+                        ),
+                        float(s),
+                        float(c),
+                    )
+                    for s in np.linspace(0, 2, 21)
+                    for c in np.linspace(0.5, 1.5, 21)
+                ]
+                _, s, c = min(scores)
+                arms[f"closest-basic-{name}"] = simple_control(
+                    source, saturation=s, contrast=c
+                )
+        sheet = Image.new("RGB", (w * 3, (h + 24) * ((len(arms) + 2) // 3)), "#181818")
         draw = ImageDraw.Draw(sheet)
         arm_rows = {}
         for index, (name, rgb) in enumerate(arms.items()):
@@ -302,5 +351,6 @@ if __name__ == "__main__":
         "--creative-config", default="creative_looks_v2_development.json"
     )
     parser.add_argument("--detail", action="store_true")
+    parser.add_argument("--assessment", action="store_true")
     args = parser.parse_args()
-    print(compare(args.run_id, args.creative_config, args.detail))
+    print(compare(args.run_id, args.creative_config, args.detail, args.assessment))

@@ -6,6 +6,7 @@ import numpy as np
 import pytest
 
 from scripts.compare_creative_looks_v2 import (
+    compare,
     matched_controls,
     quantize,
     select_development,
@@ -13,6 +14,19 @@ from scripts.compare_creative_looks_v2 import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_assessment_mismatch_stops_before_source_body(monkeypatch):
+    original = Path.read_bytes
+
+    def read(path):
+        if path.suffix.lower() == ".png":
+            pytest.fail("candidate mismatch must precede image access")
+        return original(path)
+
+    monkeypatch.setattr(Path, "read_bytes", read)
+    with pytest.raises(ValueError, match="candidate mismatch"):
+        compare("must-not-create", assessment=True)
 
 
 def test_matched_controls_recover_affine_and_are_deterministic():

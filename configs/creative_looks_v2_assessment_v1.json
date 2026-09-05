@@ -1,0 +1,18 @@
+{
+  "role": "LOOK2-first-reserved-assessment-not-product-release",
+  "candidate_config": "creative_looks_v2_refined_development.json",
+  "candidate_sha256": "06b3018074c0bcd8559c0a869aa34ff14f438a8a60e412531fcec5c139f4a0c8",
+  "core_sha256": "ab64f0ff9fb28d7ff256e47cd69f7e96969eebfd980df5174d609f1cee3a6019",
+  "maximum_side": 1024,
+  "amount": 1.0,
+  "selection": "exact-eight-reserved-ids-in-original-LOOK2-role-lock",
+  "controls": "identity, all v1, ordinary sliders, candidate-fitted affine and closest joint saturation/contrast grid (21x21, sampled every 8th pixel, RGB MSE)",
+  "decision_order": [
+    "Any confirmed new severe artifact stops that candidate",
+    "At least 6 of 8 clearly visible changes in labelled overview plus detail review",
+    "At least 6 of 8 autonomous preferences over identity and best sensible control, ties are not wins",
+    "No release without separate skin/detail/common-resolution workflow validation"
+  ],
+  "review": "Autonomous labelled qualitative review, not human/population preference or globally fresh independent data. Quantized endpoints are diagnostics, not artifact counts.",
+  "failure": "Do not tune on these eight reserved images. Retain result and decide next scope explicitly; no automatic promotion."
+}

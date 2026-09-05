@@ -122,6 +122,17 @@ not a reset of the shared checkout. Keep one long-lived Goal across these steps.
 
 ### Development feedback and stronger directions
 
+The first reserved assessment is now prospectively bound by
+`configs/creative_looks_v2_assessment_v1.json`: exact refined config/core hashes,
+same eight previously reserved IDs, 1024-side derivatives, two unchanged grades.
+Before any reserved body access, commit the lock and runner. Any confirmed new
+severe artifact stops a candidate; visible distinction and autonomous labelled
+preference must each reach 6/8, with ties not wins and preference compared with
+identity and sensible controls. Candidate-fitted affine and closest 21x21
+saturation/contrast controls supplement the original sliders/v1. No parameter
+tuning on these eight after viewing. This is not blinded/human/global-fresh
+evidence; it cannot establish skin/general product quality by itself.
+
 Development-04b narrows to two explicitly creative grades in
 `configs/creative_looks_v2_refined_development.json`: cool matte daylight and
 warm daylight. The deep grade is not carried forward. Changes lift lower tones
