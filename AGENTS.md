@@ -1,6 +1,6 @@
 # AGENTS.md — K-MCFM Project Knowledge Base
 
-> **Current truth: 2026-07-28.** The production-capable path is a deterministic content-safe color renderer plus procedural effects. Ultimate success now requires stock-first learning from verifiable real photographic-film scans; specific `film_stock_id` experts are primary, while historical/unknown-stock film is a separate auxiliary class. FilmSet/Capture One, camera simulations, LUTs and pseudo-teachers are controls only.
+> **Active priority, 2026-09-05:** deliver useful deterministic **Look Approximation**, with visible distinction and photographic appeal after the severe-artifact veto. Current v1 is mechanically usable but U7.2C/RF3.D15/U4.2A failed its value/diversity gates. Develop separately versioned creative Looks under `docs/planning/LOOK_APPROXIMATION_V2_PRODUCT_VALUE_PLAN.md`; preserve all v1 outputs and negative evidence. Calibration, author replies and user-supplied film are not product dependencies. Do not substitute more packaging, format or 100MP micro-leaves for appearance value. Historical research rules below apply to their original scientific scopes, not to this newly authorised creative-product branch.
 > **Target direction:** compare stock-specific global, hierarchical, retrieval and bounded conditional explicit operators. A stock may conditionally expose latent `Mode A/B/C`, but multi-mode structure is an unproved, data-gated hypothesis and `K=1` remains a formal outcome. Roll, process, scanner, source and content are nested nuisance/group variables. The physical-roll-only Roll2Film hypothesis remains closed under current BlueNeg evidence. Unpaired digital-to-film operator identification remains unresolved. GPU models may predict bounded parameters but never directly generate final RGB. See `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md`, `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` and `docs/planning/LATENT_STOCK_MODE_PROGRAM_2026.md`.
 
 ---
@@ -11,7 +11,8 @@
 |---|---|
 | Project | K-MCFM — content-preserving film imaging |
 | Current default | deterministic `safe_lab` / safe-rich color path + optional grain/halation/dust |
-| Ultimate target | as many evidence-backed, distinguishable stock-specific real-film-derived experts as practical, visibly stylized under a severe-artifact budget, with unseen roll/source validation; historical/unknown-stock is separate and cannot replace named stocks |
+| Active product target | visibly distinct, appealing, deterministic Look Approximation on ordinary photographs, without confirmed severe artifacts; calibration is a separate deferred claim |
+| Deferred stock target | evidence-backed stock-specific real-film experts with unseen roll/source validation; historical/unknown-stock cannot replace named stocks |
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
 | Target hardware | M5 32GB and RTX 5070 Ti **Laptop** 12GB; CPU fallback |

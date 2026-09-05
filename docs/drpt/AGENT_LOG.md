@@ -2,6 +2,21 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 product-value direction and independent creative core
+
+- Trigger/parent: user approved rebuilding the long-lived Look Approximation
+  Goal after full-project adjudication. Current v1 U7.2C/RF3.D15/U4.2A remains
+  negative; engineering identity is not photographic value.
+- Primary workflow: dev-research-reliability; router, plan discipline, design
+  direction, research and DRPT/structure/log checks are secondary. L2/Mode A.
+- Scope: LOOK2 plan and manual development config, then one private pointwise
+  colour core/test. AGENTS/tracker/README and stock-plan status are corrected
+  once; no historical evidence, stock registry, v1 product or runtime changed.
+- Deferred: U7.22B modified test/untracked runner preserved, not executed or
+  staged. No new data/holdout read, outreach, paid work or product promotion.
+- Next: commit contract, implement and verify synthetic boundaries, then lock
+  an eligible photographic comparison before claiming any visual value.
+
 # 2026-08-21 - Project D fallback substantially returned to P
 
 - Migrated and SHA-256-verified 11,523 files / 5,982,004,002 bytes from the

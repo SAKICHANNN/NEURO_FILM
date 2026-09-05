@@ -4,7 +4,13 @@ Date: 2026-07-15
 
 Node: `ULT > RF0.4-RF5`
 
-Status: active execution plan
+Status: deferred calibration programme; not the active product critical path
+
+2026-09-05: the active product work is the separately versioned creative
+Look Approximation programme in `LOOK_APPROXIMATION_V2_PRODUCT_VALUE_PLAN.md`.
+The physical-film evidence gates below remain unchanged and do not grant or
+block creative-product approval. No user film delivery or email reply is a
+condition for continuing the product.
 
 ## 1. Objective and non-goals
 

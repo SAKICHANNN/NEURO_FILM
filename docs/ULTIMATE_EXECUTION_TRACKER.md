@@ -8,7 +8,16 @@
 
 ## 1. Parent goal and task contract
 
-**Parent goal `ULT`**: learn as many evidence-backed, distinguishable and
+**Active parent goal `ULT`, 2026-09-05:** deliver a genuinely useful deterministic
+Look Approximation product. Visible distinction and photographic appeal after
+severe-artifact review are required alongside preview/export/replay correctness.
+U7.2C, RF3.D15 and U4.2A remain negative for v1. The next priority is `LOOK2`
+in `docs/planning/LOOK_APPROXIMATION_V2_PRODUCT_VALUE_PLAN.md`, not additional
+format/packaging/resource micro-leaves. U7.22B 100MP work is deferred with its
+unfinished files preserved. Calibration and outreach are nonblocking conditional
+branches. One long-lived Goal owns this priority; no per-leaf Goal recreation.
+
+**Deferred research objective**: learn as many evidence-backed, distinguishable and
 artifact-safe stock-specific explicit colour experts as practical from
 verifiable real photographic-film scans. `film_stock_id` is the primary class;
 roll, process, scanner, source and content are nested controls. Historical or
@@ -1500,6 +1509,11 @@ FLUX.2 gate:
 The IPOL grain paper may guide a clean-room mathematical implementation. Its GPL code must not be copied into a permissive core without a deliberate licensing architecture.
 
 ### U7 — Productization
+
+`LOOK2` is the active cross-cutting U2/U4/U7 product-value work item. Its first
+step is a private pointwise creative-operator core and synthetic boundary tests;
+photo evaluation and any catalog integration remain separate, unpassed steps.
+No v1 stock proxy, historical evidence or public product entrypoint is changed.
 
 | ID | Status | Deliverable | Dependencies | Exit evidence |
 |---|---|---|---|---|

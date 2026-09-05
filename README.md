@@ -174,6 +174,7 @@ The critical path is:
 explicit Look Approximation selection
   -> bounded deterministic render
   -> severe-artifact veto
+  -> independently checked visible distinction and photographic appeal
   -> preview / export / recipe / receipt replay
   -> resource and cross-platform verification
   -> private deliverable product
@@ -181,6 +182,11 @@ explicit Look Approximation selection
 supporting lane: FilmStyleSafe/FARO evaluation and product fallback
 deferred lane: rights-cleared Velvia 50 / Portra 400 / Ektar 100 calibration
 ```
+
+The current v1 catalog has not passed its visible-diversity/style-value gates
+(U7.2C, RF3.D15 and U4.2A). It is a private trial baseline, not a validated
+three-look value proposition. The active improvement plan is
+[`Look v2 product value`](docs/planning/LOOK_APPROXIMATION_V2_PRODUCT_VALUE_PLAN.md).
 
 Read:
 
