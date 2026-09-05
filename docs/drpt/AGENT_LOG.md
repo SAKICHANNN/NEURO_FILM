@@ -2,6 +2,22 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 detail and basic-operator reality check
+
+- Prior turn made implementation/photo progress. Continued within the same
+  Goal with enlarged existing development derivatives, no reserved/RAW reads.
+- Extended the existing comparison runner rather than adding another wrapper:
+  centre crops, grid strength-matched sliders and candidate-fitted affine
+  diagnostic. Colour core, candidate parameters and product remain unchanged.
+- Labelled crop review exposes shadow-detail loss and broad casts; affine can
+  approximate some of the appearance. Magnitude-matched contrast can itself be
+  destructive and is explicitly not a sufficient preference baseline.
+- 67 focused/behavioral tests PASS, 2 CLI tests deselected; Ruff/diff pass.
+  One import ordering issue corrected before commit. Structure preserved;
+  foreign U7.22B modifications untouched. No release or safety promotion.
+- Next: refine tonal allocation and include sensible best-approximation basic
+  controls before any candidate freeze/confirmation. No external authority needed.
+
 ## 2026-09-05 - LOOK2 stronger creative development after owner rejection
 
 - Owner judged first previews too subtle; retained them without promotion.

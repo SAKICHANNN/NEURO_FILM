@@ -122,6 +122,32 @@ not a reset of the shared checkout. Keep one long-lived Goal across these steps.
 
 ### Development feedback and stronger directions
 
+Development-03-detail keeps the bold parameters unchanged and reads only the
+same eight development display derivatives, now at their available maximum
+1600 side (not original RAW/full sensor resolution). It adds 1:1 centre crops,
+121-point mean-RGB-change-matched saturation/contrast controls and a fitted
+per-channel affine approximation. These are candidate-fitted diagnostics, not
+independent truth, inference models, globally optimal controls or blind tests.
+Central crops are not exhaustive worst-case inspection. Matching mean change
+can select an aesthetically destructive contrast setting; defeating such a
+control cannot establish preference. Subsequent value testing must also offer
+a sensible/basic best-approximation control, not only magnitude matching.
+
+Completed report `outputs/creative_look_v2_development/development-03-detail/report.json`
+SHA256 `3479085b6dc4caa3cd812982cc3189c55094030da0e9022cd91b9303314bf814`;
+177 files / 689,794,780 logical bytes retained in project P-backed outputs.
+Avoid repeating large grids without a specific question. Mean per-image RGB8
+residual versus fitted affine is 3.0845 cyan / 6.0180 warm / 5.9207 deep;
+these are numerical approximation errors, not perception or preference scores.
+Execution was development working-file-bound, not a formal clean-HEAD replay.
+
+Labelled crop review: cyan matte has similar broad appearance to affine on
+the hayfield; warm print lifts flower detail but casts neutral building walls
+yellow; deep chrome reduces visible backlit flower and rail-yard shadow detail.
+These observations motivate refining tonal allocation rather than escalating
+strength. No confirmation/promotion is opened. A simple usable grade is an
+acceptable outcome; nonlinearity itself is not the product objective.
+
 The owner rejected development-01 as visually too subtle. This is direct
 product-value evidence against those settings, regardless of implementation
 tests. They are retained unchanged, not promoted. Development-02-bold uses the

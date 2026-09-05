@@ -74,8 +74,88 @@ def save_png(path: Path, image: Image.Image) -> str:
     return sha(path.read_bytes())
 
 
+def matched_controls(source, target):
+    """Candidate-fitted development controls, not independent truth or inference."""
+    x, y = source[::8, ::8], target[::8, ::8]
+    change = float(np.abs(y - x).mean())
+    params = {}
+    controls = {}
+    for name, grid in (
+        ("saturation", np.linspace(0, 3, 121)),
+        ("contrast", np.linspace(0.25, 2.5, 121)),
+    ):
+        scores = []
+        for value in grid:
+            image = simple_control(x, **{name: float(value)})
+            scores.append(
+                (
+                    abs(float(np.abs(image - x).mean()) - change),
+                    float(np.square(image - y).mean()),
+                    float(value),
+                )
+            )
+        params[name] = min(scores)[2]
+        controls[name] = simple_control(source, **{name: params[name]})
+    gain, offset = [], []
+    for c in range(3):
+        xx, yy = x[..., c].astype(float).ravel(), y[..., c].astype(float).ravel()
+        variance = float(np.square(xx - xx.mean()).sum())
+        a = (
+            float(((xx - xx.mean()) * (yy - yy.mean())).sum() / variance)
+            if variance > 1e-15
+            else 0.0
+        )
+        gain.append(a)
+        offset.append(float(yy.mean() - a * xx.mean()))
+    controls["affine"] = np.clip(source * gain + offset, 0, 1).astype(np.float32)
+    params.update(gain=gain, offset=offset)
+    return controls, params
+
+
+def detail_outputs(out, source_id, source, candidates):
+    result = {}
+    h, w = source.shape[:2]
+    side = min(512, h, w)
+    cy, cx = (h - side) // 2, (w - side) // 2
+    for name, candidate in candidates.items():
+        controls, params = matched_controls(source, candidate)
+        record = {"parameters": params, "controls": {}}
+        for label, rgb in controls.items():
+            file = f"{source_id}--{name}--matched-{label}.png"
+            record["controls"][label] = {
+                "file": file,
+                "sha256": save_png(out / file, Image.fromarray(quantize(rgb))),
+                "candidate_rgb8_mae": float(
+                    np.abs(quantize(candidate).astype(float) - quantize(rgb)).mean()
+                ),
+            }
+        sheet = Image.new("RGB", (side * 2, (side + 24) * 2), "#181818")
+        draw = ImageDraw.Draw(sheet)
+        for idx, (label, rgb) in enumerate(
+            {
+                "identity": source,
+                name: candidate,
+                "matched contrast": controls["contrast"],
+                "affine approximation": controls["affine"],
+            }.items()
+        ):
+            px, py = idx % 2 * side, idx // 2 * (side + 24)
+            sheet.paste(
+                Image.fromarray(quantize(rgb[cy : cy + side, cx : cx + side])),
+                (px, py + 24),
+            )
+            draw.text((px + 4, py + 5), label, fill="white")
+        record["centre_crop_sha256"] = save_png(
+            out / f"{source_id}--{name}--crop.png", sheet
+        )
+        result[name] = record
+    return result
+
+
 def compare(
-    run_id: str, creative_config: str = "creative_looks_v2_development.json"
+    run_id: str,
+    creative_config: str = "creative_looks_v2_development.json",
+    detail: bool = False,
 ) -> Path:
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", run_id):
         raise ValueError("run id must be a simple absent directory name")
@@ -134,13 +214,16 @@ def compare(
         "raw_reads": 0,
         "network_reads": 0,
         "rows": [],
+        "detail": detail,
     }
     for row in selected:
         with Image.open(io.BytesIO(inputs[row["id"]])) as image:
             if image.mode != "RGB" or image.size != (row["width"], row["height"]):
                 raise ValueError("decoded derivative header drift")
             image.thumbnail(
-                (config["maximum_side"], config["maximum_side"]),
+                (1600, 1600)
+                if detail
+                else (config["maximum_side"], config["maximum_side"]),
                 Image.Resampling.LANCZOS,
             )
             source8 = np.asarray(image, dtype=np.uint8).copy()
@@ -200,6 +283,10 @@ def compare(
                 "sheet_sha256": sheet_sha,
             }
         )
+        if detail:
+            report["rows"][-1]["matched_diagnostics"] = detail_outputs(
+                out, row["id"], source, {name: arms[f"v2-{name}"] for name in specs}
+            )
         print(f"development {row['id']}: {len(arms)} arms", flush=True)
     with (out / "report.json").open("x", encoding="utf-8", newline="\n") as handle:
         json.dump(report, handle, ensure_ascii=True, sort_keys=True, indent=2)
@@ -213,5 +300,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "--creative-config", default="creative_looks_v2_development.json"
     )
+    parser.add_argument("--detail", action="store_true")
     args = parser.parse_args()
-    print(compare(args.run_id, args.creative_config))
+    print(compare(args.run_id, args.creative_config, args.detail))

@@ -6,12 +6,30 @@ import numpy as np
 import pytest
 
 from scripts.compare_creative_looks_v2 import (
+    matched_controls,
     quantize,
     select_development,
     simple_control,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_matched_controls_recover_affine_and_are_deterministic():
+    x = np.random.default_rng(4).random((64, 64, 3), dtype=np.float32)
+    target = (x * 0.7 + 0.12).astype(np.float32)
+    controls, parameters = matched_controls(x, target)
+    other, again = matched_controls(x, target)
+    assert parameters == again
+    np.testing.assert_allclose(controls["affine"], target, atol=1e-7)
+    for name in controls:
+        np.testing.assert_array_equal(controls[name], other[name])
+        assert np.isfinite(controls[name]).all()
+        assert controls[name].min() >= 0 and controls[name].max() <= 1
+    constant, _ = matched_controls(
+        np.zeros((16, 16, 3), np.float32), np.full((16, 16, 3), 0.4, np.float32)
+    )
+    np.testing.assert_allclose(constant["affine"], 0.4)
 
 
 def inputs():
