@@ -122,6 +122,16 @@ not a reset of the shared checkout. Keep one long-lived Goal across these steps.
 
 ### Development feedback and stronger directions
 
+First reserved assessment is complete: see
+`docs/evidence/LOOK2_RESERVED_ASSESSMENT_01_REVIEW.md`. Both candidates remain
+unpromoted: 0 established clear preference wins over identity and best supplied
+control in the labelled overview review, below frozen 6/8. All eight roles are
+now consumed within LOOK2 and must not be called unopened. No further tuning
+on this assessment cohort. Detail/portrait/workflow safety remains unproven.
+Candidate-fitted oracle parity is a complexity question, not sufficient evidence
+against the usefulness of a selectable simple preset; separate these questions
+in future scopes without rewriting this negative decision.
+
 The first reserved assessment is now prospectively bound by
 `configs/creative_looks_v2_assessment_v1.json`: exact refined config/core hashes,
 same eight previously reserved IDs, 1024-side derivatives, two unchanged grades.

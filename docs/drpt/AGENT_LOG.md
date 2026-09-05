@@ -2,6 +2,24 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 reserved assessment no-promotion decision
+
+- Locked refined parameters/core before first reserve access at 85fbf71c3;
+  reused comparison runner with pre-image hash rejection, exact reserved roles,
+  nearest joint basic sliders and affine diagnostics. No product code change.
+- Eight reserved photos x twelve arms completed; overview review establishes
+  no clear preference wins against identity plus best control for either look.
+  Frozen 6/8 gate not met; no promotion or tuning on consumed assessment rows.
+- Zero new quantized endpoints is not a severe safety pass; skin/detail review
+  remains incomplete. Candidate-fitted oracles also expose an evaluation scope
+  limitation: complexity justification must be separate from preset usability.
+- 69 focused/behavioral PASS, 2 CLI deselected; Ruff/diff passed before scoped
+  commit. A four-large-image tool batch exceeded IPC display size; retried each
+  existing image separately, without rerendering or changing the report.
+- Primary reliability workflow; design/research and plan/log secondary.
+  Existing structure, v1, foreign U7.22B diff and scientific negatives preserved.
+  No external approval needed for this local evaluation; Goal remains unfinished.
+
 ## 2026-09-05 - LOOK2 two-grade tonal refinement
 
 - Continued substantive development from crop findings: separate refined config
