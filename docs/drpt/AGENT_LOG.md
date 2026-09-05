@@ -2,6 +2,24 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 hue-selective creative direction, not promotion
+
+- Reliability primary; design/art-direction and DRPT/log/structure secondary.
+  User-visible value, not plan completion or test count, determines usefulness.
+- Scoped commits `02462e3c7`, `2ac32f5d1`, `568c9a248` add a private HSV-coordinate
+  bounded pointwise look and independent development configurations, extend the
+  existing comparison runner, and preserve prior product/frozen evidence.
+- Development-05/06 each rendered nine known photos and seven arms. Full report
+  identities and overview findings are recorded in the active LOOK2 plan.
+  Corrected green coverage visibly separates foliage/backgrounds; hay/interior
+  still weak and dark subjects need detail review. No preference/severe pass.
+- 89 focused/behavioral PASS, 2 CLI deselected; Ruff/check-format/diff pass.
+  No RAW/network/reserve reads, product imports or public API changes. P-backed
+  outputs retain both development runs. Existing foreign 100MP files untouched.
+- Next: targeted subject/transition inspection, then only if justified a newly
+  locked value assessment. Do not escalate strength blindly or create named
+  stocks from aesthetic variants. Goal remains incomplete and active.
+
 ## 2026-09-05 - LOOK2 portrait development coverage and tonal diagnosis
 
 - Primary dev-research-reliability; Exa source verification, structure/DRPT/log

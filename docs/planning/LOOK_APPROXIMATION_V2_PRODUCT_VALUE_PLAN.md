@@ -6,6 +6,31 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+2026-09-05 hue-selective development review: `02462e3c7` / `2ac32f5d1`
+implement one private petrol direction; `568c9a248` separately corrects its
+development foliage coverage. Both configurations remain intact. Nine known
+development photos (eight camera derivatives plus the NASA fixture), seven
+arms each, were rendered at maximum side 512; no reserved, RAW or network reads.
+Development-05 report SHA256:
+`b2009e9edea10919dcb09d73217626f7e278082987e6a3ff810ee2fb4154cd09`.
+Development-06 report SHA256:
+`9667faa9c3ff2934282e3614d0673c62e5e64eb524e19062b9e64bc9766e1aa9`.
+All nine labelled overview sheets were reviewed in each run. Corrected foliage
+has clearer emerald/cyan separation on courtyard/flower backgrounds and keeps
+autumn warm colours; the NASA face avoids the earlier whole-image colour wash.
+Hayfield/interior remain relatively weak, and backlit petals/rail-yard shadows
+remain darker. These are autonomous development observations, not blinded wins,
+skin safety or photographic promotion. Corrected candidate introduces 2--571
+new quantized endpoint components per preview; these are diagnostics, not
+severe-artifact counts. Floating-point boundedness is not sufficient safety.
+Keep this single direction for targeted detail inspection; stop coefficient
+iteration here until subject readability and colour-transition risks are
+examined against the actual selectable controls. Do not manufacture three names
+or reopen the failed eight-image assessment. Product v1 remains unchanged.
+89 focused/behavioral tests pass, 2 CLI tests deselected; scalar coloursys oracle,
+gray/warm hue, continuity, ownership and pointwise tile checks are mechanical
+evidence only. No new dependency, export, stock claim or structure change.
+
 2026-09-05 portrait coverage step: lock
 `configs/creative_looks_v2_portrait_development_v1.json` before original download.
 Three CC0 Commons portraits, 16,120,004 source bytes, all **development only**.
