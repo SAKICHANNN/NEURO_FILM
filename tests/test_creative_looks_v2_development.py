@@ -16,7 +16,11 @@ from scripts.compare_creative_looks_v2 import (
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def test_assessment_mismatch_stops_before_source_body(monkeypatch):
+@pytest.mark.parametrize(
+    "candidate",
+    ["creative_looks_v2_development.json", "creative_hue_look_development_v1.json"],
+)
+def test_assessment_mismatch_stops_before_source_body(monkeypatch, candidate):
     original = Path.read_bytes
 
     def read(path):
@@ -26,7 +30,7 @@ def test_assessment_mismatch_stops_before_source_body(monkeypatch):
 
     monkeypatch.setattr(Path, "read_bytes", read)
     with pytest.raises(ValueError, match="candidate mismatch"):
-        compare("must-not-create", assessment=True)
+        compare("must-not-create", creative_config=candidate, assessment=True)
 
 
 def test_matched_controls_recover_affine_and_are_deterministic():

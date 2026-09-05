@@ -19,6 +19,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 
 from scripts.pipeline_color_baseline import load_guardrail_config
+from src.color_engine.creative_hue_look import CreativeHueLook, render_creative_hue_look
 from src.color_engine.creative_look_v2 import CreativeLookV2, render_creative_look_v2
 from src.inference.render_contract import load_render_profile
 from src.inference.style_safe_engine import render_resolved_safe_lab_rgb
@@ -166,6 +167,23 @@ def compare(
         raise ValueError("manifest hash mismatch")
     parent = read_json(ROOT / config["parent_population"])
     selected = select_development(config, json.loads(manifest_bytes), parent)
+    if creative_config not in (
+        "creative_looks_v2_development.json",
+        "creative_looks_v2_bold_development.json",
+        "creative_looks_v2_refined_development.json",
+        "creative_hue_look_development_v1.json",
+    ):
+        raise ValueError("unrecognized development config")
+    hue_mode = creative_config == "creative_hue_look_development_v1.json"
+    creative_path = ROOT / "configs" / creative_config
+    creative = read_json(creative_path)
+    if hue_mode and not assessment:
+        if (
+            creative["additional_development"]["role"]
+            != "previously-consumed-development-only"
+        ):
+            raise ValueError("additional source must remain development-only")
+        selected.append(creative["additional_development"])
     lock = None
     if assessment:
         lock = read_json(ROOT / "configs/creative_looks_v2_assessment_v1.json")
@@ -196,15 +214,10 @@ def compare(
             raise ValueError(f"source bytes drift: {row['id']}")
         inputs[row["id"]] = data
 
-    if creative_config not in (
-        "creative_looks_v2_development.json",
-        "creative_looks_v2_bold_development.json",
-        "creative_looks_v2_refined_development.json",
-    ):
-        raise ValueError("unrecognized development config")
-    creative_path = ROOT / "configs" / creative_config
-    creative = read_json(creative_path)
-    specs = {name: CreativeLookV2(**row) for name, row in creative["looks"].items()}
+    spec_class = CreativeHueLook if hue_mode else CreativeLookV2
+    render = render_creative_hue_look if hue_mode else render_creative_look_v2
+    arm_prefix = "hue" if hue_mode else "v2"
+    specs = {name: spec_class(**row) for name, row in creative["looks"].items()}
     profile = load_render_profile(
         ROOT / "configs/render_profiles/safe_rich_product_v1.json", root=ROOT
     )
@@ -215,6 +228,8 @@ def compare(
         Path(__file__),
         ROOT / "src/color_engine/creative_look_v2.py",
     ]
+    if hue_mode:
+        bindings.append(ROOT / "src/color_engine/creative_hue_look.py")
     bindings += [ROOT / row["path"] for row in profile["assets"]]
     if assessment:
         bindings.append(ROOT / "configs/creative_looks_v2_assessment_v1.json")
@@ -241,6 +256,8 @@ def compare(
         "rows": [],
         "detail": detail,
     }
+    if hue_mode:
+        report["additional_development"] = creative["additional_development"]
     for row in selected:
         with Image.open(io.BytesIO(inputs[row["id"]])) as image:
             if image.mode != "RGB" or image.size != (row["width"], row["height"]):
@@ -268,9 +285,7 @@ def compare(
                 seed=42,
             )
         for name, spec in specs.items():
-            arms[f"v2-{name}"] = render_creative_look_v2(
-                source, spec, amount=config["amount"]
-            )
+            arms[f"{arm_prefix}-{name}"] = render(source, spec, amount=config["amount"])
         arms["basic-saturation-1.2"] = simple_control(
             source, saturation=config["simple_controls"]["saturation"]
         )
@@ -335,7 +350,10 @@ def compare(
         )
         if detail:
             report["rows"][-1]["matched_diagnostics"] = detail_outputs(
-                out, row["id"], source, {name: arms[f"v2-{name}"] for name in specs}
+                out,
+                row["id"],
+                source,
+                {name: arms[f"{arm_prefix}-{name}"] for name in specs},
             )
         print(f"development {row['id']}: {len(arms)} arms", flush=True)
     with (out / "report.json").open("x", encoding="utf-8", newline="\n") as handle:
