@@ -2,6 +2,30 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 luma-separated copper-light development
+
+- Reliability primary; design visual direction, ML evaluation, DRPT, structure
+  and log secondary. Previous assessment-02 was progress through a measured
+  negative, not a wait. This turn built and rendered a new private grade.
+- Core/config/tests/runner `a4a8d9347`: scalar encoded-luma Bezier tone,
+  zero-luma split tint and radial chroma gamut compression. No physical
+  luminance, semantic skin, calibrated film or invertibility claim.
+- Nine known development photos / nine controls each: development-10 report
+  `173200ca...b4cf11`. All overview sheets reviewed. Strong tint made purple
+  flowers blue and NASA skin yellow. Added explicit saturation protection in
+  separately retained config v2, commit `295d7d7c6`; v1 synthetic hash unchanged.
+- Development-11 report `ed7fdc74...c73ae8`: nine sheets reviewed, purple/skin
+  shifts reduced, sky/path/courtyard warm/cool contrast remains visible.
+  Interior remains cool and broad appeal unproved. No promotion or confirmation
+  reads. Next fixed-parameter larger-detail review, not another tint grid.
+- 118 focused/adjacent tests passed before second run; one Ruff import-order
+  failure corrected before commit/run, then Ruff PASS. Both render processes
+  exited 0; no network/RAW/reserve/new data. Overview is not full-detail safety.
+- Final added v2 cube/ramp-adjacent coverage: 120 PASS; Ruff/format/diff PASS.
+- Existing module/config/test/output structure reused; no default/API changes.
+  Foreign U7.22B test/audit and existing .codex/tmp preserved. Local changes
+  need no further approval. Goal remains active/incomplete.
+
 ## 2026-09-05 - LOOK2 fixed jade independent landscape value failure
 
 - Reliability primary; design/ML/DRPT/structure/log secondary. Freeze/config,

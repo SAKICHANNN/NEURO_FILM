@@ -6,6 +6,19 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+Copper development-11 completed at `295d7d7c6`, report SHA256
+`ed7fdc74bad2d8dc6fc85019250e204145c472c5de7a45c02a70e1e33fc73ae8`.
+All nine labelled overview sheets reviewed. Saturation-weighted tint visibly
+reduces the purple-to-blue flower shift and yellow skin cast while retaining
+warm/cool separation in sky/path/courtyard. Hay and house are more restrained;
+stair interior remains cool, rail-yard remains dark, autumn preference remains
+uncertain. This is developmental improvement, not an independent value pass.
+Stop this turn's parameter changes. Next inspect the fixed v2 at the available
+1600-pixel scale using the existing detail runner; skin fixture is only 512px.
+Only after detail checks and broader development portrait coverage should a
+new independent assessment be locked. Do not read assessment-01/02 or claim
+their negative results repaired. No product menu/default changes.
+
 Copper development-10 completed at `a4a8d9347`, report SHA256
 `173200ca167cbcacb61c2a14d6a66b09319cbfad4f35a830fce69c9b93b4cf11`.
 All nine labelled overview sheets inspected: warm/cool separation is clear on

@@ -32,10 +32,11 @@ def test_chromatic_tint_protection_and_v1_preservation():
     )
 
 
-def test_luma_tone_and_gamut_independent_of_colour():
+@pytest.mark.parametrize("power", [0, 2])
+def test_luma_tone_and_gamut_independent_of_colour(power):
     x = np.random.default_rng(733).random((128, 129, 3), dtype=np.float32)
     y = luma(x)
-    spec = CreativePrintLook()
+    spec = CreativePrintLook(tint_neutral_power=power)
     a, b = spec.tone
     target = 3 * a * (1 - y) ** 2 * y + 3 * b * (1 - y) * y * y + y**3
     result = render_print_look(x, spec)
@@ -54,10 +55,11 @@ def test_luma_tone_and_gamut_independent_of_colour():
     np.testing.assert_array_equal(render_print_look(x, spec, amount=0), x)
 
 
-def test_neutral_ramp_tone_order_and_zero_endpoints():
+@pytest.mark.parametrize("power", [0, 2])
+def test_neutral_ramp_tone_order_and_zero_endpoints(power):
     r = np.linspace(0, 1, 65537, dtype=np.float32)
     x = np.repeat(r[None, :, None], 3, axis=-1)
-    out = render_print_look(x, CreativePrintLook())
+    out = render_print_look(x, CreativePrintLook(tint_neutral_power=power))
     assert np.all(np.diff(luma(out).ravel()) > 0)
     np.testing.assert_array_equal(out[:, 0], [[0, 0, 0]])
     np.testing.assert_array_equal(out[:, -1], [[1, 1, 1]])
