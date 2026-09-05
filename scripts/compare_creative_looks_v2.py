@@ -9,6 +9,7 @@ import json
 import re
 import subprocess
 import sys
+from dataclasses import replace
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -158,6 +159,7 @@ def compare(
     creative_config: str = "creative_looks_v2_development.json",
     detail: bool = False,
     assessment: bool = False,
+    subject_detail: bool = False,
 ) -> Path:
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", run_id):
         raise ValueError("run id must be a simple absent directory name")
@@ -176,6 +178,8 @@ def compare(
     ):
         raise ValueError("unrecognized development config")
     hue_mode = creative_config.startswith("creative_hue_look_development_")
+    if subject_detail and (assessment or detail or not hue_mode):
+        raise ValueError("subject detail is a separate hue-development diagnostic")
     creative_path = ROOT / "configs" / creative_config
     creative = read_json(creative_path)
     if hue_mode and not assessment:
@@ -204,6 +208,11 @@ def compare(
             for r in selected
         ):
             raise ValueError("assessment source rights/colour drift")
+    if subject_detail:
+        diagnostic_ids = {"sony_dslr_a290", "leica_d_lux_6", "canon_eos_1d_mark_iv"}
+        selected = [r for r in selected if r["id"] in diagnostic_ids]
+        if {r["id"] for r in selected} != diagnostic_ids:
+            raise ValueError("subject diagnostic source selection drift")
     # Preflight all selected bodies BEFORE any decode; do not open reserve files.
     inputs = {}
     for row in selected:
@@ -259,6 +268,8 @@ def compare(
     }
     if hue_mode:
         report["additional_development"] = creative["additional_development"]
+    if subject_detail:
+        report["subject_detail"] = "three-known-development-rows-tone-colour-ablation"
     for row in selected:
         with Image.open(io.BytesIO(inputs[row["id"]])) as image:
             if image.mode != "RGB" or image.size != (row["width"], row["height"]):
@@ -267,7 +278,7 @@ def compare(
                 (lock["maximum_side"], lock["maximum_side"])
                 if assessment
                 else (1600, 1600)
-                if detail
+                if detail or subject_detail
                 else (config["maximum_side"], config["maximum_side"]),
                 Image.Resampling.LANCZOS,
             )
@@ -287,6 +298,19 @@ def compare(
             )
         for name, spec in specs.items():
             arms[f"{arm_prefix}-{name}"] = render(source, spec, amount=config["amount"])
+            if subject_detail:
+                arms[f"tone-only-{name}"] = render(
+                    source,
+                    replace(
+                        spec, green_shift=0, blue_shift=0, green_logsat=0, blue_logsat=0
+                    ),
+                    amount=config["amount"],
+                )
+                arms[f"colour-only-{name}"] = render(
+                    source,
+                    replace(spec, tone=(1 / 3, 2 / 3)),
+                    amount=config["amount"],
+                )
         arms["basic-saturation-1.2"] = simple_control(
             source, saturation=config["simple_controls"]["saturation"]
         )
@@ -371,5 +395,14 @@ if __name__ == "__main__":
     )
     parser.add_argument("--detail", action="store_true")
     parser.add_argument("--assessment", action="store_true")
+    parser.add_argument("--subject-detail", action="store_true")
     args = parser.parse_args()
-    print(compare(args.run_id, args.creative_config, args.detail, args.assessment))
+    print(
+        compare(
+            args.run_id,
+            args.creative_config,
+            args.detail,
+            args.assessment,
+            args.subject_detail,
+        )
+    )

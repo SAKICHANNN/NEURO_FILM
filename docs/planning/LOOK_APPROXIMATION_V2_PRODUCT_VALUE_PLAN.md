@@ -6,6 +6,17 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+Targeted development diagnostic, 2026-09-05: before additional large rendering,
+select only the already consumed orchids, rail-yard and courtyard development
+rows. Keep foliage-v2 parameters unchanged; compare complete look, tone-only
+(zero hue/saturation changes), colour-only (identity Bezier value curve), original,
+v1 and existing basic controls. Use available 1600-side derivatives, not sensor
+RAW, and existing runner `--subject-detail`; no matched-control grids or reserve.
+Question: does subject darkening come from the tone stage, and do green/blue
+transitions lose visible detail? This is targeted diagnostic selection based on
+known problems, not a random/held-out photographic safety or preference test.
+No promotion decision follows from a three-image ablation alone.
+
 2026-09-05 hue-selective development review: `02462e3c7` / `2ac32f5d1`
 implement one private petrol direction; `568c9a248` separately corrects its
 development foliage coverage. Both configurations remain intact. Nine known

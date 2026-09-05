@@ -17,6 +17,30 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.mark.parametrize(
+    "kwargs",
+    [
+        {},
+        {
+            "creative_config": "creative_hue_look_development_v2.json",
+            "assessment": True,
+        },
+        {"creative_config": "creative_hue_look_development_v2.json", "detail": True},
+    ],
+)
+def test_subject_diagnostic_cannot_change_assessment_or_old_modes(monkeypatch, kwargs):
+    original = Path.read_bytes
+
+    def read(path):
+        if path.suffix.lower() == ".png":
+            pytest.fail("invalid diagnostic must stop before image access")
+        return original(path)
+
+    monkeypatch.setattr(Path, "read_bytes", read)
+    with pytest.raises(ValueError, match="separate hue-development"):
+        compare("must-not-create", subject_detail=True, **kwargs)
+
+
+@pytest.mark.parametrize(
     "candidate",
     ["creative_looks_v2_development.json", "creative_hue_look_development_v1.json"],
 )
