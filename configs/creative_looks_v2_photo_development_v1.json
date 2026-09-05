@@ -1,0 +1,26 @@
+{
+  "schema": "kmcfm.look2-photo-development.v1",
+  "role": "labelled-development-only-no-promotion",
+  "manifest": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+  "manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+  "parent_population": "configs/rf3_three_stock_proxy_baseline_d0_v1.json",
+  "selection": "filter-parent-16-then-sort-decoded-sha256-first-8-development",
+  "development_ids": [
+    "kodak_dcs_pro_14n", "sony_dslr_a290", "fujifilm_finepix_s5000",
+    "leica_digilux_3", "leica_d_lux_6", "panasonic_dmc_gf2",
+    "olympus_sp550uz", "canon_eos_1d_mark_iv"
+  ],
+  "reserved_ids": [
+    "panasonic_dmc_fz100", "nikon_d200", "sony_nex_3n", "pentax_k_r",
+    "nikon_d2x", "pentax_k100d_super", "canon_eos_kiss_f", "olympus_e_p7"
+  ],
+  "prior_exposure": "All 16 are historically consumed v1/RF3 photographs, not globally fresh data. Reserve is unopened only within LOOK2; scene/author groups are unknown. No independent human/stock-confirmation claim.",
+  "required_rights_scope": "CC0_public_domain_internal_evaluation",
+  "required_color_state": "relative_display_srgb_approximation",
+  "maximum_side": 512,
+  "amount": 1.0,
+  "simple_controls": {"saturation": 1.2, "contrast": 1.15},
+  "output_parent": "outputs/creative_look_v2_development",
+  "no_raw_or_reserved_pixel_reads": true,
+  "claim": "development diagnostics only; no photograph safety/value/promotion pass"
+}

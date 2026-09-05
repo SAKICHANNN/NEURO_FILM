@@ -58,11 +58,24 @@ capacity, final-RGB generation and further wrappers as substitutes for value.
 | --- | --- | --- | --- |
 | Direction and candidate contract | DONE | Plan/config frozen at `32c552180`; active authority corrected, old evidence unchanged | Scoped plan commit; revert only owned files |
 | Private core | DONE | 44 synthetic tests pass; with v1 non-CLI behavior, 57 pass / 2 CLI tests deselected. No photographic value claim | Core/test commit; no product imports to undo |
-| Photo development | NOT_STARTED | Lock eligible digital source identities/roles and controls before reading pixels; bounded comparison sheets and development measurements | Separate source/run commit; outputs under P-backed outputs/ |
+| Photo development | IN_PROGRESS | Lock `creative_looks_v2_photo_development_v1.json` before pixels; first 8 hash-ranked rows from parent RF3.D0's 16, never the extra manifest row | Separate source/run commit; outputs under P-backed outputs/ |
 | Confirmation | NOT_STARTED | Freeze parameters, metrics, rubric and source-disjoint confirmation before first confirmatory render | Immutable report/observations; no tuning or revote |
 | Product integration | NOT_STARTED | Only surviving looks; catalog/recipe/preview/export regressions, full-resolution severe checks and ordinary-photo resource measurements | Separate opt-in integration commit |
 
 ## Photo evaluation readiness (not yet ready)
+
+The initial labelled development uses eight existing CC0 digital display
+derivatives, no raw decode/download. The config locks their parent manifest and
+hash-ranked selection. Eight other historically consumed rows remain unaccessed
+within LOOK2 until a later confirmation contract. This is candidate-specific
+withholding, not globally fresh or author/scene-independent evidence (groups
+are unknown). Source/size/hash validation precedes every development pixel read.
+The first contact sheets contain identity, three current v1 outputs, three new
+full-amount directions, saturation 1.2 and contrast 1.15 controls at <=512px.
+The basic sliders are diagnostic controls, not yet strength-matched primaries.
+Readout is per-image byte identity, mean RGB change and new quantized endpoints;
+there is no automatic aesthetic/promotion gate in this development run. No
+original-resolution severe, preference, calibration or performance claim opens.
 
 Use a small existing rights-cleared digital corpus, not physical-film targets.
 Record source identities and prior consumption; historically viewed images may
