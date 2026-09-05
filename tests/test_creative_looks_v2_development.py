@@ -84,7 +84,11 @@ def test_subject_diagnostic_cannot_change_assessment_or_old_modes(monkeypatch, k
 
 @pytest.mark.parametrize(
     "candidate",
-    ["creative_looks_v2_development.json", "creative_hue_look_development_v1.json"],
+    [
+        "creative_looks_v2_development.json",
+        "creative_hue_look_development_v1.json",
+        "creative_ordered_hue_development_v1.json",
+    ],
 )
 def test_assessment_mismatch_stops_before_source_body(monkeypatch, candidate):
     original = Path.read_bytes

@@ -1,0 +1,23 @@
+{
+  "schema": "kmcfm.creative-ordered-hue-development.v1",
+  "status": "development-only-not-product-approved",
+  "intent": "Ordered teal foliage and blue relations; retain warm/purple colour coordinates and HSV value. Not skin detection, luminance preservation, or calibrated film.",
+  "looks": {
+    "petrol_ordered": {
+      "source_hue": [0, 50, 85, 120, 160, 200, 240, 280, 320, 360],
+      "mapped_hue": [0, 50, 115, 155, 180, 195, 225, 280, 320, 360],
+      "green_logsat": -0.4,
+      "blue_logsat": -0.15
+    }
+  },
+  "additional_development": {
+    "id": "nasa_portrait_development",
+    "decoded_path": "outputs/creative_look_v2_development/portrait-local-smoke-01/identity.png",
+    "decoded_bytes": 440803,
+    "decoded_sha256": "eecb0b4567b9699e99672388f44639586b81bb396fec8ca80fd59ca4705319d1",
+    "width": 512,
+    "height": 512,
+    "role": "previously-consumed-development-only",
+    "credit": "NASA / scikit-image public-domain astronaut fixture; no endorsement or population claim"
+  }
+}

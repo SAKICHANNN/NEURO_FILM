@@ -6,6 +6,21 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+Ordered-hue development, 2026-09-05: retain all prior kernels/configs. Add one
+private order-preserving hue spline with positive segment derivatives, fixed
+HSV value and bounded saturation-odds adjustment. Fixed hue anchors in degrees:
+0/50/85/120/160/200/240/280/320/360 ->
+0/50/115/155/180/195/225/280/320/360. C1 cubic Hermite node slopes are the minimum
+of neighbouring positive secants (periodic at 0/360); derivative Bernstein
+coefficients are m_left, 3*secant-m_left-m_right, m_right, all strictly positive.
+Strength interpolates hue coordinates and log-saturation, not final RGB, keeping
+the hue-order property. Warm 0..50 and purple 280..360 remain unchanged; this
+is a colour-coordinate promise, not a semantic skin guarantee. No tone curve,
+spatial processing, image statistics, learned assets or clipping-based repair.
+Reuse nine known development rows, original/v1/basic controls. First test scalar
+oracle, seam/knots, positive derivative, grey/value/ownership/tile invariants;
+then render development only. No old confirmation reads or default integration.
+
 Targeted development diagnostic, 2026-09-05: before additional large rendering,
 select only the already consumed orchids, rail-yard and courtyard development
 rows. Keep foliage-v2 parameters unchanged; compare complete look, tone-only

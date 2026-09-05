@@ -22,6 +22,10 @@ from PIL import Image, ImageDraw
 from scripts.pipeline_color_baseline import load_guardrail_config
 from src.color_engine.creative_hue_look import CreativeHueLook, render_creative_hue_look
 from src.color_engine.creative_look_v2 import CreativeLookV2, render_creative_look_v2
+from src.color_engine.creative_ordered_hue_look import (
+    OrderedHueLook,
+    render_ordered_hue_look,
+)
 from src.inference.render_contract import load_render_profile
 from src.inference.style_safe_engine import render_resolved_safe_lab_rgb
 
@@ -175,10 +179,14 @@ def compare(
         "creative_looks_v2_refined_development.json",
         "creative_hue_look_development_v1.json",
         "creative_hue_look_development_v2.json",
+        "creative_ordered_hue_development_v1.json",
     ):
         raise ValueError("unrecognized development config")
-    hue_mode = creative_config.startswith("creative_hue_look_development_")
-    if subject_detail and (assessment or detail or not hue_mode):
+    ordered_mode = creative_config == "creative_ordered_hue_development_v1.json"
+    hue_mode = (
+        creative_config.startswith("creative_hue_look_development_") or ordered_mode
+    )
+    if subject_detail and (assessment or detail or not hue_mode or ordered_mode):
         raise ValueError("subject detail is a separate hue-development diagnostic")
     creative_path = ROOT / "configs" / creative_config
     creative = read_json(creative_path)
@@ -226,6 +234,8 @@ def compare(
 
     spec_class = CreativeHueLook if hue_mode else CreativeLookV2
     render = render_creative_hue_look if hue_mode else render_creative_look_v2
+    if ordered_mode:
+        spec_class, render = OrderedHueLook, render_ordered_hue_look
     arm_prefix = "hue" if hue_mode else "v2"
     specs = {name: spec_class(**row) for name, row in creative["looks"].items()}
     profile = load_render_profile(
@@ -240,6 +250,8 @@ def compare(
     ]
     if hue_mode:
         bindings.append(ROOT / "src/color_engine/creative_hue_look.py")
+    if ordered_mode:
+        bindings.append(ROOT / "src/color_engine/creative_ordered_hue_look.py")
     bindings += [ROOT / row["path"] for row in profile["assets"]]
     if assessment:
         bindings.append(ROOT / "configs/creative_looks_v2_assessment_v1.json")
