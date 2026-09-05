@@ -6,6 +6,19 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+2026-09-05 portrait coverage step: lock
+`configs/creative_looks_v2_portrait_development_v1.json` before original download.
+Three CC0 Commons portraits, 16,120,004 source bytes, all **development only**.
+No new confirmation is opened and the first eight-row assessment stays closed.
+Reuse existing ICC-aware JPEG preview ingress; generate bounded 1024-side
+identity previews and inspect actual content before claiming usable coverage.
+If subsequently compared with failed refined looks, those images are diagnostic
+development views only, never a new vote to rescue the frozen assessment.
+No product/core changes, public portrait distribution, demographic inference or
+new dependency. Unknown editing/lighting remains explicit. Next new candidate
+must have a visual rationale beyond stronger global casts/lift and a separately
+locked assessment population. Parent product value and all old results unchanged.
+
 Starts at `e04118be5`. U7.22A private capsule is retained. U7.2C/RF3.D15
 and U4.2A show insufficient v1 distinction/value, not a broken replay engine.
 The user's trial found the looks very similar. U7.22B's modified test and

@@ -1,0 +1,57 @@
+{
+  "id": "look2-portrait-development-v1",
+  "role": "development_only_never_confirmation",
+  "purpose": "Inspect skin, face detail and photographic treatment on three modern portraits; not stock truth, demographic coverage, endorsement or release evidence.",
+  "locked_before_original_download": true,
+  "maximum_total_source_bytes": 17000000,
+  "source_directory": "data/external/look2_portrait_development_v1",
+  "output_directory": "outputs/creative_look_v2_development/portrait-intake-01",
+  "license": "CC0-1.0",
+  "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "rights_note": "Commons file pages and current MediaWiki imageinfo explicitly report CC0. This is copyright evidence, not a model release or endorsement. Local development only; do not bundle portraits in a public product or infer sensitive attributes.",
+  "selection": "Small convenience sample from modern colour portrait source search, selected from metadata before original pixels. Unknown prior processing and nonrepresentative lighting; no population or calibrated skin claim.",
+  "rows": [
+    {
+      "id": "portrait_01",
+      "title": "File:Catherine Stein.jpg",
+      "page_id": 143488891,
+      "page_revision": 851582792,
+      "page_url": "https://commons.wikimedia.org/wiki/File:Catherine_Stein.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Catherine_Stein.jpg",
+      "author": "Gbeeker",
+      "license_evidence": "Own-work copyright-holder CC0 dedication on file page.",
+      "size": 1144854,
+      "sha1": "e95b490b15575afd384724a87b8c9c3a14d8ddfc",
+      "width": 3024,
+      "height": 4032
+    },
+    {
+      "id": "portrait_02",
+      "title": "File:Gabbi Tuft Nov 2023.jpg",
+      "page_id": 146537089,
+      "page_revision": 1265680589,
+      "page_url": "https://commons.wikimedia.org/wiki/File:Gabbi_Tuft_Nov_2023.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Gabbi_Tuft_Nov_2023.jpg",
+      "author": "Gabbi Tuft",
+      "license_evidence": "CC0 file page; Flickr review 2024-03-18 confirmed cc-zero at source 193721339@N02/53406174506.",
+      "size": 4999460,
+      "sha1": "3c493db2e4fb4b9031e73582e28c22c08d132b3f",
+      "width": 2316,
+      "height": 3088
+    },
+    {
+      "id": "portrait_03",
+      "title": "File:Ramit Sethi.jpg",
+      "page_id": 150146127,
+      "page_revision": 1139144500,
+      "page_url": "https://commons.wikimedia.org/wiki/File:Ramit_Sethi.jpg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Ramit_Sethi.jpg",
+      "author": "Andrea Yochum",
+      "license_evidence": "CC0 file page; Flickr review 2024-07-09 confirmed cc-zero at source 200984206@N02/53830114122. Original upload claimed CC-BY-SA, which reviewer could not establish; current CC0 is the accepted basis.",
+      "size": 9975690,
+      "sha1": "17425c9cb94097c18198235ba541c17a3b64ff6b",
+      "width": 3600,
+      "height": 4800
+    }
+  ]
+}
