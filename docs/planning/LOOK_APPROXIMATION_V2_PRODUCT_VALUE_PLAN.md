@@ -19,6 +19,19 @@ new dependency. Unknown editing/lighting remains explicit. Next new candidate
 must have a visual rationale beyond stronger global casts/lift and a separately
 locked assessment population. Parent product value and all old results unchanged.
 
+Transport note: two separated original requests returned HTTP 429 at portrait_01;
+only the 10,834-byte metadata snapshot exists, no portraits or partial bodies
+were retained. Do not repeatedly retry or substitute mirrors. A separate local
+development diagnostic uses the already installed scikit-image 0.26.0 NASA
+`astronaut.png` (SHA256 `88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5`).
+The library documentation identifies the photograph as public domain. Lock this
+known 512-square fixture to development, never confirmation: original, fixed
+contrast 1.15 and the two unchanged failed refined grades. This can reveal face
+casts/detail loss now but cannot replace the three pending modern portraits,
+full-resolution severe review, broader coverage or a new candidate assessment.
+Run `scripts/prepare_creative_look_portraits.py --local-smoke`; no network, no
+product integration, no public portrait bundling or endorsement claim.
+
 Starts at `e04118be5`. U7.22A private capsule is retained. U7.2C/RF3.D15
 and U4.2A show insufficient v1 distinction/value, not a broken replay engine.
 The user's trial found the looks very similar. U7.22B's modified test and

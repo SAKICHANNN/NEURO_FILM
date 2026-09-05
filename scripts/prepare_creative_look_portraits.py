@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import subprocess
@@ -178,5 +179,85 @@ def prepare() -> dict:
     return report
 
 
+def local_portrait_smoke() -> dict:
+    """One existing public-domain NASA fixture, not a replacement confirmation."""
+    import numpy as np
+    from PIL import ImageDraw
+
+    from scripts.compare_creative_looks_v2 import quantize, simple_control
+    from src.color_engine.creative_look_v2 import (
+        CreativeLookV2,
+        render_creative_look_v2,
+    )
+    from src.preprocess.raster_decode import (
+        load_raster_working_image,
+        working_image_to_srgb_float,
+    )
+
+    source = ROOT / ".venv/Lib/site-packages/skimage/data/astronaut.png"
+    payload = source.read_bytes()
+    expected = "88431cd9653ccd539741b555fb0a46b61558b301d4110412b5bc28b5e3ea6cb5"
+    if hashlib.sha256(payload).hexdigest() != expected:
+        raise ValueError("local NASA fixture identity drift")
+    output = data_root("outputs/creative_look_v2_development/portrait-local-smoke-01")
+    if output.exists():
+        raise FileExistsError(output)
+    config_path = ROOT / "configs/creative_looks_v2_refined_development.json"
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    working = load_raster_working_image(source)
+    rgb = working_image_to_srgb_float(working)
+    if rgb.shape != (512, 512, 3):
+        raise ValueError("unexpected NASA fixture shape")
+    arms = [
+        ("identity", rgb),
+        ("basic_contrast_1.15", simple_control(rgb, contrast=1.15)),
+    ]
+    for name, row in config["looks"].items():
+        arms.append((name, render_creative_look_v2(rgb, CreativeLookV2(**row))))
+    output.mkdir(parents=True, exist_ok=False)
+    sheet = Image.new("RGB", (1024, 1080), (235, 235, 235))
+    draw = ImageDraw.Draw(sheet)
+    profile = ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB")).tobytes()
+    results = []
+    for i, (name, pixels) in enumerate(arms):
+        image = Image.fromarray(quantize(pixels))
+        x, y = (i % 2) * 512, (i // 2) * 540
+        sheet.paste(image, (x, y + 28))
+        draw.text((x + 6, y + 7), name, fill=(0, 0, 0))
+        target = output / (name + ".png")
+        with target.open("xb") as stream:
+            image.save(stream, format="PNG", icc_profile=profile)
+        results.append(
+            {
+                "id": name,
+                "sha256": hashlib.sha256(target.read_bytes()).hexdigest(),
+                "mean_rgb8_change": float(np.abs(pixels - rgb).mean() * 255),
+            }
+        )
+    with (output / "comparison.png").open("xb") as stream:
+        sheet.save(stream, format="PNG", icc_profile=profile)
+    report = {
+        "status": "LOCAL_PORTRAIT_DEVELOPMENT_DIAGNOSTIC_NOT_PROMOTION",
+        "source_sha256": expected,
+        "source_credit": "NASA / Eileen Collins portrait; scikit-image 0.26.0",
+        "rights_source": "https://scikit-image.org/docs/0.23.x/api/skimage.data.html#skimage.data.astronaut",
+        "license_note": "Documented public domain. No endorsement/model-release or public product bundling claim.",
+        "source_role": "Known common fixture, development only; never confirmation or population evidence.",
+        "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
+        "config_sha256": hashlib.sha256(config_path.read_bytes()).hexdigest(),
+        "decode_warnings": [asdict(warning) for warning in working.warnings],
+        "network_requests": 0,
+        "confirmation_reads": 0,
+        "results": results,
+    }
+    write_json(output / "report.json", report)
+    return report
+
+
 if __name__ == "__main__":
-    print(json.dumps(prepare(), indent=2))
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--local-smoke", action="store_true")
+    args = parser.parse_args()
+    print(
+        json.dumps(local_portrait_smoke() if args.local_smoke else prepare(), indent=2)
+    )
