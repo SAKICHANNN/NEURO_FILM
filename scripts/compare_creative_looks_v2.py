@@ -66,6 +66,34 @@ def quantize(rgb: np.ndarray) -> np.ndarray:
     return np.rint(rgb.astype(np.float64) * 255).astype(np.uint8)
 
 
+def select_ordered_assessment(lock, manifest, previous, review):
+    """Select an intact historical pool without reading any image body."""
+    by_id = {row["id"]: row for row in manifest}
+    ids = lock["included_ids"]
+    if len(by_id) != len(manifest) or len(ids) != 10 or len(set(ids)) != 10:
+        raise ValueError("invalid independent population")
+    if ids != review["eligible_ids"]:
+        raise ValueError("historical eligibility drift")
+    selected = [by_id[name] for name in ids]
+    seen = []
+    for row in selected:
+        if (
+            row["rights_scope"] != "CC0_public_domain_internal_evaluation"
+            or row["decoded_color_state"] != "relative_display_srgb_approximation"
+        ):
+            raise ValueError("assessment rights/colour drift")
+        for other in previous + seen:
+            if (
+                row["id"] == other["id"]
+                or row["decoded_sha256"] == other["decoded_sha256"]
+                or (int(row["dhash64"], 16) ^ int(other["dhash64"], 16)).bit_count()
+                <= 4
+            ):
+                raise ValueError("assessment source overlap")
+        seen.append(row)
+    return selected
+
+
 def simple_control(source: np.ndarray, *, saturation: float = 1, contrast: float = 1):
     luma = (
         source[..., 0] * 0.2126 + source[..., 1] * 0.7152 + source[..., 2] * 0.0722
@@ -164,10 +192,13 @@ def compare(
     detail: bool = False,
     assessment: bool = False,
     subject_detail: bool = False,
+    ordered_assessment: bool = False,
 ) -> Path:
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", run_id):
         raise ValueError("run id must be a simple absent directory name")
     config = read_json(CONFIG)
+    if ordered_assessment and (assessment or detail or subject_detail):
+        raise ValueError("ordered assessment is a separate fixed comparison")
     manifest_bytes = (ROOT / config["manifest"]).read_bytes()
     if sha(manifest_bytes) != config["manifest_sha256"]:
         raise ValueError("manifest hash mismatch")
@@ -191,7 +222,7 @@ def compare(
         raise ValueError("subject detail is a separate hue-development diagnostic")
     creative_path = ROOT / "configs" / creative_config
     creative = read_json(creative_path)
-    if hue_mode and not assessment:
+    if hue_mode and not assessment and not ordered_assessment:
         if (
             creative["additional_development"]["role"]
             != "previously-consumed-development-only"
@@ -199,6 +230,27 @@ def compare(
             raise ValueError("additional source must remain development-only")
         selected.append(creative["additional_development"])
     lock = None
+    if ordered_assessment:
+        lock = read_json(ROOT / "configs/creative_ordered_hue_assessment_v1.json")
+        if creative_config != lock["candidate_config"]:
+            raise ValueError("ordered assessment candidate mismatch")
+        for path, expected in (
+            (creative_path, lock["candidate_sha256"]),
+            (
+                ROOT / "src/color_engine/creative_ordered_hue_look.py",
+                lock["core_sha256"],
+            ),
+            (ROOT / lock["manifest"], lock["manifest_sha256"]),
+            (ROOT / lock["source_review"], lock["source_review_sha256"]),
+        ):
+            if sha(path.read_bytes()) != expected:
+                raise ValueError("ordered assessment binding drift before pixels")
+        selected = select_ordered_assessment(
+            lock,
+            read_json(ROOT / lock["manifest"]),
+            json.loads(manifest_bytes),
+            read_json(ROOT / lock["source_review"]),
+        )
     if assessment:
         lock = read_json(ROOT / "configs/creative_looks_v2_assessment_v1.json")
         if creative_config != lock["candidate_config"]:
@@ -256,6 +308,9 @@ def compare(
     bindings += [ROOT / row["path"] for row in profile["assets"]]
     if assessment:
         bindings.append(ROOT / "configs/creative_looks_v2_assessment_v1.json")
+    if ordered_assessment:
+        bindings.append(ROOT / "configs/creative_ordered_hue_assessment_v1.json")
+        bindings.extend([ROOT / lock["manifest"], ROOT / lock["source_review"]])
     bindings.append(ROOT / "configs/render_profiles/safe_rich_product_v1.json")
     source_commit = subprocess.check_output(
         ["git", "rev-parse", "HEAD"], cwd=ROOT, text=True
@@ -267,19 +322,23 @@ def compare(
     out = output_parent / run_id
     out.mkdir(exist_ok=False)
     report = {
-        "status": "RESERVED_ASSESSMENT_PENDING_VISUAL_REVIEW"
+        "status": "INDEPENDENT_LANDSCAPE_ASSESSMENT_PENDING_VISUAL_REVIEW"
+        if ordered_assessment
+        else "RESERVED_ASSESSMENT_PENDING_VISUAL_REVIEW"
         if assessment
         else "DEVELOPMENT_ONLY_NO_PROMOTION_DECISION",
         "source_commit": source_commit,
         "bindings": {str(p.relative_to(ROOT)): sha(p.read_bytes()) for p in bindings},
-        "prior_exposure": config["prior_exposure"],
+        "prior_exposure": lock["prior_exposure"]
+        if ordered_assessment
+        else config["prior_exposure"],
         "reserved_pixel_reads": len(selected) if assessment else 0,
         "raw_reads": 0,
         "network_reads": 0,
         "rows": [],
         "detail": detail,
     }
-    if hue_mode:
+    if hue_mode and not ordered_assessment:
         report["additional_development"] = creative["additional_development"]
     if subject_detail:
         report["subject_detail"] = "three-known-development-rows-tone-colour-ablation"
@@ -289,7 +348,7 @@ def compare(
                 raise ValueError("decoded derivative header drift")
             image.thumbnail(
                 (lock["maximum_side"], lock["maximum_side"])
-                if assessment
+                if assessment or ordered_assessment
                 else (1600, 1600)
                 if detail or subject_detail
                 else (config["maximum_side"], config["maximum_side"]),
@@ -365,15 +424,21 @@ def compare(
                 arms[f"closest-basic-{name}"] = simple_control(
                     source, saturation=s, contrast=c
                 )
-        sheet = Image.new("RGB", (w * 3, (h + 24) * ((len(arms) + 2) // 3)), "#181818")
+        sw, sh = w, h
+        if ordered_assessment:
+            ratio = min(1, lock["sheet_side"] / max(w, h))
+            sw, sh = round(w * ratio), round(h * ratio)
+        sheet = Image.new(
+            "RGB", (sw * 3, (sh + 24) * ((len(arms) + 2) // 3)), "#181818"
+        )
         draw = ImageDraw.Draw(sheet)
         arm_rows = {}
         for index, (name, rgb) in enumerate(arms.items()):
             pixels = quantize(rgb)
             preview = Image.fromarray(pixels)
             digest = save_png(out / f"{row['id']}--{name}.png", preview)
-            x, y = index % 3 * w, index // 3 * (h + 24)
-            sheet.paste(preview, (x, y + 24))
+            x, y = index % 3 * sw, index // 3 * (sh + 24)
+            sheet.paste(preview.resize((sw, sh), Image.Resampling.LANCZOS), (x, y + 24))
             draw.text((x + 4, y + 5), name, fill="white")
             interior = (source8 > 0) & (source8 < 255)
             new_boundary = interior & ((pixels == 0) | (pixels == 255))
@@ -420,6 +485,7 @@ if __name__ == "__main__":
     parser.add_argument("--detail", action="store_true")
     parser.add_argument("--assessment", action="store_true")
     parser.add_argument("--subject-detail", action="store_true")
+    parser.add_argument("--ordered-assessment", action="store_true")
     args = parser.parse_args()
     print(
         compare(
@@ -428,5 +494,6 @@ if __name__ == "__main__":
             args.detail,
             args.assessment,
             args.subject_detail,
+            args.ordered_assessment,
         )
     )

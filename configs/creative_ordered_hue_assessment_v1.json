@@ -1,0 +1,23 @@
+{
+  "role": "fixed-candidate-independent-of-LOOK2-development-landscape-assessment",
+  "candidate_config": "creative_ordered_hue_development_v2.json",
+  "candidate_sha256": "95c10a60f34ed048b7d804ad0811863abb7f953fd894363772b44d9b4cbe11c5",
+  "core_sha256": "9ff88f37b432855666d88ebfc87b66e793eb29716754f88bd33f5e189e2a999c",
+  "manifest": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/manifest.json",
+  "manifest_sha256": "e7dc8c861871de83a0aa3f92a717e23fd024bed15b8a19b739516c48f1f58e0e",
+  "source_review": "outputs/u5_r2bh0s_fixed_bank_oracle_source_preflight_v1/visual_source_review.json",
+  "source_review_sha256": "388d298af94e9a8507092717941d96c28414d0fa18ac5e9411b44ff2eaea3e5e",
+  "included_ids": ["sony_ilme_fx2", "panasonic_dc_s1m2es", "nikon_d5300", "dji_fc4382", "om_system_om_3", "minolta_dimage_5", "phase_one_p45_plus", "fujifilm_x_e5", "samsung_ek_gn120", "google_pixel_7_pro"],
+  "selection": "all ten historically source-eligible BH0S rows; no result-based selection or replacement",
+  "prior_exposure": "Previously consumed BH0/BN7 digital-photo evaluation sources, not globally fresh. No LOOK2 development or assessment-01 overlap by id/hash/dhash<=4. Author/scene groups unknown. Nine landscape/foliage rows and zero people: landscape transfer only, no population/skin/stock claim.",
+  "maximum_side": 1600,
+  "sheet_side": 512,
+  "amount": 1.0,
+  "review": "Single labelled autonomous review, not blind or human preference. Check all candidate/reference full-available images for severe artifacts before value ranking. Record clear candidate win/tie/loss vs original AND strongest actual fixed control. Uncertainty is not a win.",
+  "maximum_confirmed_severe_artifact_rows": 0,
+  "minimum_clear_value_wins": 6,
+  "denominator": 10,
+  "on_pass": "Retain fixed landscape candidate for independent people and product-workflow validation, not release.",
+  "on_fail": "No promotion; no tuning or replacement on these ten assessment rows.",
+  "forbidden": ["RAW decode", "network", "assessment-01 pixels", "NASA development row", "parameter tuning", "candidate-fitted controls", "stock claim", "product-default integration"]
+}

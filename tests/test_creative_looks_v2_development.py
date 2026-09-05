@@ -11,6 +11,7 @@ from scripts.compare_creative_looks_v2 import (
     matched_controls,
     quantize,
     select_development,
+    select_ordered_assessment,
     simple_control,
 )
 from src.color_engine.creative_hue_look import (
@@ -20,6 +21,44 @@ from src.color_engine.creative_hue_look import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_ordered_assessment_entire_pool_and_no_prior_overlap():
+    lock = json.loads(
+        (ROOT / "configs/creative_ordered_hue_assessment_v1.json").read_text()
+    )
+    manifest = json.loads((ROOT / lock["manifest"]).read_text())
+    review = json.loads((ROOT / lock["source_review"]).read_text())
+    previous = inputs()[2]
+    rows = select_ordered_assessment(lock, manifest, previous, review)
+    assert len(rows) == 10
+    assert rows == select_ordered_assessment(lock, manifest[::-1], previous, review)
+    assert "canon_powershot_v1" not in {r["id"] for r in rows}
+    for key in ("id", "decoded_sha256", "dhash64"):
+        other = copy.deepcopy(previous)
+        other[0][key] = rows[0][key]
+        with pytest.raises(ValueError, match="overlap"):
+            select_ordered_assessment(lock, manifest, other, review)
+    bad = copy.deepcopy(manifest)
+    bad[0]["rights_scope"] = "unknown"
+    with pytest.raises(ValueError, match="rights"):
+        select_ordered_assessment(lock, bad, previous, review)
+
+
+@pytest.mark.parametrize(
+    "kwargs", [{}, {"assessment": True}, {"detail": True}, {"subject_detail": True}]
+)
+def test_ordered_assessment_wrong_modes_precede_pixels(monkeypatch, kwargs):
+    original = Path.read_bytes
+
+    def read(path):
+        if path.suffix.lower() == ".png":
+            pytest.fail("invalid assessment must stop before image access")
+        return original(path)
+
+    monkeypatch.setattr(Path, "read_bytes", read)
+    with pytest.raises(ValueError, match="separate fixed|candidate mismatch"):
+        compare("must-not-create", ordered_assessment=True, **kwargs)
 
 
 def test_foliage_v2_known_hue_fold_is_not_hidden_by_continuity_tests():

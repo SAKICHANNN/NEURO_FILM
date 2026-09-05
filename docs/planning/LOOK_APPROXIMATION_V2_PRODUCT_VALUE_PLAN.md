@@ -6,6 +6,19 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+Assessment-02 is now frozen in `creative_ordered_hue_assessment_v1.json` before
+any of its pixel reads this turn. Reuse all ten historically eligible BH0S
+CC0 display derivatives, excluding the historical untrustworthy Canon decode;
+id/hash/dHash<=4 overlap checks against the whole AO7 LOOK2 parent pool pass.
+These are historically consumed BN7 sources, not globally fresh. Nine include
+foliage/landscape and none include people. This answers fixed landscape transfer,
+not broad everyday-photo or skin success. Unchanged jade `.32` at full available
+1600 side; nine arms including exact lift-only/colour-only and fixed basic/v1.
+Single labelled autonomous review, not blind human preference. Zero confirmed
+severe candidate artifacts first, then at least 6/10 clear wins over original
+AND strongest actual fixed control; ties/uncertainty are not wins. Passing only
+opens people/workflow validation. Failing forbids tuning on these ten photos.
+
 Daylight development completed at `51dacf3ba`: all nine labelled overview sheets
 in `development-09-jade` reviewed. Report SHA256
 `82700289a81cdae2fb1330aa11494ab1a0b91f9e82c9ab60d0369cf10c4360e4`.
