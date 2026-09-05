@@ -2,6 +2,29 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-05 - LOOK2 ordered hue repair and bounded daylight development
+
+- Reliability primary; design/DRPT/structure/log secondary. Private ordered
+  hue core/config/tests and existing comparison runner committed `89cb40dd9`;
+  separate monotone value-lift variant and controls committed `51dacf3ba`.
+  Old kernels, frozen negatives, public API and product defaults unchanged.
+- Positive-derivative periodic hue spline replaces the old order reversal in
+  the new candidate only. Fixed value is not fixed perceptual luminance; warm
+  hue preservation is not a semantic skin guarantee. Lift v+k*v*(1-v), k=.32,
+  has exact lift-only and colour-only controls, no output-clipping repair.
+- All nine development-08 and nine development-09 overview sheets inspected.
+  Reports SHA `12fdc909...ed38` / `82700289...60e4`. Daylight has visible jade
+  foliage/sky relationships on selected scenes; portrait/interior/hay/rail
+  benefit is mostly ordinary lift. No broad preference or promotion pass.
+- Stop tuning these known nine rows. Next is fixed-candidate independent
+  photographic comparison including lift-only, then larger-detail checking;
+  no reserved assessment-01 reuse. Goal remains active and incomplete.
+- Verification: 128 focused/behavioral PASS, 2 CLI deselected; Ruff/format and
+  diff checks pass. Full 12--24MP and independent photographic safety/value
+  remain untested. No network/RAW/new confirmation reads or paid effects.
+- Existing repository module layout preserved; unrelated foreign 100MP files
+  untouched. No additional human approval needed for this bounded local work.
+
 ## 2026-09-05 - LOOK2 subject detail separates tone loss and hue-order risk
 
 - Reliability primary, design/DRPT/structure/log secondary. Extended the existing

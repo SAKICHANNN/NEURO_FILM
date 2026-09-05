@@ -6,6 +6,23 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+Daylight development completed at `51dacf3ba`: all nine labelled overview sheets
+in `development-09-jade` reviewed. Report SHA256
+`82700289a81cdae2fb1330aa11494ab1a0b91f9e82c9ab60d0369cf10c4360e4`.
+Jade foliage versus warm petals/facades and cyanward sky provide visible colour
+relationships in orchids, courtyard and house. On the NASA portrait, stairs,
+hayfield and rail-yard, much of the apparent improvement is explained by the
+exact lift-only control; autumn/path colour differences remain modest. These
+are non-blind, known-development observations, not preference wins or safety
+certification. The candidate does not establish broad product value yet.
+Stop parameter iteration on these nine photographs. Preserve both ordered-only
+and daylight variants; next assess the fixed daylight candidate on separately
+selected independent photographs against original, exact lift-only and actual
+fixed baseline Looks. Do not reuse the consumed assessment-01 for development
+or claim its frozen failure repaired. Perform larger-detail artifact checks
+before product integration; overview inspection and 128 passing tests are not
+a substitute. No public/default integration or stock-calibration promotion.
+
 Ordered-only completed at `89cb40dd9`, nine labelled development overview sheets
 reviewed: report `development-08-ordered/report.json` SHA256
 `12fdc909888689b02f0d6a71395506cc52d5db87f6c445f337abb838dfe4ed38`.
