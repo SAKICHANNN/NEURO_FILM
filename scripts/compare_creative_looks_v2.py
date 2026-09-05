@@ -26,6 +26,7 @@ from src.color_engine.creative_ordered_hue_look import (
     OrderedHueLook,
     render_ordered_hue_look,
 )
+from src.color_engine.creative_print_look import CreativePrintLook, render_print_look
 from src.inference.render_contract import load_render_profile
 from src.inference.style_safe_engine import render_resolved_safe_lab_rgb
 
@@ -212,9 +213,13 @@ def compare(
         "creative_hue_look_development_v2.json",
         "creative_ordered_hue_development_v1.json",
         "creative_ordered_hue_development_v2.json",
+        "creative_print_development_v1.json",
     ):
         raise ValueError("unrecognized development config")
     ordered_mode = creative_config.startswith("creative_ordered_hue_development_")
+    print_mode = creative_config.startswith("creative_print_development_")
+    if print_mode and (assessment or ordered_assessment or subject_detail):
+        raise ValueError("print candidate is development only")
     hue_mode = (
         creative_config.startswith("creative_hue_look_development_") or ordered_mode
     )
@@ -222,7 +227,7 @@ def compare(
         raise ValueError("subject detail is a separate hue-development diagnostic")
     creative_path = ROOT / "configs" / creative_config
     creative = read_json(creative_path)
-    if hue_mode and not assessment and not ordered_assessment:
+    if (hue_mode or print_mode) and not assessment and not ordered_assessment:
         if (
             creative["additional_development"]["role"]
             != "previously-consumed-development-only"
@@ -290,6 +295,8 @@ def compare(
     if ordered_mode:
         spec_class, render = OrderedHueLook, render_ordered_hue_look
     arm_prefix = "hue" if hue_mode else "v2"
+    if print_mode:
+        spec_class, render, arm_prefix = CreativePrintLook, render_print_look, "print"
     specs = {name: spec_class(**row) for name, row in creative["looks"].items()}
     profile = load_render_profile(
         ROOT / "configs/render_profiles/safe_rich_product_v1.json", root=ROOT
@@ -305,6 +312,8 @@ def compare(
         bindings.append(ROOT / "src/color_engine/creative_hue_look.py")
     if ordered_mode:
         bindings.append(ROOT / "src/color_engine/creative_ordered_hue_look.py")
+    if print_mode:
+        bindings.append(ROOT / "src/color_engine/creative_print_look.py")
     bindings += [ROOT / row["path"] for row in profile["assets"]]
     if assessment:
         bindings.append(ROOT / "configs/creative_looks_v2_assessment_v1.json")
@@ -338,7 +347,7 @@ def compare(
         "rows": [],
         "detail": detail,
     }
-    if hue_mode and not ordered_assessment:
+    if (hue_mode or print_mode) and not ordered_assessment:
         report["additional_development"] = creative["additional_development"]
     if subject_detail:
         report["subject_detail"] = "three-known-development-rows-tone-colour-ablation"
@@ -370,6 +379,17 @@ def compare(
             )
         for name, spec in specs.items():
             arms[f"{arm_prefix}-{name}"] = render(source, spec, amount=config["amount"])
+            if print_mode:
+                arms[f"tone-only-{name}"] = render(
+                    source,
+                    replace(spec, shadow=(0, 0, 0), highlight=(0, 0, 0), chroma=1),
+                    amount=config["amount"],
+                )
+                arms[f"colour-only-{name}"] = render(
+                    source,
+                    replace(spec, tone=(1 / 3, 2 / 3)),
+                    amount=config["amount"],
+                )
             if ordered_mode and spec.value_lift:
                 arms[f"lift-only-{name}"] = render(
                     source,

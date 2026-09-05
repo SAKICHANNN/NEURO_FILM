@@ -6,6 +6,21 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+Next development: **copper-light print**, a new private luma/chroma-separated
+grade. Intent: firm low tones, open midtones, warm light against quiet cool
+shadows, reduced colour clutter; avoid a uniform yellow veil, lifted-grey
+blacks, darkened flower subjects and neon foliage. Unlike the earlier per-RGB
+Bezier candidate, tone acts on one encoded luma coordinate; chroma direction
+is retained before explicit split colour and bounded radial gamut scaling.
+This is authored appearance, not a physical print/film model. Use only the
+existing eight LOOK2 development rows plus known NASA fixture, no assessment
+01/02. Implement one candidate with tone-only and colour-only ablations in
+the existing runner, compare original/v1/basic controls, then inspect all
+development sheets and risk details. No promotion from development. Reject
+casts/shadow loss rather than maximize numeric difference. Owned new private
+core/config/test plus existing runner/plan/log; public defaults and foreign
+U7.22B files untouched. Local CPU only, rollback by scoped commit reversal.
+
 Assessment-02 completed: **VALUE FAIL / no promotion**, 2/10 clear autonomous
 labelled wins against original and actual fixed controls, below frozen 6/10.
 All ten sheets and full available original/candidate images reviewed; no
