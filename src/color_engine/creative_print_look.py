@@ -15,6 +15,7 @@ class CreativePrintLook:
     chroma: float = 0.88
     shadow: tuple[float, float, float] = (-0.10, 0.015, 0.12)
     highlight: tuple[float, float, float] = (0.16, 0.025, -0.14)
+    tint_neutral_power: float = 0.0
 
     def __post_init__(self):
         t = _vector(self.tone, 2, 0.05, 0.95, "tone")
@@ -22,6 +23,11 @@ class CreativePrintLook:
             raise ValueError("tone controls must strictly increase")
         object.__setattr__(self, "tone", t)
         object.__setattr__(self, "chroma", _number(self.chroma, 0, 1.5, "chroma"))
+        object.__setattr__(
+            self,
+            "tint_neutral_power",
+            _number(self.tint_neutral_power, 0, 4, "tint_neutral_power"),
+        )
         for name in ("shadow", "highlight"):
             object.__setattr__(
                 self, name, _vector(getattr(self, name), 3, -0.3, 0.3, name)
@@ -63,6 +69,16 @@ def render_print_look(source: np.ndarray, spec: CreativePrintLook, *, amount=1.0
     high = y * y * (3 - 2 * y)
     tint = (1 - high) * np.asarray(spec.shadow) + high * np.asarray(spec.highlight)
     tint = tint - _luma(tint)
+    if spec.tint_neutral_power:
+        maximum = x.max(axis=-1, keepdims=True)
+        saturation = np.divide(
+            maximum - x.min(axis=-1, keepdims=True),
+            maximum,
+            out=np.zeros_like(maximum),
+            where=maximum > 0,
+        )
+        # Continuous chroma protection, not semantic skin/object detection.
+        tint *= (1 - saturation) ** spec.tint_neutral_power
     c = spec.chroma * (x - y) + 4 * y * (1 - y) * tint
     # One scale for the complete chroma vector, never independent RGB clamps.
     positive = np.max(c, axis=-1, keepdims=True)

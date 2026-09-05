@@ -1,3 +1,4 @@
+import hashlib
 from dataclasses import replace
 from pathlib import Path
 
@@ -10,6 +11,25 @@ from src.color_engine.creative_print_look import CreativePrintLook, render_print
 
 def luma(x):
     return np.sum(x.astype(float) * [0.2126, 0.7152, 0.0722], axis=-1)
+
+
+def test_chromatic_tint_protection_and_v1_preservation():
+    spec = CreativePrintLook()
+    v2 = replace(spec, tint_neutral_power=2)
+    x = np.array([[[0.4, 0.15, 0.4], [0.3, 0.3, 0.3], [0.1, 0.8, 0]]], dtype=np.float32)
+    plain = render_print_look(x, replace(spec, shadow=(0, 0, 0), highlight=(0, 0, 0)))
+    one, two = render_print_look(x, spec), render_print_look(x, v2)
+    assert np.linalg.norm(two[0, 0] - plain[0, 0]) < np.linalg.norm(
+        one[0, 0] - plain[0, 0]
+    )
+    np.testing.assert_array_equal(one[0, 1], two[0, 1])
+    np.testing.assert_array_equal(two[0, 2], plain[0, 2])
+    np.testing.assert_allclose(luma(one), luma(two), rtol=0, atol=4e-8)
+    probe = np.random.default_rng(733).random((17, 19, 3), dtype=np.float32)
+    assert (
+        hashlib.sha256(render_print_look(probe, spec).tobytes()).hexdigest()
+        == "979dbd04accd6084ce816ff62e345acabb0235999a899138d7df1ea73a9de11f"
+    )
 
 
 def test_luma_tone_and_gamut_independent_of_colour():

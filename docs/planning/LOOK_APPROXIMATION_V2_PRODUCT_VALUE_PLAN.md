@@ -6,6 +6,16 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+Copper development-10 completed at `a4a8d9347`, report SHA256
+`173200ca167cbcacb61c2a14d6a66b09319cbfad4f35a830fce69c9b93b4cf11`.
+All nine labelled overview sheets inspected: warm/cool separation is clear on
+hay/path/courtyard and sunset, but shadows turn purple petals blue, neutral
+interior too cool and NASA skin too yellow. Tone-only shows these are tint
+allocation problems, not fixed by stronger contrast. Development v2 changes
+only tint weight to `(1-HSV_saturation)^2`, targeting less-colourful pixels
+without semantic masks. Same nine development rows, no confirmation. Original
+v1 preserved by exact synthetic hash; not a historical assessment rescue.
+
 Next development: **copper-light print**, a new private luma/chroma-separated
 grade. Intent: firm low tones, open midtones, warm light against quiet cool
 shadows, reduced colour clutter; avoid a uniform yellow veil, lifted-grey

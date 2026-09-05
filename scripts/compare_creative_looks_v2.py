@@ -214,6 +214,7 @@ def compare(
         "creative_ordered_hue_development_v1.json",
         "creative_ordered_hue_development_v2.json",
         "creative_print_development_v1.json",
+        "creative_print_development_v2.json",
     ):
         raise ValueError("unrecognized development config")
     ordered_mode = creative_config.startswith("creative_ordered_hue_development_")
