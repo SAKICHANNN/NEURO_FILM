@@ -56,8 +56,8 @@ capacity, final-RGB generation and further wrappers as substitutes for value.
 
 | Step | Status | Scope and acceptance | Commit / rollback |
 | --- | --- | --- | --- |
-| Direction and candidate contract | IN_PROGRESS | This plan + config; active authority corrected, old evidence unchanged | Scoped plan commit; revert only owned files |
-| Private core | NOT_STARTED | Independent scalar oracle, 33-cube/ramp, invalid controls, endpoints, owned/strided/tiles/reverse exact; v1 behavioral regressions | Core/test commit; no product imports to undo |
+| Direction and candidate contract | DONE | Plan/config frozen at `32c552180`; active authority corrected, old evidence unchanged | Scoped plan commit; revert only owned files |
+| Private core | DONE | 44 synthetic tests pass; with v1 non-CLI behavior, 57 pass / 2 CLI tests deselected. No photographic value claim | Core/test commit; no product imports to undo |
 | Photo development | NOT_STARTED | Lock eligible digital source identities/roles and controls before reading pixels; bounded comparison sheets and development measurements | Separate source/run commit; outputs under P-backed outputs/ |
 | Confirmation | NOT_STARTED | Freeze parameters, metrics, rubric and source-disjoint confirmation before first confirmatory render | Immutable report/observations; no tuning or revote |
 | Product integration | NOT_STARTED | Only surviving looks; catalog/recipe/preview/export regressions, full-resolution severe checks and ordinary-photo resource measurements | Separate opt-in integration commit |
@@ -104,3 +104,13 @@ BW severe veto, calibration and U7.22B remain untouched. Stock plan is deferred;
 historical registry/evidence are not rewritten. Only one primary writer operates.
 No product API migration until confirmation; rollback is scoped commit revert,
 not a reset of the shared checkout. Keep one long-lived Goal across these steps.
+
+## Core verification, 2026-09-05
+
+`python -B -m pytest -q -p no:cacheprovider tests/test_creative_look_v2.py
+tests/test_u7_2c_three_stock_look_amount.py -k 'not cli'`: 57 passed,
+2 deselected (CLI/full media not involved in this private core change).
+Independent scalar formula outputs, pointwise tiled/reverse outputs and owned
+zero-amount outputs are exact; development ramp/cube/invalid tests pass.
+Ruff format/check passes. These are synthetic/behavioral tests, not a
+photographic safety, preference, performance or product-promotion result.

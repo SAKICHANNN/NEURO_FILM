@@ -14,8 +14,12 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
   once; no historical evidence, stock registry, v1 product or runtime changed.
 - Deferred: U7.22B modified test/untracked runner preserved, not executed or
   staged. No new data/holdout read, outreach, paid work or product promotion.
-- Next: commit contract, implement and verify synthetic boundaries, then lock
-  an eligible photographic comparison before claiming any visual value.
+- Contract commit: `32c552180`. Private core now implements the documented
+  Bezier + luma-zone positive rational-gain map without reading film statistics.
+  `tests/test_creative_look_v2.py` passes 44 tests; with non-CLI U7.2C parents,
+  57 pass / 2 CLI tests deselected. Ruff passes. No product imports changed.
+- Next: lock an eligible photographic comparison before claiming any visual
+  value; mathematical bounds and distinct synthetic patches are not promotion.
 
 # 2026-08-21 - Project D fallback substantially returned to P
 
