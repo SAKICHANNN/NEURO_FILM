@@ -25,6 +25,8 @@ class CreativeHueLook:
     blue_shift: float
     green_logsat: float
     blue_logsat: float
+    green_centre: float = 140.0
+    green_radius: float = 65.0
 
     def __post_init__(self) -> None:
         if not isinstance(self.tone, (tuple, list)) or len(self.tone) != 2:
@@ -37,12 +39,14 @@ class CreativeHueLook:
             object.__setattr__(self, name, _finite(getattr(self, name), -60, 60))
         for name in ("green_logsat", "blue_logsat"):
             object.__setattr__(self, name, _finite(getattr(self, name), -1, 1))
+        object.__setattr__(self, "green_centre", _finite(self.green_centre, 100, 150))
+        object.__setattr__(self, "green_radius", _finite(self.green_radius, 40, 65))
 
 
-def _hue_weight(hue: np.ndarray, centre: float) -> np.ndarray:
+def _hue_weight(hue: np.ndarray, centre: float, radius: float = 65.0) -> np.ndarray:
     distance = np.abs((hue - centre + 180) % 360 - 180)
     # Clamping constructs a compact-support mask, not an output gamut repair.
-    t = np.maximum(0.0, 1.0 - distance / 65.0)
+    t = np.maximum(0.0, 1.0 - distance / radius)
     return t * t * (3.0 - 2.0 * t)
 
 
@@ -82,7 +86,8 @@ def render_creative_hue_look(
     )
     hue = np.where(delta > 0, (hue * 60) % 360, 0)
     saturation = np.divide(delta, value, out=np.zeros_like(value), where=value > 0)
-    green, blue = _hue_weight(hue, 140), _hue_weight(hue, 235)
+    green = _hue_weight(hue, spec.green_centre, spec.green_radius)
+    blue = _hue_weight(hue, 235)
     hue = (hue + spec.green_shift * green + spec.blue_shift * blue) % 360
     gain = np.exp(spec.green_logsat * green + spec.blue_logsat * blue)
     scaled = saturation * gain

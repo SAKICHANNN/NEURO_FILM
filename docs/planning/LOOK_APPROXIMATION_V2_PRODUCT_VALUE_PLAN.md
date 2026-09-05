@@ -71,6 +71,24 @@ new private core/config/test and narrow existing comparison-runner extension.
 No product API, v1 semantics, failed assessment or foreign U7.22B paths change.
 Do not judge success by whether a new core exists or its tests pass.
 
+Development-05-petrol completed at `2ac32f5d1`, 9 x 7 arms, no reserve/network.
+Report SHA256 `b2009e9edea10919dcb09d73217626f7e278082987e6a3ff810ee2fb4154cd09`.
+All nine labelled overviews inspected. First hue candidate mostly changes sky
+and contrast, remains weak on foliage, darkens orchid/rail-yard subjects; no
+promotion. Local development diagnosis (not inferred skin identities): Canon
+tree-region [220,115,330,245] with HSV S>.15 has hue p10/median/p90
+60/86.67/198.72 degrees (mixed crop includes nonfoliage); NASA face-region
+[170,95,270,185] has 18.95/27.46/35.17. At 87 degrees the first green mask is
+near its support edge, explaining weak action without invoking lack of capacity.
+
+Allow one separate development correction, config V2 `petrol_foliage`: green
+centre 105, radius 55, shift +55 degrees; everything else unchanged. Warm hues
+0..50 are excluded from that mask. This narrows the excluded hue region, **not**
+a verified skin guarantee; possible green hue compression/unnatural plants
+must be inspected. Original default centre/radius preserve V1 arithmetic.
+Use the same nine development photos, not new assessment. This is explicit
+creative iteration informed by development, not a rescue of frozen science.
+
 The candidate uses explicit tonal shape and luminance-zone RGB relationships,
 not legacy unpaired film means/stds. Three tentative directions are amber-soft,
 cool-clear and copper-rich. These names describe design intent, not measured

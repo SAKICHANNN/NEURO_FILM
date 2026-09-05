@@ -9,23 +9,23 @@ import pytest
 from src.color_engine.creative_hue_look import CreativeHueLook, render_creative_hue_look
 
 
-def spec():
+def spec(version=1):
     path = (
         Path(__file__).resolve().parents[1]
-        / "configs/creative_hue_look_development_v1.json"
+        / f"configs/creative_hue_look_development_v{version}.json"
     )
-    return CreativeHueLook(**json.loads(path.read_text())["looks"]["petrol_contrast"])
+    return CreativeHueLook(**next(iter(json.loads(path.read_text())["looks"].values())))
 
 
 def oracle(rgb, look):
     h, s, v = colorsys.rgb_to_hsv(*map(float, rgb))
 
-    def weight(centre):
+    def weight(centre, radius=65):
         d = abs((h * 360 - centre + 180) % 360 - 180)
-        t = max(0, 1 - d / 65)
+        t = max(0, 1 - d / radius)
         return t * t * (3 - 2 * t)
 
-    green, blue = weight(140), weight(235)
+    green, blue = weight(look.green_centre, look.green_radius), weight(235)
     h = (h + (look.green_shift * green + look.blue_shift * blue) / 360) % 1
     scale = s * math.exp(look.green_logsat * green + look.blue_logsat * blue)
     s = scale / (1 - s + scale)
@@ -34,37 +34,39 @@ def oracle(rgb, look):
     return colorsys.hsv_to_rgb(h, s, v)
 
 
-def test_scalar_oracle_cube_and_deterministic_tiles():
-    look = spec()
+@pytest.mark.parametrize("version", [1, 2])
+def test_scalar_oracle_cube_and_deterministic_tiles(version):
+    look = spec(version)
     axis = np.linspace(0, 1, 17, dtype=np.float32)
     x = np.stack(np.meshgrid(axis, axis, axis), -1).reshape(17, 289, 3)
     expected = np.array(
         [oracle(p, look) for p in x.reshape(-1, 3)], np.float32
     ).reshape(x.shape)
-    actual = render_creative_hue_look(x, spec())
+    actual = render_creative_hue_look(x, look)
     np.testing.assert_allclose(actual, expected, atol=1e-7, rtol=0)
     tiled = np.concatenate(
-        [render_creative_hue_look(x[i : i + 1], spec()) for i in range(17)]
+        [render_creative_hue_look(x[i : i + 1], look) for i in range(17)]
     )
     np.testing.assert_array_equal(tiled, actual)
-    np.testing.assert_array_equal(
-        render_creative_hue_look(x[::-1], spec())[::-1], actual
-    )
+    np.testing.assert_array_equal(render_creative_hue_look(x[::-1], look)[::-1], actual)
     assert actual.min() == 0 and actual.max() == 1
 
 
-def test_grey_neutral_warm_hues_and_local_continuity():
+@pytest.mark.parametrize("version,warm_limit", [(1, 75), (2, 50)])
+def test_grey_neutral_warm_hues_and_local_continuity(version, warm_limit):
+    look = spec(version)
     grey = np.repeat(
         np.linspace(0, 1, 1024, dtype=np.float32)[None, :, None], 3, axis=-1
     )
-    y = render_creative_hue_look(grey, spec())
+    y = render_creative_hue_look(grey, look)
     np.testing.assert_array_equal(y[..., 0], y[..., 1])
     np.testing.assert_array_equal(y[..., 1], y[..., 2])
     assert np.all(np.diff(y[0, :, 0]) > 0)
     warm = np.array(
-        [colorsys.hsv_to_rgb(h / 360, 0.55, 0.6) for h in range(76)], np.float32
+        [colorsys.hsv_to_rgb(h / 360, 0.55, 0.6) for h in range(warm_limit + 1)],
+        np.float32,
     )[None]
-    mapped = render_creative_hue_look(warm, spec())
+    mapped = render_creative_hue_look(warm, look)
     for original, result in zip(warm[0], mapped[0]):
         np.testing.assert_allclose(
             colorsys.rgb_to_hsv(*original)[:2],
@@ -75,7 +77,7 @@ def test_grey_neutral_warm_hues_and_local_continuity():
         [colorsys.hsv_to_rgb(h / 360, 0.7, 0.8) for h in np.linspace(0, 360, 3601)],
         np.float32,
     )[None]
-    mapped = render_creative_hue_look(wheel, spec())
+    mapped = render_creative_hue_look(wheel, look)
     assert np.abs(np.diff(mapped, axis=1)).max() < 0.004
     np.testing.assert_array_equal(mapped[0, 0], mapped[0, -1])
 

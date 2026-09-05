@@ -172,9 +172,10 @@ def compare(
         "creative_looks_v2_bold_development.json",
         "creative_looks_v2_refined_development.json",
         "creative_hue_look_development_v1.json",
+        "creative_hue_look_development_v2.json",
     ):
         raise ValueError("unrecognized development config")
-    hue_mode = creative_config == "creative_hue_look_development_v1.json"
+    hue_mode = creative_config.startswith("creative_hue_look_development_")
     creative_path = ROOT / "configs" / creative_config
     creative = read_json(creative_path)
     if hue_mode and not assessment:
