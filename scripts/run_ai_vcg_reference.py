@@ -153,7 +153,7 @@ def initialize(cfg):
 
     # Only the three reviewed published preprocessing functions. No download,
     # video utilities or unrelated module-level execution from utils/util.py.
-    source = (MODEL / "source/utils/util.py").read_text()
+    source = (MODEL / "source/utils/util.py").read_text(encoding="utf-8")
     tree = ast.parse(source)
     nodes = [
         node

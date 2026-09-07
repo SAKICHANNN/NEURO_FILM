@@ -44,9 +44,9 @@ def test_published_cube_layout_identity_and_channel_permutation():
 def test_attention_conversion_uses_pinned_official_renaming_only():
     import ast
 
-    source = (
-        driver.MODEL / "runtime/diffusers/models/modeling_utils.py"
-    ).read_text(encoding="utf-8")
+    source = (driver.MODEL / "runtime/diffusers/models/modeling_utils.py").read_text(
+        encoding="utf-8"
+    )
     tree = ast.parse(source)
     method = next(
         node
@@ -55,7 +55,9 @@ def test_attention_conversion_uses_pinned_official_renaming_only():
         and node.name == "_convert_deprecated_attention_blocks"
     )
     namespace = {}
-    exec(compile(ast.Module([method], []), "official_migration", "exec"), namespace)
+    exec(  # noqa: S102 - Tests the reviewed installed migration, not model pickle.
+        compile(ast.Module([method], []), "official_migration", "exec"), namespace
+    )
 
     class Block:
         _from_deprecated_attn_block = True
@@ -81,7 +83,8 @@ def test_attention_conversion_uses_pinned_official_renaming_only():
         strict=True,
     ):
         for suffix in ("weight", "bias"):
-            assert converted[f"attention.{new}.{suffix}"] is original[
-                f"attention.{old}.{suffix}"
-            ]
+            assert (
+                converted[f"attention.{new}.{suffix}"]
+                is original[f"attention.{old}.{suffix}"]
+            )
     assert driver.convert_legacy_attention(Model(), converted) == converted

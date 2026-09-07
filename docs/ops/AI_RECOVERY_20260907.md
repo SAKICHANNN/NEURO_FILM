@@ -2,6 +2,10 @@
 
 ## VCG loading correction, 2026-09-07
 
+V2 passed all model loading but stopped at UTF-8 official-source decoding under
+Windows' default GBK before any forward or photo. V3 specifies UTF-8 only;
+no downloaded source edit or changed model/control. V2 failure report retained.
+
 Acquisition completed; manifest SHA256
 `7846a87b6877a071de1fe46484d84324db6b5c0172cad47c7c2fcf1130a0ca10`
 was bound in a27ff7752. First inference attempt remains at
