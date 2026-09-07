@@ -1,5 +1,19 @@
 # Project Agent Log
 
+## 2026-09-07 - Paired AI learning control completes below preference gate
+
+- AI/ML primary; reliability, plan, log and structure secondary. Accepted code
+  `814b387e3`:64 fit/16 development images x3 FilmSet digital recipes, three
+  from-zero learned arms, fixed600-step budget and pre-evaluation checkpoint lock.
+- Conditional wins39/48 vs global but median gain7.02% is below10%; no promotion
+  or post-score tuning. Digital-recipe correspondence is not physical-film truth.
+- Completed fixed9 evaluation and9 transfer conditional visual checks; modest
+  appearance and no broad safety/appeal claim. Exact report identities and ICC
+  correction lineage in AI_RECOVERY_20260907.md. Eight focused tests PASS.
+- Added bounded transfer runner and source/ICC/role tests in existing locations.
+  No production interface, cloud/download, independent-test or foreign edit.
+  Next is fit-only capacity/supervision diagnosis, not a stronger manual palette.
+
 ## 2026-09-07 - AI texture-supervision diagnostic rejects contaminated patches
 
 - AI/ML primary, reliability/plan/log/structure secondary; freeze `e2e9433a6`,

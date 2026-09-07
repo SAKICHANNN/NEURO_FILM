@@ -40,7 +40,7 @@ Six model tests PASS. Initial prescore test incorrectly demanded historical
 scalar/batched float32 byte equality (11/648 values, max1.19209e-7); this new
 kernel is a formula-equivalence comparison at2 float32 eps, not a historical
 byte-replay claim. Test corrected before first paired pixel/optimizer access.
-Status: manifest/implementation DONE, training IN_PROGRESS. Small local
+Status: manifest/implementation/training DONE, conditional preference gate FAIL. Small local
 GPU run, no cloud or new dataset download. Scoped commits provide rollback;
 all old model runs and unrelated worktree changes stay intact.
 
@@ -53,6 +53,39 @@ pixels. Conversion is an explicit gamut/quantization limitation, not sensor
 truth. Source pair hash-lock, roles, model, steps and loss unchanged. New result
 root `run_icc_v2`; RGB profile validation precedes decode. Original target-only
 preflight is not a numerical colour-managed comparison.
+
+### Paired pilot closure and transfer review
+
+Accepted training code `814b387e3`, all three final checkpoints frozen before
+the16 development-evaluation targets. Report SHA256
+`84b620a5bdaa5b675c2a2f4efecf4535000fc450c52f0e3270bf3e16bf6be9e8`.
+Across48 image/style rows, mean L1 is global .023265, conditional .021924,
+wrong-target .069723, identity .030595. Conditional wins39/48 against global,
+but median relative gain .0701676 misses the frozen .10 rule. Per-style medians
+are Cinema .113726, ClassNeg .070168, Velvia .042001; no passing-stratum rescue.
+Against identity median gain .304498, worst -.180226. Paired supervision is
+informative relative to mismatched targets, but this does not establish film
+appearance, independent generalization, or a conditional product winner.
+
+Fixed first3 evaluation images x3 conditional styles reviewed at512px, plus all
+9 conditional transfers on existing CC0 rows6/7/8 at maximum768px. No conspicuous
+severe false-color/geometry failure in this narrow review; outdoor styles remain
+similar and film appearance insufficient. This is autonomous development review,
+not full-size safety or blind population preference. Transfer report SHA256
+`4f18ae7fa0e691e37b2527df4d5498284b4ef4e6546dcc179bec657cc2d75f75`.
+Global/wrong-target transfer PNGs are retained controls, not all visually
+adjudicated. The first oversized six-image tool response was truncated and not
+counted; Cinema/Velvia images were subsequently reviewed in batches of3.
+
+Stop this fixed pilot without changing steps/loss/gates on its evaluation rows.
+Keep global as a learning control, not a product selection. Before another
+learner, inspect fit-only residual representability: this triangular operator's
+red output for fixed parameters depends only on red, unlike a general colour
+transform. This is a structural restriction, not a demonstrated cause of failure.
+Any follow-up must separate supervision value from operator capacity, use new
+evaluation identities, and avoid treating digital presets as film truth.
+Eight model/source tests PASS; no production integration, new downloads or
+independent-test reads. Existing project structure and foreign diffs preserved.
 
 ## Texture supervision pilot (prospective, 2026-09-07)
 
