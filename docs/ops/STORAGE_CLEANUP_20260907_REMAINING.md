@@ -30,6 +30,30 @@ Canonical data/output/checkpoint/loras junctions are unchanged.
 
 ## Retain pending classification
 
+Read-only recursive inventory completed for the following nine roots without
+enumeration errors. Counts include empty marker/lock files; zero length alone
+does not establish garbage. Sizes are logical bytes, not exFAT allocation.
+
+| Root | Files | Bytes |
+| --- | ---: | ---: |
+| P neuro_film_storage/data | 68,243 | 172,481,510,218 |
+| P neuro_film_storage/outputs | 148,762 | 161,903,593,880 |
+| P neuro_film_storage/cache | 7 | 22,763,612 |
+| P neuro_film_storage/checkpoints | 91 | 19,208,209,349 |
+| P neuro_film_storage/loras | 18 | 3,501,205,768 |
+| P zhuise_storage/data | 51,417 | 85,187,094,914 |
+| P zhuise_storage/outputs | 113,013 | 115,007,117,492 |
+| D neuro_film_fallback | 79 | 3,025,814 |
+| D zhuise_storage_fallback | 4 | 57,424 |
+
+This inventory is not duplicate verification or permission to purge outputs.
+Model files and LoRAs were explicitly retained for the requested early-AI audit.
+The top-level fallback archives have migration-era names but no newly checked
+per-file equality proof; they remain intact. No new deletion attempted in this
+inventory pass. Safe executable batch is complete; blocked and uncertain items
+remain open separately. Read-only model/code audit may proceed without new
+downloads, training, or generated-image storage.
+
 - zhuise unified-HFR `input_15fps` transport pieces: no complete-copy byte
   validation yet. Filenames or an adjacent tar alone are not deletion evidence.
 - Organized legacy/fallback archives: no per-file duplicate proof this run.

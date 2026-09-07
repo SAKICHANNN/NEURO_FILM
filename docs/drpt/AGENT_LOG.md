@@ -4,6 +4,14 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 
 ## 2026-09-07 - Remaining transport-residue verification
 
+- Follow-up inventory covered nine canonical data/output/model/cache/fallback
+  roots with zero enumeration errors; exact counts added to the recovery note.
+  D fallback totals only 3,083,238 logical bytes, not the capacity driver.
+  No additional deletion or bypass attempted; model/LoRA assets retained for
+  the user's early-AI reproduction request. Read-only code/model discovery
+  located the existing neural-LUT/film-SepLUT evaluation entrypoints; no model
+  execution or new training yet. Existing project placement preserved.
+
 - Operations-primary read-only validation verified the complete 12.52 GB MVSEC
   archive against its historical SHA256. Its 25 download-residue candidates
   total 12,932,058,112 bytes; deletion was blocked before execution, zero removed.
