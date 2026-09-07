@@ -1,5 +1,32 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Actual-photo supervision intake, 2026-09-07
+
+AI-first child after the failed CLIP-only pilot: acquire the 19 explicitly
+CC-BY-4.0 photographs on Nick Rudzicz's Italy 2024 page, with a 64MiB total cap.
+The page states Nikon FM-2 / Portra400. This is author/scan appearance supervision,
+not identified Portra response. All 19 are development references in one group;
+no random within-series split is an independent test. Old A3U 2023 references
+and sealed assessment remain untouched. Exact new URL search of configs,
+docs/data and docs/evidence found no matches before this lock.
+
+Sequence: freeze config -> bounded source/rights snapshot + image hashes ->
+check duplicates and view references -> separately specify photo-supervised
+learning and controls before fitting. Abort on rights/URL drift, decode failure
+or budget excess; retain explicit partial state, never substitute another image.
+No training or production change is authorized by acquisition success alone.
+Candidate learning must beat identity/simple controls visually after artifact
+review; photo-distribution loss is not a photographic-quality result.
+
+Owner: main single-agent. New acquisition script/config and this recovery note
+only, plus minimal agent log; foreign dirty files are excluded. Revert the scoped
+code commit for rollback; preserve source manifests and historical evidence.
+Data layout: source.html, manifest.json and ID.jpg under the configured P-backed
+repo-relative directory; manifest carries bytes/SHA256/dimensions/URL/role and
+license attribution. Verify bounded reads, create-only destination and JPEG
+integrity before recording completion. Intake is IN_PROGRESS; learning and
+independent validation are NOT_STARTED.
+
 The current user asks for AI-learned film character without supplied paired
 captures. Manual creative-v6 changes remain interrupted and untouched.
 

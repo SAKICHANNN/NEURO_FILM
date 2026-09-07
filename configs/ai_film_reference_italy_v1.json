@@ -1,0 +1,14 @@
+{
+  "schema": "neuro-film.ai-reference-acquisition.v1",
+  "page": "https://nicknicknicknick.net/notes/2025/01/28/italy-on-film.html",
+  "author": "Nick Rudzicz",
+  "license": "CC-BY-4.0",
+  "image_prefix": "https://nicknicknicknick.net/images/film/2024-italy/",
+  "ids": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 23, 25, 26],
+  "role": "development_style_reference_only",
+  "group": "one-author-one-published-travel-series",
+  "claim": "nonpaired author-and-scan appearance; not calibrated stock response",
+  "max_file_bytes": 8388608,
+  "max_total_bytes": 67108864,
+  "destination": "data/ai_film_references/italy_2024_v1"
+}
