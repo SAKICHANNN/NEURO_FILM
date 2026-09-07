@@ -34,8 +34,13 @@ Mode A; AI/ML primary. Owned new config/model/runner/test with matching
 `ai_conditioned_rgb_lut` names, this note/log; reuse source decoder/LUT/evaluation
 math. No legacy defaults or foreign edits. Scoped commits provide rollback;
 all outputs in one new P-backed root. Status: configuration DONE;
-implementation IN_PROGRESS; training/evaluation NOT_STARTED. A positive result
+implementation DONE; training/evaluation NOT_STARTED. A positive result
 only opens independent photographic-value work, not product promotion.
+
+New manifest metadata lock SHA256
+`c65c6b6db647a637fe512508bcc4656bb8352f00f482c967ac44594bc5314326`;
+no new evaluation pixels read at lock time. Model/role/regularizer unit checks
+and synthetic CUDA update precede training; no new external assets/dependencies.
 
 ## Fit-only operator-capacity diagnostic (2026-09-07)
 
