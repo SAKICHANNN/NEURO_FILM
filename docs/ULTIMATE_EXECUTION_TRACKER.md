@@ -23,6 +23,11 @@ useful, detail-checked Look in the existing workflow. LOOK2 copper fixed-v2
 1600-side development is complete (report `c1c50c72...77fc2`); no promotion.
 Next resolve new quantized highlight endpoints on those same development images
 before further assessment. The LOOK2 plan records exact review limits and counts.
+The ensuing soft-shoulder repair `367bae4f4` removes near-float endpoint plateaus
+on the nine development images while preserving all old v2 pixels; development-13
+report `52baf57a...2e0ed`, 110 tests PASS. Quantized endpoints and aesthetic risks
+remain, no promotion. Next fixed-v3 portrait/mixed-light development, not further
+gamut tweaking or new assessment reads.
 
 **Deferred research objective**: learn as many evidence-backed, distinguishable and
 artifact-safe stock-specific explicit colour experts as practical from

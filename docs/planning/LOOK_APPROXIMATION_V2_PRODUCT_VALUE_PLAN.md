@@ -6,6 +6,31 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+2026-09-07 smooth copper repair completed: `367bae4f4`, report
+`outputs/creative_look_v2_development/development-13-copper-soft/report.json`
+SHA256 `52baf57a24bc674ca610f11fb601eea905e71650d8572e1a6710cf7b7aa2e0ed`.
+Unchanged nine development rows at the same sizes; 127 files / 533,234,977B.
+Legacy config v2 reproduces all nine development-12 PNG pixel arrays exactly
+after the code change. 110 focused/adjacent tests and Ruff/format/diff PASS.
+New source-[8,247] quantized endpoints (same row order below):
+425, 9580, 2475, 801, 4600, 647, 15951, 6571, 1623; every count decreases.
+Zero of these now lie within 1e-6 of float zero/one, versus the old near-float
+counts below. Residual quantized endpoints remain and are not waived away.
+The synthetic radial/highlight probe retains variation instead of a plateau.
+
+Reviewed all nine new native 512-centre comparisons, plus original/hard/soft
+128px regions chosen by highest old endpoint density in path (1024,0) and NASA
+(256,128). These mostly cover pale cloud/background/helmet; soft colour is less
+peach at the brightest cloud, but the overall visual difference from hard v2
+is small (mean RGB8 old/new change .00069-.10286 across images). Authored warm
+light/cool shade is retained; no new severe defect confirmed in these inspected
+views. This does not establish entire-image/full-sensor safety or preference.
+Stair blue neutrals and warm/brighter portrait remain aesthetic risks, not solved
+by this gamut fix. Stop further gamut micro-iterations now. Next is broader
+portrait/mixed-light development at fixed v3, starting with the existing locked
+portrait intake after current source availability verification; no assessment
+01/02 reads. Product integration remains NOT_STARTED.
+
 2026-09-07 next bounded repair: exact replay of all nine development-12 PNGs
 using the existing quantizer confirms source-[8,247] endpoint totals and near-
 float-boundary components respectively: 1284/868, 32782/31272, 5294/4222,

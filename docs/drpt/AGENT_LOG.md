@@ -2,6 +2,31 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-07 - LOOK2 copper gamut plateau diagnosis and repair
+
+- Previous Goal turn was progress; this ready leaf addressed its explicit
+  endpoint risk, not a new wrapper. Reliability primary; existing plan/DRPT,
+  structure/log checks secondary. Plan commit `7e484b464`, implementation
+  `367bae4f4`: new private soft-knee policy; hard-v1 is still the default.
+- First in-memory diagnostic used the wrong quantization convention and failed
+  exact replay. Corrected to the existing quantizer before interpretation;
+  all nine old v2 outputs remain pixel-exact after implementation. No old report
+  or evidence changed. Root cause is hard radial q>1 projection, not a spatial
+  decoder or input problem. C1 shoulder preserves encoded luma/chroma direction.
+- 110 tests PASS; Ruff/format/diff PASS. Development-13 exit 0, report
+  `52baf57a24bc674ca610f11fb601eea905e71650d8572e1a6710cf7b7aa2e0ed`,
+  127 P-backed files / 533,234,977B; no network/RAW/assessment reads. Every
+  source-interior quantized endpoint count declines; zero remaining ones are
+  within 1e-6 of float boundaries. Quantized endpoints are still present.
+- Nine native centre comparisons plus two old-density-selected highlight crops
+  reviewed. Overall appearance is retained, with very small old/new differences;
+  this is mechanical repair, not a new visual-value pass. Blue stair interior
+  and warm portrait remain. Next fixed-v3 portrait/mixed-light development;
+  do not continue gamut micro-leaves or integrate without independent value.
+- Core/test/existing runner and one config changed; plan/tracker/log updated.
+  No production import/default/dependency change. Foreign U7.22B test/script,
+  .codex/tmp untouched. Goal active; next local work needs no human action.
+
 ## 2026-09-07 - Long-lived value Goal and fixed copper detail review
 
 - User requested a new accurate Goal and autonomous continuation. `get_goal`
