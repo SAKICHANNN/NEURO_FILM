@@ -1,5 +1,42 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Learned complete RGB LUT pilot (prospective, 2026-09-07)
+
+The fit-only oracle below establishes large representational headroom but folds;
+new learner predicts a bounded9^3 RGB LUT from input and style only, not targets.
+Reuse the previous small64px context CNN; replace36-param head by2187 LUT-node
+residuals on top of learned style-global LUTs. Unit-cube node projection yields
+bounded trilinear output, not a no-artifact guarantee. Train with L1 plus .001
+second-difference smoothness and .01 squared hinge on cell-centre determinant
+below .1. The soft penalty is not proof of whole-cell/global invertibility.
+
+Same64 prior fit images. New16 development images are SHA-ranked later
+source_train duplicate groups, excluding all80 prior AI paired rows and3
+target-only preflight IDs. All original lockbox/test roles remain untouched.
+This is fresh relative to these AI pilots, NOT necessarily all historical work
+or an independent-corpus evaluation. Same explicit ICC conversion throughout.
+Freeze the new manifest before any of its evaluation pixels; all three final
+checkpoints before evaluation. Three from-zero arms: global, image-conditioned,
+cyclic wrong-content image-conditioned (within64 fit, same style).600 Adam steps,
+lr.003/batch4/192px, final checkpoint only;30min time cap and no cloud/download.
+Also evaluate unchanged prior triangular conditional checkpoint on these16.
+
+Decision: numerical progress requires >=25% median L1 reduction vs prior
+triangular and >=36/48 wins, >=20% median reduction vs wrong-target. Conditional
+must additionally improve >=10% over new global to be preferred; otherwise retain
+global as simpler learned control. Neither numerical gate is photographic value.
+Inspect fixed first3 evaluation IDs x3 styles for both real-supervision arms,
+plus existing3 CC0 transfers; severe artifact veto precedes appeal judgement.
+Record all cell-centre fold fractions and output boundaries. No product/weight
+release or stock claim. No step/loss/grid rescue on this evaluation cohort.
+
+Mode A; AI/ML primary. Owned new config/model/runner/test with matching
+`ai_conditioned_rgb_lut` names, this note/log; reuse source decoder/LUT/evaluation
+math. No legacy defaults or foreign edits. Scoped commits provide rollback;
+all outputs in one new P-backed root. Status: configuration DONE;
+implementation IN_PROGRESS; training/evaluation NOT_STARTED. A positive result
+only opens independent photographic-value work, not product promotion.
+
 ## Fit-only operator-capacity diagnostic (2026-09-07)
 
 Parent: paired pilot below misses conditional preference and remains visually
