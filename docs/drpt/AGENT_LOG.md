@@ -2,6 +2,17 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-07 - Remaining transport-residue verification
+
+- Operations-primary read-only validation verified the complete 12.52 GB MVSEC
+  archive against its historical SHA256. Its 25 download-residue candidates
+  total 12,932,058,112 bytes; deletion was blocked before execution, zero removed.
+  No alternate shell/tool retry. P293 blocked action was not repeated.
+- Added `docs/ops/STORAGE_CLEANUP_20260907_REMAINING.md` with exact retained
+  archive identity, blocked candidates and uncertain fallback/archive classes.
+  This is progress in classification, not an all-data-clean completion claim.
+  No models, source pixels, evidence or interrupted/foreign changes altered.
+
 ## 2026-09-07 - User-requested clear-garbage cleanup, batch one
 
 - Cleanup precedes new AI experiments. Operations is primary; reliability,
