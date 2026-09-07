@@ -6,6 +6,29 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+2026-09-07 owner supersession: **AI must learn the key style transformation**.
+The manual development-16 and other authored palette iterations below are
+interrupted historical work, not the active next step. Preserve their files and
+outputs; do not resume tuning. Old fitted/neural LUT recovery is documented in
+`docs/ops/AI_RECOVERY_20260907.md`: pseudo-teacher supervision, saturated s300/s800
+conditioning, and a still-subtle smoke checkpoint. Those remain baselines, not
+the new product candidate. New learning must use independently justified style
+supervision; no owner-supplied pairs or email dependency. Full-resolution final
+rendering remains an explicit operator, not generated RGB.
+
+Current next step is a bounded new-supervision admission and runnable learner,
+not another stock calibration search or wrapper. Freeze data rights and roles,
+learning signal, matched simple control and unseen-scene evaluation before fit.
+Unknown-stock real-film appearance may inform a generic look only; existing
+sealed/quarantined/closed datasets are not silently reopened. First development
+comparison must include originals and recovered bland learned baselines.
+
+Development-16 scope: fixed v5 palette; replace only print tone (.08,.84) with
+(.25,.75), anchoring encoded midgray and reducing shadow compression. Existing
+detail mode at up to 1600px plus native centre crops, all nine development rows;
+no assessment or new-source reads. This is not full-sensor validation. Continue
+only if subject readability improves without losing useful outdoor palette.
+
 2026-09-07 next development after explicit outdoor rejection: gold-daylight,
 an outdoor-specific authored palette rather than another copper tint increase.
 Reuse ordered hue map before neutral-axis print tone: yellow-green foliage to

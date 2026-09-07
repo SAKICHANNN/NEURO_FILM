@@ -35,6 +35,23 @@ criteria. This run does not establish which early algorithm was the user's best.
 
 ## Next useful action
 
+### Current method/source triage (2026-09-07, no new payload)
+
+| Primary source | Decision for next learner |
+| --- | --- |
+| https://github.com/ns144/3D-LUT | Direct precedent: CNN-predicted LUT with unpaired GAN/CycleGAN/StarGAN. GitHub API reports no license; not adopted as code/data/weights. Architecture alone is not our novelty. |
+| https://github.com/EtonMu/deep-analog | Latest 2026 reference-LUT work, but existing registry records no usable permission/checkpoints; procedural supervision is not physical-film evidence. No adoption. |
+| https://github.com/Ry3nG/SA-LUT | Do not reopen R2Q0/BL12: existing source/runtime and resource failures remain authoritative. |
+| https://openaccess.thecvf.com/content/WACV2025/papers/Li_D-LUT_Photorealistic_Style_Transfer_via_Diffusion_Process_WACV_2025_paper.pdf | Score learning with explicit final LUT is relevant, but R2R1 published-trajectory orientation/range failures remain closed. Not a ready checkpoint. |
+| https://github.com/jonathangranskog/lut_generation | MIT engineering precedent for text-guided LUT optimization, not established film supervision or a paper-quality result. Separate base-model rights and reward-hacking risks; not selected merely because runnable. |
+
+Exa discovery followed by official repository reads and local closed-route
+deduplication. No image/model/data downloads or external messages. This is a
+decision matrix, not an exhaustive literature survey. A new learner needs legal
+style observations or a justified learned supervision signal, not another
+hand-authored teacher. Generic look claims do not authorize reopening sealed
+physical-stock evaluations. No candidate promoted or new training yet.
+
 ### Three-checkpoint diagnostic closure
 
 `scripts/audit_early_lut_conditioning.py` is a read-only CPU probe on one fixed

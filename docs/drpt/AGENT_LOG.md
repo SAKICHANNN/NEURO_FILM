@@ -4,6 +4,12 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 
 ## 2026-09-07 - Early learned-LUT recovery smoke
 
+- Current-source triage: Exa plus official repos, compared with local closed
+  routes. Added five-source decision matrix to recovery note. ns144 has no
+  GitHub license; SA-LUT/D-LUT historical failures retained; no weights/pixels
+  downloaded. Updated active LOOK2 plan with explicit AI-first supersession,
+  preserving interrupted v6 text and files. No novelty or source-rights claim.
+
 - Bounded recovery closure: new read-only synthetic conditioning diagnostic
   confirms s300/s800 saturated shared-basis behavior, smoke nonzero style span.
   Unchanged smoke inference executed nine rows; its Ektar ID is untrained and
