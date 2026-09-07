@@ -31,6 +31,15 @@ def checked_json(path, expected):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
+def convert_legacy_attention(model, state):
+    """Use the pinned Diffusers loader migration without replacing any tensor."""
+    identities = sorted(id(value) for value in state.values())
+    model._convert_deprecated_attention_blocks(state)
+    if sorted(id(value) for value in state.values()) != identities:
+        raise ValueError("attention conversion changed tensor ownership")
+    return state
+
+
 def initialize(cfg):
     # Verification happens before importing any downloaded Python source.
     for name, expected in cfg["source_hashes"].items():
@@ -95,7 +104,10 @@ def initialize(cfg):
         (unet, MODEL / "unet_state_dict.safetensors"),
         (vae, base / "vae/diffusion_pytorch_model.safetensors"),
     ]:
-        model.load_state_dict(load_file(path), strict=True, assign=True)
+        state = load_file(path)
+        if model is vae:
+            state = convert_legacy_attention(model, state)
+        model.load_state_dict(state, strict=True, assign=True)
         model.eval()
     clip_state = torch.load(
         clip_root / "pytorch_model.bin", map_location="cpu", weights_only=True

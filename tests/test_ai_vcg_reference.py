@@ -39,3 +39,49 @@ def test_published_cube_layout_identity_and_channel_permutation():
         ImageFilter.Color3DLUT(16, cube[..., ::-1].flatten())
     )
     assert np.array_equal(np.asarray(swapped), image[..., ::-1])
+
+
+def test_attention_conversion_uses_pinned_official_renaming_only():
+    import ast
+
+    source = (
+        driver.MODEL / "runtime/diffusers/models/modeling_utils.py"
+    ).read_text(encoding="utf-8")
+    tree = ast.parse(source)
+    method = next(
+        node
+        for node in ast.walk(tree)
+        if isinstance(node, ast.FunctionDef)
+        and node.name == "_convert_deprecated_attention_blocks"
+    )
+    namespace = {}
+    exec(compile(ast.Module([method], []), "official_migration", "exec"), namespace)
+
+    class Block:
+        _from_deprecated_attn_block = True
+
+        def named_children(self):
+            return []
+
+    class Model:
+        _convert_deprecated_attention_blocks = namespace[method.name]
+
+        def named_children(self):
+            return [("attention", Block())]
+
+    original = {
+        f"attention.{key}.{suffix}": np.arange(4, dtype=np.float32)
+        for key in ("query", "key", "value", "proj_attn")
+        for suffix in ("weight", "bias")
+    }
+    converted = driver.convert_legacy_attention(Model(), dict(original))
+    for old, new in zip(
+        ("query", "key", "value", "proj_attn"),
+        ("to_q", "to_k", "to_v", "to_out.0"),
+        strict=True,
+    ):
+        for suffix in ("weight", "bias"):
+            assert converted[f"attention.{new}.{suffix}"] is original[
+                f"attention.{old}.{suffix}"
+            ]
+    assert driver.convert_legacy_attention(Model(), converted) == converted

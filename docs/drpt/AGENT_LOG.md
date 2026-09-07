@@ -1,5 +1,14 @@
 # Project Agent Log
 
+## 2026-09-07 - VCG VAE loader compatibility
+
+- AI/ML primary, Mode A/L2; reliability/plan/structure governance secondary.
+  Completed acquisition manifest bound; V1 stopped at old VAE attention names,
+  before forwards/photos. V2 reuses pinned Diffusers migration, unchanged tensor
+  identities and strict full-state loading; ten focused tests pass.
+- Driver/config/test and recovery note only; next run uses fresh v2 outputs.
+  No production integration, photographic pass or goal completion claimed.
+
 ## 2026-09-07 - Bounded VCG model acquisition implementation
 
 - While acquisition runs, prepared fixed-pair inference driver/config/tests.

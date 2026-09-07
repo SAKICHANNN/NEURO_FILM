@@ -31,7 +31,7 @@
   "steps": 25,
   "size": 512,
   "max_seconds": 900,
-  "output": "outputs/ai_vcg_reference_development_v1",
+  "output": "outputs/ai_vcg_reference_development_v2",
   "decision": "All three previously consumed NLUT pairs unchanged. Require no confirmed severe artifact and clear preference over identity/simple/precorrection in at least 2/3 to open independently frozen evaluation; no automatic product promotion. No reference/seed/strength/step rescue.",
   "differences": [
     "One still photograph replaces video frames; preserve exact original spatial coordinates in final LUT mapping.",

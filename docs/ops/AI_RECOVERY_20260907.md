@@ -1,5 +1,22 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## VCG loading correction, 2026-09-07
+
+Acquisition completed; manifest SHA256
+`7846a87b6877a071de1fe46484d84324db6b5c0172cad47c7c2fcf1130a0ca10`
+was bound in a27ff7752. First inference attempt remains at
+`outputs/ai_vcg_reference_development_v1/report.json`: VAE loading failure,
+zero model forward/photographic comparison. Direct safe state loading bypassed
+Diffusers' own legacy attention-name migration. V2 invokes the pinned official
+conversion and requires tensor-object multiset preservation plus strict keys;
+this is loading compatibility, not retraining or changed learned parameters.
+Equivalent old/current attention names and migration idempotence are tested.
+V2 uses a fresh output directory; unchanged three pairs/seed/steps/controls and
+visual gates. Next: synthetic repeated forward then development photos.
+Scope remains private driver/config/tests, no production imports or defaults.
+Historical negatives and unrelated work remain unchanged; rollback is scoped
+commit reversal, never replacement of reports or checkpoints.
+
 ## Next photographic-prior triage (2026-09-07)
 
 Execution update: bounded metadata probe now confirms 662 selected reference
