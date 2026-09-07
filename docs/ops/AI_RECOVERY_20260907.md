@@ -27,7 +27,20 @@ note/log, one outputs/ai_classneg_supervision_diagnostic_v1 root. Reuse decoder,
 LUT/model, write_png and existing placement. CPU inference only, P-backed,
 relevant source committed before run, hash checks before pixels. Preserve all
 old reports and foreign changes. Mode A/L2, AI/ML primary; additive commits
-provide rollback. Plan DONE; runner NOT_STARTED; review NOT_STARTED.
+provide rollback. Plan/runner/review DONE; diagnostic only, NO_PROMOTION.
+
+Report SHA `9bf6512649c1a630e1cd98555147a92863042d5f1d0c1a53f2bb62856f972b90`;
+all16 comparison hashes verified. Mean prediction-target L1 is0.00864191,
+versus input-target0.03937295. All16 native512px three-arm comparisons were
+reviewed: both targets and predictions preferred8/16, on the same eight rows.
+No confirmed severe artifact at this size; not native-photo product clearance.
+Per-row observations are retained in
+`docs/evidence/AI_CLASSNEG_SUPERVISION_DIAGNOSTIC_20260907.json`.
+Grey-pink skies and darkened greens also appear in the digital targets; merely
+reducing approximation loss cannot be assumed to fix appeal. This is a
+descriptive diagnosis, not causal proof of every transfer failure. Do not tune
+these16 or the previous17 review photos. Next investigate a materially different
+pretrained learned appearance prior; preserve model, negatives and product defaults.
 
 ## Fixed ClassNeg photographic review (2026-09-07)
 

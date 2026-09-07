@@ -1,0 +1,147 @@
+{
+  "schema": "neuro-film.classneg-supervision-diagnostic.v1",
+  "date": "2026-09-07",
+  "decision": "DIAGNOSTIC_COMPLETE_NO_PROMOTION",
+  "scope": "Post-result descriptive review of all16 already-consumed development pairs, not independent confirmation.",
+  "report": {
+    "path": "outputs/ai_classneg_supervision_diagnostic_v1/report.json",
+    "sha256": "9bf6512649c1a630e1cd98555147a92863042d5f1d0c1a53f2bb62856f972b90",
+    "code_commit": "9be3c15e084169a90a403da06dac86df2dbf962e"
+  },
+  "review": {
+    "method": "Unblinded autonomous developer review of all16 input/target/prediction comparisons at native dataset 512px per arm. Review completed before cleanup interruption; report and all comparison hashes reverified on resumption.",
+    "target_preferred": 8,
+    "prediction_preferred": 8,
+    "count": 16,
+    "confirmed_severe_at_reviewed_size": 0,
+    "population_preference": false,
+    "full_resolution_product_clearance": false
+  },
+  "metrics": {
+    "mean_prediction_target_l1": 0.008641911234008148,
+    "mean_input_target_l1": 0.03937294741626829,
+    "mean_prediction_input_l1": 0.037934869062155485
+  },
+  "rows": [
+    {
+      "index": 0,
+      "comparison": "00_comparison.png",
+      "target_preferred": false,
+      "prediction_preferred": false,
+      "reason": "Cooler dark rocks lose warm richness; neither is a clear improvement."
+    },
+    {
+      "index": 1,
+      "comparison": "01_comparison.png",
+      "target_preferred": false,
+      "prediction_preferred": false,
+      "reason": "Greener dark lamp and grey-pink sky; visible change but ambiguous appeal."
+    },
+    {
+      "index": 2,
+      "comparison": "02_comparison.png",
+      "target_preferred": true,
+      "prediction_preferred": true,
+      "reason": "Warm neutral lettering and pale greens are more balanced; both preferred."
+    },
+    {
+      "index": 3,
+      "comparison": "03_comparison.png",
+      "target_preferred": true,
+      "prediction_preferred": true,
+      "reason": "Less pink skin and restrained warm palette; both preferred at dataset resolution."
+    },
+    {
+      "index": 4,
+      "comparison": "04_comparison.png",
+      "target_preferred": false,
+      "prediction_preferred": false,
+      "reason": "Grey-pink sky and muted foliage also occur in target; no clear improvement."
+    },
+    {
+      "index": 5,
+      "comparison": "05_comparison.png",
+      "target_preferred": true,
+      "prediction_preferred": true,
+      "reason": "Reduced purple navy cast and warmer light balance; both preferred."
+    },
+    {
+      "index": 6,
+      "comparison": "06_comparison.png",
+      "target_preferred": true,
+      "prediction_preferred": true,
+      "reason": "Muted greens, warm sky and cool water are coherent; both preferred."
+    },
+    {
+      "index": 7,
+      "comparison": "07_comparison.png",
+      "target_preferred": true,
+      "prediction_preferred": true,
+      "reason": "Reduced purple-blue cast with warm sunset; both preferred."
+    },
+    {
+      "index": 8,
+      "comparison": "08_comparison.png",
+      "target_preferred": false,
+      "prediction_preferred": false,
+      "reason": "Red shoes become orange and colour variety falls; no clear improvement."
+    },
+    {
+      "index": 9,
+      "comparison": "09_comparison.png",
+      "target_preferred": true,
+      "prediction_preferred": true,
+      "reason": "Rust scarf and muted green background are coherent; both preferred."
+    },
+    {
+      "index": 10,
+      "comparison": "10_comparison.png",
+      "target_preferred": false,
+      "prediction_preferred": false,
+      "reason": "Paler grey-pink sky and darker hedge reduce liveliness; neither preferred."
+    },
+    {
+      "index": 11,
+      "comparison": "11_comparison.png",
+      "target_preferred": true,
+      "prediction_preferred": true,
+      "reason": "Warm pastel sky and cool snow are coherent; both preferred."
+    },
+    {
+      "index": 12,
+      "comparison": "12_comparison.png",
+      "target_preferred": true,
+      "prediction_preferred": true,
+      "reason": "Teal darks, warm stone and pale greens are harmonious; both preferred."
+    },
+    {
+      "index": 13,
+      "comparison": "13_comparison.png",
+      "target_preferred": false,
+      "prediction_preferred": false,
+      "reason": "Warm-pink paper cast has no clear photographic benefit."
+    },
+    {
+      "index": 14,
+      "comparison": "14_comparison.png",
+      "target_preferred": false,
+      "prediction_preferred": false,
+      "reason": "Gold becomes drabber and loses ornamental richness; neither preferred."
+    },
+    {
+      "index": 15,
+      "comparison": "15_comparison.png",
+      "target_preferred": false,
+      "prediction_preferred": false,
+      "reason": "Orange bird chest becomes darker brown and subject is dulled; neither preferred."
+    }
+  ],
+  "interpretation": [
+    "Targets and predictions are visually close, and clear developer preference is only8/16 for each.",
+    "Several objectionable palette effects already occur in digital-recipe targets; lower approximation loss alone is not an adequate next objective.",
+    "This does not prove all supervision is useless or causally isolate the entire transfer failure. Different cohorts prevent a causal comparison of8/16 versus prior6/17.",
+    "No new fitting, checkpoint selection, dataset roles, official test reads or product changes."
+  ],
+  "next": "Audit a materially different pretrained learned appearance prior against actual photographs; do not tune on these consumed diagnostic or prior17 review images.",
+  "claim": "Internal digital-recipe approximation diagnosis, not real-film calibration or product validation."
+}

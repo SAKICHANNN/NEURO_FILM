@@ -1,5 +1,18 @@
 # Project Agent Log
 
+## 2026-09-07 - ClassNeg target-versus-prediction diagnosis
+
+- AI/ML primary, Mode A/L2; reliability/plan/log/structure secondary. Scope
+  d866f7155, runner/tests9be3c15e0. All16 consumed development pairs, no training,
+  new downloads or official-test reads. Output report and16 comparisons rehashed.
+- Mean prediction-target L1 .00864191; target and prediction each preferred8/16
+  in unblinded native512px developer review. Palette objections occur in both.
+  Evidence: AI_CLASSNEG_SUPERVISION_DIAGNOSTIC_20260907.json. No promotion or
+  population/physical-film claim; no product/core/default modifications.
+- Propagation: recovery plan updated; prior17-photo negative and checkpoints
+  unchanged. Next audit a different pretrained learned prior, not capacity-only
+  rescue or manual palette tuning. Existing foreign dirty paths preserved.
+
 ## 2026-09-07 - Fixed learned ClassNeg fails broader photographic-value gate
 
 - AI/ML primary; plan/reliability/log/structure secondary, Mode A/L2. Freeze

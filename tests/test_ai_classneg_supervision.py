@@ -1,8 +1,26 @@
 import copy
+import json
+from pathlib import Path
 
 import pytest
 
 from scripts.audit_ai_classneg_supervision import select_rows
+
+
+def test_diagnostic_evidence_is_descriptive_and_complete():
+    root = Path(__file__).resolve().parents[1]
+    evidence = json.loads(
+        (
+            root / "docs/evidence/AI_CLASSNEG_SUPERVISION_DIAGNOSTIC_20260907.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert evidence["decision"] == "DIAGNOSTIC_COMPLETE_NO_PROMOTION"
+    assert [row["index"] for row in evidence["rows"]] == list(range(16))
+    for arm in ("target", "prediction"):
+        assert sum(row[f"{arm}_preferred"] for row in evidence["rows"]) == 8
+        assert evidence["review"][f"{arm}_preferred"] == 8
+    assert evidence["review"]["population_preference"] is False
+    assert evidence["review"]["full_resolution_product_clearance"] is False
 
 
 def test_fixed_consumed_development_roles():
