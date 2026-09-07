@@ -1,5 +1,27 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Full pretrained NLUT comparison preparation (2026-09-07)
+
+Parent: ClassNeg supervision diagnosis; seek a learned appearance prior rather
+than merely fitting the same digital recipe more accurately. The full pretrained
+NLUT network has not been executed here; feature-only VGG pilots are not this
+method. Official semchan/NLUT README links public Drive folder
+`1YqCKnfqzOPtmwdYAziGZMQ79iAI0_0ur`, which lists a single
+`336999_style_lut.pth`, ID `1tVO0GFa5GeuuXmvPHq9iYpfwSObrUMiv`,236254785 bytes.
+Exact algorithm revision66e271dd5740282d1b0f16d42ed5ca3f763ce818 states MIT;
+the checkpoint is author-published for testing, but redistribution and training
+image rights are not independently established. Internal comparison only.
+
+Preparation scope: one bounded checkpoint, max240000000 bytes, new P-backed
+`data/ai_models/nlut_pretrained_v1`, no COCO or image download. Persist source
+identity, exact size, local SHA256, safe weights-only load inspection. No
+unrestricted pickle fallback or global dependency changes. Stop on wrong
+size, non-checkpoint response, unsafe load or nonfinite state. No inference
+or finetuning until architecture/defaults and an executable comparison are
+reviewed and frozen. Existing models and all evaluation cohorts remain intact.
+Mode A/L2, AI/ML primary; new acquisition script/test and this note/log only.
+Plan DONE; bounded acquisition/inspection IN_PROGRESS; inference NOT_STARTED.
+
 ## ClassNeg supervision diagnostic (2026-09-07)
 
 Parent: fixed photographic review failed in commit d32b72ccd. Before changing
