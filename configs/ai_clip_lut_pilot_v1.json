@@ -1,0 +1,15 @@
+{
+  "scope": "development-only learned semantic look; no film calibration or independent evidence",
+  "seed": 20260907,
+  "steps": 60,
+  "lr": 0.03,
+  "train_rows": [0, 1, 2, 3, 4, 5],
+  "transfer_rows": [6, 7, 8],
+  "source_manifest": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/manifest.json",
+  "model_path": "data/_fallback_archive/neuro_film_goal_019f4b76_20260821/external_controls/fgaesq_assets/ViT-B-16.pt",
+  "model_sha256": "5806e77cd80f8b59890b7e101eabd078d9fb84e6937f9e85e4ecb61988df416f",
+  "positive": ["a color photograph shot on analog film", "a beautiful film photograph with rich photographic tones", "a scanned analog color film photograph"],
+  "negative": ["an ordinary digital color photograph", "an unedited digital camera photograph", "a digital photograph with ordinary colors"],
+  "arms": ["lut", "simple"],
+  "decision": "CLIP objective is training-only, never evidence of quality. Inspect all transfer outputs for severe artifacts and film appeal versus original and learned simple control. No tuning this run; no automatic promotion."
+}
