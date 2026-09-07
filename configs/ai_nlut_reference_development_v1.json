@@ -40,6 +40,7 @@
     13
   ],
   "source_manifest": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/manifest.json",
+  "source_manifest_sha256": "7babbcac94745b396bb426fe9eafaec12f2b849c2ca91fab5e464f05da351ed8",
   "content_indices": [
     0,
     1,
