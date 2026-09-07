@@ -1,0 +1,72 @@
+{
+  "scope": "Development-only full pretrained NLUT reference-conditioned adaptation; not calibrated film or exact CUDA reproduction",
+  "revision": "66e271dd5740282d1b0f16d42ed5ca3f763ce818",
+  "source_files": [
+    [
+      "nlut_models.py",
+      15253,
+      "d00bca05ca3944f46299313f55d64f362577c08a"
+    ],
+    [
+      "utils/LUT.py",
+      7008,
+      "814d910f25afed9d5ca565c78d880993830bfcdd"
+    ],
+    [
+      "inference_finetuning_image.py",
+      8002,
+      "6b7383f29306bf008befffb9dfce10a3584058a3"
+    ],
+    [
+      "parameter_finetuning.py",
+      3217,
+      "baa0d17c97b7899296c2e361722066404df0a2db"
+    ],
+    [
+      "trilinear_cpp/src/trilinear.cpp",
+      7615,
+      "b4d75b04c36b97559d7421b2ff2df98ee16405a2"
+    ]
+  ],
+  "checkpoint": "data/ai_models/nlut_pretrained_v1/336999_style_lut.pth",
+  "checkpoint_sha256": "b8c9bbb765e00ea047399cd0c21b557cc7c839042ff92024777b284e5515c828",
+  "feature_manifest": "data/ai_models/nlut_feature_v1/manifest.json",
+  "feature_sha256": "d817f7ec074dbea827781188bdb2e5015cf137d5cd0e56ebb327341e57088142",
+  "reference_manifest": "data/ai_film_references/italy_2024_v1/manifest.json",
+  "reference_sha256": "7a7cf18824151f656cdd94e82abcdd4e4186c2167f273dbd32d27bd61da8ff06",
+  "reference_indices": [
+    1,
+    7,
+    13
+  ],
+  "source_manifest": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/manifest.json",
+  "content_indices": [
+    0,
+    1,
+    2
+  ],
+  "seed": 20260907,
+  "steps": 40,
+  "lr": 0.0001,
+  "size": 256,
+  "batch": 2,
+  "gradient_clip": 0.2,
+  "regularization_coefficient": 200000000,
+  "basis_chunk": 64,
+  "arms": [
+    "pretrained_eval_no_adaptation",
+    "official_train_mode_40steps",
+    "identity",
+    "simple_contrast_1.15"
+  ],
+  "output": "outputs/ai_nlut_reference_development_v1",
+  "max_runtime_seconds": 1200,
+  "decision": "Fixed three development pairs (zip content indices with reference indices), all arms inspected. No independent promotion. Require no confirmed severe artifact and clear preference over identity/simple in at least2/3 to open a separately frozen broader evaluation. No alternate references, schedules, strengths or eval-mode rescue on these pairs. Numerical substrate parity precedes photos.",
+  "differences": [
+    "Pinned official AST classes; remove only redundant unsafe VGG file load because strict complete checkpoint supplies encoder.",
+    "Pure torch interpolation follows official binsize1.000001/(D-1) and RGB channel layout; no input gradients used.",
+    "Compressed basis fusion and chunk64 regularizer preserve equations, not floating-point reduction order.",
+    "ICC-aware source conversion, PIL bilinear256 resize; no ICC discard; final PNG clamp disclosed and clipping measured.",
+    "Full trained network checkpoints not duplicated per pair; retain extracted residual LUT and loss trace only."
+  ]
+}

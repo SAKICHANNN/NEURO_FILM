@@ -1,5 +1,26 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Full NLUT runnable development comparison (2026-09-07)
+
+Freeze configs/ai_nlut_reference_development_v1.json before photos: exact
+pretrained network, official40-step Adam1e-4/batch2/clip.2 and regularization,
+three already-consumed source/reference development pairs (0/1/2 with1/7/13).
+Compare pretrained eval/no-adaptation, official train-mode adaptation, identity
+and simple contrast. This is a new learned prior, not a new independent cohort.
+Keep all cases, do not pick a winning reference or retune these pairs. At least
+2/3 clear preferences vs identity/simple with no confirmed severe opens only
+broader independently frozen evaluation. Product/defaults remain unchanged.
+
+Owned: config, src/models/color_lut/nlut_reference.py, runner and focused tests,
+source snapshots under existing pretrained root and one P-backed output root.
+Validate compressed reconstruction/fusion/regularizer gradients and independent
+scalar interpolation before synthetic full-network smoke and before pixels.
+Use exact reviewed official classes with only safe loading and explicit bounded
+memory execution changes; disclose numerical rather than byte conformance.
+GPU local <=1200s; no new images/models/cloud. Existing dirty files untouched.
+Mode A/L2, AI/ML primary; additive scoped commits/plan/log provide rollback.
+Plan DONE; implementation IN_PROGRESS; synthetic/photo review NOT_STARTED.
+
 ## Full pretrained NLUT comparison preparation (2026-09-07)
 
 Parent: ClassNeg supervision diagnosis; seek a learned appearance prior rather
