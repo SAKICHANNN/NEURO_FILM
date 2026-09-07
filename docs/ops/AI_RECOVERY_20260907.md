@@ -35,6 +35,36 @@ criteria. This run does not establish which early algorithm was the user's best.
 
 ## Next useful action
 
+### First new semantic-supervision learning pilot: rejected
+
+Frozen implementation/config commit `d09b953ce`, script
+`scripts/run_ai_clip_lut_pilot.py`. Official local CLIP ViT-B/16 SHA256 matches
+the public model URL `5806e77c...df416f`; MIT software license and research
+limitations read from https://github.com/openai/CLIP. No downloads or paid run.
+Model is frozen and backpropagates image-text loss into a shared17-cube field;
+the competing simple control learns six diagonal-color parameters. Final RGB is
+an explicit logit displacement, not a generated image. Both60 steps, seed fixed.
+Inputs are nine existing CC0 rawpixls derivatives: six training, three transfer
+development rows. These are not new independent assessment or real-film targets.
+
+Identity, finite-bound and gradient smoke passed before learning. Two local CUDA
+fits and27 renders completed;30 artifacts /18,159,362 bytes. Report SHA256
+`c4ae5e50ed58d33ab7e75506eeeca764aedaae34ca1b0df7bfccc3f2cc385292`
+under `outputs/ai_clip_lut_pilot_v1`. Model/evaluator unchanged; no prompt sweep.
+
+Visual inspection of all three LUT transfer results rejects the candidate:
+station facade, wall/shadows and interior show conspicuous false-color speckle,
+contours and patches. Original/station simple-control inspected too; simple
+control has a pervasive purple/red cast. Falling CLIP loss does not establish
+film appeal. Bounded output did not prevent severe color artifacts. No promoted
+candidate, no full-resolution work, no parameter/prompt/step rescue. Remaining
+simple transfer rows need not be adjudicated to reject the LUT candidate.
+
+This is a concrete learned baseline failure, not evidence that all AI methods
+fail. Next requires a photographic style observation or stronger justified
+supervision and structure, not more text-score maximization. Official CLIP model
+card explicitly does not establish general deployment readiness.
+
 ### Current method/source triage (2026-09-07, no new payload)
 
 | Primary source | Decision for next learner |

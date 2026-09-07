@@ -4,6 +4,14 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 
 ## 2026-09-07 - Early learned-LUT recovery smoke
 
+- New AI baseline actually trained: frozen CLIP gradient→explicit LUT versus
+  learned6-parameter control,60 steps each, six CC0 training/three development
+  transfer images. Local official weight hash exact, no new downloads. Identity/
+  bounds/gradient smoke, Ruff/compile pass. Both runs completed, report retained.
+  LUT transfer images visibly fail with false-color patches; simple station arm
+  strongly purple. Loss decline is not photographic success. Reject candidate,
+  no prompt/step tuning or integration. Recovery note contains exact identities.
+
 - Current-source triage: Exa plus official repos, compared with local closed
   routes. Added five-source decision matrix to recovery note. ns144 has no
   GitHub license; SA-LUT/D-LUT historical failures retained; no weights/pixels
