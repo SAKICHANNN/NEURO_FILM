@@ -1,4 +1,5 @@
 import copy
+import hashlib
 import json
 from pathlib import Path
 
@@ -11,6 +12,7 @@ from src.models.color_lut.nlut_reference import (
     fused_lut,
     interpolate,
     load_official,
+    published_code_state,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -117,3 +119,56 @@ def test_interpolation_against_scalar_cpp_equations():
     torch.testing.assert_close(lut.grad.sum((2, 3, 4)), torch.full((2, 3), 35.0))
     with pytest.raises(ValueError, match="domain"):
         interpolate(lut, image + 2)
+
+
+def test_checkpoint_compatibility_is_exact_not_strict_false():
+    unused = {"blurer.op.1.weight"} | {
+        f"SB1.conv{i}.{suffix}"
+        for i in (1, 2)
+        for suffix in (
+            "conv2d.weight",
+            "conv2d.bias",
+            "bn.weight",
+            "bn.bias",
+            "bn.running_mean",
+            "bn.running_var",
+            "bn.num_batches_tracked",
+        )
+    }
+    active = torch.tensor([3.0])
+    state = {key: torch.zeros(1) for key in unused} | {"active": active}
+    assert published_code_state(state, {"active"})["active"] is active
+    for changed in (
+        {**state, "unknown": active},
+        {k: v for k, v in state.items() if k != "active"},
+        {k: v for k, v in state.items() if k != "blurer.op.1.weight"},
+    ):
+        with pytest.raises(ValueError, match="contract"):
+            published_code_state(changed, {"active"})
+
+
+def test_completed_review_binds_run_and_all_rendered_arms():
+    evidence = json.loads(
+        (ROOT / "docs/evidence/AI_NLUT_REFERENCE_DEVELOPMENT_20260907.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    raw = (ROOT / evidence["report"]["path"]).read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == evidence["report"]["sha256"]
+    report = json.loads(raw)
+    assert report["commit"] == evidence["report"]["code_commit"]
+    assert evidence["decision"] == "NO_PROMOTION_SEVERE_ARTIFACTS"
+    assert not evidence["independent_confirmation"]
+    assert not evidence["exact_paper_reproduction"]
+    assert [r["pair"] for r in evidence["rows"]] == [0, 1, 2]
+    output = (ROOT / evidence["report"]["path"]).parent
+    for row, review in zip(report["rows"], evidence["rows"], strict=True):
+        assert len(row["losses"]) == 40
+        assert review["adapted_confirmed_severe"]
+        assert not review["adapted_preferred_over_identity"]
+        assert not review["adapted_preferred_over_simple"]
+        for name, facts in row["images"].items():
+            image = output / f"{row['pair']:02d}_{name}.png"
+            assert hashlib.sha256(image.read_bytes()).hexdigest() == facts["sha256"]
+        lut = output / f"{row['pair']:02d}_luts.pt"
+        assert hashlib.sha256(lut.read_bytes()).hexdigest() == review["lut_sha256"]

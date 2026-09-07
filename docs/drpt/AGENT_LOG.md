@@ -1,5 +1,26 @@
 # Project Agent Log
 
+## 2026-09-07 - Full NLUT learns but fails photographic severe-artifact veto
+
+- AI/ML primary; reliability, plan, DRPT, log and structure secondary; Mode A/L2.
+  Freeze08831b5e3, implementatione831fae7b, pre-pixel exact-key compatibility
+  fd79815e6. V1 strict-load stop retained; V2 complete3x40-step development run
+  took85.891s including smoke, max allocated CUDA5.102GB, no new pixels/models.
+- Reviewed all12 individual1600px arms, three references and comparison strips.
+  Adapted3/3 severe false-color/posterization,0/3 preferences vs identity/simple;
+  pretrained0/3 preferences,1/3 confirmed severe. Declining feature losses do
+  not establish appeal. Evidence AI_NLUT_REFERENCE_DEVELOPMENT_20260907.json
+  binds raw report902a72cf...a0339 and all output/LUT hashes.
+- Read-only full2048-basis synthetic reconstruction comparison max1.6093e-6;
+  post-result cell-origin determinant reversals8.853/40.570/10.715% consistent
+  with visible problems, not a causal proof or exact official reproduction.
+  No product/default changes, full-resolution trial or promotion. Preserve
+  complete negative and checkpoint; don't retune these pairs. Recovery plan
+  updated; next requires better photographic supervision/composite stability.
+  Six focused tests, Ruff and diff-check PASS; raw report and12 PNG hashes plus
+  three saved LUT packages verified. Additional tests do not rewrite run binding.
+  Existing foreign/interrupted files untouched; repository structure preserved.
+
 ## 2026-09-07 - Full pretrained NLUT acquired for actual learned comparison
 
 - AI/ML primary, research/plan/reliability/log/structure secondary, Mode A/L2.

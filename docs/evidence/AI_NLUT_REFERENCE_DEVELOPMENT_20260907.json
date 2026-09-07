@@ -1,0 +1,94 @@
+{
+  "schema": "neuro-film.nlut-reference-development-review.v1",
+  "date": "2026-09-07",
+  "decision": "NO_PROMOTION_SEVERE_ARTIFACTS",
+  "scope": "Three fixed previously consumed development pairs; public NLUT pretrained weights adapted through disclosed published-code compatibility. Not general NLUT failure or a new held-out evaluation.",
+  "report": {
+    "path": "outputs/ai_nlut_reference_development_v2/report.json",
+    "sha256": "902a72cfb60dc080c38717a6971e641f1f5070b4d00a34200b950986fe9a0339",
+    "code_commit": "fd79815e6a4bd147328372541fb4e6e95a9d2f5b"
+  },
+  "independent_confirmation": false,
+  "exact_paper_reproduction": false,
+  "product_promotion": false,
+  "calibrated_film": false,
+  "review_method": "Unblinded autonomous developer review: all three four-arm strips, all twelve individual 1600px encoded-source-size arms, and all three references inspected. No population preference, camera-native 12-24MP, face/text coverage or universal safety claim.",
+  "completed_learning": {
+    "pairs": 3,
+    "steps_per_pair": 40,
+    "total_seconds_including_synthetic_smoke": 85.89100000000326,
+    "maximum_reported_cuda_allocated_bytes": 5102438912,
+    "all_pairs_style_loss_decreased": true,
+    "model_or_pixel_downloads_during_run": 0
+  },
+  "rows": [
+    {
+      "pair": 0,
+      "subject": "Snowy garden through window with flags",
+      "adapted_confirmed_severe": true,
+      "adapted_preferred_over_identity": false,
+      "adapted_preferred_over_simple": false,
+      "pretrained_confirmed_severe": false,
+      "pretrained_preferred_over_identity": false,
+      "pretrained_preferred_over_simple": false,
+      "reason": "Adaptation introduces cyan/yellow islands and posterized contours in window, walls and awning, with amplified colored noise. Pretrained is dull and green-grey, not a clear photographic gain.",
+      "style_loss_first_last": [1.313549280166626, 0.7582892775535583],
+      "adapted_preclamp_out_of_range_fraction": 0.0,
+      "lut_sha256": "0ccf53da6aa122b45d102c0403ce6a449d1b2229e495693f7bdec21d659aee1e"
+    },
+    {
+      "pair": 1,
+      "subject": "Fruit and colored blocks against white foam",
+      "adapted_confirmed_severe": true,
+      "adapted_preferred_over_identity": false,
+      "adapted_preferred_over_simple": false,
+      "pretrained_confirmed_severe": true,
+      "pretrained_preferred_over_identity": false,
+      "pretrained_preferred_over_simple": false,
+      "reason": "Adapted white foam becomes dark-green islands and solarized contours; fruit has false-color patching and dark outlines. Pretrained already has new color contours and unnatural foam/fruit color separation, though milder.",
+      "style_loss_first_last": [7.092380523681641, 1.9250327348709106],
+      "adapted_preclamp_out_of_range_fraction": 0.07215513182674199,
+      "lut_sha256": "a29e073a74e176b2a720b0f515ca16700a11d1fe15c22b41b753c680c8c739de"
+    },
+    {
+      "pair": 2,
+      "subject": "White daisies and green leaves",
+      "adapted_confirmed_severe": true,
+      "adapted_preferred_over_identity": false,
+      "adapted_preferred_over_simple": false,
+      "pretrained_confirmed_severe": false,
+      "pretrained_preferred_over_identity": false,
+      "pretrained_preferred_over_simple": false,
+      "reason": "Adapted leaves, soil and defocused flowers acquire stepped color islands/outlines and petals lose delicate tonal gradation. Both learned arms wash out flower colors without a compelling photographic gain.",
+      "style_loss_first_last": [2.0600013732910156, 1.3713164329528809],
+      "adapted_preclamp_out_of_range_fraction": 0.00014956263667603874,
+      "lut_sha256": "f2da5b861324eaac11682831afa2dfc564f5674a03bb3fa5df455904fedf2ea4"
+    }
+  ],
+  "post_result_diagnostics": {
+    "scope": "Read-only CPU diagnostics after visual failure; no new acceptance gates, training or photo rendering. Cell-origin forward differences on residual LUT plus identity with spacing 1/32; not an integrated fold-volume estimate or proof of sole causality.",
+    "synthetic_full_2048_basis_original_vs_fused": {
+      "input": "seed20260907, linspace(0,1,3*256*256), two identical batch rows, reference flipped horizontally; pretrained eval mode, CPU float32, four threads",
+      "max_abs": 0.0000016093254089355469,
+      "mean_abs": 0.00000013198607007325336,
+      "original_lut_abs_max": 0.7099490761756897,
+      "interpretation": "Measured reassociation error is small on this synthetic forward, not a training-trajectory or official CUDA parity certificate. No gross reconstruction mismatch observed."
+    },
+    "negative_determinant_fraction_at_cell_origins": {
+      "pretrained": [0.01904296875, 0.21160888671875, 0.0347900390625],
+      "adapted": [0.088531494140625, 0.40570068359375, 0.107147216796875]
+    },
+    "adapted_minimum_determinant": [-12.085143089294434, -481.08587646484375, -3.0666069984436035],
+    "adapted_maximum_absolute_jacobian_entry": [4.753702163696289, 20.902238845825195, 4.041784286499023],
+    "interpretation": "Extracted composite LUTs contain local orientation reversals and steep responses consistent with observed solarization/noise amplification. Basis-wise smoothness does not itself certify the predicted weighted composite. This is not a causal ablation."
+  },
+  "lineage_and_limits": [
+    "V1 e831fae7b stopped in strict checkpoint loading before any synthetic/photo decode. Retain V1 execution lock.",
+    "V2 fd79815e6 requires exact15 unused SB1/blurer keys and zero missing active keys; current published graph is not verified identical to pretrained training graph.",
+    "Official source acquisition first rejected compressed response bytes; source decoder correction preceded code execution. Synthetic explicit-super binding issue was corrected before model run.",
+    "Pure Torch interpolation, fused compressed contractions, chunk64 regularizer and ICC-aware preparation are disclosed differences. Exact official CUDA training was not reproduced.",
+    "All raw reports, extracted LUTs, references and rendered failures retained; raw report visual_review=pending is intentionally immutable and this evidence records completed review.",
+    "No early-best/AO6 comparison or independent 12-24MP trial opens because this candidate fails the severe-artifact veto already."
+  ],
+  "next": "Close this fixed candidate without schedule/reference/strength rescue. Before another photographic-learning run, select a materially better photographic objective/prior and a composite-operator stability design on separate roles; do not substitute manual palette edits or treat feature-loss reduction as film quality."
+}

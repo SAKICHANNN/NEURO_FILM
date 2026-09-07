@@ -19,7 +19,29 @@ Use exact reviewed official classes with only safe loading and explicit bounded
 memory execution changes; disclose numerical rather than byte conformance.
 GPU local <=1200s; no new images/models/cloud. Existing dirty files untouched.
 Mode A/L2, AI/ML primary; additive scoped commits/plan/log provide rollback.
-Plan DONE; implementation IN_PROGRESS; synthetic/photo review NOT_STARTED.
+Plan/implementation/synthetic/three-pair training/photo review DONE. Decision:
+NO_PROMOTION_SEVERE_ARTIFACTS. This candidate does not open independent evaluation
+or product integration. Recovery parent Goal remains active, not complete.
+
+V2 raw report SHA902a72cf...a0339 binds fd79815e6. Three40-step runs completed
+in85.891s including smoke, max allocated CUDA5,102,438,912 bytes. All style
+losses decreased, but all three adapted1600px outputs have confirmed severe
+posterization/false-color contours;0/3 preferred over identity or simple contrast.
+All12 individual arms and three references inspected, plus comparison strips.
+Pretrained/no-adaptation also has no clear preference wins and one severe case.
+Review: docs/evidence/AI_NLUT_REFERENCE_DEVELOPMENT_20260907.json. Raw report
+remains immutable with its pre-review pending marker; evidence supplies review.
+
+Post-result read-only diagnostic: full2048-basis official reconstruction versus
+fused pretrained synthetic forward max error1.6093e-6, not exact CUDA equivalence.
+Composite LUT cell-origin negative-determinant fractions after adaptation are
+8.853/40.570/10.715%, consistent with local reversals/steep color amplification;
+these are diagnostic samples, not a new gate or whole-cube volume claim. The
+fruit case has7.216% preclamp out-of-range components. Geometry preservation alone
+does not protect photographic texture. No retuning/strength/reference rescue.
+Next select a genuinely photographic learned objective/prior with composite
+stability, on separate roles; don't return to hand-authored curves or blindly
+scale the same feature-moment loss. No new model/image downloads for this run.
 
 V1 execution stopped in strict checkpoint loading, before synthetic or photo
 decode:15 unexpected SB1/blurer keys are absent from all published model-code
@@ -38,7 +60,7 @@ before model execution. Reconstruction/gradient/scalar interpolation tests pass.
 
 Parent: ClassNeg supervision diagnosis; seek a learned appearance prior rather
 than merely fitting the same digital recipe more accurately. The full pretrained
-NLUT network has not been executed here; feature-only VGG pilots are not this
+NLUT network had not been executed at preparation time; feature-only VGG pilots are not this
 method. Official semchan/NLUT README links public Drive folder
 `1YqCKnfqzOPtmwdYAziGZMQ79iAI0_0ur`, which lists a single
 `336999_style_lut.pth`, ID `1tVO0GFa5GeuuXmvPHq9iYpfwSObrUMiv`,236254785 bytes.
@@ -54,7 +76,8 @@ size, non-checkpoint response, unsafe load or nonfinite state. No inference
 or finetuning until architecture/defaults and an executable comparison are
 reviewed and frozen. Existing models and all evaluation cohorts remain intact.
 Mode A/L2, AI/ML primary; new acquisition script/test and this note/log only.
-Plan/acquisition/weights-only inspection DONE; full inference NOT_STARTED.
+Plan/acquisition/weights-only inspection DONE; full inference subsequently
+completed in the development comparison above and failed visual promotion.
 Checkpoint236254785 bytes, SHA256
 `b8c9bbb765e00ea047399cd0c21b557cc7c839042ff92024777b284e5515c828`.
 122 finite tensors/22032901 elements; keys iter/state_dict/optimizer. Exact
