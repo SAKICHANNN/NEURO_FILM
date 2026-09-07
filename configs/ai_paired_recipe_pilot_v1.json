@@ -1,6 +1,7 @@
 {
   "source_manifest": "outputs/roll2film/filmset_evidence/source_train.jsonl",
   "source_manifest_sha256": "4788ecffcc0d05df9baf614e159fd5e2bd6f5e5ca76e2bd3109ed993aca6f865",
+  "paired_manifest_sha256": "0e7603d551791337510850f620bdefdf66eabd44e70e249ac5e7dc7e0ba62439",
   "inventory": "outputs/roll2film/filmset_evidence/inventory_cache.jsonl",
   "root": "data/raw/filmset/FilmSet",
   "styles": ["Cinema", "ClassNeg", "Velvia"],

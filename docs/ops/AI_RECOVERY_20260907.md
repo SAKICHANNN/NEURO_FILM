@@ -33,7 +33,14 @@ on development evaluation without conspicuous severe artifacts; otherwise keep
 the simpler result as a control, not a product winner. No loss/step/strength tuning
 on these evaluation results. Full-resolution/independent validation remains later.
 
-Status: manifest/implementation IN_PROGRESS, training NOT_STARTED. Small local
+Manifest frozen at `outputs/ai_paired_recipe_pilot_v1/manifest.json`, SHA
+`0e7603d551791337510850f620bdefdf66eabd44e70e249ac5e7dc7e0ba62439`.
+Source/target pairs are explicitly new supervised roles; no old role file changed.
+Six model tests PASS. Initial prescore test incorrectly demanded historical
+scalar/batched float32 byte equality (11/648 values, max1.19209e-7); this new
+kernel is a formula-equivalence comparison at2 float32 eps, not a historical
+byte-replay claim. Test corrected before first paired pixel/optimizer access.
+Status: manifest/implementation DONE, training IN_PROGRESS. Small local
 GPU run, no cloud or new dataset download. Scoped commits provide rollback;
 all old model runs and unrelated worktree changes stay intact.
 
