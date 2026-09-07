@@ -1,0 +1,17 @@
+{
+  "source_manifest": "outputs/roll2film/filmset_evidence/source_train.jsonl",
+  "source_manifest_sha256": "4788ecffcc0d05df9baf614e159fd5e2bd6f5e5ca76e2bd3109ed993aca6f865",
+  "inventory": "outputs/roll2film/filmset_evidence/inventory_cache.jsonl",
+  "root": "data/raw/filmset/FilmSet",
+  "styles": ["Cinema", "ClassNeg", "Velvia"],
+  "fit_count": 64,
+  "evaluation_count": 16,
+  "size": 192,
+  "steps": 600,
+  "batch": 4,
+  "learning_rate": 0.003,
+  "seed": 20260907,
+  "destination": "outputs/ai_paired_recipe_pilot_v1",
+  "claim": "paired digital-recipe development control, not unpaired or physical film",
+  "allow_publication": false
+}

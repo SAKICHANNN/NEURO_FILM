@@ -1,5 +1,42 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Paired digital-recipe AI control (prospective, 2026-09-07)
+
+Target-only visual preflight: first3 Cinema target SHA-ranked content identities
+in existing `target_train.jsonl` (`fujifilm_x_t4_11`, `20210718-DSCF9752`,
+`CNRAW_25`), all three variants (9 images) hash-verified/viewed. ClassNeg has
+coherent contrast/colour changes, Cinema softer; Velvia often oversaturated.
+This is sufficient for a *learning control*, not proof of film appearance.
+Manifest SHA `740019507339bb156a7b73061571209145447a3774f1c5319dbc4f9555c0db4f`.
+
+New AI-product development scope, NOT Roll2Film/CT pair-blind research:
+explicitly pair a bounded subset of the old source-training identities with
+their distributed-train digital targets. Original role files are immutable;
+new paired exposure is recorded and must not be passed off as pair-blind later.
+No internal_dev_lockbox or official test628 access. Existing licence permits
+internal research only; no public weights/examples or product redistribution.
+These are Capture One recipes, never actual-film/stock-calibration labels.
+
+Mode A, no production changes. New manifest builder/trainer/tests under existing
+scripts/models conventions. SHA-rank source_train, take one per frozen duplicate
+cluster; first64 fit, next16 same-corpus development evaluation. All3 styles.
+Freeze manifest before pixels; verify file hashes and sRGB ICC before training.
+Three arms: global learned triangular experts, small image/style-conditioned
+CNN predicting the same36 parameters, identical CNN with cyclic wrong-content
+targets (within fit pool, same style). No direct neural RGB output.
+Each600 Adam steps/lr.003/batch4 at192px, seed20260907, final checkpoint only.
+Freeze checkpoints before evaluation pixels. Report per-image/style L1 and
+identity-relative improvement, global-vs-conditional and wrong-target controls;
+inspect fixed first3 evaluation IDs and three existing CC0 transfer photographs.
+Prefer conditional only if median L1 improves >=10% over global and wrong-target
+on development evaluation without conspicuous severe artifacts; otherwise keep
+the simpler result as a control, not a product winner. No loss/step/strength tuning
+on these evaluation results. Full-resolution/independent validation remains later.
+
+Status: manifest/implementation IN_PROGRESS, training NOT_STARTED. Small local
+GPU run, no cloud or new dataset download. Scoped commits provide rollback;
+all old model runs and unrelated worktree changes stay intact.
+
 ## Texture supervision pilot (prospective, 2026-09-07)
 
 Parent: learned colour pilots below did not establish film appeal. New question:
