@@ -16,8 +16,11 @@ class CreativePrintLook:
     shadow: tuple[float, float, float] = (-0.10, 0.015, 0.12)
     highlight: tuple[float, float, float] = (0.16, 0.025, -0.14)
     tint_neutral_power: float = 0.0
+    gamut_policy: str = "hard-v1"
 
     def __post_init__(self):
+        if self.gamut_policy not in ("hard-v1", "soft-knee-v1"):
+            raise ValueError("invalid gamut policy")
         t = _vector(self.tone, 2, 0.05, 0.95, "tone")
         if t[0] >= t[1]:
             raise ValueError("tone controls must strictly increase")
@@ -36,6 +39,20 @@ class CreativePrintLook:
 
 def _luma(x):
     return x[..., 0:1] * 0.2126 + x[..., 1:2] * 0.7152 + x[..., 2:3] * 0.0722
+
+
+def _radial_scale(required, policy):
+    if policy == "hard-v1":
+        scale = 1 / np.maximum(1, required)
+        return np.where(required > 1, scale * (1 - 1e-7), scale)
+    # C1 shoulder: radius and slope match identity at .8; no finite-q plateau.
+    distance = np.maximum(required - 0.8, 0)
+    radius = 0.8 + 0.2 * distance / (0.2 + distance)
+    return np.where(
+        required <= 0.8,
+        1,
+        np.divide(radius, required, out=np.ones_like(required), where=required > 0),
+    )
 
 
 def render_print_look(source: np.ndarray, spec: CreativePrintLook, *, amount=1.0):
@@ -87,9 +104,7 @@ def render_print_look(source: np.ndarray, spec: CreativePrintLook, *, amount=1.0
         np.divide(positive, 1 - t, out=np.zeros_like(t), where=t < 1),
         np.divide(negative, t, out=np.zeros_like(t), where=t > 0),
     )
-    scale = 1 / np.maximum(1, required)
-    # Floating-point guard only on compressed rays; not a post-output repair.
-    scale = np.where(required > 1, scale * (1 - 1e-7), scale)
+    scale = _radial_scale(required, spec.gamut_policy)
     candidate = t + c * scale
     result = np.ascontiguousarray(
         (1 - strength) * x + strength * candidate, dtype=np.float32

@@ -6,7 +6,40 @@ import numpy as np
 import pytest
 
 from scripts.compare_creative_looks_v2 import compare
-from src.color_engine.creative_print_look import CreativePrintLook, render_print_look
+from src.color_engine.creative_print_look import (
+    CreativePrintLook,
+    _radial_scale,
+    render_print_look,
+)
+
+
+def test_soft_radial_scalar_oracle_and_no_plateau():
+    q = np.array([0, 0.4, 0.8, 0.9, 1, 1.2, 2, 10], dtype=float)
+    radius = q * _radial_scale(q, "soft-knee-v1")
+    expected = np.array([v if v <= 0.8 else 1 - 0.04 / (v - 0.6) for v in q])
+    np.testing.assert_allclose(radius, expected, atol=2e-16, rtol=0)
+    assert np.all(np.diff(radius) > 0) and np.all(radius < 1)
+    dense = np.linspace(0.7, 2, 10001)
+    mapped = dense * _radial_scale(dense, "soft-knee-v1")
+    assert np.all(np.diff(mapped) > 0)
+    epsilon = 1e-6
+    sides = np.array([0.8 - epsilon, 0.8, 0.8 + epsilon])
+    slopes = np.diff(sides * _radial_scale(sides, "soft-knee-v1")) / epsilon
+    np.testing.assert_allclose(slopes, 1, rtol=0, atol=6e-6)
+
+
+def test_soft_radial_highlight_retains_variation_and_chroma_direction():
+    values = np.linspace(0.65, 0.95, 1024, dtype=np.float32)
+    x = np.stack([values, values * 0.8, values * 0.65], -1)[None]
+    old = CreativePrintLook(tint_neutral_power=2)
+    new = replace(old, gamut_policy="soft-knee-v1")
+    hard, soft = render_print_look(x, old), render_print_look(x, new)
+    assert np.count_nonzero(hard[..., 0] > 1 - 1e-6) > 100
+    assert np.all(np.diff(soft[0, :, 0]) > 0)
+    assert soft.max() < 1 - 1e-4
+    yh, ys = luma(hard)[..., None], luma(soft)[..., None]
+    np.testing.assert_allclose(yh, ys, atol=5e-8, rtol=0)
+    np.testing.assert_allclose(np.cross(hard - yh, soft - ys), 0, atol=2e-8, rtol=0)
 
 
 def luma(x):
@@ -32,11 +65,12 @@ def test_chromatic_tint_protection_and_v1_preservation():
     )
 
 
+@pytest.mark.parametrize("policy", ["hard-v1", "soft-knee-v1"])
 @pytest.mark.parametrize("power", [0, 2])
-def test_luma_tone_and_gamut_independent_of_colour(power):
+def test_luma_tone_and_gamut_independent_of_colour(power, policy):
     x = np.random.default_rng(733).random((128, 129, 3), dtype=np.float32)
     y = luma(x)
-    spec = CreativePrintLook(tint_neutral_power=power)
+    spec = CreativePrintLook(tint_neutral_power=power, gamut_policy=policy)
     a, b = spec.tone
     target = 3 * a * (1 - y) ** 2 * y + 3 * b * (1 - y) * y * y + y**3
     result = render_print_look(x, spec)
@@ -55,11 +89,14 @@ def test_luma_tone_and_gamut_independent_of_colour(power):
     np.testing.assert_array_equal(render_print_look(x, spec, amount=0), x)
 
 
+@pytest.mark.parametrize("policy", ["hard-v1", "soft-knee-v1"])
 @pytest.mark.parametrize("power", [0, 2])
-def test_neutral_ramp_tone_order_and_zero_endpoints(power):
+def test_neutral_ramp_tone_order_and_zero_endpoints(power, policy):
     r = np.linspace(0, 1, 65537, dtype=np.float32)
     x = np.repeat(r[None, :, None], 3, axis=-1)
-    out = render_print_look(x, CreativePrintLook(tint_neutral_power=power))
+    out = render_print_look(
+        x, CreativePrintLook(tint_neutral_power=power, gamut_policy=policy)
+    )
     assert np.all(np.diff(luma(out).ravel()) > 0)
     np.testing.assert_array_equal(out[:, 0], [[0, 0, 0]])
     np.testing.assert_array_equal(out[:, -1], [[1, 1, 1]])
@@ -108,6 +145,7 @@ def test_invalid_pixels(bad):
         {"chroma": True},
         {"shadow": (0, 0, float("nan"))},
         {"highlight": (0, 0, 0.31)},
+        {"gamut_policy": "unknown"},
     ],
 )
 def test_invalid_spec(kwargs):
