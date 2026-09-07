@@ -1,5 +1,16 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Reference-average diagnostic, frozen before execution
+
+Same structural operator/features/120step budget/source roles; vary only target
+from all19 averaged feature moments to one reference at a time. First3 source
+SHA-ranked images are03/09/18 (manifest indices1/7/13), chosen without output
+scores. `ai_single_reference_photo_pilot_v1.json` fixes these three and requires
+all9 transfer outputs reviewed. Same simple arm reruns for each target; no
+best-reference routing or postscore palette choice, no promotion from this
+small development diagnostic. If distinct but unappealing, averaging alone is
+not a sufficient explanation. Existing averaged results remain immutable.
+
 ## Structural successor, before photo training
 
 Executed development successor at `bf2f7c3d5`,120 updates/arm, same feature

@@ -1,0 +1,7 @@
+{
+  "parent_config": "configs/ai_structural_photo_pilot_v1.json",
+  "reference_indices": [1,7,13],
+  "selection": "first three references sorted by source SHA256 before this experiment: 03.jpg,09.jpg,18.jpg",
+  "scope": "development-only test of reference averaging, same 120 updates/operator and same digital inputs",
+  "decision": "Review all nine triangular transfer outputs, not best-of-nine. Compare to averaged-reference and per-reference simple controls. No tuning/routing/stock identity/independent claim. Stronger colour differences alone do not establish credible film appearance."
+}

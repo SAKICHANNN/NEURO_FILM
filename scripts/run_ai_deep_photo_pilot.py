@@ -28,8 +28,15 @@ def moments(x):
     return x.mean((2, 3)), x.std((2, 3), correction=0)
 
 
-def main(config="configs/ai_deep_photo_pilot_v1.json", structural=False):
+def main(
+    config="configs/ai_deep_photo_pilot_v1.json", structural=False, reference_index=None
+):
     cfg = json.loads((ROOT / config).read_text())
+    if reference_index is not None:
+        cfg["reference_index"] = reference_index
+        cfg["output"] = (
+            f"outputs/ai_single_reference_photo_pilot_v1/ref_{reference_index:02d}"
+        )
     out = ROOT / cfg.get("output", "outputs/ai_deep_photo_pilot_v1")
     if out.exists() or out.resolve().drive.upper() != "P:":
         raise RuntimeError("Require new P-backed output")
@@ -73,6 +80,8 @@ def main(config="configs/ai_deep_photo_pilot_v1.json", structural=False):
                     for f in encoder.encode_with_intermediate(resize(image_tensor(p)))
                 ]
             )
+    if reference_index is not None:
+        reference_moments = [reference_moments[reference_index]]
     targets = [
         (
             torch.stack([r[k][0] for r in reference_moments]).mean(0),
@@ -91,9 +100,9 @@ def main(config="configs/ai_deep_photo_pilot_v1.json", structural=False):
     train = [resize(x) for x in images[: len(cfg["train_rows"])]]
     with torch.no_grad():
         contents = [encoder.encode(x).detach() for x in train]
-    out.mkdir()
+    out.mkdir(parents=True)
     report = {"config": cfg, "source_hashes": hashes, "arms": {}}
-    for arm in (("triangular", "simple") if structural else ("lut", "simple")):
+    for arm in ("triangular", "simple") if structural else ("lut", "simple"):
         n = cfg["lattice"]
         p = torch.nn.Parameter(
             torch.zeros(
