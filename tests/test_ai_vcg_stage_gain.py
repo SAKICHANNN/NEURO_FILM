@@ -36,3 +36,25 @@ def test_pillow_quantized_node_values_preserved():
     np.testing.assert_allclose(
         interpolate(cube, points), cube.reshape(-1, 3), atol=1e-14
     )
+
+
+def test_official_ncc_preserves_source_without_covariance():
+    from scripts.diagnose_ai_vcg_stage_gain import (
+        REPORT,
+        REPORT_SHA,
+        official_functions,
+    )
+    from scripts.run_ai_vcg_reference import checked_json
+
+    scope = official_functions(checked_json(REPORT, REPORT_SHA))
+    source = np.zeros((1, 19, 17, 3), dtype=np.uint8)
+    source[0, ..., 0] = 123
+    ref = np.ones((20, 20, 3), dtype=np.uint8)
+
+    def forbidden(*args):
+        raise AssertionError("ncc must not fit covariance")
+
+    scope["vars"] = forbidden
+    full, small = scope["preprocess"](source, ref, 32, True)
+    assert np.array_equal(full, source)
+    assert np.array(small).shape == (1, 32, 32, 3)
