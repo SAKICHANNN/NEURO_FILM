@@ -1,5 +1,46 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Next photographic-prior triage (2026-09-07)
+
+After the full NLUT negative, prefer a learned photographic representation over
+another per-pair feature-moment optimization. No new model or image payload was
+downloaded during this bounded read-only triage. This is readiness evidence,
+not a new successful stylization experiment.
+
+- NeuralPreset official tree `6ccb50374ba2fcfa80137823159951c147ed50db`
+  contains only metric code/weights, test images and a teaser under `src`/assets;
+  no local stylization network/trainer/checkpoint is present. README declares
+  CC BY-NC-SA 4.0 and directs stylization to an online demo. Do not upload local
+  photographs or treat metric weights as its stylization model. Its two-stage
+  normalization/stylization idea remains a paper reference, not ready inference.
+  Source: https://github.com/ZHKKKe/NeuralPreset
+- New non-duplicate candidate: ICCV2025 Video Color Grading, official tree
+  `9d58052bd70eb68ed684003619e62795825f346d`. Unlike WACV2025 D-LUT, this is
+  `seunghyuns98/VideoColorGrading`: trained GS-Extractor plus L-Diffuser.
+  Reviewed README, inference/grading code, pipeline and inference configs.
+  It predicts a residual 16-cube (64x64x3 arrangement); final media is produced
+  by Pillow Color3DLUT, not VAE-decoded RGB. The VAE only encodes conditioning.
+  Training uses movie frames and LUT augmentation; it is not physical film truth.
+  Repository LICENSE is Apache-2.0; base models and externally hosted checkpoint
+  coverage still need their own verification before acquisition/use.
+  Source: https://github.com/seunghyuns98/VideoColorGrading
+  Paper: https://openaccess.thecvf.com/content/ICCV2025/papers/Shin_Video_Color_Grading_via_Look-Up_Table_Generation_ICCV_2025_paper.pdf
+- Official linked anonymous Drive folder is accessible via HTTPS metadata:
+  `1GX3Q0kti6WpmZPKdzToR2sv9qEps6cmK`. Visible entries are `step1.ckpt`
+  (displayed 6.4 GB, ID `1WIVo09KWjIH2LVfk-uHz2MEuDODU419H`) and `step2.ckpt`
+  (displayed 3.2 GB, ID `1VnE0ezMAPs8E4q4eZeA1ljlyuhNvzitt`). These are rounded
+  UI sizes, not exact byte locks. Config instead names GS-Extractor.ckpt and
+  L-Diffuser.ckpt, plus SD1.5 and CLIP ViT-B/32; mapping remains to be verified.
+  No checkpoint body was requested. Default pipeline uses float32 and explicitly
+  moves ReferenceNet back to CPU after extracting features; 12GB feasibility
+  remains unmeasured, not automatically rejected or assumed to fit.
+
+Next bounded action: establish exact weight sizes/identity/usage scope and reuse
+any already-held SD1.5/CLIP components, then decide one local inference smoke.
+Do not download the movie dataset, retrain the paper, restart the earlier D-LUT
+negative, or change product defaults. If runnable, freeze a three-pair descriptive
+development comparison before images; independent evaluation remains separate.
+
 ## Full NLUT runnable development comparison (2026-09-07)
 
 Freeze configs/ai_nlut_reference_development_v1.json before photos: exact

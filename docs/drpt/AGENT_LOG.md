@@ -1,5 +1,18 @@
 # Project Agent Log
 
+## 2026-09-07 - Select photographic learned-prior readiness candidate
+
+- Research primary with Exa/router and lightweight continuity checks, Mode A/L2.
+  Read-only official trees and code establish NeuralPreset has metric assets but
+  no released local stylizer in its current tree. No online photo upload.
+- Identified distinct ICCV2025 VideoColorGrading, not the closed WACV D-LUT:
+  learned extractor/diffuser emits LUT, final pixels remain explicit mapping.
+  Anonymous official checkpoint listing is approximately 9.6GB; no payloads
+  downloaded. Exact bytes, external weight usage scope and local feasibility
+  remain open. Recovery note binds trees, URLs, file IDs and next bounded check.
+- Only recovery note and this log changed. No core/model/old evidence changes,
+  promotion or broad data acquisition. Existing foreign modifications preserved.
+
 ## 2026-09-07 - Full NLUT learns but fails photographic severe-artifact veto
 
 - AI/ML primary; reliability, plan, DRPT, log and structure secondary; Mode A/L2.
