@@ -37,7 +37,7 @@ not a new successful stylization experiment.
   photographs or treat metric weights as its stylization model. Its two-stage
   normalization/stylization idea remains a paper reference, not ready inference.
   Source: https://github.com/ZHKKKe/NeuralPreset
-- New non-duplicate candidate: ICCV2025 Video Color Grading, official tree
+- New non-duplicate candidate: ICCV2025 Video Color Grading, official revision
   `9d58052bd70eb68ed684003619e62795825f346d`. Unlike WACV2025 D-LUT, this is
   `seunghyuns98/VideoColorGrading`: trained GS-Extractor plus L-Diffuser.
   Reviewed README, inference/grading code, pipeline and inference configs.
@@ -57,6 +57,12 @@ not a new successful stylization experiment.
   No checkpoint body was requested. Default pipeline uses float32 and explicitly
   moves ReferenceNet back to CPU after extracting features; 12GB feasibility
   remains unmeasured, not automatically rejected or assumed to fit.
+
+Identity clarification from `/commits/main`:9d58052b... is the commit;
+its tree is24da294946c5abef95c441246de8bfb502d71309. The acquisition config's
+historical `source_tree` field names the commit, not the tree. Source files were
+independently checked against official per-file Git blob IDs; inference config
+uses separate correct commit/tree fields. No model or source selection changed.
 
 Next bounded action: establish exact weight sizes/identity/usage scope and reuse
 any already-held SD1.5/CLIP components, then decide one local inference smoke.

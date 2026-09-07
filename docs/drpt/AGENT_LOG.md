@@ -2,6 +2,17 @@
 
 ## 2026-09-07 - Bounded VCG model acquisition implementation
 
+- While acquisition runs, prepared fixed-pair inference driver/config/tests.
+  Official662/686 model key+shape comparison on meta device is exact; isolated
+  diffusers0.21.4/Transformers4.44.2 imports pass. Initial import was attempted
+  before pip's final target-copy completion and failed; after terminal install
+  it passes without source edits. CLIP B/32 official605,247,071-byte checkpoint
+  SHA a6308213...1576f verified; old integer position buffer is explicitly
+  arange50-checked and materialized, learned keys remain strict. Nine tests pass.
+  Inference config deliberately awaits completed acquisition manifest hash;
+  no synthetic forward or photograph inference has occurred yet. Shared runtime
+  and product environment were not downgraded. Source commit/tree label corrected
+  in the recovery note and separated in inference config; selection unchanged.
 - AI/ML primary, read-only research and lightweight plan/log/structure reviews.
   Exact metadata identifies662 reference and686 diffuser tensors. Plan71e0979a2
   excludes unused first-stage image-network weights and all movie/example data.

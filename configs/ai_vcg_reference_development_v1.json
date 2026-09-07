@@ -1,0 +1,44 @@
+{
+  "scope": "Private three-pair development inference, not physical film or exact paper reproduction",
+  "source_commit": "9d58052bd70eb68ed684003619e62795825f346d",
+  "source_tree": "24da294946c5abef95c441246de8bfb502d71309",
+  "source_hashes": {
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "pipeline.py": "67bf4848702f5e1d2868db540daf3cd5c61bb9037ff7a82e81f3fbd32ef9461c",
+    "models/ImageEncoder.py": "5b0134c79d270e297ed3a80d646281f14f15b2a84c12c3b7cb89acd480ea8b60",
+    "models/ReferenceNet.py": "3de7d7b287f84e4c8d49bbf07b669efd657f32af4c6ea0ceba0ae50cb9578a70",
+    "models/ReferenceNet_attention.py": "0fd7f60761403a47ea7b24389d47dd345df32fff7b336e65ed748aec78672df7",
+    "models/ReferenceNet_attention_diff.py": "537a789f2694a350aff4d8c3c05e78acc87536edb013ecc1c2376353cc364816",
+    "models/attention.py": "ffbcb325267e49665be8a64450a23f2dd136df3a93547043cd1a1ec3fe5eb094",
+    "utils/util.py": "ae5a3222dbba15acc4a890b177d54efd1802647704a9be13dd8ff260c0bc7904",
+    "configs/inference/inference.yaml": "1e8f84753007ee694e75435745f0fe06d9b521a45c7864be2b51bc983363a784",
+    "configs/prompts/video_demo.yaml": "cc795dc275961259c7b48ff83536e331ccf588f300565f8b40e906f4ced23424"
+  },
+  "model_manifest_sha256": "REQUIRES_COMPLETED_ACQUISITION_BEFORE_RUN",
+  "clip_sha256": "a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f",
+  "sd15_cache_repo": "models--runwayml--stable-diffusion-v1-5",
+  "sd15_revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+  "sd15_hashes": {
+    "unet/config.json": "78f474de6bab3d893868f37be97b636ae65c0df3073ed3256ca458ff599b5f96",
+    "vae/config.json": "786a7d21647ddea6a04b9675c03d3cb45e90a2f3c6da5fbda2c54ade040036de",
+    "vae/diffusion_pytorch_model.safetensors": "a2b5134f4dbc140d9c11f11cba3233099e00af40f262f136c691fb7d38d2194c"
+  },
+  "nlut_report": "outputs/ai_nlut_reference_development_v2/report.json",
+  "nlut_report_sha256": "902a72cfb60dc080c38717a6971e641f1f5070b4d00a34200b950986fe9a0339",
+  "source_manifest": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/manifest.json",
+  "source_manifest_sha256": "7babbcac94745b396bb426fe9eafaec12f2b849c2ca91fab5e464f05da351ed8",
+  "seed": 48,
+  "steps": 25,
+  "size": 512,
+  "max_seconds": 900,
+  "output": "outputs/ai_vcg_reference_development_v1",
+  "decision": "All three previously consumed NLUT pairs unchanged. Require no confirmed severe artifact and clear preference over identity/simple/precorrection in at least 2/3 to open independently frozen evaluation; no automatic product promotion. No reference/seed/strength/step rescue.",
+  "differences": [
+    "One still photograph replaces video frames; preserve exact original spatial coordinates in final LUT mapping.",
+    "Reuse hash-bound SD1.5 VAE/config; instantiate official reference/unet classes and strictly load selected tensor states, without unused base UNet weight reload.",
+    "Torch2.11/Transformers4.44.2 on Python3.12; official diffusers0.21.4 isolated locally. Not exact original Torch1.13/Transformers4.32 runtime.",
+    "Verify and materialize exact CLIP position_ids arange50 buffer made non-persistent by newer Transformers; all learned vision parameters remain strict.",
+    "ICC-aware RGB source conversion; bicubic512 conditioning resize; official default covariance pre-correction and LUT node clamp preserved and measured.",
+    "No model fitting, prompt change, movie data, cloud, public output, stock calibration, or default modification."
+  ]
+}
