@@ -6,6 +6,30 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+2026-09-07 next bounded repair: exact replay of all nine development-12 PNGs
+using the existing quantizer confirms source-[8,247] endpoint totals and near-
+float-boundary components respectively: 1284/868, 32782/31272, 5294/4222,
+1782/1682, 22485/21226, 19292/18420, 49101/45759, 18169/16375, 9312/8410.
+The first in-memory check used float32 half-up instead of the actual float64
+rint quantizer and did not replay exactly; excluded and corrected before edits.
+The source is the existing hard radial limit: q>1 is projected to unit radius,
+creating a component plateau. This is a mechanical risk, not nine severe votes.
+
+Implement one separately selectable `soft-knee-v1` radial policy in the existing
+private core, leaving the default `hard-v1` and all old config outputs exact.
+For required radius q<=.8 preserve q; otherwise r=.8+.2*(q-.8)/(.2+q-.8),
+and apply common scale r/q. This is C1, monotone in radial magnitude and below
+unit radius for finite q, preserving encoded luma and chroma direction; it
+does not prove whole-map invertibility or eliminate natural quantized endpoints.
+New development config v3 changes only this policy. Test scalar oracle, shoulder
+continuity/monotonicity, legacy hash, cube/ramp, luma, ownership and tile parity.
+Then rerender the same nine known rows; compare old/new counts and worst affected
+regions plus original/tone-only/basic controls. No assessment or new data reads.
+Pass here only opens broader portrait development, not product promotion.
+Scope: existing core/test/runner, one new config, this plan/log; no default/API.
+Rollback: scoped commit; foreign U7.22B remains untouched. Stop if safety or
+appearance regresses; no parameter grid. Use existing detail output path once.
+
 2026-09-07: the user explicitly authorized a replacement long-lived Goal after
 removing the old one. The top-level outcome is a worthwhile deterministic photo
 product, not a prescribed model, three stock names, or a count of experiments.
