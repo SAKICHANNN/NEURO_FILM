@@ -2,6 +2,21 @@
 
 ## VCG loading correction, 2026-09-07
 
+**Terminal development result:** V3 completed all five forwards (two synthetic
+repeats plus three fixed pairs) in79.922s, peak CUDA allocation8,233,958,912B.
+Synthetic repeat exact. Evidence:
+`docs/evidence/AI_VCG_REFERENCE_DEVELOPMENT_20260907.json`, raw report SHA
+`e1ff75bbd54333eba21e5dd0658c15651fbdcf64f0efafd624b96dfdb9c3284a`.
+Autonomous non-blind source-size review: snow scene severe chroma-noise/edge
+amplification; fruit unappealing cast; daisies a credible moody alternative.
+Preference1/3 and severe1/3 fail the frozen >=2/3 and zero-severe development
+rule. No independent evaluation or product integration opens. Preserve weights
+and negative outputs, no same-pair reference/seed/step/strength sweep.
+The goal remains open: visible AI style exists here but reliable photographic
+value is not established. Next work should distinguish preprocessing-induced
+noise gain from learned-LUT instability with a separately labelled diagnostic,
+not expand packaging or declare a single attractive image a product pass.
+
 V2 passed all model loading but stopped at UTF-8 official-source decoding under
 Windows' default GBK before any forward or photo. V3 specifies UTF-8 only;
 no downloaded source edit or changed model/control. V2 failure report retained.

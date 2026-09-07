@@ -1,5 +1,19 @@
 # Project Agent Log
 
+## 2026-09-07 - VCG fixed development images completed, not promoted
+
+- VAE migration and explicit UTF-8 loading resolved two pre-forward stops;
+  both raw failure reports retained. Ten focused tests and Ruff pass after
+  the test's reviewed-source exec annotation/format correction.
+- Run d6b30f72f: two identical synthetic forwards, all three fixed photos,
+ 79.922s/8.233GB peak allocated CUDA. Evidence in
+  `docs/evidence/AI_VCG_REFERENCE_DEVELOPMENT_20260907.json` binds report/images.
+  Non-blind autonomous review:1/3 preferred,1/3 severe, so no promotion or
+  independent evaluation. The flower image has useful visible style but does
+  not erase the snow failure. Product/default paths and foreign work untouched.
+- AI/ML primary; minimal propagation to existing recovery record and this log.
+  Long-term goal unchanged; next is causal diagnostic, not a parameter sweep.
+
 ## 2026-09-07 - VCG VAE loader compatibility
 
 - AI/ML primary, Mode A/L2; reliability/plan/structure governance secondary.

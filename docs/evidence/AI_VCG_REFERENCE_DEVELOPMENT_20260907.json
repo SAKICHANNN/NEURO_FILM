@@ -1,0 +1,52 @@
+{
+  "status": "DEVELOPMENT_NEGATIVE_NO_PROMOTION",
+  "scope": "Three consumed development pairs; non-blind autonomous visual assessment, not independent or population preference",
+  "run_commit": "d6b30f72fb43f0b87e94ec119b82be3aee30c739",
+  "report": "outputs/ai_vcg_reference_development_v3/report.json",
+  "report_bytes": 8156,
+  "report_sha256": "e1ff75bbd54333eba21e5dd0658c15651fbdcf64f0efafd624b96dfdb9c3284a",
+  "synthetic_repeat_exact": true,
+  "seconds_including_load_and_two_synthetic_forwards": 79.92200000000594,
+  "peak_cuda_allocated_bytes": 8233958912,
+  "comparison": ["identity", "simple", "legacy_safe_lab", "precorrection", "learned", "prior_nlut_negative"],
+  "visual_review": {
+    "method": "All three six-arm sheets; full source-size learned and precorrection images; source detail checks. Label-visible autonomous judgment. No face/text coverage claim.",
+    "rows": [
+      {
+        "id": 0,
+        "learned_sha256": "309c80de78963691596139309a3783aec75df90dbedb89426b2c69e9d5c812fd",
+        "severe": true,
+        "preferred_over_identity_simple_precorrection": false,
+        "observation": "Snow scene: widespread yellow/cyan chroma mottling on column and roof, excessive blue/yellow fine-edge contrast. Source already has noise/fringing, precorrection amplifies it, learned stage worsens its salience. Geometry retained but unacceptable full-detail colour/noise amplification."
+      },
+      {
+        "id": 1,
+        "learned_sha256": "0ed7f63be721fd985aae043db9581397a4ea5a0773fd4100d267597822a2e3d1",
+        "severe": false,
+        "preferred_over_identity_simple_precorrection": false,
+        "observation": "Fruit and blocks: strong visible grading, retained shapes/texture, but pale yellow background and green shadows/kiwi lack balanced appeal versus identity/simple. More contrast than precorrection alone does not establish film quality."
+      },
+      {
+        "id": 2,
+        "learned_sha256": "e7e0330d428d0ac73c716b04ec3370470ef569cd1891ee09296c1c6fdb820763",
+        "severe": false,
+        "preferred_over_identity_simple_precorrection": true,
+        "observation": "Daisies: coherent dark teal foliage and muted warm flower centres provide a plausible creative photographic alternative; petals and defocus retained. Preferred here for mood versus bland precorrection and simple saturation, not proof of physical-film authenticity."
+      }
+    ],
+    "severe_count": 1,
+    "preference_count": 1,
+    "required_preference_count": 2,
+    "required_severe_count": 0
+  },
+  "retained_pre_forward_failures": [
+    {"report": "outputs/ai_vcg_reference_development_v1/report.json", "sha256": "d5b132240530c0e7df10bc474648d812bd64644296e89e48649015e34d13545c", "cause": "Bypassed official VAE attention key migration"},
+    {"report": "outputs/ai_vcg_reference_development_v2/report.json", "sha256": "c9843bbf27716191797bbef35ad34b20445b39167dfd6f70dbfeb78c6a893256", "cause": "UTF-8 source read with Windows GBK default"}
+  ],
+  "interpretation": "An actually learned reference-conditioned LUT ran successfully and changes appearance substantially. This exact three-pair configuration does not meet the predeclared value/safety rule. Do not tune references, seed, strength or steps on these outcomes to manufacture a pass.",
+  "independent_evaluation_open": false,
+  "product_promotion": false,
+  "calibrated_stock": false,
+  "exact_paper_reproduction": false,
+  "limitations": ["One-photo adaptation of video method", "Newer Torch/Transformers runtime", "Three non-independent development scenes", "Only source-size 1600px output, not 12-24MP verification", "Official preprocessing and LUT clamping retained; cause of model-specific residual failure is not isolated"]
+}
