@@ -24,8 +24,17 @@ code commit for rollback; preserve source manifests and historical evidence.
 Data layout: source.html, manifest.json and ID.jpg under the configured P-backed
 repo-relative directory; manifest carries bytes/SHA256/dimensions/URL/role and
 license attribution. Verify bounded reads, create-only destination and JPEG
-integrity before recording completion. Intake is IN_PROGRESS; learning and
+integrity before recording completion. Intake is DONE; learning and
 independent validation are NOT_STARTED.
+
+Result: 19 JPEGs / 11,797,708 bytes. Manifest SHA256:
+`7a7cf18824151f656cdd94e82abcdd4e4186c2167f273dbd32d27bd61da8ff06`.
+JPEG verification and historical nicknick URL/byte duplicate checks pass.
+Perceptual overlap remains unchecked, sealed pixels unread. Image04 visually
+inspected only: natural building/sky scene with visible scan texture; not full
+source QA or learned-candidate evidence. Parser/hash tests 2 PASS; Ruff/compile
+PASS. Initial inline shell smoke had a quoting SyntaxError before execution;
+replaced with pytest tests. No training or production change.
 
 The current user asks for AI-learned film character without supplied paired
 captures. Manual creative-v6 changes remain interrupted and untouched.

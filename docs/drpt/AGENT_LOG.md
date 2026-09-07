@@ -1,5 +1,18 @@
 # Project Agent Log
 
+## 2026-09-07 - AI actual-photo development reference intake
+
+- AI/ML primary, planning/reliability/structure secondary: acquired 19 CC-BY-4.0
+  Italy2024 photographs into P-backed `data/ai_film_references/italy_2024_v1`.
+  11,797,708 bytes; config a04055634, acquisition dc0010d62. Whole series is
+  development-only author/scan appearance, not independent or stock truth.
+- Manifest SHA `7a7cf18824151f656cdd94e82abcdd4e4186c2167f273dbd32d27bd61da8ff06`;
+  JPEG/URL/byte checks pass; 2 parser/hash tests and Ruff/compile pass. Perceptual
+  duplicate review and full visual source QA remain before learning definition.
+- Existing dirty files, sealed pixels, models and production paths untouched.
+  No candidate trained or promoted; next is photo-supervision implementation,
+  not a repeat of CLIP semantic-only tuning. Existing structure preserved.
+
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
 ## 2026-09-07 - Early learned-LUT recovery smoke
