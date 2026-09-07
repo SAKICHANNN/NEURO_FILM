@@ -1,5 +1,20 @@
 # Project Agent Log
 
+## 2026-09-07 - VCG stage diagnosis and fixed NCC ablation
+
+- AI/ML primary, Mode A/L2. Added one CPU stage-gain diagnostic and one fixed
+  official ncc=True inference ablation, with four diagnostic tests. Fourteen
+  combined focused tests/Ruff pass. Parent six reconstructed PNGs byte-exact.
+- Snow pre-stage gain2.221, composed p95 gain5.576; NCC lowers p95 to2.752 and
+  reduces broad chroma mottling. NCC fruit/flowers are excessively chromatic;
+  no clear preference over simple on any of the three consumed photos.
+  Evidence `AI_VCG_STAGE_GAIN_AND_NCC_DIAGNOSTIC_20260907.json` binds raw reports
+  and image hashes. No new downloads, defaults, manual parameters or promotion.
+- Parent AI objective unchanged; prior negative preserved. Same-pair option
+  family stops; a successor needs learned-mechanism justification and genuinely
+  independent assessment. Existing product/foreign files untouched, structure
+  preserved. No new external authorization is required for local analysis.
+
 ## 2026-09-07 - VCG fixed development images completed, not promoted
 
 - VAE migration and explicit UTF-8 loading resolved two pre-forward stops;

@@ -2,6 +2,20 @@
 
 ## VCG stage-gain diagnostic, prospective 2026-09-07
 
+**Diagnostic completed:** evidence
+`docs/evidence/AI_VCG_STAGE_GAIN_AND_NCC_DIAGNOSTIC_20260907.json`.
+NCC run8cef58430 completed3photos in50.562s, no new model/data. Snow's broad
+colour-mottling defect materially reduced, derivative p95 gain5.576→2.752;
+fruit/flowers become over-chromatic and less balanced than simple control.
+No new confirmed severe defect, but0/3 clear preference over identity/simple.
+No promotion. This explains a pre-stage contribution, not a sufficient fix.
+Preserve both learned baselines and end the same-pair option family. Future
+work must specify a new learned representation/supervision or stability
+mechanism and independent assessment, not manual palette/strength rescue.
+Initial diagnostic tests used Pillow's float32 identity nodes as exact-real
+derivatives and failed at~4e-7; before measurement, split ideal-float64
+derivative tests from exact Pillow-node interpolation tests. No metric change.
+
 Executed441504a19: every reconstructed PNG is byte-exact. Snow pre-stage largest
 singular gain2.221, LUT p95 gain2.768, combined p95/max5.576/6.152. Other images'
 pre-stage gains are0.949/0.983. This supports, but does not alone prove, a

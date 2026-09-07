@@ -1,0 +1,51 @@
+{
+  "decision": "DIAGNOSTIC_PRECORRECTION_CONTRIBUTES_BUT_NCC_NOT_PRODUCT_READY",
+  "scope": "Consumed three-pair mechanism diagnosis and label-visible autonomous visual comparison, not independent confirmation",
+  "gain_report": "outputs/ai_vcg_stage_gain_diagnostic_v1/report.json",
+  "gain_report_sha256": "a2bc5d339019bfa6ed724256ba015536ab400b59e1a1397ee65099d549d9c84e",
+  "ncc_report": "outputs/ai_vcg_ncc_ablation_v1/report.json",
+  "ncc_report_sha256": "d8b13e6c987875487dce5779e0112f55ccc44b2fb2f8f9874802af56f98cd6b2",
+  "ncc_run_commit": "8cef584309911e968577d1665c0472d63002dccb",
+  "preprocessing_reconstruction": "All three precorrection and learned parent PNG hashes exact",
+  "ncc_seconds": 50.562000000005355,
+  "ncc_peak_cuda_allocated_bytes": 8233958912,
+  "visual_review": {
+    "reviewed": "Three five-arm sheets and all three source-size NCC images, compared with parent images inspected in preceding development review",
+    "rows": [
+      {
+        "id": 0,
+        "output_sha256": "3568128a09cac903880df8444611b94733efa2c279e93db81ee4986eb077a734",
+        "observation": "Snow: broad yellow/cyan mottling markedly reduced; darker stronger photograph, but mild green/magenta fringing and source noise remain. Improvement over full pipeline, not clear film-style advantage over simple control.",
+        "confirmed_severe": false,
+        "clear_preference_over_identity_and_simple": false
+      },
+      {
+        "id": 1,
+        "output_sha256": "207b1df4c869c9924fd0edc7922cd45cd78c2e4cef0ec48fcc3e8f743608b501",
+        "observation": "Fruit: unnatural bright orange/red and yellow with excessive chroma, particularly orange/apple/banana and blocks. Geometry and texture retained, appearance less balanced than simple control.",
+        "confirmed_severe": false,
+        "clear_preference_over_identity_and_simple": false
+      },
+      {
+        "id": 2,
+        "output_sha256": "bf87f964716507196af716be4ed54aba467acbe271dc71fde29ec4054dffe2b0",
+        "observation": "Daisies: strong emerald/teal shadows, near-fluorescent yellow centres and green foliage. Structure retained but less coherent than the parent's muted flower result; not preferred over simple.",
+        "confirmed_severe": false,
+        "clear_preference_over_identity_and_simple": false
+      }
+    ]
+  },
+  "descriptive_metrics_not_gates": {
+    "snow_pre_stage_maximum_singular_gain": 2.22118311827115,
+    "snow_full_chain_p95_maximum_singular_gain": 5.576409790608621,
+    "snow_ncc_chain_p95_maximum_singular_gain": 2.7518616413737216,
+    "ncc_new_boundary_pixel_fractions": [0.0, 0.0002359934086629002, 0.0038431349578256797],
+    "caveat": "Sampled continuous LUT derivatives omit uint8 rounding. Determinant sign did not track perceived severity. Pixel-boundary rates are post-result diagnostics, not retrospective gates."
+  },
+  "interpretation": "Covariance preprocessing materially contributes to this snow failure, while removing it alone leaves excessive learned chroma on other photos. This supports a preprocessing/model interaction, not a universal failure of VCG or AI. No seed/reference/step/strength sweep was used.",
+  "next": "Preserve this learned baseline and stop this three-pair parameter family. Any successor needs a materially specified learned operator/supervision or stability mechanism and new independently frozen assessment; do not hand-design a palette or promote by tuning these pictures.",
+  "parent_negative_unchanged": true,
+  "independent_evaluation_open": false,
+  "product_promotion": false,
+  "stock_calibration": false
+}
