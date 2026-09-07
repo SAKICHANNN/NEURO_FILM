@@ -1,0 +1,30 @@
+{
+  "schema": "kmcfm.creative-print-development.v1",
+  "status": "development-only-not-product-approved",
+  "intent": "Owner-requested visible dense-print direction. Colour-only must carry character without grain; finish is heuristic, not physical film calibration. Preview-scale texture only.",
+  "looks": {
+    "copper_light": {
+      "tone": [0.27, 0.90], "chroma": 0.88,
+      "shadow": [-0.10, 0.015, 0.12], "highlight": [0.16, 0.025, -0.14],
+      "tint_neutral_power": 2.0, "gamut_policy": "soft-knee-v1"
+    },
+    "dense_print": {
+      "tone": [0.08, 0.84], "chroma": 0.92,
+      "shadow": [-0.14, 0.04, 0.02], "highlight": [0.10, 0.025, -0.10],
+      "tint_neutral_power": 1.0, "gamut_policy": "soft-knee-v1"
+    }
+  },
+  "finish": {
+    "look": "dense_print", "grain_strength": 0.022, "grain_seed": 42,
+    "halation_strength": 0.35, "halation_threshold": 0.70
+  },
+  "additional_development": {
+    "id": "nasa_portrait_development",
+    "decoded_path": "outputs/creative_look_v2_development/portrait-local-smoke-01/identity.png",
+    "decoded_bytes": 440803,
+    "decoded_sha256": "eecb0b4567b9699e99672388f44639586b81bb396fec8ca80fd59ca4705319d1",
+    "width": 512, "height": 512,
+    "role": "previously-consumed-development-only",
+    "credit": "NASA / scikit-image public-domain astronaut fixture; no endorsement or population claim"
+  }
+}

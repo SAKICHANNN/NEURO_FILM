@@ -27,6 +27,8 @@ from src.color_engine.creative_ordered_hue_look import (
     render_ordered_hue_look,
 )
 from src.color_engine.creative_print_look import CreativePrintLook, render_print_look
+from src.filmfx.compositor import composite_layers
+from src.filmfx.effects import grain_residual_layer, halation_layer
 from src.inference.render_contract import load_render_profile
 from src.inference.style_safe_engine import render_resolved_safe_lab_rgb
 
@@ -65,6 +67,23 @@ def quantize(rgb: np.ndarray) -> np.ndarray:
     if not np.isfinite(rgb).all() or np.any((rgb < 0) | (rgb > 1)):
         raise ValueError("non-finite or out-of-range output")
     return np.rint(rgb.astype(np.float64) * 255).astype(np.uint8)
+
+
+def print_finish(grade, spec):
+    """Preview-scale existing heuristic effects, not calibrated grain/halation."""
+    halo = halation_layer(
+        grade,
+        strength=spec["halation_strength"],
+        threshold=spec["halation_threshold"],
+    )
+    glow = composite_layers(grade, [halo])
+    grain = grain_residual_layer(
+        glow,
+        strength=spec["grain_strength"],
+        seed=spec["grain_seed"],
+        color=False,
+    )
+    return composite_layers(glow, [grain])
 
 
 def select_ordered_assessment(lock, manifest, previous, review):
@@ -216,6 +235,7 @@ def compare(
         "creative_print_development_v1.json",
         "creative_print_development_v2.json",
         "creative_print_development_v3.json",
+        "creative_print_development_v4.json",
     ):
         raise ValueError("unrecognized development config")
     ordered_mode = creative_config.startswith("creative_ordered_hue_development_")
@@ -316,6 +336,16 @@ def compare(
         bindings.append(ROOT / "src/color_engine/creative_ordered_hue_look.py")
     if print_mode:
         bindings.append(ROOT / "src/color_engine/creative_print_look.py")
+    if "finish" in creative:
+        bindings.extend(
+            ROOT / p
+            for p in (
+                "src/filmfx/effects.py",
+                "src/filmfx/compositor.py",
+                "src/filmfx/fast_blur.py",
+                "src/filmfx/layers.py",
+            )
+        )
     bindings += [ROOT / row["path"] for row in profile["assets"]]
     if assessment:
         bindings.append(ROOT / "configs/creative_looks_v2_assessment_v1.json")
@@ -419,6 +449,10 @@ def compare(
         arms["basic-saturation-1.2"] = simple_control(
             source, saturation=config["simple_controls"]["saturation"]
         )
+        if "finish" in creative:
+            finish = creative["finish"]
+            name = finish["look"]
+            arms[f"finished-{name}"] = print_finish(arms[f"print-{name}"], finish)
         arms["basic-contrast-1.15"] = simple_control(
             source, contrast=config["simple_controls"]["contrast"]
         )

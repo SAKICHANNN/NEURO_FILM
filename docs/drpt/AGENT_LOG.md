@@ -2,6 +2,27 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-07 - LOOK2 explicit strong-look feedback and development
+
+- Owner again reports faint appearance/little film character. Reliability is
+  primary; visual-art-direction secondary, with lightweight plan/log/structure
+  propagation. No new Goal, scientific claim or product/default change.
+- Added v4 development config and a narrow existing-runner finish composition;
+  reuses print kernel and filmfx grain/halation/compositor, no duplicated core.
+  Nine known development rows x 13 arms; no assessment or network reads in run.
+  Report `outputs/creative_look_v2_development/development-14-dense-print/report.json`
+  SHA256 `4bf5c4c1411b23899c45934c65e3cf73e5b8cff24f308a36498f7985d73d9d92`.
+- Stairs/NASA/autumn overview review: materially stronger tone, but green room
+  neutrals/skin and coarse preview noise. Not promotion; full-detail safety,
+  appeal and export-scale texture remain unverified. Avoid global tint/noise
+  amplification as substitute for authored film-inspired colour/tonal character.
+- Earlier three-portrait intake verified two exact sources then HTTP429 on
+  third, before any portrait pixel decode. Full intake remains incomplete;
+  no repeated request and no false three-source pass.
+- 79 print/finish/creative-v2 tests PASS; Ruff check/format and diff check PASS.
+  Preserved foreign U7.22B dirty/untracked paths. No approval required for this
+  local development step; public release remains outside scope.
+
 ## 2026-09-07 - LOOK2 copper gamut plateau diagnosis and repair
 
 - Previous Goal turn was progress; this ready leaf addressed its explicit

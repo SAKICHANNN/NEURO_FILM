@@ -6,6 +6,29 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+2026-09-07 owner feedback supersedes the next cosmetic refinement: current
+copper remains too faint and lacks visible film character. The shoulder repair
+is retained as a technical repair, not an appearance-value success. Next is one
+explicitly authored dense-print development comparison: darker midtones,
+cool restrained shadows and warm highlights, with separate colour-only and
+existing monochrome grain/simple-halation finish arms. Original and copper v3
+remain visible controls. No assessment-01/02 reuse, default change, physical
+authenticity claim or promotion from numeric change alone. Inspect overview and
+texture before spending on full-detail runs. Two locked portrait bodies are
+available; third intake returned HTTP429 before any portrait decode, so the
+three-source intake is incomplete and must not be reported as passed.
+
+Development-14 completed nine known rows x 13 arms at overview size, using
+`creative_print_development_v4.json` and unchanged print kernel/effect modules.
+Actual review of stairs, NASA portrait and autumn comparisons finds stronger
+tonal separation but an undesirable green cast on room neutrals/portrait and
+coarse preview-scale noise. This candidate is NOT promoted or independently
+validated. Full-resolution grain scaling, broad visual review and available
+portrait decode remain undone. Do not count strength or passing composition
+tests as film character. Next development should separate purposeful tone and
+selective colour from global neutral tint; finish must support rather than hide
+the grade. Existing assessment sets remain closed and all v1 defaults unchanged.
+
 2026-09-07 smooth copper repair completed: `367bae4f4`, report
 `outputs/creative_look_v2_development/development-13-copper-soft/report.json`
 SHA256 `52baf57a24bc674ca610f11fb601eea905e71650d8572e1a6710cf7b7aa2e0ed`.

@@ -8,6 +8,12 @@
 
 ## 1. Parent goal and task contract
 
+2026-09-07 LOOK2 owner again rejects subtle appearance. Development-14 tests a
+stronger dense-print grade with colour-only and existing grain/halation arms;
+review flags green neutrals/skin and coarse preview noise. Not promoted. Stop
+treating copper gamut repair as appearance success; next is purposeful tone and
+selective-colour development, not heavier global tint/noise. See active LOOK2 plan.
+
 **Active parent goal `ULT`, 2026-09-05:** deliver a genuinely useful deterministic
 Look Approximation product. Visible distinction and photographic appeal after
 severe-artifact review are required alongside preview/export/replay correctness.
