@@ -4,6 +4,14 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 
 ## 2026-09-07 - Early learned-LUT recovery smoke
 
+- Follow-up: unchanged neural s800 checkpoint executed nine 1600px outputs on
+  three historical inputs. Cross-style PNG hashes identical per input. A separate
+  CPU input01 probe shows all8 checkpoint styles choose basis7/12 with exact
+  zero cross-style LUT delta. Conditioning collapse observed, training cause not
+  yet established. Ektar sheet visually near-input; no promotion or model edit.
+  Exact hashes/scope in recovery note. Documented 53/55/56 anchors are deterministic
+  recipes, not identified AI checkpoints. No claim of user-preferred AI recovery.
+
 - AI/ML primary: inspected target construction and retained checkpoints. Neural
   LUT uses style_transfer targets; distilled SepLUT uses film_response teacher.
   Neither provenance establishes independently learned film appearance.

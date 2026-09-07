@@ -35,6 +35,39 @@ criteria. This run does not establish which early algorithm was the user's best.
 
 ## Next useful action
 
+### Neural s800 recovery and conditioning failure
+
+Executed unchanged `evaluate_neural_lut.py` with
+`outputs/neural_lut/challenge_color6_s800_b12_init/model.pt`, first same three
+historical inputs at their 1600px source size, Ektar/Portra/Velvia IDs and legacy
+output margin4. CUDA inference completed nine outputs; 28 artifacts / 31,297,190
+bytes under `outputs/ai_recovery_20260907/neural_s800`. This differs in resolution
+from the preceding 768px numpy recovery; do not compare their metrics directly.
+
+Checkpoint SHA256:
+`83c21d2121ab9bb2a3e99ffa49653a947ae16c1ccddb0222a7a152f098919899`.
+Summary SHA256:
+`7a9e69c9a71605fe7c7de9c112ca8c40adefafe22a5afb360f40b96f707d0dd9`.
+For each input, all three style output PNG hashes are identical:
+
+- 01: `77b815776025e5311df93c42a182661749e36d1c404f97a6e3d21fc786c40c83`
+- 02: `703dad793922e41b7476f0b52bf464b9d8704280b68a44b54e0aed8e95c64366`
+- 03: `a47ad16647b119fdfab1bdfffb2b00edb22d72a534f628b719bab537c47cedfd`
+
+Read-only CPU probe on input01 through the exact loaded encoder: every one of
+the eight checkpoint style IDs returns one-hot weight at zero-based basis7
+of12, all other weights zero; maximum cross-style LUT difference is exactly0.
+Thus this checkpoint exhibits collapsed conditioning on this probe. This is not
+proof of the training cause, nor a universal statement about all images/models.
+Ektar sheet inspected: very small visual change. SSIM .99902-.99968 is not a
+style-success measure. No promotion, retraining or checkpoint modification.
+
+The documented owner anchors 01/09/53/55/56 are recovered in
+`render_filmcase_anchor_set.py` as deterministic pipeline recipes, explicitly
+anchor-inspired rather than exact historical replay. They do not identify a
+preferred AI checkpoint. Keep that distinction instead of retroactively labeling
+those preferences as neural-model success.
+
 Recover neural checkpoint inference and trace the genuinely preferred early
 outputs separately. Compare on the same development photographs before deciding
 what is reusable. Keep diffusion-era output evidence, but do not restart final-RGB
