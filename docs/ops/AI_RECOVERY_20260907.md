@@ -1,5 +1,34 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Single-reference diagnostic result, 2026-09-07
+
+Run from `aac6e4244`, all three predetermined reference arms completed.
+Reports under `outputs/ai_single_reference_photo_pilot_v1`:
+
+- ref_01: `c49c46ff988774f884910af780e860a640d2b5b164f4df4ec978e3ee9037c640`
+- ref_07: `d07dfbf88141597b187e669ab862e22add50a3ffb024464647685d5adb712a8e`
+- ref_13: `4b3b761ce369c46d36329d7f295e0d13e53a123bc7990205984588cc71fef943`
+
+All nine triangular transfer outputs, nine corresponding simple controls,
+three originals and three averaged-reference triangular outputs were inspected
+at their 768px development resolution. The first attempted bulk image display
+was truncated and not counted; subsequent bounded displays covered the set.
+Ref01 is cooler/greener, ref07 warmer with more contrast, ref13 mildly pinker.
+The triangle avoids the conspicuous false-colour failure of the unconstrained
+cube on these views, but remains a modest colour adjustment. The simple arms
+show similar reference-dependent colour changes (ref13 also lifts shadows).
+No clear credible-film/appeal advantage is established; do not select a winning
+reference from these nine pictures or promote to product. Averaging alone is
+not sufficient to explain the weak outcome under this fixed operator/budget.
+
+This is unblinded autonomous development inspection, not independent evidence,
+population preference or a full-resolution severe-artifact pass. The source07
+sideways orientation is already in the original, not introduced by learning.
+Five structural/source tests pass. No model or product parameters changed.
+Next substantive question is the supervision's ability to distinguish film
+appearance from scene palette/illumination, not more reference/strength search.
+Retain the learned models and outputs as negative controls.
+
 ## Reference-average diagnostic, frozen before execution
 
 Same structural operator/features/120step budget/source roles; vary only target

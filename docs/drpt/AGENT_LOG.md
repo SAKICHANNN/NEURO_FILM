@@ -1,5 +1,18 @@
 # Project Agent Log
 
+## 2026-09-07 - Single-reference AI diagnostic remains below product value
+
+- AI/ML primary with log/structure secondary: completed visual review of all
+  nine triangular and nine simple transfer outputs against three originals and
+  averaged-reference results; report hashes recorded in
+  `docs/ops/AI_RECOVERY_20260907.md`.
+- Three SHA-selected references change palette but do not establish convincing
+  film appearance or an advantage over simple learned controls. No best-of-nine
+  selection, product change, independent claim or full-resolution safety claim.
+- Five structural/source tests PASS. Existing structure and foreign changes
+  preserved. Goal continues toward stronger supervision; this development
+  diagnostic is closed without additional strength/reference tuning.
+
 ## 2026-09-07 - Structural learned photo operator remains visually insufficient
 
 - Implemented private triangular smooth operator;3 structural tests PASS.
