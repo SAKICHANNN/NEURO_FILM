@@ -8,6 +8,11 @@
 
 ## 1. Parent goal and task contract
 
+LOOK2 development-15: neutral-axis ordered gold/cyan palette + print tone now
+shows outdoor colour separation without texture, but shaded subjects darken too
+much. Nine development overviews inspected; not promoted/independently assessed.
+Next isolate tone readability from palette, not more tint or grain. See LOOK2 plan.
+
 2026-09-07 LOOK2 owner again rejects subtle appearance. Development-14 tests a
 stronger dense-print grade with colour-only and existing grain/halation arms;
 review flags green neutrals/skin and coarse preview noise. Not promoted. Stop

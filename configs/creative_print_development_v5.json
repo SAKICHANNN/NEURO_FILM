@@ -1,0 +1,33 @@
+{
+  "schema": "kmcfm.creative-print-development.v1",
+  "status": "development-only-not-product-approved",
+  "intent": "Gold daylight: visibly golden yellow-green foliage and cyan-blue sky with dense neutral tone. Outdoor creative palette, not a film-stock response. No texture.",
+  "looks": {
+    "copper_light": {
+      "tone": [0.27, 0.90], "chroma": 0.88,
+      "shadow": [-0.10, 0.015, 0.12], "highlight": [0.16, 0.025, -0.14],
+      "tint_neutral_power": 2.0, "gamut_policy": "soft-knee-v1"
+    },
+    "gold_daylight": {
+      "tone": [0.08, 0.84], "chroma": 1.05,
+      "shadow": [0, 0, 0], "highlight": [0, 0, 0],
+      "tint_neutral_power": 0, "gamut_policy": "soft-knee-v1"
+    }
+  },
+  "selective_colour": {
+    "gold_daylight": {
+      "source_hue": [0, 35, 60, 90, 120, 180, 220, 270, 320, 360],
+      "mapped_hue": [0, 35, 52, 64, 82, 175, 205, 270, 320, 360],
+      "green_logsat": -0.45, "blue_logsat": -0.05, "value_lift": 0
+    }
+  },
+  "additional_development": {
+    "id": "nasa_portrait_development",
+    "decoded_path": "outputs/creative_look_v2_development/portrait-local-smoke-01/identity.png",
+    "decoded_bytes": 440803,
+    "decoded_sha256": "eecb0b4567b9699e99672388f44639586b81bb396fec8ca80fd59ca4705319d1",
+    "width": 512, "height": 512,
+    "role": "previously-consumed-development-only",
+    "credit": "NASA / scikit-image public-domain astronaut fixture; no endorsement or population claim"
+  }
+}

@@ -6,6 +6,30 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+2026-09-07 next development after explicit outdoor rejection: gold-daylight,
+an outdoor-specific authored palette rather than another copper tint increase.
+Reuse ordered hue map before neutral-axis print tone: yellow-green foliage to
+gold, blue toward cyan, unchanged warm/red knot locations and neutral axis.
+Compare original/copper/grade/tone-only/palette-only/basic sliders on the same
+nine development rows, no texture or assessment reads. Keep public defaults and
+all old configs unchanged. Reject visible skin/flower hue damage, dirty neutrals
+or obvious banding; only a promising development result opens larger-detail
+checking and then separately locked independent assessment. Unit checks cover
+composition order, neutral axis, ownership, bounds, tile/repeat and ablations.
+
+Development-15 complete: nine known rows x 12 arms, report
+`outputs/creative_look_v2_development/development-15-gold-daylight/report.json`
+SHA256 `af287f9d92f4f11b84b77d97eb55c6da8c192ca5915aef51e007df57f95afa41`.
+Reviewed all nine candidate overviews and grass/flower full comparison sheets:
+gold foliage/cyan skies are distinguishable without texture; room neutrals and
+NASA skin avoid the v4 green wash. But flower, shaded house and sunset foreground
+are too dark for a general-purpose look. This is development evidence only;
+neither independent preference nor full-size severe-artifact safety established.
+No promotion. Separate palette direction from dark-tone failure: retain this
+version as a comparison; next check midtone-anchored tone with the same palette,
+then examine larger details if it improves subject readability. No new hue sweep,
+grain escalation or closed assessment reuse. 66 focused/adjacent tests PASS.
+
 2026-09-07 owner feedback supersedes the next cosmetic refinement: current
 copper remains too faint and lacks visible film character. The shoulder repair
 is retained as a technical repair, not an appearance-value success. Next is one

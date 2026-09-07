@@ -2,6 +2,26 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-07 - LOOK2 gold-daylight selective palette development
+
+- Previous feedback-only goal turn was no implementation progress. Implemented
+  the stated outdoor direction using existing ordered-hue and print kernels,
+  no new production core or public schema. Reliability primary; existing
+  art-direction/plan/log/structure checks secondary. Foreign U7.22B untouched.
+- New config v5, narrow comparison-runner composition and dedicated tests;
+  neutral axis, exact order, bounds, repeat, tile and strength checks passed.
+  66 focused/adjacent tests PASS. Ruff import ordering corrected before closure;
+  final Ruff/diff checks PASS. Existing configs and assessment routes untouched.
+- Nine development rows x 12 arms, no texture, no network or reserved reads.
+  Report SHA256 `af287f9d92f4f11b84b77d97eb55c6da8c192ca5915aef51e007df57f95afa41`
+  under `outputs/creative_look_v2_development/development-15-gold-daylight/`.
+  All nine candidate overviews inspected; grass/flower comparison sheets also
+  inspected. Gold/cyan outdoor distinction and cleaner neutrals are useful,
+  but dark flower/house/sunset subjects block general-use promotion. Full-size
+  safety and independent value remain untested. Next isolate midtone readability
+  with this palette fixed; no new noise/tint escalation. No external approval
+  needed for the local development; public release remains outside this leaf.
+
 ## 2026-09-07 - LOOK2 explicit strong-look feedback and development
 
 - Owner again reports faint appearance/little film character. Reliability is

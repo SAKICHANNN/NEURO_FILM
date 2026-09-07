@@ -86,6 +86,17 @@ def print_finish(grade, spec):
     return composite_layers(glow, [grain])
 
 
+def selective_print(source, print_spec, hue_spec, *, amount=1.0):
+    """Existing ordered palette then print tone, one final strength blend."""
+    palette = render_ordered_hue_look(source, hue_spec)
+    grade = render_print_look(palette, print_spec)
+    if not np.isfinite(amount) or not 0 <= amount <= 1:
+        raise ValueError("invalid composition strength")
+    return np.ascontiguousarray(
+        (1 - amount) * source + amount * grade, dtype=np.float32
+    )
+
+
 def select_ordered_assessment(lock, manifest, previous, review):
     """Select an intact historical pool without reading any image body."""
     by_id = {row["id"]: row for row in manifest}
@@ -236,6 +247,7 @@ def compare(
         "creative_print_development_v2.json",
         "creative_print_development_v3.json",
         "creative_print_development_v4.json",
+        "creative_print_development_v5.json",
     ):
         raise ValueError("unrecognized development config")
     ordered_mode = creative_config.startswith("creative_ordered_hue_development_")
@@ -320,6 +332,10 @@ def compare(
     if print_mode:
         spec_class, render, arm_prefix = CreativePrintLook, render_print_look, "print"
     specs = {name: spec_class(**row) for name, row in creative["looks"].items()}
+    palettes = {
+        name: OrderedHueLook(**row)
+        for name, row in creative.get("selective_colour", {}).items()
+    }
     profile = load_render_profile(
         ROOT / "configs/render_profiles/safe_rich_product_v1.json", root=ROOT
     )
@@ -336,6 +352,14 @@ def compare(
         bindings.append(ROOT / "src/color_engine/creative_ordered_hue_look.py")
     if print_mode:
         bindings.append(ROOT / "src/color_engine/creative_print_look.py")
+    if palettes:
+        bindings.extend(
+            ROOT / p
+            for p in (
+                "src/color_engine/creative_ordered_hue_look.py",
+                "src/color_engine/creative_hue_look.py",
+            )
+        )
     if "finish" in creative:
         bindings.extend(
             ROOT / p
@@ -411,6 +435,10 @@ def compare(
             )
         for name, spec in specs.items():
             arms[f"{arm_prefix}-{name}"] = render(source, spec, amount=config["amount"])
+            if name in palettes:
+                arms[f"{arm_prefix}-{name}"] = selective_print(
+                    source, spec, palettes[name], amount=config["amount"]
+                )
             if print_mode:
                 arms[f"tone-only-{name}"] = render(
                     source,
@@ -422,6 +450,10 @@ def compare(
                     replace(spec, tone=(1 / 3, 2 / 3)),
                     amount=config["amount"],
                 )
+                if name in palettes:
+                    arms[f"colour-only-{name}"] = render_ordered_hue_look(
+                        source, palettes[name], amount=config["amount"]
+                    )
             if ordered_mode and spec.value_lift:
                 arms[f"lift-only-{name}"] = render(
                     source,
