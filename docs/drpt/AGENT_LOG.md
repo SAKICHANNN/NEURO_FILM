@@ -1,5 +1,24 @@
 # Project Agent Log
 
+## 2026-09-07 - Fixed learned ClassNeg fails broader photographic-value gate
+
+- AI/ML primary; plan/reliability/log/structure secondary, Mode A/L2. Freeze
+  `a9de7cf12`, runner/tests `2292ab2bf`;17 existing CC0 encoded inputs, no new
+  downloads/training. All source hashes checked before pixels. Model fixed.
+- CPU repeated LUT outputs exact. Full1600px original/learned review plus all
+  four-arm strips finds6/17 wins over identity/current product and8/17 over
+  simple contrast; threshold12/17 fails. No confirmed severe at reviewed size,
+  but no full control safety clearance, close-face or native-resolution claim.
+- Raw report remains immutable, SHA `1fe1b1a5...2a878`; individual decisions
+  retained in AI_CLASSNEG_PHOTOGRAPHIC_REVIEW_20260907.json. AO6 comparison
+  remains absent, no promotion. No parameters/roles/defaults changed. Preserve
+  previous evidence and foreign dirty files; no push. Existing structure reused.
+- Next: improve learning supervision/objective on separate roles; lower digital
+  recipe error alone did not establish credible, broadly appealing film style.
+- Verification:7 focused model/review tests PASS, Ruff and diff-check PASS;
+  JSON counts and no-promotion decision checked. No additional approval needed
+  for this local evidence closure; release rights remain unresolved.
+
 ## 2026-09-07 - Learned RGB LUT substantially improves digital-recipe transfer
 
 - AI/ML primary, plan/reliability/log/structure secondary; freeze `faed38e`,

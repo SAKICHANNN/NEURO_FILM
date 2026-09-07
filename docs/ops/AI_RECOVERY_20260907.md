@@ -18,7 +18,24 @@ an additional required comparison; this does not replace it. Any failed/unclear
 visual gate closes promotion without tuning this cohort. No data downloads.
 Mode A / AI-ML primary, L2; only new config/runner/tests plus this note/log.
 Existing models/defaults/foreign files untouched. Additive commits are rollback.
-Status: freeze DONE; implementation/review IN_PROGRESS; full12-24MP DEFERRED.
+Status: freeze/render/developer review DONE; photographic-value gate FAILED;
+full12-24MP and product integration remain CLOSED for this candidate.
+
+Fixed17-image result: clear developer preference6/17 over identity,6/17 over
+current safe-rich Portra,8/17 over simple contrast, below12/17 each. All17
+originals and learned1600px outputs were inspected individually, with all17
+four-arm strips for preference. No confirmed severe artifact at this reviewed
+resolution; no adequate close-face/skin coverage. Controls have not received
+individual full-resolution artifact clearance, so this is not a safety pass.
+Learned float new-exact-boundary components were zero on all17; this does not
+resolve prior LUT folding or prove absence of quantization defects.
+Report SHA `1fe1b1a5d2f0e5c7fb98ea6528e68530e11c9299cf1588591f9554b3c962a878`;
+per-image decisions: `docs/evidence/AI_CLASSNEG_PHOTOGRAPHIC_REVIEW_20260907.json`.
+Changes are visibly learned but green darkening/grey-pink skies harm several
+photos. Recipe approximation accuracy is not photographic value. Preserve
+this negative; no strength/loss/grid rescue on this cohort. Next AI work must
+test better supervision/objectives on separate roles, not add hand-made curves
+or assume greater capacity fixes appeal. No default/model release change.
 
 ## Learned complete RGB LUT pilot (prospective, 2026-09-07)
 

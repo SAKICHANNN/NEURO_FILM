@@ -1,0 +1,191 @@
+{
+  "schema": "ai-classneg-photographic-review.v1",
+  "date": "2026-09-07",
+  "decision": "NO_PROMOTION_PHOTOGRAPHIC_VALUE_GATE_FAILED",
+  "report": "outputs/ai_classneg_photo_review_v1/report.json",
+  "report_sha256": "1fe1b1a5d2f0e5c7fb98ea6528e68530e11c9299cf1588591f9554b3c962a878",
+  "freeze_commit": "a9de7cf12",
+  "implementation_commit": "2292ab2bf",
+  "checkpoint_sha256": "bf0dcb11c1b6c5f7286b056e8610f27d43d980a56741093f8c0aa3d535d0cdd9",
+  "review_type": "unblinded autonomous developer judgement; not human or population preference",
+  "review_coverage": {
+    "all_17_identity_and_learned_full_1600px": true,
+    "all_17_four_arm_comparison_strips": true,
+    "control_full_resolution_artifact_clearance": false,
+    "native_resolution_review": false,
+    "adequate_close_face_skin_coverage": false
+  },
+  "aggregate": {
+    "rows": 17,
+    "required_wins_per_control": 12,
+    "preferred_over_identity": 6,
+    "preferred_over_safe_rich_portra": 6,
+    "preferred_over_simple_contrast": 8,
+    "confirmed_severe_in_learned_at_reviewed_resolution": 0,
+    "learned_float_new_exact_boundary_components_all_rows": 0
+  },
+  "rows": [
+    {
+      "index": 0,
+      "id": "canon_eos_kiss_f",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": true,
+      "confirmed_severe": false,
+      "reason": "Cool wet-road separation is visible but cars and night warmth become dull; ambiguous versus identity/current product, preferred to aggressive contrast."
+    },
+    {
+      "index": 1,
+      "id": "canon_eos_1d_mark_iv",
+      "preferred_over_identity": true,
+      "preferred_over_safe_rich_portra": true,
+      "preferred_over_simple_contrast": true,
+      "confirmed_severe": false,
+      "reason": "Restrained yellow-greens and warm architecture improve pool/palm colour balance."
+    },
+    {
+      "index": 2,
+      "id": "nikon_d2x",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": false,
+      "confirmed_severe": false,
+      "reason": "Cooler stone and darker foliage drain the courtyard; no clear appeal improvement."
+    },
+    {
+      "index": 3,
+      "id": "nikon_d200",
+      "preferred_over_identity": true,
+      "preferred_over_safe_rich_portra": true,
+      "preferred_over_simple_contrast": true,
+      "confirmed_severe": false,
+      "reason": "Muted greens and warm-grey clouds form a coherent restrained landscape palette."
+    },
+    {
+      "index": 4,
+      "id": "sony_nex_3n",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": false,
+      "confirmed_severe": false,
+      "reason": "Grey-pink horizon reduces alpine sky liveliness; no clear improvement."
+    },
+    {
+      "index": 5,
+      "id": "sony_dslr_a290",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": false,
+      "confirmed_severe": false,
+      "reason": "Purple orchid becomes brownish and darker, reducing floral appeal."
+    },
+    {
+      "index": 6,
+      "id": "fujifilm_x_s10",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": false,
+      "confirmed_severe": false,
+      "reason": "Technical chart: no photographic preference assigned; ambiguous counts as no win, labels retained."
+    },
+    {
+      "index": 7,
+      "id": "fujifilm_finepix_s5000",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": true,
+      "confirmed_severe": false,
+      "reason": "Subdued house palette is plausible but darker vegetation makes preference ambiguous; better than aggressive contrast."
+    },
+    {
+      "index": 8,
+      "id": "olympus_sp550uz",
+      "preferred_over_identity": true,
+      "preferred_over_safe_rich_portra": true,
+      "preferred_over_simple_contrast": true,
+      "confirmed_severe": false,
+      "reason": "Warm straw and cooler green path provide coherent separation without obvious severe damage."
+    },
+    {
+      "index": 9,
+      "id": "olympus_e_p7",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": false,
+      "confirmed_severe": false,
+      "reason": "Yellow flower survives but grey-pink sky and cold grass do not clearly improve appeal."
+    },
+    {
+      "index": 10,
+      "id": "panasonic_dmc_gf2",
+      "preferred_over_identity": true,
+      "preferred_over_safe_rich_portra": true,
+      "preferred_over_simple_contrast": true,
+      "confirmed_severe": false,
+      "reason": "Warm gold leaves and cool foreground greens improve forest colour separation."
+    },
+    {
+      "index": 11,
+      "id": "panasonic_dmc_fz100",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": false,
+      "confirmed_severe": false,
+      "reason": "Cooler and darker garden is not clearly more appealing."
+    },
+    {
+      "index": 12,
+      "id": "pentax_k_r",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": false,
+      "confirmed_severe": false,
+      "reason": "Already dark horse/field loses warmth and brightness; blown sky remains."
+    },
+    {
+      "index": 13,
+      "id": "pentax_k100d_super",
+      "preferred_over_identity": true,
+      "preferred_over_safe_rich_portra": true,
+      "preferred_over_simple_contrast": true,
+      "confirmed_severe": false,
+      "reason": "Restrained palms, warm pavement and softer orange accents improve street palette."
+    },
+    {
+      "index": 14,
+      "id": "leica_d_lux_6",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": false,
+      "confirmed_severe": false,
+      "reason": "Dark city foreground becomes still denser; no clear improvement."
+    },
+    {
+      "index": 15,
+      "id": "leica_digilux_3",
+      "preferred_over_identity": false,
+      "preferred_over_safe_rich_portra": false,
+      "preferred_over_simple_contrast": false,
+      "confirmed_severe": false,
+      "reason": "Sideways orientation is inherited; colder indoor neutrals offer no clear value."
+    },
+    {
+      "index": 16,
+      "id": "kodak_dcs_pro_14n",
+      "preferred_over_identity": true,
+      "preferred_over_safe_rich_portra": true,
+      "preferred_over_simple_contrast": true,
+      "confirmed_severe": false,
+      "reason": "Restrained straw and cooler tree mass make a coherent print-like field palette."
+    }
+  ],
+  "limitations": [
+    "Controls were compared in four-arm strips, not individually cleared at full resolution. No positive safety/promotion claim follows.",
+    "All originals and learned outputs were inspected at supplied 1600px resolution; this is not 12-24MP validation or universal artifact safety.",
+    "Known project sources, held out from this learner; not all-project unseen, unknown author/scene independence.",
+    "AO6 comparison remains outstanding; current safe-rich Portra is not AO6.",
+    "FilmSet supervision is digital-recipe transfer, not physical film. Per-image redistribution/training rights remain unresolved for release.",
+    "No new training, downloads, loss/strength tuning, product/default changes or cohort exclusions."
+  ],
+  "next": "Keep checkpoint and negative evidence. Do not tune on these 17 images or promote this fixed candidate. Next AI study must distinguish supervision/objective shortcomings from representation capacity on separate roles; photographic value remains the target, not lower recipe error alone."
+}
