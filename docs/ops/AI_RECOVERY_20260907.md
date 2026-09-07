@@ -64,6 +64,30 @@ Do not download the movie dataset, retrain the paper, restart the earlier D-LUT
 negative, or change product defaults. If runnable, freeze a three-pair descriptive
 development comparison before images; independent evaluation remains separate.
 
+Pre-image development decision for VCG: use official demo defaults seed48,
+25 DDIM steps,512 encoder square,16-cube residual and default statistical
+pre-correction (`ncc=False`). The YAML's256/seed42 are not the demo CLI defaults;
+do not silently combine them. Official utilities show the default pre-correction
+is covariance transfer plus global extrema scaling, so it must be an independent
+control. Compare identity, simple contrast1.15, historical safe-Lab after image,
+official pre-correction alone, full pre-correction+learned LUT, and saved NLUT
+negative on the SAME three development pairs content0/1/2, reference1/7/13.
+No reference selection, seed search, custom strength or tuning. Explicit
+single-frame adaptation of video input; final image is not spatially resampled.
+Use RGB/ICC handling consistent with prior NLUT run,512 bicubic encoder resize.
+
+DoR: complete verified acquisitions; source hashes; strict model keys/shapes;
+two repeatable finite synthetic512 forward calls before any photograph. Local
+CUDA float32, no training. First development gate: no confirmed severe artifact
+and clear photographic preference vs identity/simple/pre-correction in at least
+2/3. A pass opens only new independent evaluation, never product promotion.
+If learned residual adds no value over pre-correction, do not call it AI success.
+Full sizes are the existing1600px sources, not native12-24MP. Keep every output
+and pre-clamp LUT statistics; no post-result clamping/strength rescue. Numerical
+faithfulness to published code is the target, not claimed paper reproduction:
+Torch2.11 and Transformers4.44.2 differ from official1.13/4.32 (Python3.12 host),
+while isolated diffusers0.21.4 matches. Preserve old evidence and foreign files.
+
 ## Full NLUT runnable development comparison (2026-09-07)
 
 Freeze configs/ai_nlut_reference_development_v1.json before photos: exact
