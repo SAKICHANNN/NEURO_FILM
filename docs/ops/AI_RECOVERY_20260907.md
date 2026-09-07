@@ -2,6 +2,23 @@
 
 ## Deep-photo pilot v1 (frozen before training)
 
+Result: completed at implementation `94e82a8ae`,120 fresh updates per arm.
+Report `outputs/ai_deep_photo_pilot_v1/report.json` SHA256
+`9fe6677103fbd745d37736b55963ea351c87fccb67993f601d1eaf6d59fdb266`.
+All3 transfer LUT outputs inspected at768px: strong false-colour regions and
+posterized/contoured building, leaf and wall textures. Severe-artifact veto FAIL;
+simple row06 remains weak, remaining simple rows not needed to reject LUT.
+Do not promote, reduce strength, tune this run or call it an NLUT paper failure.
+
+Read-only postscore finite-difference diagnostic (not a preregistered gate):
+33^3 RGB probes on [.01,.99], forward h=1e-4 using saved parameters and unchanged
+executor:4138/35937 negative Jacobian determinants, min-4.89016,max17.37087.
+Bounded output alone demonstrably does not prevent local orientation reversals.
+This supports a representation-risk diagnosis, not complete causal attribution
+of every visual artifact. Next bounded-learning hypothesis should structurally
+exclude folding/large derivatives, not merely change feature scorer or tune
+smoothness after these images. Weights and all negative outputs retained.
+
 Reuse the verified feature model, all19 development references and source
 rows0..5 / transfer6..8; no independent data consumed. New
 `ai_deep_photo_pilot_v1.json` fixes120steps/arm,192px,Adam.01,9cube residual

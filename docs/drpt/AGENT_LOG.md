@@ -1,5 +1,18 @@
 # Project Agent Log
 
+## 2026-09-07 - Deep-feature LUT pilot rejected for severe artifacts
+
+- Freeze654fc3566,implementation94e82a8ae;120 fresh steps each LUT/simple.
+  Report SHA `9fe6677103fbd745d37736b55963ea351c87fccb67993f601d1eaf6d59fdb266`.
+  All3 transfer LUT images viewed: severe false-colour/contour degradation;
+  no promotion, independent/full-size test not opened. Ruff/compile pass.
+- Saved-parameter read-only diagnostic:4138/35937 sampled negative finite-
+  difference Jacobian determinants. Sigmoid range bounds are insufficient
+  regularity protection. Next representation must constrain folding, not rescue
+  frozen losses/strengths on these outputs. Not an exact NLUT reproduction.
+- Production, older evidence, dirty user/parallel files untouched; AI/ML primary,
+  no additional data or model downloads. Main long goal remains incomplete.
+
 ## 2026-09-07 - Verified feature-model preparation
 
 - `697dc5e41` freeze, `a30b26cc0` implementation: three exact NLUT objects
