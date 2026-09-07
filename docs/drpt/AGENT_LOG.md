@@ -1,5 +1,17 @@
 # Project Agent Log
 
+## 2026-09-07 - AI texture-supervision diagnostic rejects contaminated patches
+
+- AI/ML primary, reliability/plan/log/structure secondary; freeze `e2e9433a6`,
+  extraction `b98faca44`. Existing19 cleared Italy JPEGs only, no download.
+- 121 patches and15 supported images pass numerical support, but all four
+  visual sheets expose edges/masonry and strong JPEG blocking on diagnostic
+  images. Unified residual-as-grain learning not opened; no patch cherry-pick.
+  Exact report identity and next source boundary in AI_RECOVERY_20260907.md.
+- Four tests and Ruff PASS. No production interface/old evidence change;
+  preserve foreign changes. Goal incomplete; investigate already-local digital
+  style supervision honestly, without physical-film or unpaired claims.
+
 ## 2026-09-07 - Single-reference AI diagnostic remains below product value
 
 - AI/ML primary with log/structure secondary: completed visual review of all

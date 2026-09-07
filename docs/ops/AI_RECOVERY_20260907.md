@@ -13,7 +13,7 @@ Mode A, AI/ML primary. Allowed: new `src/eval/photo_texture_reference.py`,
 recovery/log notes. Production, old runs and foreign diffs remain untouched.
 Rollback is scoped reversion; generated diagnostics remain negative evidence.
 
-1. IN_PROGRESS: hash-lock all 19; sort SHA, first12 development-fit and remaining7
+1. DONE: hash-lock all 19; sort SHA, first12 development-fit and remaining7
    same-author diagnostic images (not independent population confirmation).
    Extract up to8 disjoint64px patches per image on a64px grid. Require less
    than1% pixels with any channel outside [.03,.97], smoothed-luma gradient
@@ -21,11 +21,11 @@ Rollback is scoped reversion; generated diagnostics remain negative evidence.
    RGB planes. Record residual standard deviation, 2-D spectra, lag1 correlation,
    JPEG8 boundary/interior residual-difference ratio and within-image dispersion.
    Inspect source patches and amplified residuals, not only a noise score.
-2. NOT_STARTED: only if >=12 images have >=4 eligible patches and visual
+2. CLOSED_NO_FIT: only if >=12 images have >=4 eligible patches and visual
    support is not dominated by edges/blocking, freeze a small learned texture
    model and white-noise control. Otherwise stop extraction-as-supervision;
    do not raise thresholds, fit contaminated patches or call them film grain.
-3. NOT_STARTED: any learned model must compare source-image-disjoint residual
+3. NOT_OPENED: any learned model must compare source-image-disjoint residual
    statistics and actual photos against colour-only and equal-power white-noise
    controls before independent/product work. No additional manual strength.
 
@@ -34,6 +34,27 @@ https://doi.org/10.1109/icip.2012.6466947 explains weak-texture selection and
 scene-contamination risk. Our transparent plane-residual diagnostic is NOT
 their PCA/Gaussian-noise estimator and cannot identify true noise from texture.
 Support is an engineering gate, not proof of a film-domain distribution.
+
+Result at `b98faca44`: 121 patches, 15/19 images have at least4, numerical
+support passes. Report `outputs/ai_photo_texture_reference_v1/report.json` SHA
+`bbe4caeb9c505afe2558e03e7a058753d26fa15368a57f776d23cd7f80bee69a`.
+All four patch sheets inspected. Several fit images contain mostly sky-like
+noise, but06/10/23/07 retain strong scene structure. Diagnostic04 has masonry,
+25 has obvious texture/blocking,16/05 include strong surface/edge residuals,
+26 is visibly block-compressed with boundary/interior ratio3.28-4.57. Thus the
+fixed extraction is not reliable unified texture supervision across this set.
+Do not manually prune patches, retune selector or train its contamination into
+grain. No texture model trained; no product pixels changed. Four synthetic
+extraction tests PASS (plane rejection, white-noise statistics, disjoint selection,
+invalid input). This rejects this JPEG residual-supervision pilot, not learned
+texture generally. The original scan appearance is still a style reference.
+
+Next source check: existing FilmSet target-train examples only, internal research
+under the existing licence boundary. Do not inspect official test628 or recover
+paired targets through the pair-blind loader. FilmSet is independently authored
+digital Capture One recipe supervision, not physical film. First inspect target
+appeal; do not launch training merely because pairs exist. Any paired experiment
+requires a separate explicit role freeze and cannot be presented as unpaired.
 
 ## Single-reference diagnostic result, 2026-09-07
 
