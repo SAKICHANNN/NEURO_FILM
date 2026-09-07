@@ -1,5 +1,20 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Deep-photo pilot v1 (frozen before training)
+
+Reuse the verified feature model, all19 development references and source
+rows0..5 / transfer6..8; no independent data consumed. New
+`ai_deep_photo_pilot_v1.json` fixes120steps/arm,192px,Adam.01,9cube residual
+LUT versus learned simple logit-affine. Four-layer reference channel means and
+population standard deviations are averaged equally across images. Each layer
+style error is normalized by its frozen reference squared moment energy+1e-6;
+content relu4_1 error by input feature squared energy+1e-6. Weight style1,
+content.1,parameter-neighbour smoothness.02. This normalization is our explicit
+development variant, not exact NLUT reproduction. Encoder frozen; only operator
+parameters optimized. All images rendered at768px for initial review; no texture
+generation or hand palette. Stop fixed run if no convincing visual advantage;
+do not use success of numerical optimization as the product gate.
+
 ## Next supervision decision: deep photo features, not text or RGB marginals
 
 Preparation executed successfully at `a30b26cc0`. Exact LICENSE/net/weight Git

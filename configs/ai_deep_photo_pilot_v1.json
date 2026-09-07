@@ -1,0 +1,19 @@
+{
+  "scope": "development-only VGG-feature-supervised bounded global LUT, not exact NLUT or calibrated film",
+  "reference_manifest": "data/ai_film_references/italy_2024_v1/manifest.json",
+  "reference_sha256": "7a7cf18824151f656cdd94e82abcdd4e4186c2167f273dbd32d27bd61da8ff06",
+  "feature_manifest": "data/ai_models/nlut_feature_v1/manifest.json",
+  "feature_sha256": "d817f7ec074dbea827781188bdb2e5015cf137d5cd0e56ebb327341e57088142",
+  "source_manifest": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/manifest.json",
+  "train_rows": [0,1,2,3,4,5],
+  "transfer_rows": [6,7,8],
+  "seed": 20260907,
+  "steps": 120,
+  "lr": 0.01,
+  "size": 192,
+  "lattice": 9,
+  "style_weight": 1.0,
+  "content_weight": 0.1,
+  "smoothness_weight": 0.02,
+  "decision": "Inspect every development-transfer original/LUT/simple. Severe artifacts reject; style/appeal must visibly exceed simple and identity to open independent validation. No automatic promotion, no post-result strength/loss/reference tuning."
+}
