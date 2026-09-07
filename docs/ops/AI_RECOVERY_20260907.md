@@ -2,6 +2,23 @@
 
 ## VCG stage-gain diagnostic, prospective 2026-09-07
 
+Executed441504a19: every reconstructed PNG is byte-exact. Snow pre-stage largest
+singular gain2.221, LUT p95 gain2.768, combined p95/max5.576/6.152. Other images'
+pre-stage gains are0.949/0.983. This supports, but does not alone prove, a
+preconditioning contribution to the visible snow noise amplification. Negative
+determinant fractions do not track visual severity (flowers27.13% yet no severe
+visual defect), so they must not replace photographic assessment.
+
+**Next fixed diagnostic:** published `ncc=True`, removing covariance correction
+in both conditioning and final LUT application. Same three consumed pairs,
+seed48/25steps/512size/weights; no fitting or adjustable parameters. One run,
+retain LUTs/outputs, compare to original full pipeline, raw identity and simple.
+No product promotion or rewriting the original negative; even if promising,
+independent new-scene confirmation must be prospectively specified. This is a
+single mechanism ablation, not a search over seeds/references/strength. GPU
+bounded900s and existing checkpoint only, no new download. Owned one script
+and evidence/recovery/log; preserve all parent reports.
+
 Mode A/L2, same AI goal; fixed consumed development photos only. Question:
 does analytical covariance pre-correction already amplify small RGB noise, and
 does the learned LUT further amplify it? This is explanation, not promotion.
