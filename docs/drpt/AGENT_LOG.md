@@ -2,6 +2,20 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-07 - Early learned-LUT recovery smoke
+
+- AI/ML primary: inspected target construction and retained checkpoints. Neural
+  LUT uses style_transfer targets; distilled SepLUT uses film_response teacher.
+  Neither provenance establishes independently learned film appearance.
+- Executed unchanged numpy SepLUT on three historical development rows and three
+  configs at 768px/strength1, output margin4. Nine renders completed; Ektar and
+  Velvia sheets inspected. Mainly contrast/chroma changes, no promotion claim.
+- `docs/ops/AI_RECOVERY_20260907.md` records exact model/report hashes, output
+  footprint and limitations. Reuses existing runner/structure; no core edits,
+  training, external requests, full-size or independent evaluation. Existing
+  user/parallel and interrupted palette files unchanged. No new approval needed
+  for this bounded local recovery; public/paid operations remain outside scope.
+
 ## 2026-09-07 - Remaining transport-residue verification
 
 - Follow-up inventory covered nine canonical data/output/model/cache/fallback
