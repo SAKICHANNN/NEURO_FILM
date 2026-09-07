@@ -1,0 +1,15 @@
+{
+  "scope": "private development feature-supervision comparator, no product weight distribution",
+  "repository": "https://github.com/semchan/NLUT",
+  "revision": "66e271dd5740282d1b0f16d42ed5ca3f763ce818",
+  "destination": "data/ai_models/nlut_feature_v1",
+  "files": [
+    {"path": "LICENSE", "bytes": 1099, "git_blob": "186a609cc66400145a3d425a012688f0286d33d4"},
+    {"path": "net.py", "bytes": 5292, "git_blob": "e2872c99aa56b33ab973031acf29d78bfef21f2c"},
+    {"path": "models/vgg_normalised.pth", "bytes": 80102481, "git_blob": "18a783877329319e5a640ae20f7b98c64e5f5572"}
+  ],
+  "attribution": "NLUT: Chen et al., 2023; VGG: Simonyan and Zisserman, ICLR 2015",
+  "rights_basis": "NLUT README states MIT for algorithm and publishes these files; Oxford VGG model page states Creative Commons Attribution. Preserve both attribution and repository LICENSE. No assertion that normalized weights equal original Oxford Caffe weights or commercial artifact clearance.",
+  "weight_loading": "torch.load(weights_only=True,map_location=cpu), no fallback to unrestricted pickle",
+  "max_total_bytes": 81000000
+}

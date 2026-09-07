@@ -2,6 +2,18 @@
 
 ## Next supervision decision: deep photo features, not text or RGB marginals
 
+Bounded model preparation now frozen in `ai_nlut_feature_source_v1.json`:
+80.1MB published NLUT feature model + exact source + license, Git blob verified
+before weights-only loading, no unrestricted pickle fallback. Oxford primary
+VGG page explicitly releases original models under Creative Commons Attribution;
+NLUT README covers algorithm with MIT and publishes normalized weights. This
+supports private comparative development with attribution, not a claim that the
+normalized conversion was independently reproduced or cleared for product
+redistribution. No decoder/full RGB generator, full NLUT checkpoint or dataset
+is downloaded. A finite synthetic forward smoke opens experiment implementation,
+not photographic efficacy. Existing source code is loaded only after exact blob
+verification and review; freeze/verify artifact signatures in a local manifest.
+
 2026-09-07 read-only official implementation audit identifies NLUT
 <https://github.com/semchan/NLUT> revision
 `66e271dd5740282d1b0f16d42ed5ca3f763ce818` as a concrete comparison method.
