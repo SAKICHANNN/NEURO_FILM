@@ -100,13 +100,14 @@ def main(config="configs/ai_deep_photo_pilot_v1.json", structural=False):
                 (1, 3, n, n, n) if arm == "lut" else (1, 6, 1, 1), device="cuda"
             )
         )
+        model = None
         if arm == "triangular":
             from src.models.color_lut.triangular_photo import TriangularPhoto
 
             model = TriangularPhoto().cuda()
             p = model.parameters_raw
 
-        def apply(x):
+        def apply(x, model=model, arm=arm, p=p):
             return model(x) if arm == "triangular" else transform(x, p, arm)
 
         opt = torch.optim.Adam([p], lr=cfg["lr"])

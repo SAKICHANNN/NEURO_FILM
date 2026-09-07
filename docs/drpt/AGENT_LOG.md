@@ -1,5 +1,17 @@
 # Project Agent Log
 
+## 2026-09-07 - Structural learned photo operator remains visually insufficient
+
+- Implemented private triangular smooth operator;3 structural tests PASS.
+  Run `bf2f7c3d5` used frozen120steps, same deep features/data roles. Report
+  `33c2eb8a328c12d57fb22389efd01eced82411f1e6fe863628cce5e324431ee9`.
+- All3 candidate transfer images viewed: prior broad false-colour absent at768px,
+  but weak styling, no credible advantage established. No promotion, no retune,
+  independent/fullsize still closed. Existing product/foreign changes preserved.
+- Current Ruff passes after explicit callback binding/import-only cleanup;
+  pre-run lint warning was not a scientific failure but must not be hidden.
+  AI/ML primary; existing model package, no public exports or structure changes.
+
 ## 2026-09-07 - Deep-feature LUT pilot rejected for severe artifacts
 
 - Freeze654fc3566,implementation94e82a8ae;120 fresh steps each LUT/simple.

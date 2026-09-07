@@ -2,6 +2,25 @@
 
 ## Structural successor, before photo training
 
+Executed development successor at `bf2f7c3d5`,120 updates/arm, same feature
+targets and source roles. Report SHA256
+`33c2eb8a328c12d57fb22389efd01eced82411f1e6fe863628cce5e324431ee9`
+under `outputs/ai_structural_photo_pilot_v1`. All3 triangular transfer outputs
+visually inspected: no obvious preceding broad false-colour/contour corruption
+at768px, but effect too weak to establish credible film appearance. NO PROMOTION;
+full-resolution/independent gates remain unopened. This proves neither universal
+artifact safety nor inability of all learned operators; one fixed global feature-
+average fitting run is insufficient. Do not increase strength after inspection.
+
+Structural tests3 PASS (identity/endpoints,12 extreme-parameter Jacobians,
+nonzero gradients/invalid values). Shared training harness default path preserved;
+new structural option changes only candidate operator and omits a lattice-only
+regularizer. Initial lint flagged an immediate-use loop closure and import
+spacing; shell still ran. Post-run correction explicitly binds callback defaults
+and formats import; no numerical-rule/parameter changes, current Ruff PASS.
+Future launch commands must check exit codes before commit/run, not chain through
+a failing validation. This operational correction does not relabel old run lint.
+
 Add private `src/models/color_lut/triangular_photo.py`, with zero-initialized
 36 learned parameters: each output logit is its input logit plus a bounded bias,
 nine bounded tanh basis functions of that same channel, and lower-triangular
