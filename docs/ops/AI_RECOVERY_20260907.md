@@ -28,13 +28,28 @@ no image/style cherry-pick. FilmSet remains internal digital-recipe supervision.
 | Step | Status | Verification / commit | Rollback |
 | --- | --- | --- | --- |
 | Config/question | DONE | Commit before new optimization | Scoped revert |
-| Runner/tests | IN_PROGRESS | Identity, gradients, checkerboard, source-role checks | New-only files |
-| Capacity run/review | NOT_STARTED | Fixed budget, report/checkpoints, bounded visual review | Retain evidence, no promotion |
+| Runner/tests | DONE | `b4020dcad`,12 focused/parent tests PASS | New-only files |
+| Capacity run/review | DONE | Report below; fixed first2 x3 x2 arms reviewed | Retain evidence, no promotion |
 
 Owned: `configs/ai_paired_operator_capacity_v1.json`,
 `scripts/audit_ai_paired_operator_capacity.py`, dedicated test, this note/log.
 Reuse LUT and ICC primitives unchanged; no product/default/old evidence changes.
 Run caps20min; failure leaves partial output, no auto-restart or optimizer rescue.
+
+Completed in116.59s; report SHA256
+`e97a5d4e8df0c1e035c12e6eec9d32b73ce381003c2c9662c0b1132524b83f7e`.
+LUT vs triangular odd-block mean L1 .00240004 vs .01730262; wins18/18,
+median/worst relative gain .850548/.750491. RGB mean errors fall from
+[.025044,.010501,.016363] to [.002711,.001861,.002628]. This demonstrates
+representational/optimization headroom under the fixed budgets, not that the
+red-only restriction alone caused all error (parameter count also changes).
+LUT cell-centre nonpositive determinants occur in17/18 fits (0..3.7109% cells),
+with119 new boundary components across all images. These are risks, not a proven
+severe photographic defect or full-cell safety assessment. At192px, the fixed
+12 oracle outputs and6 targets show the LUT closer to target colour; no broad
+film/safety claim. Existing training/evaluation roles stay unchanged. A learned
+full-RGB operator needs fresh image evaluation and direct folding regularization;
+do not deploy the target-reading per-image oracle.
 
 ## Paired digital-recipe AI control (prospective, 2026-09-07)
 

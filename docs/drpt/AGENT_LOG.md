@@ -1,5 +1,18 @@
 # Project Agent Log
 
+## 2026-09-07 - Fit-only diagnostic establishes RGB representation headroom
+
+- AI/ML primary, plan/reliability/log/structure secondary; config `a0fa93642`,
+  implementation `b4020dcad`. First6 existing paired-fit images only,18 targets;
+  no new data or evaluation-image reads. Fixed600 steps per arm,116.59s total.
+- Full RGB LUT beats independently fitted triangular18/18, odd-block median
+  reduction85.05%;12 focused/parent tests PASS. Report identity in recovery note.
+  Separate per-image oracles are not a deployable predictor or independent test.
+- Numerical folds17/18 and119 new boundary components prevent a safety claim;
+  fixed first2 x3 style x2 arm visual review completed at192px. This opens a
+  separately bounded learned-RGB study, not oracle/product promotion. Production,
+  old evidence and foreign worktree remain untouched; no structural migration.
+
 ## 2026-09-07 - Paired AI learning control completes below preference gate
 
 - AI/ML primary; reliability, plan, log and structure secondary. Accepted code
