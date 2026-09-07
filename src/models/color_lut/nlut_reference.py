@@ -173,6 +173,26 @@ def stream_combine(self, weight, TVMN):
     return fused_lut(self, weight), 0
 
 
+def published_code_state(state, required):
+    """Exact disclosed issue16 compatibility, never general strict=False."""
+    unused = {"blurer.op.1.weight"} | {
+        f"SB1.conv{i}.{suffix}"
+        for i in (1, 2)
+        for suffix in (
+            "conv2d.weight",
+            "conv2d.bias",
+            "bn.weight",
+            "bn.bias",
+            "bn.running_mean",
+            "bn.running_var",
+            "bn.num_batches_tracked",
+        )
+    }
+    if set(state) - set(required) != unused or set(required) - set(state):
+        raise ValueError("Checkpoint active/missing/extra key contract changed")
+    return {key: state[key] for key in required}
+
+
 def load_model(root, cfg):
     module = load_official(root, cfg)
     path = root / cfg["checkpoint"]
@@ -180,6 +200,6 @@ def load_model(root, cfg):
         raise ValueError("Checkpoint mismatch")
     model = module.NLUTNet("2048+32+32", dim=33)
     state = torch.load(path, weights_only=True, map_location="cpu")["state_dict"]
-    model.load_state_dict(state, strict=True)
+    model.load_state_dict(published_code_state(state, model.state_dict()), strict=True)
     model.CLUTs.combine = MethodType(stream_combine, model.CLUTs)
     return model, module

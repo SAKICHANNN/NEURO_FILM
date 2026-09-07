@@ -60,10 +60,11 @@
     "identity",
     "simple_contrast_1.15"
   ],
-  "output": "outputs/ai_nlut_reference_development_v1",
+  "output": "outputs/ai_nlut_reference_development_v2",
   "max_runtime_seconds": 1200,
   "decision": "Fixed three development pairs (zip content indices with reference indices), all arms inspected. No independent promotion. Require no confirmed severe artifact and clear preference over identity/simple in at least2/3 to open a separately frozen broader evaluation. No alternate references, schedules, strengths or eval-mode rescue on these pairs. Numerical substrate parity precedes photos.",
   "differences": [
+    "Compatibility correction before pixels: exact15 unused SB1/blurer keys excluded for current published code, all active keys strict. See official issues2/16; no verified training-architecture equivalence claim.",
     "Pinned official AST classes; remove only redundant unsafe VGG file load because strict complete checkpoint supplies encoder.",
     "Pure torch interpolation follows official binsize1.000001/(D-1) and RGB channel layout; no input gradients used.",
     "Compressed basis fusion and chunk64 regularizer preserve equations, not floating-point reduction order.",

@@ -21,6 +21,19 @@ GPU local <=1200s; no new images/models/cloud. Existing dirty files untouched.
 Mode A/L2, AI/ML primary; additive scoped commits/plan/log provide rollback.
 Plan DONE; implementation IN_PROGRESS; synthetic/photo review NOT_STARTED.
 
+V1 execution stopped in strict checkpoint loading, before synthetic or photo
+decode:15 unexpected SB1/blurer keys are absent from all published model-code
+history. Official issues2/16 report the same mismatch; a user suggests general
+strict=False, not an author-verified model. Our narrower pre-pixel V2 adaptation
+requires exactly those15 unused keys, zero missing active keys and strict shapes
+for all active parameters. It uses the published forward graph, not a claim of
+full training-architecture equivalence. Preserve the236MB checkpoint unchanged
+and the V1 execution lock. V2 output is separate; pairs/metrics/schedule unchanged.
+Source snapshot acquisition first rejected compressed HTTP bytes; transparent
+content decoding corrected it before any code use. Initial synthetic unit tests
+also caught explicit-super global rebinding; instance-method binding fixed that
+before model execution. Reconstruction/gradient/scalar interpolation tests pass.
+
 ## Full pretrained NLUT comparison preparation (2026-09-07)
 
 Parent: ClassNeg supervision diagnosis; seek a learned appearance prior rather
