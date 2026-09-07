@@ -1,5 +1,20 @@
 # Project Agent Log
 
+## 2026-09-07 - Full pretrained NLUT acquired for actual learned comparison
+
+- AI/ML primary, research/plan/reliability/log/structure secondary, Mode A/L2.
+  Official README-linked single Drive checkpoint236254785 bytes acquired to
+  P-backed data/ai_models/nlut_pretrained_v1; source SHA b8c9bbb7...15c828.
+  Safe weights-only load verifies122 finite tensors;1 focused test and Ruff pass.
+- Unlike prior VGG-only pilots this contains the learned compressed LUT basis
+  and predictor. No photos/inference/training or product change this leaf.
+  Internal comparison only; no checkpoint redistribution/film-calibration claim.
+- Exact-weight synthetic classifier diagnostic reveals repeated-batch train-mode
+  input insensitivity; this is not a full-method negative. Recovery doc records
+  measured train/eval differences and requires explicit comparison modes plus
+  official interpolation/reconstruction validation before photographic tests.
+  Existing defaults, negative evidence and foreign edits remain unchanged.
+
 ## 2026-09-07 - ClassNeg target-versus-prediction diagnosis
 
 - AI/ML primary, Mode A/L2; reliability/plan/log/structure secondary. Scope

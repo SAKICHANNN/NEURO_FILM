@@ -20,7 +20,25 @@ size, non-checkpoint response, unsafe load or nonfinite state. No inference
 or finetuning until architecture/defaults and an executable comparison are
 reviewed and frozen. Existing models and all evaluation cohorts remain intact.
 Mode A/L2, AI/ML primary; new acquisition script/test and this note/log only.
-Plan DONE; bounded acquisition/inspection IN_PROGRESS; inference NOT_STARTED.
+Plan/acquisition/weights-only inspection DONE; full inference NOT_STARTED.
+Checkpoint236254785 bytes, SHA256
+`b8c9bbb765e00ea047399cd0c21b557cc7c839042ff92024777b284e5515c828`.
+122 finite tensors/22032901 elements; keys iter/state_dict/optimizer. Exact
+2048+32+32 compressed residual-LUT structure matches official defaults.
+Source lock and inspection retained beside this single checkpoint; no images,
+COCO or duplicate VGG downloaded. Preparation commit ecdae4d32;1 focused PASS.
+
+Read-only operational caveat: official image script repeats the same pair to
+batch2 and calls model.train(). Its classifier uses BatchNorm on1x1 features.
+A CPU synthetic classifier-only probe with exact checkpoint weights and seed
+20260907 compares two independent random1024x3x3 inputs, each repeated twice:
+training-mode mean/max coefficient change5.70435e-8/6.10352e-5, evaluation-mode
+1.76925/9.72316 (state reset before each forward). This demonstrates suppressed
+input sensitivity at this head in that mode, not failure of the complete method:
+test-time optimization can still learn from the reference. Preserve official
+40-step full adaptation as the comparison; any eval-mode/no-adaptation arm
+must be declared separately, not silently substituted. Before photos, validate
+compressed-LUT reconstruction and interpolation against the official code.
 
 ## ClassNeg supervision diagnostic (2026-09-07)
 
