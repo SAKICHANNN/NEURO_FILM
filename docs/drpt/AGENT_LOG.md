@@ -4,6 +4,15 @@ Durable handoff log for non-trivial DRPT-governed work. Keep implementation trut
 
 ## 2026-09-07 - Early learned-LUT recovery smoke
 
+- Bounded recovery closure: new read-only synthetic conditioning diagnostic
+  confirms s300/s800 saturated shared-basis behavior, smoke nonzero style span.
+  Unchanged smoke inference executed nine rows; its Ektar ID is untrained and
+  excluded. Velvia visual result remains subtle. No new training or stock claim.
+  Added reusable diagnostic under existing scripts; Ruff/format/compile pass
+  after removing an unused noqa. Initial inline command quoting failed before
+  execution, then replaced by the inspectable script. Next is new-supervision
+  audit, not more pseudo-teacher or hand-palette iterations.
+
 - Follow-up: unchanged neural s800 checkpoint executed nine 1600px outputs on
   three historical inputs. Cross-style PNG hashes identical per input. A separate
   CPU input01 probe shows all8 checkpoint styles choose basis7/12 with exact

@@ -35,6 +35,32 @@ criteria. This run does not establish which early algorithm was the user's best.
 
 ## Next useful action
 
+### Three-checkpoint diagnostic closure
+
+`scripts/audit_early_lut_conditioning.py` is a read-only CPU probe on one fixed
+64x64 synthetic RGB ramp. No training or photographs are used by the diagnostic.
+Results: smoke style-LUT span .0090916; s300 and s800 span exactly0. Smoke logits
+range -1.65..2.84; s300 -20.21..23.24; s800 -73.12..154.51. Softmax saturation is
+observed; causal attribution to learning rate, target diversity or preprocessing
+is not established by comparing distinct runs.
+
+The training script minimizes only L1 against safe-rich targets, reports loss on
+the same examples and has no condition-effect validation. Training uses padded
+128px squares while the old evaluation consumes unpadded 1600px images: another
+known mismatch to avoid in new experiments, not a proven sole collapse cause.
+
+Unchanged smoke checkpoint inference also completed on the same three inputs.
+Its metrics record only Portra/Velvia, six examples and60 steps. Ektar was
+additionally executed but is an **untrained ID**, excluded from quality claims.
+Velvia sheet inspected: still visually near-input. Summary SHA256
+`fc58c54d5b01fd67bf36a638f98dc69d0f87f824d9abc5b0adcd02546ed404c2`, under
+`outputs/ai_recovery_20260907/neural_smoke`. No safety/full-size promotion.
+
+This closes the bounded old-LUT recovery pass: do not expand old-weight tests or
+repair pseudo-teacher fitting as the new film-learning method. Next audit legal
+non-paired style supervision and official learned operator implementations;
+retain these recovered outputs as bland learned baselines.
+
 ### Neural s800 recovery and conditioning failure
 
 Executed unchanged `evaluate_neural_lut.py` with
