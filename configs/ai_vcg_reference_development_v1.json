@@ -14,7 +14,7 @@
     "configs/inference/inference.yaml": "1e8f84753007ee694e75435745f0fe06d9b521a45c7864be2b51bc983363a784",
     "configs/prompts/video_demo.yaml": "cc795dc275961259c7b48ff83536e331ccf588f300565f8b40e906f4ced23424"
   },
-  "model_manifest_sha256": "REQUIRES_COMPLETED_ACQUISITION_BEFORE_RUN",
+  "model_manifest_sha256": "7846a87b6877a071de1fe46484d84324db6b5c0172cad47c7c2fcf1130a0ca10",
   "clip_sha256": "a63082132ba4f97a80bea76823f544493bffa8082296d62d71581a4feff1576f",
   "sd15_cache_repo": "models--runwayml--stable-diffusion-v1-5",
   "sd15_revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
