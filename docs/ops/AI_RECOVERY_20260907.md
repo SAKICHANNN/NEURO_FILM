@@ -1,5 +1,40 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Texture supervision pilot (prospective, 2026-09-07)
+
+Parent: learned colour pilots below did not establish film appeal. New question:
+can the already-cleared 19 Italy JPEG references supply transferable *display
+texture* supervision, rather than another scene-palette objective? This is not
+emulsion/grain calibration or a reopening of the historical Commons grain pool.
+No new downloads or independent-test access. Native JPEG scale only.
+
+Mode A, AI/ML primary. Allowed: new `src/eval/photo_texture_reference.py`,
+`scripts/audit_ai_photo_texture_reference.py`, config and focused tests; existing
+recovery/log notes. Production, old runs and foreign diffs remain untouched.
+Rollback is scoped reversion; generated diagnostics remain negative evidence.
+
+1. IN_PROGRESS: hash-lock all 19; sort SHA, first12 development-fit and remaining7
+   same-author diagnostic images (not independent population confirmation).
+   Extract up to8 disjoint64px patches per image on a64px grid. Require less
+   than1% pixels with any channel outside [.03,.97], smoothed-luma gradient
+   p90 <=.01; rank by this gradient with coordinate tie break. Remove least-square
+   RGB planes. Record residual standard deviation, 2-D spectra, lag1 correlation,
+   JPEG8 boundary/interior residual-difference ratio and within-image dispersion.
+   Inspect source patches and amplified residuals, not only a noise score.
+2. NOT_STARTED: only if >=12 images have >=4 eligible patches and visual
+   support is not dominated by edges/blocking, freeze a small learned texture
+   model and white-noise control. Otherwise stop extraction-as-supervision;
+   do not raise thresholds, fit contaminated patches or call them film grain.
+3. NOT_STARTED: any learned model must compare source-image-disjoint residual
+   statistics and actual photos against colour-only and equal-power white-noise
+   controls before independent/product work. No additional manual strength.
+
+Noise-estimation methodological reference: Liu/Tanaka/Okutomi ICIP2012
+https://doi.org/10.1109/icip.2012.6466947 explains weak-texture selection and
+scene-contamination risk. Our transparent plane-residual diagnostic is NOT
+their PCA/Gaussian-noise estimator and cannot identify true noise from texture.
+Support is an engineering gate, not proof of a film-domain distribution.
+
 ## Single-reference diagnostic result, 2026-09-07
 
 Run from `aac6e4244`, all three predetermined reference arms completed.

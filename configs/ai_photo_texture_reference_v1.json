@@ -1,0 +1,13 @@
+{
+  "manifest": "data/ai_film_references/italy_2024_v1/manifest.json",
+  "manifest_sha256": "7a7cf18824151f656cdd94e82abcdd4e4186c2167f273dbd32d27bd61da8ff06",
+  "patch": 64,
+  "stride": 64,
+  "max_patches": 8,
+  "max_smoothed_gradient_p90": 0.01,
+  "max_extreme_fraction": 0.01,
+  "fit_image_count": 12,
+  "minimum_images_with_four_patches": 12,
+  "output": "outputs/ai_photo_texture_reference_v1",
+  "claim": "same-author JPEG display-texture development diagnostic, not independent or calibrated noise"
+}
