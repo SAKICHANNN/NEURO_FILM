@@ -1,5 +1,26 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## VCG stage-gain diagnostic, prospective 2026-09-07
+
+Mode A/L2, same AI goal; fixed consumed development photos only. Question:
+does analytical covariance pre-correction already amplify small RGB noise, and
+does the learned LUT further amplify it? This is explanation, not promotion.
+Reuse V3 report and all three saved LUTs; no GPU, new model, photo, reference,
+seed or strength. Recover exact published pre-correction from hash-checked
+functions, require byte-exact precorrection and learned PNG reconstruction.
+Measure source covariance eigenvalues/condition and normalized affine singular
+values; at a fixed48x48 whole-image coordinate grid measure learned LUT and
+composed Jacobian singular values and negative-determinant fraction. Trilinear
+float derivatives use1e-4 finite differences; report endpoints and ignore uint8
+rounding only for derivative diagnostics, not image parity. Identity/linear LUT
+tests precede measurement. These descriptive metrics cannot themselves label
+an artifact or prove noise origin; prior visual judgment remains independent.
+No visual threshold or retuning. Next decision: if pre-stage is a material
+amplifier, separately test the published no-colour-correction inference option
+as an ablation, never rewriting the negative or promoting from reused images.
+Owned: one diagnostic script/test plus this recovery/log/evidence; no core or
+product change. Rollback scoped commit, generated reports remain immutable.
+
 ## VCG loading correction, 2026-09-07
 
 **Terminal development result:** V3 completed all five forwards (two synthetic
