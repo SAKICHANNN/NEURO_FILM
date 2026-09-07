@@ -1,5 +1,20 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Structural successor, before photo training
+
+Add private `src/models/color_lut/triangular_photo.py`, with zero-initialized
+36 learned parameters: each output logit is its input logit plus a bounded bias,
+nine bounded tanh basis functions of that same channel, and lower-triangular
+cross-channel terms using preceding original RGB channels. No spatial resampling.
+For each own-channel logit derivative, sum of absolute basis derivative bounds
+is <=.5, hence derivative lies [.5,1.5]. Triangular Jacobian has positive diagonal
+on the open RGB cube, so determinant is positive. Exact endpoints are handled
+analytically, not by clipping all near-endpoint inputs. This is a new explicitly
+specified structural response to the measured folding; not rescue of prior LUT
+weights, and not proof of photographic quality or novelty. Unit tests must cover
+identity, endpoints, extreme parameters, positive Jacobians and gradients before
+any photographic fitting. Production API and historical runner remain unchanged.
+
 ## Deep-photo pilot v1 (frozen before training)
 
 Result: completed at implementation `94e82a8ae`,120 fresh updates per arm.

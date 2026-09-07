@@ -28,9 +28,9 @@ def moments(x):
     return x.mean((2, 3)), x.std((2, 3), correction=0)
 
 
-def main():
-    cfg = json.loads((ROOT / "configs/ai_deep_photo_pilot_v1.json").read_text())
-    out = ROOT / "outputs/ai_deep_photo_pilot_v1"
+def main(config="configs/ai_deep_photo_pilot_v1.json", structural=False):
+    cfg = json.loads((ROOT / config).read_text())
+    out = ROOT / cfg.get("output", "outputs/ai_deep_photo_pilot_v1")
     if out.exists() or out.resolve().drive.upper() != "P:":
         raise RuntimeError("Require new P-backed output")
     torch.manual_seed(cfg["seed"])
@@ -93,18 +93,27 @@ def main():
         contents = [encoder.encode(x).detach() for x in train]
     out.mkdir()
     report = {"config": cfg, "source_hashes": hashes, "arms": {}}
-    for arm in ("lut", "simple"):
+    for arm in (("triangular", "simple") if structural else ("lut", "simple")):
         n = cfg["lattice"]
         p = torch.nn.Parameter(
             torch.zeros(
                 (1, 3, n, n, n) if arm == "lut" else (1, 6, 1, 1), device="cuda"
             )
         )
+        if arm == "triangular":
+            from src.models.color_lut.triangular_photo import TriangularPhoto
+
+            model = TriangularPhoto().cuda()
+            p = model.parameters_raw
+
+        def apply(x):
+            return model(x) if arm == "triangular" else transform(x, p, arm)
+
         opt = torch.optim.Adam([p], lr=cfg["lr"])
         losses = []
         for step in range(cfg["steps"]):
             i = step % len(train)
-            y = transform(train[i], p, arm)
+            y = apply(train[i])
             feats = encoder.encode_with_intermediate(y)
             style = y.new_zeros(())
             for f, (mean, std) in zip(feats, targets, strict=True):
@@ -136,7 +145,7 @@ def main():
         np.save(out / f"{arm}_parameters.npy", p.detach().cpu().numpy())
         for i, x in zip(ids, images, strict=True):
             with torch.no_grad():
-                y = transform(x.cuda(), p, arm).cpu()
+                y = apply(x.cuda()).cpu()
             assert torch.isfinite(y).all() and y.min() >= 0 and y.max() <= 1
             Image.fromarray(
                 (y[0].permute(1, 2, 0).numpy() * 255).round().astype(np.uint8)
