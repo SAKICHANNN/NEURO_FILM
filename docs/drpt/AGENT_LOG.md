@@ -1,5 +1,20 @@
 # Project Agent Log
 
+## 2026-09-07 - Bounded VCG model acquisition implementation
+
+- AI/ML primary, read-only research and lightweight plan/log/structure reviews.
+  Exact metadata identifies662 reference and686 diffuser tensors. Plan71e0979a2
+  excludes unused first-stage image-network weights and all movie/example data.
+- Added restricted descriptor inspection and streaming ZIP-storage-to-safetensors
+  acquisition. Six tests PASS: unknown globals, storage/stride bounds, transfer
+  budgets, synthetic saved tensor exactness, CRC rejection and timeout/short read.
+  Dry run:6,868,745,655 network bytes across31+1 ranges, no full archive cache.
+  P free88,067,276,800 bytes before launch. Existing SD1.5 cache is read-only.
+- Changes remain private scripts/tests/config and recovery note; product/core
+  unchanged. Model compatibility, actual inference and visual value unproven.
+  Failure retains explicit partials; success requires all source CRCs and saved
+  tensor identities. No automatic unpickle of external code or publication.
+
 ## 2026-09-07 - Select photographic learned-prior readiness candidate
 
 - Research primary with Exa/router and lightweight continuity checks, Mode A/L2.
