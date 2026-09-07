@@ -1,5 +1,41 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Fit-only operator-capacity diagnostic (2026-09-07)
+
+Parent: paired pilot below misses conditional preference and remains visually
+weak. Is a better explicit colour fit possible, or is the target unsuitable?
+Mode A, AI/ML primary writer, L2 bounded local diagnostic. No live training
+process observed; only desktop GPU clients. P has82.61GiB free. No new payload.
+
+Use only first6 `paired_fit` identities in the exact existing paired manifest,
+all3 styles. Do not read16 evaluation or any lockbox/test rows. Same embedded ICC
+conversion as accepted paired pilot, resize192. Optimize separate per-image/style
+parameters using even8x8 checkerboard blocks; score odd blocks only after final
+600 steps. This within-image pixel partition is NOT independent generalization.
+Two identity-initialized arms: original36-parameter triangular vs projected
+unit-range9^3 RGB LUT using existing trilinear renderer; Adam .01, LUT curvature
+penalty .001, no other tuning. Parameter budgets differ intentionally: this tests
+representational headroom, not a matched-budget architecture advantage. Record
+train/odd-block L1 by channel, identity baseline, new boundary and cell-centre
+Jacobian determinant diagnostic. Bounded LUT is not guaranteed injective/safe.
+
+Headroom signal requires >=20% median odd-block L1 reduction and >=12/18 wins
+over independently optimized triangular. Otherwise no capacity-based expansion.
+Even a signal only opens a separately designed learner, not this target-reading
+oracle at inference. Inspect fixed first2 source IDs x3 outputs against targets;
+no image/style cherry-pick. FilmSet remains internal digital-recipe supervision.
+
+| Step | Status | Verification / commit | Rollback |
+| --- | --- | --- | --- |
+| Config/question | DONE | Commit before new optimization | Scoped revert |
+| Runner/tests | IN_PROGRESS | Identity, gradients, checkerboard, source-role checks | New-only files |
+| Capacity run/review | NOT_STARTED | Fixed budget, report/checkpoints, bounded visual review | Retain evidence, no promotion |
+
+Owned: `configs/ai_paired_operator_capacity_v1.json`,
+`scripts/audit_ai_paired_operator_capacity.py`, dedicated test, this note/log.
+Reuse LUT and ICC primitives unchanged; no product/default/old evidence changes.
+Run caps20min; failure leaves partial output, no auto-restart or optimizer rescue.
+
 ## Paired digital-recipe AI control (prospective, 2026-09-07)
 
 Target-only visual preflight: first3 Cinema target SHA-ranked content identities

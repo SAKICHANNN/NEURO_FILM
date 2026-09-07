@@ -1,0 +1,19 @@
+{
+  "manifest": "outputs/ai_paired_recipe_pilot_v1/manifest.json",
+  "manifest_sha256": "0e7603d551791337510850f620bdefdf66eabd44e70e249ac5e7dc7e0ba62439",
+  "root": "data/raw/filmset/FilmSet",
+  "fit_images": 6,
+  "styles": ["Cinema", "ClassNeg", "Velvia"],
+  "size": 192,
+  "checker_block": 8,
+  "lut_size": 9,
+  "steps": 600,
+  "learning_rate": 0.01,
+  "lut_curvature_weight": 0.001,
+  "seed": 20260907,
+  "max_seconds": 1200,
+  "destination": "outputs/ai_paired_operator_capacity_v1",
+  "headroom_median_gain": 0.2,
+  "headroom_min_wins": 12,
+  "claim": "per-image paired digital-recipe fit-pool capacity diagnostic, not generalization or film truth"
+}
