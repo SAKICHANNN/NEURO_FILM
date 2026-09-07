@@ -1,5 +1,34 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## ClassNeg supervision diagnostic (2026-09-07)
+
+Parent: fixed photographic review failed in commit d32b72ccd. Before changing
+the learner, compare all16 already-consumed development inputs with their
+ClassNeg digital-recipe targets and unchanged global predictions. This is
+post-result diagnosis, not fresh confirmation or an opportunity to tune.
+Exact manifest: outputs/ai_conditioned_rgb_lut_v1/manifest.json, SHA
+`c65c6b6db647a637fe512508bcc4656bb8352f00f482c967ac44594bc5314326`.
+Reuse checkpoint bf0dcb11...cdd9, index1, existing ICC conversion and all native
+dataset pixels. No new roles, official test images, optimizer or downloads.
+
+Question: is the desired appearance missing from supervision, missed by the
+learned approximation, or mainly lost when transferring to other photographs?
+Report per-image L1 prediction-target, input-target, prediction-input and
+unblinded developer observations of target/prediction appeal versus input.
+Inspect every three-arm comparison at dataset resolution; no cherry-picked
+subset. These are descriptive judgements, not a new pass gate or physical-film
+truth. Similar target/prediction appearance with weak target appeal motivates
+supervision review; appealing targets with weak predictions motivates model
+diagnosis; strong within-dataset appeal with transfer failure motivates input
+domain investigation. Mixed evidence remains mixed. No product promotion.
+
+Scope: new scripts/audit_ai_classneg_supervision.py and focused test, this
+note/log, one outputs/ai_classneg_supervision_diagnostic_v1 root. Reuse decoder,
+LUT/model, write_png and existing placement. CPU inference only, P-backed,
+relevant source committed before run, hash checks before pixels. Preserve all
+old reports and foreign changes. Mode A/L2, AI/ML primary; additive commits
+provide rollback. Plan DONE; runner NOT_STARTED; review NOT_STARTED.
+
 ## Fixed ClassNeg photographic review (2026-09-07)
 
 Parent: learned RGB pilot below. Freeze global checkpoint bf0dcb11...cdd9,
