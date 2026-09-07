@@ -34,13 +34,56 @@ Mode A; AI/ML primary. Owned new config/model/runner/test with matching
 `ai_conditioned_rgb_lut` names, this note/log; reuse source decoder/LUT/evaluation
 math. No legacy defaults or foreign edits. Scoped commits provide rollback;
 all outputs in one new P-backed root. Status: configuration DONE;
-implementation DONE; training/evaluation NOT_STARTED. A positive result
+implementation/training/evaluation DONE. A positive result
 only opens independent photographic-value work, not product promotion.
 
 New manifest metadata lock SHA256
 `c65c6b6db647a637fe512508bcc4656bb8352f00f482c967ac44594bc5314326`;
 no new evaluation pixels read at lock time. Model/role/regularizer unit checks
 and synthetic CUDA update precede training; no new external assets/dependencies.
+
+### Learned RGB result (not product promotion)
+
+Code `d2ef0f023`; three from-zero600-step runs completed in105.39s total. Report
+SHA256 `2c14e1f3e23015c85fffa994b7b4c2e49bb7e47d9aa965b18d5d4591e6c62436`.
+All64 fit groups unchanged;16 new evaluation groups have zero overlap with the
+old80 and exclude3 preflight IDs. This does not certify all-project historical
+independence. Three checkpoints were saved before first new evaluation pixels.
+
+| Arm | Mean L1,48 rows | Median gain vs prior | Wins vs prior |
+| --- | ---: | ---: | ---: |
+| Learned global RGB LUT | .00926825 | 59.48% | 48/48 |
+| Image-conditioned RGB LUT | .00980514 | 58.22% | 48/48 |
+| Wrong-content conditional | .21834097 | control | control |
+| Prior conditional triangular | .02233304 | baseline | baseline |
+
+Both numerical-progress gates pass; conditional vs global median gain -6.85%
+fails preference for added conditional complexity. Keep the learned global
+as the simpler supervised development candidate, not a handcrafted LUT. Global
+checkpoint SHA `bf0dcb11c1b6c5f7286b056e8610f27d43d980a56741093f8c0aa3d535d0cdd9`;
+conditional `c6f406d6a87327ca183f2746e81d18b47bb8cee0fc0114f01f9f1662c1420afa`.
+Wrong-target gain is95.50%/95.29%; this is recipe correspondence, not film truth.
+
+Autonomous unblinded visual review completed for fixed3 evaluation images x3
+styles x2 learned arms at512px and3 previously used CC0 transfers x3 x2 at768px
+maximum, with originals. ClassNeg targets for evaluation00/02 also compared.
+No conspicuous geometry/text rewrite or severe false-colour breakup in this
+limited review. Global/conditional are visually close; all three style hashes
+are distinct for every transfer (no prior-style-collapse pattern). ClassNeg
+offers clearer contrast/palette separation; Cinema is still washed/mild and
+Velvia produces purple sky/yellow indoor saturation, not uniformly appealing.
+These are developer observations, NOT blind preference or established film feel.
+
+Maximum cell-centre nonpositive-Jacobian fractions remain3.90625% global and
+3.515625% conditional; maximum new boundary component fractions .608317% and
+.555547%. Soft penalty did not prove safe colour topology. Do not hide these
+behind small L1 or promote at512/768px.16 focused/parent tests PASS, Ruff/diff
+PASS; artifacts total33.54MiB, no download/cloud/production edits. Retain all
+checkpoints and old negatives. Next: one frozen candidate's broader photographic
+value and full-detail risk assessment, not more loss/step/LUT-size tuning on
+these16. Full-resolution, independent preference, texture, product integration,
+release rights and eventual12-24MP replay remain unproved. The existing private
+FilmSet research permission is not a public-weight/product-release clearance.
 
 ## Fit-only operator-capacity diagnostic (2026-09-07)
 

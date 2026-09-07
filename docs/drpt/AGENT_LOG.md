@@ -1,5 +1,20 @@
 # Project Agent Log
 
+## 2026-09-07 - Learned RGB LUT substantially improves digital-recipe transfer
+
+- AI/ML primary, plan/reliability/log/structure secondary; freeze `faed38e`,
+  model/runner/test `d2ef0f023`. Same64 fit +16 newly locked development groups,
+  no old80 overlap;3 from-zero600-step arms,105.39s, no new downloads/cloud.
+- Global learned LUT wins48/48 vs old triangular with59.48% median L1 reduction;
+  conditional58.22%, but conditional vs global -6.85%, so added conditioning
+  not preferred. Report/checkpoint identities in AI_RECOVERY_20260907.md.
+- Fixed18 evaluation and18 transfer candidate outputs visually reviewed, clearer
+  style separation but mixed appeal. Cell-centre folds and new boundaries remain;
+  no full-resolution, independent preference, physical-film or product claim.
+-16 focused/parent tests PASS, Ruff/diff PASS;33.54MiB local artifacts retained.
+  Existing model directories/primitives reused, no production API or foreign edit.
+  Next is frozen candidate photographic-value/risk validation, not manual tuning.
+
 ## 2026-09-07 - Fit-only diagnostic establishes RGB representation headroom
 
 - AI/ML primary, plan/reliability/log/structure secondary; config `a0fa93642`,
