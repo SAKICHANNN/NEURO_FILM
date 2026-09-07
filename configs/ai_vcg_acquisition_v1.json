@@ -1,0 +1,15 @@
+{
+  "schema": "neuro-film.vcg-bounded-acquisition.v1",
+  "official_repository": "https://github.com/seunghyuns98/VideoColorGrading",
+  "source_tree": "9d58052bd70eb68ed684003619e62795825f346d",
+  "metadata_path": "outputs/ai_vcg_readiness_v1/checkpoint_metadata_v2.json",
+  "metadata_sha256": "f6656ce76bc1706f7be819227e2e57cd16aecf3ed711e69ef4fb8450db1f6564",
+  "output_root": "data/ai_models/video_color_grading_v1",
+  "max_network_bytes": 7200000000,
+  "max_seconds": 1800,
+  "minimum_free_bytes": 20000000000,
+  "scope": "Private evaluation of author-linked pretrained research weights. Repository code Apache-2.0; no distribution/commercial weight clearance inferred. No movie dataset, example media or base-model downloads in this step.",
+  "required_state": ["referencenet_state_dict", "unet_state_dict"],
+  "verification": "Metadata SHA before selection; exact HTTP ranges and size; ZIP local-header identity; each storage CRC32; saved tensor SHA256; safetensors shape/key validation. No arbitrary pickle execution.",
+  "promotion": false
+}

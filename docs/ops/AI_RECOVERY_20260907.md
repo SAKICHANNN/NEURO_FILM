@@ -2,6 +2,29 @@
 
 ## Next photographic-prior triage (2026-09-07)
 
+Execution update: bounded metadata probe now confirms 662 selected reference
+tensors /3,428,266,240 bytes in step1 and686 diffuser tensors /3,438,095,372
+bytes in step2. The original complete archives total10,305,379,326 bytes.
+Restricted descriptor parsing (no torch/storage construction or arbitrary
+pickle globals) transferred627,087 bytes. Exact selection manifest v2:
+`outputs/ai_vcg_readiness_v1/checkpoint_metadata_v2.json`, SHA256
+`f6656ce76bc1706f7be819227e2e57cd16aecf3ed711e69ef4fb8450db1f6564`.
+Legacy Torch files have no byteorder member; retain explicitly the original
+little-endian training-host assumption, not a fabricated embedded declaration.
+
+Bounded acquisition plan: `configs/ai_vcg_acquisition_v1.json`, source/metadata
+identity locked before storage reads; select only needed tensors and stream
+them into two safetensors without caching complete checkpoints. Maximum7.2GB
+network/1800s, require20GB free. Check exact ranges/local headers/storage CRCs
+and self-measured SHA256. Refuse existing destinations; interrupted partials
+remain explicit and are never inference-ready. No source/model arithmetic
+changes. Tests cover forbidden globals, malformed storage, offsets/strides and
+pre-network limits. Commit acquisition implementation before payload. Next
+inference needs its own fixed-pair protocol and synthetic compatibility smoke.
+SD1.5 snapshot451f4fe... is locally present in the existing shared HF cache;
+read-only reuse is possible, no cache migration/mutation. CLIP B/32 and current
+diffusers compatibility still need verification. No product permission change.
+
 After the full NLUT negative, prefer a learned photographic representation over
 another per-pair feature-moment optimization. No new model or image payload was
 downloaded during this bounded read-only triage. This is readiness evidence,
