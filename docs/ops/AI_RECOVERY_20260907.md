@@ -44,6 +44,16 @@ Status: manifest/implementation DONE, training IN_PROGRESS. Small local
 GPU run, no cloud or new dataset download. Scoped commits provide rollback;
 all old model runs and unrelated worktree changes stay intact.
 
+Pre-training source correction: attempt `run/` stopped on first input header
+before any decoded array/optimizer/evaluation pixels; all256 fit files carry
+embedded `Adobe RGB (1998)`, not the assumed sRGB. Empty attempt directory
+retained. V2 uses explicit LittleCMS relative-colorimetric conversion from the
+embedded profile to sRGB8 for both input/target, never assigns sRGB to unlabelled
+pixels. Conversion is an explicit gamut/quantization limitation, not sensor
+truth. Source pair hash-lock, roles, model, steps and loss unchanged. New result
+root `run_icc_v2`; RGB profile validation precedes decode. Original target-only
+preflight is not a numerical colour-managed comparison.
+
 ## Texture supervision pilot (prospective, 2026-09-07)
 
 Parent: learned colour pilots below did not establish film appeal. New question:

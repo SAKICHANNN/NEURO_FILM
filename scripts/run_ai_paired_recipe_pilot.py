@@ -77,17 +77,26 @@ def decode(root, row, size=None):
         raise ValueError("Forbidden path or changed payload")
     with Image.open(path) as im:
         profile = im.info.get("icc_profile")
-        if (
-            not profile
-            or "srgb"
-            not in ImageCms.getProfileName(
-                ImageCms.ImageCmsProfile(io.BytesIO(profile))
-            ).lower()
+        if not profile:
+            raise ValueError(f"Missing RGB profile: {row['path']}")
+        source_profile = ImageCms.ImageCmsProfile(io.BytesIO(profile))
+        profile_name = ImageCms.getProfileName(source_profile).strip()
+        if profile_name not in (
+            "Adobe RGB (1998)",
+            "sRGB built-in",
+            "sRGB IEC61966-2.1",
         ):
-            raise ValueError(f"Missing/unsupported sRGB profile: {row['path']}")
+            raise ValueError(f"Unsupported RGB profile: {profile_name}")
         if im.mode != "RGB":
             raise ValueError("Expected RGB")
-        a = np.asarray(im, dtype=np.float32).copy() / 255
+        converted = ImageCms.profileToProfile(
+            im,
+            source_profile,
+            ImageCms.createProfile("sRGB"),
+            renderingIntent=ImageCms.Intent.RELATIVE_COLORIMETRIC,
+            outputMode="RGB",
+        )
+        a = np.asarray(converted, dtype=np.float32).copy() / 255
     x = torch.from_numpy(a).permute(2, 0, 1).unsqueeze(0)
     return (
         F.interpolate(x, (size, size), mode="bilinear", align_corners=False)
@@ -123,7 +132,7 @@ def main():
     for key in manifest["config"]:
         if manifest["config"][key] != cfg[key]:
             raise ValueError("Frozen configuration changed")
-    run = out / "run"
+    run = out / "run_icc_v2"
     run.mkdir(exist_ok=False)
     torch.set_num_threads(4)
     torch.use_deterministic_algorithms(True)

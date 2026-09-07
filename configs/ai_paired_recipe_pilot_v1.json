@@ -15,4 +15,5 @@
   "destination": "outputs/ai_paired_recipe_pilot_v1",
   "claim": "paired digital-recipe development control, not unpaired or physical film",
   "allow_publication": false
+  ,"input_transform": "embedded Adobe RGB (1998) or sRGB ICC to sRGB8, LittleCMS relative-colorimetric, same conversion for input and target"
 }
