@@ -12,7 +12,7 @@ from torch.nn import functional as F
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts.run_ai_clip_lut_pilot import transform  # noqa: E402
+from scripts.run_ai_clip_lut_pilot import transform
 
 
 def image_tensor(path):

@@ -1,5 +1,18 @@
 # Project Agent Log
 
+## 2026-09-07 - Photo-supervised AI LUT development run
+
+- Source QA: 19-image sheet inspected; within/history dHash minima16/20,
+  historical pixels0. Freeze `61c9fe520`, execution `867988a13`.
+- Fresh 150-step/arm RGB distribution fitting actually ran; LUT step100 loss
+  .000635 vs simple .001206, report `1e4cd6d8...a52ee` under
+  `outputs/ai_photo_distribution_pilot_v1`. All three transfer triples viewed.
+- No obvious CLIP-like false-colour corruption at768px, but film character and
+  advantage over simple control unestablished: no promotion or independent/full
+  resolution claim. Close fixed run without retuning. Unused-noqa lint corrected
+  after execution, numerical implementation unchanged. Production/foreign paths
+  preserved; AI/ML remains primary, structure unchanged.
+
 ## 2026-09-07 - AI actual-photo development reference intake
 
 - AI/ML primary, planning/reliability/structure secondary: acquired 19 CC-BY-4.0

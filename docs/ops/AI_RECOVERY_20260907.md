@@ -2,6 +2,27 @@
 
 ## Actual-photo supervision intake, 2026-09-07
 
+### Photo-supervised pilot result
+
+Executed committed implementation `867988a13`: 150 fresh Adam updates per arm,
+no checkpoint reuse, output `outputs/ai_photo_distribution_pilot_v1`.
+Report SHA256 `1e4cd6d8e9364260e051ab867ca7a73db01cef8ace4e61c9d66e409f805a52ee`.
+Both arms started distribution loss .00714744. At step100 LUT distribution
+loss .00063522 vs simple .00120565; this proves fitting, not visual superiority.
+All three transfer rows' originals/LUT/simple were visually inspected at768px.
+No obvious prior CLIP-style green/magenta contour corruption at this resolution.
+However LUT mainly lightens/desaturates the building, shifts the foliage/wall,
+and cools indoor light. It does not establish convincing film character or a
+clear photographic advantage over the simple learned control. NO PROMOTION;
+independent/full-resolution validation not opened. This exact fixed run stops,
+without strength/loss/palette rescue. Missing texture/context in a pooled RGB
+distribution is a plausible limitation, not a demonstrated causal conclusion.
+Next method must learn more than global colour-distribution matching.
+
+Implementation lint initially flagged an unused noqa, but the shell proceeded
+to commit/run. Removed only that comment afterwards; current Ruff/compile pass.
+The execution commit is preserved and no claim of pre-run lint pass is made.
+
 Photo-distribution pilot frozen before fitting: 19 references inspected as a
 contact sheet, natural travel scan appearances, repeated bridges/architecture
 and lighting confounds explicitly retained as a single development group.
