@@ -17,6 +17,13 @@ format/packaging/resource micro-leaves. U7.22B 100MP work is deferred with its
 unfinished files preserved. Calibration and outreach are nonblocking conditional
 branches. One long-lived Goal owns this priority; no per-leaf Goal recreation.
 
+2026-09-07 user-authorized replacement Goal keeps this outcome, permits simple
+methods and fewer excellent Looks, and makes the first milestone one independently
+useful, detail-checked Look in the existing workflow. LOOK2 copper fixed-v2
+1600-side development is complete (report `c1c50c72...77fc2`); no promotion.
+Next resolve new quantized highlight endpoints on those same development images
+before further assessment. The LOOK2 plan records exact review limits and counts.
+
 **Deferred research objective**: learn as many evidence-backed, distinguishable and
 artifact-safe stock-specific explicit colour experts as practical from
 verifiable real photographic-film scans. `film_stock_id` is the primary class;

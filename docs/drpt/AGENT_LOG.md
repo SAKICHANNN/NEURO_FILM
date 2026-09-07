@@ -2,6 +2,30 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-07 - Long-lived value Goal and fixed copper detail review
+
+- User requested a new accurate Goal and autonomous continuation. `get_goal`
+  returned null; created one active top-level product-value Goal with a bounded
+  first delivery milestone, no prescribed model/look count and no calibration
+  dependency. Reliability is primary; router/plan/DRPT/structure/log secondary.
+- Reused unchanged `compare_creative_looks_v2.py --detail` and copper config v2
+  after 19 focused tests passed. Exit 0; nine known development rows, no
+  assessment/network/RAW reads. Report `c1c50c72ff777b94a82460389b85d13374e530bcd240bf8696d568ecbbe77fc2`;
+  127 files / 533,237,081 bytes under P-backed outputs. Run binds source files;
+  shared foreign U7.22B dirt means no whole-worktree clean claim.
+- Reviewed nine centre crops plus two full available candidate images. No
+  confirmed severe damage in those inspected views, but not comprehensive safety.
+  Tone/colour value remains scene dependent. Post-run code diagnostic finds
+  [8,247]-source new endpoints in 0.0251%-1.1841% of components, mostly highlights;
+  scalar domain safety is insufficient. Next local task inspects location and
+  float/quantized behaviour, without assessment tuning or more output grids.
+- Changed only active LOOK2 plan, tracker and this log. Existing core/config,
+  default product, v1 and historical negative evidence remain unchanged; no
+  new dependency or directory concept. Docs-only rollback is a scoped revert.
+  Foreign U7.22B test/script and existing .codex/tmp remain untouched. Goal active,
+  no human approval needed for the next bounded local diagnostic; external
+  messages/purchases/public release are still separately authorized actions.
+
 ## 2026-09-05 - LOOK2 luma-separated copper-light development
 
 - Reliability primary; design visual direction, ML evaluation, DRPT, structure

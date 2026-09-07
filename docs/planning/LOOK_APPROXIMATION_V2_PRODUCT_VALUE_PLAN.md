@@ -6,6 +6,41 @@ Parent: ULT; components: U2 explicit operator, U4 evaluation, U7 product.
 
 ## Current facts and decision
 
+2026-09-07: the user explicitly authorized a replacement long-lived Goal after
+removing the old one. The top-level outcome is a worthwhile deterministic photo
+product, not a prescribed model, three stock names, or a count of experiments.
+The first bounded delivery milestone is one purposeful Look with independent
+value in its declared use domain, severe-detail checks and a usable 12-24MP
+preview/export/replay path. Simple authored controls may win. Calibration remains
+deferred; no user film or email dependency. Historical assessment gates stay
+immutable; future product scopes must distinguish selectable aesthetic value
+from a claim of universal automatic improvement or mathematical novelty.
+
+Fixed copper v2 detail development completed from `02c72c84f`, using existing
+`--detail`, with no core/config changes or assessment access. Report
+`outputs/creative_look_v2_development/development-12-copper-detail/report.json`
+SHA256 `c1c50c72ff777b94a82460389b85d13374e530bcd240bf8696d568ecbbe77fc2`;
+127 files / 533,237,081 logical bytes, P-backed. Eight images at available
+1600-side and NASA at 512; these are known development derivatives, not RAW.
+All nine 512-square centre comparison crops were reviewed at native sampling;
+also full available candidate path and rail-yard images. Flower veins, facade
+edges, grass and rails remain legible in those views. Hay/house changes remain
+modest; stair neutrals are blue; NASA face/background are brighter/warmer.
+Path/courtyard show intentional warm-light/cool-shadow separation. This is
+labelled autonomous development judgement, not a preference or safety pass.
+
+Important unresolved risk: new quantized endpoints occur on every image,
+mostly 255. A post-run diagnostic on source codes [8,247] still finds new
+endpoints in 0.0251%-1.1841% of all RGB components (largest NASA: 9,312).
+Thus this is not only near-endpoint source rounding. The radial limiter places
+compressed rays near the cube boundary; inspect its highlight/channel-detail
+consequences before any new confirmation. Centre crops do not exclude harms
+elsewhere. Do not call boundary counts severe-artifact counts or silently clip
+the output. Next ready action is a source-bound endpoint-location/float-versus-
+quantized diagnostic on this development run, followed by broader portrait
+development if the candidate survives. No parameter tuning occurred here.
+Core preflight: 19 tests PASS. Product/defaults and foreign U7.22B files unchanged.
+
 Copper development-11 completed at `295d7d7c6`, report SHA256
 `ed7fdc74bad2d8dc6fc85019250e204145c472c5de7a45c02a70e1e33fc73ae8`.
 All nine labelled overview sheets reviewed. Saturation-weighted tint visibly
