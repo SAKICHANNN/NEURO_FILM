@@ -1,0 +1,18 @@
+{
+  "scope": "development-only nonpaired author-scan appearance learning, not stock truth",
+  "reference_manifest": "data/ai_film_references/italy_2024_v1/manifest.json",
+  "reference_sha256": "7a7cf18824151f656cdd94e82abcdd4e4186c2167f273dbd32d27bd61da8ff06",
+  "source_manifest": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/manifest.json",
+  "train_rows": [0, 1, 2, 3, 4, 5],
+  "transfer_rows": [6, 7, 8],
+  "seed": 20260907,
+  "steps": 150,
+  "lr": 0.02,
+  "lattice": 9,
+  "projections": 64,
+  "samples_per_image": 256,
+  "quantiles": 256,
+  "identity_weight": 0.05,
+  "smoothness_weight": 0.1,
+  "decision": "No automatic promotion. Reject confirmed severe false-colour/contour/banding or content defects; inspect every transfer image against original/simple before judging film appearance. Loss is diagnostic only; no tuning this run. Development inputs were used by prior pilots, not independent assessment. A promising result only opens separately frozen independent validation."
+}

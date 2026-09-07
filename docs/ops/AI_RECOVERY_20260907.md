@@ -2,6 +2,22 @@
 
 ## Actual-photo supervision intake, 2026-09-07
 
+Photo-distribution pilot frozen before fitting: 19 references inspected as a
+contact sheet, natural travel scan appearances, repeated bridges/architecture
+and lighting confounds explicitly retained as a single development group.
+QA dHash minimum within=16, against historical stored signatures=20; these are
+heuristics, not proof of independence, and historical pixels remain unread.
+New `ai_photo_distribution_pilot_v1.json` fixes 150-step equal-image sampled
+RGB sliced-quantile distribution learning, 64 seeded projections, versus a
+learned simple logit-affine control and identity. Shared 9-cube residual LUT
+and simple arm use the prior explicit bounded executor, no CLIP objective,
+no hand palette. This tests actual-photo supervision, not methodological novelty.
+Spatial content cannot be invented by this pointwise executor, but false colour
+and contour artifacts remain possible and require visual veto. Frozen source
+development rows0..5 and transfer rows6..8 are reused development, never a final
+independent result. Run once, preserve parameters/losses/images and do not rescue
+the fixed run by changing strengths, palette, losses or references afterwards.
+
 AI-first child after the failed CLIP-only pilot: acquire the 19 explicitly
 CC-BY-4.0 photographs on Nick Rudzicz's Italy 2024 page, with a 64MiB total cap.
 The page states Nikon FM-2 / Portra400. This is author/scan appearance supervision,
