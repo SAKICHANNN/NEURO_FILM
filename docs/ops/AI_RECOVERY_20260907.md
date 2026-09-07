@@ -1,5 +1,38 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Next supervision decision: deep photo features, not text or RGB marginals
+
+2026-09-07 read-only official implementation audit identifies NLUT
+<https://github.com/semchan/NLUT> revision
+`66e271dd5740282d1b0f16d42ed5ca3f763ce818` as a concrete comparison method.
+Exact `net.py` blob `e2872c99aa56b33ab973031acf29d78bfef21f2c` uses fixed VGG
+relu1_1/relu2_1/relu3_1/relu4_1 features. Style loss is summed feature mean and
+population-standard-deviation MSE; content loss is relu4_1 activation MSE.
+The third moment is computed but commented out of the loss. It is not CLIP
+text supervision, RGB histogram matching, or a full Gram-matrix loss.
+
+Official repository README calls the algorithm MIT and its LICENSE contains
+the MIT permission text, with a surprising inherited Friendika copyright.
+The tree includes `models/vgg_normalised.pth`, 80,102,481 bytes, Git blob
+`18a783877329319e5a640ae20f7b98c64e5f5572`; checkpoint redistribution/training
+provenance must be kept distinct from code permission. No weight downloaded
+or executed in this audit. Full pretrained NLUT is externally hosted and has
+not been audited or obtained. Do not claim exact NLUT reproduction yet.
+
+Available user torch cache was inspected read-only: ConvNeXt-tiny, DINOv2-small,
+MobileNetV2, RAFT-small and an unidentified scaled_offline checkpoint, no VGG.
+Do not silently substitute these for the named official feature extractor or
+load the unidentified checkpoint. Existing train_unet.py uses torchvision VGG19
+features, but presence of code does not prove a local matching checkpoint.
+
+Next ready action is bounded VGG provenance/acquisition verification followed
+by a fixed deep-feature-supervised LUT comparison on the licensed development
+references, with no production imports. A pointwise LUT still cannot synthesize
+grain or halation; feature supervision is only an appearance-learning hypothesis.
+The previous RGB pilot does not prove all global LUTs incapable of film colour.
+Any later learned texture component needs its own identifiable objective and
+content/artifact tests, not arbitrary hand-added grain to declare success.
+
 ## Actual-photo supervision intake, 2026-09-07
 
 ### Photo-supervised pilot result

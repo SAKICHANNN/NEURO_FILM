@@ -1,5 +1,17 @@
 # Project Agent Log
 
+## 2026-09-07 - Deep photo-supervision implementation audit
+
+- Official NLUT revision `66e271dd...ce818` reviewed read-only: four VGG feature
+  mean/population-std style losses plus deep content MSE; exact code/weight blob
+  identities recorded in AI_RECOVERY_20260907.md. This materially differs from
+  failed CLIP text and pooled RGB objectives; not yet an executed candidate.
+- No matching VGG in inspected local torch cache. Code permission and pretrained
+  weight provenance remain separate; no download/model execution in this audit.
+  Next: bounded provenance verification then fixed feature-supervised comparison.
+- AI/ML primary, source verification secondary; existing structure and all dirty
+  product/foreign files preserved. No product or paper-quality conclusion.
+
 ## 2026-09-07 - Photo-supervised AI LUT development run
 
 - Source QA: 19-image sheet inspected; within/history dHash minima16/20,
