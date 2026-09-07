@@ -2,6 +2,32 @@
 
 Durable handoff log for non-trivial DRPT-governed work. Keep implementation truth in the active project documents and use this file to record decisions, evidence, risks and the next safe handoff.
 
+## 2026-09-07 - User-requested clear-garbage cleanup, batch one
+
+- Cleanup precedes new AI experiments. Operations is primary; reliability,
+  scoped-plan/log and structure disciplines are secondary. No models, original
+  photographs, formal results or negative evidence were selected for deletion.
+- Exact allowlist: nine `tmp/cleanup_pending_*` runtime copies and
+  `tmp/p282_source_lock_v1_4_2` completed acquisition scratch. Resolved paths,
+  reparse points and process-command references checked before execution.
+- Initial recursive removal stopped on a filesystem directory-not-empty error;
+  its inventory remains in `outputs/storage_cleanup_20260907/before.json`.
+  Subsequent accepted filewise cleanup removed 63,272 remaining files /
+  3,476,267,829 logical bytes, ten roots absent, zero errors/residual files.
+  This excludes files removed in the initial partial attempt.
+- Filewise report: `outputs/storage_cleanup_20260907_filewise/result.json`,
+  SHA256 `524d44c42590d2ecdff9bbaffea36a9387c2c02eb017214d2bf01a00059acef1`.
+  Observed P free bytes 51,157,401,600 -> 89,186,631,680 during that run;
+  allocation/free-space delta is not equated with logical file bytes.
+- P-backed data/outputs/tmp/checkpoints/loras junctions remain unchanged.
+  Whole-project audit is not complete: unverified archive/segment sets and
+  fallback contents are retained. A separate P293 transport-fragment removal
+  command was denied before execution by platform policy; no bypass attempted.
+  Large zhuise download fragments need authoritative complete-copy validation.
+- Interrupted creative-v6 and foreign U7.22B files preserved unstaged. No new
+  AI run or manual palette experiment launched. Next: finish safe classification
+  of remaining storage, then AI baseline audit under the new top-level Goal.
+
 ## 2026-09-07 - LOOK2 gold-daylight selective palette development
 
 - Previous feedback-only goal turn was no implementation progress. Implemented
