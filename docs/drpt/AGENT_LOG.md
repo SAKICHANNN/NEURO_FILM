@@ -1,5 +1,18 @@
 # Project Agent Log
 
+## 2026-09-07 - Verified feature-model preparation
+
+- `697dc5e41` freeze, `a30b26cc0` implementation: three exact NLUT objects
+  acquired to P-backed `data/ai_models/nlut_feature_v1`, total80,108,872B.
+  Attribution retained; private comparison only, not product redistribution.
+- Strict weights-only load, all frozen VGG feature shapes, finite/nonzero input
+  gradient smoke PASS; no photograph or generator decoder. Manifest SHA
+  `d817f7ec074dbea827781188bdb2e5015cf137d5cd0e56ebb327341e57088142`.
+  Ruff/compile pass. Next is photo-feature-supervised learning; no efficacy claim.
+- AI/ML primary with provenance/structure checks. Foreign files and existing
+  production paths unchanged; no additional authority needed for bounded local
+  development, public distribution remains outside this preparation.
+
 ## 2026-09-07 - Deep photo-supervision implementation audit
 
 - Official NLUT revision `66e271dd...ce818` reviewed read-only: four VGG feature

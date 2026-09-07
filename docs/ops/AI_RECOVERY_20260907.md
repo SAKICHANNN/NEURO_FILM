@@ -2,6 +2,19 @@
 
 ## Next supervision decision: deep photo features, not text or RGB marginals
 
+Preparation executed successfully at `a30b26cc0`. Exact LICENSE/net/weight Git
+blobs match; 80,108,872 bytes total under `data/ai_models/nlut_feature_v1`.
+Manifest SHA256 `d817f7ec074dbea827781188bdb2e5015cf137d5cd0e56ebb327341e57088142`.
+Strict weights-only state loading succeeds without unsafe pickle fallback.
+Frozen four-layer features for synthetic 64x64 input are 64x64x64,
+128x32x32, 256x16x16, 512x8x8; finite nonzero input gradients and no trainable
+encoder parameters. No photograph read; no learned film output yet. Ruff and
+compile pass. Model/source available locally for the next bounded learning run.
+Official finetuning defaults content/style weights1/1,40iterations and lr1e-4
+apply to its pretrained network, not automatically to our zero-initialized LUT.
+Freeze a separately identified development experiment rather than claim those
+defaults or full NLUT reproduction.
+
 Bounded model preparation now frozen in `ai_nlut_feature_source_v1.json`:
 80.1MB published NLUT feature model + exact source + license, Git blob verified
 before weights-only loading, no unrestricted pickle fallback. Oxford primary
