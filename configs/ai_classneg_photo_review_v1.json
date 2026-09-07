@@ -1,0 +1,23 @@
+{
+  "source_manifest": "outputs/u5_r2ao7s_fresh_rawpixls_source_preflight_v1/run_c/manifest.json",
+  "source_manifest_sha256": "048992242c82a2cd9efd193c6766065c7148ad0607a5505b88185d0ab781b101",
+  "prior_transfer_manifest": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/manifest.json",
+  "checkpoint": "outputs/ai_conditioned_rgb_lut_v1/run/global.pt",
+  "checkpoint_sha256": "bf0dcb11c1b6c5f7286b056e8610f27d43d980a56741093f8c0aa3d535d0cdd9",
+  "source_count": 17,
+  "style_index": 1,
+  "style_name": "ClassNeg",
+  "arms": ["identity", "learned", "safe_rich_portra", "simple_contrast"],
+  "simple_contrast_slope": 1.15,
+  "simple_contrast_pivot": 0.5,
+  "profile": "configs/render_profiles/safe_rich_product_v1.json",
+  "seed": 20260907,
+  "destination": "outputs/ai_classneg_photo_review_v1",
+  "question": "Does the fixed learned ClassNeg operator offer photographic value on all existing AO7 CC0 inputs compared with identity, current bland product and a fixed simple contrast control?",
+  "review": "unblinded autonomous developer review; not population preference, not all-project unseen; all 17 full 1600px outputs and same-size originals required",
+  "decision": "0 confirmed severe artifacts and at least 12/17 preferred over each control permits further full-native-resolution evaluation only; ambiguous counts as no win; otherwise no promotion and no retuning on these images",
+  "diagnostics": "report output boundary components, RGB mean absolute change, source/output luma quantiles; not substitutes for visual decision",
+  "claim": "internal digital-recipe-learned film-inspired colour development; no physical-stock or redistribution claim; AO6 comparison and native 12-24MP remain separate outstanding requirements",
+  "training_allowed": false,
+  "download_allowed": false
+}

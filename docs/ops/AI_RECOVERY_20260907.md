@@ -1,5 +1,25 @@
 # Early model recovery: descriptive smoke, not promotion
 
+## Fixed ClassNeg photographic review (2026-09-07)
+
+Parent: learned RGB pilot below. Freeze global checkpoint bf0dcb11...cdd9,
+ClassNeg index1, full strength; no optimizer or parameter editing. Actual AO7
+source manifest contains17 rows (not historical shorthand16); include all.
+Raw SHA intersection with the prior20 transfer pool is empty. These sources
+are held out from the current learned pilot, not all historical project work;
+author/scene independence unknown. Existing CC0 encoded1600px inputs only.
+Reuse old decoder output rather than silently changing input processing.
+
+Config `configs/ai_classneg_photo_review_v1.json` freezes identity, learned,
+current safe-rich Portra and simple1.15 contrast comparisons, unblinded
+autonomous full1600px review. No false blind/population/stock claim.0 severe
+and12/17 wins vs each control opens native-resolution tests only. AO6 remains
+an additional required comparison; this does not replace it. Any failed/unclear
+visual gate closes promotion without tuning this cohort. No data downloads.
+Mode A / AI-ML primary, L2; only new config/runner/tests plus this note/log.
+Existing models/defaults/foreign files untouched. Additive commits are rollback.
+Status: freeze DONE; implementation/review IN_PROGRESS; full12-24MP DEFERRED.
+
 ## Learned complete RGB LUT pilot (prospective, 2026-09-07)
 
 The fit-only oracle below establishes large representational headroom but folds;
