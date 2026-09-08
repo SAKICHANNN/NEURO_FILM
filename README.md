@@ -2,6 +2,8 @@
 
 K-MCFM is an experimental film-imaging project focused on preserving the input photograph while applying controllable color and film-inspired effects.
 
+The active objective is AI-learned, visibly convincing and appealing film-inspired appearance with photographic content preserved. No learned candidate has been promoted. The renderer below remains an engineering baseline. Current continuation and evidence boundaries: [September 8 correction](docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md).
+
 ## Current status
 
 The current usable path is a deterministic renderer:

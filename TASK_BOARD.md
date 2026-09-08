@@ -1,3 +1,7 @@
+> **Current authority — 2026-09-08 major correction:** AI must learn the key photographic film-style transform. No learned candidate is promoted. Read `docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md` (correction section) before choosing work. Earlier active/next/ULT/LOOK2 statements below are historical unless explicitly retained there. Preserve negative results and existing defaults; do not resume manual palette development or infrastructure expansion as a substitute for appearance value.
+
+Current scoped task: codex / course-correction / DONE; continuous-LUT diagnostic / IN_PROGRESS. Astra high subagent owns only src/eval/trilinear_lut_certificate.py, scripts/audit_vcg_lut_certificate.py, tests/test_trilinear_lut_certificate.py, configs/ai_vcg_lut_certificate_v1.json and its new output directory; no shared-file editing. Owned files: AGENTS.md, TASK_BOARD.md, IMPL_PLAN.md, README.md, docs/ULTIMATE_EXECUTION_TRACKER.md, docs/planning/LOOK_APPROXIMATION_V2_PRODUCT_VALUE_PLAN.md, docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md, scripts/audit_ai_course_correction.py, tests/test_ai_course_correction.py, docs/evidence/AI_COURSE_CORRECTION_20260908.json, outputs/user_style_catalog_20260908 correction artifacts. No existing file-lock rows were found in the current board. Foreign dirty files are excluded.
+
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
 > 2026-08-01: U6.P8BR closes the current public VFGS default soft-window

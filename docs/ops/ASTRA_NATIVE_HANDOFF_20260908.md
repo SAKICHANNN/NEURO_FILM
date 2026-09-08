@@ -1,5 +1,150 @@
 # K-MCFM: fresh-chat handoff, 2026-09-08
 
+## 2026-09-08 correction: current execution authority
+
+User request: perform a major course correction after confirming that the project
+and this task drifted from AI-learned photographic value. This section supersedes
+older active-priority/next-step prose, including deterministic LOOK2 and the
+historical ULT queue. Historical results, freezes and failed cohorts stay intact.
+
+Success remains AI-learned, visibly convincing and appealing film-inspired
+appearance, with preserved photographic content. No trained/learned candidate
+has established this as a reliable product. The safe-rich default is an existing
+engineering baseline, not completion. Named stocks remain historical labels
+unless separately substantiated; generic real-film references are permitted for
+generic appearance. User-supplied captures are not a prerequisite.
+
+### Correction execution plan
+
+Scope: current main checkout, documentation entry points, a reproducible evidence
+audit and the local historical catalog. No training, downloads, sealed evaluation,
+weight edits, production default changes or process termination in this correction.
+Git base is fb8ba4b6c on research/fivek-auto-optimize-cache. Existing foreign dirty
+files remain outside this task. Process preflight found the local catalog Python
+launcher/worker; no project training process matched the bounded command-line scan.
+That scan does not establish the state of remote or differently named processes.
+
+| Step | Status | Scope and verification | Commit / rollback |
+|---|---|---|---|
+| C0 | DONE | Reconcile latest intent with AGENTS, ULT, LOOK2, recovery and original result records; identify stale authority and selection bias | Documentation commit / revert scoped documentation |
+| C1 | DONE | Publish one current authority; map every subsystem to retain, stop or gated work; preserve historical evidence | Documentation commit / revert scoped documentation |
+| C2 | DONE | Bind method, supervision, checkpoint/report evidence and development-only claims in a repeatable read-only audit; verify report hashes | Audit commit / revert added audit files |
+| C3 | DONE | Correct catalog producer eligibility and visible claims; preserve historical selection decisions and user favorites; check image endpoints and browser | Save catalog snapshots in its own output directory / restore snapshots |
+| C4 | DONE | Verify entry-point consistency, negative-result preservation and foreign-file hashes; record an executable next task with admission and stopping rules | Final correction commit / revert scoped changes |
+
+### Root causes and corrected decisions
+
+| Observed problem | Decision |
+|---|---|
+| AGENTS and ULT still lead with manual deterministic LOOK2 while September 7-8 intent says AI | This section owns current continuation; older queues are historical evidence, not automatic next work |
+| Catalog renamed algorithmically fitted controls as AI choices | Classify by actual supervision and role. Neural architecture is neither necessary nor sufficient. Automatically fitting six sliders is a useful learned control, not proof of film-character learning |
+| 57 and then 10 examples were selected after viewing outputs | Those are unblinded, cherry-picked browsing examples. Neither their win rate nor absence of visible defects may support promotion |
+| Numeric delta and small thumbnails substituted for photographic value | Delta only triages. Keep visible difference, film character, appeal, content defects and learning contribution as separate judgments |
+| Good daisies concealed a VCG family failure on snow | An example never overrides its family-level negative result; display that result with the example |
+| Hundreds of physical/format/resource leaves look like algorithm progress | Treat infrastructure as reusable support; admit new support work only for a demonstrated blocker of a credible learned candidate |
+| Pseudo-teacher loss and style names were mistaken for learned film truth | Preserve as controls; track teacher lineage and condition-effect evidence separately |
+
+### Whole-project disposition
+
+| Subsystem | Current disposition | Reopening condition |
+|---|---|---|
+| AI colour/style learning | Main unresolved objective; no winner appointed | A photographic learning signal, existing runnable assets, matched controls and disjoint assessment roles are specified before fitting |
+| Early manual looks, safe-Lab, film-response, A/B/C teacher distillation | Retain historical controls; stop authored palette tuning as the mainline | May be replayed as explicitly labelled controls, never presented as newly learned style |
+| Neural s300/s800 recovery | Keep conditioning-collapse evidence; do not repeat the closed probe | A distinct causal question and new admission, not a relabelled strength/grid rescue |
+| FilmSet/ClassNeg | Paired digital-recipe learning, not physical stock truth; ClassNeg failed aggregate appeal | Better justified supervision on separate roles; no retuning the consumed 17-photo review |
+| NLUT / VCG | Actual learned operators; exact development configurations failed, retain evidence | New mechanism justification and separate assessment; no consumed-pair option sweep |
+| Diffusion final-RGB paths | Retired from this content-preserving mainline | Requires an explicit change of product/content scope |
+| Physical colour, stock modes, scanner calibration | Separate research, not a prerequisite for generic AI appearance | Existing source/identifiability gates still apply to those claims |
+| Grain / halation / dust | Existing optional controls; no extra noise to manufacture style success | A specific learned-candidate need plus separate photographic value evidence |
+| RAW / ICC / SDR / HDR | Preserve existing supported boundaries and fail-closed behavior | Fix an actual candidate input/output defect; no assumption of complete HDR support |
+| Native / tiling / 100MP / packaging | Preserve implementation and tests; defer further expansion | A visually credible candidate requires native execution or product integration |
+| Evaluation / gallery | Diagnostic support, with family failures and example-selection scope visible | Full-image/detail, matched-input evaluation precedes any product decision |
+
+### Next executable work after independent Astra high adjudication
+
+Recovery is bounded support, not a prerequisite for new mechanism work. The
+existing six-family matrix is enough to expose missing comparability; do not
+turn exhaustive historical recovery into a research admission requirement.
+
+1. Build a metadata-only matched-input recovery matrix for existing early anchors,
+   learned controls and NLUT/VCG. Bind input bytes, dimensions, ICC/preprocessing,
+   exact output, checkpoint/recipe, training membership and previous review role.
+   File or family names alone do not identify a preferred model. Do not rerun
+   already closed s800 probes; record incompatible resolution/processing cells
+   as non-comparable. Output must identify whether any claimed earlier AI winner
+   is actually recoverable; absence is a valid result.
+2. Review complete matched development groups, including failures and simple
+   controls, at whole-photo and actual available pixel resolution. Keep them
+   explicitly consumed. Score appearance change, coherent film character,
+   preference, face/text/object retention, gradients and noise separately.
+   Developer judgments are not user votes; no population/generalization claim.
+3. Independently admit one mechanism diagnostic based on an observed failure and
+   justified photographic supervision. Freeze rights, sample roles, near-duplicate
+   exclusion, preprocessing and a strength-matched simple control before fitting.
+   Explicit final operators remain valid; finite range/determinism alone cannot
+   guarantee content safety. A pre-correction-only arm must isolate learned value
+   where relevant; shuffled reference/condition controls test conditioning.
+4. Specify a separate assessment manifest and decision rule prospectively. No
+   default model, dataset, architecture or numerical threshold is selected by this
+   correction. If no credible evidence/supervision is available, stop model work
+   and report that exact gap; do not substitute UI, hand tuning or a larger model.
+
+This plan corrects authority and evidence handling. It is not a successful new
+algorithm, a completed historical best-model recovery or authorization for costly
+GPU/cloud execution. The user subsequently requested one long-term Goal; it is now active in this task. It must not be replaced per experiment.
+
+Correction checks: 8 focused tests and Ruff pass; original report/checkpoint
+bindings pass; the browser shows all five learning examples with family failures
+and sample roles. No historical evidence/config/checkpoint or production default
+was edited. Foreign changes remain unstaged. This closes the correction task, not
+the long-term AI objective.
+
+## Autonomous continuation policy (direct user request, 2026-09-08)
+
+- One long-term Goal owns AI-learned photographic value; do not create per-leaf Goals.
+- Use Astra high subagents for project-wide critical adjudication and implementation
+  requiring extensive project understanding; Astra medium for ordinary decisions.
+  Keep simple implementation on the current configured light model. Do not claim
+  a runtime model switch that was not actually performed.
+- Use web GPT-6 Pro for self-contained high-difficulty scientific reasoning.
+  Current transport preflight is LOCAL_UNAVAILABLE: the installed Chrome skill
+  points at old paths and requires APIs absent from the bundled client. Astra
+  medium verified this without browser access. No web Pro advice has been obtained;
+  this does not block locally justified implementation or authorize a silent model
+  substitute. Protected skills are not modified as part of project work.
+- Before stopping for human help, ask an appropriate subagent for alternative
+  approaches. Subagents cannot supply human credentials, permissions or preferences.
+- Use sleep for waits. Preserve independent negative evidence and correct prior
+  decisions when facts warrant it.
+
+## Correction evidence and active next implementation
+
+`scripts/audit_ai_course_correction.py` binds eight original report/checkpoint
+hashes, three authored-teacher lineages, and five explicitly selected learned
+browsing examples. The original 135-pair thumbnail selection is development
+triage, not an independent aesthetic assessment. The corrected catalog displays
+family failures and training/development roles; five automatic-fit control images
+are excluded from AI choices. Original catalog/index snapshots remain under
+`outputs/user_style_catalog_20260908/course_correction_backup_v1`.
+
+The metadata recovery audit found 15 exact saved-original byte groups and 78
+outputs across six bounded families; 21 outputs lack a catalog-linked original.
+Twelve groups span multiple families. Different encoding/resolution/preprocessing
+is not silently merged. Missing original links do not justify more s800 inference.
+This is not identification of the earlier preferred AI checkpoint.
+
+Astra high independently confirmed six historical report and six LUT hashes and
+rejected a complete-history-first prerequisite. Its next bounded task is a
+continuous trilinear LUT derivative verifier on all six existing VCG/NCC LUTs.
+New owned files: `src/eval/trilinear_lut_certificate.py`,
+`scripts/audit_vcg_lut_certificate.py`, `tests/test_trilinear_lut_certificate.py`,
+`configs/ai_vcg_lut_certificate_v1.json`. The task must account for BGR node order,
+cell-boundary one-sided derivatives, node clipping and floating-point uncertainty.
+It does not certify uint8 quantization, preprocessing, photographic content or
+appearance. No projection budget, new model fit or new photograph is admitted by
+that diagnostic alone. A later stability projection must beat strength-matched
+simple shrinking and must not turn a proxy improvement into a photographic win.
+
 ## Paste this into the new task
 
 Continue the existing K-MCFM project in `C:\Users\hhvrf\Documents\neuro_film`. First read this file and `docs/ops/AI_RECOVERY_20260907.md`, then inspect current Git state and the relevant evidence. Do not start a new model run just because this is a new conversation. Preserve existing work and negative results. Treat this as a fresh, critical continuation, not a requirement to execute every historical tracker node.

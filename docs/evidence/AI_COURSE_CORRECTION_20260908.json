@@ -1,0 +1,1793 @@
+{
+  "schema": "neuro-film.ai-course-correction.v1",
+  "scope": "Local evidence/provenance audit; no inference, training or new photographic assessment",
+  "authority": "docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md",
+  "verified_report_and_checkpoint_bindings": [
+    {
+      "path": "outputs/ai_classneg_photo_review_v1/report.json",
+      "sha256": "1fe1b1a5d2f0e5c7fb98ea6528e68530e11c9299cf1588591f9554b3c962a878",
+      "verified": true
+    },
+    {
+      "path": "outputs/ai_vcg_reference_development_v3/report.json",
+      "sha256": "e1ff75bbd54333eba21e5dd0658c15651fbdcf64f0efafd624b96dfdb9c3284a",
+      "verified": true
+    },
+    {
+      "path": "outputs/ai_nlut_reference_development_v2/report.json",
+      "sha256": "902a72cfb60dc080c38717a6971e641f1f5070b4d00a34200b950986fe9a0339",
+      "verified": true
+    },
+    {
+      "path": "outputs/ai_vcg_stage_gain_diagnostic_v1/report.json",
+      "sha256": "a2bc5d339019bfa6ed724256ba015536ab400b59e1a1397ee65099d549d9c84e",
+      "verified": true
+    },
+    {
+      "path": "outputs/ai_vcg_ncc_ablation_v1/report.json",
+      "sha256": "d8b13e6c987875487dce5779e0112f55ccc44b2fb2f8f9874802af56f98cd6b2",
+      "verified": true
+    },
+    {
+      "path": "outputs/ai_photo_distribution_pilot_v1/report.json",
+      "sha256": "1e4cd6d8e9364260e051ab867ca7a73db01cef8ace4e61c9d66e409f805a52ee",
+      "verified": true
+    },
+    {
+      "path": "outputs/ai_conditioned_rgb_lut_v1/run/global.pt",
+      "sha256": "bf0dcb11c1b6c5f7286b056e8610f27d43d980a56741093f8c0aa3d535d0cdd9",
+      "verified": true
+    },
+    {
+      "path": "data/ai_models/nlut_pretrained_v1/336999_style_lut.pth",
+      "sha256": "b8c9bbb765e00ea047399cd0c21b557cc7c839042ff92024777b284e5515c828",
+      "verified": true
+    }
+  ],
+  "family_decisions": {
+    "classneg": {
+      "record": "docs/evidence/AI_CLASSNEG_PHOTOGRAPHIC_REVIEW_20260907.json",
+      "record_sha256": "0ffec2c51f8fa5cdc4a4ec7e789710f342d7ccca6891359c8b42a69beaf2538c",
+      "decision": "NO_PROMOTION_PHOTOGRAPHIC_VALUE_GATE_FAILED"
+    },
+    "vcg": {
+      "record": "docs/evidence/AI_VCG_REFERENCE_DEVELOPMENT_20260907.json",
+      "record_sha256": "82819af08476c754b264cfd7d153cd9f89b1b8b91d28da5999728f2be08193f6",
+      "decision": "DEVELOPMENT_NEGATIVE_NO_PROMOTION"
+    },
+    "nlut": {
+      "record": "docs/evidence/AI_NLUT_REFERENCE_DEVELOPMENT_20260907.json",
+      "record_sha256": "d16a0e50c5a9eac0272c7efada3b7b10e25289223fc75a9f1dff9b91e07d5729",
+      "decision": "NO_PROMOTION_SEVERE_ARTIFACTS"
+    }
+  },
+  "teacher_lineage": [
+    {
+      "family": "scheme_a_distilled_v1",
+      "record": "outputs/neural_film_lut_v2/scheme_a_distilled_v1/metrics.json",
+      "sha256": "a8bd827ea1f5cde4819bd31d3b4253edf1008ac51c9839b7dc978dd0fcf659a4",
+      "teacher": "outputs\\eval\\color_engine_challenge\\film_response_v1_s1p0",
+      "role": "authored_teacher_control"
+    },
+    {
+      "family": "scheme_b_nilut_distilled_v1",
+      "record": "outputs/neural_film_lut_v2/scheme_b_nilut_distilled_v1/metrics.json",
+      "sha256": "45e483a2345a7d3a1dd5f0f58945fb05bf743790fe6c5016d389f1f5685ecdc5",
+      "teacher": "outputs\\eval\\color_engine_challenge\\film_response_v1_s1p0",
+      "role": "authored_teacher_control"
+    },
+    {
+      "family": "scheme_c_context4d_distilled_v1",
+      "record": "outputs/neural_film_lut_v2/scheme_c_context4d_distilled_v1/metrics.json",
+      "sha256": "c0aa8b65283ab53f2d0e670c14566bf023251183766a1bd742fedd2dfb5f4188",
+      "teacher": "outputs\\eval\\color_engine_challenge\\film_response_v1_s1p0",
+      "role": "authored_teacher_control"
+    }
+  ],
+  "existing_recovery_matrix": {
+    "grouping": "exact saved-original byte hash only; no semantic matching, preprocessing or training-role equivalence implied",
+    "groups": [
+      {
+        "original": "ai_clip_lut_pilot_v1/00_original.png",
+        "original_metadata": {
+          "sha256": "a4bf3db77edd0eec66f0af68658534c01e169a022022c07604733326c75f35ef",
+          "size": [
+            768,
+            578
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_clip_lut_pilot_v1/00_lut.png",
+            "metadata": {
+              "sha256": "df01b36e2aa8c4ab0df10ea3f880aae5f274c4015710672c6356789f5c0e9eb4",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_clip_lut_pilot_v1/00_simple.png",
+            "metadata": {
+              "sha256": "efee892d7b226ee35a3fbfbb228e10eb71871f602e3a8242fb3ebeec38add490",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/00_lut.png",
+            "metadata": {
+              "sha256": "fef1a3b53a8e7d469c5df894137fb28916ca1e100126801465073c23c86f19f9",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/00_simple.png",
+            "metadata": {
+              "sha256": "dbc684e0ac68327c646d9d804c0c41d5b94a016c382e8a172235de92b3ee93da",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          }
+        ]
+      },
+      {
+        "original": "ai_clip_lut_pilot_v1/01_original.png",
+        "original_metadata": {
+          "sha256": "64728054749d95b140690e0ba23c6af918225c4f9f5bd19104782ba6e18ae592",
+          "size": [
+            768,
+            510
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_clip_lut_pilot_v1/01_lut.png",
+            "metadata": {
+              "sha256": "5a8fec2afbf691df2c4e8959264e8a92277ccdaaa181776f895ee74be5a8ff6a",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_clip_lut_pilot_v1/01_simple.png",
+            "metadata": {
+              "sha256": "a9c97dee7b8ddd90214081f7e0debb10c0d7338597bf44345c8814205bdb0289",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/01_lut.png",
+            "metadata": {
+              "sha256": "777fd2e890498acb06e0714d1c394850ec542ac8f0870201a54e902207ecf574",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/01_simple.png",
+            "metadata": {
+              "sha256": "07b2c331f1d46e225434b2c7b48ba2ffb6da402f2704f02a8de1a1363da9bf56",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          }
+        ]
+      },
+      {
+        "original": "ai_clip_lut_pilot_v1/02_original.png",
+        "original_metadata": {
+          "sha256": "ed51f0aac38b9adb31167e818db6c4f0fb6e789d0e1ed5f00ac994dfeead5b50",
+          "size": [
+            768,
+            512
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_clip_lut_pilot_v1/02_lut.png",
+            "metadata": {
+              "sha256": "8c213c6785393fd3263af28e20dcf4e1780ceb0f5857c51214bf3c25e7b66922",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_clip_lut_pilot_v1/02_simple.png",
+            "metadata": {
+              "sha256": "dcd4e6cd4d2c2db41341e598d3ab3b12d4cc0257cfb38aefaf9811490ab78cd4",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/02_lut.png",
+            "metadata": {
+              "sha256": "784f7bf33aa7f191cab0e210749f41bf6590cb4a0696f0ec1743d80034fcaa8d",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/02_simple.png",
+            "metadata": {
+              "sha256": "89e26b0e9c7a779ac9924374e4c66b0166823772d697eaf5f2c7d5a3a10fbb4e",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          }
+        ]
+      },
+      {
+        "original": "ai_clip_lut_pilot_v1/03_original.png",
+        "original_metadata": {
+          "sha256": "99ed4346ee93d7154ac8cc41ff575b361c6418b71fbecbf749af2a340f22b286",
+          "size": [
+            768,
+            579
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_clip_lut_pilot_v1/03_lut.png",
+            "metadata": {
+              "sha256": "7784692ef5b2ac1b5127340e7c7fd2a1c0e3c26f747029b1fb47fba23885ea2b",
+              "size": [
+                768,
+                579
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_clip_lut_pilot_v1/03_simple.png",
+            "metadata": {
+              "sha256": "65085cfe3db4822cbb0849d781d9040eb462122afd3e3be19ab20e7c11a5a7a9",
+              "size": [
+                768,
+                579
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/03_lut.png",
+            "metadata": {
+              "sha256": "edbeb0147501e28d5895f482282fe3a2708c0ea6eeea31307ea6765caf952d7e",
+              "size": [
+                768,
+                579
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/03_simple.png",
+            "metadata": {
+              "sha256": "46dc2def9c331c04d2a3fab51de39e55c43d841021abf69ef5925e451677fa5f",
+              "size": [
+                768,
+                579
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          }
+        ]
+      },
+      {
+        "original": "ai_clip_lut_pilot_v1/04_original.png",
+        "original_metadata": {
+          "sha256": "c481f24ba8e123dd1d4a0f4a22af1ae2dc61296410e23ba646115b16c72399c6",
+          "size": [
+            768,
+            575
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_clip_lut_pilot_v1/04_lut.png",
+            "metadata": {
+              "sha256": "c88531870be82cff3d71b5b0ba60876d7e8668caab0345d2dccae0b452cf5962",
+              "size": [
+                768,
+                575
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_clip_lut_pilot_v1/04_simple.png",
+            "metadata": {
+              "sha256": "b845336c6ca997f52e38a37ee46daee9196f6c975fd53d1c7d0c7d0979c7ea38",
+              "size": [
+                768,
+                575
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/04_lut.png",
+            "metadata": {
+              "sha256": "235611a0c7ed8cbcafc0979cd04c7fc6945aab7c22fccd43bf183be4bffd9e4c",
+              "size": [
+                768,
+                575
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/04_simple.png",
+            "metadata": {
+              "sha256": "6957f87d6d0e3fc4693cb68f0c4bf83830bb44c155551ccb9e18e85932174ce3",
+              "size": [
+                768,
+                575
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          }
+        ]
+      },
+      {
+        "original": "ai_clip_lut_pilot_v1/05_original.png",
+        "original_metadata": {
+          "sha256": "c8c20a5905e69527c0a2a78bbe7a225dbf2b545d93372a61fd1c41b2a8d53549",
+          "size": [
+            768,
+            577
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_clip_lut_pilot_v1/05_lut.png",
+            "metadata": {
+              "sha256": "a2595dce53ca770d290cfacbcd3584441c373cc7551370cfeb79bb72c2f50b20",
+              "size": [
+                768,
+                577
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_clip_lut_pilot_v1/05_simple.png",
+            "metadata": {
+              "sha256": "caf5a42cf5afc321e3d972c4e0615ec144f0edcf0100b451648e8afb1be04710",
+              "size": [
+                768,
+                577
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/05_lut.png",
+            "metadata": {
+              "sha256": "e773caa061c24d109285255974e9f79d6d1902d46944b947b0ea17c6646d7f3a",
+              "size": [
+                768,
+                577
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/05_simple.png",
+            "metadata": {
+              "sha256": "7c43c70f613dd61cd6d882a09dd9f592651dc865faca4e393ed4fbd72a95b600",
+              "size": [
+                768,
+                577
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          }
+        ]
+      },
+      {
+        "original": "ai_clip_lut_pilot_v1/06_original.png",
+        "original_metadata": {
+          "sha256": "7ba0f56fb1f70438eb95ec97e7c2fe7577b8e865d85f0bd2740174cf7affb21d",
+          "size": [
+            768,
+            509
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_clip_lut_pilot_v1/06_lut.png",
+            "metadata": {
+              "sha256": "8771c483f0a09594f77759f4ac4ebe525475d0f8f836f3b7617bf8545f827b97",
+              "size": [
+                768,
+                509
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_clip_lut_pilot_v1/06_simple.png",
+            "metadata": {
+              "sha256": "ee2285b37b113bae9cac0d93bf51b6b4062dbd1f510b37b71a314fad1d9d1e75",
+              "size": [
+                768,
+                509
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/06_lut.png",
+            "metadata": {
+              "sha256": "33ebd6b083c0de22ac69c4bb3bfaf44e07433e862583647b00f857bc40d1c868",
+              "size": [
+                768,
+                509
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/06_simple.png",
+            "metadata": {
+              "sha256": "565a9a0cbf37f5c38797b4bc2cf694832e4b45f1dbe4d96a0c24156a345672b3",
+              "size": [
+                768,
+                509
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          }
+        ]
+      },
+      {
+        "original": "ai_clip_lut_pilot_v1/07_original.png",
+        "original_metadata": {
+          "sha256": "932400df8de7db52cb375a88df5eac01e481869fcb1d51446bba3b513d8953c3",
+          "size": [
+            768,
+            575
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_clip_lut_pilot_v1/07_lut.png",
+            "metadata": {
+              "sha256": "e4142b6a7005be6c85a879d5a2e8f58fa7971d89cb4ab09359b0f86b2e28632b",
+              "size": [
+                768,
+                575
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_clip_lut_pilot_v1/07_simple.png",
+            "metadata": {
+              "sha256": "1d383e0733fe0974056cf8f06dddebc518ceebadce29139595af1e2b26e10934",
+              "size": [
+                768,
+                575
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/07_lut.png",
+            "metadata": {
+              "sha256": "93a1e62345dd49451bfcb35394ad123f469c1ceb1842476fcc24a8285773b724",
+              "size": [
+                768,
+                575
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/07_simple.png",
+            "metadata": {
+              "sha256": "1829f8b2bffe01661a9b7922739c17fb3c189c4a72fe12007f1dd6875371a2dc",
+              "size": [
+                768,
+                575
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          }
+        ]
+      },
+      {
+        "original": "ai_clip_lut_pilot_v1/08_original.png",
+        "original_metadata": {
+          "sha256": "e0378b6c2da666079f9a23a0efa3c4c3dcea8b1b318d12b8a6bb7afaf4f8f5df",
+          "size": [
+            768,
+            511
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_clip_lut_pilot_v1/08_lut.png",
+            "metadata": {
+              "sha256": "9da35b4944fa031e12b5d9cb6fbab3ed1e8f94e9bc3edbb3910882fb824df219",
+              "size": [
+                768,
+                511
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_clip_lut_pilot_v1/08_simple.png",
+            "metadata": {
+              "sha256": "d693d54379ab4114f66380d633b776a79451ff110847ab45c1ef560108720184",
+              "size": [
+                768,
+                511
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_clip_lut_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/08_lut.png",
+            "metadata": {
+              "sha256": "5f99c2717c6f35e5b8bc53803913f1630e59bfa4a139a37df08e934a98734d3c",
+              "size": [
+                768,
+                511
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          },
+          {
+            "path": "ai_photo_distribution_pilot_v1/08_simple.png",
+            "metadata": {
+              "sha256": "5cada2e5d7dc763691b444772be7ff9a873b8b479f1c7aaa19f815bc462ba14b",
+              "size": [
+                768,
+                511
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_photo_distribution_pilot_v1"
+          }
+        ]
+      },
+      {
+        "original": "ai_nlut_reference_development_v2/00_identity.png",
+        "original_metadata": {
+          "sha256": "a4add5ea26c5e0c1148328c73579ccfc02498e6bf4246ac11982c04d1e8c395e",
+          "size": [
+            1600,
+            1204
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_nlut_reference_development_v2/00_adapted.png",
+            "metadata": {
+              "sha256": "63006b9ed1c60c16a08c85121cc00a1dbf8ae4980e909d9f29a196fbe574d8b4",
+              "size": [
+                1600,
+                1204
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_nlut_reference_development_v2"
+          },
+          {
+            "path": "ai_nlut_reference_development_v2/00_pretrained.png",
+            "metadata": {
+              "sha256": "204d921351d6e513c2f0fca4edf2c7e099e3db990e40770b24a35ad581531d5b",
+              "size": [
+                1600,
+                1204
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_nlut_reference_development_v2"
+          },
+          {
+            "path": "ai_nlut_reference_development_v2/00_simple.png",
+            "metadata": {
+              "sha256": "e6d8e3d25467c383caf9eaecdc38180e01bde21ba4d2ee84ee5e73087e92df36",
+              "size": [
+                1600,
+                1204
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_nlut_reference_development_v2"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/00_learned.png",
+            "metadata": {
+              "sha256": "309c80de78963691596139309a3783aec75df90dbedb89426b2c69e9d5c812fd",
+              "size": [
+                1600,
+                1204
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/00_legacy_safe_lab.png",
+            "metadata": {
+              "sha256": "ad9c909da9bae46c9a3cc2a6bdd92df08b193bd07df40d9b3e7608bcc7664e4d",
+              "size": [
+                1600,
+                1204
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/00_precorrection.png",
+            "metadata": {
+              "sha256": "540a8b7cc40b72f80d8a8328bfe9fbcbe9afe3271e29b0a7cf7fd6984fc64875",
+              "size": [
+                1600,
+                1204
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/00_prior_nlut_negative.png",
+            "metadata": {
+              "sha256": "63006b9ed1c60c16a08c85121cc00a1dbf8ae4980e909d9f29a196fbe574d8b4",
+              "size": [
+                1600,
+                1204
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/00_simple.png",
+            "metadata": {
+              "sha256": "e6d8e3d25467c383caf9eaecdc38180e01bde21ba4d2ee84ee5e73087e92df36",
+              "size": [
+                1600,
+                1204
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          }
+        ]
+      },
+      {
+        "original": "ai_nlut_reference_development_v2/01_identity.png",
+        "original_metadata": {
+          "sha256": "9a2cc66541743a81d88fd1598a5b5d2495725ffa42664bc9101960fea4d3702b",
+          "size": [
+            1600,
+            1062
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_nlut_reference_development_v2/01_adapted.png",
+            "metadata": {
+              "sha256": "0dcdb6abeb76b6e8c04901681e8abb6c51d330a4b05e81fcf78fa0afee426460",
+              "size": [
+                1600,
+                1062
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_nlut_reference_development_v2"
+          },
+          {
+            "path": "ai_nlut_reference_development_v2/01_pretrained.png",
+            "metadata": {
+              "sha256": "095ec70658434393bb698971bcaa11f00c9747626c3623c571c19fa8c6146d67",
+              "size": [
+                1600,
+                1062
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_nlut_reference_development_v2"
+          },
+          {
+            "path": "ai_nlut_reference_development_v2/01_simple.png",
+            "metadata": {
+              "sha256": "1a3d8beaaa06b191b007d9bbd98b73fcbe5f4959bf81ad69ec52bac4715eb87a",
+              "size": [
+                1600,
+                1062
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_nlut_reference_development_v2"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/01_learned.png",
+            "metadata": {
+              "sha256": "0ed7f63be721fd985aae043db9581397a4ea5a0773fd4100d267597822a2e3d1",
+              "size": [
+                1600,
+                1062
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/01_legacy_safe_lab.png",
+            "metadata": {
+              "sha256": "f4167562a6c92bc662dc3e4b8367e4d55433f574b54b9c576173cd8e07f93931",
+              "size": [
+                1600,
+                1062
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/01_precorrection.png",
+            "metadata": {
+              "sha256": "73e21f8f79a0d623753028fc5de4e4f23a78815dd7316916caf3af92077cddbb",
+              "size": [
+                1600,
+                1062
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/01_prior_nlut_negative.png",
+            "metadata": {
+              "sha256": "0dcdb6abeb76b6e8c04901681e8abb6c51d330a4b05e81fcf78fa0afee426460",
+              "size": [
+                1600,
+                1062
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/01_simple.png",
+            "metadata": {
+              "sha256": "1a3d8beaaa06b191b007d9bbd98b73fcbe5f4959bf81ad69ec52bac4715eb87a",
+              "size": [
+                1600,
+                1062
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          }
+        ]
+      },
+      {
+        "original": "ai_nlut_reference_development_v2/02_identity.png",
+        "original_metadata": {
+          "sha256": "fcf3fdc778e34e0d30cb4276c1f5c18debdc0de39e1666b96a03796b742a87a7",
+          "size": [
+            1600,
+            1067
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_nlut_reference_development_v2/02_adapted.png",
+            "metadata": {
+              "sha256": "e9caa5d25560cbe8a95af861034cb6f7f72583637a9fe728f69c3444fea47f24",
+              "size": [
+                1600,
+                1067
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_nlut_reference_development_v2"
+          },
+          {
+            "path": "ai_nlut_reference_development_v2/02_pretrained.png",
+            "metadata": {
+              "sha256": "585fbdc181f54f535e522da42c667e7b68d3ed0e4a2ab6d6e1ddc8ccd1732c06",
+              "size": [
+                1600,
+                1067
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_nlut_reference_development_v2"
+          },
+          {
+            "path": "ai_nlut_reference_development_v2/02_simple.png",
+            "metadata": {
+              "sha256": "0f879889bbcf41028ba4c455aaff7e33edf8d7ccf7ddf37abd3afcf3cfd1e731",
+              "size": [
+                1600,
+                1067
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_nlut_reference_development_v2"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/02_learned.png",
+            "metadata": {
+              "sha256": "e7e0330d428d0ac73c716b04ec3370470ef569cd1891ee09296c1c6fdb820763",
+              "size": [
+                1600,
+                1067
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/02_legacy_safe_lab.png",
+            "metadata": {
+              "sha256": "af7dc784a0c1c063b0c9797d3770b624ad48b79b550c46e4108bea59d5c592a7",
+              "size": [
+                1600,
+                1067
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/02_precorrection.png",
+            "metadata": {
+              "sha256": "644b5b558219164d9e4858f502b7d9f054cc56e3dfe5cdffbcc340fb563cf2f9",
+              "size": [
+                1600,
+                1067
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/02_prior_nlut_negative.png",
+            "metadata": {
+              "sha256": "e9caa5d25560cbe8a95af861034cb6f7f72583637a9fe728f69c3444fea47f24",
+              "size": [
+                1600,
+                1067
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          },
+          {
+            "path": "ai_vcg_reference_development_v3/02_simple.png",
+            "metadata": {
+              "sha256": "0f879889bbcf41028ba4c455aaff7e33edf8d7ccf7ddf37abd3afcf3cfd1e731",
+              "size": [
+                1600,
+                1067
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_vcg_reference_development_v3"
+          }
+        ]
+      },
+      {
+        "original": "ai_recovery_20260907/historical_a_s1p0/ektar_100/before/01_ektar_100_before.png",
+        "original_metadata": {
+          "sha256": "34d9cd4f8e79d5b4d09eb51d06419c0adf936d30c85766d506f42df690fe5337",
+          "size": [
+            768,
+            578
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/ektar_100/after/01_ektar_100_distilled.png",
+            "metadata": {
+              "sha256": "7bc26cb16fa5044d4596c497b10f1324cdd93552982f47b5d41e0a71c1ed3788",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/ektar_100/safe_rich/01_ektar_100_safe_rich.png",
+            "metadata": {
+              "sha256": "40c297615a585857b565be5f72c46295121faeb677d63a50c9ac13aeef70a1e8",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/portra_400/after/01_portra_400_distilled.png",
+            "metadata": {
+              "sha256": "07d02e69bc08f1fbf6f4620bb8d18000cb0b594703c5d5c6937a3692dd5494cb",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/portra_400/safe_rich/01_portra_400_safe_rich.png",
+            "metadata": {
+              "sha256": "5d8a61d931f3124fa53044c4211e589415cf858acb17d71538a7ce61bc340d18",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/velvia_50/after/01_velvia_50_distilled.png",
+            "metadata": {
+              "sha256": "d0985e8ffc6790c70f3a928c4c2a888264590b57103e1e617047918175b19492",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/velvia_50/safe_rich/01_velvia_50_safe_rich.png",
+            "metadata": {
+              "sha256": "859f5702141fa5b8b496d965bdaae294ce97144fab9dd6252dfe35e04b0b511a",
+              "size": [
+                768,
+                578
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          }
+        ]
+      },
+      {
+        "original": "ai_recovery_20260907/historical_a_s1p0/ektar_100/before/02_ektar_100_before.png",
+        "original_metadata": {
+          "sha256": "2ab333ce3bb7bff484a054f637e1458b227151bb8965a3ece56aa707e624246f",
+          "size": [
+            768,
+            510
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/ektar_100/after/02_ektar_100_distilled.png",
+            "metadata": {
+              "sha256": "0b7c1e546eb55807d7db22484f10438abba41e122d5719d5ce2b67ab0fbd9801",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/ektar_100/safe_rich/02_ektar_100_safe_rich.png",
+            "metadata": {
+              "sha256": "e6afb00328a2826aa5d7ca84825dc273772f6f867e6234f249852cd30fe7815f",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/portra_400/after/02_portra_400_distilled.png",
+            "metadata": {
+              "sha256": "4c745d6a5196f0e40e18f8be990c188d552aab4e289b384f3c497d9da2c2263a",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/portra_400/safe_rich/02_portra_400_safe_rich.png",
+            "metadata": {
+              "sha256": "1e3527af11672dce0af5f782e94030426a8db1e395f5f3ec5dd26dfb5278c5ba",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/velvia_50/after/02_velvia_50_distilled.png",
+            "metadata": {
+              "sha256": "cb507fda07dab347527ceb33a1befd272093599cc1dc12ffd55b71da9b5bfa0c",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/velvia_50/safe_rich/02_velvia_50_safe_rich.png",
+            "metadata": {
+              "sha256": "6b018f124cba80024920c2125c6c2e4788f70a17a73a51173793005dc0e4d6fa",
+              "size": [
+                768,
+                510
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          }
+        ]
+      },
+      {
+        "original": "ai_recovery_20260907/historical_a_s1p0/ektar_100/before/03_ektar_100_before.png",
+        "original_metadata": {
+          "sha256": "5a3379807880ad0abd83c4e1b227d24a721a6dc2fafaebc504887d4dfab9f933",
+          "size": [
+            768,
+            512
+          ],
+          "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "outputs": [
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/ektar_100/after/03_ektar_100_distilled.png",
+            "metadata": {
+              "sha256": "7a0abc73f160aa5e23132cb3088920ed2843873828451169fa7eeca7780d5f32",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/ektar_100/safe_rich/03_ektar_100_safe_rich.png",
+            "metadata": {
+              "sha256": "a7e9a2fbf873f417a07f41f2152cc512ca65f679e334a03540a93acfd3df46ca",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/portra_400/after/03_portra_400_distilled.png",
+            "metadata": {
+              "sha256": "3cdfdb5067343a31ea056e1b1f8f0261bd34b6aff05950ae955d5c8ebc777fc1",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/portra_400/safe_rich/03_portra_400_safe_rich.png",
+            "metadata": {
+              "sha256": "0a9a41e1433d4901a8edd848a26d551658b03dbfa7f946af69990114814ee832",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/velvia_50/after/03_velvia_50_distilled.png",
+            "metadata": {
+              "sha256": "2f11a87ff7a3f692af2017a00bb4c3413701779f91feacf73cc34d1a913df73f",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          },
+          {
+            "path": "ai_recovery_20260907/historical_a_s1p0/velvia_50/safe_rich/03_velvia_50_safe_rich.png",
+            "metadata": {
+              "sha256": "67d7212963fe44802abda4646598ab19f5bd14aa311a4a74747174ebf472f60b",
+              "size": [
+                768,
+                512
+              ],
+              "icc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "family": "ai_recovery_20260907"
+          }
+        ]
+      }
+    ],
+    "unresolved_originals": [
+      "ai_recovery_20260907/neural_s800/ektar_100/after/01_ektar_100_neural_lut.png",
+      "ai_recovery_20260907/neural_s800/ektar_100/after/02_ektar_100_neural_lut.png",
+      "ai_recovery_20260907/neural_s800/ektar_100/after/03_ektar_100_neural_lut.png",
+      "ai_recovery_20260907/neural_s800/portra_400/after/01_portra_400_neural_lut.png",
+      "ai_recovery_20260907/neural_s800/portra_400/after/02_portra_400_neural_lut.png",
+      "ai_recovery_20260907/neural_s800/portra_400/after/03_portra_400_neural_lut.png",
+      "ai_recovery_20260907/neural_s800/velvia_50/after/01_velvia_50_neural_lut.png",
+      "ai_recovery_20260907/neural_s800/velvia_50/after/02_velvia_50_neural_lut.png",
+      "ai_recovery_20260907/neural_s800/velvia_50/after/03_velvia_50_neural_lut.png",
+      "ai_recovery_20260907/neural_smoke/ektar_100/after/01_ektar_100_neural_lut.png",
+      "ai_recovery_20260907/neural_smoke/ektar_100/after/02_ektar_100_neural_lut.png",
+      "ai_recovery_20260907/neural_smoke/ektar_100/after/03_ektar_100_neural_lut.png",
+      "ai_recovery_20260907/neural_smoke/portra_400/after/01_portra_400_neural_lut.png",
+      "ai_recovery_20260907/neural_smoke/portra_400/after/02_portra_400_neural_lut.png",
+      "ai_recovery_20260907/neural_smoke/portra_400/after/03_portra_400_neural_lut.png",
+      "ai_recovery_20260907/neural_smoke/velvia_50/after/01_velvia_50_neural_lut.png",
+      "ai_recovery_20260907/neural_smoke/velvia_50/after/02_velvia_50_neural_lut.png",
+      "ai_recovery_20260907/neural_smoke/velvia_50/after/03_velvia_50_neural_lut.png",
+      "ai_vcg_ncc_ablation_v1/00_ncc.png",
+      "ai_vcg_ncc_ablation_v1/01_ncc.png",
+      "ai_vcg_ncc_ablation_v1/02_ncc.png"
+    ],
+    "comparison_ready": false
+  },
+  "gallery_reviewed_examples": [
+    {
+      "image_id": 17,
+      "path": "ai_classneg_photo_review_v1/03_learned.png",
+      "family": "classneg",
+      "data_role": "development",
+      "learned_example": true,
+      "promotion": false,
+      "independent_assessment": false,
+      "before_path": "ai_classneg_photo_review_v1/03_identity.png",
+      "before_sha256": "8c642349d1ce8156c4e20de6dd7a1a9f18b0e082ce84f39f3e639244ab3309a1",
+      "after_sha256": "7196948cc1df41b7885152377a856fce7fb20dda11edea223f3a283806e1869b"
+    },
+    {
+      "image_id": 47,
+      "path": "ai_classneg_photo_review_v1/09_learned.png",
+      "family": "classneg",
+      "data_role": "development",
+      "learned_example": true,
+      "promotion": false,
+      "independent_assessment": false,
+      "before_path": "ai_classneg_photo_review_v1/09_identity.png",
+      "before_sha256": "e1f9bea6f202f4c9fde30eea2a6ea6e64a7fb50bb26b337386969b642d5dca7f",
+      "after_sha256": "91ad316e668c4fad0236488eb48af7d75eddfaed75636ca5c8a0c1234796838c"
+    },
+    {
+      "image_id": 349,
+      "path": "ai_photo_distribution_pilot_v1/04_lut.png",
+      "family": "distribution",
+      "data_role": "training",
+      "learned_example": true,
+      "promotion": false,
+      "independent_assessment": false,
+      "before_path": "ai_photo_distribution_pilot_v1/04_original.png",
+      "before_sha256": "c481f24ba8e123dd1d4a0f4a22af1ae2dc61296410e23ba646115b16c72399c6",
+      "after_sha256": "235611a0c7ed8cbcafc0979cd04c7fc6945aab7c22fccd43bf183be4bffd9e4c"
+    },
+    {
+      "image_id": 355,
+      "path": "ai_photo_distribution_pilot_v1/06_lut.png",
+      "family": "distribution",
+      "data_role": "transfer_development",
+      "learned_example": true,
+      "promotion": false,
+      "independent_assessment": false,
+      "before_path": "ai_photo_distribution_pilot_v1/06_original.png",
+      "before_sha256": "7ba0f56fb1f70438eb95ec97e7c2fe7577b8e865d85f0bd2740174cf7affb21d",
+      "after_sha256": "33ebd6b083c0de22ac69c4bb3bfaf44e07433e862583647b00f857bc40d1c868"
+    },
+    {
+      "image_id": 580,
+      "path": "ai_vcg_reference_development_v3/02_learned.png",
+      "family": "vcg",
+      "data_role": "consumed_development",
+      "learned_example": true,
+      "promotion": false,
+      "independent_assessment": false,
+      "before_path": "ai_vcg_reference_development_v3/02_identity.png",
+      "before_sha256": "fcf3fdc778e34e0d30cb4276c1f5c18debdc0de39e1666b96a03796b742a87a7",
+      "after_sha256": "e7e0330d428d0ac73c716b04ec3370470ef569cd1891ee09296c1c6fdb820763"
+    },
+    {
+      "image_id": 1235,
+      "path": "creative_look_v2_development/assessment-01/sony_nex_3n--v2-warm_daylight.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 1474,
+      "path": "creative_look_v2_development/development-02-bold/olympus_sp550uz--v2-deep_chrome.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 1483,
+      "path": "creative_look_v2_development/development-02-bold/panasonic_dmc_gf2--v2-cyan_matte.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 1485,
+      "path": "creative_look_v2_development/development-02-bold/panasonic_dmc_gf2--v2-sunbleached_print.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 2217,
+      "path": "creative_look_v2_development/development-10-copper/olympus_sp550uz--print-copper_light.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 2648,
+      "path": "creative_look_v2_development/development-14-dense-print/leica_digilux_3--print-dense_print.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 2969,
+      "path": "eval/baseline_current/ektar_100/after/11_ektar_100_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 3010,
+      "path": "eval/baseline_current/hp5/after/11_hp5_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 3051,
+      "path": "eval/baseline_current/portra_400/after/11_portra_400_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 3092,
+      "path": "eval/baseline_current/portra_800/after/11_portra_800_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 3133,
+      "path": "eval/baseline_current/tri_x_400/after/11_tri_x_400_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 3215,
+      "path": "eval/baseline_current/vision3_250d/after/11_vision3_250d_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 3256,
+      "path": "eval/baseline_current/vision3_500t/after/11_vision3_500t_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 4161,
+      "path": "eval/baseline_saferich/hp5/after/11_hp5_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 4284,
+      "path": "eval/baseline_saferich/tri_x_400/after/11_tri_x_400_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 4498,
+      "path": "eval/baseline_saferich_marginfix_probe/velvia_50/after/11_velvia_50_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 5195,
+      "path": "eval/color_engine_challenge/film_response_v1_s1p4/ektar_100/after/04_ektar_100_film_response.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 5263,
+      "path": "eval/color_engine_challenge/film_response_v1_s1p4/portra_400/after/11_portra_400_film_response.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 12122,
+      "path": "eval/neural_film_lut_v2/scheme_a_distilled_v1_s2p0/ektar_100/after/04_ektar_100_distilled.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 12205,
+      "path": "eval/neural_film_lut_v2/scheme_a_distilled_v1_s2p0/portra_400/after/06_portra_400_distilled.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 12291,
+      "path": "eval/neural_film_lut_v2/scheme_a_distilled_v1_s2p0/portra_800/after/11_portra_800_distilled.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 12529,
+      "path": "eval/neural_film_lut_v2/scheme_a_distilled_v1_s2p0/vision3_500t/after/06_vision3_500t_distilled.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 16094,
+      "path": "eval/neural_film_lut_v2/scheme_b_nilut_distilled_v1_s2p0/portra_400/after/07_portra_400_nilut.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 16098,
+      "path": "eval/neural_film_lut_v2/scheme_b_nilut_distilled_v1_s2p0/portra_400/after/11_portra_400_nilut.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 16175,
+      "path": "eval/neural_film_lut_v2/scheme_b_nilut_distilled_v1_s2p0/portra_800/after/07_portra_800_nilut.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 16179,
+      "path": "eval/neural_film_lut_v2/scheme_b_nilut_distilled_v1_s2p0/portra_800/after/11_portra_800_nilut.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 16337,
+      "path": "eval/neural_film_lut_v2/scheme_b_nilut_distilled_v1_s2p0/vision3_250d/after/07_vision3_250d_nilut.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 16341,
+      "path": "eval/neural_film_lut_v2/scheme_b_nilut_distilled_v1_s2p0/vision3_250d/after/11_vision3_250d_nilut.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 16417,
+      "path": "eval/neural_film_lut_v2/scheme_b_nilut_distilled_v1_s2p0/vision3_500t/after/06_vision3_500t_nilut.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 16422,
+      "path": "eval/neural_film_lut_v2/scheme_b_nilut_distilled_v1_s2p0/vision3_500t/after/11_vision3_500t_nilut.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 17964,
+      "path": "eval/neural_film_lut_v2/scheme_c_context4d_distilled_v1_s2p0/ektar_100/after/04_ektar_100_context4d.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 18047,
+      "path": "eval/neural_film_lut_v2/scheme_c_context4d_distilled_v1_s2p0/portra_400/after/06_portra_400_context4d.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 18052,
+      "path": "eval/neural_film_lut_v2/scheme_c_context4d_distilled_v1_s2p0/portra_400/after/11_portra_400_context4d.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 18290,
+      "path": "eval/neural_film_lut_v2/scheme_c_context4d_distilled_v1_s2p0/vision3_250d/after/06_vision3_250d_context4d.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 18371,
+      "path": "eval/neural_film_lut_v2/scheme_c_context4d_distilled_v1_s2p0/vision3_500t/after/06_vision3_500t_context4d.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 20860,
+      "path": "eval/velvia50_union_20260616/baseline_saferich/velvia_50/after/40_velvia_50_s0p55_l0p35_g0p012.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 21005,
+      "path": "eval/velvia50_union_20260616/color_baseline/52_velvia50_digital10_s1_gamutsafe/velvia_50/after/23_velvia_50_s1_l0p35_g0p012_gamutsafe.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 21709,
+      "path": "eval/velvia50_union_20260616/color_engine_challenge/local_maps_gain_s1p0/velvia_50/after/40_velvia_50_local_maps.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 23401,
+      "path": "eval/velvia50_union_20260616/neural_film_lut_v2/scheme_a_distilled_v1_s2p0/velvia_50/after/37_velvia_50_distilled.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 23404,
+      "path": "eval/velvia50_union_20260616/neural_film_lut_v2/scheme_a_distilled_v1_s2p0/velvia_50/after/40_velvia_50_distilled.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 24689,
+      "path": "eval/velvia50_union_20260616/neural_film_lut_v2/scheme_c_context4d_distilled_v1_s2p0/velvia_50/after/37_velvia_50_context4d.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 25271,
+      "path": "experiments/u5_r2cb20_global_chroma_procrustes_v1/run_a/renders/panasonic_dmc_fz38/candidate.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 25275,
+      "path": "experiments/u5_r2cb20_global_chroma_procrustes_v1/run_a/renders/pentax_k5_iis/candidate.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 25295,
+      "path": "experiments/u5_r2cb21_global_chroma_procrustes_confirmation_v1/run_a/renders/fimi_x8se/candidate.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 25783,
+      "path": "external_controls/filmmatch_ektachrome_v1/identity_residual_validation_bl2/run_a/candidate.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 30244,
+      "path": "roll2film/ct5_v1/fullres/cases/cinema/lab_mean_std/train_y-jg-fuji-x-h2s-1148.png/best_basic_wb_contrast_saturation.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 30500,
+      "path": "roll2film/ct5_v1/fullres/cases/classneg/wb_contrast_saturation/train_dscf3248.png/best_basic_wb_contrast_saturation.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 30577,
+      "path": "roll2film/ct5_v1/fullres/cases/velvia/pooled_l2/train_20190803-9795.png/candidate_pooled_l2.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 30581,
+      "path": "roll2film/ct5_v1/fullres/cases/velvia/pooled_l2/train_20200428-dscf0717.png/candidate_pooled_l2.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 32169,
+      "path": "roll2film/ct8_final_628/trigger_review/cases/velvia/test_dscf7448.png/primary_pooled_l2.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 42066,
+      "path": "u5_r2cb74_analytic_y_chromaticity_third_confirmation_v1/run_a/renders/pentax_kf/ao6.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    },
+    {
+      "image_id": 42079,
+      "path": "u5_r2cb74_analytic_y_chromaticity_third_confirmation_v1/run_a/renders/xiaomi_redmi_note_8t/candidate.png",
+      "family": null,
+      "data_role": "unverified_or_control",
+      "learned_example": false,
+      "promotion": false,
+      "independent_assessment": false
+    }
+  ],
+  "gallery_coverage": {
+    "catalog_images": 50068,
+    "visually_reviewed_pairs": 135,
+    "visible_selected_images": 57,
+    "learned_browsing_examples": 5,
+    "exhaustive_best_model_recovery": false
+  },
+  "gallery_contract_violations": [],
+  "promotion": false,
+  "unresolved": [
+    "earlier preferred AI checkpoint identity",
+    "matched-input/preprocessing full family comparison",
+    "independent photographic superiority",
+    "native-resolution face/text/content coverage",
+    "credible successor supervision"
+  ]
+}

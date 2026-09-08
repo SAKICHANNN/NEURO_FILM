@@ -1,3 +1,5 @@
+> **Current authority — 2026-09-08 major correction:** AI must learn the key photographic film-style transform. No learned candidate is promoted. Read `docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md` (correction section) before choosing work. Earlier active/next/ULT/LOOK2 statements below are historical unless explicitly retained there. Preserve negative results and existing defaults; do not resume manual palette development or infrastructure expansion as a substitute for appearance value.
+
 # AGENTS.md — K-MCFM Project Knowledge Base
 
 > **Active priority, 2026-09-05:** deliver useful deterministic **Look Approximation**, with visible distinction and photographic appeal after the severe-artifact veto. Current v1 is mechanically usable but U7.2C/RF3.D15/U4.2A failed its value/diversity gates. Develop separately versioned creative Looks under `docs/planning/LOOK_APPROXIMATION_V2_PRODUCT_VALUE_PLAN.md`; preserve all v1 outputs and negative evidence. Calibration, author replies and user-supplied film are not product dependencies. Do not substitute more packaging, format or 100MP micro-leaves for appearance value. Historical research rules below apply to their original scientific scopes, not to this newly authorised creative-product branch.
@@ -11,7 +13,7 @@
 |---|---|
 | Project | K-MCFM — content-preserving film imaging |
 | Current default | deterministic `safe_lab` / safe-rich color path + optional grain/halation/dust |
-| Active product target | visibly distinct, appealing, deterministic Look Approximation on ordinary photographs, without confirmed severe artifacts; calibration is a separate deferred claim |
+| Active product target | AI-learned, visibly convincing and appealing film-inspired appearance with photographic content preserved; no learned product candidate promoted |
 | Deferred stock target | evidence-backed stock-specific real-film experts with unseen roll/source validation; historical/unknown-stock cannot replace named stocks |
 | Product standard | maximize visible style and preference subject to a hard severe-artifact veto |
 | Content contract | stylization may be strong, but confirmed severe face/text/object corruption, geometry failure, banding, seams, clipping or unstable color artifacts block promotion |
@@ -53,7 +55,8 @@ platform-enforced action applies.
 | Order | File | Purpose |
 |---:|---|---|
 | 1 | `AGENTS.md` | Current truth and invariants |
-| 2 | `docs/ULTIMATE_EXECUTION_TRACKER.md` | Active DRPT task tree, gates and next ready leaves |
+| 2 | `docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md` | Current AI correction, disposition and next executable work |
+| 2a | `docs/ULTIMATE_EXECUTION_TRACKER.md` | Historical task evidence and original gates; not an automatic queue |
 | 3 | `docs/planning/REAL_FILM_ULTIMATE_REOPEN_2026.md` | Active real-film success condition, evidence ledger, data/algorithm gates and RF execution tree |
 | 4 | `docs/planning/STOCK_FIRST_REAL_FILM_PROGRAM_2026.md` | Active stock-first source matrix, first pilots, experiment DAG, gates and failure branches |
 | 5 | `docs/data/REAL_FILM_STOCK_EVIDENCE_REGISTRY.md` | Primary stock label hierarchy, evidence grades, separate named/historical coverage and current data ledger |

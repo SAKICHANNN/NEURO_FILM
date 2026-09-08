@@ -1,3 +1,5 @@
+> **Current authority — 2026-09-08 major correction:** AI must learn the key photographic film-style transform. No learned candidate is promoted. Read `docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md` (correction section) before choosing work. Earlier active/next/ULT/LOOK2 statements below are historical unless explicitly retained there. Preserve negative results and existing defaults; do not resume manual palette development or infrastructure expansion as a substitute for appearance value.
+
 # Active stock-first pointer — 2026-07-16
 
 > 2026-08-02: U6.P6AI closes before confirmation. The frozen effective-edge

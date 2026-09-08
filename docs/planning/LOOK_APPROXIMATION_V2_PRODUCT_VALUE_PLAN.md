@@ -1,3 +1,5 @@
+> **Current authority — 2026-09-08 major correction:** AI must learn the key photographic film-style transform. No learned candidate is promoted. Read `docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md` (correction section) before choosing work. Earlier active/next/ULT/LOOK2 statements below are historical unless explicitly retained there. Preserve negative results and existing defaults; do not resume manual palette development or infrastructure expansion as a substitute for appearance value.
+
 # LOOK2 - Creative Look Approximation product value
 
 Date: 2026-09-05. Owner/integrator: main thread. DRPT L2, Mode A.
