@@ -1,0 +1,214 @@
+{
+  "status": "SOURCE_SCREEN_POLICY_CORRECTED_BEFORE_NEW_OPERATOR_OUTPUTS",
+  "evidence": {
+    "outputs/tst_crossed_probe_policy_adjudication_v1/decision.json": {
+      "sha256": "7849921efdb3b2d4d90b5688d88adf7fee443e5d8fc96e203670ea1d353c354b",
+      "record": {
+        "identity": "tst_crossed_probe_policy_adjudication_v1",
+        "status": "PROSPECTIVE_SOURCE_ONLY_CORRECTION_ACCEPTED_BY_ROOT",
+        "superseded_policy_sha256": "9dcb80affa50579d748358276a410d0da0f87100a5074996d05dec2f49ae97a9",
+        "evidence": {
+          "actually_viewed_source_boards": {
+            "outputs\\tst_crossed_probe_review_v1\\fit_0.png": "e2d3dd1b4fb369dfb2478e53c270d1708223f0be7260e5dbeb56be886b550028",
+            "outputs\\tst_crossed_probe_review_v1\\fit_3.png": "8c4ea18c8715ab7456ee4c76bdc699a4dc4ea32892cfa5c7410b76378db8391f",
+            "outputs\\tst_crossed_probe_review_v1\\monitor_0.png": "befad03b0555c3c7c13cbfc58ab1bf7589000d9bccca221526653eff6af1c6a4",
+            "outputs\\tst_crossed_probe_review_v1\\constructed_test_0.png": "29260b9c998602fe8adc98708287c041b33232f7fa4fae82d0c45f945a8935f4"
+          },
+          "thumbnail_count": 64,
+          "observation": "Viewed fit0/fit3 and constructed_test0 are overwhelmingly plated food. monitor0 has food then outdoor people/architecture/interior people. Neutral plate edges and food shadows can satisfy broad old categories while barely testing distinct photographic failure contexts.",
+          "not_viewed": [
+            "fresh donor R",
+            "fresh operator outputs"
+          ],
+          "prior_screen": "Retain all original192 source views and observations as SUPERSEDED_LEXICOGRAPHIC_SOURCE_SCREEN, not wrong or deleted. These source views cannot be described as never viewed by agents."
+        },
+        "decision": "Change source-only candidate ordering and clarify intended content categories before any fresh R or operator output. Do not change treatment visibility/comfort thresholds, split assignments, operator parameters, or target count.",
+        "ordering": {
+          "seed": "tst-crossed-probes-diverse-source-v2-20260909",
+          "eligible_universe": "Final eligible X-containing source content components after exact/near duplicate adjudication and partition quarantine. Never P-only components, realreserved owners, or other splits.",
+          "representative": "For each component, sort its eligible X relative paths by Python string lexicographic order after replacing backslash with slash; use first as representative. No case folding, Unicode normalization, basename truncation or filesystem resolve.",
+          "serialized_payload": "json.dumps([seed, split, representative], ensure_ascii=False, separators=(\",\",\":\")).encode(\"utf-8\")",
+          "key": "SHA256(payload).hexdigest(); ascending digest, then representative as deterministic tie-break.",
+          "source_frozen_manifest": "Record full ranked eligible component manifest and hash before displaying its first new tranche. Component IDs/members and selected representative input SHA retained.",
+          "display": "First64 ranked components per split, then next contiguous64 only if a category remains absent. Do not reshuffle or change seed. Already viewed candidates can be reused with exposure disclosed.",
+          "synthetic_serialization_test_vector": {
+            "representative": "synthetic/example.png",
+            "split": "fit",
+            "payload_utf8": "[\"tst-crossed-probes-diverse-source-v2-20260909\",\"fit\",\"synthetic/example.png\"]",
+            "sha256": "a8ffe4b59a16a4c951bbb7f5979d4a54ab024deca30b340323a7d0297c42a0ee",
+            "not_a_real_candidate": true
+          }
+        },
+        "categories_in_priority_order": [
+          {
+            "id": "portrait_face",
+            "eligibility": "Person is a substantial foreground subject. Native image must visibly support assessing skin tone plus eye/nose/mouth boundaries and useful skin/shadow detail. Tiny background face or arm alone is ineligible; no age/ethnicity inference needed.",
+            "native_crop": "Source-chosen face including eyes/nose/mouth and a skin-to-shadow transition, coordinates frozen before operator outputs."
+          },
+          {
+            "id": "neutral_text_built_scene",
+            "eligibility": "A built scene, architecture or interior with useful neutral materials and edges, OR clearly readable text/signage. Plate/tableware edges alone do not qualify. Text is optional when built-scene material and edges are adequate.",
+            "native_crop": "Readable text if present, otherwise neutral material/structural edge plus nearby texture."
+          },
+          {
+            "id": "chromatic_nature_or_objects",
+            "eligibility": "Substantial chromatic natural foliage/flowers or objects with visible color and texture. Plated food is allowed for this slot; source saturation must leave meaningful distinctions to inspect.",
+            "native_crop": "Color/texture transition selected solely from source."
+          },
+          {
+            "id": "lowkey_environment",
+            "eligibility": "Indoor/outdoor environmental scene with substantial low-light or shadow structure AND useful highlights, with some retained source detail in those regions. A dark plate background or food-cast shadow alone is ineligible.",
+            "native_crop": "Useful shadow texture and highlight boundary; source regions already featureless cannot establish new detail damage."
+          }
+        ],
+        "selection": "Within each split, for each category in priority order select earliest ranked eligible component, skipping already reserved components; defer final commitment until relevant tranche classification and native confirmation. If native confirmation fails, record why and take next ranked source eligible for the same category. Do not view operator output while selecting. Keep all rejections/uncertainties.",
+        "invariants": [
+          "Exactly4distinct probe components per partition,12total, with aliases removed from learner/source-loss/reference/evaluation/donor pools.",
+          "Original minimum source/donor/family counts unchanged; source absence reports PROBE_COVERAGE_INCOMPLETE.",
+          "This is targeted photographic failure coverage, not a random test sample or exhaustive skin/lighting/content-safety certification.",
+          "Agent source eligibility decisions are not human preference validation.",
+          "No borrowed partition, new acquisition, per-image style tuning or treatment threshold change.",
+          "Same fixed four probes used for every operator in that partition; final probe paths/native crop coordinates hash-locked before fresh R/output display."
+        ],
+        "actions": {
+          "new_image_downloads": 0,
+          "new_image_generation": 0,
+          "model_forwards": 0,
+          "training": 0,
+          "shared_file_edits": 0
+        }
+      }
+    },
+    "outputs/tst_crossed_probe_review_v1/initial_screen.json": {
+      "sha256": "8abff943a55cd7a3427e54880ce4f7a0932c4bbf337d28ccbc20f665492351dd",
+      "record": {
+        "status": "ALL192_INITIAL_SOURCE_THUMBNAILS_VIEWED_PROBES_NOT_FROZEN",
+        "boards": {
+          "constructed_test_0.png": "29260b9c998602fe8adc98708287c041b33232f7fa4fae82d0c45f945a8935f4",
+          "constructed_test_1.png": "859b901d80d3f886f88fb4df1f6a937abd3091a3ebbbd7ff42ce19f5f00a6f80",
+          "constructed_test_2.png": "db207cc6f510e67f1a0f8d3af8e33a41fefe5e40a39786f2e6f7fc0c45d604d6",
+          "constructed_test_3.png": "d8a5e29363eadc492ab3d5d63cb5c9713c369e576911c03ecea9fe248ae9331e",
+          "fit_0.png": "e2d3dd1b4fb369dfb2478e53c270d1708223f0be7260e5dbeb56be886b550028",
+          "fit_1.png": "b56489a60651aac994dafc4ea04f0927e83c268d44325c74a47d0b2ae45a1615",
+          "fit_2.png": "6669f91f2c9ed0f6c8396c9c5c1017a57406ba9179fdaefdd489ca5eea868a12",
+          "fit_3.png": "8c4ea18c8715ab7456ee4c76bdc699a4dc4ea32892cfa5c7410b76378db8391f",
+          "monitor_0.png": "befad03b0555c3c7c13cbfc58ab1bf7589000d9bccca221526653eff6af1c6a4",
+          "monitor_1.png": "a6655dd0d6cc1b1e4ef26f32ed76500eecbb0f4170419979209c6e358801ee72",
+          "monitor_2.png": "7b56a06e7224732713fd737c230f7aa16c0e09a1c33877bfcf1a2393bc972b68",
+          "monitor_3.png": "d6f9692df1869758474ed3b1f81eaf8236b5f6f6478e5025c7dc2893230a99e5"
+        },
+        "coverage": {
+          "fit": 64,
+          "monitor": 64,
+          "constructed_test": 64
+        },
+        "observations": {
+          "fit": "Lexical first64 dominated byfood photos; no suitable face portrait. Tiny incidental background skin does not qualify. Some collages/watermarks visible.",
+          "monitor": "Food first12; later portraits,architecture,text,foliage,nightshop offer wider categories.",
+          "constructed_test": "Food first22; later family portraits,flowers,architecture,text,sunset offer wider categories."
+        },
+        "policy_issue": "Lexicographic source filenames align with dataset domains. First matching broad object/neutral/lowkey labels can produce mostlyfood probes; medium requested to adjudicate prospective category specificity before any freshoperatoroutput.",
+        "provisional_examples_not_selection": {
+          "monitor": [
+            "content_images/00/00967.png",
+            "content_images/00/01270.png",
+            "content_images/00/02990.png",
+            "content_images/00/02140.png"
+          ],
+          "constructed_test": [
+            "content_images/00/00916.png",
+            "content_images/00/01263.png",
+            "content_images/00/00789.png",
+            "content_images/00/00935.png"
+          ]
+        },
+        "native_reviews": 0,
+        "operator_outputs_seen_for_selection": 0,
+        "final_probe_freeze": false,
+        "near_duplicate_clearance": "PENDING otheragent48pairreview"
+      }
+    },
+    "outputs/tst_crossed_source_review_v1/run/report.json": {
+      "sha256": "dbe6b534539cbda665d5c27f4a2244efdccfba5ac2a09f31e35a4e7f4deda9ec",
+      "record": {
+        "status": "CANDIDATES_PREPARED_REVIEW_PENDING",
+        "identity": {
+          "config_sha256": "9469b8e1cbb31f50ff28b32a7b140531b97fbed00d250c220f6dbe2bc7fb256a",
+          "entry_sha256": "514d2629d41a21e91a1cd046e08bf4e837c9a16f607981322101b89848b2765e",
+          "status": "READY_NOT_RUN",
+          "source_report_sha256": "d862b7b72e867d0ea8fb2675824711579c8a248fd1c2bcd69b8830830df5d1fb",
+          "source_identity": {
+            "config_sha256": "0ed13f7dc069818ecb513785e5435369a5a05209e53d09c46af00640757f4323",
+            "entry_sha256": "95154e1c226fcefed3bfafb52207bbc325b3fabd413ac0551a1e6c1b7a736d21",
+            "receipt_sha256": "9fa7311aee1a8063563ea8f653779c1e56dc7460f6fccf9116fc7398de4631e1",
+            "download_accounting": {
+              "cpu_seconds": 150.5625,
+              "wall_seconds": 2139.1720000000205,
+              "free_bytes_after": 245908897792
+            }
+          },
+          "source_item_reads": 0
+        },
+        "decoded_sources": 4264,
+        "technical_exclusions": 0,
+        "comparisons": 9088716,
+        "candidate_pairs": 48,
+        "known_exact_pairs_omitted": 8,
+        "exact_quarantined_owners": 4,
+        "affected_P_donor_records": 2,
+        "initial_probe_review_counts": {
+          "fit": 64,
+          "monitor": 64,
+          "constructed_test": 64
+        },
+        "initial_near_review_pairs": 48,
+        "remaining_near_review_pairs": 0,
+        "real_reserved_pixel_independence": "UNMEASURED_NO_ACCESS",
+        "human_preference": "UNMEASURED",
+        "photo_decodes": 0,
+        "operator_fits": 0,
+        "learning_updates": 0,
+        "artifact_sha256": {
+          "identity.json": "4c22fc1ee31c082cc30ff95d43f962d5d2bb9b4e5ccf121d4a06053457f04c8e",
+          "near_duplicate_candidates.jsonl": "3670c7f700c06cc789a3cd53380265b3cd3f4a0df4d262df7eb3bceb5a0d3a46",
+          "exact_groups.json": "f5fb2129b37eae4a6e951931b9d41547d6d1d4cc1615244493b93e449c664dd5",
+          "initial_probe_review.json": "d0580f3ef7943630b58f82536d8c09eb7998ff704b0bb0df1f547f42f2ea7402",
+          "initial_near_review.json": "f4202f26848589c5cf89c6acdc10c883b0e5a85ac5998ee052f1b7cd19e29058",
+          "near_000.html": "899206566bc7b2a6e0cb6fa86f903b1c181d4e2578b37b1b53a4f3d095f85413",
+          "near_001.html": "9ba0b807b3ffcd0fc002f915783d4085d905466a9e677141f7cf22d0b3ecfa52",
+          "near_002.html": "735c516cb4374fce3dec2168d9aa63030ef418fccbe181b1a0195e5107968ba5",
+          "near_003.html": "bca9740c857eb870bd6c06de7d321ea3453c9af99583bdbb1e4a6ef1c08ea161",
+          "near_004.html": "434972c5183b98336b98cbfafbcd13f4d8ea2cfbc49488db9dc35db4f995ffe7",
+          "near_005.html": "0c9a9772de6c7d53eb26369e388c220b4c80f6d2665710615631b4a7c68eab2e",
+          "fit_000.html": "e62babc6ec28112742e7d3dba207d296f03cefdcef74a0d693ebf6d4d8777195",
+          "fit_001.html": "b6b974c0a4c6ce652457f3e9134836254be962ae7f4fcec73077041d63d7ec14",
+          "fit_002.html": "259a37855d979c0ab730be7d7eb3655dd858c434e72cac7332a9eb66f04f8ae8",
+          "fit_003.html": "b215f6d8d8b5ca570e2e3c6744ec30b960b704bc8c8a41bad6c0a987e8d56256",
+          "fit_004.html": "299b5a06f2fb0ee23fd257d2d9ddcfd4b2ce4928ec64d3280719c977d51d31c1",
+          "fit_005.html": "56f8ec1e22bec3464505e14dce0e41f5d62af4395a04981f8d096a92aa39c7c9",
+          "fit_006.html": "f7702bdee97957a4f57ef6f63584592381103ed613985a0a2125a8d94b308a1c",
+          "fit_007.html": "31b6e7d4508d46a1ee95042b3fa893fadf268224667ca45f863f26c320b8b2b5",
+          "monitor_000.html": "b5814040332ee5c337fccceb7197ad6a4b1d546f1faa55072ea627fcf3de9935",
+          "monitor_001.html": "a7db457ea4fce66fc7332410f479c786f9822c9a0f1abf04737e203294d64e92",
+          "monitor_002.html": "89767741cf52b12c39d931dc0faa58ab702d5cdbdc26c7530286a6e1b19bb5ad",
+          "monitor_003.html": "407b6489816733666e47264587505801b8e88198c6a6c480294a79afbdeed4ff",
+          "monitor_004.html": "73fcf5d32c16d494692213a10cef8c53b93f718bb94f6d43a3b628f45ec1aa68",
+          "monitor_005.html": "70f6d50e4af92e52c92eec94dc7236293d816d39a8085cd343690808c57cb532",
+          "monitor_006.html": "37f26c261cb0a41e5ccb90e1645000107937e14b460b0493f9b42675df14988d",
+          "monitor_007.html": "d4bd090b2b613bb1b49b1eec63fa093aec3682c0a9dfc085832bf9d2979c4fee",
+          "constructed_test_000.html": "add833f5803373482e0d99b2df886009ca40769c308227a5917214d843ccacf9",
+          "constructed_test_001.html": "9b5cee613bc8542a18e05480ca099b5075caec6e430573eaba035f970240b899",
+          "constructed_test_002.html": "3cf163b2799f93e743cf71c245a0986365b85ab5c8edd22e7130d3b339cc6587",
+          "constructed_test_003.html": "b5c873da63c211cfde0a129c85d18937a0aa7f11c5127f397ec2b4ce1ae947de",
+          "constructed_test_004.html": "40338f66b83cde47ceb94334825fc9759a15823bf1db42d4e212f5d6aab12894",
+          "constructed_test_005.html": "8809a44e6a774c93abd1eb47d19c619056a2ea16f818d7f02ac9fa78b150ebd4",
+          "constructed_test_006.html": "5f22f0a2119acd8dced7df8fa64ff279f3170915a9bf95d464445a353e9f3d8d",
+          "constructed_test_007.html": "93169fd27a9303375f85d3183e72d5045ec511117f84dc3e7c244930c3b13ef5",
+          "index.html": "7e0ed744ec641e57c82f2535fa0ab9c96f407881b501e5b1cff9b6aa659af855",
+          "input_item_pins.json": "02940130df82244f962aa3c56f50614a4bb7f9515ffa69fa6897a9e59f57ce3a"
+        }
+      }
+    }
+  },
+  "next": "Finish48pairnearreview/componentquarantine; preparefixedhashfirst64perpartition, inspectsourceonly andnativepatches thenfreeze12probes. No newdonorafter/operatoroutputs viewed forselection."
+}

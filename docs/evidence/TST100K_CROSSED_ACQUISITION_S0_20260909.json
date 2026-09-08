@@ -1,0 +1,113 @@
+{
+  "status": "ACQUISITION_AND_S0_COMPLETE_S1_RUNNING",
+  "evidence": {
+    "outputs/tst_crossed_acquisition_v1/download/report.json": {
+      "sha256": "9fa7311aee1a8063563ea8f653779c1e56dc7460f6fccf9116fc7398de4631e1",
+      "summary": {
+        "status": "ACQUIRED_HASH_VERIFIED_NOT_DECODED",
+        "config_sha256": "d15017328ff9d4105109d9379729f714c57255d1a503a7dbad39c26c6b95567c",
+        "source_sha256": "5549f3118be6fbe4ccdc65405ace791e890779aa7c11deb4ff826465d0be07f0",
+        "dispatched": 7775,
+        "streamed_body_bytes": 6788811506,
+        "stop_reasons": [],
+        "retry_after_seconds": 0.0,
+        "real_reserved_GET": 0,
+        "Y_only_GET": 0,
+        "decoded_images": 0,
+        "training": 0,
+        "automatic_retries": 0,
+        "retry_after_sleep_seconds": 0.0,
+        "total_verified_bytes": 6788811506,
+        "events_sha256": "f9ae167431ebac51b7729bea9611665b73d19acefc01840636ace10d6894079e",
+        "accounting": {
+          "cpu_seconds": 150.5625,
+          "wall_seconds": 2139.1720000000205,
+          "free_bytes_after": 245908897792
+        }
+      }
+    },
+    "outputs/tst_crossed_acquisition_v1/download/completion_verification.json": {
+      "sha256": "211019d320cd3e638699b8767185af2e1d1d9dd48c9eede7e9aa1bdbb2b4d485",
+      "summary": {
+        "status": "COMPLETION_MANIFEST_AND_FILESYSTEM_CHECK_PASS",
+        "report_sha256": "9fa7311aee1a8063563ea8f653779c1e56dc7460f6fccf9116fc7398de4631e1",
+        "files": 7775,
+        "bytes": 6788811506,
+        "all_final_file_sizes_checked": true,
+        "all_download_stream_SHA_checks_recorded": true,
+        "independent_second_file_SHA_pass": "Not repeated by this agent; root owns independent full verification.",
+        "unexpected_files": 0,
+        "remaining_partials": 0,
+        "real_reserved_files": 0,
+        "Y_only_files": 0,
+        "min_scheduled_file_start_spacing_seconds": 0.25,
+        "schedule_limit": "Scheduling verified; actual redirect HTTP starts not independently timestamped.",
+        "source_config_tests_terms_unchanged": true,
+        "old_HEAD_failure_preserved": true,
+        "cpu_seconds": 7.890625,
+        "wall_seconds": 10.15600000001723,
+        "acquisition_accounting": {
+          "cpu_seconds": 150.5625,
+          "wall_seconds": 2139.1720000000205,
+          "free_bytes_after": 245908897792
+        },
+        "image_decodes": 0,
+        "training": 0
+      }
+    },
+    "outputs/tst_crossed_curation_v1/headers/report.json": {
+      "sha256": "4e95f863ba6a090d1170cb7b0349bf2f91fa2eb585d15554067c2d6c0b7356da",
+      "summary": {
+        "status": "COMPLETE_CENSUS_NOT_ADMISSION",
+        "stage": "headers",
+        "identity": {
+          "config_sha256": "0ed13f7dc069818ecb513785e5435369a5a05209e53d09c46af00640757f4323",
+          "entry_sha256": "95154e1c226fcefed3bfafb52207bbc325b3fabd413ac0551a1e6c1b7a736d21",
+          "receipt_sha256": "9fa7311aee1a8063563ea8f653779c1e56dc7460f6fccf9116fc7398de4631e1",
+          "download_accounting": {
+            "cpu_seconds": 150.5625,
+            "wall_seconds": 2139.1720000000205,
+            "free_bytes_after": 245908897792
+          }
+        },
+        "expected": 7775,
+        "processed": 7775,
+        "counts": {
+          "HEADER_ELIGIBLE": 7775
+        },
+        "worker_cpu_seconds": 255.953125,
+        "preview_cache_bytes": 0,
+        "claim": "S0/S1 preparation only; no probe admission, near-duplicate clearance, donor fits or learning.",
+        "last_attempt_accounting": {
+          "stage": "headers",
+          "exit_code": 0,
+          "failure": null,
+          "aggregate_cpu_seconds": 319.996875,
+          "active_wall_seconds": 359.375,
+          "peak_worker_rss_bytes": 79003648,
+          "prior_reserve_cpu_seconds": 3600,
+          "prior_reserve_wall_seconds": 3600,
+          "download_accounting": {
+            "cpu_seconds": 150.5625,
+            "wall_seconds": 2139.1720000000205,
+            "free_bytes_after": 245908897792
+          },
+          "owned_processes": [
+            {
+              "pid": 73764,
+              "create_time": 1788895186.486922,
+              "cpu_seconds": 0.0
+            },
+            {
+              "pid": 71932,
+              "create_time": 1788895186.4984295,
+              "cpu_seconds": 255.984375
+            }
+          ],
+          "claim": "Includes failed/resumed attempts and conservative0.2CPU second allowance for final sampling interval; historical negative study ledger unchanged."
+        }
+      }
+    }
+  },
+  "claim": "7775 original files rehashed in independent S0 pass; allheaderseligible. Source pixel census live, no learning/photo admission."
+}
