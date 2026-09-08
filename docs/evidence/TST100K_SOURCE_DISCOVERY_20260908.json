@@ -89,8 +89,93 @@
       "no_credentials": true,
       "unrelated_changes_excluded": true
     },
-    "scope": "New dataset scientific adjudication, not retry of previous malformed result; prior bridge remains stopped"
+    "scope": "New dataset scientific adjudication, not retry of previous malformed result; prior bridge remains stopped",
+    "transport_events": [
+      {
+        "event": "original_tab_missing_at_new_turn",
+        "old_tab_id": "6",
+        "inventory_only_gallery": true,
+        "meaning": "Local tab lifetime ended; model completion not inferred"
+      },
+      {
+        "event": "reopened_same_verified_conversation",
+        "new_tab_id": "7",
+        "browser_id": "1",
+        "url": "https://chatgpt.com/c/6a9ff0b0-8268-83ec-ad45-fdc62847602e",
+        "medium_adjudication": "Read-only observation recovery permitted; not a submission retry",
+        "stop_answering": 1,
+        "pro_label": 1,
+        "copy_response_buttons": 0,
+        "markHandoff_called": true
+      }
+    ],
+    "current_observation": {
+      "tab_id": "7",
+      "browser_id": "1",
+      "state": "RUNNING",
+      "stop_answering": 1,
+      "copy_clicks": 0,
+      "send_clicks_total": 1,
+      "handoff_marked_this_turn": true
+    }
   },
-  "next": "Wait with clock.sleep, poll tab6 Stop answering and model UI only. One Copy after completion. While waiting, selected upstream provenance/terms can be inspected read-only. No images or training yet.",
-  "goal_achieved": false
+  "next": "Wait on recovered same-conversation tab7 via clock.sleep; one Copy after completion. If Pro admits suitability review, exact fixed8 metadata determines at most24 image downloads; current image bytes zero. Mark tabHandoff before each turn end.",
+  "goal_achieved": false,
+  "candidate8_metadata": {
+    "status": "PENDING_SCIENCE_AND_SOURCE_TERMS_NOT_IMAGE_ADMISSION",
+    "selection_seed": "tst100k-development-candidate-20260908-v1",
+    "selection_rule": "SHA256(seed + sorted-key row JSON), greedily distinct source and reference-owner paths; eight proposed development triplets",
+    "candidate_bytes": 20617008,
+    "distinct_files": 24,
+    "distinct_file_owners": 16,
+    "commits": [
+      "63bf13833b75407c862d608c3d81281d0a35b61f"
+    ],
+    "source_dataset_mapping": "unknown; no suffix or number-range inference",
+    "image_bytes_downloaded": 0,
+    "head_requests": 24,
+    "authentication_used": false,
+    "not_independent_holdout": true,
+    "artifact_sha256": "3621d7cfdb6cbcb56d0419a2b75880a943cb3a28814db4838c3d08bf573ee7ef"
+  },
+  "terms_review": {
+    "documents": [
+      {
+        "file": "FiveK_LicenseAdobe.txt",
+        "url": "https://data.csail.mit.edu/graphics/fivek/legal/LicenseAdobe.txt",
+        "sha256": "8121ecfcf743d850d6b6dbd0744cfb517c4cec189387aa010bf378077de84fcf",
+        "bytes": 1841
+      },
+      {
+        "file": "FiveK_LicenseAdobeMIT.txt",
+        "url": "https://data.csail.mit.edu/graphics/fivek/legal/LicenseAdobeMIT.txt",
+        "sha256": "69f73c481140c40d3a02a15a739da76073de35646108a70bb1dfffadb182af3d",
+        "bytes": 1994
+      },
+      {
+        "file": "PPR10K_README.md",
+        "url": "https://raw.githubusercontent.com/csjliang/PPR10K/master/README.md",
+        "sha256": "62a8d89ff711d68de1d48110dfad3d0e96888be3d216de1133039ce4b2ec5077",
+        "bytes": 7449
+      },
+      {
+        "file": "Food101_source_page.html",
+        "url": "https://data.vision.ee.ethz.ch/cvl/datasets_extra/food-101/",
+        "sha256": "022921295119d99b5151998c0a99869417c8175934c3eb84a330c4caedaf0c8c",
+        "bytes": 3208
+      },
+      {
+        "file": "TST100K_README.md",
+        "url": "https://huggingface.co/datasets/ToneStyle/TST100K",
+        "sha256": "a811aa7dfb47685fbfd1b00504abda17edf5ecf163bafd75ebc9f96d19d79719",
+        "bytes": 4592
+      }
+    ],
+    "medium_admission": "After positive Pro data-suitability recommendation, fixed8/24files only internal noncommercial suitability review may proceed autonomously. No training, integration, commercial evaluation or public pictures.",
+    "upstream_source": "unknown",
+    "per_image_rights_verified": false,
+    "Food101_explicit_image_license_on_public_page": false,
+    "limitations": "No assertion of fully cleared downstream rights. Preserve notices with copies. Stop any specific file on newly observed additional restriction.",
+    "no_further_general_rights_search_needed_for_this_bounded_review": true
+  }
 }

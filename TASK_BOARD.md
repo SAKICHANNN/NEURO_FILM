@@ -20,6 +20,12 @@ Root completed docs/evidence/TST100K_SOURCE_DISCOVERY_20260908.json and handoff.
 No file locks; next wait via sleep and inspect UI controls; upstream terms/provenance
 metadata remains safe local work. No training or image acquisition admitted yet.
 
+TST transport recovery: original agent tab6 disappeared at turn boundary. Medium
+admitted reopening SAME conversation, now tab7/browser1;Stop-answering1,6Pro1,Copy0,
+send total1. markHandoff now called and REQUIRED each turn. Fixed8 metadata budget
+24files/20617008bytes pinned; source notices archived. Medium allows only bounded
+noncommercial data-suitability review after positive Pro advice, no images yet.
+
 Current 2026-09-08 follow-up COMPLETE: root completed scripts/prepare_filmset_paired_supervision.py,
 configs/filmset_paired_supervision_admission_v1.json, current handoff and
 docs/evidence/POST_SALUT_SUPERVISION_ADMISSION_20260908.json. Metadata/header/hash

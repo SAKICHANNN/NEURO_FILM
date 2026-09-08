@@ -20,9 +20,23 @@ Doctor/consent READY; IAB tab6 Latest/Pro5of5/6Pro visibly verified. Sent ONCE:
 https://chatgpt.com/c/6a9ff0b0-8268-83ec-ad45-fdc62847602e .
 LIVE Stop-answering count1; result Copy0. Wait with clock.sleep, same tab, no resubmit.
 Poll UI controls only; once complete one UI Copy, no response DOM exception.
+RECOVERY: tab6 auto-closed at turn end because markHandoff was omitted. Inventory
+confirmed missing; medium admitted reopening SAME conversation without resubmission.
+Current tab7/browser1, same URL,Stop-answering1/6Pro1/Copy0. Call
+await tstScienceTab.markHandoff() EACH turn before ending. Do not treat tab closure
+as remote answer failure. Original send count remains1; no composer/reload action.
 Evidence docs/evidence/TST100K_SOURCE_DISCOVERY_20260908.json. No model run active.
 Next independent work: selected-source upstream terms/provenance metadata, no pixels
 until admitted; filename suffixes are NOT preset IDs. Preserve previous bridge failure.
+Fixed proposed8 development triplets selected by hashed seed from known-owner rows,
+16distinct file owners;24HEAD requests yield20617008total bytes on commit
+63bf13833b75407c862d608c3d81281d0a35b61f. candidate8_metadata.json in metadata folder.
+Source notices archived in terms/:TST,FiveK two licenses,PPR10KREADME,Food101 page.
+Medium admits bounded noncommercial suitability review AFTER positive Pro advice:
+same8/24files,no training/integration/commercial evaluation/public images; preserve
+notices. Per-image source/rights remain unknown; Food101 page lacks explicit image
+license. This limits claims, does not require endless generic rights searches.
+No images downloaded yet. Specific new restrictions would stop that item.
 
 ### Current checkpoint decision after native content check
 
