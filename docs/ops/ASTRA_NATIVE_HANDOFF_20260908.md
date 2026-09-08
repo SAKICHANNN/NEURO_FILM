@@ -39,6 +39,18 @@ RGB MAE reference-change is13.72/6.35/7.99 for SA-LUT and5.32/4.91/6.19 for G0
 (on0..255 scale): sensitivity only. Evidence SA_LUT_REFERENCE_RESPONSE_20260908.json.
 No locks or inference processes remain active.
 
+### Next bounded execution: G1 global control
+
+Medium adjudication: finish nine-photo G1 before spending independent samples.
+Frozen configs/salut_g1_projection_v1.json:21-cube bounded LUT;64px checkerboard
+blocks with4px borders excluded,16384 uniformly selected fit pixels,remaining
+parity validation; normalized second differences lambda0.001. Zero network forwards,
+2 CPU threads,600s total,4GiB tree RSS. Implementation and execution NOT STARTED.
+Verify disjoint coordinates, hashes, convergence and validation colour-cell coverage.
+Compare native and uniform0.65 SA-LUT/G0/G1 visually. If global controls preserve look
+and are cleaner, stop adding SA-LUT spatial architecture; G1 is a teacher-assisted
+control, not a deployable learned replacement. No tuning based on validation errors.
+
 ### First actual SA-LUT photographs
 
 COMPLETE_NOT_PROMOTED: fixed reference18, consumed source indices0/1/2, original

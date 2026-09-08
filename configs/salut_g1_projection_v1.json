@@ -1,0 +1,46 @@
+{
+  "identity": "salut_g1_projection_v1",
+  "source_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "parents": [
+    {
+      "report": "outputs/salut_photo_development_v1/attempt-0001/report.json",
+      "sha256": "af629d4fbb9033387eb0fd03aff7ce3aeac2de1a2beb9faeff4b689583634ffc"
+    },
+    {
+      "report": "outputs/salut_photo_development_remaining_six_v1/attempt-0001/report.json",
+      "sha256": "046c48c1cf9c6278cd94c6e888f5614b039deed3502e46dcbbb2c681e33c9d6b"
+    }
+  ],
+  "teacher_arm": "salut",
+  "reference": "18",
+  "lut_dimension": 21,
+  "bounds": [
+    0,
+    1
+  ],
+  "block_size": 64,
+  "block_border_exclusion": 4,
+  "fit_parity": 0,
+  "max_fit_pixels": 16384,
+  "sampling": "equally spaced indices from row-major valid fit coordinates",
+  "smoothness_order": 2,
+  "smoothness_weight": 0.001,
+  "objective": "mean pixel RGB squared residual plus 0.001 times mean RGB-axis interior second-difference squared",
+  "display_strength": 0.65,
+  "threads": 2,
+  "wall_seconds_total": 600,
+  "tree_rss_limit_bytes": 4294967296,
+  "new_model_forwards": 0,
+  "scope": "Teacher-assisted global approximation control; same-image spatial validation, not independent generalization or deployable learned scheme",
+  "stop": "No parameter search; preserve partial/nonconverged results and do not infer irreducible spatial value from solver failure."
+}
