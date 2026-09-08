@@ -2,6 +2,20 @@
 
 ## 2026-09-08 correction: current execution authority
 
+### Latest architecture preference
+
+The user prefers nontraditional learning methods beyond a simple LUT, while
+allowing LUT if evidence shows it is the best approach. No such superiority has
+been established. Existing pretrained LUT assets were chosen for executable
+development comparisons, not proven architectural advantage. After the two
+nine-photo failures, keep LUT as a baseline and do not automatically continue
+projection, strength tuning or further LUT infrastructure. Medium should assess
+content/light/scale-dependent learned alternatives against actual local assets
+and the photographic objective. Preserve people, text and geometry; a novel
+architecture name alone is not evidence, and renaming a global LUT does not
+satisfy this preference. Finish the already bounded numerical consistency audit
+only to distinguish implementation error from model behaviour.
+
 ### Development-policy correction after Astra high review
 
 The user explicitly authorized responsible correction of prior decisions. Small
@@ -72,12 +86,23 @@ conditionally attractive, but fruit/sunflower colours collapse during
 precorrection and learned mapping adds broad green shadows across subjects.
 Do not promote. Full per-image findings and report binding are recorded in
 `docs/evidence/AI_SINGLE_REFERENCE_BATCH_DEVELOPMENT_20260908.json`. Medium is
-implementing a same-reference NCC ablation to isolate the implicated preprocessing.
+completed a same-reference NCC ablation to isolate the implicated preprocessing.
 The ablation keeps all nine original four-arm outputs, adds correctly conditioned
 `learned_no_precorrection`, and reuses the verified old NCC daisy output. At most
 eight new forwards under the same 600s/8.5GiB cap may run after CPU verification
 and fresh resource admission. Colour recovery alone, with no useful reference
 appearance remaining, would not satisfy the photographic objective.
+
+The NCC batch also completed: eight new forwards plus one cache, 85.56 seconds,
+7.67 GiB allocated peak, all 45 output hashes/dimensions verified and all 36 old
+arms copied byte-exact. All nine NCC images were inspected at 1600px. Warm-object
+colours return, but excessive saturation, cyan shifts and dark foregrounds remain;
+neither path is promoted. See
+`docs/evidence/AI_SINGLE_REFERENCE_NCC_DEVELOPMENT_20260908.json`. The same-channel
+new RGB8 endpoint diagnostic does not support attributing every vivid/harsh
+appearance to clipping. A bounded local numerical audit is finishing; the stored
+official snapshot lacks the author's top-level final LUT decoding/rendering entry,
+so local reconstruction alone cannot establish official end-to-end parity.
 
 User request: perform a major course correction after confirming that the project
 and this task drifted from AI-learned photographic value. This section supersedes

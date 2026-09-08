@@ -1,0 +1,52 @@
+{
+  "round": "ai_single_reference_ncc_development_v1",
+  "attempt": "outputs/ai_single_reference_ncc_development_v1/attempt-0001",
+  "implementation_commit": "c9701b08a",
+  "config_sha256": "aa763cccdd63a09d028b8e6f39708bdef65d5c49ada549806151f2b377579674",
+  "report_sha256": "1c709baf17c556a2a13256350a2ecec0e899930b4384cb934836906e87ad3d81",
+  "execution": {
+    "new_forwards": 8,
+    "cached_rows": 1,
+    "training_updates": 0,
+    "worker_seconds": 85.56299999999464,
+    "peak_cuda_allocated_bytes": 8233958912,
+    "peak_cuda_reserved_bytes": 8715763712,
+    "verified_output_hashes_and_dimensions": 45,
+    "baseline_outputs_reused_byte_exact": 36
+  },
+  "review_scope": "All nine five-arm comparison sheets and all nine 1600px NCC images inspected. Astra medium reviewed 0-4; root reviewed 5-8. Subjective agent development diagnosis, not human preference, independent evaluation or native RAW validation.",
+  "rows": [
+    {"index": 0, "subject": "snow courtyard", "judgment": "Less cyan contamination than corrected-input learned output, but darker shadows and residual coloured edges; prefer original."},
+    {"index": 1, "subject": "fruit and blocks", "judgment": "Warm-object distinctions restored, supporting precorrection as the main source of colour collapse. NCC exaggerates lemon-yellow banana, red-orange fruit and red-brown kiwi. Prefer original/simple."},
+    {"index": 2, "subject": "daisies", "judgment": "Exact historical NCC cache, not new evidence. Colours return but intense yellow/green is less restrained than reference. No overall preference over original/simple."},
+    {"index": 3, "subject": "garden", "judgment": "Foreground remains too dark and green; restoring colours does not restore readability. Prefer original."},
+    {"index": 4, "subject": "lakeside wood", "judgment": "Water/sky and warm wood return, but strong cyan, yellow and blue-purple relationships exceed the reference's restrained appearance. Prefer original/simple."},
+    {"index": 5, "subject": "sunflowers", "judgment": "Yellow colour restored but petals appear excessively bright lemon-yellow; table becomes strongly red and shadows green. Prefer original; the visual problem is not established as predominantly new clipping."},
+    {"index": 6, "subject": "station", "judgment": "Brick colour returns but cyan sky becomes excessive. Structure remains visible; no overall photographic improvement over original."},
+    {"index": 7, "subject": "stonework", "judgment": "Warm stone returns but light areas become harsh yellow-white, sculpture strongly cyan and shadows heavier. Prefer original."},
+    {"index": 8, "subject": "interior", "judgment": "Warm illumination returns but wall shifts strongly orange against green shadows. No clear photographic improvement over original."}
+  ],
+  "boundary_diagnostic": {
+    "definition": "Percent of pixels with at least one channel originally in 1..254 and that same output channel equal to 0 or 255; RGB8 endpoints, not a complete gamut, detail or appeal metric.",
+    "new_channel_boundary_percent_by_source_0_to_8": [0.0, 0.0002, 0.3845, 0.6992, 0.0281, 0.0012, 0.0004, 0.0001, 0.0],
+    "sunflower_original_any_channel_boundary_percent": 11.9685,
+    "interpretation": "Oversaturated appearance is not equivalent to many newly clipped channels; these values do not justify blaming every failure on node clipping."
+  },
+  "decision": "No promotion. Disabling precorrection removes much of the warm-colour collapse, but the learned path still exaggerates colour and compresses dark scenes. Neither fixed path establishes a reliable photographic treatment.",
+  "bounded_local_consistency_audit": {
+    "status": "COMPLETE_LOCAL_RECONSTRUCTION_EXACT_OFFICIAL_END_TO_END_UNKNOWN",
+    "source_indices": [1, 3, 4],
+    "maximum_channel_difference_each": [0, 0, 0],
+    "mean_absolute_difference_each": [0, 0, 0],
+    "official_source_hashes_verified": 10,
+    "verified_input_domain": "Stored official NCC function preserves uint8 RGB, resizes conditioning to 512x512; exact original equality verified.",
+    "local_grid": "16-cube RGB identity, B/G/R axes with R fastest; unit-axis endpoints verified.",
+    "local_decode_and_render": "transpose predicted latent plus identity; node clip to [0,1], flatten and Pillow Color3DLUT interpolation.",
+    "official_evidence_gap": "Stored pipeline returns latents but author's top-level final LUT decode/render entry is absent. The additive identity, final ordering and clip policy cannot be independently confirmed against that missing official entry. Exact local reconstruction does not establish official parity.",
+    "additional_gpu_forwards": 0
+  },
+  "next_step": "Respect latest user preference for nontraditional approaches beyond simple LUT: medium adjudicates real spatial/content/light/scale-conditioned alternatives from local assets. Do not automatically proceed to LUT strength or gain tuning.",
+  "product_promotion": false,
+  "human_preference_measured": false,
+  "independent_assessment": false
+}
