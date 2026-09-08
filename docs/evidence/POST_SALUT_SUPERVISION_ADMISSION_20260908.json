@@ -1,0 +1,134 @@
+{
+  "status": "METADATA_VERIFIED_NOT_TRAINING_ADMITTED",
+  "goal_achieved": false,
+  "latest_user_requirement": "Clearly visible, rich but comfortable; uniform strength allowed; no per-image manual recipes; near-identity and harsh orange/dark results both fail",
+  "bridge": {
+    "receipt_path": "outputs\\ai_post_salut_science_bridge_v1\\receipt.json",
+    "raw_result_sha256": "b0d2bcb2e77f805092e343e892a301690976437856ec2ec2ccf9a709986fd8dd",
+    "raw_contract": "failed",
+    "normalized_derivative": "reading only; not a passed original contract",
+    "retry": false
+  },
+  "local_medium_adjudication": {
+    "accepted": [
+      "Preserve stopped SA checkpoint",
+      "Paper-supported FilmSet recipe labels allow separate metadata admission",
+      "Single after-only reference remains inference goal"
+    ],
+    "rejected": [
+      "Three FilmSet recipes demonstrate unseen-edit generalization",
+      "Expert C is shared-edit supervision",
+      "Pro output overrides user uniform-strength permission"
+    ],
+    "deferred": [
+      "New student training",
+      "24-edit-family experiment",
+      "Independent confirmation and promotion"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://www.ijcai.org/proceedings/2023/0129.pdf",
+      "verified_section": "3.3",
+      "claim": "Three Capture One recipe treatments reported across captures; no exact parameter/physical calibration claim"
+    },
+    {
+      "url": "https://huggingface.co/datasets/omaralezaby/Retouch_Transfer_Dataset",
+      "verified": "Dataset card inspected 2026-09-08",
+      "claim": "569 FiveK-derived originals and many preset versions claimed; gated contact-sharing access; no access agreement or download performed"
+    }
+  ],
+  "metadata_report": {
+    "experiment_id": "filmset-paired-supervision-admission-v1",
+    "status": "METADATA_VERIFIED_NOT_TRAINING_ADMITTED",
+    "config_sha256": "a9d200c070a9ec5a443fb5fc66a6c227730a2ff47e72a17b25d75797b7372b14",
+    "script_sha256": "2864d188509cba0c45300c86fb1cbb596f971daf8e0125eac10db078b03f5285",
+    "source_manifest_sha256": "4788ecffcc0d05df9baf614e159fd5e2bd6f5e5ca76e2bd3109ed993aca6f865",
+    "pairs_sha256": "a5b9525c80c85837f113eb3c4e9b994047873af2eb017b4f8fba70165dd6c8eb",
+    "selected_groups": 32,
+    "pair_rows": 96,
+    "verified_files": 128,
+    "development_train_groups": 24,
+    "development_check_groups": 8,
+    "cross_partition_duplicate_cluster_overlap": 0,
+    "icc_profile_hashes": [
+      "304f569a83c1e5eddaddac54e99ed03339333db013738bb499ab64f049887e28"
+    ],
+    "image_pixel_decodes": 0,
+    "lockbox_manifests_opened": 0,
+    "lockbox_image_files_opened": 0,
+    "remaining": [
+      "training-only portrait and target appearance review",
+      "pixel alignment and encoding verification",
+      "capture lineage unavailable",
+      "only three known recipe domains; no unseen-edit claim"
+    ],
+    "claim_ceiling": "metadata admission for three known software recipes only; not unseen-edit or real-film reference transfer"
+  },
+  "historical_negative_evidence": {
+    "path": "configs/u5_r2w2f0_filmset_recipe_global_explainability_decision_v1.json",
+    "note": "Cinema basic-only; ClassNeg/Velvia not coherent single shared global operators under old frozen gates. New metadata work does not reopen W2F1."
+  },
+  "local_evidence_sha256": {
+    "AGENTS.md": "ffa7afd241f22223dcc5ca20ae7ec9a120da2b5779ede5ba2a6c8b08310551d8",
+    "docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md": "cbedf3cf7ff128ee084d05602da198ef5fcc776cabd6c75bca884339c2925cf9",
+    "docs/evidence/SA_LUT_NATIVE_CONTENT_REVIEW_20260908.json": "07bf9fed484fc2026a69232e0daabba652a9d08fc7759705e6ec8681e5ea7f6a",
+    "outputs/roll2film/filmset_evidence/report.json": "f3ff191622592996d36033ca2acda10c39510c79f4520f28033b48df2ca471b0",
+    "configs/u5_r2w2f0_filmset_recipe_global_explainability_decision_v1.json": "d616e70b613ce81a08d8656154d07772539c12d8399deb22aa236b0f89c3976b",
+    "configs/filmset_paired_supervision_admission_v1.json": "a9d200c070a9ec5a443fb5fc66a6c227730a2ff47e72a17b25d75797b7372b14",
+    "scripts/prepare_filmset_paired_supervision.py": "2864d188509cba0c45300c86fb1cbb596f971daf8e0125eac10db078b03f5285",
+    "outputs/filmset_paired_supervision_admission_v1/report.json": "858ffd5bcd333e19dcec79914ce0f1bcbc020d7ac8243c275d92e990445aa208"
+  },
+  "next": "Assess whether broader same-edit supervision can be obtained without restricted access; FilmSet three-domain pilot is not automatically worthwhile. No model training or independent confirmation admitted.",
+  "training_target_review": {
+    "selection": "fixed first eight development_train groups; original plus all three recipes",
+    "root_reviewed_groups": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "medium_reviewed_groups": [
+      5,
+      6,
+      7,
+      8
+    ],
+    "unique_images_decoded": 32,
+    "decode_operations": 64,
+    "check_groups_viewed": 0,
+    "icc_name": "Adobe RGB (1998)",
+    "conversion": "Embedded Adobe RGB to sRGB, ImageCms relative colorimetric intent1",
+    "initial_unconverted_sheets": "Preserved but invalid and never reviewed; only srgb/ sheets reviewed",
+    "portrait_groups": [
+      7
+    ],
+    "root_findings": {
+      "1": "ClassNeg visibly cooler muted foliage and warm petals; Velvia brighter green; Cinema weaker",
+      "2": "Cinema muted grey; ClassNeg subtle warmer clouds/cooler foliage; Velvia vivid but familiar",
+      "3": "Near-neutral wall: most changes mild; ClassNeg tint visible but insufficient evidence of rich style",
+      "4": "ClassNeg and Velvia deepen already dark architecture; Cinema subdued; shadow-comfort cost",
+      "5": "Visible red/orange recipe changes; no inspected text corruption",
+      "6": "Darkening dominates Cinema/ClassNeg; Velvia blue stronger; comfort advantage unclear",
+      "7": "ClassNeg warm skin comparatively comfortable; Cinema grey; Velvia pink/blue-black stronger; one portrait only",
+      "8": "Modest bridge/sky color changes, no strong demonstrated aesthetic advantage"
+    },
+    "decision": "LIMITED_THREE_RECIPE_DATA_CANDIDATE; neither universal data veto nor training admission",
+    "next_constraint": "Do not select more favorable pictures or reopen old shared-global experiments. Need distinct evidence value beyond three-recipe recognition before training.",
+    "consumption_sha256": "ed9697986e75f76a2e1885f74ea37293ece803d1bf65723eb9c555d9d6ee9831",
+    "srgb_sheet_sha256": {
+      "01.png": "23faf124d2a27d8acb15640941e0e331cd94debfa2f48284a4da23ae2f1c7847",
+      "02.png": "ed22cac6a6910a052690c152574720e3f13c96d33105a9dcdcfc9d04528f92f0",
+      "03.png": "038edc7e031ddd201051292a3a0b9cc19bb7779bac1d3d9989f0c0c11397a945",
+      "04.png": "8a514c856072f4b1d6b5f327f97be1279e39bdc65a9d3e16ba0881c974d8ee42",
+      "05.png": "5b84dd866d938a848357213f918cc3886d096d49b789238cc3c9130ec9b6e03e",
+      "06.png": "7ef759fe9700c18d75fe9cc31bea64c56aefa4329b3a021244b9d2f37efbff7a",
+      "07.png": "1a9535979fdfec286be0ba1b58a72ba0b8ff17546a2e000c9bbeac3be1dc5573",
+      "08.png": "99177569ae85090996f5e4846b0f9084163e1357ce8924683e6a3f1f57562d51"
+    }
+  }
+}

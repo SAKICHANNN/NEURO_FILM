@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "experiment_id": "filmset-paired-supervision-admission-v1",
+  "source_root": "data/raw/filmset/FilmSet",
+  "source_manifest": "outputs/roll2film/filmset_evidence/source_train.jsonl",
+  "source_manifest_sha256": "4788ecffcc0d05df9baf614e159fd5e2bd6f5e5ca76e2bd3109ed993aca6f865",
+  "inventory_cache": "outputs/roll2film/filmset_evidence/inventory_cache.jsonl",
+  "output_dir": "outputs/filmset_paired_supervision_admission_v1",
+  "selection_seed": "post-salut-supervision-20260908-v1",
+  "selection_unit": "one source_train content identity per existing duplicate cluster",
+  "development_train_groups": 24,
+  "development_check_groups": 8,
+  "domains": {"cinema": "Cinema", "classneg": "ClassNeg", "velvia": "Velvia"},
+  "allowed_use": "internal_research_only",
+  "redistributable": false,
+  "capture_group_status": "duplicate-cluster proxy; original capture/burst lineage unknown",
+  "recipe_evidence": "https://www.ijcai.org/proceedings/2023/0129.pdf#page=3",
+  "recipe_evidence_scope": "Section 3.3 reports three Capture One recipes applied to each capture; exact parameters and local operations unknown",
+  "pixel_decode_allowed": false,
+  "training_allowed": false,
+  "claim_ceiling": "metadata admission for three known software recipes only; not unseen-edit or real-film reference transfer"
+}

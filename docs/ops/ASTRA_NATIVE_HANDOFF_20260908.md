@@ -22,9 +22,30 @@ more same-checkpoint examples. New science request submitted ONCE in verified La
 https://chatgpt.com/c/6a9fe63c-f4f4-83ec-abd2-0afa0685346e .
 Packet outputs/ai_post_salut_science_bridge_v1/packet.md valid(~2195tokens).
 Doctor/consent READY; only sanitized text sent. Stop-answering present on live check.
-RUNNING,copy clicks0; use same tab, no resubmit. Next wait via clock.sleep and
-check Stop-answering/UI controls only; after completion one Copy. Prior DOM exception
-was for previous answer only and DOES NOT carry over. Mark tab handoff each turn.
+COMPLETED, visible6Pro postflight, worked15m58s, one successful UI Copy28346chars.
+Raw result.md preserved, normalized fingerprints match clipboard transcription.
+Raw result/pair validation FAIL: five Markdown references outside END marker.
+result.normalized.md moves references only and validates, but does not cure raw
+failure. Receipt valid INCOMPLETE; no retry or DOM extraction; formal bridge adoption
+stopped. Reading derivative is not a passed handoff or model validation.
+
+Independent local medium adjudication + official FilmNet paper sec3.3 supports
+FilmSet recipe-domain metadata admission. scripts/prepare_filmset_paired_supervision.py
+with configs/filmset_paired_supervision_admission_v1.json verified32 source_train
+duplicate clusters,24/8 development split,96pairs/128file hashes and PNG headers.
+No old manifests modified; no lockbox opened. Capture lineage remains proxy only.
+Fixed first8 training groups then reviewed (32 distinct images,64 decode operations
+including display conversion correction). ICC is Adobe RGB(1998), NOT sRGB;
+use training_target_review/srgb/*.png only. Unconverted initial sheets invalid,
+never reviewed. Root all8, medium5..8. Cinema often too grey/weak; ClassNeg portrait7
+comparatively comfortable; sea/city shadows heavy; Velvia vivid but basic-looking.
+One close portrait confirmed; no broad skin guarantee. Keep limited3recipe data
+candidate, no training admission, no unseen-edit claim. The8 groups are now consumed
+paired development, not still pair-blind. Existing W2F0 negative evidence preserved.
+Evidence docs/evidence/POST_SALUT_SUPERVISION_ADMISSION_20260908.json.
+Next assess broader same-edit supervision access and meaningful learning comparison;
+do not build a three-recipe recognizer and call it open single-reference transfer.
+RTD public card verified gated contact-sharing, not downloaded or agreed.
 Goal ACTIVE;
 independent confirmation and integration remain unjustified. No inference live.
 

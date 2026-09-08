@@ -12,6 +12,17 @@ Native G0 content COMPLETE_NOT_PROMOTED:3 full-resolution SDR16 photos/58.406s/3
 
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
+Current 2026-09-08 follow-up COMPLETE: root completed scripts/prepare_filmset_paired_supervision.py,
+configs/filmset_paired_supervision_admission_v1.json, current handoff and
+docs/evidence/POST_SALUT_SUPERVISION_ADMISSION_20260908.json. Metadata/header/hash
+admission only: 32 source_train duplicate clusters, 24/8 development partitions;
+metadata phase zero pixel decode; subsequent fixed first8 training-group review
+decoded32 distinct images with AdobeRGB-to-sRGB display conversion. Medium reviewed
+5..8, root all8; limited recipe-data candidate only, no training or lockbox consumption.
+New bridge response copied once and preserved; raw validator fails only because
+five reference definitions follow END marker. Preserve failure, no retry. No locks
+remain. Current handoff supersedes the older RUNNING status above.
+
 Fixed-reference NCC: COMPLETE_NOT_PROMOTED, commit c9701b08a. Eight new forwards plus one cache in 85.56s, 7.67 GiB allocated peak; 45 outputs verified and 36 baseline arms byte-identical. All nine NCC full-size images reviewed. Warm colours return, but saturation/cyan/dark-scene failures remain. Evidence: docs/evidence/AI_SINGLE_REFERENCE_NCC_DEVELOPMENT_20260908.json. Bounded CPU audit reproduces saved PNGs for 1/3/4 exactly; official final decode/render entry is absent locally, so full official parity is unknown. No locks active; no further inference running.
 
 > 2026-08-01: U6.P8BR closes the current public VFGS default soft-window
