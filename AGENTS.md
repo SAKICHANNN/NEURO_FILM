@@ -5,6 +5,10 @@ G1 nine-photo adjudication: stop further SA-LUT spatial tuning on current JPEG b
 Native content follow-up failed comfortable skin at fixed0.65 on two full-resolution people photographs; stop this checkpoint additions. Text retained in inspected crops only. Next scientific bridge reconsideration. Evidence docs/evidence/SA_LUT_NATIVE_CONTENT_REVIEW_20260908.json.
 # AGENTS.md — K-MCFM Project Knowledge Base
 
+Newest source: TST100K public triplet metadata hash-verified,108808rows; original
+capture/edit-family grouping absent. No images acquired. New verified6Pro science
+question RUNNING in IAB tab6; see current handoff for one-copy transport state.
+
 Latest supervision admission:32 FilmSet source_train clusters/96pairs verified;
 fixed8 training groups visually audited in ICC-converted sRGB. Source ICC is
 Adobe RGB(1998). Limited three-recipe candidate only; no new training/promotion.

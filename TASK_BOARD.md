@@ -12,6 +12,14 @@ Native G0 content COMPLETE_NOT_PROMOTED:3 full-resolution SDR16 photos/58.406s/3
 
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
+Current NEW science: TST100K public108808-triplet metadata verified, no pixels.
+Medium admits independent scientific question. One packet sent to verified6Pro,
+IAB tab6 https://chatgpt.com/c/6a9ff0b0-8268-83ec-ad45-fdc62847602e . RUNNING,
+Stop-answering1,Copy0. Prior tab5 result remains raw-contract-failed, not retried.
+Root completed docs/evidence/TST100K_SOURCE_DISCOVERY_20260908.json and handoff.
+No file locks; next wait via sleep and inspect UI controls; upstream terms/provenance
+metadata remains safe local work. No training or image acquisition admitted yet.
+
 Current 2026-09-08 follow-up COMPLETE: root completed scripts/prepare_filmset_paired_supervision.py,
 configs/filmset_paired_supervision_admission_v1.json, current handoff and
 docs/evidence/POST_SALUT_SUPERVISION_ADMISSION_20260908.json. Metadata/header/hash

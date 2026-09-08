@@ -2,6 +2,28 @@
 
 ## 2026-09-08 correction: current execution authority
 
+### New TST100K supervision source and active scientific question
+
+Public TST100K discovered through official arXiv/project/GitHub/HF chain, not an
+RTD mirror. Metadata-only triplet.json16430011bytes matches published LFS SHA
+5e71ea9eb3255d0169f042d5fe4f9904f5ef9849024cba98fce74c5299159413.
+108808rows,11029content paths,87181reference,83574gt. Only3path fields; no original
+capture/person/burst or preset-family metadata. Exact gt-to-content relationship
+identifies reference owners for21592rows, no equal source/reference owner;
+87216unknown. No duplicate triplets or ambiguous gt owners. No image bytes acquired.
+Noncommercial research only with upstream terms; product permission NOT established.
+Medium admits new scientific question, not old bridge retry: can this triplet
+supervision train an after-only explicit operator, and what pre-training test
+distinguishes representation limits from needing spatial/generative machinery?
+New packet outputs/ai_tst100k_science_bridge_v1/packet.md valid(~1896tokens).
+Doctor/consent READY; IAB tab6 Latest/Pro5of5/6Pro visibly verified. Sent ONCE:
+https://chatgpt.com/c/6a9ff0b0-8268-83ec-ad45-fdc62847602e .
+LIVE Stop-answering count1; result Copy0. Wait with clock.sleep, same tab, no resubmit.
+Poll UI controls only; once complete one UI Copy, no response DOM exception.
+Evidence docs/evidence/TST100K_SOURCE_DISCOVERY_20260908.json. No model run active.
+Next independent work: selected-source upstream terms/provenance metadata, no pixels
+until admitted; filename suffixes are NOT preset IDs. Preserve previous bridge failure.
+
 ### Current checkpoint decision after native content check
 
 STOP further SA-LUT checkpoint runs/tuning on current input branch. Three fixed

@@ -1,0 +1,96 @@
+{
+  "status": "NEW_PUBLIC_TRIPLET_SOURCE_METADATA_VERIFIED_SCIENCE_RUNNING",
+  "source": "https://huggingface.co/datasets/ToneStyle/TST100K",
+  "project": "https://dengyuhai.github.io/ICTone_Project/",
+  "paper": "https://arxiv.org/abs/2604.16114",
+  "metadata_report": {
+    "status": "PUBLIC_TRIPLET_METADATA_VERIFIED",
+    "triplets": 108808,
+    "keys": [
+      [
+        "content",
+        "gt",
+        "reference"
+      ]
+    ],
+    "unique_paths": {
+      "content": 11029,
+      "reference": 87181,
+      "gt": 83574
+    },
+    "manifest_bytes": 16430011,
+    "manifest_sha256": "5e71ea9eb3255d0169f042d5fe4f9904f5ef9849024cba98fce74c5299159413",
+    "matches_published_lfs_sha256": true,
+    "source_group_or_preset_fields_available": false,
+    "all_paths_relative": true,
+    "source_equals_reference_path": 0,
+    "reference_equals_gt_path": 0,
+    "duplicate_triplets": 0,
+    "image_bytes_downloaded": 0,
+    "authentication_used": false,
+    "terms_accepted": false,
+    "interpretation": "Manifest-path relationships only; original capture and edit-family identity not established. No images downloaded."
+  },
+  "lineage_report": {
+    "manifest_sha256": "5e71ea9eb3255d0169f042d5fe4f9904f5ef9849024cba98fce74c5299159413",
+    "mapping_rule": "Use only explicit content-to-gt pairs. Associate a reference to content only when that exact reference path appears as a gt. No filename-stem or preset-suffix inference.",
+    "gt_paths_with_multiple_content_owners": 0,
+    "rows_with_reference_content_owner_known": 21592,
+    "rows_with_reference_content_owner_unknown": 87216,
+    "rows_with_source_in_reference_owners": 0,
+    "content_triplet_count_min": 1,
+    "content_triplet_count_max": 372,
+    "most_reused_gt_count": 30,
+    "original_dataset_and_burst_lineage": "not exposed by three-field manifest",
+    "unseen_preset_family_split": "not constructible from authoritative fields alone",
+    "claim_ceiling": "Known pair-ownership metadata only; no proof of original-capture independence or look equivalence"
+  },
+  "artifacts": {
+    "outputs\\post_salut_tst100k_metadata_v1\\ambiguous_gt_owners.json": "e3566b3a06430868d71e9287dfd6c6c520a3da027aabea01951d407ee131dc2f",
+    "outputs\\post_salut_tst100k_metadata_v1\\dataset_readme.md": "a811aa7dfb47685fbfd1b00504abda17edf5ecf163bafd75ebc9f96d19d79719",
+    "outputs\\post_salut_tst100k_metadata_v1\\fetch.json": "8575140db902d4e793c2df36168a622d51e54087c10fb69225cfaab2dd64713a",
+    "outputs\\post_salut_tst100k_metadata_v1\\lineage_report.json": "fcebf7bd28a3d367d95f9cecaa6df94250d64439f8e238af8e77fcfa180e1634",
+    "outputs\\post_salut_tst100k_metadata_v1\\report.json": "13acb0637fd80710f39cef6256608b1c858c9907ccd0852ba6900f446d43fa80",
+    "outputs\\post_salut_tst100k_metadata_v1\\root_tree.json": "a1d27b6bed1a98d6f34d516ed0c7df6639a3e19511ddad9af3a74948d265ea8b",
+    "outputs\\post_salut_tst100k_metadata_v1\\triplet.json": "5e71ea9eb3255d0169f042d5fe4f9904f5ef9849024cba98fce74c5299159413"
+  },
+  "medium_adjudication": {
+    "local_alternative": "TST100K is a new meaningful data direction; no human blocker now",
+    "research_scope": "Bounded noncommercial suitability study can be considered after selected upstream terms checked; no automatic product reuse",
+    "sampling": "Known distinct file-owner subset can support development only, not original-capture independence",
+    "science_question": "Target appearance supervision without same-edit labels; smallest pre-training test of explicit-operator representation vs spatial/generative necessity"
+  },
+  "bridge": {
+    "packet_id": "neuro-film-tst100k-supervision-20260908-v1",
+    "doctor": "READY",
+    "automation_consent": "READY",
+    "transport": "Codex IAB / CUA",
+    "preflight": {
+      "model": "6 Pro",
+      "latest_visible": true,
+      "effort": "Pro,5of5",
+      "profile_visible": true,
+      "packet_chars": 7582,
+      "packet_fnv1a_utf16": 1460171955,
+      "local_packet_match": true
+    },
+    "submission": {
+      "send_clicks": 1,
+      "url": "https://chatgpt.com/c/6a9ff0b0-8268-83ec-ad45-fdc62847602e",
+      "tab_id": "6",
+      "observed_stop_answering": 1,
+      "state": "RUNNING",
+      "result_copy_clicks": 0
+    },
+    "packet_sha256": "f7926ecbac8b33ccec2549c4bec170398bf93bf942c51c61485ab88f2d95d7a1",
+    "privacy": {
+      "text_only": true,
+      "no_personal_images": true,
+      "no_credentials": true,
+      "unrelated_changes_excluded": true
+    },
+    "scope": "New dataset scientific adjudication, not retry of previous malformed result; prior bridge remains stopped"
+  },
+  "next": "Wait with clock.sleep, poll tab6 Stop answering and model UI only. One Copy after completion. While waiting, selected upstream provenance/terms can be inspected read-only. No images or training yet.",
+  "goal_achieved": false
+}
