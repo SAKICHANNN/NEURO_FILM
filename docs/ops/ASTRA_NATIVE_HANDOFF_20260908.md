@@ -64,6 +64,17 @@ the bounded runner; root independently reviews and schedules execution. Review
 all nine photographs and defects before choosing a further development change.
 No independent-validation or product-promotion claim follows from this round.
 
+Execution completed in `attempt-0001`: eight new forwards plus one exact cache,
+86.53 seconds, 7.67 GiB allocated peak, 36 output hashes/dimensions verified.
+Root's 49 related tests and Ruff passed. All nine comparison sheets were reviewed;
+0–5 also received full-size learned-image inspection. The daisy treatment is
+conditionally attractive, but fruit/sunflower colours collapse during
+precorrection and learned mapping adds broad green shadows across subjects.
+Do not promote. Full per-image findings and report binding are recorded in
+`docs/evidence/AI_SINGLE_REFERENCE_BATCH_DEVELOPMENT_20260908.json`. Medium is
+checking a same-reference NCC ablation to isolate the implicated preprocessing;
+no additional inference has yet been admitted.
+
 User request: perform a major course correction after confirming that the project
 and this task drifted from AI-learned photographic value. This section supersedes
 older active-priority/next-step prose, including deterministic LOOK2 and the

@@ -1,0 +1,36 @@
+{
+  "round": "ai_single_reference_batch_development_v1",
+  "attempt": "outputs/ai_single_reference_batch_development_v1/attempt-0001",
+  "report_sha256": "bffd4796e98d88a8f3696e7fa5b96fded65518aee3a3268dce7033e47d5173c9",
+  "implementation_commit": "2fc77b6af",
+  "config_sha256": "76b45382a9f125c3e80d21c338346d286dde296aa1925365c1ebf1751f9323b6",
+  "execution": {
+    "new_forwards": 8,
+    "cached_rows": 1,
+    "training_updates": 0,
+    "worker_seconds": 86.53100000001723,
+    "peak_cuda_allocated_bytes": 8234466816,
+    "peak_cuda_reserved_bytes": 8713666560,
+    "worker_exit_code": 0,
+    "verified_output_hashes_and_dimensions": 36
+  },
+  "review_scope": "All nine four-arm comparison sheets inspected. Medium inspected learned images 0-4 at 1600px and original/precorrection 3. Root inspected learned 5 at 1600px. Sheets 6-8 alone do not establish full-detail safety. These are subjective agent development observations, not human preference or independent evaluation.",
+  "data_role": "Already-consumed 1600px RAW-neutral JPEG development images; reference 18 selected after the prior daisy result. No native RAW or independent generalization claim.",
+  "reference_claim": "Author-reported Portra 400 photograph; output is uncalibrated reference appearance transfer.",
+  "rows": [
+    {"index": 0, "subject": "snow courtyard", "reviewer": "Astra medium", "judgment": "No overall preference over original; learned adds warm whites and cyan-green shadows over precorrection, but broad cyan contamination and prominent blue flag remain concerning."},
+    {"index": 1, "subject": "fruit and blocks", "reviewer": "Astra medium", "judgment": "Clear photographic colour failure. Banana, apple and orange distinctions substantially collapse already in precorrection; learned does not restore them and strengthens green shadows. Prefer original/simple."},
+    {"index": 2, "subject": "daisies", "reviewer": "Astra medium", "judgment": "Conditionally attractive dark floral treatment. Learned improves organization over precorrection; soil and background are strongly cyan-green and other flowers lose colour distinctions. Selected example cannot establish general success."},
+    {"index": 3, "subject": "garden and vineyard", "reviewer": "Astra medium", "judgment": "Prefer original; precorrection is more readable than learned. Learned darkens foreground further and exaggerates blue flowers and orange distant field. Texture remains visible; do not equate dark appearance with confirmed pure-black clipping."},
+    {"index": 4, "subject": "lakeside wood", "reviewer": "Astra medium", "judgment": "Learned has an identifiable low-chroma look, but prefer original water/sky colours. Warm wood and cyan water simplify reference relationships, with heavy green shadows."},
+    {"index": 5, "subject": "sunflowers and bottles", "reviewer": "root", "judgment": "Prefer original. Yellow petals become pale cream and much of the bouquet loses its original colour separation during precorrection. Learned intensifies dark green/cyan while retaining visible petal, bottle and text structure; photographic colour failure, not established geometry failure."},
+    {"index": 6, "subject": "red-brick station", "reviewer": "root", "judgment": "Prefer original. Blue sky and red brick become mostly cream/grey-green; learned adds contrast but does not restore distinct material colours. Comparison-sheet diagnosis only."},
+    {"index": 7, "subject": "stonework and sculpture", "reviewer": "root", "judgment": "Prefer original warm materials. Precorrection removes warmth; learned deepens green shadows and cyan highlights. Comparison-sheet diagnosis only."},
+    {"index": 8, "subject": "interior lamp and television", "reviewer": "root", "judgment": "No clear photographic benefit over original or precorrection. Warm lighting becomes cooler and green shadows heavier. Original highlights were already bright; no new clipping claim from the sheet alone."}
+  ],
+  "decision": "Not a convincing general photographic candidate on this consumed panel. No promotion or independent evaluation admission from this round. Preserve all outputs and investigate the causal contribution of global covariance/min-max precorrection before altering references.",
+  "next_question": "Does the same fixed-reference pretrained model with the published NCC input path avoid the warm-object colour collapse? Requires separately declared bounded development ablation and correct model conditioning; applying an existing corrected-input LUT directly to original RGB is not the same experiment.",
+  "product_promotion": false,
+  "human_preference_measured": false,
+  "independent_assessment": false
+}
