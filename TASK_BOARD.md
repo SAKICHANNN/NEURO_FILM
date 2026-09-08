@@ -1,3 +1,5 @@
+Root IN_PROGRESS: fixed24 development_fit groups120file acquisition and X/R1/Y1/R2/Y2 review; locks scripts/prepare_tst100k_reference_switch_review.py, configs/tst100k_reference_switch_fit_review_v1.json, corresponding outputs. No check pixels/training.
+
 Current 2026-09-08: TST global diagnosis executed40 outputs (22 reused after serialization failure,18 recovered),35 solver-converged/5 nonconverged; full comparison INCONCLUSIVE. All20 low-lambda fits approximate5 postselected targets well; not learned reference prediction. Total496.719s CPU,109 artifact files verified and4096 interpolation samples/output exact. Original failure and8-target aesthetic gateFAIL preserved. Next32-source/two-reference64triplet metadata frozen,160 files not acquired; see TST100K_GLOBAL_ORACLE_COMPLETED_20260908.json and TST100K_REFERENCE_SWITCH_FREEZE_20260908.json under docs/evidence. No trained/promoted candidate.
 
 Root and medium leaves complete; no live worker and no file locks for TST oracle/recovery/reference-switch scripts. Previous RUNNING entries below are historical.

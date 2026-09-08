@@ -1,0 +1,22 @@
+{
+  "status": "HEAD_VERIFIED_160",
+  "report_sha256": "87e3d3314414235d416a4435ba80844136bfef80710a30df9d0ae78c155634c1",
+  "revision": "63bf13833b75407c862d608c3d81281d0a35b61f",
+  "file_count": 160,
+  "all160_total_bytes": 122315742,
+  "admitted_fit_files": 120,
+  "admitted_fit_bytes": 90560009,
+  "check_files_pixel_access": false,
+  "review_policy": {
+    "target_fields": [
+      "visibly_changed_from_X",
+      "comfortable_rich",
+      "reference_direction_compatible",
+      "severe_content_defect"
+    ],
+    "pair_field": "Y1_and_Y2_visibly_distinct",
+    "eligibility": "Both targets acceptable and distinguishable; preserve all failed and borderline pairs. Fit-only qualitative labels, no sample replacement. Original8 gate remains failed.",
+    "reviewers": "Root groups0..11 and medium12..23, not blinded or human ratings"
+  },
+  "training_admitted": false
+}
