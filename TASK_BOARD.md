@@ -12,6 +12,9 @@ Native G0 content COMPLETE_NOT_PROMOTED:3 full-resolution SDR16 photos/58.406s/3
 
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
+2026-09-08 medium READY_FOR_ROOT_REVIEW: serialization-only repair and one-time18-task recovery prepared;5 tests/Ruff PASS;64 reused-file hashes and full lock JSON roundtrip PASS; zero recovery fits. Original attempt0001 remains WORKER_FAILED/read-only.
+Locks released: scripts/run_tst100k_global_oracle.py; scripts/run_tst100k_global_oracle_recovery.py; configs/tst100k_global_oracle_recovery_v1.json; tests/test_tst100k_global_oracle.py.
+
 2026-09-08 medium READY_FOR_ROOT_REVIEW: postselected TST global oracle protocol/implementation complete; 3 synthetic tests and Ruff PASS, preflight READY with5 hash-bound aligned pairs; zero real fits.
 Locks released: scripts/run_tst100k_global_oracle.py; configs/tst100k_global_oracle_v1.json; tests/test_tst100k_global_oracle.py.
 Root owns native alignment evidence and bridge/handoff. Old G1 and fixed8 FAIL unchanged.

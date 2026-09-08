@@ -1,5 +1,6 @@
 import argparse
 import ast
+import copy
 import hashlib
 import importlib.util
 import json
@@ -18,6 +19,7 @@ from skimage.color import deltaE_ciede2000, rgb2lab
 from threadpoolctl import threadpool_limits
 
 ROOT = Path(__file__).resolve().parents[1]
+IMPLEMENTATION = Path(__file__).resolve()
 CONFIG = ROOT / "configs/tst100k_global_oracle_v1.json"
 G1 = ROOT / "scripts/run_salut_g1_projection.py"
 G1_SHA = "b4bfc66741fcba40701cd79e99997e0bf21ee3c344e46fe5895c1811dd233e94"
@@ -51,11 +53,14 @@ curvature = G1_FUNCTIONS["curvature"]
 
 
 def fit_lut(rgb, target, dimension, weight):
-    return G1_FUNCTIONS["fit_lut"](rgb, target, {
+    lut, states = G1_FUNCTIONS["fit_lut"](rgb, target, {
         "lut_dimension": dimension,
         "smoothness_weight": weight * (dimension - 1) ** 4,
         "bounds": [0.0, 1.0],
     })
+    for state in states:
+        state["success"] = bool(state["success"])
+    return lut, states
 
 
 def block_split(height, width, config, index, fold):
@@ -79,6 +84,48 @@ def schedule(config):
             for fold in config["folds"]
             for i in config["source_indices"]
             for d in config["lut_dimensions"]]
+
+
+def recovery_inputs(config):
+    recovery = config["recovery"]
+    paths = {key: ROOT / recovery[key] for key in ("report", "lock", "config", "source_snapshot")}
+    for key, path in paths.items():
+        assert digest(path) == recovery[key + "_sha256"]
+    previous = json.loads(paths["report"].read_text())
+    old_config = json.loads(paths["config"].read_text())
+    old_lock = json.loads(paths["lock"].read_text())
+    assert old_lock["script_sha256"] == recovery["source_snapshot_sha256"]
+    assert old_lock["config_sha256"] == recovery["config_sha256"]
+    assert previous["checks"] == old_lock
+    for key in old_config:
+        if key not in ("output", "budget"):
+            assert old_config[key] == config[key], f"Recovery altered scientific config: {key}"
+    assert config["output"] != old_config["output"]
+    assert config["budget"] == {**old_config["budget"], "maximum_worker_seconds": 440}
+    assert previous["status"] == "WORKER_FAILED" and previous["complete_fit_count"] == 22
+    assert previous["supervisor"]["worker_wall_seconds"] + 440 <= 600
+    completed = previous["rows"][:22]
+    expected = schedule(config)
+    assert len(previous["rows"]) == 23 and previous["rows"][22]["status"] == "FITTING"
+    assert [(r["index"], r["dimension"], r["fold"], r["lambda"]) for r in completed] == expected[:22]
+    assert [(r["index"], r["fold"]) for r in previous["affine_rows"]] == [
+        (i, fold) for fold in config["folds"] for i in config["source_indices"]]
+    verified = {}
+    for row in completed:
+        assert row["status"] == "SOLVED" and all(s["success"] for s in row["solver_states"])
+        assert len(row["artifacts"]) == 2 and "fit" in row and "check" in row
+        for artifact in [row["coordinates"], *row["artifacts"]]:
+            path = paths["report"].parent / artifact["path"]
+            assert digest(path) == artifact["sha256"]
+            verified[str(path)] = artifact["sha256"]
+    for row in previous["affine_rows"]:
+        path = paths["report"].parent / row["artifact"]["path"]
+        assert digest(path) == row["artifact"]["sha256"]
+        verified[str(path)] = row["artifact"]["sha256"]
+    assert len(verified) == 64
+    return previous, {"source_attempt": str(paths["report"].parent), "pins": recovery,
+                      "verified_artifacts": verified, "reused_fit_count": 22,
+                      "reused_affine_count": 10, "remaining_schedule": [list(task) for task in expected[22:]]}
 
 
 def preflight():
@@ -107,6 +154,7 @@ def preflight():
         assert item["arms"]["content"]["shape"] == item["arms"]["gt"]["shape"]
         queue.append(item)
     checks = {"config_sha256": digest(CONFIG), "script_sha256": digest(Path(__file__)),
+              "implementation_sha256": digest(IMPLEMENTATION),
               "g1_sha256": G1_SHA, "queue": queue, "planned_fits": len(schedule(config)),
               "status": "WAIT_ALIGNMENT_PIN_NO_REAL_FITS"}
     if config["alignment_sha256"]:
@@ -120,6 +168,10 @@ def preflight():
             assert entry["target_sha256"] == item["arms"]["gt"]["sha256"]
         checks["alignment_sha256"] = config["alignment_sha256"]
         checks["status"] = "READY_FOR_ROOT_REVIEW"
+    if "recovery" in config:
+        assert digest(IMPLEMENTATION) == config["implementation_sha256"]
+        _, lineage = recovery_inputs(config)
+        checks["recovery"] = lineage
     return config, checks
 
 
@@ -160,9 +212,25 @@ def worker(attempt):
     report = {"status": "RUNNING", "rows": [], "new_forwards": 0, "checks": checks,
               "scope": config["scope"], "complete_fit_count": 0, "affine_rows": [],
               "claim": "All fixed settings retained; no test-based winner or training admission."}
+    remaining = schedule(config)
+    if "recovery" in config:
+        previous, lineage = recovery_inputs(config)
+        report["recovery"] = lineage
+        report["rows"] = copy.deepcopy(previous["rows"][:22])
+        report["affine_rows"] = copy.deepcopy(previous["affine_rows"])
+        for row in report["rows"]:
+            row["reused_from"] = lineage["source_attempt"]
+            for artifact in [row["coordinates"], *row["artifacts"]]:
+                artifact["path"] = str(Path(lineage["source_attempt"]) / artifact["path"])
+        for row in report["affine_rows"]:
+            row["reused_from"] = lineage["source_attempt"]
+            row["artifact"]["path"] = str(Path(lineage["source_attempt"]) / row["artifact"]["path"])
+        report["complete_fit_count"] = 22
+        remaining = remaining[22:]
+        report["new_completed_fit_count"] = 0
     save(attempt / "report.json", report)
     threadpool_limits(limits=2)
-    for index, dimension, fold, weight in schedule(config):
+    for index, dimension, fold, weight in remaining:
         item = next(r for r in checks["queue"] if r["index"] == index)
         source = tifffile.imread(item["arms"]["content"]["path"]).astype(np.float64) / 65535
         target = tifffile.imread(item["arms"]["gt"]["path"]).astype(np.float64) / 65535
@@ -218,7 +286,10 @@ def worker(attempt):
                          photometric="rgb", extratags=[(34675, "B", len(icc), icc, False)])
         row["artifacts"] = [{"path": p.name, "sha256": digest(p)} for p in (lut_path, image_path)]
         report["complete_fit_count"] += 1
+        if "recovery" in config:
+            report["new_completed_fit_count"] += 1
         save(attempt / "report.json", report)
+    assert report["complete_fit_count"] == 40 and len(report["rows"]) == 40
     report["status"] = ("COMPLETE_NOT_PROMOTED" if all(r["status"] == "SOLVED" for r in report["rows"])
                         else "NONCONVERGED_INCONCLUSIVE")
     save(attempt / "report.json", report)

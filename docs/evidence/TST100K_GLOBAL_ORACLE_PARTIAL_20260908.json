@@ -1,0 +1,185 @@
+{
+  "status": "PASS_22_COMPLETED_OUTPUTS_ONLY",
+  "attempt_status": "WORKER_FAILED",
+  "report_sha256": "b32f6a478462795b7ed7caaac246fc970e4a89bc14a103aa9fd28b416d529950",
+  "artifact_hashes_verified": 44,
+  "independent_numpy_interpolation": [
+    {
+      "index": 2,
+      "dimension": 17,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 2,
+      "dimension": 33,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 4,
+      "dimension": 17,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 4,
+      "dimension": 33,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 6,
+      "dimension": 17,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 6,
+      "dimension": 33,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 7,
+      "dimension": 17,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 7,
+      "dimension": 33,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 8,
+      "dimension": 17,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 8,
+      "dimension": 33,
+      "fold": 0,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 2,
+      "dimension": 17,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 2,
+      "dimension": 33,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 4,
+      "dimension": 17,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 4,
+      "dimension": 33,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 6,
+      "dimension": 17,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 6,
+      "dimension": 33,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 7,
+      "dimension": 17,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 7,
+      "dimension": 33,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 8,
+      "dimension": 17,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 8,
+      "dimension": 33,
+      "fold": 1,
+      "weight": 1e-06,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 2,
+      "dimension": 17,
+      "fold": 0,
+      "weight": 0.0001,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    },
+    {
+      "index": 2,
+      "dimension": 33,
+      "fold": 0,
+      "weight": 0.0001,
+      "sample_count": 4096,
+      "max_16bit_code_difference": 0
+    }
+  ],
+  "root_visual_review": "All5 fixed fold0 lambda1e-6 boards viewed. LUT17/33 close to target; affine weaker on07face warmth and08shadow color. No general learning claim; render boards were resized by viewing tool. Remaining18 uncompleted."
+}

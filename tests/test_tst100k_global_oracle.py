@@ -1,4 +1,5 @@
 import importlib.util
+import json
 from pathlib import Path
 
 import numpy as np
@@ -52,3 +53,21 @@ def test_known_curved_lattice_with_nonzero_regularizer():
     error = oracle.design(held_colors, d) @ (lut - known)
     assert np.max(np.abs(error)) < .002
     assert np.max(np.abs(oracle.curvature(d) @ lut)) > .04
+
+
+def test_numpy_boolean_solver_state_is_serializable(monkeypatch):
+    def solver(*args):
+        return np.zeros((8, 3)), [{"success": np.bool_(v), "status": 3} for v in (True, False)]
+    monkeypatch.setitem(oracle.G1_FUNCTIONS, "fit_lut", solver)
+    _, states = oracle.fit_lut(np.zeros((1, 3)), np.zeros((1, 3)), 2, 1e-6)
+    assert type(states[0]["success"]) is bool
+    assert json.loads(json.dumps(states))[0]["success"] is True
+    assert json.loads(json.dumps(states))[1]["success"] is False
+
+
+def test_recovery_lineage_json_lock_roundtrip():
+    config = json.loads((oracle.ROOT / "configs/tst100k_global_oracle_recovery_v1.json").read_text())
+    previous, lineage = oracle.recovery_inputs(config)
+    assert lineage == json.loads(json.dumps(lineage))
+    assert len(lineage["remaining_schedule"]) == 18
+    assert previous["status"] == "WORKER_FAILED"

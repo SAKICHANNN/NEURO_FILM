@@ -1,0 +1,55 @@
+{
+  "status": "METADATA_ONLY_NOT_TRAINING_ADMISSION",
+  "manifest_sha256": "5e71ea9eb3255d0169f042d5fe4f9904f5ef9849024cba98fce74c5299159413",
+  "source_paths": 11029,
+  "sources_multiple_targets": 9027,
+  "known_reference_owner_sources": 5392,
+  "known_reference_owner_sources_multiple_targets": 2765,
+  "same_source_reference_multiple_targets": 108,
+  "ambiguous_rows": 222,
+  "ambiguity_examples": [
+    {
+      "content": "content_images/00/09574.tif",
+      "reference": "style_images/007/06952_0569.png",
+      "targets": [
+        "style_images/010/09574_0252.png",
+        "style_images/010/09574_0478.png"
+      ]
+    },
+    {
+      "content": "content_images/00/09574.tif",
+      "reference": "style_images/006/04917_0569.png",
+      "targets": [
+        "style_images/010/09574_0252.png",
+        "style_images/010/09574_0478.png"
+      ]
+    },
+    {
+      "content": "content_images/00/09371.tif",
+      "reference": "style_images/010/09372_0558.png",
+      "targets": [
+        "style_images/010/09371_0557.png",
+        "style_images/010/09371_0558.png"
+      ]
+    },
+    {
+      "content": "content_images/00/08726.tif",
+      "reference": "style_images/009/08725_0832.png",
+      "targets": [
+        "style_images/009/08726_0057.png",
+        "style_images/009/08726_0560.png"
+      ]
+    },
+    {
+      "content": "content_images/00/01899.png",
+      "reference": "style_images/004/03220_0341.png",
+      "targets": [
+        "style_images/002/01899_0341.png",
+        "style_images/002/01899_0342.png"
+      ]
+    }
+  ],
+  "decision": "Do not assume deterministic unique target for identical X,R. Quarantine these keys before supervised contrast construction. File owners are not capture or edit families.",
+  "new_images": 0,
+  "new_fits": 0
+}
