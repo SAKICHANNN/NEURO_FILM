@@ -1,0 +1,800 @@
+{
+  "identity": "tst_reference_kernel_v1",
+  "pins": {
+    "outputs/ai_reference_underfit_science_bridge_v1/result.md": "f693ce4c1e18bd03f0b0f85f49a2f1a45128484351f87eea7c4bceff71429bb9",
+    "src/eval/tst_reference_response.py": "7730b237e912c414119049b6b263a55732e3b3461f7551ad520c67711fa9742a",
+    "scripts/run_tst_reference_check.py": "bdf12e11bf34f9645b43de03a49839c6a1c9eb5beced16ef2d0cf3238ceaffbe",
+    "outputs/tst_reference_response_v1/fit/model.json": "97cffc5906cce5dcebe36e0e548a13498a91389a1d8e20d26bb78d17401d7b40",
+    "outputs/tst_reference_response_v1/fit/report.json": "c7c812b53d48eb64a2adb5ff0a04174979b79049a7970d00f957bdf5f84987d5",
+    "outputs/tst_reference_response_v1/features/features.npz": "684e65ab399eb0219c901bd32e64dd4fe550d95603f6c3b474a997e6c2b1ac40",
+    "outputs/tst_reference_check_v1/prepare/features.npz": "cb7edbc2108592d3d6ad410ff86d661f8e0198d96787461e4a04ac64bac67b91",
+    "outputs/tst100k_reference_switch_fit_review_v1/mechanism_admission.json": "c756424939feaeafe489ce059e1a023282ef700d01d516cddb0157ea285aaf78",
+    "outputs/tst100k_mechanism_alignment_v1/report.json": "0efe371aeecf71a50ccc0a1ef0effbaa4e7fdea2a37de980f8f33d9e05803f37",
+    "outputs/tst_reference_check_v1/source_crops.json": "45f0430227ad4aae7c463884c9d775a55e963e5a11bc0a0e4bad39b921532b27",
+    "outputs/tst_reference_check_v1/score/report.json": "17d2d8ae0e8fe814cde335e6244845cc717ce53f7b1ebf1707ebe0c12b3f3d68",
+    "outputs/tst_reference_fit_replay_v1/replay/report.json": "48dd2973a6dc81c31773519b03866681419ace3111c85770da15c4f8fa80af8c",
+    "src/eval/tst_reference_kernel.py": "5a4f89bc00d27629f9eae8082015dc840bbe84727ba45cfd84ac4a5a87b2c5ea"
+  },
+  "entry_sha256": "3099e764029954a9c97604fd0195b0dadaae1e38de7c9a47283a0b1683b4e61c",
+  "output": "outputs/tst_reference_kernel_v1",
+  "fit_rows": [
+    {
+      "group": 0,
+      "target": 1
+    },
+    {
+      "group": 0,
+      "target": 2
+    },
+    {
+      "group": 1,
+      "target": 1
+    },
+    {
+      "group": 1,
+      "target": 2
+    },
+    {
+      "group": 2,
+      "target": 1
+    },
+    {
+      "group": 2,
+      "target": 2
+    },
+    {
+      "group": 3,
+      "target": 1
+    },
+    {
+      "group": 4,
+      "target": 1
+    },
+    {
+      "group": 4,
+      "target": 2
+    },
+    {
+      "group": 5,
+      "target": 1
+    },
+    {
+      "group": 5,
+      "target": 2
+    },
+    {
+      "group": 6,
+      "target": 1
+    },
+    {
+      "group": 6,
+      "target": 2
+    },
+    {
+      "group": 7,
+      "target": 1
+    },
+    {
+      "group": 7,
+      "target": 2
+    },
+    {
+      "group": 8,
+      "target": 1
+    },
+    {
+      "group": 8,
+      "target": 2
+    },
+    {
+      "group": 9,
+      "target": 2
+    },
+    {
+      "group": 10,
+      "target": 1
+    },
+    {
+      "group": 10,
+      "target": 2
+    },
+    {
+      "group": 11,
+      "target": 1
+    },
+    {
+      "group": 11,
+      "target": 2
+    },
+    {
+      "group": 12,
+      "target": 1
+    },
+    {
+      "group": 12,
+      "target": 2
+    },
+    {
+      "group": 13,
+      "target": 1
+    },
+    {
+      "group": 13,
+      "target": 2
+    },
+    {
+      "group": 14,
+      "target": 1
+    },
+    {
+      "group": 14,
+      "target": 2
+    },
+    {
+      "group": 15,
+      "target": 1
+    },
+    {
+      "group": 15,
+      "target": 2
+    },
+    {
+      "group": 16,
+      "target": 1
+    },
+    {
+      "group": 16,
+      "target": 2
+    },
+    {
+      "group": 17,
+      "target": 1
+    },
+    {
+      "group": 17,
+      "target": 2
+    },
+    {
+      "group": 18,
+      "target": 1
+    },
+    {
+      "group": 18,
+      "target": 2
+    },
+    {
+      "group": 19,
+      "target": 1
+    },
+    {
+      "group": 19,
+      "target": 2
+    },
+    {
+      "group": 20,
+      "target": 1
+    },
+    {
+      "group": 20,
+      "target": 2
+    },
+    {
+      "group": 22,
+      "target": 1
+    },
+    {
+      "group": 23,
+      "target": 1
+    },
+    {
+      "group": 23,
+      "target": 2
+    }
+  ],
+  "development_rows": [
+    {
+      "group": 24,
+      "target": 1
+    },
+    {
+      "group": 24,
+      "target": 2
+    },
+    {
+      "group": 25,
+      "target": 1
+    },
+    {
+      "group": 25,
+      "target": 2
+    },
+    {
+      "group": 26,
+      "target": 1
+    },
+    {
+      "group": 26,
+      "target": 2
+    },
+    {
+      "group": 27,
+      "target": 1
+    },
+    {
+      "group": 27,
+      "target": 2
+    },
+    {
+      "group": 28,
+      "target": 1
+    },
+    {
+      "group": 28,
+      "target": 2
+    },
+    {
+      "group": 29,
+      "target": 1
+    },
+    {
+      "group": 29,
+      "target": 2
+    },
+    {
+      "group": 30,
+      "target": 1
+    },
+    {
+      "group": 30,
+      "target": 2
+    },
+    {
+      "group": 31,
+      "target": 1
+    },
+    {
+      "group": 31,
+      "target": 2
+    }
+  ],
+  "images": {
+    "00_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/00_X.tif",
+      "sha256": "424850fff5b0df96df4f57535168ed3518d37aee18c2219cb31790b8a628bfda"
+    },
+    "00_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/00_Y1.tif",
+      "sha256": "4e4471182a392b0d553cfdd2239e52617bbeb53d17c4aae2bed6094d8af10e8d"
+    },
+    "00_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/00_Y2.tif",
+      "sha256": "9424f7e1e783837d51f6c0adc0a691c7539019cf06e15103aeafa430e4193693"
+    },
+    "01_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/01_X.tif",
+      "sha256": "ad3f56fe0254963844cd2a4c3bf4cf1de0b956a15cf5e615a2da2a8db2fe7abf"
+    },
+    "01_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/01_Y1.tif",
+      "sha256": "b36c52e0ecddecd07defd83e056703b02f96b04728808fb19d32d54a56a573c8"
+    },
+    "01_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/01_Y2.tif",
+      "sha256": "0cc0cff17f78eecf7416a773b1bc4fec0fb1e69b89720265a3406e4cd1946db8"
+    },
+    "02_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/02_X.tif",
+      "sha256": "acd78f8afbb606597fe4549f9cf52d62093282567dde87bb68339d7e80855448"
+    },
+    "02_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/02_Y1.tif",
+      "sha256": "31ef985e57055fa736a6a99829cd00cf8f58a4ca70c30638dc0435f4d44086cb"
+    },
+    "02_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/02_Y2.tif",
+      "sha256": "3ff9f6714c5b2d18c3b8e7202699e4b2fef4ff816c37438b3dd65f1b502218ad"
+    },
+    "03_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/03_X.tif",
+      "sha256": "884daebbfa48868de38ce9d79cc85ab98f8cddb1cba508b0f3fa14d4d8f85b37"
+    },
+    "03_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/03_Y1.tif",
+      "sha256": "1c0ce8da3bd03dbe489079637c3b188a2fc07b92efa0dc10b031f425844eeec2"
+    },
+    "04_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/04_X.tif",
+      "sha256": "f40f913f371fdfe2062043daba67ab67c24142ea240c9c4b883bdd14d1406f71"
+    },
+    "04_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/04_Y1.tif",
+      "sha256": "9ce05f860a619aec40577b2118c03bd4464b1d118daea9b6833364e1769713c1"
+    },
+    "04_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/04_Y2.tif",
+      "sha256": "e02d67426877861d913bb0934d34a99ece5e13a1967df56562bb31bdc28bff7f"
+    },
+    "05_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/05_X.tif",
+      "sha256": "f27a15e7c41deb5b13b97091b8ca879ff01ff9b7c41070842a3ff2465d7695f1"
+    },
+    "05_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/05_Y1.tif",
+      "sha256": "eab35f7faae61566707f2be8066682091d62d1188f0dcf91b4a43a7de4c663a9"
+    },
+    "05_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/05_Y2.tif",
+      "sha256": "8b418b4c89fccff0a0dee0830f317a20c2f833cca4d275324658553ee409b2a7"
+    },
+    "06_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/06_X.tif",
+      "sha256": "1229c42724ea78afa878af5e33a73b8eacd4f9183919e1249a1740ea5fae7863"
+    },
+    "06_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/06_Y1.tif",
+      "sha256": "14345b31ace9a2a30fe6f511474a18dab6f3081cdbcd29da71a4d18a9a58947f"
+    },
+    "06_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/06_Y2.tif",
+      "sha256": "f0e99649a7114f5a2fcb2ac83e87f008c3b8e1248a36d9159d8d58650adaee2a"
+    },
+    "07_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/07_X.tif",
+      "sha256": "0418c3e2f68a5a318d8aedb9d5fe272a3aeff18862f0ea29ac7e4f3813bfbf5f"
+    },
+    "07_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/07_Y1.tif",
+      "sha256": "978b646b8c6d1424da800ce2e8bc8a9ec5acfb9201043015ea534123b3ed826d"
+    },
+    "07_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/07_Y2.tif",
+      "sha256": "ead53b878e3ef5e247ab3c34c50e4a5001f112fceafa890caf2200d57451f2ad"
+    },
+    "08_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/08_X.tif",
+      "sha256": "15522b3bff55b87ce96174b04b044cfa40c1c463dfb3d93fe3f1a82bd9f2920a"
+    },
+    "08_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/08_Y1.tif",
+      "sha256": "4066ef11faf55764f8454b15cb996c411c577dc76b496b1d9b6d89c3451455b0"
+    },
+    "08_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/08_Y2.tif",
+      "sha256": "948c74e81388d8d78e18e7102a8f9510c0ace473fb6fc03f32605127e8b4e70a"
+    },
+    "09_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/09_X.tif",
+      "sha256": "d604f14afa7b9f32aba47ff62721215336d395ba00347f79408f87e70df3a052"
+    },
+    "09_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/09_Y2.tif",
+      "sha256": "c8725d7df28d92af6706303573c38f717017aa395e13f0785eccf5dd89e49c8b"
+    },
+    "10_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/10_X.tif",
+      "sha256": "22258a57727397f5701db13c1578c510bf3f2fb9bda23e0e51879377b5eca365"
+    },
+    "10_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/10_Y1.tif",
+      "sha256": "b39e7674cc8be0ff2347be905f3135ebe5bdfaccab5732138089d2d4ce405964"
+    },
+    "10_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/10_Y2.tif",
+      "sha256": "37f5b8958d06d3db974ea6b34fd9ebf848f19dd63ba979bfdae87f34b9f9fedc"
+    },
+    "11_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/11_X.tif",
+      "sha256": "04d0ff2650fb291706a822ab365c28b89c7ce38c39ad670d7f40423eeff74b29"
+    },
+    "11_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/11_Y1.tif",
+      "sha256": "032fb37d31c0329059e8338bfdd98c1836e94c77ffd3d715ec834dbf3189e2f6"
+    },
+    "11_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/11_Y2.tif",
+      "sha256": "e8a9bd61aa9ac88da1d44495d21dd1814a5e159046a1c4e8e30157b80c0120a6"
+    },
+    "12_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/12_X.tif",
+      "sha256": "9cb3eb0c082f9fbc52318a1ba2739b5cc7ade90af5b73067ef08e5c17230c3b3"
+    },
+    "12_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/12_Y1.tif",
+      "sha256": "29afd5d571d2ab5ecd08e91f91c1a9947ccf477240306eb7ea1698304ec919fc"
+    },
+    "12_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/12_Y2.tif",
+      "sha256": "05b1f28926d0bbb5c2bf080c74b0d3ea9ed731b7c03cb9f8178bc3ff5895a153"
+    },
+    "13_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/13_X.tif",
+      "sha256": "2cd5890b46436d1a25706341c1a781827b0f4f4d1b03d840654a135403b96276"
+    },
+    "13_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/13_Y1.tif",
+      "sha256": "7a76543eea9206c1c4186f747a6f093212258d8d9f494e806332a16198044a66"
+    },
+    "13_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/13_Y2.tif",
+      "sha256": "644fa1ae9b9f19239237d26c7dcfaff686984d920fa1b2aae1450107f228eeec"
+    },
+    "14_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/14_X.tif",
+      "sha256": "0cf858e12233cd33cf0babc138547e0481648a23da4911a7f473260a82b01c13"
+    },
+    "14_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/14_Y1.tif",
+      "sha256": "4f97491b3316a05035a0bda311e9691b7c62e8b313f8b116433b606c6a0cb0f8"
+    },
+    "14_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/14_Y2.tif",
+      "sha256": "0be2988f6b4db336f7556f5a157fb4a0214ea6360eca5d89131921962972e9c3"
+    },
+    "15_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/15_X.tif",
+      "sha256": "baca8083a577d506510c78305e667822c68431c41a2542deff3c2b89caf71767"
+    },
+    "15_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/15_Y1.tif",
+      "sha256": "32895fe8821d37f1e1103bb2feb3ca956c2e38519bc7f5756c57ee058ea424e5"
+    },
+    "15_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/15_Y2.tif",
+      "sha256": "87dc88e6e4a87d0426540b3decd42a10a496dc3c0d1d01af383aa8d1d74d67a0"
+    },
+    "16_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/16_X.tif",
+      "sha256": "734a054c25be07f6e94bdcef8744057577b1fb54fcb5d09843e6c90de88ae2e1"
+    },
+    "16_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/16_Y1.tif",
+      "sha256": "bd9ad35d951ac6088822f834b308d931f6cdec05cfffbbd001ccad8623231f8b"
+    },
+    "16_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/16_Y2.tif",
+      "sha256": "47e4854a89e657f19b3639cc8225a43dce7c38ce640f056baae294d08cd07fbd"
+    },
+    "17_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/17_X.tif",
+      "sha256": "5e204060284f49e31d8c4519abe66ea665bc743d9b659b4adeb6bf4edec60400"
+    },
+    "17_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/17_Y1.tif",
+      "sha256": "178066718171b558118ea0d9752830dbc8c3af064d7e8c996343990850d25fbf"
+    },
+    "17_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/17_Y2.tif",
+      "sha256": "9f4aa8e681d1a5eaf8ddbca6f74f8773ec21ae2e0eabca9b7680cfe4dd138b21"
+    },
+    "18_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/18_X.tif",
+      "sha256": "cfc9ef6e35ac41e684f0b0966dd6e2fdadff5bed5f8dc7b953b2de7ea2f4af38"
+    },
+    "18_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/18_Y1.tif",
+      "sha256": "041c44498185870a1f4085300cb72fbd3a0ea9d7a1f1e6e1af1ab7873dbff230"
+    },
+    "18_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/18_Y2.tif",
+      "sha256": "825646b570a907916c765c44e587fffea882d0a8a6fc0cfa7eac732bb009edfa"
+    },
+    "19_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/19_X.tif",
+      "sha256": "ee8628f32011673dbd4581d96cd77ff835096ea5807c3385cd57bdd5fad3a822"
+    },
+    "19_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/19_Y1.tif",
+      "sha256": "264bda20001f26efadd997bbe8ee7480d946ca5310d2b16abab49cc0220818cf"
+    },
+    "19_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/19_Y2.tif",
+      "sha256": "0086ecf854f469dda3121ab598d32cb7fa761352d5113da50809dbe690057571"
+    },
+    "20_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/20_X.tif",
+      "sha256": "cf042eaeeacd3347fd9000b6f7729fc8eedc2358e93b8a9b2a181467d4cd1380"
+    },
+    "20_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/20_Y1.tif",
+      "sha256": "5df20c71cf33293d3eb43a9917566ba5aba166c5d775f3c7d5ed51d2982e092c"
+    },
+    "20_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/20_Y2.tif",
+      "sha256": "63ff9f4f451da906df5d1a2c28c68723ec9c35ea70dd2272db804ef2eee8bd9f"
+    },
+    "22_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/22_X.tif",
+      "sha256": "de15019ac36646106c81e0028a15c3dee31600ee9c58e42ec505368df5d49f99"
+    },
+    "22_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/22_Y1.tif",
+      "sha256": "33e3d43a30eda798ce320f0b6cb0863e447f2849e78ce4f7825f67b5b61c55fe"
+    },
+    "23_X": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/23_X.tif",
+      "sha256": "5a0632761f991c67c7fd25b986da3e91753cb0f9421bc8e770d8cfff32ed9cd0"
+    },
+    "23_Y1": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/23_Y1.tif",
+      "sha256": "d6ae0b911a3f66c55a3fd906db87ee266ee273165306c78590c8347fcecc5e95"
+    },
+    "23_Y2": {
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/23_Y2.tif",
+      "sha256": "056575f68acff0597705b1b02983e6889b68b1e202cc4396234c9a74a64d3efc"
+    },
+    "24_X": {
+      "path": "outputs/tst_reference_check_v1/prepare/display_srgb16/24_X.tif",
+      "sha256": "ecd3f0839d1fe638c234a6dade7884c3ae79aadcf78498c3804d7c289edeb3f6"
+    },
+    "25_X": {
+      "path": "outputs/tst_reference_check_v1/prepare/display_srgb16/25_X.tif",
+      "sha256": "302c383ed28767b4c92ad576465041094aebfa11375383c3e4975f6c34e5facc"
+    },
+    "26_X": {
+      "path": "outputs/tst_reference_check_v1/prepare/display_srgb16/26_X.tif",
+      "sha256": "45b7b27d8c2953bc6a74bd05dd5e7e2c9a907d2dfbc8d1f0638a661fa0a77fe8"
+    },
+    "27_X": {
+      "path": "outputs/tst_reference_check_v1/prepare/display_srgb16/27_X.tif",
+      "sha256": "ffb0f7093f16900225cd553e3a43f79982680330fbe634d5338af433f119cdb7"
+    },
+    "28_X": {
+      "path": "outputs/tst_reference_check_v1/prepare/display_srgb16/28_X.tif",
+      "sha256": "b14932a54c5fddd211e75d76d003211a1090c61772cf8750b8587e84db60cada"
+    },
+    "29_X": {
+      "path": "outputs/tst_reference_check_v1/prepare/display_srgb16/29_X.tif",
+      "sha256": "503a78c6aeef70f31fb8ee8fa4bca1c82dbb084aad3435e3fe2595692e608edb"
+    },
+    "30_X": {
+      "path": "outputs/tst_reference_check_v1/prepare/display_srgb16/30_X.tif",
+      "sha256": "9e0294376923b0da79672e7aa94cc32260a3db7bed9b19c7e8e29b2ef8e9bc8e"
+    },
+    "31_X": {
+      "path": "outputs/tst_reference_check_v1/prepare/display_srgb16/31_X.tif",
+      "sha256": "2f4c632c34f4087c579dc4816690debf9e832c7b61703d7cbba950e8f795984c"
+    },
+    "24_Y1": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/24_Y1.tif",
+      "sha256": "80e3830d6b879503269c0581ce9f75c2642598a169fbde65eb1eab2c05f1fa0f"
+    },
+    "24_Y2": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/24_Y2.tif",
+      "sha256": "f88058e423f18eabd8cda4305e021d3f7d259abd661b438287cd0b928af1a17c"
+    },
+    "25_Y1": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/25_Y1.tif",
+      "sha256": "086b4a51488d8faa1b6febf0a0812e6506b345c538897b2982b0893f3557ba6c"
+    },
+    "25_Y2": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/25_Y2.tif",
+      "sha256": "fe92c3e6b1a74e050a00ce67861b36cdcc36853348c4b7db0b860c2f68fd50f9"
+    },
+    "26_Y1": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/26_Y1.tif",
+      "sha256": "38eff01a5795f69b682c6290e398cad16dbc376fb8bd2a1d49aedcabeddeb598"
+    },
+    "26_Y2": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/26_Y2.tif",
+      "sha256": "cdcf91b66dd109180f4eed3f5fa38c5c4773aa06fe32ce66b4dc66734eee9dd7"
+    },
+    "27_Y1": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/27_Y1.tif",
+      "sha256": "006bb50f3826604b67aba564ec3ef6299aa020e19f8c33ffd93c6971459ef9b2"
+    },
+    "27_Y2": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/27_Y2.tif",
+      "sha256": "1a44523b04e90f79759354766065cc05bfafe8e88c69e61cd01b87a46da1fb4f"
+    },
+    "28_Y1": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/28_Y1.tif",
+      "sha256": "76ddbd1ff6f3f84b1cddf9301147097cd40ef09d8847ad19cf6053ca78c13a27"
+    },
+    "28_Y2": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/28_Y2.tif",
+      "sha256": "59fd95e44fed8ef04e98af0d18f71e38c2ff5cb99a0e5f602e77094b7bdb5781"
+    },
+    "29_Y1": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/29_Y1.tif",
+      "sha256": "776d0c33f4d7f7072dcaf5965a78c22d5e388b202cf933953ced2f26d5b2ea13"
+    },
+    "29_Y2": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/29_Y2.tif",
+      "sha256": "3388389b777731cc5859550c5c86947f982298f2dcde808946f5c9748af1cab7"
+    },
+    "30_Y1": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/30_Y1.tif",
+      "sha256": "bb3f186523bdc1ea2e84d591bb830a227572c7de9950295f5e116e85955417e0"
+    },
+    "30_Y2": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/30_Y2.tif",
+      "sha256": "e651437416cb3239fb072fbe73767db0134e0ad8de2de505529613cc3c339ab7"
+    },
+    "31_Y1": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/31_Y1.tif",
+      "sha256": "02818cb0b8caa5ee71516e9b45f3c56aa07b645814ced20c968ec47cdebb3404"
+    },
+    "31_Y2": {
+      "path": "outputs/tst_reference_check_v1/targets/display_srgb16/31_Y2.tif",
+      "sha256": "462e6be60a6b983998e772efb237b8592e4ec21b7a70b3f0982a09be783d18fa"
+    }
+  },
+  "old_model": "outputs/tst_reference_response_v1/fit/model.json",
+  "feature_caches": [
+    "outputs/tst_reference_response_v1/features/features.npz",
+    "outputs/tst_reference_check_v1/prepare/features.npz"
+  ],
+  "source_crops": "outputs/tst_reference_check_v1/source_crops.json",
+  "arms": [
+    "A",
+    "B",
+    "C6",
+    "Cfull"
+  ],
+  "seed": 20260908,
+  "dimension": 7,
+  "pixels_per_fold": 8192,
+  "smoothness": 1e-06,
+  "residual_l2": 0.0001,
+  "weight_l2": 1e-06,
+  "rtol": 1e-08,
+  "maxiter": 1500,
+  "cpu_seconds": 3600,
+  "wall_seconds_per_stage": 3600,
+  "rss_bytes": 4294967296,
+  "threads": 2,
+  "protocol": {
+    "identity": "tst_reference_kernel_v1",
+    "seed": 20260908,
+    "train_rows": 43,
+    "train_groups": 23,
+    "complete_pairs": 20,
+    "singletons": 3,
+    "development_groups": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "arms": [
+      "A",
+      "B",
+      "C6",
+      "Cfull"
+    ],
+    "candidate": "Cfull",
+    "source_dimensions": 6,
+    "reference_dimensions": {
+      "A": 0,
+      "B": 30,
+      "C6": 6,
+      "Cfull": 3998
+    },
+    "kernel": {
+      "bandwidth": "median strictlypositive pairwise squaredEuclideandistance amongdistinct vectors from43admitted inputs; source duplicatesdeduplicated; noY. Existingnormalizationremainsunchanged.",
+      "rbf": "exp(-sqdist/(2*median))",
+      "no_positive_distance": "kernel identicallyone; recordzero discrimination",
+      "joint": "(1+kX)*(1+kR)/4;A kR=1",
+      "eigen_cutoff_relative": 1e-10,
+      "material_negative_relative": -1e-10,
+      "diagonal_nugget": 0,
+      "train_feature": "V*sqrt(eigenvalues)",
+      "prediction_feature": "kernel_to43train@V/sqrt(eigenvalues)",
+      "actual_rank": "recordeacharm, noforcedEDF"
+    },
+    "grid_dimension": 7,
+    "coefficient_shape": [
+      343,
+      3
+    ],
+    "render": "clip(X+B(X)U,0,1)",
+    "strength": 1.0,
+    "sampling": "exactold sourceSHAseed20260908 foldA/B64pxparity up8192pixelspersourcefold, samebothY, sourcehashreferencesfromfrozenfit/checkreports",
+    "group_loss": "mean_over_pixels_and_RGB(((e1+e2)/2)**2) +2*mean_over_pixels_and_RGB(((e1-e2)/2)**2); singletonmean(e**2);average23groups",
+    "grid_smoothness": 1e-06,
+    "grid_residual_l2": 0.0001,
+    "weight_l2": 1e-06,
+    "regularization": "mean23groups ofmeanrowsingroup[1e-6||D2U||F^2/(nD*3)+1e-4||U||F^2/1029] +1e-6||W||F^2/(43*1029)",
+    "normal_equation_contract": {
+      "per_channel_common_scale": "Cancelcommon1/(23*3) globally, neveronlydata orregularizer.",
+      "G": "B.T@B/nPixels, CSR per23source",
+      "b_i": "B.T@(Y_i-X)/nPixels",
+      "pair_C": [
+        [
+          0.75,
+          -0.25
+        ],
+        [
+          -0.25,
+          0.75
+        ]
+      ],
+      "singleton_C": [
+        [
+          1.0
+        ]
+      ],
+      "R": "1e-6D2.T@D2/nD +1e-4I/343",
+      "H_U": "pergroup sum_j Cij G Uj + R Ui/number_rows_in_group",
+      "rhs_U": "pergroup sum_j Cij b_j",
+      "H_W": "Phi.T@H_U(Phi@W)+betaW",
+      "rhs_W": "Phi.T@rhs_U",
+      "beta": "23*1e-6/(43*343)",
+      "diagonal_preconditioner": "Exactdiag via phi_i*phi_j CijGdiag cross terms plusmeanrowgridRdiag andbeta; do notdropnegativepaircross terms.",
+      "freegrid": "Use independentrowU withsameH_U/rhs_U, noWbeta. May exploitindependentsourceblocks; thismustnotchangeobjective."
+    },
+    "solver": {
+      "dtype": "float64",
+      "initialization": "zeros",
+      "channels": 3,
+      "rtol": 1e-08,
+      "atol": 0.0,
+      "maxiter_per_channel": 1500,
+      "preconditioner": "exactdiagonalpositive",
+      "residual": "independent||Hsolution-rhs||/||rhs||<=1e-8; zero-rhs exactzero. PreserveCGinfoandalliterations.",
+      "nonconvergence": "NUMERICAL_INCOMPLETE, no scientificfailureclaim, noautomaticretry"
+    },
+    "evaluation": {
+      "fit_primary": "all43rows/23groups;20pairswitches and3singletonappearance",
+      "fit_secondary": "same20pairedgroupsasoldreplayQcomparability",
+      "dev": "all16targets/all8groups, nofiltering",
+      "strongfit": "18/20pairs bothappearanceandswitch;3/3singletonappearance;Q23<=min(.35,freegridQ23+.10)",
+      "appearance": "E<=max(1,.25identityE)",
+      "switch": "D>=2,margin>=.1,cos>=.5,normratio.5..1.5",
+      "development": "6/8bothappearanceandswitch,Q<=.35,improveAabsoluteQ>=.05,winA6/8",
+      "featurebenefit": "improveBabsoluteQ>=.05andwinB6/8;separateclaim",
+      "photography": "all16Cfullstrength1,originalsourcecrops,6/8bothrichcomfortablechangedanddistinct;0severenewdetailfailures. Nonblind/previouslyconsumedstatusrecorded."
+    },
+    "output_counts": {
+      "Cfull_native_fit": 43,
+      "Cfull_native_development": 16,
+      "other_arms_native_development": 48,
+      "total_required_new_native": 107
+    },
+    "prediction_lock": "Fitall4arms andcalibration beforedevmetricinspection; lockmodels+X/R-onlyoperator/nativeoutput hashesbeforeevalstageopensdevY. Enforcesimplementationseparation, notunseenstatus.",
+    "resources": {
+      "threads": 2,
+      "rss_bytes": 4294967296,
+      "total_process_tree_cpu_seconds": 3600,
+      "total_active_wall_seconds": 3600,
+      "samebudget_includes": [
+        "calibration",
+        "all4models",
+        "samplingandprecomputation",
+        "allscoring",
+        "107nativerenders"
+      ],
+      "supervisor_sampling_seconds": 0.1,
+      "resource_failure": "RESOURCE_INCOMPLETE",
+      "restart": "noneautomatic"
+    },
+    "implementation_order": [
+      "one smallsynthetic objective/CG/kernel/inputisolationcheck set",
+      "hashpinnewprotocolandallreusedinputs",
+      "prepareinputs/statistics thenroundrobin4armchannelCGandcalibration underonebudget",
+      "saveallmodelstates andnativepredictions",
+      "lockthenoneevaluationstage",
+      "rootall16photoandfixedcropreview"
+    ]
+  },
+  "protocol_constants": {
+    "kernel_eigen_cutoff": 1e-10,
+    "strength": 1.0,
+    "render_chunk_pixels": 32768,
+    "fit_joint_groups": 18,
+    "fit_singletons": 3,
+    "Q_ceiling": 0.35,
+    "oracle_Q_allowance": 0.1,
+    "development_joint_groups": 6,
+    "baseline_Q_improvement": 0.05,
+    "baseline_group_wins": 6,
+    "appearance_absolute": 1.0,
+    "appearance_identity_fraction": 0.25
+  },
+  "old_fit_replay": "outputs/tst_reference_fit_replay_v1/replay/report.json",
+  "old_development_metrics": "outputs/tst_reference_check_v1/score/report.json"
+}

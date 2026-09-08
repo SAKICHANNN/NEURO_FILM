@@ -1,0 +1,136 @@
+{
+  "status": "NUMERICAL_INCOMPLETE_NOT_PHOTOGRAPHIC_EVALUATION",
+  "report": {
+    "status": "NUMERICAL_INCOMPLETE",
+    "solver_states": {
+      "A": [
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 6.699337222633542e-08,
+          "solved": false
+        },
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 9.492357894188967e-08,
+          "solved": false
+        },
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 9.239585192117334e-08,
+          "solved": false
+        }
+      ],
+      "B": [
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 4.848864492133519e-07,
+          "solved": false
+        },
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 2.441835285931721e-07,
+          "solved": false
+        },
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 2.9138034181104106e-07,
+          "solved": false
+        }
+      ],
+      "C6": [
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 5.306473728705897e-07,
+          "solved": false
+        },
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 4.366281984567435e-07,
+          "solved": false
+        },
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 4.5780143434321833e-07,
+          "solved": false
+        }
+      ],
+      "Cfull": [
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 5.327225724552106e-07,
+          "solved": false
+        },
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 3.7194583803702014e-07,
+          "solved": false
+        },
+        {
+          "info": 1500,
+          "iterations": 1500,
+          "relative_residual": 2.970750231583363e-07,
+          "solved": false
+        }
+      ],
+      "freegrid": [
+        {
+          "info": 0,
+          "iterations": 269,
+          "relative_residual": 9.926813858941539e-09,
+          "solved": true
+        },
+        {
+          "info": 0,
+          "iterations": 273,
+          "relative_residual": 9.018023285350192e-09,
+          "solved": true
+        },
+        {
+          "info": 0,
+          "iterations": 275,
+          "relative_residual": 9.38743610513002e-09,
+          "solved": true
+        }
+      ]
+    },
+    "worker_pid": 13524,
+    "worker_cpu_seconds": 24.578125,
+    "accounted_cpu_seconds": 24.671875,
+    "supervisor": {
+      "exit_code": 0,
+      "reason": null,
+      "remaining_category_cpu_seconds": 3575.328125,
+      "wall_seconds": 26.51600000000326,
+      "tree_peak_rss_bytes": 286765056,
+      "owned_pid_create_times": {
+        "16616": 1788880350.2560828,
+        "13524": 1788880350.2680163
+      },
+      "sampling": "0.1s tree sampling, final worker process CPU, conservative sum of process memory peaks"
+    }
+  },
+  "pins": {
+    "outputs/tst_reference_kernel_v1/experiment/report.json": "cab414d5a5d9a8a157ee6cb814d18819bd34d999d281e43a72589ba40287cf7d",
+    "outputs/tst_reference_kernel_v1/experiment/solver_states.json": "cb118872d08b9e00acef976de7cb4d1326d0d0c16cc66687e313f7bd9baa8810",
+    "outputs/tst_reference_kernel_v1/experiment/partial_weights.npz": "b3cf657113990903b6a21177487dbe87abbe20f8a8de9cbaed4611a26c3926a2",
+    "outputs/ai_reference_underfit_science_bridge_v1/result.md": "f693ce4c1e18bd03f0b0f85f49a2f1a45128484351f87eea7c4bceff71429bb9",
+    "outputs/ai_reference_underfit_science_bridge_v1/adoption.json": "5c54276e513428b9e7114d23dde80f7fb8b107e2e86b23fe34516c501c68d122",
+    "src/eval/tst_reference_kernel.py": "5a4f89bc00d27629f9eae8082015dc840bbe84727ba45cfd84ac4a5a87b2c5ea",
+    "scripts/run_tst_reference_kernel.py": "3099e764029954a9c97604fd0195b0dadaae1e38de7c9a47283a0b1683b4e61c",
+    "configs/tst_reference_kernel_v1.json": "769033996173499e03337617696af9c2e3f8f182c634ca60765d7e25583d03db",
+    "tests/test_tst_reference_kernel.py": "53283bcdb96ac5295eca353802a5218f3b187722485628335847a6cce811912e"
+  },
+  "checks": "Root 4 synthetic tests PASS; preflight READY before one actual run. All12 eligible model channel solves reached1500 iterations above1e-8; freegrid3 converged. No predictions or metric inspection.",
+  "next": "Medium read-only numerical adjudication; no automatic tolerance/loss/kernel/regularization change or retry. Preserve original run."
+}
