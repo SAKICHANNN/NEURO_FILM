@@ -2,6 +2,58 @@
 
 ## 2026-09-08 correction: current execution authority
 
+### Development-policy correction after Astra high review
+
+The user explicitly authorized responsible correction of prior decisions. Small
+three-photo pilots and the single-author 19-reference pool are consumed
+development material, not an irrevocable confirmatory trial for an entire method.
+Their negative results remain true for their recorded configurations. Those
+results do not logically forbid further purposeful development on the same data.
+
+Prospectively, one continuous development phase may revise supervision, reference
+admission, implementation and hyperparameters on explicitly named consumed data.
+Each round must state its hypothesis/change, budget and complete comparison set
+before running; record all outputs and outcomes, including rejected versions.
+Reference suitability may be selected from reference images before candidate
+outputs are produced. SHA ordering prevents outcome cherry-picking but does not
+establish aesthetic suitability or scene compatibility.
+
+Do not rewrite old configs, verdicts or gates. Do not present development wins as
+independent evidence, and do not silently consume sealed/quarantined or rights-
+restricted material. Freeze a distinct, group-disjoint assessment only after a
+candidate and its selection policy are locked. Repeated tuning on that assessment
+would consume it. Neither a new run name nor more unit tests resets data roles.
+
+The old no-rescue clauses below apply to changing the conclusions of the original
+runs; they do not prohibit the explicitly authorized forward development phase.
+Web GPT-6 Pro critique of the proposed stability projection remains pending the
+Chrome connection, but is not a dependency of unrelated, project-grounded
+photographic supervision work. This correction does not authorize costly GPU or
+cloud use beyond separately specified execution scope.
+
+### Current photographic development round
+
+Fix Italy reference `18.jpg` across source-manifest rows 0–8, all already
+consumed development photographs. These are existing 1600-pixel-wide RGB JPEG
+neutral renders without embedded ICC profiles, not native-resolution RAW tests.
+Reference choice is informed by the earlier
+daisy result, explicitly not blind selection. The cached source page reports
+Nikon FM-2 / Kodak Portra 400; this describes author-reported reference provenance,
+not calibrated Portra output. Test whether one reference supports a coherent
+appearance across different content, and whether learned LUT mapping adds value
+beyond preprocessing. Keep identity, simple contrast, precorrection-only and
+learned outputs for every source, including failures.
+
+Retain seed 48, 25 sampling steps and 512-pixel conditioning. No training or
+parameter grid. Reuse the existing daisy/reference-18 result only after exact
+input, configuration and output identity checks; at most eight new forwards,
+600 seconds and 9.5 GiB CUDA allocation. Implementation and CPU checks may proceed
+while the GPU is occupied. Launch requires a fresh resource check; do not stop
+or compete with existing user activity. Current status: Astra high implementing
+the bounded runner; root independently reviews and schedules execution. Review
+all nine photographs and defects before choosing a further development change.
+No independent-validation or product-promotion claim follows from this round.
+
 User request: perform a major course correction after confirming that the project
 and this task drifted from AI-learned photographic value. This section supersedes
 older active-priority/next-step prose, including deterministic LOOK2 and the
@@ -52,7 +104,7 @@ That scan does not establish the state of remote or differently named processes.
 | Early manual looks, safe-Lab, film-response, A/B/C teacher distillation | Retain historical controls; stop authored palette tuning as the mainline | May be replayed as explicitly labelled controls, never presented as newly learned style |
 | Neural s300/s800 recovery | Keep conditioning-collapse evidence; do not repeat the closed probe | A distinct causal question and new admission, not a relabelled strength/grid rescue |
 | FilmSet/ClassNeg | Paired digital-recipe learning, not physical stock truth; ClassNeg failed aggregate appeal | Better justified supervision on separate roles; no retuning the consumed 17-photo review |
-| NLUT / VCG | Actual learned operators; exact development configurations failed, retain evidence | New mechanism justification and separate assessment; no consumed-pair option sweep |
+| NLUT / VCG | Actual learned operators; exact development configurations failed, retain evidence | Purposeful, budgeted development may reuse declared consumed data; final independent assessment is separate and no old verdict is rewritten |
 | Diffusion final-RGB paths | Retired from this content-preserving mainline | Requires an explicit change of product/content scope |
 | Physical colour, stock modes, scanner calibration | Separate research, not a prerequisite for generic AI appearance | Existing source/identifiability gates still apply to those claims |
 | Grain / halation / dust | Existing optional controls; no extra noise to manufacture style success | A specific learned-candidate need plus separate photographic value evidence |
