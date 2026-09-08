@@ -1,0 +1,1033 @@
+{
+  "status": "PAIR_PREPARATION_COMPLETE_LEARNING_NOT_RUN",
+  "date": "2026-09-09",
+  "scientific_result": {
+    "path": "outputs/ai_reference_generalization_science_bridge_v1/result.md",
+    "sha256": "5d6e75bf6795548d0f2a962eb886cfc7c594b91d325d6d85fe66c223e632f003"
+  },
+  "adoption": {
+    "path": "outputs/ai_reference_generalization_science_bridge_v1/adoption.json",
+    "sha256": "5121d76fa60d45691be5f358046139a631ae8343ee9f5da120e4533cb6f7fedf"
+  },
+  "pair_admission": {
+    "status": "ADMITTED_FOR_PAIRED_MECHANISM_RESEARCH",
+    "training_pairs": 43,
+    "diagnostic_pairs": 16,
+    "report_sha256": "ec51a9e0ea10ec4aa06eb496596d07ac746bb0c43e4ce1eb9b308496aae88a3a",
+    "root_review_sha256": "e45bfd7bed9b6a5a38aed281670f18f125993baa3f19ae09ac34803f1d669341",
+    "medium_review_sha256": "c12a46a087562dc8734197712babc9aa78feeb808102e9c637fd14c1c4eb1f45",
+    "artifact_hashes_verified": 181,
+    "same_content_visual": true,
+    "subpixel_alignment_proven": false,
+    "shared_edit_identity_proven": false,
+    "aesthetic_admission": false,
+    "no_new_exclusions": true,
+    "diagnostic_use": "Privileged dev P/Y features only after after-only predictions locked; no fitting or selection.",
+    "remaining_budget": {
+      "limit_cpu_seconds": 1800,
+      "processing_cpu_seconds": 10.15625,
+      "remaining_feature_training_scoring_cpu_seconds": 1789.84375,
+      "remaining_active_wall_seconds": 1787.6100000000151,
+      "rule": "Future newfeature/training/render/scoring phases must subtractthiscostandinterveningprocessing;noreset."
+    },
+    "pairs": [
+      {
+        "group": 0,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 0,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 1,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 1,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 2,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 2,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 3,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 4,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 4,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 5,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 5,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 6,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 6,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 7,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 7,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 8,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 8,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 9,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 10,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 10,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 11,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 11,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 12,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 12,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 13,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 13,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 14,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 14,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 15,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 15,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 16,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 16,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 17,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 17,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 18,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 18,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 19,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 19,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 20,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 20,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 22,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 23,
+        "target": 1,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 23,
+        "target": 2,
+        "split": "training",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 24,
+        "target": 1,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 24,
+        "target": 2,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 25,
+        "target": 1,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 25,
+        "target": 2,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 26,
+        "target": 1,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 26,
+        "target": 2,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 27,
+        "target": 1,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 27,
+        "target": 2,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 28,
+        "target": 1,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 28,
+        "target": 2,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 29,
+        "target": 1,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 29,
+        "target": 2,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 30,
+        "target": 1,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 30,
+        "target": 2,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 31,
+        "target": 1,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      },
+      {
+        "group": 31,
+        "target": 2,
+        "split": "diagnostic_development",
+        "same_content": true,
+        "claim": "Visual consistency at review scale, not exact registration or shared edit identity"
+      }
+    ]
+  },
+  "pair_admission_sha256": "45fefa482fef17ccfb6fee6b220400cbf7ea6ce5ae1dbfc33624b9562c317a98",
+  "training_visual_review": {
+    "status": "COMPLETE_43_OF_43_TRAINING_PAIR_BOARD_REVIEW",
+    "reviewer": "root",
+    "method": "All fixed P/R boards actually inspected side by side with view_image; 25 before compaction and remaining 18 after compaction. Truncated six-image tool output was not counted; those boards were viewed again.",
+    "source_report_sha256": "ec51a9e0ea10ec4aa06eb496596d07ac746bb0c43e4ce1eb9b308496aae88a3a",
+    "rows": [
+      {
+        "group": 0,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\00_R1.png",
+        "board_sha256": "a7bc147c735d3db0d546cd5d58fee4583317236702a5ab4f62e1dac4d5437ccd",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 0,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\00_R2.png",
+        "board_sha256": "5369e63a36b427cd4e09e5b9c4d4d4db20c08f9582109fc8250d1ca92f9920d4",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 1,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\01_R1.png",
+        "board_sha256": "e1d4f2d7822aafeca1dd89e327075e9868e65c0aaa05c5287692a5d45a07a0b9",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 1,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\01_R2.png",
+        "board_sha256": "983ec023e6a9c9b778daa9896fb1e2adc0570c0c31a4983a409c114cee7bc207",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 2,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\02_R1.png",
+        "board_sha256": "ad33358506bc0b0890a7f58ddeb463b8dd5fba4eb14e1a29a5e56c74c3b3eab5",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 2,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\02_R2.png",
+        "board_sha256": "e02dfb01d65338a4f11775a360555f57c2df62cd8e30293f0ad8c5279725683a",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 3,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\03_R1.png",
+        "board_sha256": "5da69554b820d8d5c42c782b7bf39bfbc45841f197503a8066c36e887dd75b17",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 4,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\04_R1.png",
+        "board_sha256": "6b4f0555617df6c733a65a9277f1c769978f15139dfcd50318198a89352b5c2e",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 4,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\04_R2.png",
+        "board_sha256": "e4d90c3efa899d33483856f1330fc5a34bbc7038286a24886ade7486efa39a18",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 5,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\05_R1.png",
+        "board_sha256": "f9c2936320db0eb7666c8baa8708883108c24c2ff9134fab885ea99e193c0f9a",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 5,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\05_R2.png",
+        "board_sha256": "b65dae6b6ff1ae114983e4f495d53878c148a9beb50e999d9f75b29e2c115795",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 6,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\06_R1.png",
+        "board_sha256": "efb3e61fa9c47ffb040fce22492d2617cf631a039e8a1c5527d774c3a38fca4f",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 6,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\06_R2.png",
+        "board_sha256": "987d322afa7c1c8a8494d06b4d08620afea27ae86abeeb29dafda3012a4fd644",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 7,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\07_R1.png",
+        "board_sha256": "f0e0fb2ee836151d24e39864b89b63ed2b2a735a0f6b567273197af0d22886d3",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 7,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\07_R2.png",
+        "board_sha256": "936bf98b352541f909062658fa53c3d67c503750a9a195a26892e3817673b058",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 8,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\08_R1.png",
+        "board_sha256": "7f7498faf170feee8fcabd7bd7ad49729093a21188d0fe41ceb88f9b5b9475b6",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 8,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\08_R2.png",
+        "board_sha256": "be707fd8c11a2d4f33ff43c3d5e3339b2614356fd4e818d1806eb5a52e5c13a5",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 9,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\09_R2.png",
+        "board_sha256": "1162fcc4499716c8ce3951be217cbf084fb9e22a840a09b8470fb1f61152f472",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 10,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\10_R1.png",
+        "board_sha256": "c7c8491d2802748a0c2d49fdf9ba810ff12a08b54c23db785e6e3c1a300476e8",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 10,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\10_R2.png",
+        "board_sha256": "353d4ab7b8cbf9383c5833807cb92f96dec58fde90b7872e92028d355c37bb50",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 11,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\11_R1.png",
+        "board_sha256": "a754490bffe750ecb145428f146221fa58b84fed41d70c5f20c4ad1759a6635a",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 11,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\11_R2.png",
+        "board_sha256": "6e8dd1206291d07e814be7a3e36e47547093be7d31eda30a57b6d60f20c8edc8",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 12,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\12_R1.png",
+        "board_sha256": "cd815b5576ca58b4e49c956c5e5b09f09255e25f4a96ba5e42cf504777a0936a",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 12,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\12_R2.png",
+        "board_sha256": "3e26f80b20fe20d10b8ffb982e11e333e3712ab7e833d7f65f8f7c804554ea8c",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 13,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\13_R1.png",
+        "board_sha256": "3582e79a2cbb362f9dbeaa6bc48e5ff33e4032e09ee59ea9a7017f9b19724a3b",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 13,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\13_R2.png",
+        "board_sha256": "56b3472a93d38c0eef2e5f1b9699d79abcec31b321e79f59a267a0a274ac0856",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 14,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\14_R1.png",
+        "board_sha256": "9c495b9311945b80e3ef633c0532c547ef78ce67b41bc847edc45782dcc7555c",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 14,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\14_R2.png",
+        "board_sha256": "3c3032f3d69244295b8297c632ad95ef676dfd913f6f11a86478cb5958566374",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 15,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\15_R1.png",
+        "board_sha256": "e32261d4f1ec462a7b21ad7bc843c913f069d3dc6288aacd48195b6a717603dd",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 15,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\15_R2.png",
+        "board_sha256": "a3ea156d8780e421ad0f0821bea288cbd0682658fe2193c706944e9231ab60dd",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 16,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\16_R1.png",
+        "board_sha256": "4897d7d27fc7fa956251331c0b72feb3925a807751684f18c97127c6d309fa37",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 16,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\16_R2.png",
+        "board_sha256": "d44e25dd9006782800a7227c83d3a85588c9550182ed4edcb5649dd0f044e209",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 17,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\17_R1.png",
+        "board_sha256": "1b242408979031a70915cc8f89fee632468bd34b449384949a7ebb7b43b7702d",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 17,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\17_R2.png",
+        "board_sha256": "3de00d6a2522f1ee168dade98135fc5fdc4b1141e355b6fc2bf43246b364ee69",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 18,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\18_R1.png",
+        "board_sha256": "201ff522888c5095ef4a0848bcd49a451283fdec811fe27dcfa7b4fcee64c310",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 18,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\18_R2.png",
+        "board_sha256": "a9d4bd9d8edabf9c69eba82d3d78605cb1d94039a88afea8475dd3d08b350a51",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 19,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\19_R1.png",
+        "board_sha256": "12223916b324ddd3a3f43097dbf46e4642a086fb95bea22e8e77ce19f48fb2d7",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 19,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\19_R2.png",
+        "board_sha256": "f10aae3acd9b1b715d054e1da9b77a27864f60dfd98cc81ca88d53aac53c0f8f",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 20,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\20_R1.png",
+        "board_sha256": "a52a5ace94210459bbcedde581f569f1b82f597f7351da2358428457014023cd",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 20,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\20_R2.png",
+        "board_sha256": "5d761149fcde3c6b904025a10f58323a9f5d05213c9c82e8e4a3b55e7a8366cd",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 22,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\22_R1.png",
+        "board_sha256": "62024595b57be2ea8d0e6d65349bc8480bd2ecdcd220643648bd00e3f8aaeb4d",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 23,
+        "target": 1,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\23_R1.png",
+        "board_sha256": "ccdfc441faab5836748fe8e17e1ac7eaeaa83a08146349a4af1198222716338b",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      },
+      {
+        "group": 23,
+        "target": 2,
+        "board": "outputs\\tst_reference_pairs_v1\\prepare\\review\\training\\23_R2.png",
+        "board_sha256": "c29b4670254a31e705d9d7ab8dc5b56e5a3648e7565c2762ae64ebcae8dc7ac9",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false
+      }
+    ],
+    "limitations": [
+      "No visible scene, pose or framing mismatch at board resolution; not subpixel alignment proof.",
+      "Not evidence of common edit identity between reference and query.",
+      "Strong hue shifts, posterization, clipped shadows, cyan or yellow skin remain appearance failures; not removed to improve metrics.",
+      "43 admitted query targets retain old 17 PASS / 13 BORDERLINE / 13 FAIL aesthetic intersection; pairing admission is not photographic success."
+    ],
+    "notable_reference_appearance_concerns": [
+      "14_R1 severe shadow flattening in shop",
+      "19_R2 flattened dress shadows",
+      "20_R2 harsh yellow-green skin",
+      "23_R2 broad cyan cast"
+    ]
+  },
+  "diagnostic_visual_review": {
+    "status": "COMPLETE_16_OF_16_DIAGNOSTIC_PAIR_BOARD_REVIEW",
+    "reviewer": "Astra medium agent",
+    "method": "Nonblind side-by-side P/R board inspection, all fixed 16 diagnostic pairs, no selection or registration",
+    "source_report_sha256": "ec51a9e0ea10ec4aa06eb496596d07ac746bb0c43e4ce1eb9b308496aae88a3a",
+    "rows": [
+      {
+        "group": 24,
+        "target": 1,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/24_R1.png",
+        "board_sha256": "c6ddb5be68037ff9c82ab69013874f17ac63ab6fd6e430fa4625bb73d72b8e0a",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Seal, whiskers, rocks and plants correspond; dark red grading obscures neck shadows but no apparent displacement."
+      },
+      {
+        "group": 24,
+        "target": 2,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/24_R2.png",
+        "board_sha256": "2ea8bf979f6d96903ea70f6be5aa4a1a8e654d9c5c8fd7d19dad9bf392d195c2",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Both riders, waving hand, bicycle, road and poles correspond; faded cyan/maroon appearance is not a mapping mismatch."
+      },
+      {
+        "group": 25,
+        "target": 1,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/25_R1.png",
+        "board_sha256": "a014156856b5cda31b2ac1aa2d1406c96b164fb429a225cfcf5304903c30a826",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Face, hands, leaf and lantern framing correspond; strong yellow-to-cream change and darker coat do not indicate geometric mismatch."
+      },
+      {
+        "group": 25,
+        "target": 2,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/25_R2.png",
+        "board_sha256": "a06a5c5a0f4d05d3616610ef6e2f1dab4d2af2f96008573c8a67a00bfed80483",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Couple faces, hands and bouquet correspond; warmer skin and darker hair are appearance changes."
+      },
+      {
+        "group": 26,
+        "target": 1,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/26_R1.png",
+        "board_sha256": "e4f158d2b10a50944cb1df75457d6a11e7a5467bde3e14a61b3a02bd6816b777",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Seated bride and standing groom, hands, suit and dress outlines correspond; no visible spatial mismatch."
+      },
+      {
+        "group": 26,
+        "target": 2,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/26_R2.png",
+        "board_sha256": "9f81ba87a78db28b056c093bde825f7c4540bd3042c12ee3b954548f75ebd63c",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Couple, temple, wall and mountains correspond; stronger orange/red and deeper shadows alter appearance only at this scale."
+      },
+      {
+        "group": 27,
+        "target": 1,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/27_R1.png",
+        "board_sha256": "71133af1010a3bfaec0c914a1f435776e10c7d56b5b1489a8fbab47a26f33c55",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Roof, windows, foliage, clouds, vehicle and road correspond despite near-monochrome amber grading."
+      },
+      {
+        "group": 27,
+        "target": 2,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/27_R2.png",
+        "board_sha256": "6e2e199642d0d7de239900dd5476a8c69f3604c330b6fcb00249eb524a2c0dc0",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Man, clasped hands, shirt stripes, monitors and desk objects correspond; pink/teal grading does not alter visible arrangement."
+      },
+      {
+        "group": 28,
+        "target": 1,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/28_R1.png",
+        "board_sha256": "e10766a4daa183c058c3611991d51cef63659b5d90dfdcfc2de313a7cd29b2c5",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Face, fingers, striped shirt, bag and tree bokeh correspond; brown foliage change preserves visible geometry."
+      },
+      {
+        "group": 28,
+        "target": 2,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/28_R2.png",
+        "board_sha256": "04e11e7e4edaee00c3e3d1dc80a32a934fdab4ce6fe2a6c61ad728732b3e3d4f",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Face, hands, book lettering and shelving correspond; orange skin and blackened hair are appearance/detail concerns, not observed displacement."
+      },
+      {
+        "group": 29,
+        "target": 1,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/29_R1.png",
+        "board_sha256": "50d6d2a9ecc2b18c41da824e88a832ba0a9d08d1cdcad6886a2f9fe6fc52e97b",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Fence posts, ropes, carved wood and palms correspond; faded brown appearance preserves visible arrangement."
+      },
+      {
+        "group": 29,
+        "target": 2,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/29_R2.png",
+        "board_sha256": "b49d3a879ef203a0411c8c5a5b78a935ccd2dcbe633bd527f20cac2d1aa16857",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Both women, dress lace, headwear and background correspond; both inputs share the same sideways orientation. R strongly darkens hair and desaturates surroundings."
+      },
+      {
+        "group": 30,
+        "target": 1,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/30_R1.png",
+        "board_sha256": "826ff9449604ea9d2bb4183e5665381649ef349167b129bad28ed808c6d1409b",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Neon letter positions, wires and facade perspective correspond; teal/brown grading changes color but not visible text layout."
+      },
+      {
+        "group": 30,
+        "target": 2,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/30_R2.png",
+        "board_sha256": "0e29be0b42c8640dd18648d136cc0bd4e581e811f6e628237ee68929c5ee5d6a",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Umbrella, pedestrian silhouette, bollards and pavement reflections correspond; very strong magenta/yellow changes do not show displacement."
+      },
+      {
+        "group": 31,
+        "target": 1,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/31_R1.png",
+        "board_sha256": "deab39c5d80760ad707ef5dc949fd72956a860dc4eaa9643cdf2a2ad2ea8c14e",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Face, limbs, rock, foliage and water correspond; cyan skin is clearly unnatural but not an observed geometric mismatch."
+      },
+      {
+        "group": 31,
+        "target": 2,
+        "board": "outputs/tst_reference_pairs_v1/prepare/review/diagnostic_development/31_R2.png",
+        "board_sha256": "4636b34341891012d5d354ef16d3ec3b78a3720c1ad20419d315c36b41e873e5",
+        "viewed_with": "tools.view_image",
+        "same_content_visual": "CONSISTENT_AT_REVIEW_SCALE",
+        "obvious_geometry_incompatibility_observed": false,
+        "note": "Face, raised arms, wristband, dress and hair contours correspond; gray-green skin with red patches is severe appearance degradation, not demonstrated remapping."
+      }
+    ],
+    "limitations": [
+      "Board-scale visual correspondence plus integer-shift evidence does not prove subpixel alignment, identical capture provenance, or shared edit with X/Y.",
+      "This review does not turn unattractive reference colors or destroyed tonal detail into aesthetic passes.",
+      "Diagnostic development was already consumed; these pairs are not unseen validation.",
+      "No feature extraction, fitting or training was performed."
+    ]
+  },
+  "verification": "Root independently verified all181 prepare artifact hashes; 3 synthetic pair-preparation tests passed in1.30s. Geometry and duplicate checks are bounded, not shared edit or photographic proof.",
+  "next": "Medium implementing T/S/S0/D under frozen prospective protocol; root review and actual bounded execution still pending."
+}
