@@ -1,0 +1,16 @@
+{
+  "status": "43_NATIVE_PAIRS_NO_OBVIOUS_INTEGER_MISALIGNMENT",
+  "report_path": "outputs\\tst100k_mechanism_alignment_v1\\report.json",
+  "report_sha256": "0efe371aeecf71a50ccc0a1ef0effbaa4e7fdea2a37de980f8f33d9e05803f37",
+  "script_path": "outputs\\tst100k_mechanism_alignment_check.py",
+  "script_sha256": "5e42c69deb134cbec917199e3ef55dd17e1a753c705c9d1fe31081993747a3b0",
+  "pairs": 43,
+  "regions": 215,
+  "nonzero_best_shifts": 0,
+  "minimum_zero_shift_ncc": 0.5837004881006365,
+  "native_uint16_shape_checks": "all passed",
+  "scope": "43 admitted native pairs; gradients native resolution, fixed stride4 scoring; five regions shifts -2..2; no subpixel alignment proof",
+  "limitation": "No subpixel, deformation, capture-family or color-calibration proof",
+  "training_run": false,
+  "check_opened": false
+}

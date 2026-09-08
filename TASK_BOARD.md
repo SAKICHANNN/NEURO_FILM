@@ -1,4 +1,6 @@
-Current mechanism admission FROZEN:24groups reviewed once,23 direction-compatible/21 uncertain;03Y2/09Y1/22Y2 detail-excluded.43 conditional rows,20 complete pairs before fixed DeltaE gate,3 singletons. Evidence docs/evidence/TST100K_MECHANISM_ADMISSION_20260908.json; output mechanism_admission.json SHA c756424939feaeafe489ce059e1a023282ef700d01d516cddb0157ea285aaf78. Prior aesthetic results unchanged. Medium implements src/eval/tst_reference_response.py, configs/tst_reference_response_v1.json, tests/test_tst_reference_response.py; root awaits synthetic verification before real run. Check8 unopened.
+Current actual student fit COMPLETE_NOT_PROMOTED:72 X/R VGG forwards,43 teacher labels,20 informative pairs,3 heads matchedEDF4. Check8 still unopened. Both run locks use config a19ec7d1a3531dcb7706f95f1e9a6853c0e74e1a1d29a3738bc196acb0e7a797, entry2df98eb0ba9edb2d847d4549d8d12402a400379816df466e96d52741555c4c68; earlier preflight390b superseded before launch by budget-ledger-only change. Root verified feature/model/teacher hashes and144 finite descriptor arrays. Evidence docs/evidence/TST100K_REFERENCE_STUDENT_FIT_20260908.json. Remaining CPU budgets589.15625feature/597.890625learning. Medium now owns separate once-onlycheck protocol/entry preparation, no acquisition/run yet. Frozen fit files must not change.
+
+Current mechanism admission FROZEN:24groups reviewed once,23 direction-compatible; group21 uncertain;03Y2/09Y1/22Y2 detail-excluded.43 conditional rows,20 complete pairs before fixed DeltaE gate,3 singletons. Evidence docs/evidence/TST100K_MECHANISM_ADMISSION_20260908.json; output mechanism_admission.json SHA c756424939feaeafe489ce059e1a023282ef700d01d516cddb0157ea285aaf78. Prior aesthetic results unchanged. Medium implements src/eval/tst_reference_response.py, configs/tst_reference_response_v1.json, tests/test_tst_reference_response.py; root awaits synthetic verification before real run. Check8 unopened.
 
 Latest: mechanism6Pro response COMPLETE, one UI Copy; exact25862 characters/FNV3868013366 persisted, result/pair PASS. Read outputs/ai_reference_mechanism_science_bridge_v1/result.md. Medium now owns codebase adoption and scoped implementation preparation; root owns finite fit admission review. Proposed VGG features/7-cube teachers/three ridge heads; not yet adopted or trained. Check8 remain unopened. DINO synthetic compatibility passed but Pro chose VGG, so no DINO photo extraction. Earlier RUNNING below is historical.
 
@@ -26,8 +28,8 @@ Native G0 content COMPLETE_NOT_PROMOTED:3 full-resolution SDR16 photos/58.406s/3
 
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
-2026-09-08 medium ACTIVE: implement Pro-specified VGG/stat descriptors,7-cube teacher,matched ridge/PCA numerical setup and synthetic checks; no photo extraction/training/check acquisition until admission frozen.
-Locks: src/eval/tst_reference_response.py; configs/tst_reference_response_v1.json; tests/test_tst_reference_response.py.
+2026-09-08 medium READY: Pro VGG/stat descriptors,7-cube teacher,matched ridge/PCA and supervised CPU stages implemented.5 synthetic tests/Ruff PASS; strict VGG1synthetic forward PASS; feature preflight READY binds43admission pairs. No actual feature extraction/learning/check acquisition run by medium. Root reviews then launches.
+Locks released: src/eval/tst_reference_response.py; configs/tst_reference_response_v1.json; tests/test_tst_reference_response.py; scripts/run_tst_reference_response.py.
 Root owns mechanism_admission visual records and evidence.
 
 2026-09-08 medium DONE: metadata-only32x2 reference-switch manifest frozen;24/8groups,96fileowners,160newfiles required;64row exact membership/owner checks and Ruff PASS. No images/HEAD/training/student scaffolds.

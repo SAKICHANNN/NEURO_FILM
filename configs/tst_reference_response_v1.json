@@ -1,0 +1,118 @@
+{
+  "identity": "tst_reference_response_v1",
+  "input_report": "outputs/tst100k_reference_switch_fit_review_v1/report.json",
+  "input_report_sha256": "eb58726b24be7eb2b932610d4e7e4b2787a6d6f0eaa6c540dfec63a7c4d1f405",
+  "alignment_report": "outputs/tst100k_mechanism_alignment_v1/report.json",
+  "alignment_sha256": "0efe371aeecf71a50ccc0a1ef0effbaa4e7fdea2a37de980f8f33d9e05803f37",
+  "output": "outputs/tst_reference_response_v1",
+  "science_result": "outputs/ai_reference_mechanism_science_bridge_v1/result.md",
+  "science_sha256": "1491faa9ef29a4909fda9b771b5bbcf4e4aef5ec2a5c7a5e8f4f43b982ada3bf",
+  "admission_path": "outputs/tst100k_reference_switch_fit_review_v1/mechanism_admission.json",
+  "admission_sha256": "c756424939feaeafe489ce059e1a023282ef700d01d516cddb0157ea285aaf78",
+  "seed": 20260908,
+  "feature_model": "Local SHA-bound NLUT vgg_normalised weights; first conv embeds RGB-to-BGR*255 and Caffe mean subtraction. Input raw encoded RGB[0,1], no extra ImageNet normalization; not full NLUT preprocessing reproduction.",
+  "thumbnail": {
+    "size": [
+      128,
+      128
+    ],
+    "interpolation": "torch bilinear antialias=True align_corners=False",
+    "crop": false
+  },
+  "descriptors": {
+    "statistics": 30,
+    "vgg": 3968,
+    "relu_indices": [
+      3,
+      10,
+      17,
+      30
+    ],
+    "std_correction": 0
+  },
+  "projection": {
+    "components": 6,
+    "constant_std_below": 1e-06,
+    "score_clip": [
+      -3,
+      3
+    ],
+    "fit_scope": "24 source and48 reference descriptors only; in leave-one-owner-out refit all preprocessing excluding held source and both its references"
+  },
+  "teacher": {
+    "dimension": 7,
+    "smoothness": 1e-06,
+    "residual_ridge": 0.0001,
+    "block_size": 64,
+    "border_exclusion": 0,
+    "fold_fit": 0,
+    "fold_check": 1,
+    "max_pixels_per_fold": 8192,
+    "normal_residual_tolerance": 1e-08,
+    "dtype": "float64",
+    "target": "unclipped Y-X; scoring renderer clips X+B(X)U",
+    "normal_equation": "B.T B/m +1e-6 D2.T D2/n_D2 +1e-4 I/343; RHS B.T(Y-X)/m, with D2=(d-1)^2 second differences"
+  },
+  "heads": {
+    "arms": [
+      "source_only",
+      "reference_statistics",
+      "reference_image"
+    ],
+    "input_dimensions": 13,
+    "output_dimensions": 1029,
+    "intercept_penalized": false,
+    "mean_weight": 1,
+    "half_difference_weight": 2,
+    "target_df": 4,
+    "low_rank_rule": "if minimum slope rank<=4 use common0.8*r_min; rank0 predicts weighted mean only and is not reference-learning evidence",
+    "candidate": "reference_image"
+  },
+  "admission": {
+    "suspected_detail_exclusions": [
+      "03Y2",
+      "09Y1",
+      "22Y2"
+    ],
+    "direction_required": "compatible",
+    "detail_required": "admissible",
+    "main_informative_pairs": 8,
+    "informative_pair_mean_de00_min": 2,
+    "fallback": "under8 informativepairs: once leave-one-source-owner-out calibration; under3 conditionalgroups: explicitly source-only non-damaged group-mean calibration; check remains unopened"
+  },
+  "budget": {
+    "threads": 2,
+    "tree_rss_bytes": 4294967296,
+    "feature_cumulative_process_cpu_seconds": 600,
+    "learning_render_scoring_cumulative_process_cpu_seconds": 600,
+    "stage_wall_seconds": 900,
+    "future_phase_accounting": "Two cumulative600 CPU-second categories across current and future check work: extraction and learning/render/scoring. Future category allowance =600 minus all recorded prior process-tree CPU in same category; no reset per check stage. Future check entry must consume hash-bound budget ledgers; never edit this frozen fit config after features."
+  },
+  "scoring": {
+    "mechanism_strength": 1,
+    "photography_strength": 0.8,
+    "q_candidate_max": 0.8,
+    "relative_q_improvement_over_each_control": 0.1,
+    "better_group_count": 7,
+    "switch_margin_min": 0.1,
+    "switch_cosine_min": 0.5,
+    "switch_norm_ratio": [
+      0.5,
+      1.5
+    ],
+    "switch_groups": 6,
+    "check_direction_compatible_groups": 6,
+    "teacher_good_targets": 12,
+    "teacher_de00_absolute_floor": 1,
+    "teacher_identity_error_fraction": 0.25,
+    "comfortable_changed_outputs": 12,
+    "change_de00_min": 3,
+    "comfortable_distinct_pairs": 6,
+    "severe_new_detail_failures": 0
+  },
+  "scope": "Executable numeric setup only until admission and supervised entry frozen. No check pixels or new acquisition here. Aesthetic failures preserved; research mechanism versus photography remain separate. No architecture/parameter sweep, generator or SA recovery.",
+  "implementation_pins": {
+    "core": "7730b237e912c414119049b6b263a55732e3b3461f7551ad520c67711fa9742a",
+    "entry": "2df98eb0ba9edb2d847d4549d8d12402a400379816df466e96d52741555c4c68"
+  }
+}
