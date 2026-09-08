@@ -1,0 +1,67 @@
+{
+  "schema": "neuro-film.ai-correction-followup.v1",
+  "matrix": {
+    "path": "outputs/user_style_catalog_20260908/course_correction_matrix_v4.json",
+    "sha256": "63d571a1cde33d9cca360ef30d809ab3a0a9af9675fc4a98e7c25f5116e0d4b5",
+    "exact_byte_original_groups": 18,
+    "linked_outputs": 99,
+    "unresolved_originals": 0,
+    "comparison_ready": false,
+    "limit": "saved-original hash links only; preprocessing, train roles and pixel/ICC equivalence across encodings are not established"
+  },
+  "continuous_lut_audit": {
+    "path": "outputs/ai_vcg_lut_certificate_v1/report.json",
+    "sha256": "03e17ddfd9aa200c5645f257bc6e279aec2afef4c8f17831be6e5a72c9f14bc5",
+    "arrays": 12,
+    "cells_per_variant": 3375,
+    "one_sided_vertices_per_variant": 27000,
+    "tests_passed": 23,
+    "rounding_error_certified": false,
+    "promotion": false,
+    "node_clipped": [
+      {
+        "id": "vcg_00",
+        "gain_upper_numerical_estimate": 3.814459807288032,
+        "residual_upper_numerical_estimate": 2.8675085960392903,
+        "condition": "INCONCLUSIVE"
+      },
+      {
+        "id": "vcg_01",
+        "gain_upper_numerical_estimate": 7.994941563171333,
+        "residual_upper_numerical_estimate": 7.060767396455012,
+        "condition": "INCONCLUSIVE"
+      },
+      {
+        "id": "vcg_02",
+        "gain_upper_numerical_estimate": 7.310214190764592,
+        "residual_upper_numerical_estimate": 6.988191490488599,
+        "condition": "INCONCLUSIVE"
+      },
+      {
+        "id": "ncc_00",
+        "gain_upper_numerical_estimate": 5.03628830554216,
+        "residual_upper_numerical_estimate": 4.094601565892726,
+        "condition": "INCONCLUSIVE"
+      },
+      {
+        "id": "ncc_01",
+        "gain_upper_numerical_estimate": 6.405048290712301,
+        "residual_upper_numerical_estimate": 5.5123297459239256,
+        "condition": "INCONCLUSIVE"
+      },
+      {
+        "id": "ncc_02",
+        "gain_upper_numerical_estimate": 8.022769670757517,
+        "residual_upper_numerical_estimate": 7.771446305775798,
+        "condition": "INCONCLUSIVE"
+      }
+    ]
+  },
+  "web6pro": {
+    "status": "WAIT_CHROME_EXTENSION_CONNECTION",
+    "prompt_sent": false,
+    "subagent_adjudication": "ONLY_HUMAN for connecting browser; compatible current API found; no profile/permissions/skills modified"
+  },
+  "long_term_goal": "ACTIVE_UNACHIEVED",
+  "next": "Independent scientific critique of stability projection vs scalar weakening once requested web model is connected; do not select kappa or promote from old three photos"
+}

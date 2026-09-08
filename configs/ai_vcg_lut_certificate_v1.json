@@ -1,0 +1,29 @@
+{
+  "schema": "neuro-film.vcg-lut-numerical-certificate.v1",
+  "scope": "Read-only CPU analysis of six existing learned LUTs; no photographs, training, projection, parameter selection or promotion.",
+  "destination": "outputs/ai_vcg_lut_certificate_v1",
+  "lut_size": 16,
+  "stored_shape": [64, 64, 3],
+  "stored_dtype": "float32",
+  "node_order": "C-order reshape to [B,G,R,output_RGB]; R node index varies fastest",
+  "variants": ["raw_nodes", "unit_clipped_nodes"],
+  "numerical_margin": {"absolute": 1e-12, "relative": 1e-12},
+  "contract": {
+    "domain": "Closed unit RGB cube, continuous piecewise trilinear interpolation only",
+    "jacobian": "All eight local vertices of every cell; derivatives are one-sided from that cell at grid boundaries; matrix rows are output RGB and columns are input RGB",
+    "upper_bound": "In exact arithmetic the cell Jacobian is a convex combination of its eight vertex Jacobians, so its spectral norm and the spectral norm of J-I cannot exceed their respective vertex maxima",
+    "lower_bound": "max(0,1-residual_upper) is a sufficient singular-value lower bound; global residual_upper<1 additionally implies an injective bi-Lipschitz continuous cube map. Not satisfying this sufficient condition is INCONCLUSIVE, not failure",
+    "rounding": "Float64 SVD plus a declared margin produces numerical bound estimates, not directed-rounding or interval-certified bounds",
+    "determinants": "Optional determinant values describe cell-vertex samples only; no full-cell sign or minimum-singular-value inference from sampled minima",
+    "clipping": "unit_clipped_nodes clips the stored nodes before interpolation, matching the node preparation in the saved VCG driver. It does not model input clipping, interpolated-output clipping, or uint8 quantization; these operations are not interchangeable",
+    "exclusions": ["precorrection or its affine matrix", "input clipping", "output clipping", "Pillow integer arithmetic", "uint8 quantization", "image decoding", "spatial noise statistics", "photographic quality", "new inference", "stock calibration", "product promotion"]
+  },
+  "sources": [
+    {"id": "vcg_00", "family": "vcg_default", "row": 0, "report": "outputs/ai_vcg_reference_development_v3/report.json", "report_sha256": "e1ff75bbd54333eba21e5dd0658c15651fbdcf64f0efafd624b96dfdb9c3284a", "lut": "outputs/ai_vcg_reference_development_v3/00_lut.npy", "lut_sha256": "056dbbfea40648714c98e879e39b5bb2c72c25f57f4704bf0c9d2a5f5fb40983"},
+    {"id": "vcg_01", "family": "vcg_default", "row": 1, "report": "outputs/ai_vcg_reference_development_v3/report.json", "report_sha256": "e1ff75bbd54333eba21e5dd0658c15651fbdcf64f0efafd624b96dfdb9c3284a", "lut": "outputs/ai_vcg_reference_development_v3/01_lut.npy", "lut_sha256": "4ed163a6c6e0dcb76805b6b69560ed611fad9e6ed1908dfc8d789e559f371d63"},
+    {"id": "vcg_02", "family": "vcg_default", "row": 2, "report": "outputs/ai_vcg_reference_development_v3/report.json", "report_sha256": "e1ff75bbd54333eba21e5dd0658c15651fbdcf64f0efafd624b96dfdb9c3284a", "lut": "outputs/ai_vcg_reference_development_v3/02_lut.npy", "lut_sha256": "e68b1e2bda54f1877a6224b3162c708a6bfd51c243cdae0f51a0084d1b92be84"},
+    {"id": "ncc_00", "family": "vcg_no_precorrection", "row": 0, "report": "outputs/ai_vcg_ncc_ablation_v1/report.json", "report_sha256": "d8b13e6c987875487dce5779e0112f55ccc44b2fb2f8f9874802af56f98cd6b2", "lut": "outputs/ai_vcg_ncc_ablation_v1/00_lut.npy", "lut_sha256": "637d4049eb803b4645da7849c2e4596acf312e2e97ca5d36af960e08fa551e8b"},
+    {"id": "ncc_01", "family": "vcg_no_precorrection", "row": 1, "report": "outputs/ai_vcg_ncc_ablation_v1/report.json", "report_sha256": "d8b13e6c987875487dce5779e0112f55ccc44b2fb2f8f9874802af56f98cd6b2", "lut": "outputs/ai_vcg_ncc_ablation_v1/01_lut.npy", "lut_sha256": "344af72c43231567d0cc1e6f0af13b90bd7322bb2fb438989342e6660798f095"},
+    {"id": "ncc_02", "family": "vcg_no_precorrection", "row": 2, "report": "outputs/ai_vcg_ncc_ablation_v1/report.json", "report_sha256": "d8b13e6c987875487dce5779e0112f55ccc44b2fb2f8f9874802af56f98cd6b2", "lut": "outputs/ai_vcg_ncc_ablation_v1/02_lut.npy", "lut_sha256": "a9daf0a847e1b91a870b4829a51f22af20a674be4481804508ffea912cdc19ae"}
+  ]
+}

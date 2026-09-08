@@ -107,11 +107,13 @@ the long-term AI objective.
   Keep simple implementation on the current configured light model. Do not claim
   a runtime model switch that was not actually performed.
 - Use web GPT-6 Pro for self-contained high-difficulty scientific reasoning.
-  Current transport preflight is LOCAL_UNAVAILABLE: the installed Chrome skill
-  points at old paths and requires APIs absent from the bundled client. Astra
-  medium verified this without browser access. No web Pro advice has been obtained;
-  this does not block locally justified implementation or authorize a silent model
-  substitute. Protected skills are not modified as part of project work.
+  Current live transport check: the bundled client exposes only one IAB browser,
+  no Chrome extension connection. Astra medium corrected its earlier overly strict
+  API-unavailable judgment: current extension IDs and markHandoff can preserve the
+  old privacy invariants. The compatible initialization was actually run, but did
+  not find Chrome. No ChatGPT page was opened and no web Pro advice obtained.
+  This does not block local implementation or authorize a silent model substitute.
+  Protected skills are not modified as part of project work.
 - Before stopping for human help, ask an appropriate subagent for alternative
   approaches. Subagents cannot supply human credentials, permissions or preferences.
 - Use sleep for waits. Preserve independent negative evidence and correct prior
@@ -144,6 +146,37 @@ It does not certify uint8 quantization, preprocessing, photographic content or
 appearance. No projection budget, new model fit or new photograph is admitted by
 that diagnostic alone. A later stability projection must beat strength-matched
 simple shrinking and must not turn a proxy improvement into a photographic win.
+
+## Completed mechanism diagnostic and remaining decision
+
+Astra high implemented the four owned continuous-LUT audit files and ran the
+frozen CPU analysis once. Evidence:
+`docs/evidence/AI_COURSE_CORRECTION_FOLLOWUP_20260908.json` binds the 12 arrays and
+report (SHA 03e17ddfd9aa200c5645f257bc6e279aec2afef4c8f17831be6e5a72c9f14bc5).
+23 focused/adjacent tests and Ruff pass. Each variant covers 3,375 cells and
+27,000 one-sided vertices. Node-clipped gain estimates are VCG
+3.81446/7.99494/7.31021 and NCC 5.03629/6.40505/8.02277. All global residual
+sufficient conditions are INCONCLUSIVE. This is not a claim of non-injectivity,
+photographic failure, uint8 safety, or a certified floating-point bound. No
+projection, model inference, training or new-photo evaluation occurred.
+
+The bounded recovery matrix subsequently recovered all 21 missing links using
+original manifests and the hash-bound NCC parent: now 18 exact-byte original
+groups, 99 linked outputs, zero unresolved links within the six-family scope.
+Nine recovery-audit tests pass. This closes only link recovery; same-subject
+encoding/ICC/preprocessing equivalence and earlier-best-model identification are
+not proved. Do not repeat recovery to manufacture a winner.
+
+Next design question: can an automatically stabilized learned LUT preserve useful
+nonlinear style better than strength-matched global shrinking? No kappa, solver,
+projection method or admission threshold is selected yet. The independent web
+GPT-6 Pro prompt is saved at
+`outputs/user_style_catalog_20260908/web6pro_science_request_v1.json` and has NOT
+been sent. Live browser inventory contains only IAB; Astra medium determined the
+web branch needs the user to open/connect Chrome extension. A concise asynchronous
+request has been issued. Do not read profiles or change extensions to bypass it.
+The long-term Goal remains active and unmet; local correction/diagnostic success
+must not be reported as AI photographic success.
 
 ## Paste this into the new task
 
