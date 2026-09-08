@@ -58,7 +58,14 @@ sunflower G0/G1 tied; no spatial SA-LUT win. Root inspected native G1 and0.65
 four-way sheets3/5/8. STOP additional SA-LUT spatial architecture/tuning on this
 JPEG branch. G0 not promoted; G1 not deployable. Evidence:
 docs/evidence/SA_LUT_G1_SPATIAL_ADJUDICATION_20260908.json.
-No active fitting/inference process; next bounded content-coverage decision pending medium.
+No active fitting/inference process; next medium decision: at most3 new DEVELOPMENT sources for G0 only, fixedref18
+and0.65; Original/simple/G0, no further SA/G1. Inspect existing first64 FiveK
+development manifest via configs/u5_r2ay0_fivek_neutral_base_parameter_pilot_v1.json
+for first suitable close portrait and different-light portrait; rawpixls source15
+(RAL card) can cover small text. Actual portrait availability/native source dimensions
+NOT VERIFIED yet; do not touch confirmation holdout or upscale256px caches. Freeze
+inputs before outputs. If no suitable assets, record gap; if skin/shadows fail, stop
+checkpoint additions and send evidence to science bridge. No new experiment launched.
 
 ### First actual SA-LUT photographs
 
