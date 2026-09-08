@@ -1,0 +1,14 @@
+{
+  "status": "EXACT_UNCHANGED_RESUME_LAUNCHED",
+  "session": 42892,
+  "medium_readonly_findings": {
+    "completed_contiguous_prefix": 3104,
+    "unstarted": 390,
+    "partial_candidates": 0,
+    "preflight": "READY",
+    "remaining_cpu_seconds": 9239.065625,
+    "remaining_wall_seconds": 6798.406
+  },
+  "policy": "Skip allcompleted metrics; same input code config thresholds; attempt0001cost retained; newattempt0002; no metric replay needed",
+  "observation": "Do not read mutablelive progress; observe immutable completed projections/processidentity. Reader contention plausible cause only, not proven."
+}

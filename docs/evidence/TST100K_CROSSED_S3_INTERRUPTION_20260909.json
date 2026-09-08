@@ -1,0 +1,45 @@
+{
+  "status": "S3_INTERRUPTED_PROGRESS_REPLACE_WINERROR5_RECOVERY_UNDER_REVIEW",
+  "failure_evidence": {
+    "accounting.json": {
+      "sha256": "f82851c279136f5c141495abddb9698ff2d8595d0970015b806ad84002ac8fec"
+    },
+    "failure.json": {
+      "sha256": "f82851c279136f5c141495abddb9698ff2d8595d0970015b806ad84002ac8fec"
+    },
+    "worker.log": {
+      "sha256": "09699eb3c0db8a37a4802969f7737df3c29ba028770fe5d632088493dc91090c"
+    },
+    "progress.json": {
+      "sha256": "0e6e58648e3a11593da9ee89283f68f10649d55b422e5d96365d2f9784870ccc"
+    }
+  },
+  "accounting": {
+    "aggregate_cpu_seconds": 8760.934375,
+    "active_wall_seconds": 7601.594000000012,
+    "peak_tree_rss_bytes": 260259840,
+    "live": false,
+    "exit_code": 1,
+    "failure": "WORKER_EXCEPTION_OR_INTERRUPTION",
+    "owned_processes": [
+      {
+        "pid": 71864,
+        "create_time": 1788903520.7761264,
+        "cpu_seconds": 0.0,
+        "peak_rss_bytes": 5242880
+      },
+      {
+        "pid": 65376,
+        "create_time": 1788903520.7891479,
+        "cpu_seconds": 7398.328125,
+        "peak_rss_bytes": 153219072
+      }
+    ]
+  },
+  "observed_terminal_session": {
+    "id": 24021,
+    "exit_code": 1
+  },
+  "cause_ceiling": "PermissionError replacing progress json; transient reader contention possible but unproven. No metric failure or CPU wall resource exhaustion reported.",
+  "next": "Medium read-only exact resume adjudication; no pinned code changes or threshold adjustments."
+}
