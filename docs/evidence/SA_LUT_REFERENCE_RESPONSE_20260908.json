@@ -1,0 +1,25 @@
+{
+  "status": "VERIFIED_NOT_PROMOTED",
+  "artifact_count": 27,
+  "report_sha256": "33277b76377978ef95cbab6683cabf5e9082027ca254630e7db553e3fb4e08d0",
+  "reference_change_metrics": [
+    {
+      "source_index": 0,
+      "salut_reference_change_rgb_mae_255": 13.719947814941406,
+      "g0_reference_change_rgb_mae_255": 5.318674087524414
+    },
+    {
+      "source_index": 1,
+      "salut_reference_change_rgb_mae_255": 6.351595878601074,
+      "g0_reference_change_rgb_mae_255": 4.913708686828613
+    },
+    {
+      "source_index": 2,
+      "salut_reference_change_rgb_mae_255": 7.9934916496276855,
+      "g0_reference_change_rgb_mae_255": 6.191521644592285
+    }
+  ],
+  "interpretation": "Sensitivity only, not reference accuracy. Medium viewed both references and all 12 SA-LUT/G0 images; direction partially matches, predominantly cyan shifts. Spatial superiority unproved.",
+  "legacy_control": "old_ncc remains reference18, not a matched reference02 control.",
+  "root_review": "Three full-size reference02 SA-LUT outputs inspected; cyan casts and crushed flower-background tones remain."
+}

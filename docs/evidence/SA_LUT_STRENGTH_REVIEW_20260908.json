@@ -1,0 +1,25 @@
+{
+  "status": "VERIFIED_NOT_PROMOTED",
+  "verified_source_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "verified_previews": 27,
+  "recommendation": 0.65,
+  "root_review": "All nine comparison sheets inspected",
+  "medium_review": "Indices 3,5,8 inspected; independently prefers 0.65",
+  "limits": [
+    "Display RGB strength only; no per-image colour tuning",
+    "Petal bands and compressed shadows remain",
+    "Not independent validation or accurate film-stock reproduction"
+  ],
+  "report": "outputs/salut_strength_preview_v1/report.json",
+  "gallery": "outputs/salut_strength_preview_v1/index.html"
+}

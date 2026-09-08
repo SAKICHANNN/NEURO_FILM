@@ -2,17 +2,20 @@
 
 ## 2026-09-08 correction: current execution authority
 
-### Latest user visual priority
+### Latest user visual priority (corrected)
 
-User: "我们宁愿有失真的结果也要绝对避免和原图太像".
-Near-identity appearance is a hard failure for candidate display. Prefer visibly
-strong transformation even with distortion; do not rescue a candidate by blending
-it back toward the original or attenuating strength into invisibility. Record
-colour/contrast distortion and any person/text/geometry damage explicitly. Earlier
-conservative aesthetic/severe-colour gates must not silently exclude visibly
-changed exploratory results against this preference. Do not claim content safety
-where damage exists. Existing frozen experiments remain unchanged; interpret and
-present their full outcomes under this new stated preference.
+Latest user clarification: visible difference remains essential, but this does NOT
+mean deliberately dark, harsh or oversaturated output. Strength may be lowered to
+look comfortable while still rich. This overrides earlier blanket prohibitions on
+attenuation/identity mixing. Use uniform declared output-appearance strengths, not
+per-image hand-tuned colour recipes. Medium admits display RGB interpolation at
+0.65/0.8/1.0 over the existing nine outputs (float32, one final rounding;1.0 reuses
+original output). This is a preview control, not a new trained model or physical
+exposure blend. Root inspected all nine strength panels; medium inspected3/5/8. Both provisionally
+prefer uniform0.65 for comfortable richness, not a proven user winner. All27 previews
+are hash/formula verified; outputs/salut_strength_preview_v1/index.html shows all nine.
+Keep native reference02-response comparison separate and unchanged. Record colour,
+contrast, person/text/geometry loss honestly; near-identity still fails the goal.
 
 ### Nine-photo completion and next discriminating experiment
 
@@ -28,7 +31,12 @@ and manifest-first reference02 instead of18, unchanged checkpoint/seed48/512/que
 two CPU threads,3 forwards/600s/4GiB; keep SA-LUT/G0/LUT/context and reuse old18 results.
 02 was visually inspected by medium: cyan sunny sky, brighter yellow-green vegetation,
 warm stone, distinct from18. No best-of reference search. Output difference alone
-proves sensitivity, not accurate reference following. This next run is not launched.
+proves sensitivity, not accurate reference following. Run COMPLETE_NOT_PROMOTED:
+3 CPU forwards,44.203s,2822668288-byte tree peak,exit0. Medium inspected both
+references and all12 SA-LUT/G0 outputs: visible response mostly cyan shifts; accurate
+reference following and spatial superiority remain unproved. Root verified all27 artifact hashes/shapes and inspected three full-size new outputs.
+RGB MAE reference-change is13.72/6.35/7.99 for SA-LUT and5.32/4.91/6.19 for G0
+(on0..255 scale): sensitivity only. Evidence SA_LUT_REFERENCE_RESPONSE_20260908.json.
 No locks or inference processes remain active.
 
 ### First actual SA-LUT photographs
