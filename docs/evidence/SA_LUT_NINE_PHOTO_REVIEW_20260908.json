@@ -1,0 +1,121 @@
+{
+  "status": "NINE_CONSUMED_PHOTOS_COMPLETE_VISIBLE_DISPLAYABLE_NOT_PROMOTED",
+  "parent_three_evidence": "docs/evidence/SA_LUT_THREE_PHOTO_REVIEW_20260908.json",
+  "remaining_six_report_sha256": "046c48c1cf9c6278cd94c6e888f5614b039deed3502e46dcbbb2c681e33c9d6b",
+  "config_sha256": "448644a8f88a5540ae7bce3b72627598b8b7963d95f98f1140559fd4cc931726",
+  "runner_sha256": "58061684574753525d4f5bb85a8f33b72b5c0eed11103e8825dc128e56f64acc",
+  "frozen_parent_runner_sha256": "9446a923cb149d299a650d900c987a3ab788419c8f89938ef66be4ced5240dff",
+  "supervisor": {
+    "exit_code": 0,
+    "peak_observed_rss_bytes": 2822688768,
+    "sampled_tree_rss_peak_bytes": 2811441152,
+    "owned_pid_create_times": {
+      "67364": 1788861051.2554057,
+      "39988": 1788861051.2647676
+    },
+    "individual_peak_rss_bytes": {
+      "67364": 5091328,
+      "39988": 2817597440
+    },
+    "worker_wall_seconds": 87.75,
+    "rss_limitation": "0.1-second worker-tree sampling including venv redirector descendants, PID/create-time bound. Budget uses conservative sum of per-process historical peaks (Windows peak working set where available), not simultaneous allocator reservation. Only observed owned tree is terminated."
+  },
+  "verified_remaining_artifacts": 54,
+  "metrics": [
+    {
+      "index": 3,
+      "rgb_mae_0_255": 30.43860626220703,
+      "pixel_fraction_maxchannel_gt10": 0.9869878831814416,
+      "g0_rgb_mae": 8.56968879699707,
+      "g0_pixel_fraction_maxchannel_gt2": 0.9422431648715824,
+      "new_endpoint_pixel_fraction": 0.17507715410107705
+    },
+    {
+      "index": 4,
+      "rgb_mae_0_255": 33.8134765625,
+      "pixel_fraction_maxchannel_gt10": 0.99765664160401,
+      "g0_rgb_mae": 11.098066329956055,
+      "g0_pixel_fraction_maxchannel_gt2": 0.9430968045112782,
+      "new_endpoint_pixel_fraction": 0.00010233918128654971
+    },
+    {
+      "index": 5,
+      "rgb_mae_0_255": 29.908430099487305,
+      "pixel_fraction_maxchannel_gt10": 0.9873377703826955,
+      "g0_rgb_mae": 10.371407508850098,
+      "g0_pixel_fraction_maxchannel_gt2": 0.9410820507487521,
+      "new_endpoint_pixel_fraction": 0.21133787437603993
+    },
+    {
+      "index": 6,
+      "rgb_mae_0_255": 39.49785232543945,
+      "pixel_fraction_maxchannel_gt10": 0.9975989632422243,
+      "g0_rgb_mae": 12.810469627380371,
+      "g0_pixel_fraction_maxchannel_gt2": 0.965325164938737,
+      "new_endpoint_pixel_fraction": 5.537229029217719e-05
+    },
+    {
+      "index": 7,
+      "rgb_mae_0_255": 29.576904296875,
+      "pixel_fraction_maxchannel_gt10": 0.9595890768588137,
+      "g0_rgb_mae": 7.122993469238281,
+      "g0_pixel_fraction_maxchannel_gt2": 0.8904516499582289,
+      "new_endpoint_pixel_fraction": 0.131547096908939
+    },
+    {
+      "index": 8,
+      "rgb_mae_0_255": 21.29123878479004,
+      "pixel_fraction_maxchannel_gt10": 0.7788779342723005,
+      "g0_rgb_mae": 9.36009407043457,
+      "g0_pixel_fraction_maxchannel_gt2": 0.702293427230047,
+      "new_endpoint_pixel_fraction": 0.3270011737089202
+    }
+  ],
+  "review": [
+    {
+      "index": 3,
+      "visible_change": "strong",
+      "appearance": "Bright sky, deep cool foreground, narrow warm distant band",
+      "cost": "Foreground readability lost; sky detail reduced",
+      "spatial_vs_g0": "Visible extra compression; medium prefers G0 while retaining clear style"
+    },
+    {
+      "index": 4,
+      "visible_change": "strong",
+      "appearance": "Cyan-blue water/sky, orange wood and shallows",
+      "cost": "Bright wood gradation and harder shadows",
+      "spatial_vs_g0": "Shared LUT carries main style; no clear spatial advantage"
+    },
+    {
+      "index": 5,
+      "visible_change": "strong",
+      "appearance": "Cream-gold yellow flowers, red wood table, deep background",
+      "cost": "Spatial petal bands/patches and dark background",
+      "spatial_vs_g0": "Medium prefers smoother G0 petals; spatial distortion explicitly retained"
+    },
+    {
+      "index": 6,
+      "visible_change": "strong",
+      "appearance": "Cyan sky, red brick, cool road and stronger local contrast",
+      "cost": "Paler highlights, hard contrast and emphasized texture/noise",
+      "spatial_vs_g0": "Visible extra darkening; G0 retains palette; no established advantage"
+    },
+    {
+      "index": 7,
+      "visible_change": "strong",
+      "appearance": "Warm pale stone, cool cyan sculpture, near-black vegetation/shadows",
+      "cost": "Substantial shadow texture loss and bright stone compression",
+      "spatial_vs_g0": "Additional local blackening; no demonstrated value over G0"
+    },
+    {
+      "index": 8,
+      "visible_change": "strong",
+      "appearance": "Red-brown walls, bright lamp, near-black TV/chair/picture",
+      "cost": "Severe dark-detail loss; locally uneven wall tones",
+      "spatial_vs_g0": "G0 maintains strong colour change with less local unevenness; no superiority"
+    }
+  ],
+  "review_scope": "Root viewed all six new 1600px outputs and five-arm sheets6..8; medium viewed all15 individual versions3..5 plus reference18. Earlier three reviews retained.",
+  "claim_ceiling": "All nine visibly changed under user priority accepting distortion; learned conditional transforms differ from fixed simple contrast and old NCC. This is not independent validation, native RAW evidence, accurate Portra matching, or proof spatial mixing beats a global transform.",
+  "next": "Medium prioritizes reference-response ablation before G1: fixed inputs0/1/2, replace reference18 with manifest-first reference02, same model/512/query512/seed48/two CPU threads; 3 forwards/600s/4GiB and save SA-LUT/G0/LUT/context. Reuse all reference18 outputs. Directional response must match reference change; difference alone is insufficient. Not launched."
+}

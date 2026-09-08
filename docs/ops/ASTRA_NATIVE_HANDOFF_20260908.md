@@ -14,6 +14,23 @@ changed exploratory results against this preference. Do not claim content safety
 where damage exists. Existing frozen experiments remain unchanged; interpret and
 present their full outcomes under this new stated preference.
 
+### Nine-photo completion and next discriminating experiment
+
+All nine consumed sources now complete under unchanged model/reference18/settings.
+Remaining-six run: six CPU forwards,87.75s,2822688768-byte conservative tree peak,
+exit0;54 remaining artifacts verified. Root saw all six new full-size images and
+five-arm sheets6..8; medium saw all15 versions3..5. All visibly changed/displayable
+under the new preference. Costs include blackened garden/interior and petal bands.
+G0 already retains the principal look, and medium prefers G0 on garden/flowers;
+spatial superiority is unproved. Evidence: SA_LUT_NINE_PHOTO_REVIEW_20260908.json.
+Next medium decision: reference-response ablation before G1. Use original inputs0/1/2
+and manifest-first reference02 instead of18, unchanged checkpoint/seed48/512/query512,
+two CPU threads,3 forwards/600s/4GiB; keep SA-LUT/G0/LUT/context and reuse old18 results.
+02 was visually inspected by medium: cyan sunny sky, brighter yellow-green vegetation,
+warm stone, distinct from18. No best-of reference search. Output difference alone
+proves sensitivity, not accurate reference following. This next run is not launched.
+No locks or inference processes remain active.
+
 ### First actual SA-LUT photographs
 
 COMPLETE_NOT_PROMOTED: fixed reference18, consumed source indices0/1/2, original
