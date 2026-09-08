@@ -45,11 +45,20 @@ Medium adjudication: finish nine-photo G1 before spending independent samples.
 Frozen configs/salut_g1_projection_v1.json:21-cube bounded LUT;64px checkerboard
 blocks with4px borders excluded,16384 uniformly selected fit pixels,remaining
 parity validation; normalized second differences lambda0.001. Zero network forwards,
-2 CPU threads,600s total,4GiB tree RSS. Implementation and execution NOT STARTED.
+2 CPU threads,600s total,4GiB tree RSS. COMPLETE:9 fits,27.015s,450359296-byte conservative tree peak,exit0;54
+artifacts verified and9 disjoint spatial splits checked;4096 render pixels checked
+per source. Medium caught SciPy status3/inner-LSMR false-success risk before launch;
+runner records inner stop status and excludes unconverged initial solutions.
 Verify disjoint coordinates, hashes, convergence and validation colour-cell coverage.
 Compare native and uniform0.65 SA-LUT/G0/G1 visually. If global controls preserve look
 and are cleaner, stop adding SA-LUT spatial architecture; G1 is a teacher-assisted
 control, not a deployable learned replacement. No tuning based on validation errors.
+Blinded medium review completed all9: G0 leads7 (several weak), fruit all tied,
+sunflower G0/G1 tied; no spatial SA-LUT win. Root inspected native G1 and0.65
+four-way sheets3/5/8. STOP additional SA-LUT spatial architecture/tuning on this
+JPEG branch. G0 not promoted; G1 not deployable. Evidence:
+docs/evidence/SA_LUT_G1_SPATIAL_ADJUDICATION_20260908.json.
+No active fitting/inference process; next bounded content-coverage decision pending medium.
 
 ### First actual SA-LUT photographs
 
