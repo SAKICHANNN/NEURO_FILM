@@ -1,0 +1,54 @@
+{
+  "status": "ROOT_ALL3494_COMPACT_ARTIFACTS_VERIFIED_NOT_PHOTOGRAPHIC_ADMISSION",
+  "report_sha256": "a08444541de928fea507b7dfed50785d0d70600bd9af33b321317ef7ac1b4bfb",
+  "queue_sha256": "82cbe66ae48bd58af88161536d1d8f86effdb795c95eaf3d8a3ba5202c2a7a0b",
+  "counts": {
+    "PROVISIONAL_NUMERICAL_SOLVE_ONLY": 3491,
+    "NUMERICAL_FAILURE_NOT_ADMITTED": 3
+  },
+  "artifact_hashes_verified": 6988,
+  "independent_interpolation_queries_per_grid": 256,
+  "max_float64_difference": 8.049116928532385e-16,
+  "failures_preserved": [
+    {
+      "operator_key": "f7adf974bb7f3164e427b2f91468244839b5772af8d105a5f4218023b6ce7da0",
+      "split": "fit",
+      "status": "NUMERICAL_FAILURE_NOT_ADMITTED"
+    },
+    {
+      "operator_key": "ce82eff6f03b88945fd5b51ca20ed0e33126719238e38fb455271686ec95efd7",
+      "split": "fit",
+      "status": "NUMERICAL_FAILURE_NOT_ADMITTED"
+    },
+    {
+      "operator_key": "3f0dea5b19678633584c0b9599ffb5042b098691744ac292c044995d2c46680b",
+      "split": "monitor",
+      "status": "NUMERICAL_FAILURE_NOT_ADMITTED"
+    }
+  ],
+  "actual_run_accounting": {
+    "aggregate_cpu_seconds": 5067.2625,
+    "active_wall_seconds": 4498.3429999999935,
+    "peak_tree_rss_bytes": 337518592,
+    "owned_processes": [
+      {
+        "pid": 33564,
+        "create_time": 1788898868.4136207,
+        "cpu_seconds": 0.03125,
+        "peak_rss_bytes": 5238784
+      },
+      {
+        "pid": 37028,
+        "create_time": 1788898868.4225223,
+        "cpu_seconds": 4290.84375,
+        "peak_rss_bytes": 229666816
+      }
+    ],
+    "exit_code": 0,
+    "failure": null,
+    "live": false
+  },
+  "verification_cpu_seconds": 4.09375,
+  "real_photo_reads_in_verification": 0,
+  "claim_ceiling": "Numerical census complete; appearance, geometry, visibility and learned generalization not established"
+}
