@@ -1,0 +1,44 @@
+{
+  "status": "COMPLETE_CONSUMED_FIT_REPLAY_NO_PROMOTION",
+  "artifacts": {
+    "scripts/run_tst_reference_fit_replay.py": "ba1f0bb7197e4e2e80d1455a9153f85743eca9ee8c19b33a3524358c51170cdf",
+    "outputs\\tst_reference_fit_replay_v1\\protocol.json": "8554dfcc7b3f07c074f4430b2b61df8bcbaee959f7f64e7aa2a66f801b950548",
+    "outputs\\tst_reference_fit_replay_v1\\replay\\report.json": "48dd2973a6dc81c31773519b03866681419ace3111c85770da15c4f8fa80af8c",
+    "outputs\\tst_reference_fit_replay_v1\\replay\\partial_metrics.json": "3348068499dbc86e3be987b24216fa76a79574a17140cf2e90e0c9f44e67a07b",
+    "outputs\\tst_reference_fit_replay_v1\\replay\\lock.json": "a2e832b1b1c13bc9a38351521e498efec14ea0876ac394e8eab28408f71bb731"
+  },
+  "frozen_inputs_reverified": true,
+  "groups": 20,
+  "targets": 40,
+  "Q": {
+    "A": 0.8465265357785812,
+    "B": 0.7720004651467629,
+    "C": 0.779663396146403
+  },
+  "C_wins_over": {
+    "A": 14,
+    "B": 8
+  },
+  "switch_pass_groups": {
+    "A": 0,
+    "B": 2,
+    "C": 1
+  },
+  "C_under_half_switch_magnitude_groups": 18,
+  "budget": {
+    "cpu_limit": 581.421875,
+    "actual_accounted_cpu_seconds": 2.703125,
+    "remaining_cpu_seconds": 578.71875,
+    "tree_peak_rss_bytes": 209141760,
+    "wall_seconds": 2.8280000000086147
+  },
+  "checks": [
+    "Ruff PASS",
+    "all40 stored teacher foldB errors reproduced within1e-10",
+    "all20 A predictions exactly invariant toR",
+    "same hash-bound check switching function and frozen descriptor-only prediction",
+    "all frozen input pins unchanged after run"
+  ],
+  "claim": "Failure exists on consumed fit owners, not merely owner-held-out generalization. Weak training-set switch magnitude is compatible with limited/head-shrunk representation or label/feature mismatch, not proof of a single cause. No parameter changes or extra fits; no new inference to photos outside consumed fit set; no photographic or human preference validation.",
+  "next": "Focused6Pro diagnosis using fit/check matrix before choosing one new fixed learning experiment; do not add features or sweep parameters automatically."
+}
