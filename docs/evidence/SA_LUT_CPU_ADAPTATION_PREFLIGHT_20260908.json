@@ -1,0 +1,158 @@
+{
+  "status": "cpu_synthetic_full_network_consistency_passed_not_photographic_evidence",
+  "query_chunk_report_sha256": "44c0985202bf058fb0c15bd3dd34ab055e49ec5d314c4ec4689f74636d4b19c3",
+  "checkpoint_sha256": "5ad3685cf6bbf14230d71580b9b93f03e76bf6d7dfaceecd0a3527341cc92f2b",
+  "checkpoint_tensor_count": 208,
+  "inference_model_tensor_count": 88,
+  "vgg": {
+    "strict_load": true,
+    "key_count": 34,
+    "sha256": "804ca2835ecf7539f0cd2a7ac3c18ce81e6f8468969ae7117ac0c148d286bb4a"
+  },
+  "cases": [
+    {
+      "dtype": "torch.float32",
+      "chunk": 1,
+      "attention_max_abs": 5.364418029785156e-07,
+      "channel_attention_max_abs": 2.682209014892578e-07
+    },
+    {
+      "dtype": "torch.float32",
+      "chunk": 7,
+      "attention_max_abs": 1.7881393432617188e-07,
+      "channel_attention_max_abs": 8.940696716308594e-08
+    },
+    {
+      "dtype": "torch.float32",
+      "chunk": 32,
+      "attention_max_abs": 0.0,
+      "channel_attention_max_abs": 0.0
+    },
+    {
+      "dtype": "torch.float32",
+      "chunk": 129,
+      "attention_max_abs": 0.0,
+      "channel_attention_max_abs": 0.0
+    },
+    {
+      "dtype": "torch.float64",
+      "chunk": 1,
+      "attention_max_abs": 6.661338147750939e-16,
+      "channel_attention_max_abs": 3.3306690738754696e-16
+    },
+    {
+      "dtype": "torch.float64",
+      "chunk": 7,
+      "attention_max_abs": 1.1102230246251565e-15,
+      "channel_attention_max_abs": 5.551115123125783e-16
+    },
+    {
+      "dtype": "torch.float64",
+      "chunk": 32,
+      "attention_max_abs": 0.0,
+      "channel_attention_max_abs": 0.0
+    },
+    {
+      "dtype": "torch.float64",
+      "chunk": 129,
+      "attention_max_abs": 0.0,
+      "channel_attention_max_abs": 0.0
+    }
+  ],
+  "source_sha256": "fae31ab74cf858e595593d85b8699cd9796e2da07bf00c3485f64f660e5e6e20",
+  "scope": "CPU only. No photos, full network, GPU, training, downloads or integration. Existing CPU interpolation failure remains valid.",
+  "next": "Proceed to original 512x512 protocol and bounded photographic comparison after medium resource/adoption decision. Do not add more same-scope microchecks.",
+  "query_chunk_script_sha256": "3c699d5b6c5460c611b1aa5e82699a8a86f530664382ac0f056a412d7eec4964",
+  "cuda_index_report_sha256": "d9f5072f5ebe4b240bc518c7d49eb467a1efd4ced623308f767a45d079080e36",
+  "cuda_index": {
+    "source": "data\\external\\salut_v1\\repo\\SA-LUT\\quadrilinear_cpp\\src\\quadrilinear4d_kernel.cu",
+    "source_sha256": "a18d0b62f0abb3c5572d38c7adafbfe19ab1a64ca47b8fbe7fa07c54b74055ce",
+    "model_sha256": "fae31ab74cf858e595593d85b8699cd9796e2da07bf00c3485f64f660e5e6e20",
+    "script_sha256": "6bf34cce2aea5a240b92ab41f7aac6fe3a3ecda17a354aea29012dcb6476bde2",
+    "seed": 48,
+    "samples": 1096,
+    "dtype": "float32 expressions / float64 independent reference",
+    "storage_axes": [
+      "output_channel",
+      "context",
+      "B",
+      "G",
+      "R"
+    ],
+    "shape": [
+      3,
+      2,
+      17,
+      17,
+      17
+    ],
+    "channel_shift": 9826,
+    "binsize_numerator": 1.000001,
+    "binsize_float32": 0.06250005960464478,
+    "index_min": 0,
+    "index_max": 9825,
+    "max_abs_error": 2.324476462423064e-07,
+    "mean_abs_error": 2.932945440625942e-08,
+    "identity_max_abs_error": 1.7881393432617188e-07,
+    "max_weight_sum_error": 1.7881393432617188e-07,
+    "minimum_weight": 0.0,
+    "rgb_one_lower_index": 15,
+    "rgb_negative_lower_index": -1,
+    "rgb_1point00001_lower_index": 16,
+    "passed": true,
+    "prior_attempt_correction": "Initial ephemeral reference reduced the wrong axis; corrected to R then G then B then context. Initial 0.69359 difference was a reference bug, not a CUDA finding.",
+    "claim_ceiling": "CPU arithmetic comparison only; no CUDA execution, compilation, full network, image inference or backward validation. Published CPU extension uses incompatible context/grid indexing and is not this reference."
+  },
+  "full_network": {
+    "report_path": "outputs\\ai_nonlut_science_bridge_v1\\full_network_cpu\\attempt-0002\\report.json",
+    "report_sha256": "5e6fc9a3052c22052bfc7103c7bb5cb43c36b50702895fb6925849abbad10288",
+    "comparisons": {
+      "output": {
+        "shape": [
+          1,
+          3,
+          64,
+          64
+        ],
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "finite": true,
+        "dense_sha256": "c5c2087e3f3d2ae2a8899d38f7159eb4365277621bcf3af8d5de765dbd1a7e2d",
+        "chunk_sha256": "c5c2087e3f3d2ae2a8899d38f7159eb4365277621bcf3af8d5de765dbd1a7e2d"
+      },
+      "lut": {
+        "shape": [
+          1,
+          3,
+          2,
+          17,
+          17,
+          17
+        ],
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "finite": true,
+        "dense_sha256": "c4408ac403f5c28836eebf7edd35d0a8b5ab8344f9d14b3d937f859907fc0d52",
+        "chunk_sha256": "c4408ac403f5c28836eebf7edd35d0a8b5ab8344f9d14b3d937f859907fc0d52"
+      },
+      "context": {
+        "shape": [
+          1,
+          1,
+          64,
+          64
+        ],
+        "max_abs_error": 0.0,
+        "mean_abs_error": 0.0,
+        "finite": true,
+        "dense_sha256": "e0db70e21e36608a6d9183a7c3089cdf412296dcce11fa1119a3cb62d54809df",
+        "chunk_sha256": "e0db70e21e36608a6d9183a7c3089cdf412296dcce11fa1119a3cb62d54809df"
+      }
+    },
+    "completed_forwards": 2,
+    "elapsed_seconds": 0.5780000000086147,
+    "standard_lut_calls": 2,
+    "script_sha256": "66e4ddbcabbaf66fece0341c1c90842b007c3248acdfcf81b4e884c4a64b2153",
+    "checkpoint_loading": "88 checkpoint model tensors plus sole constructor-derived nonlearned tvmn.weight_c; strict=True; original zero-forward failure retained"
+  }
+}

@@ -2,7 +2,44 @@
 
 ## 2026-09-08 correction: current execution authority
 
+### CPU adaptation progress
+
+SA-LUT CPU micropreflight passed: VGG strict-load 34 keys; checkpoint has 208
+tensors including 88 inference model keys. Eight dense/query-chunk comparisons
+pass (FP32 maximum 5.3644e-7); independent CUDA-expression vs axis-lerp checks
+pass on 1096 points (maximum 2.3245e-7). Both scripts and source hashes are retained
+in docs/evidence/SA_LUT_CPU_ADAPTATION_PREFLIGHT_20260908.json. These are CPU
+synthetic arithmetic checks, not CUDA/full-network/photo evidence. The known
+published CPU extension failure remains valid. Medium admitted a separately
+identified 64px synthetic dense/chunked full-network check, at most two forwards,
+two CPU threads and 120 seconds. COMPLETE: two forwards, 0.578s worker time;
+context/LUT/output hashes all identical. Sole missing deterministic TV buffer
+tvmn.weight_c rebuilt from pinned constructor with strict=True; original zero-forward
+load failure retained. No photos or GPU. Next is original 512 protocol and bounded
+photographic comparison, not more same-scope microchecks.
+
 ### Latest architecture preference
+
+Latest user role clarification: Astra medium owns adjudication and codebase-grounded
+thinking. Deep science, algorithm/literature exploration and computation belong
+to web 6 Pro via `codex-bridge-chatgpt`. High remains temporarily unused. The
+bridge Doctor and existing consent both returned READY. A dedicated in-app tab
+visibly selected Latest / Pro 5 of 5 (composer label 6 Pro); one sanitized,
+validated packet was submitted, with evidence under
+`outputs/ai_nonlut_science_bridge_v1/`. The old Chrome-connection blocker no longer
+applies to this user-requested bridge transport. The scientific answer completed
+after a visible 18m19s. The single Copy response action failed, retained in
+browser_evidence.json. The user then explicitly authorized DOM extraction of
+this completed answer only. That scoped recovery succeeded; result.md now holds
+the actual answer, with raw text retained separately. Packet/result/pair validators
+pass. Medium completed local adoption: accept only a bounded CPU compatibility
+preflight of existing SA-LUT assets. SA-LUT is spatial two-LUT mixing, not wholly
+non-LUT and not a promoted mainline. Preserve the known CPU interpolation defect,
+LOG/SDR uncertainty and noncommercial licence boundary. No new downloads, training
+or whole-network inference authorized by the research recommendation. Adoption and
+an honest incomplete run receipt are in the bridge output directory. The admitted CPU checks and reduced synthetic full-network comparison are now
+complete; see the current CPU progress section above.
+Never resubmit this research request.
 
 The user prefers nontraditional learning methods beyond a simple LUT, while
 allowing LUT if evidence shows it is the best approach. No such superiority has

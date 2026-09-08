@@ -1,0 +1,25 @@
+{
+  "scope": "Astra medium codebase and metadata adjudication; not a scientific ranking or global data inventory",
+  "user_preference": "Prefer nontraditional learned methods beyond simple LUT; LUT remains admissible if justified by evidence",
+  "role_policy": "Medium: local adjudication and codebase thinking. Bridge web 6 Pro: deep science, algorithms, literature and computation. High temporarily unused.",
+  "local_candidates": [
+    {"name": "reference-conditioned multiscale local operator fields", "status": "provisional direction for scientific review, no ready checkpoint", "assets": ["src/eval/fivek_bilateral_affine_capacity.py", "local DINOv2-small weights", "paired FiveK manifests"], "missing": "reference-conditioned predictor and validated learning signal"},
+    {"name": "learned region correspondence assigning explicit operators", "status": "more complex provisional alternative", "assets": ["src/eval/fivek_semantic_pseudopair_flow.py"], "missing": "actual spatial assignment model, correspondence supervision and missing-region handling"},
+    {"name": "learned multiscale luminance/chroma operator parameters", "status": "concept only in bounded local inspection", "missing": "photographic checkpoint, implemented predictor and supervision"}
+  ],
+  "not_learned_spatial_assets": [
+    "src/models/local_color_maps.py uses heuristic masks and authored colour constants",
+    "src/models/film_response_volume.py uses authored STYLE_PARAMS",
+    "src/models/chroma_residual.py applies supplied residuals but is not a trained predictor",
+    "CFM/Mamba/KAN/VAE directory names and interface stubs do not establish complete implemented models"
+  ],
+  "metadata_audit": [
+    {"path": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json", "sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20", "pairs": 509, "development": 381, "confirmation": 128, "fields": "source/target/aligned expert paths and hashes, pair identity, camera, alignment, split", "cross_content_same_processing_style_group": "not evidenced"},
+    {"path": "outputs/fivek_auto_optimize/freeze_v1/manifest.csv", "sha256": "f820faf3dc872597b5259181040c07a2fc044c22423e05bc9db05096d88fc174", "pairs": 128, "fields": "RAW default render, Expert C, filtered target, colour domain and difference statistics", "cross_content_same_processing_style_group": "not evidenced"}
+  ],
+  "data_interpretation": "Expert C identifies an editor, not a shared look. build_fivek_freeze_pack.py filtered targets depend on each image's own Expert C edit; common mixture strengths do not establish common editing parameters. DINO/Sinkhorn pseudopairs do not supply verified shared processing identity.",
+  "next_local_question": "If required by the scientific proposal, check bounded corresponding recipe/XMP/Lightroom metadata for real shared processing identity, distinguishing common preset from per-image exposure/white balance. Otherwise retain ordinary paired-edit supervision claims only.",
+  "pixels_opened_by_metadata_audit": 0,
+  "new_training": false,
+  "product_promotion": false
+}
