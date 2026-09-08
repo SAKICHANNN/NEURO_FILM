@@ -1,3 +1,7 @@
+Current 2026-09-08: TST global diagnosis executed40 outputs (22 reused after serialization failure,18 recovered),35 solver-converged/5 nonconverged; full comparison INCONCLUSIVE. All20 low-lambda fits approximate5 postselected targets well; not learned reference prediction. Total496.719s CPU,109 artifact files verified and4096 interpolation samples/output exact. Original failure and8-target aesthetic gateFAIL preserved. Next32-source/two-reference64triplet metadata frozen,160 files not acquired; see TST100K_GLOBAL_ORACLE_COMPLETED_20260908.json and TST100K_REFERENCE_SWITCH_FREEZE_20260908.json under docs/evidence. No trained/promoted candidate.
+
+Root and medium leaves complete; no live worker and no file locks for TST oracle/recovery/reference-switch scripts. Previous RUNNING entries below are historical.
+
 > **Current authority — 2026-09-08 major correction:** AI must learn the key photographic film-style transform. No learned candidate is promoted. Read `docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md` (correction section) before choosing work. Earlier active/next/ULT/LOOK2 statements below are historical unless explicitly retained there. Preserve negative results and existing defaults; do not resume manual palette development or infrastructure expansion as a substitute for appearance value.
 
 Latest user correction: comfortable but rich and visibly different; do not deliberately create harsh/dark oversaturation. Uniform output strength previews0.65/0.8/1 are allowed; earlier blanket no-attenuation rule superseded. Keep native reference-response experiment separate.
@@ -11,6 +15,9 @@ G1 COMPLETE:9 fits/27.015s/450MB;54 artifacts verified. Medium blinded all9: G0 
 Native G0 content COMPLETE_NOT_PROMOTED:3 full-resolution SDR16 photos/58.406s/3.537GB,30 artifacts verified. Root+medium3 whole/5 detail review fails comfortable skin (orange-red, hard eye shadows); text readable. STOP checkpoint additions; bridge6Pro reconsideration submitted ONCE, RUNNING in IAB tab5 at https://chatgpt.com/c/6a9fe63c-f4f4-83ec-abd2-0afa0685346e . Evidence outputs/ai_post_salut_science_bridge_v1/browser_evidence.json. Same-tab UI Copy only once after completion; no new DOM authorization. No live process. Root owns scripts/run_salut_g0_native_content.py, configs/salut_g0_native_content_v1.json, evidence.
 
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
+
+2026-09-08 medium DONE: metadata-only32x2 reference-switch manifest frozen;24/8groups,96fileowners,160newfiles required;64row exact membership/owner checks and Ruff PASS. No images/HEAD/training/student scaffolds.
+Locks released: scripts/prepare_tst100k_reference_switch_manifest.py; configs/tst100k_reference_switch_v1.json; outputs/tst100k_reference_switch_v1/.
 
 2026-09-08 medium READY_FOR_ROOT_REVIEW: serialization-only repair and one-time18-task recovery prepared;5 tests/Ruff PASS;64 reused-file hashes and full lock JSON roundtrip PASS; zero recovery fits. Original attempt0001 remains WORKER_FAILED/read-only.
 Locks released: scripts/run_tst100k_global_oracle.py; scripts/run_tst100k_global_oracle_recovery.py; configs/tst100k_global_oracle_recovery_v1.json; tests/test_tst100k_global_oracle.py.

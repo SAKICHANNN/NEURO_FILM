@@ -1,0 +1,19 @@
+{
+  "identity": "tst100k_reference_switch_metadata_v1",
+  "manifest": "outputs/post_salut_tst100k_metadata_v1/triplet.json",
+  "manifest_sha256": "5e71ea9eb3255d0169f042d5fe4f9904f5ef9849024cba98fce74c5299159413",
+  "consumed_candidates": "outputs/post_salut_tst100k_metadata_v1/candidate8_metadata.json",
+  "consumed_candidates_sha256": "3621d7cfdb6cbcb56d0419a2b75880a943cb3a28814db4838c3d08bf573ee7ef",
+  "repository": "ToneStyle/TST100K",
+  "revision": "63bf13833b75407c862d608c3d81281d0a35b61f",
+  "local_originals": "outputs/post_salut_tst100k_target_review_v1/originals",
+  "output": "outputs/tst100k_reference_switch_v1",
+  "seed": 48,
+  "groups": 32,
+  "targets_per_source": 2,
+  "development_fit_groups": 24,
+  "development_check_groups": 8,
+  "selection": "Build owner map only from exact content-to-gt paths; reject every (content,reference) key with multiple distinct gt. Require known reference owner. Exclude all original8 source/ref owners. Sort content by SHA256('48|'+path), rows by SHA256('48|'+json.dumps(row,sort_keys=True)) with Python default separators; deterministic greedy accept2 distinct target paths and2 distinct unused reference owners, all distinct from source. Reserve all3 owners only when pair complete. Stop at32 groups. First24 fit, last8 check. Never replace after image viewing.",
+  "boundaries": "File-owner grouping only: not capture/person/burst/edit-family independence. No inference of look equivalence from filenames. Known relation X,R,Y is observed annotation, not demonstrated perceptual difference. Metadata preparation independent of partial global-oracle results; no training admission or target-quality gate pass.",
+  "scope": "No HEAD, pixels, downloads, fitting, training or student architecture. Per-image remote bytes/SHA unknown until future frozen acquisition metadata verification. Research-only source terms remain; no commercial integration permission."
+}
