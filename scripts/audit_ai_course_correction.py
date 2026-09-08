@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 from pathlib import Path
@@ -67,6 +68,51 @@ def recovery_matrix(root: Path, images: dict) -> dict:
     )
     paths = {im["path"]: im for im in images.values()}
     groups, unresolved, metadata = {}, [], {}
+    manifest_links = {}
+    output_root = (root / "outputs").resolve()
+    parent_path = "outputs/ai_vcg_reference_development_v3/report.json"
+    ncc_path = "outputs/ai_vcg_ncc_ablation_v1/report.json"
+    if (root / parent_path).exists() and (root / ncc_path).exists():
+        ncc = read(root, ncc_path)
+        verify_report(root, parent_path, ncc["parent_report_sha256"])
+        parent = read(root, parent_path)
+        for row in ncc["rows"]:
+            pair = parent["rows"][row["id"]]["pair"]
+            source_path = Path(pair["content_path"]).resolve()
+            if source_path.is_relative_to(output_root):
+                source_key = source_path.relative_to(output_root).as_posix()
+                if source_key.startswith(
+                    "color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/"
+                ):
+                    verify_report(root, "outputs/" + source_key, pair["content_sha256"])
+                    manifest_links[
+                        f"ai_vcg_ncc_ablation_v1/{row['id']:02d}_ncc.png"
+                    ] = {
+                        "path": source_key,
+                        "link_evidence": ncc_path
+                        + " -> hash-bound parent content_path",
+                    }
+    for manifest in (root / "outputs/ai_recovery_20260907").glob("**/manifest.csv"):
+        with manifest.open(encoding="utf-8", newline="") as stream:
+            for row in csv.DictReader(stream):
+                if not row.get("before") or not row.get("after"):
+                    continue
+                before_path, after_path = (
+                    Path(row["before"]).resolve(),
+                    Path(row["after"]).resolve(),
+                )
+                if before_path.is_relative_to(
+                    output_root
+                ) and after_path.is_relative_to(output_root):
+                    before_key = before_path.relative_to(output_root).as_posix()
+                    after_key = after_path.relative_to(output_root).as_posix()
+                    if before_key.startswith(
+                        "color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/"
+                    ):
+                        manifest_links[after_key] = {
+                            "path": before_key,
+                            "link_evidence": str(manifest.relative_to(root)),
+                        }
 
     def identity(path):
         if path not in metadata:
@@ -113,6 +159,8 @@ def recovery_matrix(root: Path, images: dict) -> dict:
                 (paths[p.as_posix()] for p in candidates if p.as_posix() in paths), None
             )
         if before is None:
+            before = manifest_links.get(im["path"])
+        if before is None:
             unresolved.append(im["path"])
             continue
         source = identity(before["path"])
@@ -125,6 +173,9 @@ def recovery_matrix(root: Path, images: dict) -> dict:
                 "path": im["path"],
                 "metadata": identity(im["path"]),
                 "family": im["path"].split("/")[0],
+                "original_link": before.get(
+                    "link_evidence", "catalog or same-directory identity filename"
+                ),
             }
         )
     return {

@@ -1,3 +1,4 @@
+import csv
 import hashlib
 
 import pytest
@@ -64,3 +65,25 @@ def test_reference_family_is_not_filtered_as_reference_image(tmp_path):
     assert len(matrix["groups"]) == 1
     assert len(matrix["groups"][0]["outputs"]) == 2
     assert matrix["unresolved_originals"] == []
+
+
+def test_manifest_recovers_original_missing_from_catalog(tmp_path):
+    folder = tmp_path / "outputs/ai_recovery_20260907/neural_s800/ektar_100"
+    after = folder / "after/01_ektar_100_neural_lut.png"
+    before = (
+        tmp_path
+        / "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/source.jpg"
+    )
+    after.parent.mkdir(parents=True)
+    before.parent.mkdir(parents=True)
+    Image.new("RGB", (8, 8), "blue").save(before)
+    Image.new("RGB", (8, 8), "red").save(after)
+    with (folder / "manifest.csv").open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.DictWriter(stream, fieldnames=["before", "after"])
+        writer.writeheader()
+        writer.writerow({"before": str(before), "after": str(after)})
+    images = {1: {"id": 1, "path": after.relative_to(tmp_path / "outputs").as_posix()}}
+    matrix = recovery_matrix(tmp_path, images)
+    assert matrix["unresolved_originals"] == []
+    assert len(matrix["groups"]) == 1
+    assert matrix["groups"][0]["outputs"][0]["original_link"].endswith("manifest.csv")
