@@ -1,0 +1,82 @@
+{
+  "reviewer": "Root and Astra medium agents; nonblind development review, not human preference evidence",
+  "scope": "all8 fixed boards; additional native source/target07 and08",
+  "preliminary_count": 5,
+  "required_count": 6,
+  "gate": "FAIL_NOT_ADMITTED_FOR_TRAINING_OR_ORACLE",
+  "pixel_alignment": "Same dimensions and visually corresponding geometry; numerical pixel alignment not established",
+  "severe_content": "No obvious changed geometry or invented text in inspected views; not exhaustive native-pixel safety proof",
+  "rows": [
+    {
+      "index": 1,
+      "visibly_changed": true,
+      "comfortable_rich": false,
+      "reason": "Strong cool treatment but purple-red skin and dark face are uncomfortable"
+    },
+    {
+      "index": 2,
+      "visibly_changed": true,
+      "comfortable_rich": true,
+      "reason": "Moderate visible warm-red portrait; facial detail remains visible"
+    },
+    {
+      "index": 3,
+      "visibly_changed": true,
+      "comfortable_rich": false,
+      "reason": "Aggressive cyan sky/shadows and orange-red objects; harsh palette"
+    },
+    {
+      "index": 4,
+      "visibly_changed": true,
+      "comfortable_rich": true,
+      "reason": "Distinct warm yellow-green wedding treatment, compatible with reference"
+    },
+    {
+      "index": 5,
+      "visibly_changed": true,
+      "comfortable_rich": false,
+      "reason": "Visible increased white haze but no rich appearance; washed-out target"
+    },
+    {
+      "index": 6,
+      "visibly_changed": true,
+      "comfortable_rich": true,
+      "reason": "Less harsh orange and more restrained golden night scene"
+    },
+    {
+      "index": 7,
+      "visibly_changed": true,
+      "comfortable_rich": true,
+      "reason": "Warm brown portrait with stronger contrast, native face features intact in comparison"
+    },
+    {
+      "index": 8,
+      "visibly_changed": true,
+      "comfortable_rich": true,
+      "reason": "Visible neutral warm-brown night look; sign lettering retained in inspected native view, dark background"
+    }
+  ],
+  "color_limitations": "ProPhoto header PCS Z differs from common D50 encoding by2/65536. Pillow RGB8 and imagecodecs LCMS16-to8 comparisons agree within1 code, mean<0.0011; sharedLCMS is not independent colorimetric validation. Untagged06/08 assumed sRGB.",
+  "final_count": 5,
+  "medium_agreement": "All8 independently viewed after root observations supplied; same5 acceptable,04/07 borderline",
+  "decision": "FAIL fixed8 target gate; no full-sample training or oracle fitting admitted. Do not infer entire dataset failure.",
+  "next_adjudication": {
+    "status": "ADMITTED_FOR_PROTOCOL_PREPARATION_NOT_STARTED",
+    "scope": "Explicitly postselected representation diagnosis on acceptable targets02/04/06/07/08; not full-sample gate rescue",
+    "global_grid_sizes": [
+      17,
+      33
+    ],
+    "cpu_threads": 2,
+    "wall_seconds_cap": 600,
+    "prerequisites": [
+      "Verify native alignment and color support",
+      "Freeze objective, block folds, convergence and reporting before fitting"
+    ],
+    "no_new_downloads": true,
+    "no_training": true,
+    "no_model_forwards": true,
+    "spatial_diagnostic": "Deferred until concrete unresolved defect",
+    "claim_ceiling": "Ability to express selected targets; not reference understanding, independent generalization, or dataset population quality"
+  }
+}

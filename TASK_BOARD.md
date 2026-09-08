@@ -12,6 +12,10 @@ Native G0 content COMPLETE_NOT_PROMOTED:3 full-resolution SDR16 photos/58.406s/3
 
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
+2026-09-08 medium DONE: fixed TST100K 8-triplet/24-file acquisition and ICC-managed review. All 24 exact files retained; 8 boards complete; independent medium review 5/8, frozen gate FAIL.
+Locks released: scripts/prepare_tst100k_target_review.py; outputs/post_salut_tst100k_target_review_v1/.
+No training/fitting, no extra reference-before images, no old asset changes. Root owns bridge/evidence.
+
 Current NEW science: TST100K public108808-triplet metadata verified, no pixels.
 Medium admits independent scientific question. One packet sent to verified6Pro,
 IAB tab6 https://chatgpt.com/c/6a9ff0b0-8268-83ec-ad45-fdc62847602e . RUNNING,
