@@ -2,6 +2,8 @@
 
 Current scoped tasks: codex course-correction DONE; Astra high continuous-LUT numerical diagnostic DONE (23 tests); bounded six-family original-link recovery DONE (9 tests, 99 outputs). Owned file locks released. Next: independent web GPT-6 Pro mechanism critique WAIT_CHROME_CONNECTION; no projection/training/default promotion admitted. Long-term Goal ACTIVE, not achieved. Evidence and continuation: docs/ops/ASTRA_NATIVE_HANDOFF_20260908.md. Foreign dirty files remain excluded.
 
+Implementation completed: codex / Astra medium / ai_single_reference_batch_development_v1 / CPU_READY_RESOURCE_DEFERRED. 21 CPU tests passed; real preflight verified nine inputs, 18 model/source files, and byte-exact reconstruction of all four cached daisy PNGs. Prospective cap is 8.5 GiB, admission free >=9216 MiB / used <=2560 MiB / utilization <=10%; observed 2300 MiB used, 9645 MiB free, 27% utilization, so zero forwards and no output/model load. Implementation locks released for configs/ai_single_reference_batch_development_v1.json, scripts/run_ai_single_reference_batch_development.py, tests/test_ai_single_reference_batch_development.py. Main agent owns handoff and scheduling. No commit or GPU launch performed.
+
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
 > 2026-08-01: U6.P8BR closes the current public VFGS default soft-window

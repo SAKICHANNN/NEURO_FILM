@@ -33,6 +33,10 @@ cloud use beyond separately specified execution scope.
 
 ### Current photographic development round
 
+Latest user override: temporarily do not use Astra high. The running high worker
+was interrupted; Astra medium now owns completion of the existing implementation
+and CPU checks. This changes delegation cost, not the scientific objective.
+
 Fix Italy reference `18.jpg` across source-manifest rows 0–8, all already
 consumed development photographs. These are existing 1600-pixel-wide RGB JPEG
 neutral renders without embedded ICC profiles, not native-resolution RAW tests.
@@ -47,9 +51,15 @@ learned outputs for every source, including failures.
 Retain seed 48, 25 sampling steps and 512-pixel conditioning. No training or
 parameter grid. Reuse the existing daisy/reference-18 result only after exact
 input, configuration and output identity checks; at most eight new forwards,
-600 seconds and 9.5 GiB CUDA allocation. Implementation and CPU checks may proceed
+600 seconds and 8.5 GiB CUDA allocation. Before any new inference, medium revised
+the initial 9.5 GiB proposal downward: the old measured peak was 7.67 GiB; admission
+now requires at least 9216 MiB free, at most 2560 MiB used and at most 10 percent
+GPU utilization. This leaves about 851 MiB above the old allocation peak and at
+least 512 MiB beyond the new allocation cap for other device overhead. It is a
+bounded development budget, not an OOM guarantee; failure does not authorize an
+automatic larger-budget retry. Implementation and CPU checks may proceed
 while the GPU is occupied. Launch requires a fresh resource check; do not stop
-or compete with existing user activity. Current status: Astra high implementing
+or compete with existing user activity. Current status: Astra medium completing
 the bounded runner; root independently reviews and schedules execution. Review
 all nine photographs and defects before choosing a further development change.
 No independent-validation or product-promotion claim follows from this round.
