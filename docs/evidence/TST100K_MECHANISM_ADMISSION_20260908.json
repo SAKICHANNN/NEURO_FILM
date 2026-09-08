@@ -1,0 +1,389 @@
+{
+  "status": "FROZEN_MECHANISM_ADMISSION",
+  "reviewer": "root agent nonblind; boards previously consumed",
+  "rubric_source": "ai_reference_mechanism_science_bridge_v1/result.md; medium admitted single-pass rubric",
+  "groups": [
+    {
+      "group": 0,
+      "direction": "compatible",
+      "cue": "contrast/tonal compression",
+      "evidence": "R2 has lifted brown-grey shadows and compressed wood tones; Y2 lifts black trousers/hair to brown-grey relative to sharper Y1, agreeing with assigned pairing. R1 and Y1 retain clearer warm light neutrals.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 1,
+      "direction": "compatible",
+      "cue": "neutral-color bias/chroma",
+      "evidence": "R1 and Y1 suppress most warm signage into green/near-white over neutral dark pavement; R2 and Y2 share magenta-biased signage and wet pavement. Comparable night signage/pavement cue favors assigned over swapped.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 2,
+      "direction": "compatible",
+      "cue": "shadow lift/deepening",
+      "evidence": "R1/Y1 share visibly lifted warm-brown black point in night portrait; R2/Y2 retain deep black surroundings and warmer red highlights. Assigned pairing favored on comparable dark clothing/background.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 3,
+      "direction": "compatible",
+      "cue": "neutral-color bias/shadow lift",
+      "evidence": "R1/Y1 show rose-muted shadows, while R2/Y2 brown-yellow black clothing and warm skin. Correspondence visible on clothing/skin; this does not validate edit identity.",
+      "detail": [
+        "no new concern at board scale",
+        "quarantined prior specific hair/dress detail loss"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "excluded"
+      },
+      "exclusion_reasons": {
+        "Y2": "quarantined prior specific hair/dress detail loss"
+      }
+    },
+    {
+      "group": 4,
+      "direction": "compatible",
+      "cue": "neutral-color bias/contrast",
+      "evidence": "R1/Y1 have clearer bright plate neutrals and vivid red; R2/Y2 have warmer cream highlights and mauve darker plate shadows, favoring assigned pair.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 5,
+      "direction": "compatible",
+      "cue": "shadow lift/neutral-color bias",
+      "evidence": "R1/Y1 share lifted red-brown night shadows and warm lights; R2/Y2 deeper black with magenta lights and greenish neutrals.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 6,
+      "direction": "compatible",
+      "cue": "contrast/tonal compression",
+      "evidence": "R2/Y2 share pronounced yellow-green shadow lift and pink bright neutrals; R1/Y1 have darker cooler-purple shadows. Observable in skin/clothing and flower/vase dark regions.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 7,
+      "direction": "compatible",
+      "cue": "shadow lift/chroma",
+      "evidence": "R1/Y1 show raised black point and strong yellow/green chroma; R2/Y2 show deep dark foliage and more muted greens. Indoor reference subject differs, so this is only coarse treatment compatibility.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 8,
+      "direction": "compatible",
+      "cue": "neutral-color bias/chroma",
+      "evidence": "R1/Y1 warm olive foliage and cream white clothing; R2/Y2 cool near-neutral whites and desaturated background/skin.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 9,
+      "direction": "compatible",
+      "cue": "contrast/tonal compression",
+      "evidence": "R1/Y1 share very pale compressed skin and brighter red background; R2/Y2 retain skin modeling and deeper red backdrop. Y1 remains quarantined for detail concern.",
+      "detail": [
+        "quarantined prior bleached facial detail loss",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "excluded",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {
+        "Y1": "quarantined prior bleached facial detail loss"
+      }
+    },
+    {
+      "group": 10,
+      "direction": "compatible",
+      "cue": "neutral-color bias",
+      "evidence": "Comparable night architecture: R1/Y1 muted rose-brown walls/neutrals; R2/Y2 pervasive magenta bias including bright pavement/walls.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 11,
+      "direction": "compatible",
+      "cue": "chroma/neutral-color bias",
+      "evidence": "Comparable white clothing and skin: R1/Y1 orange skin and pinkish whites; R2/Y2 subdued brown skin and grey-white garments.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 12,
+      "direction": "compatible",
+      "cue": "neutral-color bias",
+      "evidence": "R1/Y1 share muted orange highlights and teal dark neutrals; R2/Y2 vivid magenta with yellow-green highlights, including nominally pale food/signage.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 13,
+      "direction": "compatible",
+      "cue": "chroma/neutral-color bias",
+      "evidence": "R1/Y1 suppress warm chroma and retain cool pale whites; R2/Y2 stronger warm orange/red food colors with deeper dark regions.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 14,
+      "direction": "compatible",
+      "cue": "chroma/contrast",
+      "evidence": "R1/Y1 have strong orange highlights and teal shadows; R2/Y2 softer muted beige neutrals and lower chroma, favoring assigned matching.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 15,
+      "direction": "compatible",
+      "cue": "neutral-color bias/shadow lift",
+      "evidence": "R1/Y1 orange highlight versus teal shadow separation; R2/Y2 cyan-biased light neutrals and lifted grey shadows throughout room/horse surfaces.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 16,
+      "direction": "compatible",
+      "cue": "neutral-color bias/contrast",
+      "evidence": "R1/Y1 brighter cleaner whites with cyan distance and vivid greens; R2/Y2 yellow-green bias in pale plate/sky and darker warm middle tones. Cross-content attribution is coarse only.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 17,
+      "direction": "compatible",
+      "cue": "neutral-color bias",
+      "evidence": "Comparable pale plates and food: R1/Y1 strong yellow warmth; R2/Y2 cooler whites and muted brown food tones.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 18,
+      "direction": "compatible",
+      "cue": "chroma",
+      "evidence": "R1/Y1 achromatic; R2/Y2 warm backlit skin and retained color. This is a clear assigned versus swapped cue.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 19,
+      "direction": "compatible",
+      "cue": "shadow lift/neutral-color bias",
+      "evidence": "R1/Y1 strongly lifted yellow/olive shadows with pink highlights; R2/Y2 darker grey-brown lifted shadows and cooler pale clothing/cloth.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 20,
+      "direction": "compatible",
+      "cue": "shadow lift/neutral-color bias",
+      "evidence": "R1/Y1 warm middle tones with dark brown shadows; R2/Y2 raised purple-grey shadows and yellow highlights with cyan pale background/sky.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    },
+    {
+      "group": 21,
+      "direction": "uncertain",
+      "cue": "uncertain",
+      "evidence": "Both references and both targets share orange/teal treatment. Different subject distributions and subtle target difference do not support a confident assigned-over-swapped cue.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {
+        "group": "No confident assigned-versus-swapped treatment cue."
+      }
+    },
+    {
+      "group": 22,
+      "direction": "compatible",
+      "cue": "neutral-color bias/contrast",
+      "evidence": "R1/Y1 cyan pale skin and lifted blue shadows; R2/Y2 warmer skin with much deeper blacks. Y2 remains excluded for prior detail concern.",
+      "detail": [
+        "no new concern at board scale",
+        "quarantined prior eye/clothing detail loss"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "excluded"
+      },
+      "exclusion_reasons": {
+        "Y2": "quarantined prior eye/clothing detail loss"
+      }
+    },
+    {
+      "group": 23,
+      "direction": "compatible",
+      "cue": "neutral-color bias",
+      "evidence": "R1/Y1 purple-grey nominal neutrals, while R2/Y2 strong cyan-blue bias in buildings/sky/ground; assigned cue visible beyond main subjects.",
+      "detail": [
+        "no new concern at board scale",
+        "no new concern at board scale"
+      ],
+      "detail_status": {
+        "Y1": "admissible",
+        "Y2": "admissible"
+      },
+      "exclusion_reasons": {}
+    }
+  ],
+  "training_started": false,
+  "check_opened": false,
+  "claim_ceiling": "Coarse nonblind agent appearance compatibility; not causal edit correspondence or human preference validation.",
+  "original_aesthetic_evidence": "docs/evidence/TST100K_REFERENCE_SWITCH_FIT_REVIEW_20260908.json",
+  "original_aesthetic_evidence_sha256": "bd01be1f806e71fd391d0338372de4368360040c6e937fa088414671ec9c0c82",
+  "summary": {
+    "compatible_groups": 23,
+    "uncertain_groups": 1,
+    "detail_excluded_targets": 3,
+    "conditional_rows": 43,
+    "complete_pairs_before_D_gate": 20,
+    "singletons": 3
+  },
+  "informative_pair_count": "pending fixed foldB DeltaE>=2; not visually inferred"
+}
