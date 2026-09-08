@@ -1,0 +1,1642 @@
+{
+  "status": "TECHNICAL_FEASIBILITY_COMPLETE_NOT_LEARNED_MODEL_ADMISSION",
+  "evidence": {
+    "outputs/tst_correspondence_operator_feasibility_v1/probe/report.json": {
+      "sha256": "ebd0f315771bbe4fe9a5bdd144caa17611ffe786bd5b81084b05bd91f02e7052",
+      "report": {
+        "status": "COMPLETE_PHASE",
+        "checks": {
+          "status": "READY",
+          "config_sha256": "39a7eb5879be8ce4150af78025bc0c94c2c9ef5de61a2c183c7dbadbd59ebc1a",
+          "remaining_cpu_seconds": {
+            "learning": 599.25
+          },
+          "scope": "8 consumed fit donor pairs, one fold direction,32 technical probe renders; no training/newdata/human-admission claim"
+        },
+        "rows": [
+          {
+            "position": 0,
+            "group": 0,
+            "target": 1,
+            "solver": {
+              "channels": [
+                {
+                  "channel": 0,
+                  "status": 1,
+                  "iterations": 16,
+                  "solver_success": true,
+                  "reported_optimality": 1.2419281775937277e-16,
+                  "projected_gradient_infinity": 1.1102230246251565e-16,
+                  "relative_projected_gradient": 2.8318210872569763e-14,
+                  "gradient_scale": 0.003920526722613562,
+                  "bound_feasible": true,
+                  "lower_active": 6,
+                  "upper_active": 10,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 1,
+                  "status": 1,
+                  "iterations": 21,
+                  "solver_success": true,
+                  "reported_optimality": 6.404246707600314e-17,
+                  "projected_gradient_infinity": 5.551115123125783e-17,
+                  "relative_projected_gradient": 2.3338818326525542e-14,
+                  "gradient_scale": 0.0023784902240816144,
+                  "bound_feasible": true,
+                  "lower_active": 9,
+                  "upper_active": 3,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 2,
+                  "status": 1,
+                  "iterations": 17,
+                  "solver_success": true,
+                  "reported_optimality": 1.7034891360468048e-17,
+                  "projected_gradient_infinity": 1.1102230246251565e-16,
+                  "relative_projected_gradient": 6.693574732819375e-14,
+                  "gradient_scale": 0.0016586399180420054,
+                  "bound_feasible": true,
+                  "lower_active": 9,
+                  "upper_active": 4,
+                  "passed": true,
+                  "solved": true
+                }
+              ],
+              "solved": true,
+              "objective": 4.526962375012628e-05,
+              "matrix_shape": [
+                9270,
+                343
+              ],
+              "matrix_nnz": 68084
+            },
+            "fit_samples": 8192,
+            "score_samples": 8192,
+            "support": {
+              "observed_nodes": 135,
+              "nodes": 343,
+              "scoring_pixels_touching_unobserved_nodes_fraction": 0.0009765625,
+              "mean_unobserved_node_interpolation_weight": 0.0001842178260575297,
+              "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+            },
+            "score": {
+              "error_mean": 0.5184851976674802,
+              "error_p95": 1.3032646786837965,
+              "identity_error": 4.723745959854521,
+              "appearance_predicate": true,
+              "claim": "Technical old-pair reconstruction; not a new scientific or photographic gate."
+            },
+            "fit_cpu_seconds": 0.671875,
+            "probe_responses": [
+              {
+                "probe": "00_X",
+                "change_deltaE_mean": 6.704902572927736,
+                "support": {
+                  "observed_nodes": 135,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0609130859375,
+                  "mean_unobserved_node_interpolation_weight": 0.0018301933457512424,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "01_X",
+                "change_deltaE_mean": 5.654642624485791,
+                "support": {
+                  "observed_nodes": 135,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.1558837890625,
+                  "mean_unobserved_node_interpolation_weight": 0.060288740490789736,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "02_X",
+                "change_deltaE_mean": 3.4082107187316613,
+                "support": {
+                  "observed_nodes": 135,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0086669921875,
+                  "mean_unobserved_node_interpolation_weight": 0.0036904839533436,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "03_X",
+                "change_deltaE_mean": 6.039530940881265,
+                "support": {
+                  "observed_nodes": 135,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0450439453125,
+                  "mean_unobserved_node_interpolation_weight": 0.0043718588110391214,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              }
+            ]
+          },
+          {
+            "position": 1,
+            "group": 0,
+            "target": 2,
+            "solver": {
+              "channels": [
+                {
+                  "channel": 0,
+                  "status": 1,
+                  "iterations": 26,
+                  "solver_success": true,
+                  "reported_optimality": 1.6076650928173138e-16,
+                  "projected_gradient_infinity": 1.1102230246251565e-16,
+                  "relative_projected_gradient": 1.94041922021245e-14,
+                  "gradient_scale": 0.0057215627069680435,
+                  "bound_feasible": true,
+                  "lower_active": 16,
+                  "upper_active": 3,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 1,
+                  "status": 1,
+                  "iterations": 25,
+                  "solver_success": true,
+                  "reported_optimality": 2.819034131601919e-17,
+                  "projected_gradient_infinity": 2.7755575615628914e-17,
+                  "relative_projected_gradient": 5.8689412368555815e-15,
+                  "gradient_scale": 0.00472923045153875,
+                  "bound_feasible": true,
+                  "lower_active": 14,
+                  "upper_active": 5,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 2,
+                  "status": 1,
+                  "iterations": 15,
+                  "solver_success": true,
+                  "reported_optimality": 3.7714239583810004e-17,
+                  "projected_gradient_infinity": 5.551115123125783e-17,
+                  "relative_projected_gradient": 1.4008138701162397e-14,
+                  "gradient_scale": 0.003962778525790261,
+                  "bound_feasible": true,
+                  "lower_active": 8,
+                  "upper_active": 4,
+                  "passed": true,
+                  "solved": true
+                }
+              ],
+              "solved": true,
+              "objective": 3.09517202682591e-06,
+              "matrix_shape": [
+                9270,
+                343
+              ],
+              "matrix_nnz": 68084
+            },
+            "fit_samples": 8192,
+            "score_samples": 8192,
+            "support": {
+              "observed_nodes": 111,
+              "nodes": 343,
+              "scoring_pixels_touching_unobserved_nodes_fraction": 0.001708984375,
+              "mean_unobserved_node_interpolation_weight": 3.19259604957865e-05,
+              "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+            },
+            "score": {
+              "error_mean": 0.33223956386706005,
+              "error_p95": 0.7228530824218988,
+              "identity_error": 7.019800586476418,
+              "appearance_predicate": true,
+              "claim": "Technical old-pair reconstruction; not a new scientific or photographic gate."
+            },
+            "fit_cpu_seconds": 0.796875,
+            "probe_responses": [
+              {
+                "probe": "00_X",
+                "change_deltaE_mean": 6.959373502604974,
+                "support": {
+                  "observed_nodes": 111,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.1673583984375,
+                  "mean_unobserved_node_interpolation_weight": 0.02828669675473397,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "01_X",
+                "change_deltaE_mean": 7.268150563387051,
+                "support": {
+                  "observed_nodes": 111,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.1497802734375,
+                  "mean_unobserved_node_interpolation_weight": 0.05958896339272083,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "02_X",
+                "change_deltaE_mean": 8.424222155886179,
+                "support": {
+                  "observed_nodes": 111,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0194091796875,
+                  "mean_unobserved_node_interpolation_weight": 0.007261626245762761,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "03_X",
+                "change_deltaE_mean": 7.233573088413865,
+                "support": {
+                  "observed_nodes": 111,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.079345703125,
+                  "mean_unobserved_node_interpolation_weight": 0.0018953504110748383,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              }
+            ]
+          },
+          {
+            "position": 2,
+            "group": 1,
+            "target": 1,
+            "solver": {
+              "channels": [
+                {
+                  "channel": 0,
+                  "status": 1,
+                  "iterations": 39,
+                  "solver_success": true,
+                  "reported_optimality": 3.656302420117913e-17,
+                  "projected_gradient_infinity": 5.551115123125783e-17,
+                  "relative_projected_gradient": 1.447589891893542e-14,
+                  "gradient_scale": 0.0038347291275048633,
+                  "bound_feasible": true,
+                  "lower_active": 28,
+                  "upper_active": 0,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 1,
+                  "status": 1,
+                  "iterations": 36,
+                  "solver_success": true,
+                  "reported_optimality": 3.868653579994566e-17,
+                  "projected_gradient_infinity": 5.551115123125783e-17,
+                  "relative_projected_gradient": 2.858664325995065e-14,
+                  "gradient_scale": 0.0019418562272761803,
+                  "bound_feasible": true,
+                  "lower_active": 1,
+                  "upper_active": 44,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 2,
+                  "status": 1,
+                  "iterations": 17,
+                  "solver_success": true,
+                  "reported_optimality": 4.859086491484275e-12,
+                  "projected_gradient_infinity": 3.2393909944930347e-12,
+                  "relative_projected_gradient": 7.032156118546718e-10,
+                  "gradient_scale": 0.004606540213106781,
+                  "bound_feasible": true,
+                  "lower_active": 62,
+                  "upper_active": 8,
+                  "passed": true,
+                  "solved": true
+                }
+              ],
+              "solved": true,
+              "objective": 0.0002061415343984339,
+              "matrix_shape": [
+                9270,
+                343
+              ],
+              "matrix_nnz": 68084
+            },
+            "fit_samples": 8192,
+            "score_samples": 8192,
+            "support": {
+              "observed_nodes": 217,
+              "nodes": 343,
+              "scoring_pixels_touching_unobserved_nodes_fraction": 0.001220703125,
+              "mean_unobserved_node_interpolation_weight": 9.76435286484836e-05,
+              "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+            },
+            "score": {
+              "error_mean": 2.4586841397752717,
+              "error_p95": 6.812402453442958,
+              "identity_error": 10.350666869506115,
+              "appearance_predicate": true,
+              "claim": "Technical old-pair reconstruction; not a new scientific or photographic gate."
+            },
+            "fit_cpu_seconds": 0.921875,
+            "probe_responses": [
+              {
+                "probe": "00_X",
+                "change_deltaE_mean": 18.501650440002287,
+                "support": {
+                  "observed_nodes": 217,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.1053466796875,
+                  "mean_unobserved_node_interpolation_weight": 0.007975471115914607,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "01_X",
+                "change_deltaE_mean": 11.141634305108106,
+                "support": {
+                  "observed_nodes": 217,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0406494140625,
+                  "mean_unobserved_node_interpolation_weight": 0.016235656278623035,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "02_X",
+                "change_deltaE_mean": 12.33743711792707,
+                "support": {
+                  "observed_nodes": 217,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0614013671875,
+                  "mean_unobserved_node_interpolation_weight": 0.002457018813107803,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "03_X",
+                "change_deltaE_mean": 11.200363010561205,
+                "support": {
+                  "observed_nodes": 217,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0640869140625,
+                  "mean_unobserved_node_interpolation_weight": 0.001982087410067909,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              }
+            ]
+          },
+          {
+            "position": 3,
+            "group": 1,
+            "target": 2,
+            "solver": {
+              "channels": [
+                {
+                  "channel": 0,
+                  "status": 1,
+                  "iterations": 14,
+                  "solver_success": true,
+                  "reported_optimality": 4.859086491748973e-12,
+                  "projected_gradient_infinity": 3.2393909944930347e-12,
+                  "relative_projected_gradient": 1.2445184761170436e-09,
+                  "gradient_scale": 0.002602927201691764,
+                  "bound_feasible": true,
+                  "lower_active": 40,
+                  "upper_active": 44,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 1,
+                  "status": 1,
+                  "iterations": 9,
+                  "solver_success": true,
+                  "reported_optimality": 5.054130126902008e-12,
+                  "projected_gradient_infinity": 3.369420084636684e-12,
+                  "relative_projected_gradient": 1.4830680171399186e-09,
+                  "gradient_scale": 0.002271925525799266,
+                  "bound_feasible": true,
+                  "lower_active": 119,
+                  "upper_active": 46,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 2,
+                  "status": 1,
+                  "iterations": 5,
+                  "solver_success": true,
+                  "reported_optimality": 2.8614467024144774e-17,
+                  "projected_gradient_infinity": 8.326672684688674e-17,
+                  "relative_projected_gradient": 1.4482191751607992e-14,
+                  "gradient_scale": 0.0057495942793079945,
+                  "bound_feasible": true,
+                  "lower_active": 1,
+                  "upper_active": 16,
+                  "passed": true,
+                  "solved": true
+                }
+              ],
+              "solved": true,
+              "objective": 7.752938637353504e-05,
+              "matrix_shape": [
+                9270,
+                343
+              ],
+              "matrix_nnz": 68084
+            },
+            "fit_samples": 8192,
+            "score_samples": 8192,
+            "support": {
+              "observed_nodes": 311,
+              "nodes": 343,
+              "scoring_pixels_touching_unobserved_nodes_fraction": 0.0010986328125,
+              "mean_unobserved_node_interpolation_weight": 0.00017876460570170972,
+              "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+            },
+            "score": {
+              "error_mean": 0.7886818024495914,
+              "error_p95": 2.5275823540973383,
+              "identity_error": 8.120667395910155,
+              "appearance_predicate": true,
+              "claim": "Technical old-pair reconstruction; not a new scientific or photographic gate."
+            },
+            "fit_cpu_seconds": 0.28125,
+            "probe_responses": [
+              {
+                "probe": "00_X",
+                "change_deltaE_mean": 25.320170110693677,
+                "support": {
+                  "observed_nodes": 311,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.006103515625,
+                  "mean_unobserved_node_interpolation_weight": 5.140433023158452e-05,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "01_X",
+                "change_deltaE_mean": 15.741575305282279,
+                "support": {
+                  "observed_nodes": 311,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.00341796875,
+                  "mean_unobserved_node_interpolation_weight": 0.00013577717121667006,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "02_X",
+                "change_deltaE_mean": 16.076889021101085,
+                "support": {
+                  "observed_nodes": 311,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0001220703125,
+                  "mean_unobserved_node_interpolation_weight": 1.57850915818399e-06,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "03_X",
+                "change_deltaE_mean": 18.02856427310399,
+                "support": {
+                  "observed_nodes": 311,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0743408203125,
+                  "mean_unobserved_node_interpolation_weight": 0.0010542115454349626,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              }
+            ]
+          },
+          {
+            "position": 4,
+            "group": 2,
+            "target": 1,
+            "solver": {
+              "channels": [
+                {
+                  "channel": 0,
+                  "status": 1,
+                  "iterations": 37,
+                  "solver_success": true,
+                  "reported_optimality": 3.5765970308358567e-16,
+                  "projected_gradient_infinity": 2.7755575615628914e-16,
+                  "relative_projected_gradient": 1.6211222971054546e-14,
+                  "gradient_scale": 0.017121210204305397,
+                  "bound_feasible": true,
+                  "lower_active": 2,
+                  "upper_active": 48,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 1,
+                  "status": 1,
+                  "iterations": 30,
+                  "solver_success": true,
+                  "reported_optimality": 2.486171106800535e-16,
+                  "projected_gradient_infinity": 1.3877787807814457e-16,
+                  "relative_projected_gradient": 8.246667578741502e-15,
+                  "gradient_scale": 0.01682835845546754,
+                  "bound_feasible": true,
+                  "lower_active": 4,
+                  "upper_active": 20,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 2,
+                  "status": 1,
+                  "iterations": 61,
+                  "solver_success": true,
+                  "reported_optimality": 1.7446814784565155e-16,
+                  "projected_gradient_infinity": 1.1102230246251565e-16,
+                  "relative_projected_gradient": 6.20331495142292e-15,
+                  "gradient_scale": 0.01789725386054263,
+                  "bound_feasible": true,
+                  "lower_active": 14,
+                  "upper_active": 20,
+                  "passed": true,
+                  "solved": true
+                }
+              ],
+              "solved": true,
+              "objective": 1.5303345373597257e-05,
+              "matrix_shape": [
+                9270,
+                343
+              ],
+              "matrix_nnz": 68084
+            },
+            "fit_samples": 8192,
+            "score_samples": 8192,
+            "support": {
+              "observed_nodes": 135,
+              "nodes": 343,
+              "scoring_pixels_touching_unobserved_nodes_fraction": 0.001220703125,
+              "mean_unobserved_node_interpolation_weight": 4.913041000886756e-06,
+              "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+            },
+            "score": {
+              "error_mean": 0.4704421619432023,
+              "error_p95": 1.1969633583518304,
+              "identity_error": 8.894284388948545,
+              "appearance_predicate": true,
+              "claim": "Technical old-pair reconstruction; not a new scientific or photographic gate."
+            },
+            "fit_cpu_seconds": 1.296875,
+            "probe_responses": [
+              {
+                "probe": "00_X",
+                "change_deltaE_mean": 9.065999237619389,
+                "support": {
+                  "observed_nodes": 135,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0133056640625,
+                  "mean_unobserved_node_interpolation_weight": 0.0011435128724205657,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "01_X",
+                "change_deltaE_mean": 8.800167135008113,
+                "support": {
+                  "observed_nodes": 135,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.12744140625,
+                  "mean_unobserved_node_interpolation_weight": 0.037400261026231424,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "02_X",
+                "change_deltaE_mean": 8.869304724201484,
+                "support": {
+                  "observed_nodes": 135,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0008544921875,
+                  "mean_unobserved_node_interpolation_weight": 7.158183806443566e-05,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "03_X",
+                "change_deltaE_mean": 8.366706742149283,
+                "support": {
+                  "observed_nodes": 135,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.1248779296875,
+                  "mean_unobserved_node_interpolation_weight": 0.002314777518741187,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              }
+            ]
+          },
+          {
+            "position": 5,
+            "group": 2,
+            "target": 2,
+            "solver": {
+              "channels": [
+                {
+                  "channel": 0,
+                  "status": 1,
+                  "iterations": 45,
+                  "solver_success": true,
+                  "reported_optimality": 2.8938033609995917e-17,
+                  "projected_gradient_infinity": 2.0816681711721685e-17,
+                  "relative_projected_gradient": 1.5469319494330562e-15,
+                  "gradient_scale": 0.01345675336226064,
+                  "bound_feasible": true,
+                  "lower_active": 24,
+                  "upper_active": 5,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 1,
+                  "status": 1,
+                  "iterations": 66,
+                  "solver_success": true,
+                  "reported_optimality": 1.5124620306172787e-17,
+                  "projected_gradient_infinity": 1.3877787807814457e-17,
+                  "relative_projected_gradient": 1.7373429886862226e-15,
+                  "gradient_scale": 0.00798793784427612,
+                  "bound_feasible": true,
+                  "lower_active": 11,
+                  "upper_active": 12,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 2,
+                  "status": 1,
+                  "iterations": 98,
+                  "solver_success": true,
+                  "reported_optimality": 1.848564704087785e-17,
+                  "projected_gradient_infinity": 1.3877787807814457e-17,
+                  "relative_projected_gradient": 2.629075359321704e-15,
+                  "gradient_scale": 0.00527858121624741,
+                  "bound_feasible": true,
+                  "lower_active": 10,
+                  "upper_active": 5,
+                  "passed": true,
+                  "solved": true
+                }
+              ],
+              "solved": true,
+              "objective": 2.5090106543680852e-05,
+              "matrix_shape": [
+                9270,
+                343
+              ],
+              "matrix_nnz": 68084
+            },
+            "fit_samples": 8192,
+            "score_samples": 8192,
+            "support": {
+              "observed_nodes": 112,
+              "nodes": 343,
+              "scoring_pixels_touching_unobserved_nodes_fraction": 0.00244140625,
+              "mean_unobserved_node_interpolation_weight": 0.0006613920867528806,
+              "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+            },
+            "score": {
+              "error_mean": 0.5762728746631987,
+              "error_p95": 1.5445725283835845,
+              "identity_error": 8.42241499697582,
+              "appearance_predicate": true,
+              "claim": "Technical old-pair reconstruction; not a new scientific or photographic gate."
+            },
+            "fit_cpu_seconds": 2.03125,
+            "probe_responses": [
+              {
+                "probe": "00_X",
+                "change_deltaE_mean": 9.737255574599688,
+                "support": {
+                  "observed_nodes": 112,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.217529296875,
+                  "mean_unobserved_node_interpolation_weight": 0.06397128768407123,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "01_X",
+                "change_deltaE_mean": 8.409740149467602,
+                "support": {
+                  "observed_nodes": 112,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.147216796875,
+                  "mean_unobserved_node_interpolation_weight": 0.0722363714571036,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "02_X",
+                "change_deltaE_mean": 8.18305457493818,
+                "support": {
+                  "observed_nodes": 112,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0252685546875,
+                  "mean_unobserved_node_interpolation_weight": 0.016626948026132144,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "03_X",
+                "change_deltaE_mean": 8.674284474014938,
+                "support": {
+                  "observed_nodes": 112,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.123291015625,
+                  "mean_unobserved_node_interpolation_weight": 0.01418533864596818,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              }
+            ]
+          },
+          {
+            "position": 6,
+            "group": 3,
+            "target": 1,
+            "solver": {
+              "channels": [
+                {
+                  "channel": 0,
+                  "status": 1,
+                  "iterations": 26,
+                  "solver_success": true,
+                  "reported_optimality": 2.4306129351451135e-17,
+                  "projected_gradient_infinity": 5.551115123125783e-17,
+                  "relative_projected_gradient": 5.283310387553622e-15,
+                  "gradient_scale": 0.01050688813627731,
+                  "bound_feasible": true,
+                  "lower_active": 18,
+                  "upper_active": 46,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 1,
+                  "status": 1,
+                  "iterations": 35,
+                  "solver_success": true,
+                  "reported_optimality": 4.527555877452256e-17,
+                  "projected_gradient_infinity": 1.1102230246251565e-16,
+                  "relative_projected_gradient": 1.8743395926357807e-14,
+                  "gradient_scale": 0.00592327574462593,
+                  "bound_feasible": true,
+                  "lower_active": 29,
+                  "upper_active": 32,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 2,
+                  "status": 1,
+                  "iterations": 11,
+                  "solver_success": true,
+                  "reported_optimality": 2.3809513812167145e-17,
+                  "projected_gradient_infinity": 5.551115123125783e-17,
+                  "relative_projected_gradient": 5.5440395118879115e-15,
+                  "gradient_scale": 0.010012762555574683,
+                  "bound_feasible": true,
+                  "lower_active": 0,
+                  "upper_active": 4,
+                  "passed": true,
+                  "solved": true
+                }
+              ],
+              "solved": true,
+              "objective": 1.2533322471607775e-05,
+              "matrix_shape": [
+                9270,
+                343
+              ],
+              "matrix_nnz": 68084
+            },
+            "fit_samples": 8192,
+            "score_samples": 8192,
+            "support": {
+              "observed_nodes": 173,
+              "nodes": 343,
+              "scoring_pixels_touching_unobserved_nodes_fraction": 0.00146484375,
+              "mean_unobserved_node_interpolation_weight": 2.398464261311303e-05,
+              "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+            },
+            "score": {
+              "error_mean": 0.5651223119823642,
+              "error_p95": 1.4745943226362002,
+              "identity_error": 12.376492803580824,
+              "appearance_predicate": true,
+              "claim": "Technical old-pair reconstruction; not a new scientific or photographic gate."
+            },
+            "fit_cpu_seconds": 0.671875,
+            "probe_responses": [
+              {
+                "probe": "00_X",
+                "change_deltaE_mean": 8.867868062807045,
+                "support": {
+                  "observed_nodes": 173,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.1561279296875,
+                  "mean_unobserved_node_interpolation_weight": 0.06191837071144998,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "01_X",
+                "change_deltaE_mean": 12.379984968485832,
+                "support": {
+                  "observed_nodes": 173,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0433349609375,
+                  "mean_unobserved_node_interpolation_weight": 0.02362240623568848,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "02_X",
+                "change_deltaE_mean": 13.405863043085624,
+                "support": {
+                  "observed_nodes": 173,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0648193359375,
+                  "mean_unobserved_node_interpolation_weight": 0.01625837285802887,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "03_X",
+                "change_deltaE_mean": 10.881997015054598,
+                "support": {
+                  "observed_nodes": 173,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0203857421875,
+                  "mean_unobserved_node_interpolation_weight": 0.001958275513220463,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              }
+            ]
+          },
+          {
+            "position": 7,
+            "group": 4,
+            "target": 1,
+            "solver": {
+              "channels": [
+                {
+                  "channel": 0,
+                  "status": 1,
+                  "iterations": 96,
+                  "solver_success": true,
+                  "reported_optimality": 4.8994767949352884e-17,
+                  "projected_gradient_infinity": 2.0328790734103208e-20,
+                  "relative_projected_gradient": 1.1921955929561713e-17,
+                  "gradient_scale": 0.001705155668600979,
+                  "bound_feasible": true,
+                  "lower_active": 10,
+                  "upper_active": 46,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 1,
+                  "status": 1,
+                  "iterations": 56,
+                  "solver_success": true,
+                  "reported_optimality": 6.62053392370374e-17,
+                  "projected_gradient_infinity": 1.1102230246251565e-16,
+                  "relative_projected_gradient": 1.7297274571261006e-14,
+                  "gradient_scale": 0.006418485294034499,
+                  "bound_feasible": true,
+                  "lower_active": 23,
+                  "upper_active": 6,
+                  "passed": true,
+                  "solved": true
+                },
+                {
+                  "channel": 2,
+                  "status": 1,
+                  "iterations": 19,
+                  "solver_success": true,
+                  "reported_optimality": 2.587177434093535e-17,
+                  "projected_gradient_infinity": 5.551115123125783e-17,
+                  "relative_projected_gradient": 1.1877066311396792e-14,
+                  "gradient_scale": 0.004673809994475773,
+                  "bound_feasible": true,
+                  "lower_active": 31,
+                  "upper_active": 9,
+                  "passed": true,
+                  "solved": true
+                }
+              ],
+              "solved": true,
+              "objective": 0.00011182254662445359,
+              "matrix_shape": [
+                9270,
+                343
+              ],
+              "matrix_nnz": 68084
+            },
+            "fit_samples": 8192,
+            "score_samples": 8192,
+            "support": {
+              "observed_nodes": 159,
+              "nodes": 343,
+              "scoring_pixels_touching_unobserved_nodes_fraction": 0.00048828125,
+              "mean_unobserved_node_interpolation_weight": 8.865191837980811e-07,
+              "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+            },
+            "score": {
+              "error_mean": 0.8233066381896111,
+              "error_p95": 2.040151184244818,
+              "identity_error": 7.5698143216532525,
+              "appearance_predicate": true,
+              "claim": "Technical old-pair reconstruction; not a new scientific or photographic gate."
+            },
+            "fit_cpu_seconds": 1.53125,
+            "probe_responses": [
+              {
+                "probe": "00_X",
+                "change_deltaE_mean": 4.24602426273823,
+                "support": {
+                  "observed_nodes": 159,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0059814453125,
+                  "mean_unobserved_node_interpolation_weight": 0.00020768429605164603,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "01_X",
+                "change_deltaE_mean": 4.833026352916398,
+                "support": {
+                  "observed_nodes": 159,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.094970703125,
+                  "mean_unobserved_node_interpolation_weight": 0.02345851706410289,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "02_X",
+                "change_deltaE_mean": 4.618476058766748,
+                "support": {
+                  "observed_nodes": 159,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.0020751953125,
+                  "mean_unobserved_node_interpolation_weight": 0.0007856583362796863,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              },
+              {
+                "probe": "03_X",
+                "change_deltaE_mean": 7.7839520315479955,
+                "support": {
+                  "observed_nodes": 159,
+                  "nodes": 343,
+                  "scoring_pixels_touching_unobserved_nodes_fraction": 0.07421875,
+                  "mean_unobserved_node_interpolation_weight": 0.0008286574060996062,
+                  "claim": "Node support diagnostic only; outside observed donor colors is a regularized extension, not recovered treatment truth."
+                },
+                "photographic_admission": "NOT_ASSESSED; consumed inputs, technical throughput only"
+              }
+            ]
+          }
+        ],
+        "fit_count": 24,
+        "training_updates": 0,
+        "downloads": 0,
+        "GPU_jobs": 0,
+        "worker_pid": 23832,
+        "worker_cpu_seconds": 16.953125,
+        "claim": "Bounded operator implementation/throughput evidence only; no corpus-family coverage, comfort, or learned generalization claim.",
+        "artifacts": [
+          {
+            "path": "00_00_R1_absolute_grid.npy",
+            "sha256": "450d06ab0bb6f6c43b821296d1a1e930d62ac7b330b903fe8728b1557be376c7"
+          },
+          {
+            "path": "00_00_R1_coordinates.npz",
+            "sha256": "4c5fea4ccda74b3fb9bbbc514fdff5b1e58d16ea67781145b8525c128a00b79b"
+          },
+          {
+            "path": "00_00_R1_donor.tif",
+            "sha256": "6e05538cb5bb754a86b6c3e82efa7be402455f3055db43be0c514e31a2fc504e"
+          },
+          {
+            "path": "00_00_R1_probe0.tif",
+            "sha256": "eeec4f53714a54bf283b870996c32f8f6aa3aad3c794e856bc9d9b3671845eb3"
+          },
+          {
+            "path": "00_00_R1_probe1.tif",
+            "sha256": "b57bf9f522c8da0ed048c319c00c77e4532bebda90b87380a9185c899d26dc30"
+          },
+          {
+            "path": "00_00_R1_probe2.tif",
+            "sha256": "e652027e0b601872bf48c74106d083d38e55eb0604bc3337085656d0ea26aba1"
+          },
+          {
+            "path": "00_00_R1_probe3.tif",
+            "sha256": "619bc5f3e69e83363f3906669907d77bbc5b52c0ab7783cfe32a503bcc88272f"
+          },
+          {
+            "path": "01_00_R2_absolute_grid.npy",
+            "sha256": "7af9acfbd41316c40c72715b14c83ccc0e7e7ad2006bf42a2e7378701477020e"
+          },
+          {
+            "path": "01_00_R2_coordinates.npz",
+            "sha256": "c415d963e9b9251131b7efa512212da6c7b13e3805ae4f3b3a390b854e7bb4d8"
+          },
+          {
+            "path": "01_00_R2_donor.tif",
+            "sha256": "685b2d5efd1b378cc664cad6a38250825c0294bf4eda0f4c16589b0b5fcf578c"
+          },
+          {
+            "path": "01_00_R2_probe0.tif",
+            "sha256": "829778aaaea0b67b4fdd0fc2115e3d59d84aa2c528831166e0151455ecd07840"
+          },
+          {
+            "path": "01_00_R2_probe1.tif",
+            "sha256": "8fe295f5d2c1b98c896c2b1a1191170e579cb4e5e6d92b80aa9368d41f24d777"
+          },
+          {
+            "path": "01_00_R2_probe2.tif",
+            "sha256": "e63a222e7498b8553a0f9aa4936870367e7fd985208d03dbc99518b10d0e5b3a"
+          },
+          {
+            "path": "01_00_R2_probe3.tif",
+            "sha256": "b29566046bdbf0d6fb43e09f762f8a882c608162494ff302e31930f49a1d3ac1"
+          },
+          {
+            "path": "02_01_R1_absolute_grid.npy",
+            "sha256": "d367d93c9a817006f153927e4809774cf3071b040ce3ed73a0d02ee5c09b812f"
+          },
+          {
+            "path": "02_01_R1_coordinates.npz",
+            "sha256": "4dfe8f85dfddfa619b197ca4cf7bf2c0b6d60d34e189957a9f15b23aa93d5e53"
+          },
+          {
+            "path": "02_01_R1_donor.tif",
+            "sha256": "34bfc4e0c6daf7e51a0eebb2b368ebf4ab3e58de09dc91e3149039e1bacdb185"
+          },
+          {
+            "path": "02_01_R1_probe0.tif",
+            "sha256": "b7f09eb90fb14db7f0b94e6e18a46464422a043d82445c1d38ec1298c037dba3"
+          },
+          {
+            "path": "02_01_R1_probe1.tif",
+            "sha256": "db3d98aee9b5d7d40435bcd60c7117117b51cf4b4e60b9446b7731134c79555b"
+          },
+          {
+            "path": "02_01_R1_probe2.tif",
+            "sha256": "affe074d3de9b37ee21176cf2c0d4bcb2023137050c6774d8281e264052883af"
+          },
+          {
+            "path": "02_01_R1_probe3.tif",
+            "sha256": "9cb3280ccb758742f0ea076d9e7a31d7ab06f7e4c0eef79fad6ac688811dbd82"
+          },
+          {
+            "path": "03_01_R2_absolute_grid.npy",
+            "sha256": "e315197b8949712df6377322a1b6322395348aeb95445765dcb7babc822e10f2"
+          },
+          {
+            "path": "03_01_R2_coordinates.npz",
+            "sha256": "69584d7c94e00ff431d227689ae49c5e29fc7f4ac6e1625e91016801a93f72e0"
+          },
+          {
+            "path": "03_01_R2_donor.tif",
+            "sha256": "9a83f460d6dba055d196d9132e2a4d6b05d54731d2ce0d337a23c9da0166febf"
+          },
+          {
+            "path": "03_01_R2_probe0.tif",
+            "sha256": "11f32760dad8b2281828ff88d7252a9c70f15d97c7f7fef882e2245e3521c761"
+          },
+          {
+            "path": "03_01_R2_probe1.tif",
+            "sha256": "2bf7eb863327756b08f3700bbf83bc71d452ed9d82696e2668413eed9d9b9a20"
+          },
+          {
+            "path": "03_01_R2_probe2.tif",
+            "sha256": "6413fa614f18789a7283258c0f119de5b5de3691c2e122397e761b819a365bf5"
+          },
+          {
+            "path": "03_01_R2_probe3.tif",
+            "sha256": "d7e40798f2de9a736cb6df6d92061d2da9a44521e91a475046ed5503bc2f4fe5"
+          },
+          {
+            "path": "04_02_R1_absolute_grid.npy",
+            "sha256": "4e0868f871624b6c96d4b538f2ddbcd17323e64d3c3b76d3afaaae4af16455b7"
+          },
+          {
+            "path": "04_02_R1_coordinates.npz",
+            "sha256": "e83b792d70f0fd77a46117cf759209d32ce5be5c3e2e7f41ba970a8b642c0ff4"
+          },
+          {
+            "path": "04_02_R1_donor.tif",
+            "sha256": "57ce5309f943797ee44b72eb22391dca8212c69d18a5a4bc169c92ea04ee3572"
+          },
+          {
+            "path": "04_02_R1_probe0.tif",
+            "sha256": "35c174e71ac951f6fa62d9b80c1835fc443930c229442251b2ef6c2e8d03ca21"
+          },
+          {
+            "path": "04_02_R1_probe1.tif",
+            "sha256": "d97a15a2795a0ecc577a25a7d091d286fe02bac4da0f3ce553c909426ed16a45"
+          },
+          {
+            "path": "04_02_R1_probe2.tif",
+            "sha256": "4299275998ea8f81d6db15ce11fd90b95925a5c3ae78764664c088e04b13efe1"
+          },
+          {
+            "path": "04_02_R1_probe3.tif",
+            "sha256": "6a812972725ac550e7418696a7b36a5d727691155c6414cf99832d265dac23ba"
+          },
+          {
+            "path": "05_02_R2_absolute_grid.npy",
+            "sha256": "a3165ee2a706b46e71f5020944cd59e2320846e076d5eacbe1ae255cf7cef079"
+          },
+          {
+            "path": "05_02_R2_coordinates.npz",
+            "sha256": "e61fee9ac851985eaabd24b1d7c6923a232ccb1cdb2d2610433ba92a60197849"
+          },
+          {
+            "path": "05_02_R2_donor.tif",
+            "sha256": "985a7ef31507f444ec84ff26fb811da43c92779129a113e97e13d85a41466c31"
+          },
+          {
+            "path": "05_02_R2_probe0.tif",
+            "sha256": "889fe2f15c2c32e4c20c253cd51e13d755898e3b964a2506a7eb79ecaa499470"
+          },
+          {
+            "path": "05_02_R2_probe1.tif",
+            "sha256": "4cf0f52aafd14b78ddf47ad8751fca9f7a6c92c6df3f244c449c99966c8ca851"
+          },
+          {
+            "path": "05_02_R2_probe2.tif",
+            "sha256": "f618aae8da3a7663edfa55fe48c5223ce91d115d19be7ce50dff7f612b27debc"
+          },
+          {
+            "path": "05_02_R2_probe3.tif",
+            "sha256": "29105772bdfbf9da1f655659aeb48d5abddc96be432c51b00a75c5306d0954a5"
+          },
+          {
+            "path": "06_03_R1_absolute_grid.npy",
+            "sha256": "f0a09c749be42e3cbf6dc1027f120b5e586c28dd51e810b89d7048983f846f5a"
+          },
+          {
+            "path": "06_03_R1_coordinates.npz",
+            "sha256": "0bc52a651c8e644611810fabd1a0663bc3aad0efdf938682c3f8ddda638d3d20"
+          },
+          {
+            "path": "06_03_R1_donor.tif",
+            "sha256": "548ed4b0d70ef39adaaf4807f8842179e747ea1f82d32faf864779bd7440fd55"
+          },
+          {
+            "path": "06_03_R1_probe0.tif",
+            "sha256": "a4bea2f6781db48a5cda6070b10f3eae7161fe8d2ce09af812569ff8571c7c05"
+          },
+          {
+            "path": "06_03_R1_probe1.tif",
+            "sha256": "149003e6e9e698c03ed4aad6688626784b2f98175376e6902c6c20c40f7536bc"
+          },
+          {
+            "path": "06_03_R1_probe2.tif",
+            "sha256": "37e5ee42d0b0edd72719590d6508752a798f044b85dc51574b5a7cf4b2c151e5"
+          },
+          {
+            "path": "06_03_R1_probe3.tif",
+            "sha256": "ca409460134b37b3e3d7e349ba642893047d8a0684837e19c0c24ca90360153c"
+          },
+          {
+            "path": "07_04_R1_absolute_grid.npy",
+            "sha256": "e8e21e60d4731ee8e1954cc9a114df8b50be1e8323a973c36bbae28192e2cd5f"
+          },
+          {
+            "path": "07_04_R1_coordinates.npz",
+            "sha256": "3f9b4d8cd449554318d4c9ac3927132c442060b93f5c031298463ee4e81452fc"
+          },
+          {
+            "path": "07_04_R1_donor.tif",
+            "sha256": "e4f92cf1d5abb39c5b707d305d2078c595061176fb03ee1c70ce9dcefac2f127"
+          },
+          {
+            "path": "07_04_R1_probe0.tif",
+            "sha256": "f0aad753f38b743be1acf9afa999ae745d9e3df98e1fca66184f41fc67c9c2b9"
+          },
+          {
+            "path": "07_04_R1_probe1.tif",
+            "sha256": "76843335953f745493fc12d13b65eb7be8814bc31e9f298878c89ac8d5de388b"
+          },
+          {
+            "path": "07_04_R1_probe2.tif",
+            "sha256": "45f471d8a27fc11505a6794c8f4c9abb479bc620a998efb453bd396b88d69810"
+          },
+          {
+            "path": "07_04_R1_probe3.tif",
+            "sha256": "5cd08a361ca5193bfbbf6af17b459d605eaee49557fb37a8a0f40e4c2f616abf"
+          },
+          {
+            "path": "config.json",
+            "sha256": "39a7eb5879be8ce4150af78025bc0c94c2c9ef5de61a2c183c7dbadbd59ebc1a"
+          },
+          {
+            "path": "lock.json",
+            "sha256": "76360951a0c1715da7c5b28011bc71af8d742ecb5d6a00cfaaaf72a5cd469dd0"
+          }
+        ],
+        "accounted_cpu_seconds": 20.90625,
+        "supervisor": {
+          "exit_code": 0,
+          "reason": null,
+          "remaining_category_cpu_seconds": 582.25,
+          "wall_seconds": 18.35899999999674,
+          "tree_peak_rss_bytes": 310099968,
+          "owned_pid_create_times": {
+            "28228": 1788890685.3761497,
+            "23832": 1788890685.3861334
+          },
+          "sampling": "0.1s tree sampling, final worker process CPU, conservative sum of process memory peaks"
+        },
+        "ledger": {
+          "remaining_cpu_seconds": 579.09375,
+          "remaining_wall_seconds": 581.6410000000033,
+          "scope": "New crossed-study feasibility cost; does not reset or overwrite the old distillation ledger."
+        }
+      }
+    },
+    "outputs/tst_correspondence_operator_verification_v1/report.json": {
+      "sha256": "a2751289d73fe5ddebbc7238a7e4838918fd071504b9d6ab2c465795a8ce9836",
+      "report": {
+        "status": "INDEPENDENT_INTERPOLATION_AND_ARTIFACT_CHECK_PASS",
+        "input_report_sha256": "ebd0f315771bbe4fe9a5bdd144caa17611ffe786bd5b81084b05bd91f02e7052",
+        "pinned_files": 8,
+        "artifact_hashes": 58,
+        "verification_correction": "Initial exact-zero bound assertion failed on -2.168404344971009e-19; use original frozen1e-12 bound tolerance. No solver/output changes or tolerance relaxation.",
+        "renders": [
+          {
+            "output": "00_00_R1_donor.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "00_00_R1_probe0.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "00_00_R1_probe1.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "00_00_R1_probe2.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "00_00_R1_probe3.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "01_00_R2_donor.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "01_00_R2_probe0.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "01_00_R2_probe1.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "01_00_R2_probe2.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "01_00_R2_probe3.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "02_01_R1_donor.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "02_01_R1_probe0.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "02_01_R1_probe1.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "02_01_R1_probe2.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "02_01_R1_probe3.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "03_01_R2_donor.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "03_01_R2_probe0.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "03_01_R2_probe1.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "03_01_R2_probe2.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "03_01_R2_probe3.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "04_02_R1_donor.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "04_02_R1_probe0.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "04_02_R1_probe1.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "04_02_R1_probe2.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "04_02_R1_probe3.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "05_02_R2_donor.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "05_02_R2_probe0.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "05_02_R2_probe1.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "05_02_R2_probe2.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "05_02_R2_probe3.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "06_03_R1_donor.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "06_03_R1_probe0.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "06_03_R1_probe1.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "06_03_R1_probe2.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "06_03_R1_probe3.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "07_04_R1_donor.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "07_04_R1_probe0.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "07_04_R1_probe1.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "07_04_R1_probe2.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          },
+          {
+            "output": "07_04_R1_probe3.tif",
+            "samples": 4096,
+            "maximum_code_error": 0
+          }
+        ],
+        "limitations": "Does not establish photo aesthetics, generalized operator adequacy or learned performance.",
+        "accounting": {
+          "cpu_seconds": 0.390625,
+          "wall_seconds": 0.39773219998460263
+        }
+      }
+    },
+    "outputs/tst_crossed_owner_allocation_v1/report.json": {
+      "sha256": "c8db80aa1fdcb9e3e72dbfce41779ac6395597d90afc162b3d39394f0d76c625",
+      "report": {
+        "status": "METADATA_COUNTS_FEASIBLE_NOT_DATA_OR_FAMILY_ADMISSION",
+        "config_sha256": "72f4b126aeba214b2983796ef5f866b742098634dcbc4e9bc419eb12159c526a",
+        "script_sha256": "9b6c95cdffa7920e00ac24c6a6b9fd905c412649e07c1a234b669dbd1a45f42a",
+        "source_sha256": "8335351457f63fb412c5c745dd75a02a36e03fb819797c0c802de5c22646f6ed",
+        "real_groups": 128,
+        "real_reserved_owners": 384,
+        "eligible_pool_counts": {
+          "fit": {
+            "rows": 3656,
+            "X": 2088,
+            "P": 1915,
+            "owners": 3112,
+            "files": 8772
+          },
+          "monitor": {
+            "rows": 207,
+            "X": 179,
+            "P": 173,
+            "owners": 319,
+            "files": 707
+          },
+          "constructed_test": {
+            "rows": 623,
+            "X": 494,
+            "P": 458,
+            "owners": 833,
+            "files": 1956
+          }
+        },
+        "selected_counts": {
+          "fit": {
+            "rows": 3656,
+            "X": 2088,
+            "P": 1915,
+            "owners": 3112,
+            "files": 8772
+          },
+          "monitor": {
+            "rows": 207,
+            "X": 179,
+            "P": 173,
+            "owners": 319,
+            "files": 707
+          },
+          "constructed_test": {
+            "rows": 623,
+            "X": 494,
+            "P": 458,
+            "owners": 833,
+            "files": 1956
+          }
+        },
+        "shortfalls": {
+          "fit": {
+            "X": 0,
+            "P": 0
+          },
+          "monitor": {
+            "X": 0,
+            "P": 0
+          },
+          "constructed_test": {
+            "X": 0,
+            "P": 0
+          }
+        },
+        "total_rows": 4742,
+        "total_unique_files": 12331,
+        "cross_split_X_or_P_overlap": 0,
+        "real_cross_group_role_overlap": 0,
+        "artifacts": {
+          "real_groups.jsonl": "2bbedcf12d4017998dd3edcec3e1314bc012a538c66e20b4d9f2933f5db9db16",
+          "owner_roles.json": "dd8664ef5b30720f3041acb74af79a7360e4b2118fe33fb9e2ad19972b203545",
+          "fit.jsonl": "27864cee60a73c8c5dc55a77937cf1af2fb8bb06295975e32bb6a7eedef98ad0",
+          "monitor.jsonl": "dc30f77a7b82644fe6f442c7d3283efa21a0b22488aa46069aba72c1e6fc6279",
+          "constructed_test.jsonl": "a06033df7870eb494ee9297a451c145f05e2da11788455831d85d890cb0e122d"
+        },
+        "limits": [
+          "Exact filename owner independence, not physical capture/person independence.",
+          "This prospectively supersedes simple first8192 acquisition candidate ceiling; old artifact retained unchanged.",
+          "No image data read, no family labels inferred. Curator family allocation must precede final sealing; this is prospective role reservation only.",
+          "No aesthetic, operator correctness, coverage outside observed colors, or generalization evidence."
+        ],
+        "actions": {
+          "network": 0,
+          "image_decodes": 0,
+          "downloads": 0,
+          "training": 0
+        },
+        "accounting": {
+          "cpu_seconds": 0.140625,
+          "wall_seconds": 0.17199999999138527,
+          "ledger": "New metadata preparation cost, does not reset any previous experiment."
+        }
+      }
+    },
+    "outputs/tst_crossed_owner_allocation_v1/verification.json": {
+      "sha256": "2e94c33f0753660b32da44d80aaf4a89b64d49a6fa10c64d73ace530e80e2c2a",
+      "report": {
+        "status": "PASS",
+        "report_sha256": "c8db80aa1fdcb9e3e72dbfce41779ac6395597d90afc162b3d39394f0d76c625",
+        "verified": [
+          "all artifact hashes",
+          "script AST syntax",
+          "all4742 source row identities and no duplicate index",
+          "real128 groups pair R/Y/P differences",
+          "real384 globally unique role owners",
+          "all X/P cross-split independence",
+          "minimum metadata owner counts",
+          "old first8192 candidate unchanged"
+        ],
+        "cpu_seconds": 0.078125,
+        "wall_seconds": 0.09400000001187436,
+        "no_image_or_network_actions": true
+      }
+    }
+  },
+  "next": "Qualify metadata acquisition byte scope and fresh donor family/photographic admission before large training. Keep real heldout labels unopened.",
+  "claim_ceiling": "8 old fit pairs prove bounded solver feasibility only; no new learned model, no photographic or human preference admission."
+}

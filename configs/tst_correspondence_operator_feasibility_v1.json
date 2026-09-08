@@ -1,0 +1,176 @@
+{
+  "identity": "tst_correspondence_operator_feasibility_v1",
+  "entry_sha256": "9ceb2da76ffbcf1085693c77d6d8a067e4d348e1893fa74ce1add689eff6ceb9",
+  "pins": {
+    "src/eval/tst_reference_response.py": "7730b237e912c414119049b6b263a55732e3b3461f7551ad520c67711fa9742a",
+    "src/eval/tst_correspondence_operator.py": "c0e6253709381ed447d0f1d4cd031949657dc2b2423ff0ad1e50344157e54ac0",
+    "scripts/run_tst_reference_check.py": "bdf12e11bf34f9645b43de03a49839c6a1c9eb5beced16ef2d0cf3238ceaffbe",
+    "outputs/tst_reference_pairs_v1/prepare/report.json": "ec51a9e0ea10ec4aa06eb496596d07ac746bb0c43e4ce1eb9b308496aae88a3a",
+    "outputs/tst_reference_pairs_v1/prepare/endpoints.json": "a11bc655ca4f7b7ef0172f800c1aab38b6e9db467b047441815b216f3cf8b0d3",
+    "outputs/tst_reference_pairs_v1/pair_admission.json": "45fefa482fef17ccfb6fee6b220400cbf7ea6ce5ae1dbfc33624b9562c317a98",
+    "outputs/ai_paired_teacher_generalization_science_bridge_v1/adoption.json": "11c256f06614f05a8e3a842cab78ab0e03af3a3b53eaa5b112e7237f0109f5b7",
+    "tests/test_tst_correspondence_operator.py": "8028b07d17b0f1a71eddedd344991fb95d1e49953e7a7f82d2f36c66d0fc65bc"
+  },
+  "pair_report": "outputs/tst_reference_pairs_v1/prepare/report.json",
+  "pairs": [
+    {
+      "group": 0,
+      "target": 1,
+      "before": {
+        "path": "outputs\\tst_reference_pairs_v1\\prepare\\display_srgb16\\00_R1_P.tif",
+        "sha256": "a13c911deb84c483160418d46c78916de7227c11e239a14ceeba8c51242a8bac",
+        "canonical_sha256": "7df0d2900c6edd5003ffe98adacb5ba6e02ad5246c64cb0df41d007395e071fa"
+      },
+      "after": {
+        "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/00_R1.tif",
+        "sha256": "929807bff25af4a5fe7cd61ab7a66bc710e0e929eab6fc97d2589a3c827f60c2"
+      }
+    },
+    {
+      "group": 0,
+      "target": 2,
+      "before": {
+        "path": "outputs\\tst_reference_pairs_v1\\prepare\\display_srgb16\\00_R2_P.tif",
+        "sha256": "22e8cf81b1160819e30362f07c9d188224cbb015d9712b681ed4238f5e4f4f3e",
+        "canonical_sha256": "6d625c3cd4f32a9edf2a959a6027a651ee9fa1f6030e3241f3bb776deb12ce6f"
+      },
+      "after": {
+        "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/00_R2.tif",
+        "sha256": "c9e490d40adda97bc8ee71fcdd53bcbd68bd5661db85336c865e1f3110a2c729"
+      }
+    },
+    {
+      "group": 1,
+      "target": 1,
+      "before": {
+        "path": "outputs\\tst_reference_pairs_v1\\prepare\\display_srgb16\\01_R1_P.tif",
+        "sha256": "5576a739f929d513fc95535063934a8623b1fbfb1895dd5b945756901730141e",
+        "canonical_sha256": "1000836c0ed9546849b5668a3c20554f80c7859baf7a593a42fc3f48779303d9"
+      },
+      "after": {
+        "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/01_R1.tif",
+        "sha256": "7d184124375f062f8ea2dd86566426df07266cde6a98165078d81080db7cec7f"
+      }
+    },
+    {
+      "group": 1,
+      "target": 2,
+      "before": {
+        "path": "outputs\\tst_reference_pairs_v1\\prepare\\display_srgb16\\01_R2_P.tif",
+        "sha256": "a73915c7dee3454242da0b4a702f747045499d1a6b6819fe4c4755b9c39f71ce",
+        "canonical_sha256": "bbba05927c8fc59ef927762b3756a418a377e63bfb12ff8fc8f01c8281adffbd"
+      },
+      "after": {
+        "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/01_R2.tif",
+        "sha256": "314372f529eee56b2f8557d781a32acb3a09becb23c50b830e63831127851a12"
+      }
+    },
+    {
+      "group": 2,
+      "target": 1,
+      "before": {
+        "path": "outputs\\tst_reference_pairs_v1\\prepare\\display_srgb16\\02_R1_P.tif",
+        "sha256": "59fa04f87fd94a8e733db0427fc7a75bab8323491ae9a51d35f5089214d34bd1",
+        "canonical_sha256": "a9d3bf1ed1f4aaff2f538da95d5bcafe98fc07786d35821598943e75fd284f87"
+      },
+      "after": {
+        "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/02_R1.tif",
+        "sha256": "36a15ac4cd3337f8713c7702f96d144791953dc0605fac95ed7644f3c5051066"
+      }
+    },
+    {
+      "group": 2,
+      "target": 2,
+      "before": {
+        "path": "outputs\\tst_reference_pairs_v1\\prepare\\display_srgb16\\02_R2_P.tif",
+        "sha256": "22784ca2867715ba6cdd7fefb0e3275f68fcf7845a6c9be97df0d558334664e2",
+        "canonical_sha256": "70e3851f0d949c52bf10a79cd506e517c6d2403ffa8b6521823c53097f9c3b4e"
+      },
+      "after": {
+        "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/02_R2.tif",
+        "sha256": "8772cd56b0a21efeefc6a97cf89874057418b6365374c233ced752de09b0d1d1"
+      }
+    },
+    {
+      "group": 3,
+      "target": 1,
+      "before": {
+        "path": "outputs\\tst_reference_pairs_v1\\prepare\\display_srgb16\\03_R1_P.tif",
+        "sha256": "d11beeac2d5d51db306aea576a4e1ecee7c31f1e4bc9434a534822ae1696a1cd",
+        "canonical_sha256": "1c05a66be7fdb149d1b07dae740416e76ee1e4c0575a0224f61249bd4c62d156"
+      },
+      "after": {
+        "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/03_R1.tif",
+        "sha256": "525499fca88c4fb7f2b10de0ed29da14430f4f8742d235ad54a0665b3c8d1e28"
+      }
+    },
+    {
+      "group": 4,
+      "target": 1,
+      "before": {
+        "path": "outputs\\tst_reference_pairs_v1\\prepare\\display_srgb16\\04_R1_P.tif",
+        "sha256": "fb75baa72f1aec842f59023d587f42c4d66f90be1e787936b32a095c8d468fd5",
+        "canonical_sha256": "e027d31910bea06b453d86b50d13d37bd46111d7fb82758892c8e6909cf6ae98"
+      },
+      "after": {
+        "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/04_R1.tif",
+        "sha256": "cbe3ba12cb08b39f4f3297c2b1c9c4043cc741117d58850598c331ba88ae24c1"
+      }
+    }
+  ],
+  "probes": [
+    {
+      "key": "00_X",
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/00_X.tif",
+      "sha256": "424850fff5b0df96df4f57535168ed3518d37aee18c2219cb31790b8a628bfda",
+      "sampling_sha256": "424850fff5b0df96df4f57535168ed3518d37aee18c2219cb31790b8a628bfda"
+    },
+    {
+      "key": "01_X",
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/01_X.tif",
+      "sha256": "ad3f56fe0254963844cd2a4c3bf4cf1de0b956a15cf5e615a2da2a8db2fe7abf",
+      "sampling_sha256": "ad3f56fe0254963844cd2a4c3bf4cf1de0b956a15cf5e615a2da2a8db2fe7abf"
+    },
+    {
+      "key": "02_X",
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/02_X.tif",
+      "sha256": "acd78f8afbb606597fe4549f9cf52d62093282567dde87bb68339d7e80855448",
+      "sampling_sha256": "acd78f8afbb606597fe4549f9cf52d62093282567dde87bb68339d7e80855448"
+    },
+    {
+      "key": "03_X",
+      "path": "outputs/tst100k_reference_switch_fit_review_v1/display_srgb16/03_X.tif",
+      "sha256": "884daebbfa48868de38ce9d79cc85ab98f8cddb1cba508b0f3fa14d4d8f85b37",
+      "sampling_sha256": "884daebbfa48868de38ce9d79cc85ab98f8cddb1cba508b0f3fa14d4d8f85b37"
+    }
+  ],
+  "output": "outputs/tst_correspondence_operator_feasibility_v1",
+  "dimension": 7,
+  "smoothness": 1e-06,
+  "tie": 1e-08,
+  "seed": 20260909,
+  "pixels_per_fold": 8192,
+  "threads": 2,
+  "cpu_seconds": 600,
+  "wall_seconds_per_stage": 600,
+  "rss_bytes": 2147483648,
+  "render_chunk_pixels": 32768,
+  "solver": {
+    "tol": 1e-10,
+    "max_iter": 200,
+    "gradient_scale_floor": 1e-08,
+    "kkt_absolute": 1e-08,
+    "kkt_relative": 1e-06,
+    "bound_tol": 1e-12
+  },
+  "protocol": {
+    "objective": "mean allRGB||BV-R||\u00b2 +1e-6||D2(V-Vid)||\u00b2/(nD*3)+1e-8||V-Vid||\u00b2/(343*3);D2 includes(d-1)\u00b2;0<=V<=1",
+    "solver": "Single bounded BVLS exact solve perchannel on Cholesky square root of AtransposeA; unchanged original objective; original A/rhs gradient KKT audit; no tolerance relaxation or retries",
+    "kkt": "g=2Atranspose(Av-b)/3;projected=v-clip(v-g,0,1);absinf<=1e-8 andrelative<=1e-6 withscale=max(norminf(gatidentity),1e-8);boundtol1e-12",
+    "sampling": "Fixed64pixelcheckerboard nativeP canonicalSHAseed,fold0fit/fold1score,up8192each;no reversefold sweep",
+    "selection": "First8 previouslyconsumed trainingP/R rows, first4distinct consumedfitX onlytechnicalprobes;no currentornewtest donors",
+    "output_identity": "absoluteVgrid;render B(X)V equivalent to oldclip(X+B(X)(V-Vid));previewno manualstrengthadjustment",
+    "claim": "No newcorpus/comfort/humanpreference/learnedgeneralizationadmission. Technical correctness andthroughput only;largercorpus ceilingsunchanged",
+    "newstudy_budget": "600aggregateCPU+600activewall/2threads2GiB forrealtechnicalprobe includinglauncher,metadata costs separatelylinked;noGPU/download/training"
+  }
+}

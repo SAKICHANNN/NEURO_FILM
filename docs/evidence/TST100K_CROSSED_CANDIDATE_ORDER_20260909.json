@@ -1,0 +1,64 @@
+{
+  "status": "METADATA_ORDER_VERIFIED_NOT_SPLIT_OR_IMAGE_ADMISSION",
+  "report": {
+    "status": "METADATA_ORDER_ONLY_NOT_ACQUISITION_OR_SPLIT_ADMISSION",
+    "seed": "tst-crossed-candidate-order-20260909-v1",
+    "source_pins": {
+      "outputs/post_salut_tst100k_metadata_v1/triplet.json": "5e71ea9eb3255d0169f042d5fe4f9904f5ef9849024cba98fce74c5299159413",
+      "outputs/post_salut_tst100k_metadata_v1/candidate8_metadata.json": "3621d7cfdb6cbcb56d0419a2b75880a943cb3a28814db4838c3d08bf573ee7ef",
+      "outputs/tst100k_reference_switch_v1/groups.jsonl": "951c58adba56822e1b2b17c55e054b32e57e2f75388e29057b0d8be8b8b077ef",
+      "outputs/tst_reference_scale_inventory_v1/inventory.json": "d84223224da61f2b22120d52e38e13048dc208fc69190dcb5c8a5320406adc78"
+    },
+    "artifacts": {
+      "all_candidates.jsonl": "8335351457f63fb412c5c745dd75a02a36e03fb819797c0c802de5c22646f6ed",
+      "acquisition_ceiling_candidates.jsonl": "6e233a93401eb14876b11e3418c559325718e2d130159057dcf87893346c99a7"
+    },
+    "counts": {
+      "all": {
+        "rows": 19889,
+        "query_owners": 5238,
+        "reference_owners": 4786,
+        "all_owners": 7061,
+        "unique_files": 25687,
+        "queries_with_two_distinct_tuples": 2795,
+        "queries_with_two_distinct_R_Y_P": 2576
+      },
+      "ceiling": {
+        "rows": 8192,
+        "query_owners": 3214,
+        "reference_owners": 2965,
+        "all_owners": 4887,
+        "unique_files": 14614,
+        "queries_with_two_distinct_tuples": 1136,
+        "queries_with_two_distinct_R_Y_P": 1052
+      }
+    },
+    "consumed_owner_count": 112,
+    "ordering": "Ascending SHA256(seed + compact JSON [X,R,Y,P]), tuple tie-break; first8192 prospective ceiling, no outcome selection.",
+    "limits": [
+      "No owner or family partitions assigned; medium must adjudicate allocation before acquisition.",
+      "Exact paths are not perceptual/capture/person independence.",
+      "No bytes, pixel quality, license expansion, or training suitability inferred."
+    ],
+    "actions": {
+      "downloads": 0,
+      "decodes": 0,
+      "network": 0,
+      "training": 0
+    },
+    "accounting": {
+      "cpu_seconds": 0.484375,
+      "wall_seconds": 0.5157037999888416
+    },
+    "count_clarification": "Tuple count includes same Y or P. Separate distinct R,Y,P counts match prior inventory; no candidate order changed."
+  },
+  "report_sha256": "ae2bbb51627ebfc8f6a206c65b06272fd4130884d9b62e3b2a76c7820847e676",
+  "preparation_script_sha256": "f5e1a813fa11c81a906ca2880ee8f309d319dbb25b91d15d0f0860186c263930",
+  "verification": [
+    "4 source hashes",
+    "2 manifest hashes",
+    "19889 unique rows",
+    "8192 exact ordered prefix"
+  ],
+  "remaining": "Medium solver implementation active; medium must adjudicate candidate coverage and owner allocation before acquisition. No newly trained model or promoted result."
+}
