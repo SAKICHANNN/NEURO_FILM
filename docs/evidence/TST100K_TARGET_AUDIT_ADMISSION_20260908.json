@@ -1,0 +1,60 @@
+{
+  "status": "GO_FIXED8_TARGET_AUDIT_ONLY",
+  "packet_id": "neuro-film-tst100k-supervision-20260908-v1",
+  "raw_result_sha256": "7b11e26e13d9c54e4a7b02bec7def45a9782de76f03126994884e4201b191ec3",
+  "normalization": {
+    "raw_sha256": "7b11e26e13d9c54e4a7b02bec7def45a9782de76f03126994884e4201b191ec3",
+    "derived_sha256": "dc112a6c4f7a5307f28ec234e8ee838f712a19e7cca2290a30989111735a3182",
+    "operation": "Move exactly three trailing citation definitions unchanged before END marker; raw preserved",
+    "raw_contract_passed": false,
+    "clipboard_fingerprint": {
+      "length": 23289,
+      "fnv": 946939213,
+      "djb": 465808955,
+      "local_match": true
+    },
+    "medium_adjudication": "Formatting failure alone does not prove omitted or corrupted substantive contract. Independent local adoption GO fixed8/24files only; no retry or DOM."
+  },
+  "scope": {
+    "triplets": 8,
+    "files": 24,
+    "bytes": 20617008,
+    "revision": "63bf13833b75407c862d608c3d81281d0a35b61f",
+    "extra_reference_before_files": 0,
+    "training": false,
+    "operator_fitting": false
+  },
+  "aesthetic_gate": {
+    "required_visibly_changed_reference_compatible_comfortable": 6,
+    "total": 8,
+    "maximum_severe_content_defects": 0,
+    "strength": 1,
+    "uniform_strength_later_requires_separate_protocol": true
+  },
+  "limitations": [
+    "File owners do not establish capture, person, burst, edit families",
+    "Hashed row selection is not uniformly sampled content population",
+    "Independent local adoption; raw bridge contract remains failed, complete receipt not claimed"
+  ],
+  "adoption": {
+    "status": "passed",
+    "accepted": [
+      "Independent local fixed8/24file noncommercial target-suitability audit; color management and pixel alignment before target review",
+      "Freeze development target gate: at least6/8 visibly different, reference compatible and comfortable; zero severe content defects across8"
+    ],
+    "rejected": [
+      "Treating format validity as scientific correctness",
+      "Training, generator adoption, or extra downloads from this review authorization"
+    ],
+    "deferred": [
+      "All operator oracle fitting pending photographic target gate",
+      "Learning and generalization claims; original capture/edit grouping absent"
+    ],
+    "local_evidence": [
+      "outputs/post_salut_tst100k_metadata_v1/candidate8_metadata.json",
+      "outputs/post_salut_tst100k_metadata_v1/lineage_report.json",
+      "outputs/post_salut_tst100k_metadata_v1/terms/sources.json",
+      "outputs/ai_tst100k_science_bridge_v1/normalization.json"
+    ]
+  }
+}

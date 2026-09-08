@@ -1,3 +1,5 @@
+Current TST update: Pro completed12m48s, one successful UI copy; raw matches clipboard. Three trailing citation definitions fail raw validator; citation-placement-only normalized result/pair pass. Medium corrects over-broad prior format stop and independently admits fixed8/24files target review, no training/oracle fitting. Freeze >=6/8 visibly different, reference-compatible and comfortable, zero severe content defects. Acquisition/header/ICC review in progress; see docs/evidence/TST100K_TARGET_AUDIT_ADMISSION_20260908.json. Older RUNNING/no-admission statements below are historical.
+
 # K-MCFM: fresh-chat handoff, 2026-09-08
 
 ## 2026-09-08 correction: current execution authority
