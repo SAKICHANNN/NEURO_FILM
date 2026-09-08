@@ -1,0 +1,56 @@
+{
+  "status": "VERIFIED_NOT_PROMOTED",
+  "report_sha256": "6e896eccc91687442eef6152e8502621b8c200bc8ae3a489e513d89a121d59f4",
+  "artifact_count": 30,
+  "rows": [
+    {
+      "id": "father_baby",
+      "size": [
+        2920,
+        4386
+      ],
+      "original_exact": true,
+      "independent_interpolation_samples": 4096,
+      "max_uint16_code_error": 0
+    },
+    {
+      "id": "birthday",
+      "size": [
+        3088,
+        2055
+      ],
+      "original_exact": true,
+      "independent_interpolation_samples": 4096,
+      "max_uint16_code_error": 0
+    },
+    {
+      "id": "text_card",
+      "size": [
+        4640,
+        3472
+      ],
+      "original_exact": true,
+      "independent_interpolation_samples": 4096,
+      "max_uint16_code_error": 0
+    }
+  ],
+  "supervisor": {
+    "exit_code": 0,
+    "peak_observed_rss_bytes": 3536773120,
+    "sampled_tree_rss_peak_bytes": 3403722752,
+    "owned_pid_create_times": {
+      "69380": 1788863350.5360548,
+      "76584": 1788863350.5445328
+    },
+    "individual_peak_rss_bytes": {
+      "69380": 5038080,
+      "76584": 3531735040
+    },
+    "worker_wall_seconds": 58.405999999988126,
+    "rss_limitation": "0.1-second worker-tree sampling including venv redirector descendants, PID/create-time bound. Budget uses conservative sum of per-process historical peaks (Windows peak working set where available), not simultaneous allocator reservation. Only observed owned tree is terminated."
+  },
+  "review": "Root and medium independently viewed all3 full comparisons and5 native-pixel crop pairs. Visible style difference, orange-red skin and harder dark eye areas. Text readable and geometry visually stable in inspected crops. No general content safety claim.",
+  "decision": "Stop additional current SA-LUT checkpoint runs/tuning; scientific bridge reconsideration next. Do not consume independent holdout.",
+  "scope": "Three consumed-development full-size RAW-derived SDR16 inputs. Fixed G0 strength0.65; no native RAW/HDR/independent validation claim.",
+  "verification_note": "First independent NumPy audit had transpose/broadcast error, corrected without changing or rerunning model outputs."
+}

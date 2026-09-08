@@ -1,0 +1,19 @@
+{
+  "identity": "salut_g0_native_content_v1",
+  "inputs_manifest": "outputs\\salut_g0_content_preflight_v1\\inputs.json",
+  "inputs_sha256": "a4c166a482371baa3a210ad0b86468cb034e3388e34b7290a435b612700d9df6",
+  "reference": "data/ai_film_references/italy_2024_v1/18.jpg",
+  "reference_sha256": "1b5472faf35a960a585317c6233056b862ae7e9249c80c5ea607c832e20336d5",
+  "strength": 0.65,
+  "simple_slope": 1.15,
+  "simple_pivot": 0.5,
+  "render_rows": 64,
+  "budget": {
+    "maximum_worker_seconds": 600,
+    "maximum_rss_bytes": 4294967296,
+    "poll_seconds": 0.1,
+    "maximum_forwards": 3
+  },
+  "output": "outputs/salut_g0_native_content_v1",
+  "scope": "Three consumed-development full-size RAW-derived SDR16 inputs. Fixed G0 strength0.65; no native RAW/HDR/independent validation claim."
+}

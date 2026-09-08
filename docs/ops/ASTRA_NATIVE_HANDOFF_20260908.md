@@ -2,6 +2,25 @@
 
 ## 2026-09-08 correction: current execution authority
 
+### Current checkpoint decision after native content check
+
+STOP further SA-LUT checkpoint runs/tuning on current input branch. Three fixed
+full-size generic RAW-derived SDR16 inputs (FiveK development05/09,rawpixls15)
+completed3 CPU forwards/58.406s/3536773120-byte tree peak/exit0. Inputs sizes:
+2920x4386,3088x2055,4640x3472. Current raw_decode outputs linear_srgb;
+old freeze camera_rgb_linear label is stale. Preserve generic RAW/display caveats.
+30 artifacts hash/dimension/uint16 checked;4096 independent NumPy interpolation
+samples per image match native16 output exactly. Medium failure-attempt counter
+fix applied before launch. Root+medium viewed3 whole comparisons and5 native crops.
+Visible difference yes; orange-red faces/hands and hard eye shadows fail comfortable
+richness. Text crops readable, inspected geometry unchanged; no general safety claim.
+Evidence docs/evidence/SA_LUT_NATIVE_CONTENT_REVIEW_20260908.json.
+Next: use codex-bridge-chatgpt with verified web6Pro for scientific reconsideration
+of learned reference response versus skin/illumination relations. Provide ref02/18,
+G0/G1 and native-content failures; do not add strength search/local skin patches or
+more same-checkpoint examples. No new science request submitted yet. Goal ACTIVE;
+independent confirmation and integration remain unjustified. No inference live.
+
 ### Latest user visual priority (corrected)
 
 Latest user clarification: visible difference remains essential, but this does NOT
