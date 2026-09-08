@@ -1,0 +1,38 @@
+{
+  "identity": "tst_crossed_curation_v1",
+  "output": "outputs/tst_crossed_curation_v1",
+  "pins": {
+    "scripts/prepare_tst_crossed_corpus.py": "95154e1c226fcefed3bfafb52207bbc325b3fabd413ac0551a1e6c1b7a736d21",
+    "outputs/tst_crossed_curation_preparation_v1/source_queue.json": "e0c0790359117581f3bbd4ef743fb4710d15f35746d63836b41fc218e718fdd8",
+    "outputs/tst_crossed_acquisition_v1/paths.json": "96188bdd62e7a78c493d1a8976b0bb7a38eacf488015937349ed907446d90534",
+    "outputs/tst_crossed_acquisition_v1/download/config.json": "d15017328ff9d4105109d9379729f714c57255d1a503a7dbad39c26c6b95567c",
+    "tests/test_tst_crossed_curation.py": "e9c8e3308fa280b11f76637651b2dd5af1d878828bd07f2ba7a4437bebc691fd"
+  },
+  "acquisition_config": "outputs/tst_crossed_acquisition_v1/download/config.json",
+  "path_manifest": "outputs/tst_crossed_acquisition_v1/paths.json",
+  "source_queue": "outputs/tst_crossed_curation_preparation_v1/source_queue.json",
+  "receipt": "outputs/tst_crossed_acquisition_v1/download/report.json",
+  "originals": "outputs/tst_crossed_acquisition_v1/download/originals",
+  "expected_files": 7775,
+  "expected_sources": 4264,
+  "threads": 2,
+  "rss_bytes": 2147483648,
+  "decode_base_bytes": 268435456,
+  "preview_cache_bytes": 1073741824,
+  "stages": {
+    "headers": {
+      "cpu_seconds": 900,
+      "wall_seconds": 1200
+    },
+    "sources": {
+      "cpu_seconds": 7200,
+      "wall_seconds": 7200
+    }
+  },
+  "study_wall_seconds": 86400,
+  "prior_reserve_cpu_seconds": 3600,
+  "prior_reserve_wall_seconds": 3600,
+  "ledger_policy": "Conservative prior reserve includes21.515625CPU/1232.766wall HEAD and20.90625CPU/18.359wall solver plus local preparation/verification. Add immutable completed download accounting and every S0/S1 attempt including failures; no resetting prior527.421875CPU negative study. Future stages subtract these totals.",
+  "scope": "S0 receipt+7775headers; S1 streamed4264source decode/canonical/compact descriptors. No native RGB16 cache, no donor R decode, no operator, no training. Near-duplicate comparisons/review and probe selection pending. S2-S4 fullpopulation manualreview is not an immediate commitment; efficient adjudication required.",
+  "receipt_policy": "Bind exact completed receipt SHA at runtime; preflight reads metadata only, never photos. Do not run while acquisition live."
+}

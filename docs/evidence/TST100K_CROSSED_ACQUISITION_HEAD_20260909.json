@@ -1,0 +1,40 @@
+{
+  "status": "ROOT_PIN_AND_TOTAL_CHECK_PASS",
+  "pins_verified": 9,
+  "files": 7775,
+  "bytes": 6788811506,
+  "combined_sha256": "0f3a9ed16b73c6444fd00f606cdd22658ebb66611e634c44734e6fc088a89469",
+  "medium_verification": {
+    "status": "INDEPENDENT_METADATA_VERIFICATION_PASS",
+    "files_verified": 7775,
+    "total_bytes": 6788811506,
+    "prior_failed_report_preserved": true,
+    "only_failed_items_recovered": 1712,
+    "new_recovery_errors": 0,
+    "rate_limit_schedule_min_spacing_seconds": 0.25,
+    "actual_HTTP_start_timestamp_limitation": "Schedule spacing checked; HTTP start timestamps not separately recorded.",
+    "recovery_cooldown_first_scheduled_seconds": 300.0469999999914,
+    "pins": {
+      "paths.json": "96188bdd62e7a78c493d1a8976b0bb7a38eacf488015937349ed907446d90534",
+      "config.json": "df6a3c1c8ae45341bf1f56d3a609f799ed40e27e30771168559be3a84870c524",
+      "head.py": "9ede7bc66ab90c939cd958ee45cd4dfe7ff3191f1cadb01197be2dbb1171ab61",
+      "report.json": "89559bcfff1c589ea08835b12841a367b33e5085de55184a11d02566b6693c0d",
+      "recovery\\config.json": "bfb458ea4b40a0ada94c74317f843e737398c84393c261106ffd17fad073a223",
+      "recovery\\recover.py": "a923962c3fe0cf1722b99751ee5e0e81d4b90d86cff6a2aa3bb85b8919fa17fe",
+      "recovery\\report.json": "0ad0c72cfa00dbdf7e60a82cb9699e9d09026d25d9f20960692ee80964e70b8c",
+      "recovery\\combined.json": "0f3a9ed16b73c6444fd00f606cdd22658ebb66611e634c44734e6fc088a89469",
+      "recovery\\events.jsonl": "e05321193e5b78e412bccca1aa74f413c5ed5ea2e8da656d26493ba7d25eaa85"
+    },
+    "GET_requests": 0,
+    "real_reserved_requests": 0,
+    "cpu_seconds": 0.0625,
+    "wall_seconds": 2.062999999994645,
+    "head_accounting": {
+      "cpu_seconds": 21.515625,
+      "wall_seconds": 1232.7659999999742
+    },
+    "lint": "initial head.py Ruff PASS; recovery frozen running source has one unused noqa E731 (RUF100), preserved without restart or source identity mutation."
+  },
+  "claim": "HEAD metadata only; no image contents verified until GET hash check.",
+  "next": "Bounded rate-limited streaming download of exact necessary files; no reserved real or deferred Y access."
+}
