@@ -12,6 +12,10 @@ Native G0 content COMPLETE_NOT_PROMOTED:3 full-resolution SDR16 photos/58.406s/3
 
 # TASK_BOARD.md — Algorithm-first film colour-transfer and product path
 
+2026-09-08 medium READY_FOR_ROOT_REVIEW: postselected TST global oracle protocol/implementation complete; 3 synthetic tests and Ruff PASS, preflight READY with5 hash-bound aligned pairs; zero real fits.
+Locks released: scripts/run_tst100k_global_oracle.py; configs/tst100k_global_oracle_v1.json; tests/test_tst100k_global_oracle.py.
+Root owns native alignment evidence and bridge/handoff. Old G1 and fixed8 FAIL unchanged.
+
 2026-09-08 medium DONE: fixed TST100K 8-triplet/24-file acquisition and ICC-managed review. All 24 exact files retained; 8 boards complete; independent medium review 5/8, frozen gate FAIL.
 Locks released: scripts/prepare_tst100k_target_review.py; outputs/post_salut_tst100k_target_review_v1/.
 No training/fitting, no extra reference-before images, no old asset changes. Root owns bridge/evidence.

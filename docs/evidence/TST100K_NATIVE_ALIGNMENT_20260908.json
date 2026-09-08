@@ -1,0 +1,129 @@
+{
+  "status": "GO selected-target representation diagnostic only; all25 regions peak at zero integer displacement; subpixel alignment remains unproven",
+  "report_path": "outputs\\tst100k_native_alignment_v1\\report.json",
+  "report_sha256": "00725d67cbf8a8a50fc1f2e0bebcd2ccba9a45bd3569cf50345895bc64b1ce0a",
+  "method": "Sobel magnitude normalized correlation at25 integer shifts [-2,2]^2; whole image plus4quadrants, no warping/resampling; native central crop visual check",
+  "rows": [
+    {
+      "index": 2,
+      "shape": [
+        360,
+        540,
+        3
+      ],
+      "source_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\02_content.tif",
+      "target_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\02_gt.tif",
+      "source_sha256": "b4da73bb7ee5fe70dd0a8c5c844169a0d079840aac62e7b5e56507ba4485e92d",
+      "target_sha256": "8e313577f144bcf189683f5d7994272a115ad20f4def10f7e04aed2c62c724cf",
+      "manual_admissibility": "ADMITTED_CONDITIONAL_NATIVE_CORRESPONDENCE",
+      "limitation": "Integer-shift edge evidence cannot exclude subpixel warping, preprocessing or tonal edge suppression",
+      "manual_review": "Root viewed fixed central source/target native crop plus prior whole boards; matching edges/features, no observed displacement. No registration/warping applied.",
+      "conditional_notes": "07 grain and local contrast alter gradients; 06/08 assume untagged sRGB. Diagnosis must not interpret residual as irreducible spatial need.",
+      "zero_correlations": [
+        0.9995514528747944,
+        0.9997291084144982,
+        0.9990732947465621,
+        0.9996131537587726,
+        0.9994283389778249
+      ],
+      "all_regions_best_zero": true
+    },
+    {
+      "index": 4,
+      "shape": [
+        540,
+        360,
+        3
+      ],
+      "source_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\04_content.tif",
+      "target_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\04_gt.tif",
+      "source_sha256": "f0ea0490ba3eaa270db7887c7350fd7144e7767b34acada80790ee58031bdfbf",
+      "target_sha256": "17d60c45b52be50bc000dd575888f80369b9dbfe61555f587811c0d9cabca015",
+      "manual_admissibility": "ADMITTED_CONDITIONAL_NATIVE_CORRESPONDENCE",
+      "limitation": "Integer-shift edge evidence cannot exclude subpixel warping, preprocessing or tonal edge suppression",
+      "manual_review": "Root viewed fixed central source/target native crop plus prior whole boards; matching edges/features, no observed displacement. No registration/warping applied.",
+      "conditional_notes": "07 grain and local contrast alter gradients; 06/08 assume untagged sRGB. Diagnosis must not interpret residual as irreducible spatial need.",
+      "zero_correlations": [
+        0.965305602569709,
+        0.9645437496644218,
+        0.963732829604042,
+        0.969751249763915,
+        0.9774613717848128
+      ],
+      "all_regions_best_zero": true
+    },
+    {
+      "index": 6,
+      "shape": [
+        1251,
+        1880,
+        3
+      ],
+      "source_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\06_content.tif",
+      "target_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\06_gt.tif",
+      "source_sha256": "c97314c02045688e8db7ab749baa5fe59ccc2bb60874edc28a0664efbff7a980",
+      "target_sha256": "de3426ba868a62280b2d51ccd7747a04b3403b4e33d81fc402d3582d6278a099",
+      "manual_admissibility": "ADMITTED_CONDITIONAL_NATIVE_CORRESPONDENCE",
+      "limitation": "Integer-shift edge evidence cannot exclude subpixel warping, preprocessing or tonal edge suppression",
+      "manual_review": "Root viewed fixed central source/target native crop plus prior whole boards; matching edges/features, no observed displacement. No registration/warping applied.",
+      "conditional_notes": "07 grain and local contrast alter gradients; 06/08 assume untagged sRGB. Diagnosis must not interpret residual as irreducible spatial need.",
+      "zero_correlations": [
+        0.9673474419936945,
+        0.9707525033181527,
+        0.9724801891513182,
+        0.9630524287225789,
+        0.963527887347324
+      ],
+      "all_regions_best_zero": true
+    },
+    {
+      "index": 7,
+      "shape": [
+        1024,
+        683,
+        3
+      ],
+      "source_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\07_content.tif",
+      "target_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\07_gt.tif",
+      "source_sha256": "f802a931d85386cff9a48d158dd6941906dd9d6414a57cc31884614e09cf34e7",
+      "target_sha256": "934fdd080c5a00af58452df9c73169b51dfc7ed6e1643104fefdc09e6dd601c9",
+      "manual_admissibility": "ADMITTED_CONDITIONAL_NATIVE_CORRESPONDENCE",
+      "limitation": "Integer-shift edge evidence cannot exclude subpixel warping, preprocessing or tonal edge suppression",
+      "manual_review": "Root viewed fixed central source/target native crop plus prior whole boards; matching edges/features, no observed displacement. No registration/warping applied.",
+      "conditional_notes": "07 grain and local contrast alter gradients; 06/08 assume untagged sRGB. Diagnosis must not interpret residual as irreducible spatial need.",
+      "zero_correlations": [
+        0.7716299983379463,
+        0.8408561246532255,
+        0.6902826309016251,
+        0.7874667336864513,
+        0.7907535095529775
+      ],
+      "all_regions_best_zero": true
+    },
+    {
+      "index": 8,
+      "shape": [
+        1300,
+        867,
+        3
+      ],
+      "source_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\08_content.tif",
+      "target_path": "outputs\\post_salut_tst100k_target_review_v1\\display_srgb16\\08_gt.tif",
+      "source_sha256": "8f65deef31a6c007b5d87f70d0352e2720f802d816fc4e1612d2115dd1bdf745",
+      "target_sha256": "de85bf9352847adac6bb98a8ee4d2d6046f30b4836f77336b24a584e2fa41d27",
+      "manual_admissibility": "ADMITTED_CONDITIONAL_NATIVE_CORRESPONDENCE",
+      "limitation": "Integer-shift edge evidence cannot exclude subpixel warping, preprocessing or tonal edge suppression",
+      "manual_review": "Root viewed fixed central source/target native crop plus prior whole boards; matching edges/features, no observed displacement. No registration/warping applied.",
+      "conditional_notes": "07 grain and local contrast alter gradients; 06/08 assume untagged sRGB. Diagnosis must not interpret residual as irreducible spatial need.",
+      "zero_correlations": [
+        0.960114080541488,
+        0.9658614938072176,
+        0.9573358857122641,
+        0.9375104813940465,
+        0.9648706930305491
+      ],
+      "all_regions_best_zero": true
+    }
+  ],
+  "claim_ceiling": "Conditional correspondence evidence only, not proof of exact subpixel alignment or physical colorimetry; full8 aesthetic gate remains failed"
+}
