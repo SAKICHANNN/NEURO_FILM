@@ -1,0 +1,103 @@
+{
+  "identity": "salut_pytorch_cpu_photo_development_v1",
+  "status": "THREE_CONSUMED_PHOTOS_VISIBLE_AND_DISPLAYABLE_NOT_PROMOTED",
+  "config_sha256": "85535f98232a4e6913169d38638c9c1303ff09b676063a0aaa03b9b828dee1d2",
+  "runner_sha256": "9446a923cb149d299a650d900c987a3ab788419c8f89938ef66be4ced5240dff",
+  "report_sha256": "af629d4fbb9033387eb0fd03aff7ce3aeac2de1a2beb9faeff4b689583634ffc",
+  "verified_artifacts": 27,
+  "supervisor": {
+    "exit_code": 0,
+    "peak_observed_rss_bytes": 2816544768,
+    "sampled_tree_rss_peak_bytes": 2810339328,
+    "owned_pid_create_times": {
+      "74080": 1788860568.2802544,
+      "73472": 1788860568.288077
+    },
+    "individual_peak_rss_bytes": {
+      "74080": 5038080,
+      "73472": 2811506688
+    },
+    "worker_wall_seconds": 51.219000000011874,
+    "rss_limitation": "0.1-second worker-tree sampling including venv redirector descendants, PID/create-time bound. Budget uses conservative sum of per-process historical peaks (Windows peak working set where available), not simultaneous allocator reservation. Only observed owned tree is terminated."
+  },
+  "metrics": [
+    {
+      "index": 0,
+      "rgb_mae_0_255": 31.12453842163086,
+      "pixel_fraction_maxchannel_change_gt10": 0.9395250207641196,
+      "g0_rgb_mae_0_255": 10.67212963104248,
+      "g0_pixel_fraction_gt2": 0.8242114825581396,
+      "context_minmax": [
+        2.8542734071379527e-05,
+        1.0
+      ],
+      "new_endpoint_pixel_fraction": 0.0011773255813953489
+    },
+    {
+      "index": 1,
+      "rgb_mae_0_255": 26.03382682800293,
+      "pixel_fraction_maxchannel_change_gt10": 0.969956450094162,
+      "g0_rgb_mae_0_255": 5.005105972290039,
+      "g0_pixel_fraction_gt2": 0.6797545903954803,
+      "context_minmax": [
+        0.010023821145296097,
+        1.0
+      ],
+      "new_endpoint_pixel_fraction": 0.0020133003766478344
+    },
+    {
+      "index": 2,
+      "rgb_mae_0_255": 31.94584846496582,
+      "pixel_fraction_maxchannel_change_gt10": 0.9889145970009372,
+      "g0_rgb_mae_0_255": 11.159672737121582,
+      "g0_pixel_fraction_gt2": 0.9205447516401125,
+      "context_minmax": [
+        3.918335100827619e-10,
+        1.0
+      ],
+      "new_endpoint_pixel_fraction": 0.06969247891283974
+    }
+  ],
+  "reviewers": [
+    "root: original/reference/new full-size plus five-arm sheets",
+    "Astra medium: all 15 full-size versions and reference18"
+  ],
+  "rows": [
+    {
+      "index": 0,
+      "visible_change": "clear",
+      "appearance": "Darker cool shadows, brighter snow, grey-cyan blue flag; harder winter contrast",
+      "cost": "Shadow and bright-snow tonal compression",
+      "vs_simple": "Colour relationships change beyond the fixed contrast control",
+      "vs_g0": "Spatial darkening clear on inner pillar/fence; no established aesthetic preference"
+    },
+    {
+      "index": 1,
+      "visible_change": "moderate but clear",
+      "appearance": "Cream-gold banana, warmer red-brown apple/kiwi, deeper cool foliage",
+      "cost": "Brown-red emphasis and shadow compression",
+      "vs_simple": "Different palette, not merely fixed contrast",
+      "vs_g0": "Subtle difference; no demonstrated photographic benefit"
+    },
+    {
+      "index": 2,
+      "visible_change": "strong",
+      "appearance": "Dark teal-green background and prominent warm-white flowers, golden centres",
+      "cost": "Background/leaf detail compression and weaker bright-petal gradation",
+      "vs_simple": "Strong palette and tonal difference",
+      "vs_g0": "Visible extra darkening; G0 already carries main look, no superiority claim"
+    }
+  ],
+  "decision": "All three may be displayed under latest user priority accepting distortion and rejecting near-identity. Freeze model/reference/parameters and complete remaining six consumed photos with G0 before further decision. No strength attenuation or blending rescue.",
+  "limits": [
+    "Only consumed SDR JPEG inputs at 1600px; not independent/native RAW validation",
+    "Single reference18 selected after earlier favourable output; author-reported Portra400, not calibrated output",
+    "No faces/readable text in this panel; those preservation claims remain untested",
+    "Internal noncommercial CPU adaptation; no official CUDA parity or product licence claim",
+    "Fixed simple contrast comparator is not the strongest possible simple model"
+  ],
+  "montage": {
+    "path": "outputs\\salut_photo_development_v1\\attempt-0001\\three_photo_comparison.jpg",
+    "sha256": "b9abd410edaec169fed71274fbc986597141094246b377e820db3e4f939c039b"
+  }
+}

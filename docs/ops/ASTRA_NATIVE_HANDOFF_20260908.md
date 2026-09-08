@@ -2,6 +2,33 @@
 
 ## 2026-09-08 correction: current execution authority
 
+### Latest user visual priority
+
+User: "我们宁愿有失真的结果也要绝对避免和原图太像".
+Near-identity appearance is a hard failure for candidate display. Prefer visibly
+strong transformation even with distortion; do not rescue a candidate by blending
+it back toward the original or attenuating strength into invisibility. Record
+colour/contrast distortion and any person/text/geometry damage explicitly. Earlier
+conservative aesthetic/severe-colour gates must not silently exclude visibly
+changed exploratory results against this preference. Do not claim content safety
+where damage exists. Existing frozen experiments remain unchanged; interpret and
+present their full outcomes under this new stated preference.
+
+### First actual SA-LUT photographs
+
+COMPLETE_NOT_PROMOTED: fixed reference18, consumed source indices0/1/2, original
+512-square protocol and 1600px rendering. Three CPU forwards in 51.219s, conservative
+worker-tree peak2816544768 bytes, exit0. All27 artifacts hash-checked. Root and medium
+visually reviewed all three against original/simple/oldNCC/G0. All are visibly changed
+and displayable under latest preference: snow hard cold shadows, fruit cream-gold/warm
+brown-red, daisies dark teal background. Costs: shadow compression and bright petal loss.
+Spatial effects exist, but G0 carries much of the look; no superior spatial mechanism
+or accurate Portra claim. Evidence: docs/evidence/SA_LUT_THREE_PHOTO_REVIEW_20260908.json.
+Next medium decision: keep model/reference/settings fixed and complete indices3..8,
+with G0 and all previous controls, before tuning or architecture adjudication. No run
+active. Preserve frozen v1 attempt and runner identity; a continuation needs its own
+configuration/attempt and bounds, not mutation or rerun of the first three.
+
 ### CPU adaptation progress
 
 SA-LUT CPU micropreflight passed: VGG strict-load 34 keys; checkpoint has 208
