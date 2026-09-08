@@ -1,0 +1,39 @@
+{
+  "status": "S3_SYNTHETIC_CORE_READY_NO_REAL_IMAGES",
+  "files": {
+    "src/eval/tst_operator_visibility.py": "deef3c7b06999ae77552bb26d49803a2fb96c571127a96773cf765810a982cce",
+    "tests/test_tst_operator_visibility.py": "a43b5c611bf7259cf80919361afeaeaeef3ef565ff454633a540866a0285b72b"
+  },
+  "tests": "17 pytest PASS and Ruff PASS reported by implementing medium; root read core",
+  "benchmark": {
+    "seed": 48,
+    "threads": 2,
+    "synthetic_only": true,
+    "partitions": {
+      "fit": {
+        "pixels": 3441784,
+        "cpu_seconds": 2.671875,
+        "wall_seconds": 2.6839147
+      },
+      "monitor": {
+        "pixels": 3950704,
+        "cpu_seconds": 3.34375,
+        "wall_seconds": 3.3139215
+      },
+      "constructed_test": {
+        "pixels": 3939256,
+        "cpu_seconds": 3.109375,
+        "wall_seconds": 3.1189893
+      }
+    },
+    "actual_cpu_seconds": 9.1875,
+    "actual_wall_seconds": 9.2067778,
+    "upper_bound_3502_candidates_slowest_partition": {
+      "pixels": 13835365408,
+      "projected_cpu_seconds": 11709.8125,
+      "projected_wall_seconds": 11605.353093
+    },
+    "limitations": "Synthetic timing only; excludes decode IO startup; no short circuit savings; not runtime guarantee"
+  },
+  "claim_ceiling": "Necessary full-native numeric visibility only; no photographic or learning admission"
+}
