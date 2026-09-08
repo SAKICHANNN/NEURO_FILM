@@ -1,0 +1,930 @@
+{
+  "status": "VERIFIED_STRONG_FIT_DEVELOPMENT_AND_PHOTOGRAPHY_FAIL_NOT_PROMOTED",
+  "date": "2026-09-09",
+  "files": {
+    "src/eval/tst_reference_distillation.py": "23c671d8285e2db11b45669a77cce28ff13642c089e156ae0a54a4ed79ff1827",
+    "scripts/run_tst_reference_distillation.py": "80f6e2a4c74764acac6c24432635048c3781f9454e1470f0874089556c26ce91",
+    "configs/tst_reference_distillation_v1.json": "be1d27f92dd8c6afd3bbc6a07adefe51a725bc5b6e2ca2d1d2130617aeb72147",
+    "tests/test_tst_reference_distillation.py": "e7d67db10660bf75e7f3ad434569ba5e074a679ad809cf250e28eb2b05a4a7db"
+  },
+  "stage_reports": {
+    "fit_features": {
+      "path": "outputs\\tst_reference_distillation_v1\\fit_features\\report.json",
+      "sha256": "adb126a7edada86a58d601694f685498851729bbd7b860164434038088530090",
+      "status": "COMPLETE_PHASE",
+      "cpu_seconds": 23.15625,
+      "active_wall_seconds": 17.04700000002049
+    },
+    "train": {
+      "path": "outputs\\tst_reference_distillation_v1\\train\\report.json",
+      "sha256": "462e52e37cccb1dbda4f9e8402c512281a601e5d94c8adde54e149a8e282508d",
+      "status": "COMPLETE_PHASE",
+      "cpu_seconds": 400.71875,
+      "active_wall_seconds": 190.25
+    },
+    "predict": {
+      "path": "outputs\\tst_reference_distillation_v1\\predict\\report.json",
+      "sha256": "68e7ca6a9cd71a4813c99e2792764afb04ffbb3952bc9dd37b8ab48003274806",
+      "status": "COMPLETE_PHASE",
+      "cpu_seconds": 25.203125,
+      "active_wall_seconds": 23.0
+    },
+    "diagnostic_features": {
+      "path": "outputs\\tst_reference_distillation_v1\\diagnostic_features\\report.json",
+      "sha256": "21df086c8f3990fafee3a077f00a00be5ac72b4f297eff62d1991f1295c098da",
+      "status": "COMPLETE_PHASE",
+      "cpu_seconds": 15.953125,
+      "active_wall_seconds": 11.65700000000652
+    },
+    "score": {
+      "path": "outputs\\tst_reference_distillation_v1\\score\\report.json",
+      "sha256": "2df4eafe8279e9699cc3c9b279320390819a677b0888612d8fcd3b57eb92c42b",
+      "status": "COMPLETE_PHASE",
+      "cpu_seconds": 39.234375,
+      "active_wall_seconds": 34.60999999998603
+    }
+  },
+  "training_updates": {
+    "T": 1000,
+    "S": 1000,
+    "S0": 1000,
+    "D": 2000
+  },
+  "new_VGG_forwards": 118,
+  "fit_summary": {
+    "groups": 23,
+    "Q": {
+      "T": 0.07900326215081273,
+      "S": 0.07770684433455155,
+      "S0": 0.07779857136642587,
+      "D": 0.07002589565896218
+    },
+    "group_Q": {
+      "T": [
+        0.08318955282388822,
+        0.10976488945266216,
+        0.08949533358528014,
+        0.06179014840669739,
+        0.1265448474153747,
+        0.09577761010026878,
+        0.048516870756702704,
+        0.0676787002993328,
+        0.07313229712052988,
+        0.03847284776978504,
+        0.029674192893548255,
+        0.1211448968586435,
+        0.12968005394479276,
+        0.12546965732446094,
+        0.08515465865455377,
+        0.07398776551101602,
+        0.054601466273024875,
+        0.09279802567403483,
+        0.0751396687557932,
+        0.06048449404238635,
+        0.06393821876170912,
+        0.042789821190840585,
+        0.06784901185336627
+      ],
+      "S": [
+        0.08293835862814941,
+        0.10898943676635695,
+        0.08874553097860045,
+        0.06128016358539808,
+        0.12498042530163374,
+        0.09529994183720698,
+        0.04558261798392622,
+        0.06762783479232735,
+        0.07309409422861103,
+        0.03886649399893181,
+        0.028833294985883003,
+        0.12026054087741132,
+        0.1296811608071199,
+        0.12487800706536768,
+        0.08264722155927169,
+        0.07346428850053174,
+        0.054321604077508245,
+        0.0927073952404765,
+        0.0609800610490959,
+        0.05882947589747605,
+        0.06328779869382191,
+        0.04220577548679956,
+        0.06775589735278002
+      ],
+      "S0": [
+        0.08369418545392499,
+        0.10889425946480386,
+        0.08772001484204991,
+        0.06178698062210104,
+        0.12497733554619551,
+        0.09550342323337055,
+        0.04539828389892797,
+        0.06765977341542243,
+        0.0735141249667106,
+        0.03872086539924615,
+        0.02883539526935399,
+        0.12053885054318814,
+        0.13000029459551884,
+        0.1252831655905783,
+        0.08244445479601772,
+        0.07348130115161729,
+        0.05434201902774041,
+        0.09276646219317067,
+        0.061824032585820816,
+        0.0588464649610254,
+        0.06329681209680876,
+        0.042048652184145156,
+        0.06778998959005639
+      ],
+      "D": [
+        0.056468910351159876,
+        0.10778169829526031,
+        0.07423070321749471,
+        0.05569673521342009,
+        0.12203159285641255,
+        0.09109302252260322,
+        0.04709520574356739,
+        0.06515575239882418,
+        0.061568712114537176,
+        0.030891756029646642,
+        0.032573929355647714,
+        0.09957463657278516,
+        0.12378852872434096,
+        0.09746304533990263,
+        0.08008451828623882,
+        0.06580198097539655,
+        0.05216201718624654,
+        0.06985675092498328,
+        0.08455856615668786,
+        0.05109134445287363,
+        0.053946802244189636,
+        0.032369123464350544,
+        0.05531026772956066
+      ]
+    },
+    "joint": {
+      "T": 19,
+      "S": 19,
+      "S0": 19,
+      "D": 20
+    },
+    "singletons": {
+      "T": 3,
+      "S": 3,
+      "S0": 3,
+      "D": 3
+    }
+  },
+  "development_summary": {
+    "groups": 8,
+    "Q": {
+      "S": 1.1194493864447013,
+      "S0": 1.1074406164889368,
+      "D": 1.0990504163968242,
+      "T": 0.9636419137492606
+    },
+    "group_Q": {
+      "S": [
+        1.012017711808137,
+        1.583010512595599,
+        1.0035274961860088,
+        0.9470869426620218,
+        1.2302611731600472,
+        0.9363036717839078,
+        1.1501233927933128,
+        1.0932641905685754
+      ],
+      "S0": [
+        1.015617424083284,
+        1.5257607533791622,
+        0.9435659875241589,
+        0.9464688620556584,
+        1.2254006588090636,
+        0.9514838453849873,
+        1.1401497204502762,
+        1.1110776802249032
+      ],
+      "D": [
+        0.9980353984928828,
+        2.010697572981755,
+        1.1134096539757918,
+        0.9224347707794219,
+        1.0949231994428885,
+        0.8572644393360997,
+        1.016444144473302,
+        0.779194151692453
+      ],
+      "T": [
+        0.9571855119520951,
+        1.3901908806123902,
+        0.9254281424907709,
+        0.8349928753602112,
+        1.0401556256114584,
+        0.860098938685432,
+        0.761049802133335,
+        0.9400335331483914
+      ]
+    },
+    "joint": {
+      "S": 0,
+      "S0": 0,
+      "D": 0,
+      "T": 0
+    },
+    "singletons": {
+      "S": 0,
+      "S0": 0,
+      "D": 0,
+      "T": 0
+    }
+  },
+  "fit_competence": {
+    "T": true,
+    "S": true,
+    "S0": true,
+    "D": true
+  },
+  "student_benefit": {
+    "S0": false,
+    "D": false
+  },
+  "mechanism_pass": false,
+  "independent_verification": {
+    "status": "PASS",
+    "artifact_hashes_verified": 263,
+    "frozen_pins_verified": 16,
+    "native_inputs_verified": 208,
+    "initialization_hashes_reconstructed": {
+      "decoder": "0fd9615d7b4fe2bf0bc9cf9fc5e230b050738d8c17953da84421d174c233c13c",
+      "student": "b4e26e575ebb7deee6321944ebf514e622496792ce9e7a1655ca5fae15be8e82"
+    },
+    "S_S0_final_decoder_equals_T": true,
+    "S_S0_identical_initial_pixel_smoothness": true,
+    "initialization_claim_limit": "Reconstructed initialization digest and frozen execution source; per-arm initial checkpoint files were not separately saved. Final S/S0 decoder equality is directly observed.",
+    "inference_boundary": "Predict source is hash-bound X/R-only; saved operators are exact matches after diagnostic load. Input absence is code-path evidence, not OS-level sandbox tracing.",
+    "protected_crops": [
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y1_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y1_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y1_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y1_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y1_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y1_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y2_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y2_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y2_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y2_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y2_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\24_Y2_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y1_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y1_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y1_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y1_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y1_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y1_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y2_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y2_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y2_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y2_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y2_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\25_Y2_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y1_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y1_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y1_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y1_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y1_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y1_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y2_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y2_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y2_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y2_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y2_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\26_Y2_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y1_S_native_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y1_S_strength08_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y1_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y1_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y1_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y1_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y2_S_native_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y2_S_strength08_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y2_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y2_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y2_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\27_Y2_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y1_S_native_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y1_S_strength08_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y1_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y1_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y1_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y1_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y2_S_native_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y2_S_strength08_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y2_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y2_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y2_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\28_Y2_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y1_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y1_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y1_S_native_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y1_S_strength08_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y1_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y1_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y1_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y1_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y2_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y2_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y2_S_native_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y2_S_strength08_text.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y2_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y2_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y2_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\29_Y2_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\30_Y1_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\30_Y1_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\30_Y1_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\30_Y1_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\30_Y2_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\30_Y2_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\30_Y2_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\30_Y2_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y1_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y1_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y1_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y1_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y1_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y1_S_strength08_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y2_S_native_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y2_S_strength08_face.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y2_S_native_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y2_S_strength08_dark.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y2_S_native_bright.png",
+        "maximum_code_error": 0
+      },
+      {
+        "path": "outputs\\tst_reference_distillation_v1\\predict\\predictions\\31_Y2_S_strength08_bright.png",
+        "maximum_code_error": 0
+      }
+    ],
+    "independent_metrics": {
+      "fit": {
+        "groups": 23,
+        "maximum_independent_metric_difference": 8.43769498715119e-14,
+        "joint": {
+          "T": 19,
+          "S": 19,
+          "S0": 19,
+          "D": 20
+        },
+        "Q": {
+          "T": 0.0790032621508127,
+          "S": 0.07770684433455155,
+          "S0": 0.07779857136642587,
+          "D": 0.07002589565896215
+        }
+      },
+      "development": {
+        "groups": 8,
+        "maximum_independent_metric_difference": 4.618527782440651e-14,
+        "joint": {
+          "T": 0,
+          "S": 0,
+          "S0": 0,
+          "D": 0
+        },
+        "Q": {
+          "T": 0.9636419137492604,
+          "S": 1.119449386444701,
+          "S0": 1.1074406164889368,
+          "D": 1.0990504163968242
+        }
+      }
+    },
+    "study_remaining_cpu_before_verification": 1285.578125,
+    "study_remaining_wall_before_verification": 1511.046000000002,
+    "claim": "Artifact/numerical integrity only; no photographic preference claim.",
+    "cpu_seconds": 7.796875,
+    "wall_seconds": 5.39100000000326,
+    "verification_script_sha256": "8317f25130872ac87924a99b9b65abd0187b0f5bf8d97658639235f45fe898d5"
+  },
+  "verification_report_sha256": "b681a6016fd72170eb319bad9b8b277a89d6e2c425b9f901e0debf7eab108406",
+  "photographic_review": {
+    "status": "COMPLETE_PHOTOGRAPHIC_FAIL_NOT_PROMOTED",
+    "reviewer": "root",
+    "method": "Nonblind view_image of every fixed eight whole boards and eight native detail boards; all16S strength1 outputs and48protectedregions.",
+    "boards_sha256": "6ec517d7b6f16ad8af5cda4ce695d47f4bf53abbe393faef89ac44cbeb924214",
+    "source_crops_sha256": "45f0430227ad4aae7c463884c9d775a55e963e5a11bc0a0e4bad39b921532b27",
+    "rows": [
+      {
+        "group": 24,
+        "target": 1,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Orange skin and cream snow; only partial assigned dark/red response.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 24,
+        "target": 2,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Magenta skin and green-gray flattened clothing shadows, false color contours.",
+        "severe_new_tonal_detail_failure": true
+      },
+      {
+        "group": 25,
+        "target": 1,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Severe orange/cyan facial patching and dark hair false colors; pink/cyan white fabric.",
+        "severe_new_tonal_detail_failure": true
+      },
+      {
+        "group": 25,
+        "target": 2,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Severe solarized green/pink face and ochre hair; target has ordinary warm skin.",
+        "severe_new_tonal_detail_failure": true
+      },
+      {
+        "group": 26,
+        "target": 1,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Pink sky and multicolored road instead of reference desaturation; red skin.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 26,
+        "target": 2,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Purple sky, green skin and pink blouse; direction inaccurate.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 27,
+        "target": 1,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Teal sky and green grass instead of amber treatment; color contours near highlights.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 27,
+        "target": 2,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Neon teal sky, magenta truck and red/blue shadow contours; inaccurate and uncomfortable.",
+        "severe_new_tonal_detail_failure": true
+      },
+      {
+        "group": 28,
+        "target": 1,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Pink/yellow skin and clothing, shadow flattening; fails sepia/desaturation direction.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 28,
+        "target": 2,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Harsh orange skin, pink-yellow denim and clipped/flattened shirt shadows.",
+        "severe_new_tonal_detail_failure": true
+      },
+      {
+        "group": 29,
+        "target": 1,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Yellow-green face and muted magenta shirt, fails warm target direction.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 29,
+        "target": 2,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Magenta shirt and patchy light skin; missing target desaturation.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 30,
+        "target": 1,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Brown/green sky and shadow hue distortion; night geometry remains recognizable.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 30,
+        "target": 2,
+        "obviously_changed": false,
+        "comfortable_rich_directional_pass": false,
+        "note": "Modest magenta change too similar to original for requested clearly distinct result; group direction uncertainty retained.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 31,
+        "target": 1,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Cyan skin matches only part of reference hue; vegetation remains green, unnatural face.",
+        "severe_new_tonal_detail_failure": false
+      },
+      {
+        "group": 31,
+        "target": 2,
+        "obviously_changed": true,
+        "comfortable_rich_directional_pass": false,
+        "note": "Cyan/pale skin rather than target desaturation; two references insufficiently distinguished.",
+        "severe_new_tonal_detail_failure": false
+      }
+    ],
+    "comfortable_rich_directional_pairs": 0,
+    "required_pairs": 6,
+    "severe_new_tonal_failures_observed": true,
+    "content": "No observed object/face/text displacement in inspected regions. Text remains legible in fixed crops. This is not a global factual or detail preservation guarantee. Severe tonal posterization and skin distortion fail photographic quality even without geometric change.",
+    "strength08": "Generated and independently checked but not visually selected or claimed to rescue the failure; primary review remains fixed strength1.",
+    "conclusion": "Visible change is generally present, but often wrong-direction or harsh false color. Failure cannot be described as universal near-identity. No gallery promotion or hand correction."
+  },
+  "photographic_review_sha256": "28782b06417303a81483dd8fc27f2208ad6f656db1df447beea9d77be83d618f",
+  "auxiliary_summary": {
+    "fit": {
+      "query_own": {
+        "Q": {
+          "T": 0.07721064118248323,
+          "S": 0.07571704623676641,
+          "S0": 0.07968344033904914,
+          "D": 0.07951694288251449
+        },
+        "joint": {
+          "T": 19,
+          "S": 20,
+          "S0": 20,
+          "D": 19
+        }
+      },
+      "reference_own": {
+        "T": {
+          "equal_group_Q": 0.09481950345261717,
+          "adequate_rows": 42,
+          "row_count": 43
+        },
+        "S": {
+          "equal_group_Q": 0.09298915225870263,
+          "adequate_rows": 42,
+          "row_count": 43
+        },
+        "S0": {
+          "equal_group_Q": 0.0930183104761247,
+          "adequate_rows": 42,
+          "row_count": 43
+        },
+        "D": {
+          "equal_group_Q": 0.0814357872736484,
+          "adequate_rows": 43,
+          "row_count": 43
+        }
+      }
+    },
+    "development": {
+      "query_own": {
+        "Q": {
+          "T": 0.987027906466657,
+          "S": 1.1013899331486947,
+          "S0": 1.1036861179210353,
+          "D": 1.019443034341514
+        },
+        "joint": {
+          "T": 0,
+          "S": 0,
+          "S0": 0,
+          "D": 0
+        }
+      },
+      "reference_own": {
+        "T": {
+          "equal_group_Q": 1.1144950970959928,
+          "adequate_rows": 0,
+          "row_count": 16
+        },
+        "S": {
+          "equal_group_Q": 1.3064455309751648,
+          "adequate_rows": 0,
+          "row_count": 16
+        },
+        "S0": {
+          "equal_group_Q": 1.3192631112563575,
+          "adequate_rows": 0,
+          "row_count": 16
+        },
+        "D": {
+          "equal_group_Q": 1.3013193812746269,
+          "adequate_rows": 0,
+          "row_count": 16
+        }
+      }
+    }
+  },
+  "budget": {
+    "limit_cpu_seconds": 1800,
+    "total_actual_accounted_cpu_seconds": 527.421875,
+    "remaining_cpu_seconds": 1272.578125,
+    "remaining_active_wall_seconds_conservative": 1493.9460000000022,
+    "includes": "pair preparation, allfive stages with launcher/worker CPU, failed and successful independent verification, review board render",
+    "reset_allowed": false
+  },
+  "limits": [
+    "T/S/S0/D fit competence passes but T own-pair and cross-pair development fail, so no isolated after-only failure claim.",
+    "No geometric displacement observed in protected crops; severe tonal artifacts and skin errors fail photographs.",
+    "Current tests use repeatedly consumed development owners, not unseen generalization or human aesthetic preference evidence.",
+    "This outcome does not establish LUTs as best, nor disprove every paired or after-only learning approach.",
+    "No hand recipes, strength rescue, parameter sweep, gallery integration or product claim."
+  ],
+  "next": "Astra medium formulates a single evidence-driven science question; stop tuning this exact configuration. Data scale, correspondence representation and unconstrained color behavior remain competing unproven explanations."
+}
