@@ -1,0 +1,38 @@
+{
+  "status": "FIRST_FIT_OPERATOR_INDEPENDENT_FULL_NATIVE_METRIC_PASS",
+  "operator_key": "ffc48c489611eb09192981e6825f4be9b8ee8f341c515f31a2655cf1ce7c09f8",
+  "input_identity": {
+    "config_sha256": "4269c7a5c89b6e7eec8e9ba9ca458dd68ffc7785ef816e4d60f93104bb8609cd",
+    "entry_sha256": "eb6407411d42989ba694fb27abb2a15aa9a370e8887a62207d3521c1f298a11b",
+    "input_sha256": "f219b5ac3d7f7bedb2b8a721922696ff93bfcd23f16440a821d5d08bc258813d"
+  },
+  "probes": [
+    {
+      "probe_id": "fad44718f20c0fe49536cb02faa543d074431f111613e485696d77af0d041a83",
+      "pixels": 194400,
+      "mean_delta_e2000": 7.985129678412233,
+      "absolute_metric_difference": 8.881784197001252e-16
+    },
+    {
+      "probe_id": "9144703100059e84530144459f875651b9ef38062783a0e393a04ae6364c7698",
+      "pixels": 194400,
+      "mean_delta_e2000": 6.871207181773222,
+      "absolute_metric_difference": 8.881784197001252e-16
+    },
+    {
+      "probe_id": "d4254904644e77cefa12af56fbb167f84d3f06bf914d1d6b05d6b213b6a589d5",
+      "pixels": 697344,
+      "mean_delta_e2000": 11.659287740897938,
+      "absolute_metric_difference": 1.7763568394002505e-15
+    },
+    {
+      "probe_id": "d9e57f7322af513883c1e83789df87d6be585a16e513f8c7a35b2dd197e7fdc4",
+      "pixels": 2355640,
+      "mean_delta_e2000": 7.074123968257379,
+      "absolute_metric_difference": 2.6645352591003757e-15
+    }
+  ],
+  "cpu_seconds": 3.46875,
+  "independence": "SciPy RegularGridInterpolator and 65536pixel reduction versus production trilinear32768; same frozen decoder/skimage Lab and DeltaE library",
+  "claim_ceiling": "Metric implementation agreement only; no aesthetic or learning admission"
+}

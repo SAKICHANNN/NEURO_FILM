@@ -1,0 +1,691 @@
+{
+  "status": "ROOT_REVIEWED_WAIT_S3_COMPLETE",
+  "evidence": {
+    "status": "READY_STOP_EDITING",
+    "runtime_preflight": "WAIT_S3_COMPLETE",
+    "tests": "8 passed in 4.90s",
+    "ruff": "F checks PASS",
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_tst_crossed_photo_review.py -q --basetemp outputs/tst_crossed_photo_review_v1/synthetic_frozen",
+    "real_photo_reads": 0,
+    "real_rendered_outputs": 0,
+    "automatic_admissions": 0,
+    "core_changes": false,
+    "candidate_topology": "5PNG sheets: donor P/R/F(P) overview+4fixed192native triplets;4probe original/output overview+2frozen native crop pairs.1pending external decision template.60sheets/full12candidatebatch.",
+    "required_external_review": "P/Rgeometry/content and reconstructed appearance compatible;all4probescomfortable with no objectionable new content/detail loss;>=3visiblychanged and comfortablyrich.UNCERTAIN unavailabletolearning; reviewer hashes and reasons external.",
+    "viewing": "Each artifact includes exactdimensions/native_layout. Native patches are only1:1 inoriginal-size display. Use detail original or split by recordednative_layout whenviewer scales; no known universalviewerthreshold claimed. No whole-nativecontent certification fromoverview.",
+    "donor_board_max_shape": [
+      1328,
+      1184,
+      3
+    ],
+    "probe_board_shapes": [
+      {
+        "probe_id": "fad44718f20c0fe49536cb02faa543d074431f111613e485696d77af0d041a83",
+        "split": "fit",
+        "board_shape": [
+          782,
+          792,
+          3
+        ]
+      },
+      {
+        "probe_id": "9144703100059e84530144459f875651b9ef38062783a0e393a04ae6364c7698",
+        "split": "fit",
+        "board_shape": [
+          752,
+          792,
+          3
+        ]
+      },
+      {
+        "probe_id": "d4254904644e77cefa12af56fbb167f84d3f06bf914d1d6b05d6b213b6a589d5",
+        "split": "fit",
+        "board_shape": [
+          1192,
+          834,
+          3
+        ]
+      },
+      {
+        "probe_id": "d9e57f7322af513883c1e83789df87d6be585a16e513f8c7a35b2dd197e7fdc4",
+        "split": "fit",
+        "board_shape": [
+          1402,
+          1104,
+          3
+        ]
+      },
+      {
+        "probe_id": "44f8524f4209ae35f909de0c0242cf06d05340cfe311d80007db0b155bd3ff75",
+        "split": "monitor",
+        "board_shape": [
+          767,
+          792,
+          3
+        ]
+      },
+      {
+        "probe_id": "762465ef9cd9176cc155ecf837b1884feace352a3c2a004c7fbc6f95b3957c1a",
+        "split": "monitor",
+        "board_shape": [
+          1062,
+          804,
+          3
+        ]
+      },
+      {
+        "probe_id": "fda2b9dbd5525e563bfd88b3bea3a881aae9754a854bff24fa271b834320308f",
+        "split": "monitor",
+        "board_shape": [
+          1137,
+          1084,
+          3
+        ]
+      },
+      {
+        "probe_id": "33295a0e510fc9724faaa8eb78c04ed75850c24bbc063d5eac2014dd762974f9",
+        "split": "monitor",
+        "board_shape": [
+          1552,
+          1184,
+          3
+        ]
+      },
+      {
+        "probe_id": "285d305b27f340f824ee0d52e0330d2965cddec40e2851411cde28aa52cc3799",
+        "split": "constructed_test",
+        "board_shape": [
+          847,
+          792,
+          3
+        ]
+      },
+      {
+        "probe_id": "50c2096e9f0da354db38c0b18021a963c8f113041c1142531173170967b332e6",
+        "split": "constructed_test",
+        "board_shape": [
+          877,
+          792,
+          3
+        ]
+      },
+      {
+        "probe_id": "ea05a2d36b3dc0b41c9dec5b94b1b2547f2b9522d64efabf9af1f67330a3db7b",
+        "split": "constructed_test",
+        "board_shape": [
+          1227,
+          944,
+          3
+        ]
+      },
+      {
+        "probe_id": "a895a7f39e3d38fd0e44e9c3666616db30a55379f1729f9b7de3df261f595b98",
+        "split": "constructed_test",
+        "board_shape": [
+          1362,
+          1474,
+          3
+        ]
+      }
+    ],
+    "synthetic_boards_actually_viewed": [
+      "synthetic_verified donor and probe2;capacity_synthetic probe4 original detail"
+    ],
+    "capacity": {
+      "synthetic_only": true,
+      "reference_pixels_read": 0,
+      "boards": [
+        {
+          "path": "00_donor.png",
+          "sha256": "420a797c9dd8fc3c387c77dc25348aed077bebc180b9dcd7968b661a9e1f46ac",
+          "bytes": 2641437,
+          "shape": [
+            1328,
+            1184,
+            3
+          ],
+          "native_layout": [
+            {
+              "column": 0,
+              "crop": 0,
+              "source_xyxy": [
+                32,
+                32,
+                224,
+                224
+              ],
+              "board_xyxy": [
+                8,
+                456,
+                200,
+                648
+              ]
+            },
+            {
+              "column": 0,
+              "crop": 1,
+              "source_xyxy": [
+                288,
+                32,
+                480,
+                224
+              ],
+              "board_xyxy": [
+                8,
+                672,
+                200,
+                864
+              ]
+            },
+            {
+              "column": 0,
+              "crop": 2,
+              "source_xyxy": [
+                32,
+                288,
+                224,
+                480
+              ],
+              "board_xyxy": [
+                8,
+                888,
+                200,
+                1080
+              ]
+            },
+            {
+              "column": 0,
+              "crop": 3,
+              "source_xyxy": [
+                288,
+                288,
+                480,
+                480
+              ],
+              "board_xyxy": [
+                8,
+                1104,
+                200,
+                1296
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 0,
+              "source_xyxy": [
+                32,
+                32,
+                224,
+                224
+              ],
+              "board_xyxy": [
+                400,
+                456,
+                592,
+                648
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 1,
+              "source_xyxy": [
+                288,
+                32,
+                480,
+                224
+              ],
+              "board_xyxy": [
+                400,
+                672,
+                592,
+                864
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 2,
+              "source_xyxy": [
+                32,
+                288,
+                224,
+                480
+              ],
+              "board_xyxy": [
+                400,
+                888,
+                592,
+                1080
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 3,
+              "source_xyxy": [
+                288,
+                288,
+                480,
+                480
+              ],
+              "board_xyxy": [
+                400,
+                1104,
+                592,
+                1296
+              ]
+            },
+            {
+              "column": 2,
+              "crop": 0,
+              "source_xyxy": [
+                32,
+                32,
+                224,
+                224
+              ],
+              "board_xyxy": [
+                792,
+                456,
+                984,
+                648
+              ]
+            },
+            {
+              "column": 2,
+              "crop": 1,
+              "source_xyxy": [
+                288,
+                32,
+                480,
+                224
+              ],
+              "board_xyxy": [
+                792,
+                672,
+                984,
+                864
+              ]
+            },
+            {
+              "column": 2,
+              "crop": 2,
+              "source_xyxy": [
+                32,
+                288,
+                224,
+                480
+              ],
+              "board_xyxy": [
+                792,
+                888,
+                984,
+                1080
+              ]
+            },
+            {
+              "column": 2,
+              "crop": 3,
+              "source_xyxy": [
+                288,
+                288,
+                480,
+                480
+              ],
+              "board_xyxy": [
+                792,
+                1104,
+                984,
+                1296
+              ]
+            }
+          ]
+        },
+        {
+          "path": "01_probe.png",
+          "sha256": "a50f262e62113c1ea411f7fdba40f26ff3706e9d191c68feee33bab3e6c6d93b",
+          "bytes": 862282,
+          "shape": [
+            782,
+            792,
+            3
+          ],
+          "native_layout": [
+            {
+              "column": 0,
+              "crop": 0,
+              "source_xyxy": [
+                30,
+                260,
+                165,
+                355
+              ],
+              "board_xyxy": [
+                8,
+                456,
+                143,
+                551
+              ]
+            },
+            {
+              "column": 0,
+              "crop": 1,
+              "source_xyxy": [
+                0,
+                350,
+                170,
+                525
+              ],
+              "board_xyxy": [
+                8,
+                575,
+                178,
+                750
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 0,
+              "source_xyxy": [
+                30,
+                260,
+                165,
+                355
+              ],
+              "board_xyxy": [
+                400,
+                456,
+                535,
+                551
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 1,
+              "source_xyxy": [
+                0,
+                350,
+                170,
+                525
+              ],
+              "board_xyxy": [
+                400,
+                575,
+                570,
+                750
+              ]
+            }
+          ],
+          "synthetic_native_shape": [
+            540,
+            360,
+            3
+          ]
+        },
+        {
+          "path": "02_probe.png",
+          "sha256": "878789d85c1769444ad42bbccd3b9dc5dd082c9a5405ee640faf21059ab7f925",
+          "bytes": 880346,
+          "shape": [
+            752,
+            792,
+            3
+          ],
+          "native_layout": [
+            {
+              "column": 0,
+              "crop": 0,
+              "source_xyxy": [
+                0,
+                120,
+                185,
+                250
+              ],
+              "board_xyxy": [
+                8,
+                456,
+                193,
+                586
+              ]
+            },
+            {
+              "column": 0,
+              "crop": 1,
+              "source_xyxy": [
+                340,
+                250,
+                540,
+                360
+              ],
+              "board_xyxy": [
+                8,
+                610,
+                208,
+                720
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 0,
+              "source_xyxy": [
+                0,
+                120,
+                185,
+                250
+              ],
+              "board_xyxy": [
+                400,
+                456,
+                585,
+                586
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 1,
+              "source_xyxy": [
+                340,
+                250,
+                540,
+                360
+              ],
+              "board_xyxy": [
+                400,
+                610,
+                600,
+                720
+              ]
+            }
+          ],
+          "synthetic_native_shape": [
+            360,
+            540,
+            3
+          ]
+        },
+        {
+          "path": "03_probe.png",
+          "sha256": "62f5485cba72f2099c0f3c409c5fe9b32714240fec1869030049fc9591732cf7",
+          "bytes": 1914208,
+          "shape": [
+            1192,
+            834,
+            3
+          ],
+          "native_layout": [
+            {
+              "column": 0,
+              "crop": 0,
+              "source_xyxy": [
+                260,
+                130,
+                665,
+                500
+              ],
+              "board_xyxy": [
+                8,
+                456,
+                413,
+                826
+              ]
+            },
+            {
+              "column": 0,
+              "crop": 1,
+              "source_xyxy": [
+                0,
+                340,
+                250,
+                650
+              ],
+              "board_xyxy": [
+                8,
+                850,
+                258,
+                1160
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 0,
+              "source_xyxy": [
+                260,
+                130,
+                665,
+                500
+              ],
+              "board_xyxy": [
+                421,
+                456,
+                826,
+                826
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 1,
+              "source_xyxy": [
+                0,
+                340,
+                250,
+                650
+              ],
+              "board_xyxy": [
+                421,
+                850,
+                671,
+                1160
+              ]
+            }
+          ],
+          "synthetic_native_shape": [
+            681,
+            1024,
+            3
+          ]
+        },
+        {
+          "path": "04_probe.png",
+          "sha256": "8b8a83ad73f0a1e124d3882b814f3d13268dee897c98a013909b7052be924d24",
+          "bytes": 3167849,
+          "shape": [
+            1402,
+            1104,
+            3
+          ],
+          "native_layout": [
+            {
+              "column": 0,
+              "crop": 0,
+              "source_xyxy": [
+                100,
+                820,
+                550,
+                1210
+              ],
+              "board_xyxy": [
+                8,
+                456,
+                458,
+                846
+              ]
+            },
+            {
+              "column": 0,
+              "crop": 1,
+              "source_xyxy": [
+                650,
+                620,
+                1190,
+                1120
+              ],
+              "board_xyxy": [
+                8,
+                870,
+                548,
+                1370
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 0,
+              "source_xyxy": [
+                100,
+                820,
+                550,
+                1210
+              ],
+              "board_xyxy": [
+                556,
+                456,
+                1006,
+                846
+              ]
+            },
+            {
+              "column": 1,
+              "crop": 1,
+              "source_xyxy": [
+                650,
+                620,
+                1190,
+                1120
+              ],
+              "board_xyxy": [
+                556,
+                870,
+                1096,
+                1370
+              ]
+            }
+          ],
+          "synthetic_native_shape": [
+            1253,
+            1880,
+            3
+          ]
+        }
+      ],
+      "five_sheet_bytes": 9466122,
+      "cache_bytes": 4294967296,
+      "floor_capacity_at_this_synthetic_size": 453,
+      "CPU_seconds": 2.734375,
+      "wall_seconds": 2.812000000005355,
+      "claim": "One noise-filled donor512x512 plus four frozen fit-probe shapes/crop coordinates. Storage estimate only; other donor/partition dimensions and image compression differ. Never shrink native crops or population to meet estimate.4GiB execution cap stops further generation without deletion. Board dimensions recorded; request original display or split by native_layout if viewer scales."
+    },
+    "retained_failure": "first_test_failure.json:independentuint16 exact equality failed19/1479 by1codeat half ties. Fixedtest verifies independentfloat agreement,frozenroundingexact andhalf-tie-only1code difference;rendererunchanged.",
+    "caps": {
+      "cpu_seconds": 7200,
+      "wall_seconds": 7200,
+      "rss_bytes": 2147483648,
+      "cache_bytes": 4294967296,
+      "batch_size": 12
+    },
+    "scope": "Onlyspecifiedbatch rendered perlaunch;fixedsurvivorpopulation and prioroutcomes retained;cap stops furtherartifacts without deletion or admission. External supplementaryregions possible wheninitialnativeevidence insufficient;noauto output-tunedcropselection.",
+    "files": {
+      "scripts/prepare_tst_crossed_photo_review.py": "61cef57a1fbaa9102eab7c1d8811495aca0f761ae3babdcd6fd543de70882cfd",
+      "configs/tst_crossed_photo_review_v1.json": "49b090bda7614b7b3051bc5f78302503b30ac631c1afee3aeeea87b4b59ed837",
+      "tests/test_tst_crossed_photo_review.py": "ae540b1396c6d8a1d12d63055f10da98a1e66a999e6b65008b22b17278d7e4c1"
+    }
+  },
+  "root_actual_metadata_preflight": "WAIT_S3_COMPLETE zero photo and partial S3 record reads",
+  "capacity_caveat": "Synthetic9.47MB per5sheets means4GiB may not cover population; measure real batch before broad preparation; no silent reduction or deletion."
+}

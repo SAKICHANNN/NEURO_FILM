@@ -1,3 +1,5 @@
+2026-09-09 medium READY_STOP_EDITING photo review runner. Locks RELEASED: scripts/prepare_tst_crossed_photo_review.py; configs/tst_crossed_photo_review_v1.json; tests/test_tst_crossed_photo_review.py; outputs/tst_crossed_photo_review_v1/.8synthetic tests/RuffPASS;preflight WAIT_S3_COMPLETE.5sheets/survivor,12candidatebatch,4GiBcap;externaldecisions only. Zerorealphoto reads/renders;S2/S3/core unchanged.
+
 2026-09-09 medium READY_STOP_EDITING S3 runner. Locks RELEASED: scripts/run_tst_crossed_visibility.py; configs/tst_crossed_visibility_v1.json; tests/test_tst_crossed_visibility_runner.py; outputs/tst_crossed_visibility_v1/. 12 synthetic tests PASS; runtime preflight WAIT_S2_COMPLETE. Zero actual S3/source/R decodes. Completed3494 S2 receipt required; root reviews before launch. Pinned S2/core/decoder unchanged.
 
 2026-09-09 medium visibility READY_STOP_EDITING. Locks RELEASED: src/eval/tst_operator_visibility.py; tests/test_tst_operator_visibility.py. 17 synthetic tests and Ruff PASS; native-shape-only benchmark 9.1875 CPU / 9.206778 wall seconds. Zero real pixels/grids. S2 agent locks unchanged.
