@@ -18,7 +18,14 @@ Evidence docs/evidence/SA_LUT_NATIVE_CONTENT_REVIEW_20260908.json.
 Next: use codex-bridge-chatgpt with verified web6Pro for scientific reconsideration
 of learned reference response versus skin/illumination relations. Provide ref02/18,
 G0/G1 and native-content failures; do not add strength search/local skin patches or
-more same-checkpoint examples. No new science request submitted yet. Goal ACTIVE;
+more same-checkpoint examples. New science request submitted ONCE in verified Latest/Pro(6 Pro), IAB tab5:
+https://chatgpt.com/c/6a9fe63c-f4f4-83ec-abd2-0afa0685346e .
+Packet outputs/ai_post_salut_science_bridge_v1/packet.md valid(~2195tokens).
+Doctor/consent READY; only sanitized text sent. Stop-answering present on live check.
+RUNNING,copy clicks0; use same tab, no resubmit. Next wait via clock.sleep and
+check Stop-answering/UI controls only; after completion one Copy. Prior DOM exception
+was for previous answer only and DOES NOT carry over. Mark tab handoff each turn.
+Goal ACTIVE;
 independent confirmation and integration remain unjustified. No inference live.
 
 ### Latest user visual priority (corrected)
