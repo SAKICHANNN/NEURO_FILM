@@ -67,13 +67,17 @@ No independent-validation or product-promotion claim follows from this round.
 Execution completed in `attempt-0001`: eight new forwards plus one exact cache,
 86.53 seconds, 7.67 GiB allocated peak, 36 output hashes/dimensions verified.
 Root's 49 related tests and Ruff passed. All nine comparison sheets were reviewed;
-0–5 also received full-size learned-image inspection. The daisy treatment is
+all nine also received full-size learned-image inspection. The daisy treatment is
 conditionally attractive, but fruit/sunflower colours collapse during
 precorrection and learned mapping adds broad green shadows across subjects.
 Do not promote. Full per-image findings and report binding are recorded in
 `docs/evidence/AI_SINGLE_REFERENCE_BATCH_DEVELOPMENT_20260908.json`. Medium is
-checking a same-reference NCC ablation to isolate the implicated preprocessing;
-no additional inference has yet been admitted.
+implementing a same-reference NCC ablation to isolate the implicated preprocessing.
+The ablation keeps all nine original four-arm outputs, adds correctly conditioned
+`learned_no_precorrection`, and reuses the verified old NCC daisy output. At most
+eight new forwards under the same 600s/8.5GiB cap may run after CPU verification
+and fresh resource admission. Colour recovery alone, with no useful reference
+appearance remaining, would not satisfy the photographic objective.
 
 User request: perform a major course correction after confirming that the project
 and this task drifted from AI-learned photographic value. This section supersedes

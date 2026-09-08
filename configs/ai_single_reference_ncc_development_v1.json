@@ -1,0 +1,34 @@
+{
+  "schema": "neuro-film.ai-single-reference-ncc-development.v1",
+  "round": "ai_single_reference_ncc_development_v1",
+  "output": "outputs/ai_single_reference_ncc_development_v1",
+  "question": "Does disabling published precorrection preserve warm-object colour while retaining useful learned reference appearance across all nine consumed photographs?",
+  "scope": "One-variable ncc=True development ablation on the same nine inputs and post-result chosen Italy reference 18. Prior NCC and corrected-pipeline negatives remain unchanged. No independent validation or promotion.",
+  "baseline_report": "outputs/ai_single_reference_batch_development_v1/attempt-0001/report.json",
+  "baseline_report_sha256": "bffd4796e98d88a8f3696e7fa5b96fded65518aee3a3268dce7033e47d5173c9",
+  "baseline_lock_sha256": "5d0009dd16214fa9adc7e6f18675c17d5daf4e7ef05d04dfa870e778ac5a166f",
+  "baseline_config_sha256": "76b45382a9f125c3e80d21c338346d286dde296aa1925365c1ebf1751f9323b6",
+  "arms": ["identity", "simple", "precorrection", "learned", "learned_no_precorrection"],
+  "ncc": true,
+  "training": false,
+  "automatic_promotion": false,
+  "budget": {
+    "maximum_new_forwards": 8,
+    "maximum_worker_wall_seconds": 600,
+    "maximum_cuda_allocated_bytes": 9126805504,
+    "minimum_free_gpu_mib_before_loading": 9216,
+    "maximum_existing_gpu_used_mib": 2560,
+    "maximum_idle_gpu_utilization_percent": 10,
+    "minimum_output_free_bytes": 1073741824
+  },
+  "cache": {
+    "source_index": 2,
+    "report": "outputs/ai_vcg_ncc_ablation_v1/report.json",
+    "report_sha256": "d8b13e6c987875487dce5779e0112f55ccc44b2fb2f8f9874802af56f98cd6b2",
+    "runner": "scripts/run_ai_vcg_ncc_ablation.py",
+    "runner_sha256": "195fab0489d41400b239bf09987680585354aae9c06bbee9af9c19859e7434e1",
+    "lut_sha256": "a9daf0a847e1b91a870b4829a51f22af20a674be4481804508ffea912cdc19ae",
+    "output_sha256": "bf87f964716507196af716be4ed54aba467acbe271dc71fde29ec4054dffe2b0"
+  },
+  "review": "Review every original four-arm comparison plus NCC. Colour recovery alone is insufficient if the result loses reference appearance or adds dark-green shadows and severe defects. No selected winners or extra tuning of this round."
+}
