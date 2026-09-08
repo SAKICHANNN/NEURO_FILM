@@ -1,0 +1,76 @@
+{
+  "status": "PHOTOGRAPHIC_FAIL_NOT_PROMOTED",
+  "reviewer": "root nonblind agent review of consumed development photos; not human preference",
+  "strength": 1,
+  "groups": [
+    {
+      "group": 24,
+      "R1": "R1 mostly near-original, insufficient warmth/response",
+      "R2": "R2 visible faded blue/brown response but insufficient comfortable richness",
+      "pair_pass": false
+    },
+    {
+      "group": 25,
+      "R1": "Visible desaturation unlike assigned warm/green reference; pale output",
+      "R2": "Warmer but muted, assigned contrast/richness underexpressed",
+      "pair_pass": false
+    },
+    {
+      "group": 26,
+      "R1": "Visible sky neutralization but warm cast differs from intended neutral reference",
+      "R2": "Visible cyan road/sky, partial direction; not enough paired assigned discrimination",
+      "pair_pass": false
+    },
+    {
+      "group": 27,
+      "R1": "Still blue/cyan sky despite amber reference; wrong direction",
+      "R2": "Cyan shift but missing intended pink sky, wrong response",
+      "pair_pass": false
+    },
+    {
+      "group": 28,
+      "R1": "Too close to source; brown reference response absent",
+      "R2": "Visible orange/cyan response but awkward skin and black clipping in shirt/megaphone shadows",
+      "pair_pass": false
+    },
+    {
+      "group": 29,
+      "R1": "Muted greenish skin/red shirt unlike warmer richer target",
+      "R2": "Weak cyan wash; reference dark/desaturated response largely absent",
+      "pair_pass": false
+    },
+    {
+      "group": 30,
+      "R1": "Subtle sky shift, still too close overall; reference assignment remains uncertain",
+      "R2": "Subtle pink shift, not sufficiently distinct; no case exclusion",
+      "pair_pass": false
+    },
+    {
+      "group": 31,
+      "R1": "Strong cyan skin with green background; uncomfortable and incomplete reference transfer",
+      "R2": "Pale green skin, insufficient coherent reference contrast; uncomfortable",
+      "pair_pass": false
+    }
+  ],
+  "whole_outputs_reviewed": 16,
+  "whole_boards": 8,
+  "native_detail_boards": 8,
+  "fixed_source_regions": 24,
+  "candidate_region_views": 48,
+  "comfortable_rich_changed_directional_pairs": 0,
+  "severe_observed_detail_failure": [
+    {
+      "group": 28,
+      "target": 2,
+      "region": "dark",
+      "finding": "New hard black clipping suppresses shirt/megaphone shadow detail visible in source; no geometric hallucination claim."
+    }
+  ],
+  "other_detail_findings": "Facial features, text shapes, truck plate and bridge geometry retained in inspected regions; shirt highlights flatten at25; skin casts at31 are photographic failures, not identity changes. No global content-safety proof.",
+  "mechanism_summary": {
+    "strong_fit": true,
+    "development_mechanism": false,
+    "feature_benefit": false
+  },
+  "scope": "Preserves all8groups; no new strength, filtering, model changes or reruns."
+}
