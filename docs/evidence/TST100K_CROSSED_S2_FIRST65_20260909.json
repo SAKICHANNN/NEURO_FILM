@@ -1,0 +1,14 @@
+{
+  "status": "FIRST65_COMPACT_ARTIFACTS_AND_INDEPENDENT_INTERPOLATION_PASS",
+  "count": 65,
+  "query_colors_per_grid": 4096,
+  "max_float64_error": 6.661338147750939e-16,
+  "cpu_seconds": 0.25,
+  "queue_identity": {
+    "config_sha256": "d0ff4ae03eabd95a6efccdb3e348569db4cabbad7609e96715e473d1b1821c68",
+    "entry_sha256": "e1a6fe3cff75fb71452767e1f411ae9f4e05094c6919cfa2b5f3e434dcf28a35",
+    "queue_sha256": "307f459cc3d878a42f185ecb0d7d03eff400aa409919ee6090f379967a5968c0"
+  },
+  "no_photographic_claim": true,
+  "real_image_reads": 0
+}

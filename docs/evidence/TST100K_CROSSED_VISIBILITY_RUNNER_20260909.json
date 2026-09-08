@@ -1,0 +1,46 @@
+{
+  "status": "ROOT_REVIEWED_S3_READY_WAIT_S2",
+  "implementation_evidence": {
+    "status": "READY_STOP_EDITING",
+    "runtime_preflight_status": "WAIT_S2_COMPLETE",
+    "tests": "12 passed in 7.45s",
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_tst_crossed_visibility_runner.py -q --basetemp outputs/tst_crossed_visibility_v1/synthetic_bound_fixed",
+    "real_S3_runs": 0,
+    "real_probe_decodes": 0,
+    "real_R_decodes": 0,
+    "probe_cache_bytes": {
+      "fit": 20650704,
+      "monitor": 23704224,
+      "constructed_test": 23635536
+    },
+    "expected_S2_census": 3494,
+    "core_sha256": "deef3c7b06999ae77552bb26d49803a2fb96c571127a96773cf765810a982cce",
+    "bound_tol": 1e-12,
+    "source_and_numeric_boundaries": [
+      "Completed S2 report and successful latest accounting; all3494 records and all artifacts including failures verified before receipt bind",
+      "Immutable S2 report/queue/record/grid identities and prior S0/S1/S2 attempt cost pins on S3 resume",
+      "Native uint16 partition-specific4probe cache; exact encoded/header/canonical/color-policy identity before use",
+      "Uniform1.0; frozen32768pixel native order fullmean DeltaE; >=4 on >=3of4; only exact two-failure short circuit",
+      "S2 failures retained outside solved eligibility; numeric visibility is not pair/comfort/content-preservation or training admission",
+      "Frozen boundtol1e-12 accepted without grid modification; core clips predictions before Lab",
+      "Fatal input identity persists then aborts; completed outcomes not retuned or rerun; interrupted replay uses pinned S2 recovery helper",
+      "Owned-process-tree CPU/RSS, conservative0.2CPU sampling allowance; max tree plus parent RSS; cumulative prior+S2+S3 failed attempts included"
+    ],
+    "caps": {
+      "cpu_seconds": 18000,
+      "wall_seconds": 14400,
+      "rss_bytes": 2147483648,
+      "study_cpu_seconds": 86400,
+      "study_wall_seconds": 86400
+    },
+    "files": {
+      "scripts/run_tst_crossed_visibility.py": "eb6407411d42989ba694fb27abb2a15aa9a370e8887a62207d3521c1f298a11b",
+      "configs/tst_crossed_visibility_v1.json": "4269c7a5c89b6e7eec8e9ba9ca458dd68ffc7785ef816e4d60f93104bb8609cd",
+      "tests/test_tst_crossed_visibility_runner.py": "325ed2f07165f9cf924d842e41fdf9a1092e54c299ebf42a1010a817f74de0dc"
+    },
+    "claim": "Implementation and synthetic correctness only. Real S3 throughput/outcomes unmeasured. No actual S3 launch."
+  },
+  "root_metadata_preflight": "WAIT_S2_COMPLETE; zero photo and partial S2 record reads",
+  "root_correction": "Frozen solver bound tolerance propagated to S3 without modifying grid values",
+  "source_evidence_sha256": "5e5054873942a6e1ba639ff8f91a3968a1db482e076aae4fca99186c27d2570d"
+}
