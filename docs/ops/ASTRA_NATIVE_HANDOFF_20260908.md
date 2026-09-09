@@ -1,3 +1,5 @@
+Current finite96 v3 cursor19:14FAIL(including1insufficientchange)/4UNCERTAIN/1PASS_CURATOR_ONLY/77remaining. Key58fb523 all5 root+medium independentlyPASS; review SHAcceec1d7870168345d7313cc7ce33148e4c0fd6a35c7c3294f309357a579e319. No training admission/liveworker. Evidence TST100K_CROSSED_DONOR96_FIRST_NINETEEN_20260909.json. Continue fixed queue --run/view/ingest; no replacement or strength changes.
+
 Current finite96v3 cursor17:13FAIL(including1insufficientchange)/4UNCERTAIN/79remaining. Lastb34f643portrait+donorPASS,neutralFAIL pinkwindowflattening. Evidence TST100K_CROSSED_DONOR96_FIRST_SEVENTEEN_20260909.json. Session91940 harvestedexit0; no liveworker/training. Continuev3 --run/view/ingest.
 
 Current finite96v3 cursor14:10comfortFAIL+1insufficientchangeFAIL+3UNCERTAIN/82remaining. Last7ec333all5viewed,4comfortablebutonly2rich;portrait/nighttooalike. Evidence TST100K_CROSSED_DONOR96_FIRST_FOURTEEN_20260909.json. No liveworker/training; continuev3 --run/view/ingest.
