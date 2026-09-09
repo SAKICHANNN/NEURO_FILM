@@ -1,3 +1,5 @@
+Current finite96 v3 cursor62:41FAIL(including3insufficientchange)/19UNCERTAIN/2PASS_CURATOR_ONLY/34notterminal. Queue61 cobalt-orangeUNCERTAIN. Queue62 key6568d8cd1ccda17f17827332b1e188db09df70fca2459e270bf2543c4fb56876 portraitactualPASScomfortable/richfalse ingested;NEXT --run DONOR. No liveworker/training.
+
 Current finite96 v3 cursor61:41FAIL(including3insufficientchange)/18UNCERTAIN/2PASS_CURATOR_ONLY/35remaining. Queue60 key209e6d1 portraitcomfortableweak/donorPASS,car goldenhazeUNCERTAIN. Three sheets/nativepairs actuallyviewed/ingested;flower/nightunviewed. No liveworker/training. Continue fixed --run/view/ingest.
 
 Current finite96 v3 cursor60:41FAIL(including3insufficientchange)/17UNCERTAIN/2PASS_CURATOR_ONLY/36remaining. Queue58 pale warmUNCERTAIN;queue59 fluorescentlimeFAIL. Both portrait sheets/nativepairs actuallyviewed/ingested;othersunviewed. No liveworker/training. Continue fixed --run/view/ingest.
