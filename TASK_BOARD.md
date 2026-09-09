@@ -1,3 +1,5 @@
+Current finite96 v3 cursor43 unchanged:30FAIL/12UNCERTAIN/1PASS_CURATOR_ONLY. Queue43 key71f81760f9cc787151369ca90057ed4d5cd9b17656f719cf625eaa72fb81dadd in progress:portraitPASSrich,donorPASS,neutralPASSrich;all3sheets actually viewed and ingested. Coherent monochrome; NEXT --run chromatic then night. No candidate terminal yet/no liveworker/training.
+
 Current finite96 v3 cursor43:30FAIL(including3insufficientchange)/12UNCERTAIN/1PASS_CURATOR_ONLY/53remaining. Queue42 key0e05596 all5 actually seen across2turns:donor compatible,all4comfortable but0rich;terminal FAIL_INSUFFICIENT_COMFORTABLE_RICH_CHANGE. No liveworker/training. Continue fixed v3 --run/view/ingest.
 
 Current finite96 v3 cursor42:29FAIL(including2insufficientchange)/12UNCERTAIN/1PASS_CURATOR_ONLY/54notterminal. Queue42 key0e05596da20f5c67d21686323f4f5b38e353652c92936d6079c2ac5fdae1ebfd portrait actually viewed PASS comfortable but richfalse, ingested. NEXT --run renders DONOR for same candidate. Queue40 graywash and41 brownveil uncertain. No liveworker/training.
