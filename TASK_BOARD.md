@@ -1,3 +1,5 @@
+Current finite96 v3 cursor40:29FAIL(including2insufficientchange)/10UNCERTAIN/1PASS_CURATOR_ONLY/56remaining. Three actual portrait reviews2FAIL/1UNCERTAIN. Evidence TST100K_CROSSED_DONOR96_FIRST_FORTY_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest.
+
 Current finite96 v3 cursor37:27FAIL(including2insufficientchange)/9UNCERTAIN/1PASS_CURATOR_ONLY/59remaining. Last69ac0ed portrait/donorPASS,car comfortUNCERTAIN;3sheets actually viewed. Evidence TST100K_CROSSED_DONOR96_FIRST_THIRTYSEVEN_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest.
 
 Current finite96 v3 cursor36:27FAIL(including2insufficientchange)/8UNCERTAIN/1PASS_CURATOR_ONLY/60remaining. Three new portrait reviews actual2FAIL/1UNCERTAIN. Evidence TST100K_CROSSED_DONOR96_FIRST_THIRTYSIX_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest.
