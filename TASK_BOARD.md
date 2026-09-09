@@ -1,3 +1,5 @@
+Current finite96 v3 cursor52:36FAIL(including3insufficientchange)/14UNCERTAIN/2PASS_CURATOR_ONLY/44remaining. Queue50 blue-orange splitUNCERTAIN;queue51 harsh orange skinFAIL. Both portrait sheets/nativepairs actuallyviewed/ingested. Remaining stages unviewed. No liveworker/training. Continue fixed --run/view/ingest.
+
 Current finite96 v3 cursor50:35FAIL(including3insufficientchange)/13UNCERTAIN/2PASS_CURATOR_ONLY/46remaining. Queue49 key02cfa196 portrait/donor/neutralPASS,flowerUNCERTAIN cyan leaves/pale buds. Four sheets actually seen across2turns;nightunviewed. No liveworker/training. Continue fixed --run/view/ingest.
 
 Current finite96 v3 cursor49:35FAIL(including3insufficientchange)/12UNCERTAIN/2PASS_CURATOR_ONLY/47notterminal. Queue48 pink-gray fog FAIL. Queue49 key02cfa196bbab22b0227b8ca467541f22829a0cd068140076a02c09fabd2a238d portrait actualPASSrich (cool frame/warm skin),ingested;NEXT --run DONOR samecandidate. No liveworker/training.
