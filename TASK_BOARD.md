@@ -1,3 +1,5 @@
+Current finite96 v3 cursor13:10FAIL/3UNCERTAIN/83remaining. Last47b1eb9 passedportrait/donor/neutral butflowerFAIL (darkblue/palecyan leaves andcreamorange palette);lowkeyunviewed. Evidence TST100K_CROSSED_DONOR96_FIRST_THIRTEEN_20260909.json. No liveworker/training; continuev3 --run+actualview/ingest.
+
 Current finite96 v3 cursor11:8FAIL/3UNCERTAIN/85remaining. Three new portrait sheets actuallyviewed; unevenresidualcolor,olivecastFAIL,cyanfaceUNCERTAIN. Evidence TST100K_CROSSED_DONOR96_FIRST_ELEVEN_20260909.json. No liveworker/training. Continuev3 --run then actualview/ingest; final96audit+viabilitydecision only.
 
 Current finite96 v3 cursor8:6FAIL/2UNCERTAIN/88remaining. Last40de9f9 portrait+donorPASS,neutralUNCERTAIN (darkscene comfort),3actualsheets;2unviewed. Evidence TST100K_CROSSED_DONOR96_FIRST_EIGHT_20260909.json. No liveworker/training; continuev3 --run and actualview/ingest.
