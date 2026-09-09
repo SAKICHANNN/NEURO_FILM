@@ -1,0 +1,60 @@
+{
+  "status": "FINITE96_PARTIAL_NOT_TRAINING",
+  "completed": 14,
+  "remaining": 82,
+  "counts": {
+    "FAIL": 10,
+    "FAIL_INSUFFICIENT_COMFORTABLE_RICH_CHANGE": 1,
+    "UNCERTAIN_NOT_ADMITTED": 3
+  },
+  "last_terminal": {
+    "identity": {
+      "config_sha256": "fe3051479474ae32d52f11214179db93e4e4ef6054e32b59e90acb47d23e65ad",
+      "entry_sha256": "ec301a2691fd7085ef35693bf30e2918b807109fbce1d8b1bf4fe34dd96fae20",
+      "input_sha256": "4c054e47b6896961fe4e5e8869167feb4fcfdf79e967d3182c8d25eb34b5c95d"
+    },
+    "operator_key": "7ec333f70884473ce716d4876a7dd931e9792eb22b23cab5fa7744deba73b617",
+    "next_index": 14,
+    "previous_terminal_sha256": "c9c36965105546e61f6adf33b59cf30464b6d0c52bdba0e109eabc656dd020f5",
+    "status": "FAIL_INSUFFICIENT_COMFORTABLE_RICH_CHANGE",
+    "receipts": [
+      {
+        "stage": "portrait_face",
+        "record_sha256": "eb6b32d37c17f1868d74788029149e9b7bad085c236d630c9930e8d04e2f331c",
+        "review_sha256": "1ad5c9c58d603ab9e688c8fe7551001dccba4a115030d358f07e9d95f709f52b"
+      },
+      {
+        "stage": "donor",
+        "record_sha256": "9f68bc9fa4e60beee6e2f11053c6e391465c29eb100c58eb6ed71a12dcba864e",
+        "review_sha256": "f4c1ad01afd8ba587648f08c3cee59e3169089238d9cb07641ff45dab9697915"
+      },
+      {
+        "stage": "neutral_text_built_scene",
+        "record_sha256": "21dbf8a963c12c1d108358d0d552cfd5927647fd41f26ab8947bb3202c2f1c87",
+        "review_sha256": "18215beb9a4c1569b047cdfce1120252ae9a4682cc67442836da96636d38ba2c"
+      },
+      {
+        "stage": "chromatic_nature_or_objects",
+        "record_sha256": "aaf562b45f4c68ab944eb542d3ddb79c69f0b3a0091c3176f6007887479cac7d",
+        "review_sha256": "14a88d4804cd17a4651fa8f7e3c5812f1a0ab08c0c1643902193de37c16b7b06"
+      },
+      {
+        "stage": "lowkey_environment",
+        "record_sha256": "d54ecc415718cf3d997bf8f57e7d73ce19e4d4af8dff3fdc55539fd2e92e0932",
+        "review_sha256": "9980ef92c542e49c6dca33f799a14fa36bc41f0d578a0f9d81c3c48a830cbd75"
+      }
+    ],
+    "unreviewed_stages": [],
+    "unreviewed_status": null,
+    "training_admitted": false
+  },
+  "last_terminal_sha256": "bef96efcd04098c3e977e33d9de595cff561dae24ec8fee8715153085dfe7b02",
+  "accounting": {
+    "attempts": 46,
+    "cpu": 107.70000000000007,
+    "wall": 104.69200000006822,
+    "bytes": 16574008,
+    "last_sha256": "babc264924b9b468663866bb146f0935769b4a125fe54d1ab9e00423b3ae1df3"
+  },
+  "claim": "All5 sheets actually viewed. All4 probes comfortable but only2 visually rich/changed:portrait and night too similar. Full candidate fails distinctness, no training admission."
+}
