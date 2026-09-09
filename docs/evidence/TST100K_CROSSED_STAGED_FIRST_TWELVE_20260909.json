@@ -1,0 +1,80 @@
+{
+  "status": "PARTIAL_NOT_TRAINING",
+  "completed": 24,
+  "remaining": 3432,
+  "effective_counts": {
+    "curator_pass": 1,
+    "fail": 21,
+    "uncertain_not_admitted": 2
+  },
+  "raw_v2_terminals": [
+    {
+      "key": "ffc48c489611eb09192981e6825f4be9b8ee8f341c515f31a2655cf1ce7c09f8",
+      "raw_status": "FAIL",
+      "sha256": "3a9a6bcedc46fa24f4c4042a5e3e4c8062bc6ce52c26d9d7fc161752eec1050c"
+    },
+    {
+      "key": "b30967b6df092d885a2b606f5361ceb658ab7f59af2dc0e11073c42fb3514559",
+      "raw_status": "FAIL",
+      "sha256": "f452c3f135706d66d3ad27953840edd1827712ae66090c787a69206909c5ea0f"
+    },
+    {
+      "key": "c174bb1a8536976c031737b87761db3d4753ccdcced723fa404a9b1052aa2d5a",
+      "raw_status": "PASS_CURATOR_ONLY",
+      "sha256": "d8bcd6e02f9a63843b652d3a77d5e50045bef6cbaf9072841cb4664a19283c0e"
+    },
+    {
+      "key": "8b3aed8a54072d9d86e096be8054978f2085d2cb1d41c49aee066f26691f251f",
+      "raw_status": "FAIL",
+      "sha256": "0fedc2014518de798c791e1b0d3d075c116888c040e29466943b80be0ec1b55e"
+    },
+    {
+      "key": "ba0f9fc730fb6171c498eb203174f439333d7e62c64531632dff465237b90550",
+      "raw_status": "FAIL",
+      "sha256": "e24bd031ac82526c4f256e4e7289273fc4c98f3332244e8f5b9f7eb83c52876f"
+    },
+    {
+      "key": "83b2baf79ef9b886883938cafda43d7229144afea6a9c0862d8ccf51d66e47b5",
+      "raw_status": "FAIL",
+      "sha256": "203b9e77a01126351a02af0090224dafbe6bfcd59310b13f088ed16496d675e5"
+    },
+    {
+      "key": "fed698ef029645b93384d7621c898995abfe0793a323dbe144812bd2a149a42e",
+      "raw_status": "FAIL",
+      "sha256": "f7703e51aba1ee9a867328ca6f75355c5e2133898a26cd3adcb6482ce91770ee"
+    },
+    {
+      "key": "bb0aec6aecfc5b9421a2d768df3a588f62ea0d1d3ec3737640d54b50a9acad0b",
+      "raw_status": "FAIL",
+      "sha256": "859a502bcc443ac990d2e788ea81514b5d26784ada51c269ab80afe061eb0415"
+    },
+    {
+      "key": "0bace1e596ee5c1b233e5cf612b600cfef3deae7bd42be93d6fcacf5f69db8fe",
+      "raw_status": "FAIL",
+      "sha256": "7d3378f2962a74fbef50662cba3329de3a582f9db65e91d29c4e1510afbadfde"
+    },
+    {
+      "key": "b606b5918077669c9b23f3922a37c50940062519b7947e1967f5f0965a68fc11",
+      "raw_status": "FAIL",
+      "sha256": "3774e618bc4978a898c220c8d0306f19548c4294ded2ed82ae6552367df64e2c"
+    },
+    {
+      "key": "0b857af183e7b8cd1e5ee72b0434fad8f54e40753a7424309f0929a04c439ff1",
+      "raw_status": "FAIL",
+      "sha256": "a9837aac73d15ce95e77d0b02a59a6dcae689f517f10ea5f603f3b9de8471266"
+    },
+    {
+      "key": "e3ca736d947b61cf032b8d8531f2288624709b5cb186a8edf7376b7c2ed850ab",
+      "raw_status": "UNCERTAIN_NOT_ADMITTED",
+      "sha256": "c77dbd3639fac5c03c93894da708391ccc437e9656103093868aeee8e4e154d7"
+    }
+  ],
+  "accounting": {
+    "attempts": 38,
+    "cpu": 79.13125000000005,
+    "wall": 75.7039999999979,
+    "bytes": 14645265,
+    "last_sha256": "455a7642cfd41bb3e7f23a115c0cda2fde48aaa49175ca9d8587ff49b3417d65"
+  },
+  "claim": "This turn five portrait sheets actually viewed: four clear comfort failures and one uncertain. Selection not representative; no scientific pass-rate extrapolation. Mainline medium audit pending."
+}
