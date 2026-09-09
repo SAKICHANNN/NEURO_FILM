@@ -1,0 +1,49 @@
+{
+  "status": "STAGED_REVIEW_RUNNING_NO_LIVE_WORKER",
+  "implementation_commit": "c68d11bfe",
+  "root_tests": "22 PASS",
+  "identity": {
+    "config_sha256": "5efdca2989818d36a35c6f569cc26e3ca97b7b3541de1aae57001cfc9af4eda0",
+    "entry_sha256": "3fa51ab01e93d5d53bef8c88611b4ab704242becf3e57cec601e8b9d07f5d60b",
+    "input_sha256": "e6e2a5fc212074413dde2800fb08ea24e7bd7700ee133dc8a3e4475a1bb65055"
+  },
+  "cursor": {
+    "index": 2,
+    "previous_terminal_sha256": "f452c3f135706d66d3ad27953840edd1827712ae66090c787a69206909c5ea0f"
+  },
+  "accounting": {
+    "attempts": 10,
+    "cpu": 22.640624999999996,
+    "wall": 22.175000000017462,
+    "bytes": 3972249,
+    "last_sha256": "efbbb357ab662e394bbf9938ecf2faaafebd25124148e55d4c561d7d862523ad"
+  },
+  "new_terminals": [
+    {
+      "path": "C:\\Users\\hhvrf\\Documents\\neuro_film\\outputs\\tst_crossed_photo_review_v2\\terminal\\b30967b6df092d885a2b606f5361ceb658ab7f59af2dc0e11073c42fb3514559.json",
+      "sha256": "f452c3f135706d66d3ad27953840edd1827712ae66090c787a69206909c5ea0f",
+      "status": "FAIL",
+      "reviewed_stages": 4,
+      "unreviewed_stages": [
+        "lowkey_environment"
+      ]
+    },
+    {
+      "path": "C:\\Users\\hhvrf\\Documents\\neuro_film\\outputs\\tst_crossed_photo_review_v2\\terminal\\ffc48c489611eb09192981e6825f4be9b8ee8f341c515f31a2655cf1ce7c09f8.json",
+      "sha256": "3a9a6bcedc46fa24f4c4042a5e3e4c8062bc6ce52c26d9d7fc161752eec1050c",
+      "status": "FAIL",
+      "reviewed_stages": 1,
+      "unreviewed_stages": [
+        "donor",
+        "neutral_text_built_scene",
+        "chromatic_nature_or_objects",
+        "lowkey_environment"
+      ]
+    }
+  ],
+  "total_completed": 14,
+  "remaining": 3442,
+  "visual_pass_including_legacy": 1,
+  "visual_fail_including_legacy": 13,
+  "claim": "Five new sheets actually viewed across two candidates; explicit short-circuit leaves unviewed stages unknown. Full history audit not yet due or performed; no training admission."
+}
