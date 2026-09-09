@@ -1,0 +1,56 @@
+{
+  "status": "PARTIAL_NOT_TRAINING",
+  "completed": 19,
+  "remaining": 3437,
+  "effective_counts": {
+    "curator_pass": 1,
+    "fail": 17,
+    "disputed_uncertain_not_admitted": 1
+  },
+  "raw_v2_terminals": [
+    {
+      "key": "ffc48c489611eb09192981e6825f4be9b8ee8f341c515f31a2655cf1ce7c09f8",
+      "raw_status": "FAIL",
+      "sha256": "3a9a6bcedc46fa24f4c4042a5e3e4c8062bc6ce52c26d9d7fc161752eec1050c"
+    },
+    {
+      "key": "b30967b6df092d885a2b606f5361ceb658ab7f59af2dc0e11073c42fb3514559",
+      "raw_status": "FAIL",
+      "sha256": "f452c3f135706d66d3ad27953840edd1827712ae66090c787a69206909c5ea0f"
+    },
+    {
+      "key": "c174bb1a8536976c031737b87761db3d4753ccdcced723fa404a9b1052aa2d5a",
+      "raw_status": "PASS_CURATOR_ONLY",
+      "sha256": "d8bcd6e02f9a63843b652d3a77d5e50045bef6cbaf9072841cb4664a19283c0e"
+    },
+    {
+      "key": "8b3aed8a54072d9d86e096be8054978f2085d2cb1d41c49aee066f26691f251f",
+      "raw_status": "FAIL",
+      "sha256": "0fedc2014518de798c791e1b0d3d075c116888c040e29466943b80be0ec1b55e"
+    },
+    {
+      "key": "ba0f9fc730fb6171c498eb203174f439333d7e62c64531632dff465237b90550",
+      "raw_status": "FAIL",
+      "sha256": "e24bd031ac82526c4f256e4e7289273fc4c98f3332244e8f5b9f7eb83c52876f"
+    },
+    {
+      "key": "83b2baf79ef9b886883938cafda43d7229144afea6a9c0862d8ccf51d66e47b5",
+      "raw_status": "FAIL",
+      "sha256": "203b9e77a01126351a02af0090224dafbe6bfcd59310b13f088ed16496d675e5"
+    },
+    {
+      "key": "fed698ef029645b93384d7621c898995abfe0793a323dbe144812bd2a149a42e",
+      "raw_status": "FAIL",
+      "sha256": "f7703e51aba1ee9a867328ca6f75355c5e2133898a26cd3adcb6482ce91770ee"
+    }
+  ],
+  "adjudication": "docs/evidence/TST100K_CROSSED_C174_ADJUDICATION_20260909.json",
+  "accounting": {
+    "attempts": 28,
+    "cpu": 61.10000000000003,
+    "wall": 57.547999999980675,
+    "bytes": 12110413,
+    "last_sha256": "fa4efb3307bbbadfb1086ed93e5010e5ab2a20a749e16f520a9b35492f24ccf2"
+  },
+  "integration": "medium locating future final-pool override consumption; no training entry active"
+}

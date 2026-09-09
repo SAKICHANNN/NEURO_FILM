@@ -1,0 +1,11 @@
+{
+  "operator_key": "c174bb1a8536976c031737b87761db3d4753ccdcced723fa404a9b1052aa2d5a",
+  "status": "UNCERTAIN_NOT_ADMITTED",
+  "training_admitted": false,
+  "raw_terminal_path": "C:\\Users\\hhvrf\\Documents\\neuro_film\\outputs\\tst_crossed_photo_review_v2\\terminal\\c174bb1a8536976c031737b87761db3d4753ccdcced723fa404a9b1052aa2d5a.json",
+  "raw_terminal_sha256": "d8bcd6e02f9a63843b652d3a77d5e50045bef6cbaf9072841cb4664a19283c0e",
+  "independent_review_path": "C:\\Users\\hhvrf\\Documents\\neuro_film\\outputs\\tst_crossed_photo_review_v2\\independent_reviews\\c174bb1a8536976c031737b87761db3d4753ccdcced723fa404a9b1052aa2d5a.json",
+  "independent_review_sha256": "52d6bee5da665c127c2f710d2c0089fbc6f6740b98fb5dc306b2f80ae62e71cf",
+  "reason": "Root initially accepted portrait contrast; independent medium cannot confirm comfort of gray eye/cheek shadows. Only dog and night confidently rich in independent review. Preserve both opinions; uncertainty excludes from any future training pool.",
+  "precedence": "This additive adjudication overrides raw curator PASS for admission only; frozen stage observations remain unchanged. Final pool must apply adjudications before family/admission counts."
+}
