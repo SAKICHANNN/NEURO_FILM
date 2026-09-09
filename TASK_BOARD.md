@@ -1,3 +1,5 @@
+Current finite96 v3 cursor7:6FAIL/1UNCERTAIN/89remaining. Three new portrait sheets viewed; blownskin, mixedred-green skin, uncertainmixedwarmcast. Evidence TST100K_CROSSED_DONOR96_FIRST_SEVEN_20260909.json. No liveworker/training; continue v3 --run and actualview/ingest.
+
 Current finite96 v3 cursor4:4FAIL/92remaining. Three new portrait sheets actuallyviewed; brightwashed skin ororange cast. Evidence TST100K_CROSSED_DONOR96_FIRST_FOUR_20260909.json. No live worker/training. Continue v3 --run then actualview/ingest; frozen96 no replacement, original25 preserved.
 
 Current finite96 v3 STARTED cursor1:1FAIL/95remaining; firstportrait actuallyviewedorangeFAIL,4unreviewed. Root8newtestsPASS/all96orderedkeys independentlyexact; implementation e3ee79860. Evidence TST100K_CROSSED_DONOR96_STARTED_20260909.json. Continue v3 --run then actual view/ingest; v2 remainsPAUSED25historical. No liveworker ortraining. Final96audit then viability adjudication; no automaticreplacement/tranche.

@@ -1,0 +1,50 @@
+{
+  "status": "FINITE96_PARTIAL_NOT_TRAINING",
+  "completed": 7,
+  "remaining": 89,
+  "outcomes": [
+    {
+      "key": "5ac219c35f7a0556eb4fdcdaf65388796703187402a250fcd0d9c2c9b81e32e8",
+      "status": "FAIL",
+      "sha256": "be475105005777942ceccd0138332dac985f98b8b226f2a05349d88f8e5d3529"
+    },
+    {
+      "key": "fe0682355cf5470b37ddc842558def282b1371a962b8421b1bf05385a085f9ed",
+      "status": "FAIL",
+      "sha256": "18b02d9f6174210be8bf4093662f6fcc86379be1dee9f5fbd3ffb0f2cc1fb730"
+    },
+    {
+      "key": "faf11715a83ed4112c9ec24807a167733e915a3fcd263533213dc4ae83343367",
+      "status": "FAIL",
+      "sha256": "4e97a3594f9ea2b1e7bcf230a4f6ed667f8ce0aa387b810b544fae488c9abf27"
+    },
+    {
+      "key": "e5a48dfba8406cdf173a45e6d787a2dbc256be8067c8d4b32631d530e5a6363d",
+      "status": "FAIL",
+      "sha256": "dcfe98dd2f4cc2fe75ef9a869b55fd2a6ea9d2b1a295791fb01f66cda2c12ef5"
+    },
+    {
+      "key": "02c03246d48b4fd66f54cacfe43483dfb030e131ad60f922830372b929f68695",
+      "status": "FAIL",
+      "sha256": "f73523c0e1785bd7c49228139c4677eb606123750ccc007ed527c6cca052f6ac"
+    },
+    {
+      "key": "e812426c2ca2d494ffc6c9313ad8b2a147d34cca1d168feab2ee8febb2aee28a",
+      "status": "FAIL",
+      "sha256": "e1af9c9ce7cc91b70f0d72223ce315f037bf6f323dbbd505c237aa41bc282e2b"
+    },
+    {
+      "key": "3821e6dc53a8a3d69fb78906404c4d2df1ba9876cfc30f35cc9b1d85c79713a7",
+      "status": "UNCERTAIN_NOT_ADMITTED",
+      "sha256": "4cf21aa2e4c776efd00c136e62dc2466002172b94b726e2be00c992a8d53864f"
+    }
+  ],
+  "accounting": {
+    "attempts": 14,
+    "cpu": 26.518749999999994,
+    "wall": 26.65799999999581,
+    "bytes": 3459195,
+    "last_sha256": "7d1cb9a7ddbbdd628b9c0850a235953f6df9eb7d0c0743c9e60331558a3555e2"
+  },
+  "claim": "Seven actual portrait-sheet reviews:6FAIL/1UNCERTAIN, no admitted candidate. No unviewed stage labeled positive, no replacement."
+}
