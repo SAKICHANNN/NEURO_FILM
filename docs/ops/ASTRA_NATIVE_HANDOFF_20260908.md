@@ -1,3 +1,5 @@
+Current finite96 v3 cursor43:30FAIL(including3insufficientchange)/12UNCERTAIN/1PASS_CURATOR_ONLY/53remaining. Queue42 key0e05596 all5 actually seen across2turns:donor compatible,all4comfortable but0rich;terminal FAIL_INSUFFICIENT_COMFORTABLE_RICH_CHANGE. No liveworker/training. Continue fixed v3 --run/view/ingest.
+
 Current finite96 v3 cursor42:29FAIL(including2insufficientchange)/12UNCERTAIN/1PASS_CURATOR_ONLY/54notterminal. Queue42 key0e05596da20f5c67d21686323f4f5b38e353652c92936d6079c2ac5fdae1ebfd portrait actually viewed PASS comfortable but richfalse, ingested. NEXT --run renders DONOR for same candidate. Queue40 graywash and41 brownveil uncertain. No liveworker/training.
 
 Current finite96 v3 cursor40:29FAIL(including2insufficientchange)/10UNCERTAIN/1PASS_CURATOR_ONLY/56remaining. Three actual portrait reviews2FAIL/1UNCERTAIN. Evidence TST100K_CROSSED_DONOR96_FIRST_FORTY_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest.
