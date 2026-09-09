@@ -1,3 +1,5 @@
+Current finite96 v3 cursor48:34FAIL(including3insufficientchange)/12UNCERTAIN/2PASS_CURATOR_ONLY/48remaining. Queue46 orange-teal skin FAIL;queue47 dark face/hair tonal loss FAIL. Both portrait sheets+native pairs actually viewed/ingested. Other stages unviewed. No liveworker/training. Continue fixed --run/view/ingest; endpoint96 viability adjudication.
+
 Current finite96 v3 cursor46:32FAIL(including3insufficientchange)/12UNCERTAIN/2PASS_CURATOR_ONLY/50remaining. Queue44 green skin and45 orange skin/purple dress FAIL, both portrait sheets and native pairs actually viewed/ingested;other stages unviewed. Both earlier positives independently reviewed. No liveworker/training. Continue fixed --run/view/ingest.
 
 Update cursor44: second monochrome curator positive independently confirmed medium PASS_CURATOR_ONLY, medium confidence; review SHAb7944313639e09092e791b486d6e0daf2c26e52a41372923ea1640c0a668d5af. Skin subtle tones and dark texture reduced but listed detail still discernible. No training admission/learning-contribution/simple-BW superiority proof. Medium finished; continue queue44 --run.
