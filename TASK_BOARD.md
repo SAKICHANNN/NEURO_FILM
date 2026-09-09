@@ -1,3 +1,5 @@
+Current finite96 v3 cursor46:32FAIL(including3insufficientchange)/12UNCERTAIN/2PASS_CURATOR_ONLY/50remaining. Queue44 green skin and45 orange skin/purple dress FAIL, both portrait sheets and native pairs actually viewed/ingested;other stages unviewed. Both earlier positives independently reviewed. No liveworker/training. Continue fixed --run/view/ingest.
+
 Update cursor44: second monochrome curator positive independently confirmed medium PASS_CURATOR_ONLY, medium confidence; review SHAb7944313639e09092e791b486d6e0daf2c26e52a41372923ea1640c0a668d5af. Skin subtle tones and dark texture reduced but listed detail still discernible. No training admission/learning-contribution/simple-BW superiority proof. Medium finished; continue queue44 --run.
 
 Current finite96 v3 cursor44:30FAIL(including3insufficientchange)/12UNCERTAIN/2rawPASS_CURATOR_ONLY/52remaining. Queue43 key71f81760f9cc787151369ca90057ed4d5cd9b17656f719cf625eaa72fb81dadd all5actuallyseen/rootPASS monochrome; medium independent review dispatched and PENDING. Do not assume independent confirmation. No training/live renderer. Next check medium response and continue fixed --run/view/ingest.
