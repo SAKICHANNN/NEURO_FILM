@@ -1,3 +1,5 @@
+Current finite96 v3 cursor36:27FAIL(including2insufficientchange)/8UNCERTAIN/1PASS_CURATOR_ONLY/60remaining. Three new portrait reviews actual2FAIL/1UNCERTAIN. Evidence TST100K_CROSSED_DONOR96_FIRST_THIRTYSIX_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest.
+
 Current finite96 v3 cursor33:25FAIL(including2insufficientchange)/7UNCERTAIN/1PASS_CURATOR_ONLY/63remaining. Three actual portrait reviews:1FAIL/2UNCERTAIN. Evidence TST100K_CROSSED_DONOR96_FIRST_THIRTYTHREE_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest; no replacements/strength changes.
 
 Current finite96 v3 cursor30:24FAIL(including2insufficientchange)/5UNCERTAIN/1PASS_CURATOR_ONLY/66remaining. Three new portrait FAILs: orange wash, pink skin, washed highlight loss. Evidence TST100K_CROSSED_DONOR96_FIRST_THIRTY_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest; no replacements/strength changes.
