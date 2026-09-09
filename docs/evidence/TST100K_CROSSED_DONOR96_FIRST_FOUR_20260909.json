@@ -1,0 +1,59 @@
+{
+  "status": "FINITE96_PARTIAL_NOT_TRAINING",
+  "completed": 4,
+  "remaining": 92,
+  "outcomes": [
+    {
+      "key": "5ac219c35f7a0556eb4fdcdaf65388796703187402a250fcd0d9c2c9b81e32e8",
+      "status": "FAIL",
+      "sha256": "be475105005777942ceccd0138332dac985f98b8b226f2a05349d88f8e5d3529",
+      "unreviewed_stages": [
+        "donor",
+        "neutral_text_built_scene",
+        "chromatic_nature_or_objects",
+        "lowkey_environment"
+      ]
+    },
+    {
+      "key": "fe0682355cf5470b37ddc842558def282b1371a962b8421b1bf05385a085f9ed",
+      "status": "FAIL",
+      "sha256": "18b02d9f6174210be8bf4093662f6fcc86379be1dee9f5fbd3ffb0f2cc1fb730",
+      "unreviewed_stages": [
+        "donor",
+        "neutral_text_built_scene",
+        "chromatic_nature_or_objects",
+        "lowkey_environment"
+      ]
+    },
+    {
+      "key": "faf11715a83ed4112c9ec24807a167733e915a3fcd263533213dc4ae83343367",
+      "status": "FAIL",
+      "sha256": "4e97a3594f9ea2b1e7bcf230a4f6ed667f8ce0aa387b810b544fae488c9abf27",
+      "unreviewed_stages": [
+        "donor",
+        "neutral_text_built_scene",
+        "chromatic_nature_or_objects",
+        "lowkey_environment"
+      ]
+    },
+    {
+      "key": "e5a48dfba8406cdf173a45e6d787a2dbc256be8067c8d4b32631d530e5a6363d",
+      "status": "FAIL",
+      "sha256": "dcfe98dd2f4cc2fe75ef9a869b55fd2a6ea9d2b1a295791fb01f66cda2c12ef5",
+      "unreviewed_stages": [
+        "donor",
+        "neutral_text_built_scene",
+        "chromatic_nature_or_objects",
+        "lowkey_environment"
+      ]
+    }
+  ],
+  "accounting": {
+    "attempts": 8,
+    "cpu": 14.599999999999998,
+    "wall": 14.345999999990454,
+    "bytes": 1983544,
+    "last_sha256": "642f7dda2a3e915213725301c7ac539da2c98e6d0284d7e4c6ce7b61d4f3d22d"
+  },
+  "claim": "Three new portrait sheets viewed this turn, four total. All four comfort failures. No replacement or population inference."
+}

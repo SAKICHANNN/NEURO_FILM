@@ -1,3 +1,5 @@
+Current finite96 v3 cursor4:4FAIL/92remaining. Three new portrait sheets actuallyviewed; brightwashed skin ororange cast. Evidence TST100K_CROSSED_DONOR96_FIRST_FOUR_20260909.json. No live worker/training. Continue v3 --run then actualview/ingest; frozen96 no replacement, original25 preserved.
+
 Current finite96 v3 STARTED cursor1:1FAIL/95remaining; firstportrait actuallyviewedorangeFAIL,4unreviewed. Root8newtestsPASS/all96orderedkeys independentlyexact; implementation e3ee79860. Evidence TST100K_CROSSED_DONOR96_STARTED_20260909.json. Continue v3 --run then actual view/ingest; v2 remainsPAUSED25historical. No liveworker ortraining. Final96audit then viability adjudication; no automaticreplacement/tranche.
 
 2026-09-09 medium READY_STOP_EDITING finite96 photo v3. Locks RELEASED: scripts/prepare_tst_crossed_photo_review_v3.py; configs/tst_crossed_photo_review_v3.json; tests/test_tst_crossed_photo_review_v3.py; outputs/tst_crossed_photo_review_v3/.30synthetic tests/RuffPASS; prefix13+all40accounting auditPASS; effective25 retained, independent96queue exactmatch,0 real render. Root reviews/launches.
