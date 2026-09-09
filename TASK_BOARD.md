@@ -1,3 +1,5 @@
+Current finite96 v3 cursor56:39FAIL(including3insufficientchange)/15UNCERTAIN/2PASS_CURATOR_ONLY/40remaining. Queue54 green/orange skinFAIL;queue55 washed gray skinFAIL. Both portrait sheets/nativepairs actuallyviewed/ingested;others unviewed. No liveworker/training. Continue fixed --run/view/ingest.
+
 Current finite96 v3 cursor54:37FAIL(including3insufficientchange)/15UNCERTAIN/2PASS_CURATOR_ONLY/42remaining. Queue52 teal skinFAIL;queue53 cobalt-orangeUNCERTAIN. Both portrait sheets/nativepairs actuallyviewed/ingested;remainingstages unviewed. No liveworker/training. Continue fixed --run/view/ingest.
 
 Current finite96 v3 cursor52:36FAIL(including3insufficientchange)/14UNCERTAIN/2PASS_CURATOR_ONLY/44remaining. Queue50 blue-orange splitUNCERTAIN;queue51 harsh orange skinFAIL. Both portrait sheets/nativepairs actuallyviewed/ingested. Remaining stages unviewed. No liveworker/training. Continue fixed --run/view/ingest.
