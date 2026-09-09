@@ -1,3 +1,5 @@
+Current finite96 v3 cursor65:44FAIL(including4insufficientchange)/19UNCERTAIN/2PASS_CURATOR_ONLY/31remaining. Queue63 severecontrast/detail lossFAIL;queue64 ochreskinFAIL. Both portrait sheets/nativepairs actuallyviewed/ingested;othersunviewed. No liveworker/training. Continue fixed --run/view/ingest.
+
 Current finite96 v3 cursor63:42FAIL(including4insufficientchange)/19UNCERTAIN/2PASS_CURATOR_ONLY/33remaining. Queue62 key6568d8 all5actuallyseen:donor compatible,all4comfortable but0rich;terminal insufficientchange. No liveworker/training. Continue fixed --run/view/ingest.
 
 Current finite96 v3 cursor62:41FAIL(including3insufficientchange)/19UNCERTAIN/2PASS_CURATOR_ONLY/34notterminal. Queue61 cobalt-orangeUNCERTAIN. Queue62 key6568d8cd1ccda17f17827332b1e188db09df70fca2459e270bf2543c4fb56876 portraitactualPASScomfortable/richfalse ingested;NEXT --run DONOR. No liveworker/training.
