@@ -1,0 +1,149 @@
+{
+  "status": "FINITE96_PARTIAL_NOT_TRAINING",
+  "completed": 27,
+  "remaining": 69,
+  "counts": {
+    "FAIL": 19,
+    "UNCERTAIN_NOT_ADMITTED": 5,
+    "FAIL_INSUFFICIENT_COMFORTABLE_RICH_CHANGE": 2,
+    "PASS_CURATOR_ONLY": 1
+  },
+  "outcomes": [
+    {
+      "key": "5ac219c35f7a0556eb4fdcdaf65388796703187402a250fcd0d9c2c9b81e32e8",
+      "status": "FAIL",
+      "sha256": "be475105005777942ceccd0138332dac985f98b8b226f2a05349d88f8e5d3529"
+    },
+    {
+      "key": "fe0682355cf5470b37ddc842558def282b1371a962b8421b1bf05385a085f9ed",
+      "status": "FAIL",
+      "sha256": "18b02d9f6174210be8bf4093662f6fcc86379be1dee9f5fbd3ffb0f2cc1fb730"
+    },
+    {
+      "key": "faf11715a83ed4112c9ec24807a167733e915a3fcd263533213dc4ae83343367",
+      "status": "FAIL",
+      "sha256": "4e97a3594f9ea2b1e7bcf230a4f6ed667f8ce0aa387b810b544fae488c9abf27"
+    },
+    {
+      "key": "e5a48dfba8406cdf173a45e6d787a2dbc256be8067c8d4b32631d530e5a6363d",
+      "status": "FAIL",
+      "sha256": "dcfe98dd2f4cc2fe75ef9a869b55fd2a6ea9d2b1a295791fb01f66cda2c12ef5"
+    },
+    {
+      "key": "02c03246d48b4fd66f54cacfe43483dfb030e131ad60f922830372b929f68695",
+      "status": "FAIL",
+      "sha256": "f73523c0e1785bd7c49228139c4677eb606123750ccc007ed527c6cca052f6ac"
+    },
+    {
+      "key": "e812426c2ca2d494ffc6c9313ad8b2a147d34cca1d168feab2ee8febb2aee28a",
+      "status": "FAIL",
+      "sha256": "e1af9c9ce7cc91b70f0d72223ce315f037bf6f323dbbd505c237aa41bc282e2b"
+    },
+    {
+      "key": "3821e6dc53a8a3d69fb78906404c4d2df1ba9876cfc30f35cc9b1d85c79713a7",
+      "status": "UNCERTAIN_NOT_ADMITTED",
+      "sha256": "4cf21aa2e4c776efd00c136e62dc2466002172b94b726e2be00c992a8d53864f"
+    },
+    {
+      "key": "40de9f9bb3bf352280aca3a6e36db782f08276399e425cb2021cc65efc851f64",
+      "status": "UNCERTAIN_NOT_ADMITTED",
+      "sha256": "d0383101ccca2ea9055916d180a0a599faec9b7eca56731ab22a3c400ad194ff"
+    },
+    {
+      "key": "3f4e91e9160e08867365ec1b5514263f35fc9f00b8b352c90df0b4baef8f7bac",
+      "status": "FAIL",
+      "sha256": "6322c83b19c11a3ab736d200181f3f1dad975df97b4fd5852b071a9c1fb2c829"
+    },
+    {
+      "key": "89f4e178363841981e2745e0f3f36d412eea5ea765ad1300ae19020422c62cef",
+      "status": "FAIL",
+      "sha256": "2b0d37c54cf1c203e39dccce9659d1502f828d9c5bd254baf4a76ce44b5597ee"
+    },
+    {
+      "key": "9918b9d8f2c32df8b6cfe999e436483e89210f34f2a5d9e5e8f8bfcc1678c0f6",
+      "status": "UNCERTAIN_NOT_ADMITTED",
+      "sha256": "977263ac42bfab5f72527f0677bd821c2dbf54d6494984c73a579e8b8ed2e063"
+    },
+    {
+      "key": "477ee0489ffad5022e10bff14ea021108936d8227078761f88e015369ac09b20",
+      "status": "FAIL",
+      "sha256": "91b31655242e637d4558f0d00524ca7e84b6700b01d3f2285768b6d60fc8e28b"
+    },
+    {
+      "key": "47b1eb9d962a1dc30bf196b096736483e90d5f32832a70b376363666bf73c710",
+      "status": "FAIL",
+      "sha256": "c9c36965105546e61f6adf33b59cf30464b6d0c52bdba0e109eabc656dd020f5"
+    },
+    {
+      "key": "7ec333f70884473ce716d4876a7dd931e9792eb22b23cab5fa7744deba73b617",
+      "status": "FAIL_INSUFFICIENT_COMFORTABLE_RICH_CHANGE",
+      "sha256": "bef96efcd04098c3e977e33d9de595cff561dae24ec8fee8715153085dfe7b02"
+    },
+    {
+      "key": "ad57db2a1ffa9432cf89ab140a6baa05aae33260079e0c7dee1d9c88367501f5",
+      "status": "FAIL",
+      "sha256": "91f44b5b6f69ffd564da9cca9128fcb36e124c8566d4df8132351d706871ac4e"
+    },
+    {
+      "key": "33d77a41ab73d7eff6d352ca6f6165a7b7e70ea2799e397ad3224eb9791d535f",
+      "status": "UNCERTAIN_NOT_ADMITTED",
+      "sha256": "005cb36d0e2742703be337dabc8b0e4b5baa99c91a7aac91140cbe21e74058d7"
+    },
+    {
+      "key": "b34f643ef7fe694cde4e261324bd7f8e3074746c0c141d9315dfb457c336ee5a",
+      "status": "FAIL",
+      "sha256": "9256b3675ca00cf5dc432e3c8894e107ff6adbd4812a9bc935d2a27523e0e731"
+    },
+    {
+      "key": "ef1f6725e332ebb245c07a2599537062178750e48a92c2ab652250333e5dd042",
+      "status": "FAIL",
+      "sha256": "7c2f4d6afce6853375477a500759931ac51b8c0dfd636c20c5e1f10f76034d2e"
+    },
+    {
+      "key": "58fb5232b74e353fa6ef6544b1040ca9441ebe9450b37ff4e5074ad36bcfd3f2",
+      "status": "PASS_CURATOR_ONLY",
+      "sha256": "3c644bed896de30507d0679ea32f91efde827033dbda2b57d7b239c82bce14c9"
+    },
+    {
+      "key": "9b883c317658b559f1bac4d656e978dd08ba117503e21c7a46540d3dec82909f",
+      "status": "UNCERTAIN_NOT_ADMITTED",
+      "sha256": "b3f9e40f6ce41eeeeaca79e084ed122473547b13fb00914037744fc37ef79322"
+    },
+    {
+      "key": "70dc5f0d0ced06978a703c0c3ca390a43da6f5922f79afd7a29e8771be2c5f77",
+      "status": "FAIL",
+      "sha256": "301af28654a0d037de13803066c210ba6ce78e4a6384f9d883edb841a81bf337"
+    },
+    {
+      "key": "b85ecbbec6f70ce8cb2eec27dbd9d24946596ef07bf8bd2406112160b127c048",
+      "status": "FAIL",
+      "sha256": "e3e1ecd9eaa0d8f9c3cb9d2b7b013f362fa947422a3a15c7f911e3371bbb0926"
+    },
+    {
+      "key": "21367ad6f71d8cb0812beadacfb5c77dd7d668a46d5f3f5c55bf7c8dd484d394",
+      "status": "FAIL",
+      "sha256": "eb3491610f417c45a58be2878685f28f5aef2abf40965a568b9be38238639425"
+    },
+    {
+      "key": "e7a12cf87ae6eca5f30bf2122ee3dea88471030f70901265ccbd74a8b55968e4",
+      "status": "FAIL",
+      "sha256": "f4068b24551daa3dad7fedbb69f879f7783a740a9ea8f35ae53b4b8c7184b63e"
+    },
+    {
+      "key": "90917282cdad7670e76db794b8177f0de06c302fbbdc5abbf093e08e43b03b0b",
+      "status": "FAIL",
+      "sha256": "d2d135c6688323dda20be9800c657410653394ee34f6964e26e7582fce8900e7"
+    },
+    {
+      "key": "6fe7a620bfcf9550cac5263a11a46661051e9548748f9661d35c68e5a0c47ff2",
+      "status": "FAIL",
+      "sha256": "722b7c5309ace331d6f0c416b5f7c0beefc802adb837470e9e0ae705cb86d0f2"
+    },
+    {
+      "key": "e90db6088537214752c3616518ddf3d2e2fb29a838f5770368a0c03f2432d6e3",
+      "status": "FAIL_INSUFFICIENT_COMFORTABLE_RICH_CHANGE",
+      "sha256": "74f5ba75e02ac25a84a10d6e20ff06e66292226c66d66343712fa7d71fba9557"
+    }
+  ],
+  "claim": "Six sheets actually viewed this turn. Queue25 portrait FAIL washed highlights; queue26 all5 viewed, donor compatible and all4 probes comfortable but zero rich, terminal insufficient change. No training admission."
+}

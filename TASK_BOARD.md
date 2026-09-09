@@ -1,3 +1,5 @@
+Current finite96 v3 cursor27:21FAIL(including2insufficientchange)/5UNCERTAIN/1PASS_CURATOR_ONLY/69remaining. Last e90db608 all5 seen, 0/4rich despite comfortable; excluded. Evidence TST100K_CROSSED_DONOR96_FIRST_TWENTYSEVEN_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest.
+
 Current finite96 v3 cursor25:19FAIL(including1insufficientchange)/5UNCERTAIN/1PASS_CURATOR_ONLY/71remaining. Three new portrait FAILs actually viewed: pale skin loss, harsh contrast, red skin. Evidence TST100K_CROSSED_DONOR96_FIRST_TWENTYFIVE_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest; strength1, no replacements.
 
 Current finite96 v3 cursor22:16FAIL(including1insufficientchange)/5UNCERTAIN/1PASS_CURATOR_ONLY/74remaining. Six new sheets actually viewed; weak pink treatment uncertain, cyan baby and magenta face FAIL. Evidence TST100K_CROSSED_DONOR96_FIRST_TWENTYTWO_20260909.json. No liveworker/training. Continue fixed v3 --run/view/ingest; strength1, no replacements.
