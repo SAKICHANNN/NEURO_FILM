@@ -1,0 +1,23 @@
+{
+  "status": "BATCH0000_REVIEW_COMPLETE_NOT_TRAINING_ADMITTED",
+  "batch_sha256": "1d0a93a501fab63e2f3fad4424fab63aefabd8b7290c6697c0903ef41de4d5f1",
+  "record_hashes_verified": 12,
+  "artifacts_verified": 72,
+  "artifact_bytes": 71567862,
+  "native_layout_rectangles_verified": 336,
+  "root_review_count": 4,
+  "medium_review_count": 8,
+  "visual_pass": 1,
+  "visual_fail": 11,
+  "reviews": [
+    {
+      "path": "C:\\Users\\hhvrf\\Documents\\neuro_film\\outputs\\tst_crossed_photo_review_v1\\reviews\\root_batch0000_0_3.json",
+      "sha256": "6db95d9c07ba8413e596712f77bcda236bfbf78453e03063120459ffddc97135"
+    },
+    {
+      "path": "C:\\Users\\hhvrf\\Documents\\neuro_film\\outputs\\tst_crossed_photo_review_v1\\reviews\\medium_batch0000_4_11.json",
+      "sha256": "aff58a9801d21adf4cbabc9175d6abf4a3fa870e97f37a47786b2d42503b4372"
+    }
+  ],
+  "claim": "Hash/shape/layout verification is not independent pixel-render equivalence. Agent visual judgments do not establish human preference or whole-native content safety. No training admission."
+}
