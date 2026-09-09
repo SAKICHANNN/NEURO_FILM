@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "native_rectangles": 336,
+  "max_srgb8_code_difference": 0,
+  "different_channel_values": 0,
+  "cpu_seconds": 8.578125,
+  "prior_verification_attempt": "Failed before pixel comparisons: passed header receipt instead of its header payload; corrected wrapper access only. No production change.",
+  "claim": "Independent SciPy interpolation/display conversion versus336 native rectangles; same frozen decoder. Not overview or unshown-region validation."
+}
