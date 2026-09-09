@@ -1,0 +1,41 @@
+{
+  "status": "ADOPTED_SUCCESSOR_PREPARATION_NOT_RUN",
+  "decision_path": "C:\\Users\\hhvrf\\Documents\\neuro_film\\outputs\\tst_crossed_photo_review_v2\\mainline_progress_adjudication.json",
+  "decision_sha256": "4360019d65e10d6f8ed6ff58c629c55016dbc92ea60cf1d68ba0e8a0e0ea4bcd",
+  "preserved_cutover": {
+    "v2_cursor": 13,
+    "total_reviewed": 25,
+    "effective_pass": 1,
+    "fail": 22,
+    "uncertain": 2
+  },
+  "next_stage": {
+    "fit": 64,
+    "monitor": 16,
+    "constructed_test": 16,
+    "unit": "distinct previously unreviewed donor component; one SHA-selected pending variant",
+    "seed": "tst-crossed-donor-coverage-v3-20260909",
+    "replacement": false,
+    "training_admitted": false
+  },
+  "retained_training_minima": {
+    "sources": [
+      1024,
+      128,
+      256
+    ],
+    "donors": [
+      256,
+      32,
+      64
+    ],
+    "families": [
+      64,
+      8,
+      16
+    ]
+  },
+  "correction": "Remove locally added full3456 census prerequisite; retain per-adopted-treatment review and complete covered audited corpus before learning. After96 report coverage; no automatic redraw or tiny-winner training.",
+  "next_owner": "Astra medium successor implementation and synthetic preflight, root review then actual run",
+  "claim": "Scheduling correction and viability stage only; no new scientific success or learner evidence."
+}
