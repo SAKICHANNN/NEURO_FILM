@@ -1,0 +1,68 @@
+{
+  "status": "PARTIAL_CURATION_NOT_TRAINING",
+  "total_completed": 17,
+  "remaining": 3439,
+  "new_terminals": [
+    {
+      "key": "ffc48c489611eb09192981e6825f4be9b8ee8f341c515f31a2655cf1ce7c09f8",
+      "status": "FAIL",
+      "reviewed_stages": 1,
+      "unreviewed_stages": [
+        "donor",
+        "neutral_text_built_scene",
+        "chromatic_nature_or_objects",
+        "lowkey_environment"
+      ],
+      "sha256": "3a9a6bcedc46fa24f4c4042a5e3e4c8062bc6ce52c26d9d7fc161752eec1050c"
+    },
+    {
+      "key": "b30967b6df092d885a2b606f5361ceb658ab7f59af2dc0e11073c42fb3514559",
+      "status": "FAIL",
+      "reviewed_stages": 4,
+      "unreviewed_stages": [
+        "lowkey_environment"
+      ],
+      "sha256": "f452c3f135706d66d3ad27953840edd1827712ae66090c787a69206909c5ea0f"
+    },
+    {
+      "key": "c174bb1a8536976c031737b87761db3d4753ccdcced723fa404a9b1052aa2d5a",
+      "status": "PASS_CURATOR_ONLY",
+      "reviewed_stages": 5,
+      "unreviewed_stages": [],
+      "sha256": "d8bcd6e02f9a63843b652d3a77d5e50045bef6cbaf9072841cb4664a19283c0e"
+    },
+    {
+      "key": "8b3aed8a54072d9d86e096be8054978f2085d2cb1d41c49aee066f26691f251f",
+      "status": "FAIL",
+      "reviewed_stages": 1,
+      "unreviewed_stages": [
+        "donor",
+        "neutral_text_built_scene",
+        "chromatic_nature_or_objects",
+        "lowkey_environment"
+      ],
+      "sha256": "0fedc2014518de798c791e1b0d3d075c116888c040e29466943b80be0ec1b55e"
+    },
+    {
+      "key": "ba0f9fc730fb6171c498eb203174f439333d7e62c64531632dff465237b90550",
+      "status": "FAIL",
+      "reviewed_stages": 1,
+      "unreviewed_stages": [
+        "donor",
+        "neutral_text_built_scene",
+        "chromatic_nature_or_objects",
+        "lowkey_environment"
+      ],
+      "sha256": "e24bd031ac82526c4f256e4e7289273fc4c98f3332244e8f5b9f7eb83c52876f"
+    }
+  ],
+  "accounting": {
+    "attempts": 24,
+    "cpu": 53.51875000000002,
+    "wall": 50.64299999998184,
+    "bytes": 10960669,
+    "last_sha256": "1d48bf341f8a516ad52431f7ded465beb1f54798874fd988348428c7ccbf2b1d"
+  },
+  "independent_positive_review": "PENDING medium c174bb1a; do not treat as confirmed independent agreement",
+  "claim": "Five successor candidates terminal: one curator PASS, four FAIL. All PASS sheets actually viewed; unreviewed stages explicit. No human preference or whole-native validation."
+}
