@@ -1,0 +1,14 @@
+{
+  "status": "SUCCESSOR_IMPLEMENTATION_AUTHORIZED_NOT_RUN",
+  "decision_path": "C:\\Users\\hhvrf\\Documents\\neuro_film\\outputs\\tst_crossed_photo_review_v1\\reviews\\capacity_adjudication.json",
+  "decision_sha256": "113b786a796c4f05a5c6b6cd018c756c5185f22be7dd4d95e72623bcd377bb24",
+  "adopted": "All remaining candidates split round-robin; portrait, donor, neutral, chromatic, lowkey; clear mandatory visual failure short-circuits, uncertainty excludes distinctly, PASS requires all five viewed hash-bound artifacts. Preserve first12 and all prior evidence.",
+  "photo_envelope": {
+    "cache_bytes": 25769803776,
+    "cpu_seconds": 24000,
+    "wall_seconds": 24000,
+    "includes_v1": true,
+    "aggregate_study_seconds": 86400
+  },
+  "claim": "Prospective efficiency change; no aesthetic gate relaxation or training admission. Savings unknown; larger local planning envelope remains subordinate to cumulative study ledger."
+}
