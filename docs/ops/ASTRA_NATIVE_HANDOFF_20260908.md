@@ -1,3 +1,5 @@
+Current finite96 v3 cursor58:40FAIL(including3insufficientchange)/16UNCERTAIN/2PASS_CURATOR_ONLY/38remaining. Queue57 fed a673 (fullkey inqueue) portraitrichPASS,donorPASS,neutralPASSweak,flowerUNCERTAIN dark/cyan leaf texture. Four sheets actually seen across2turns;nightunviewed. No liveworker/training. Continue fixed --run/view/ingest.
+
 Current finite96 v3 cursor57:40FAIL(including3insufficientchange)/15UNCERTAIN/2PASS_CURATOR_ONLY/39notterminal. Queue56 pink/green harsh skinFAIL. Queue57 keyfeda67332578f13dc172582e73dbf4ab1cee4d706760004aa89469d46248f8f6 portrait actuallyPASSrich/ingested;NEXT --run DONOR samecandidate. No liveworker/training.
 
 Current finite96 v3 cursor56:39FAIL(including3insufficientchange)/15UNCERTAIN/2PASS_CURATOR_ONLY/40remaining. Queue54 green/orange skinFAIL;queue55 washed gray skinFAIL. Both portrait sheets/nativepairs actuallyviewed/ingested;others unviewed. No liveworker/training. Continue fixed --run/view/ingest.
