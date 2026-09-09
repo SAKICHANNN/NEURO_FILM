@@ -1,0 +1,52 @@
+{
+  "status": "FINITE96_PARTIAL_NOT_TRAINING",
+  "completed": 8,
+  "remaining": 88,
+  "counts": {
+    "FAIL": 6,
+    "UNCERTAIN_NOT_ADMITTED": 2
+  },
+  "last_terminal": {
+    "identity": {
+      "config_sha256": "fe3051479474ae32d52f11214179db93e4e4ef6054e32b59e90acb47d23e65ad",
+      "entry_sha256": "ec301a2691fd7085ef35693bf30e2918b807109fbce1d8b1bf4fe34dd96fae20",
+      "input_sha256": "4c054e47b6896961fe4e5e8869167feb4fcfdf79e967d3182c8d25eb34b5c95d"
+    },
+    "operator_key": "40de9f9bb3bf352280aca3a6e36db782f08276399e425cb2021cc65efc851f64",
+    "next_index": 8,
+    "previous_terminal_sha256": "4cf21aa2e4c776efd00c136e62dc2466002172b94b726e2be00c992a8d53864f",
+    "status": "UNCERTAIN_NOT_ADMITTED",
+    "receipts": [
+      {
+        "stage": "portrait_face",
+        "record_sha256": "c264f7f821e6a969790601cf3311415c1af1270f7b9a62a1588e68a11b85f3c8",
+        "review_sha256": "3a085988e8622e540b56433d0ea6c397cda53e0f204c8137001842cae53dfff8"
+      },
+      {
+        "stage": "donor",
+        "record_sha256": "106b77422740a623599c395ae10be722d75099d9a21cfeb4e3a0ab71ebe5a2ca",
+        "review_sha256": "12202bd607ba2e2e0d78ee034097a7b302dff875b64a76e57d58fa9b6151561d"
+      },
+      {
+        "stage": "neutral_text_built_scene",
+        "record_sha256": "4469db35b896d6bcbe1801b4c70a7447e7f06c9559811d9bfa2726a9df07d701",
+        "review_sha256": "0faf726d96d6f81817aad8162b0bbcf8ca8a9b09eb1d6bf57cff78a72e826346"
+      }
+    ],
+    "unreviewed_stages": [
+      "chromatic_nature_or_objects",
+      "lowkey_environment"
+    ],
+    "unreviewed_status": "NOT_REVIEWED_AFTER_UNCERTAIN_EXCLUSION",
+    "training_admitted": false
+  },
+  "last_terminal_sha256": "d0383101ccca2ea9055916d180a0a599faec9b7eca56731ab22a3c400ad194ff",
+  "accounting": {
+    "attempts": 20,
+    "cpu": 36.015625,
+    "wall": 35.986000000004424,
+    "bytes": 5950084,
+    "last_sha256": "172a97ee2ecddc0be6d53de57f911d235df92ebebab5abd88fb96364b1b4bc98"
+  },
+  "claim": "Three actual sheets this turn; portrait/donor compatible, neutral comfort uncertain; two later stages unviewed. No training admission."
+}
