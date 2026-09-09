@@ -1,3 +1,5 @@
+Current finite96 v3 cursor44:30FAIL(including3insufficientchange)/12UNCERTAIN/2rawPASS_CURATOR_ONLY/52remaining. Queue43 key71f81760f9cc787151369ca90057ed4d5cd9b17656f719cf625eaa72fb81dadd all5actuallyseen/rootPASS monochrome; medium independent review dispatched and PENDING. Do not assume independent confirmation. No training/live renderer. Next check medium response and continue fixed --run/view/ingest.
+
 Current finite96 v3 cursor43 unchanged:30FAIL/12UNCERTAIN/1PASS_CURATOR_ONLY. Queue43 key71f81760f9cc787151369ca90057ed4d5cd9b17656f719cf625eaa72fb81dadd in progress:portraitPASSrich,donorPASS,neutralPASSrich;all3sheets actually viewed and ingested. Coherent monochrome; NEXT --run chromatic then night. No candidate terminal yet/no liveworker/training.
 
 Current finite96 v3 cursor43:30FAIL(including3insufficientchange)/12UNCERTAIN/1PASS_CURATOR_ONLY/53remaining. Queue42 key0e05596 all5 actually seen across2turns:donor compatible,all4comfortable but0rich;terminal FAIL_INSUFFICIENT_COMFORTABLE_RICH_CHANGE. No liveworker/training. Continue fixed v3 --run/view/ingest.
