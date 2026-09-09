@@ -1,0 +1,22 @@
+{
+  "status": "FINITE96_STARTED_FIRST_CANDIDATE_FAIL",
+  "implementation_commit": "e3ee79860",
+  "root_checks": "8 new tests PASS; all96 ordered keys match independent derivation; preflight PASS",
+  "identity": {
+    "config_sha256": "fe3051479474ae32d52f11214179db93e4e4ef6054e32b59e90acb47d23e65ad",
+    "entry_sha256": "ec301a2691fd7085ef35693bf30e2918b807109fbce1d8b1bf4fe34dd96fae20",
+    "input_sha256": "4c054e47b6896961fe4e5e8869167feb4fcfdf79e967d3182c8d25eb34b5c95d"
+  },
+  "cursor": {
+    "index": 1,
+    "previous_terminal_sha256": "be475105005777942ceccd0138332dac985f98b8b226f2a05349d88f8e5d3529"
+  },
+  "accounting": {
+    "attempts": 2,
+    "cpu": 2.93125,
+    "wall": 3.3439999999827705,
+    "bytes": 461447,
+    "last_sha256": "96a10ee7e1e03855358b15b03ccf60853243c5fec89a80f18fc7fd1913c0f669"
+  },
+  "claim": "One portrait sheet actually viewed. Orange skin comfort failure; remaining4 stages unreviewed.95remaining,no replacement,no training admission."
+}
