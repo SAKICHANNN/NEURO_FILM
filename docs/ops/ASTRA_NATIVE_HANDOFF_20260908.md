@@ -1,3 +1,5 @@
+Current finite96 v3 cursor61:41FAIL(including3insufficientchange)/18UNCERTAIN/2PASS_CURATOR_ONLY/35remaining. Queue60 key209e6d1 portraitcomfortableweak/donorPASS,car goldenhazeUNCERTAIN. Three sheets/nativepairs actuallyviewed/ingested;flower/nightunviewed. No liveworker/training. Continue fixed --run/view/ingest.
+
 Current finite96 v3 cursor60:41FAIL(including3insufficientchange)/17UNCERTAIN/2PASS_CURATOR_ONLY/36remaining. Queue58 pale warmUNCERTAIN;queue59 fluorescentlimeFAIL. Both portrait sheets/nativepairs actuallyviewed/ingested;othersunviewed. No liveworker/training. Continue fixed --run/view/ingest.
 
 Current finite96 v3 cursor58:40FAIL(including3insufficientchange)/16UNCERTAIN/2PASS_CURATOR_ONLY/38remaining. Queue57 fed a673 (fullkey inqueue) portraitrichPASS,donorPASS,neutralPASSweak,flowerUNCERTAIN dark/cyan leaf texture. Four sheets actually seen across2turns;nightunviewed. No liveworker/training. Continue fixed --run/view/ingest.
