@@ -1,0 +1,32 @@
+{
+  "status": "HELD_PREDICTIONS_READY_ASSESSMENT_PENDING",
+  "held": {
+    "status": "HELD_FEATURES_READY_MODEL_UNCHANGED",
+    "counts": {
+      "parameter_held": 192,
+      "donor_held": 64,
+      "both_held": 64,
+      "both_held_repeat": 64
+    },
+    "primary": "combined",
+    "model_sha256": "fbd239f57ad900cbdd1dd0203615bd1589256a2cf74a5be987bcd10f8621ab31",
+    "config_sha256": "630582e28eca32b653465878c83424c11260228ce72f3b9c120f7a277d74a7fa",
+    "entry_sha256": "306519c9b17198f17270dea96bb1b95733bdeab681a9c5c6eaf09daca76698d6",
+    "rows_sha256": "eeb8454726abf3473e1efc2d1664c2959d29a7ebfb64f4a8080815d59b16c836",
+    "features_sha256": "81bf913acd0cc67c717f7b67225925e2c012f06e9878644e2785464d4a04232a",
+    "wall_seconds": 18.42920629999935
+  },
+  "predictions": {
+    "status": "PREDICTIONS_FROZEN_NO_REFIT",
+    "primary": "combined",
+    "model_sha256": "fbd239f57ad900cbdd1dd0203615bd1589256a2cf74a5be987bcd10f8621ab31",
+    "held_features_sha256": "81bf913acd0cc67c717f7b67225925e2c012f06e9878644e2785464d4a04232a",
+    "rows_sha256": "eeb8454726abf3473e1efc2d1664c2959d29a7ebfb64f4a8080815d59b16c836",
+    "predictions_sha256": "feae273f191153b91e50b62d82f5aeac285aa615039c0d12b4f9d89bd5fdf5f5",
+    "entry_sha256": "09fbea111fc65fb73dd2b15ef3c47c1fc5ef663160aa7979b0597d83380b0db5",
+    "metrics_module_sha256": "a2fd41ac6c0512928b9b28bf06d6db53206235df66bf6ea0a00e1eb4a4219176"
+  },
+  "tests": "19 focused tests pass; histogram scoring matches native brute-force on synthetic arrays",
+  "training_or_selection_changed": false,
+  "next": "Medium implementing assess_fable_photometry.py and matching test; review then run exact512primary query cases and parameterdiagnostics.16visualoutputs still required."
+}

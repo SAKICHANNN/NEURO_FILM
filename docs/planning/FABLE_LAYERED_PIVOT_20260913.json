@@ -94,12 +94,13 @@
   "goal_tool_state": "active_user_requested_20260913",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Generate parameter-held192,donor-held64,both-held64,repeat64 using frozen model; no refit/selection. Implement analyticprior and query scoring with unit tests before reading assessment outcomes.",
+  "next": "Medium implementing assess_fable_photometry.py and matching test; review then run exact512primary query cases and parameterdiagnostics.16visualoutputs still required.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
   "reference_reuse_evidence": "docs/evidence/FABLE_REFERENCE_REUSE_20260913.json",
   "physical_comparator_evidence": "docs/evidence/FABLE_PHYSICAL_COMPARATOR_20260913.json",
   "model_policy_current": "root Astra light; complex adjudication Astra medium subagent; deep science web6Pro",
-  "photometry_fit_evidence": "docs/evidence/FABLE_PHOTOMETRY_FIT_20260913.json"
+  "photometry_fit_evidence": "docs/evidence/FABLE_PHOTOMETRY_FIT_20260913.json",
+  "photometry_held_evidence": "docs/evidence/FABLE_PHOTOMETRY_HELD_20260913.json"
 }
