@@ -1,0 +1,111 @@
+{
+  "status": "NUMERIC_MECHANISM_PASS_VISUAL_PRODUCT_NOT_ESTABLISHED",
+  "primary": "combined",
+  "primary_cases": 512,
+  "parameter_references": 384,
+  "tests": "13 passed, root execution",
+  "report_sha256": "6de5eb793aee995468a74b0f96e1690d459f869ad46692ddeadbb44f20057773",
+  "visual_manifest_sha256": "af67be6bba733367fb5f9429ce7f22dd0a939397c9fe7dee188769c40b6b2fc9",
+  "blinded_observations_sha256": "97b9b6da925e7ca7926704b2073844963d92a4f7039442ce1c74c6a50a3e88c5",
+  "revealed_observations_sha256": "a0fc6f6b8314694f5973d6404c12e64ac1f9f31550be324b11a453aac6c8e6f2",
+  "required_gates": {
+    "parameter_vs_identity": {
+      "mean": 0.01862559604225051,
+      "pvalue": 0.0002593994140625,
+      "passed": true
+    },
+    "float_mse_vs_identity": {
+      "mean": 7.86359637733701e-05,
+      "pvalue": 0.0002593994140625,
+      "passed": true
+    },
+    "float_mse_vs_mean_render": {
+      "mean": 7.747135208035371e-05,
+      "pvalue": 0.0002593994140625,
+      "passed": true
+    },
+    "float_mse_vs_fixed_contrast": {
+      "mean": 0.0013753587298625785,
+      "pvalue": 1.52587890625e-05,
+      "passed": true
+    },
+    "float_mse_vs_wrong_primary": {
+      "mean": 0.0001768683617562929,
+      "pvalue": 1.52587890625e-05,
+      "passed": true
+    },
+    "code_mse_vs_identity": {
+      "mean": 5.2450727317991515,
+      "pvalue": 0.0020904541015625,
+      "passed": true
+    },
+    "code_mse_vs_mean_render": {
+      "mean": 5.281418563782397,
+      "pvalue": 0.0002593994140625,
+      "passed": true
+    },
+    "code_mse_vs_fixed_contrast": {
+      "mean": 90.60860903399346,
+      "pvalue": 1.52587890625e-05,
+      "passed": true
+    },
+    "code_mse_vs_wrong_primary": {
+      "mean": 11.916330998924225,
+      "pvalue": 1.52587890625e-05,
+      "passed": true
+    }
+  },
+  "rendered_summary": {
+    "stats": {
+      "float_mse": 0.0011789376469593777,
+      "float_mse_relative_to_oracle_strength": 0.9907794548703858,
+      "code_mse": 77.32945754612274,
+      "code_mse_relative_to_oracle_strength": 0.9987232865560283
+    },
+    "combined": {
+      "float_mse": 0.001111273295208597,
+      "float_mse_relative_to_oracle_strength": 0.9339143189450873,
+      "code_mse": 72.1832385803198,
+      "code_mse_relative_to_oracle_strength": 0.9322589806891707
+    },
+    "analytic": {
+      "float_mse": 0.002966679648564359,
+      "float_mse_relative_to_oracle_strength": 2.4931982217724045,
+      "code_mse": 193.04656682091468,
+      "code_mse_relative_to_oracle_strength": 2.4932297185551477
+    },
+    "identity": {
+      "float_mse": 0.0011899092589819668,
+      "float_mse_relative_to_oracle_strength": 1.0,
+      "code_mse": 77.42831131211895,
+      "code_mse_relative_to_oracle_strength": 1.0
+    },
+    "mean_render": {
+      "float_mse": 0.0011887446472889508,
+      "float_mse_relative_to_oracle_strength": 0.9990212600799389,
+      "code_mse": 77.4646571441022,
+      "code_mse_relative_to_oracle_strength": 1.0004694126911375
+    },
+    "fixed_contrast": {
+      "float_mse": 0.002486632025071175,
+      "float_mse_relative_to_oracle_strength": 2.0897660946000425,
+      "code_mse": 162.79184761431327,
+      "code_mse_relative_to_oracle_strength": 2.1024847998826672
+    },
+    "oracle": {
+      "float_mse": 0.0,
+      "float_mse_relative_to_oracle_strength": 0.0,
+      "code_mse": 0.0,
+      "code_mse_relative_to_oracle_strength": 0.0
+    },
+    "wrong_primary": {
+      "float_mse": 0.0012881416569648896,
+      "float_mse_relative_to_oracle_strength": 1.082554528625961,
+      "code_mse": 84.09956957924403,
+      "code_mse_relative_to_oracle_strength": 1.0861604515722003
+    }
+  },
+  "visual_conclusion": "16/16 predictions weak in this fixed first-pair visual subset; no product promotion. This is not a random visual sample of all 512 cases.",
+  "claim_ceiling": "Frozen synthetic family only. Only 4 existing query photos, 16 overview plus 256px native center crops visually inspected. No independent face/text/content preservation proof. No film calibration. No model integration.",
+  "next": "Medium practical-effect and next-branch adjudication pending; preserve frozen protocol and negative visual evidence."
+}
