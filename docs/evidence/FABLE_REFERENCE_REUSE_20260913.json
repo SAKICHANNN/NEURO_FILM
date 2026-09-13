@@ -1,0 +1,17 @@
+{
+  "status": "CODEBASE_REUSE_ADJUDICATED_NOT_MODEL_PROMOTION",
+  "reviewer": "high subagent fable_reference_reuse; root checked APIs/source montage and physical outputs",
+  "reuse": [
+    "src/eval/tst_reference_response.py:load_vgg and descriptors, pinned VGG feature extractor",
+    "src/film_physics/bounded_photographic_runtime.py: verified generic comparator only"
+  ],
+  "not_reopened": [
+    "NLUT severe adapted/pretrained visual failures",
+    "TST kernel and distillation development0/8",
+    "Boolean photo composition severe veto4/5 and5/5"
+  ],
+  "proposal": "New continuous shared-photometry synthetic after-only inference across distinct donor/query images; compare correct vs wrong SAME donor transform, stats-only, no-reference and original. Not natural-reference or film truth.",
+  "source_config": "configs/fable_reference_photometry_sources_v1.json",
+  "visual_source_review": "12-image role montage viewed; distinct apparent scenes, no exact file duplicates. Query11 already magenta cast, several low-light sources; never label these clean neutral RAW. No face/text population coverage established.",
+  "next": "Science via6Pro for bounded shared-transform supervision; implement new learned head using existing feature API after formulation. Keep texture-supervision issue distinct; physical comparator does not replace colour learning."
+}

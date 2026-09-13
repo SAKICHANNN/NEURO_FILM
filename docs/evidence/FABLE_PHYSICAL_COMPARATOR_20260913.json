@@ -1,0 +1,115 @@
+{
+  "status": "RUNNABLE_UNPROMOTED_COMPARATOR",
+  "report_sha256": "2c01d6c007f2f53e131ee6af523263c82f9a00812654ce58ea472c3fe3dbfcb3",
+  "comparison_sha256": "cb3248c687a1c62590b9a31fa0c088a9a8734a12cd3ad9868bec205078459476",
+  "visual_review": "All5 native256px crop triplets viewed. Main visible change smoothing; slight texture. Does not meet rich reference-driven look requirement alone. No film realism/semantic preservation promotion.",
+  "current_checks": "Boolean9 tests and bounded CPU3 tests pass; latter tests identity/rejection only, actual5 render execution supplies runtime evidence. Earlier Boolean real-photo severe veto preserved.",
+  "metrics": [
+    {
+      "id": "11",
+      "full_vs_matched_scanner_rmse": 0.0005026974338771271,
+      "arms": {
+        "source": {
+          "min": 0.0,
+          "max": 1.0,
+          "linear_rmse_from_source": 0.0
+        },
+        "matched_scanner_only": {
+          "min": 3.8038372311009887e-06,
+          "max": 0.9996728553686707,
+          "linear_rmse_from_source": 0.003186989142566263
+        },
+        "generic_density_copula_and_scanner": {
+          "min": 3.8041750940465135e-06,
+          "max": 0.9996780753135681,
+          "linear_rmse_from_source": 0.0032133986242115498
+        }
+      }
+    },
+    {
+      "id": "14",
+      "full_vs_matched_scanner_rmse": 0.004675124411624315,
+      "arms": {
+        "source": {
+          "min": 0.0,
+          "max": 1.0,
+          "linear_rmse_from_source": 0.0
+        },
+        "matched_scanner_only": {
+          "min": 0.000721455100093705,
+          "max": 0.9536495887616856,
+          "linear_rmse_from_source": 0.022464774646162415
+        },
+        "generic_density_copula_and_scanner": {
+          "min": 0.0007215140503831208,
+          "max": 0.9522472023963928,
+          "linear_rmse_from_source": 0.02295558713376522
+        }
+      }
+    },
+    {
+      "id": "37",
+      "full_vs_matched_scanner_rmse": 0.0034679539567274782,
+      "arms": {
+        "source": {
+          "min": 0.0423114113509655,
+          "max": 0.32314324378967285,
+          "linear_rmse_from_source": 0.0
+        },
+        "matched_scanner_only": {
+          "min": 0.0423114113509655,
+          "max": 0.3228265611608472,
+          "linear_rmse_from_source": 0.0006287083454272753
+        },
+        "generic_density_copula_and_scanner": {
+          "min": 0.042173128575086594,
+          "max": 0.34011131525039673,
+          "linear_rmse_from_source": 0.0035272003151476383
+        }
+      }
+    },
+    {
+      "id": "FS_FACE_01",
+      "full_vs_matched_scanner_rmse": 0.006449406071288837,
+      "arms": {
+        "source": {
+          "min": 0.0009105809731408954,
+          "max": 1.0,
+          "linear_rmse_from_source": 0.0
+        },
+        "matched_scanner_only": {
+          "min": 0.0038153872183605093,
+          "max": 0.9436065882785836,
+          "linear_rmse_from_source": 0.00944077409589278
+        },
+        "generic_density_copula_and_scanner": {
+          "min": 0.0038159233517944813,
+          "max": 0.9411303997039795,
+          "linear_rmse_from_source": 0.01144122052937746
+        }
+      }
+    },
+    {
+      "id": "21",
+      "full_vs_matched_scanner_rmse": 0.005046706993528064,
+      "arms": {
+        "source": {
+          "min": 0.0,
+          "max": 1.0,
+          "linear_rmse_from_source": 0.0
+        },
+        "matched_scanner_only": {
+          "min": 0.0,
+          "max": 0.9993280045810689,
+          "linear_rmse_from_source": 0.03035233272795194
+        },
+        "generic_density_copula_and_scanner": {
+          "min": 0.0,
+          "max": 0.999311625957489,
+          "linear_rmse_from_source": 0.03078574314713478
+        }
+      }
+    }
+  ],
+  "next": "Align this comparator with new reference-learning query set, not substitute it for learned colour."
+}

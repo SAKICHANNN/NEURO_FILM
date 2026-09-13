@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "purpose": "Unpromoted generic physical-inspired comparator on previously consumed development crops, not new validation",
+  "profile": {
+    "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+    "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+    "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+  },
+  "sources": [
+    {
+      "sample_id": "11",
+      "role": "saturated_red_and_deep_shadow_regression",
+      "source_path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/11_Sigma_fp_Sigma_-_fp_-_12bit_16_9__raw-neutral.jpg",
+      "source_sha256": "c7e62191128b53c41545814f67d33efbee697eb6f2bfc9cdcdbb4d0369ebb20d",
+      "source_size": [
+        1600,
+        900
+      ],
+      "crop_xywh": [
+        544,
+        194,
+        512,
+        512
+      ],
+      "seed": 26072601
+    },
+    {
+      "sample_id": "14",
+      "role": "inherited_high_iso_noise_and_soft_detail",
+      "source_path": "outputs/color_baseline/velvia50_rawpixls20_s0p50_gamutsafe/inputs/14_Sony_ILME-FX3_Sony_-_ILME-FX3_-_14bit_3_2__raw-neutral.jpg",
+      "source_sha256": "547d2ff38e592b8d01cc52c227901f516f050353bac16684f679354e6a0fe23b",
+      "source_size": [
+        1600,
+        1071
+      ],
+      "crop_xywh": [
+        544,
+        279,
+        512,
+        512
+      ],
+      "seed": 26072602
+    },
+    {
+      "sample_id": "37",
+      "role": "smooth_sky_gradient_and_cloud_texture",
+      "source_path": "outputs/color_baseline/velvia50_digital20_s0p72_gamutsafe/inputs/17_digital_input.jpg",
+      "source_sha256": "59ef33988cb36579a49bc21d61e7f2a835563933df17ba4492becc8a55c5bcb6",
+      "source_size": [
+        1200,
+        800
+      ],
+      "crop_xywh": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "seed": 26072603
+    },
+    {
+      "sample_id": "FS_FACE_01",
+      "role": "face_skin_and_hair",
+      "source_path": "data/raw/filmset/FilmSet/train/input/DSCF01200 iso1600.png",
+      "source_sha256": "204d587efad91e41cb01d3de026a5ac837f0402ff8d0a31daca41c7223203ad1",
+      "source_size": [
+        512,
+        512
+      ],
+      "crop_xywh": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "seed": 26072604
+    },
+    {
+      "sample_id": "21",
+      "role": "face_uniform_textile_and_fine_insignia",
+      "source_path": "outputs/color_baseline/velvia50_digital10_s1_gamutsafe/inputs/01_digital_input.jpg",
+      "source_sha256": "011901a3f9084e22497e2b27642b44a39e8965c4c2febc5ddf2c3ccf298c8787",
+      "source_size": [
+        512,
+        512
+      ],
+      "crop_xywh": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "seed": 26072605
+    }
+  ],
+  "side": 256,
+  "crop_rule": "center256 within each fixed old512crop",
+  "output": "outputs/fable_physical_comparator_v1",
+  "source_domain": "decode encoded sRGB to relative display-linear RGB; no RAW spectral reconstruction",
+  "arms": [
+    "source",
+    "matched_scanner_only",
+    "generic_density_copula_and_scanner"
+  ],
+  "no_parameter_fitting": true,
+  "historical_source_config_sha256": "677dd625beda59977174e220ac3f61d1b38406a8d9ba27ef37852513dc410a3e"
+}

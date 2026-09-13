@@ -1,0 +1,141 @@
+{
+  "status": "SOURCE_ROLES_FROZEN_ALGORITHM_NOT_YET_FROZEN",
+  "sources": [
+    {
+      "index": 0,
+      "role": "fit_donor",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\01_Canon_PowerShot_S110_Canon_-_PowerShot_S110_-_RAW_4_3__raw-neutral.jpg",
+      "sha256": "b551eeccf6ec90c6b6b52e09174705d81360afb0d83734f802bcd17cc43c4bb5",
+      "size": [
+        1600,
+        1204
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 1,
+      "role": "fit_donor",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\02_Nikon_D300_Nikon_-_D300_-_14bit_14bit_compressed_Lossless_3_2__raw-neutral.jpg",
+      "sha256": "010169b430684bc4e8067ddacd65159166ddb2702c7eba53829e3d062ff7debc",
+      "size": [
+        1600,
+        1062
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 2,
+      "role": "fit_donor",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\03_Sony_DSLR-A450_Sony_-_DSLR-A450_-_12bit_12bit_compressed_3_2__raw-neutral.jpg",
+      "sha256": "b344857939695dc77ca31eefe8acdae39379636a8c612ebde39ba8e3f68c5493",
+      "size": [
+        1600,
+        1067
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 3,
+      "role": "fit_donor",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\04_Fujifilm_FinePix_S6500fd_Fujifilm_-_FinePix_S6500fd_-_4_3_raw-neutral.jpg",
+      "sha256": "8b09f27a7e43ce6d04cca6988d7d405412ec33f9ccc09bb42f08366feb324568",
+      "size": [
+        1600,
+        1207
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 4,
+      "role": "fit_donor",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\05_Olympus_E-PL5_Olympus_-_E-PL5_-_16bit_4_3__raw-neutral.jpg",
+      "sha256": "b20093a55650b62626aeb319fced0d2d010ce5ffe1ca2c38ad697ce108081497",
+      "size": [
+        1600,
+        1197
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 5,
+      "role": "fit_donor",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\06_Panasonic_DMC-FZ35_Panasonic_-_DMC-FZ35_-_4_3_raw-neutral.jpg",
+      "sha256": "b630b9025fd385f6fab366f1e4b4c99bda45b1b872f3eafd30d576f20eda2092",
+      "size": [
+        1600,
+        1202
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 6,
+      "role": "held_donor",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\07_Pentax_K-500_Pentax_-_K-500_-_12bit_3_2__raw-neutral.jpg",
+      "sha256": "d8c18b8adcd54bd6ce5b6a92fef789e4feb13338dc70386ca04ff30e2b11447e",
+      "size": [
+        1600,
+        1061
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 7,
+      "role": "held_donor",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\08_Ricoh_GXR_Ricoh_-_GXR_-_12bit_4_3__raw-neutral.jpg",
+      "sha256": "a3fb989a794e8aea203c47cd8a5845293964814919153609552c7feccc9d819a",
+      "size": [
+        1600,
+        1197
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 8,
+      "role": "query",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\09_Leica_M9_Leica_-_M9_-_8bit_8bit_compressed_3_2__raw-neutral.jpg",
+      "sha256": "543e5dcc17da0e7f9434fb51c17c380ac2f1cb2614d6ec781909f5d040ffde6f",
+      "size": [
+        1600,
+        1065
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 9,
+      "role": "query",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\10_Samsung_GX10_Samsung_-_GX10_-_12bit_3_2__raw-neutral.jpg",
+      "sha256": "e195e900d2ca19cc4f51c2139014a7a747065de2cd1d388712235631c7ff5e0e",
+      "size": [
+        1600,
+        1074
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 10,
+      "role": "query",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\11_Sigma_fp_Sigma_-_fp_-_12bit_16_9__raw-neutral.jpg",
+      "sha256": "c7e62191128b53c41545814f67d33efbee697eb6f2bfc9cdcdbb4d0369ebb20d",
+      "size": [
+        1600,
+        900
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    },
+    {
+      "index": 11,
+      "role": "query",
+      "path": "outputs\\color_baseline\\velvia50_rawpixls20_s0p50_gamutsafe\\inputs\\12_Canon_EOS_R6_Mark_III_Canon_-_EOS_R6_Mark_III_-_RAW_3_2__raw-neutral.jpg",
+      "sha256": "c580c41e3bb997cdeee01db24bfe3064cdfbf5ef979ff1ef6519bbce5cd2274d",
+      "size": [
+        1600,
+        1067
+      ],
+      "license_from_manifest": "CC0/Public Domain"
+    }
+  ],
+  "manifest_sha256": "7babbcac94745b396bb426fe9eafaec12f2b849c2ca91fab5e464f05da351ed8",
+  "claim": "Previously consumed display JPEGs, not fresh independent natural-reference proof; before only, existing styled after files excluded",
+  "proposed_experiment": "New continuous shared-transform after-only parameter identification, correct/wrong same-donor references and stats-only/no-reference/original controls",
+  "science_step": "6Pro followup should assess minimum meaningful continuous-transform supervision and strength range before execution; no manual look delivery"
+}
