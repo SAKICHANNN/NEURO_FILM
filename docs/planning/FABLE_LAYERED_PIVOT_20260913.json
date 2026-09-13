@@ -94,10 +94,11 @@
   "goal_tool_state": "active_user_requested_20260913",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "6Pro science review of continuous shared-transform after-only experiment; implement new feature head with frozen12source roles. Align physical comparator to same4queries later. No reactivation of failed old learner candidates.",
+  "next": "Retrieve single pending6Pro photometry reply through visibleCopy/clipboard, validate and locally adopt before learning experiment.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
   "reference_reuse_evidence": "docs/evidence/FABLE_REFERENCE_REUSE_20260913.json",
-  "physical_comparator_evidence": "docs/evidence/FABLE_PHYSICAL_COMPARATOR_20260913.json"
+  "physical_comparator_evidence": "docs/evidence/FABLE_PHYSICAL_COMPARATOR_20260913.json",
+  "model_policy_current": "root Astra light; complex adjudication Astra medium subagent; deep science web6Pro"
 }
