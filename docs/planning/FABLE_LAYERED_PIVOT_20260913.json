@@ -1,0 +1,94 @@
+{
+  "date": "2026-09-13",
+  "status": "ADOPTED_DIRECTION_PENDING_SCIENTIFIC_SPECIFICATION",
+  "authority": "User explicitly chose Fable layered route and cleared Goal; no new Goal created",
+  "objective": "Single after-only graded reference plus N sources; AI learns transferable appearance, rich and comfortable, protected-content evaluation at native resolution",
+  "architecture": {
+    "photometry": "Reference-conditioned learned photometric/colour operators constrained by physical response structure; LUT is optional implementation, not mandatory architecture",
+    "optics": "Explicit exposure-domain halation and appropriate MTF/scan model; order and calibration reviewed scientifically, deterministic does not imply semantic safety",
+    "texture": "Conditional stochastic grain/material layer with measurable constraints; compare learned generator against existing Boolean/Poisson physical baseline before asserting learned advantage"
+  },
+  "old_route": {
+    "status": "PAUSED_BY_USER_PIVOT",
+    "cursor": 69,
+    "failure": 48,
+    "uncertain": 19,
+    "curator_only_pass": 2,
+    "remaining_not_required_for_new_route": 27,
+    "preserve_all_records": true,
+    "no_automatic_resume": true,
+    "do_not_relabel_partial_as_complete": true
+  },
+  "reuse_candidates": [
+    "src/filmfx/boolean_grain.py",
+    "src/filmfx/staged_density.py",
+    "src/filmfx/halation_dag.py",
+    "src/filmfx/tiled_grain.py"
+  ],
+  "rejected_claims": [
+    "determinism or nonnegative convolution guarantees factual preservation",
+    "denoised residual is pure film grain",
+    "single uncalibrated scan uniquely identifies optical density/film PSF/MTF",
+    "procedural grain necessarily inferior to generated grain"
+  ],
+  "steps": [
+    {
+      "step": "pause previous fixed96 and preserve state",
+      "status": "DONE",
+      "verification": {
+        "outputs\\tst_crossed_photo_review_v3\\cursor.json": "5c7e83384b32fbfa5f48cab86967c0a48653d6e16f1a9a5ffb61d04534c4b407",
+        "outputs\\tst_crossed_photo_review_v3\\accounting_checkpoint.json": "a57d27c022b14d1703c6a0179bd91f24e3827be8d924edb63d0f44a36b1f06d4",
+        "outputs\\tst_crossed_photo_review_v3\\input_lock.json": "320b63156ebefccaa111fd31f4a6b91e3634961d02e5cf680d44222b20f2c21c",
+        "outputs\\fable_layered_pivot_v1\\source_inventory.json": "a69dec0ccb3de0058f7eef87c00fd669bee14b54a275c963df3343a8ec0be284"
+      }
+    },
+    {
+      "step": "verify existing uniform scans",
+      "status": "DONE",
+      "artifact": "outputs/fable_layered_pivot_v1/source_inventory.json",
+      "claim": "8 uint16 four-channel files, SHA1 and byte sizes matched existing manifest; no density calibration or grain purity proof"
+    },
+    {
+      "step": "scientific specification and prior implementation reuse audit",
+      "status": "IN_PROGRESS",
+      "science_url": "https://chatgpt.com/c/6aa65406-2f70-83ec-ba65-3e7f337015ae",
+      "note": "packet was sent before user pivot; its preserve96 preference is superseded, scientific counterexamples remain relevant"
+    },
+    {
+      "step": "freeze residual-identification pilot with contamination controls and physical baseline",
+      "status": "NOT_STARTED",
+      "purpose": "Identify whether extracted residuals support a learnable texture model; no model training first",
+      "requirements": [
+        "retain native RGB precision; treat IR separately",
+        "same-stock scanner-convolved texture and calibrated density claims separated",
+        "clean structured-image negative controls and denoiser sensitivity",
+        "whole-image/roll-aware holdout rather than random patch split",
+        "no exposure-density curve inferred from four medium-density scans"
+      ]
+    },
+    {
+      "step": "reference-conditioned photometry and explicit optics baseline",
+      "status": "NOT_STARTED",
+      "requirements": [
+        "same-reference multi-source visible/comfortable evaluation",
+        "original/simple-adjustment/old-algorithm controls",
+        "RAW versus encoded RGB limits explicit",
+        "reuse existing primitives only after relevant code/results validation"
+      ]
+    },
+    {
+      "step": "conditional texture learner only after usable supervision demonstrated",
+      "status": "DEFERRED",
+      "requirements": [
+        "compare with procedural baseline",
+        "seed/tile/full-resolution reproducibility",
+        "native text/face/edge loss plus low-frequency and amplitude checks",
+        "learned contribution separate from colour changes"
+      ]
+    }
+  ],
+  "rollback": "Stop new route if evidence fails; preserve pilot and old results. Returning to old96 requires explicit later decision, never automatic.",
+  "goal_tool_state": "none",
+  "training_admitted": false,
+  "claims_proven": []
+}
