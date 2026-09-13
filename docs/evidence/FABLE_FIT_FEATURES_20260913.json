@@ -1,0 +1,25 @@
+{
+  "status": "FIT_SOURCE_FEATURES_EXTRACTED_NOT_TRAINING",
+  "config_sha256": "b93a99898abf8ce0d95151f6e667b575467f85acb42dbdfbfa97c99cc581f389",
+  "entry_sha256": "5e745a45022df9f34d639ea044ff7366b417246ba05afd09109f38c065187524",
+  "features_sha256": "cac387a3411aca0b43e42fe0ed29e8795f705a4a99bec933925964f49615c1a8",
+  "source_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "stats_shape": [
+    6,
+    30
+  ],
+  "deep_shape": [
+    6,
+    3968
+  ],
+  "wall_seconds": 3.209040100002312,
+  "held_features_consumed": false,
+  "fitted_normalization_or_head": false
+}

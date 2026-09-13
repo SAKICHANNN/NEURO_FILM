@@ -1,0 +1,9 @@
+{
+  "sources_config": "configs\\fable_reference_photometry_sources_v1.json",
+  "sources_config_sha256": "7d7059b2355a8127bfbdbd0ca23ba1910b7ab6ba9b505e20de089aa0ed14e1d7",
+  "feature_entry_sha256": "7730b237e912c414119049b6b263a55732e3b3461f7551ad520c67711fa9742a",
+  "source_role": "fit_donor",
+  "cpu_threads": 4,
+  "output": "outputs/fable_fit_source_features_v1",
+  "purpose": "Feature extraction runtime evidence on original fit donors only; not learned transfer"
+}
