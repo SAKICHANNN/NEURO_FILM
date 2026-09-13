@@ -1,0 +1,87 @@
+{
+  "status": "RESIDUALS_NOT_ADMITTED_AS_GRAIN_LABELS",
+  "report_sha256": "ebdea7113b1ab379686fb732b37c7f5053df048f002e2d42796da3a1507efc55",
+  "rows": 27,
+  "independent_development_rolls": 3,
+  "native_series_selected": [
+    {
+      "roll_id": "19941221D",
+      "series": 1,
+      "shape": [
+        6792,
+        10200,
+        3
+      ]
+    },
+    {
+      "roll_id": "19941222D",
+      "series": 1,
+      "shape": [
+        6792,
+        10200,
+        3
+      ]
+    },
+    {
+      "roll_id": "19941217A",
+      "series": 1,
+      "shape": [
+        6768,
+        10056,
+        3
+      ]
+    }
+  ],
+  "median_rgb_rms": {
+    "gaussian_sigma1": [
+      0.0025387855951847526,
+      0.001319893743274895,
+      0.0009776182064897131
+    ],
+    "gaussian_sigma2": [
+      0.004780658821981991,
+      0.0025213816976704917,
+      0.0015531962917743058
+    ],
+    "nlm_h0.01": [
+      0.005699913721671014,
+      0.003396810818727769,
+      0.0019897709422983354
+    ],
+    "nlm_h0.02": [
+      0.006630322569536465,
+      0.003560069424775973,
+      0.0021110904214780733
+    ]
+  },
+  "visual_review": {
+    "all_three_contact_sheets_viewed": true,
+    "native_detail_rows": [
+      {
+        "roll_id": "19941222D",
+        "row": 4,
+        "observation": "Rectangular boundary and horizontal bars visible in residuals, most clearly Gaussian2 and NLM h0.02; NLM h0.01 weaker but not a proof of clean grain."
+      },
+      {
+        "roll_id": "19941217A",
+        "row": 2,
+        "observation": "Curved thin line visible in Gaussian residuals and NLM h0.02, substantially suppressed at NLM h0.01; physical cause of original line unknown."
+      }
+    ],
+    "display": "Source grayscale minmax stretched and inverted; residual signedRGB at fixed x10 with display clipping; statistics use unmodified residuals."
+  },
+  "decision": "Do not train conditional grain generator on all denoising residuals. Preserve learned-texture branch but require cleaner supervision or contamination-aware identification. Proceed with procedural physical baseline and reference photometry in parallel with science follow-up.",
+  "limits": [
+    "LINEAR_RAW scanner RGB codes, not calibrated density or display RGB",
+    "No paired clean signal; residual structure cannot be causally separated from signal-dependent grain",
+    "Source preview grayscale stretched/inverted solely for viewing; residuals displayed fixed x10 clipped, stats unclipped",
+    "27 correlated crops from 3 development rolls; two validation scans remain absent"
+  ],
+  "artifact_hashes": {
+    "19941221D_residuals.png": "259a5cc3a9a732790e5968536f01f24f8391a5c78e52366dd112f958e1205f54",
+    "19941222D_residuals.png": "c171754c3eb6f23e55dc4229431ab3e006b2f5889e8cdde8f30cf5922a33a40c",
+    "19941217A_residuals.png": "897a470c0408d12e8dbb591416d697d517e68c96e61f25ecc92c66a1d31c7be2",
+    "19941222D_native_detail.png": "d84919739e5dcbc5c8ab654bda980c3364a305ee57eb571bced637c5f518e139",
+    "19941217A_native_detail.png": "e43f8106e800622a45ad8125d29d4366f63590d069b7a9d29ddfdf58907720ea"
+  }
+}

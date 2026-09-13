@@ -94,7 +94,8 @@
   "goal_tool_state": "active_user_requested_20260913",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Three BlueNeg native development files verified. Run fixed native crops on explicitly selected LINEAR_RAW RGB series, preserve two validation rolls. Continue reference photometry reuse audit.",
+  "next": "Physical/procedural baseline plus reference photometry reuse audit; science followup on contamination-aware texture supervision. Do not train on unfiltered natural denoising residuals.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
-  "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json"
+  "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
+  "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json"
 }

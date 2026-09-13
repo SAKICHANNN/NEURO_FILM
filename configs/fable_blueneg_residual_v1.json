@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "purpose": "Natural native-scan residual sensitivity, not ground-truth grain extraction",
+  "base_entry_sha256": "4e2494bca9949972004c696052958190e5b422880cdc8ae6e1de8f264c6f1096",
+  "side": 256,
+  "seed": 20260913,
+  "noise_rms": 0.01,
+  "nlm_h": [
+    0.01,
+    0.02
+  ],
+  "patch_size": 5,
+  "patch_distance": 6,
+  "sigma": 0,
+  "fast_mode": true,
+  "output": "outputs/fable_blueneg_residual_v1",
+  "decision": "Report all controls; no tuning or grain-training admission. Compare to Gaussian sigma1/sigma2 and median3 on exactly same signals.",
+  "grid_fractions": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "acquisition_config": "configs/fable_blueneg_native_v1.json",
+  "residual_display_gain": 10.0,
+  "acquisition_config_sha256": "97af0abe220e042cad2a81a6bf4f0dc15df474a58f67b4d62e893ddb73b64706"
+}
