@@ -1,0 +1,8 @@
+{
+  "status": "NLM_KNOWN_SIGNAL_CONTROLS_COMPLETE",
+  "config_sha256": "6cf053b67bc23ff2c158b7940e1ebd114749d57d79059905be58c44319fbcd4e",
+  "report_sha256": "92df017684f6724ff461aa944f56697097de5c470e406aa8ee4ed0056952d941",
+  "rows": 60,
+  "finding": "NLM greatly reduces clean edge/line leakage relative to Gaussian; texture and ramp remain extractor-dependent; synthetic controls only",
+  "next": "Same fixed real scan patches with NLM before training; independently controlled natural DNG source pilot"
+}

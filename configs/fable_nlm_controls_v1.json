@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "purpose": "Nonlocal means residual recovery on known signals, not real-film extraction validation",
+  "base_entry_sha256": "4e2494bca9949972004c696052958190e5b422880cdc8ae6e1de8f264c6f1096",
+  "side": 128,
+  "seed": 20260913,
+  "noise_rms": 0.01,
+  "nlm_h": [
+    0.01,
+    0.02
+  ],
+  "patch_size": 5,
+  "patch_distance": 6,
+  "sigma": 0,
+  "fast_mode": true,
+  "output": "outputs/fable_nlm_controls_v1",
+  "decision": "Report all controls; no tuning or grain-training admission. Compare to Gaussian sigma1/sigma2 and median3 on exactly same signals."
+}
