@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "status": "FROZEN_BEFORE_FIT_AND_ASSESSMENT",
+  "sources_config": "configs\\fable_reference_photometry_sources_v1.json",
+  "sources_config_sha256": "7d7059b2355a8127bfbdbd0ca23ba1910b7ab6ba9b505e20de089aa0ed14e1d7",
+  "side": 128,
+  "slope_limit": 1.25,
+  "offset_limit": 0.35,
+  "fit_seed": 20260913,
+  "assessment_seed": 20260914,
+  "pairs_per_partition": 16,
+  "dequantization_seed_base": 2026091500,
+  "dequantization_repeat_seed_base": 2026091600,
+  "dequantization_rule": "base seed plus source index; same realization for every transform; repeat only both-held",
+  "ridge_grid": [
+    1e-06,
+    1e-05,
+    0.0001,
+    0.001,
+    0.01,
+    0.1,
+    1.0,
+    10.0,
+    100.0
+  ],
+  "cpu_threads": 4,
+  "fit_donor_groups": [
+    [
+      0,
+      1
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      4,
+      5
+    ]
+  ],
+  "fit_pair_groups": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  ],
+  "expected_reference_counts": {
+    "fit": 192,
+    "parameter_held": 192,
+    "donor_held": 64,
+    "both_held": 64,
+    "both_held_repeat": 64
+  },
+  "primary_selection": "minimum crossed fit CV clipped normalized-parameter MSE; exact ties stronger lambda then stats",
+  "sign_test_alpha": 0.05,
+  "sign_test_unit": "16 antithetic transformation pairs, not pixels or refs",
+  "visual_pair_id": 0,
+  "visual_dequantization_repeat": 0,
+  "precision": "float64 synthesis/head/metrics; float32 descriptor entry; Q8 floor half-up",
+  "colour_policy": "Pillow RGB with no ICC conversion, encoded relative display RGB, not calibrated colour",
+  "output": "outputs\\fable_reference_photometry_v1",
+  "scope": "Known four-parameter synthetic mechanism only. No film or natural-after-only promotion, no fitting on held roles."
+}

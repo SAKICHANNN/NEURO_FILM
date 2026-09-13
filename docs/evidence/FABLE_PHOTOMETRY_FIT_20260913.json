@@ -1,0 +1,21 @@
+{
+  "status": "PRIMARY_FROZEN_BEFORE_ASSESSMENT",
+  "model_sha256": "fbd239f57ad900cbdd1dd0203615bd1589256a2cf74a5be987bcd10f8621ab31",
+  "config_sha256": "630582e28eca32b653465878c83424c11260228ce72f3b9c120f7a277d74a7fa",
+  "features_sha256": "797ae0f9688ebc211b4de1427427c01fbb25bb0b79f62fe937904dfa105152b7",
+  "primary": "combined",
+  "cv": {
+    "stats": {
+      "selected_error": 0.2855012148740239,
+      "selected_ridge": 100.0
+    },
+    "combined": {
+      "selected_error": 0.2727774939445629,
+      "selected_ridge": 1.0
+    }
+  },
+  "tests": "10 focused tests pass; transform quantization/dequantization and crossed ridge",
+  "assessment_started": false,
+  "remaining_reference_extractions": 384,
+  "next": "Generate parameter-held192,donor-held64,both-held64,repeat64 using frozen model; no refit/selection. Implement analyticprior and query scoring with unit tests before reading assessment outcomes."
+}
