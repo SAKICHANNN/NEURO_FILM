@@ -1,0 +1,24 @@
+{
+  "status": "MEDIUM_ADJUDICATION_ACCEPTED_SCIENCE_PENDING",
+  "decision": "Frozen numeric PASS retained; no practical product promotion; science clarification before real8pair calibration.",
+  "primary_change_energy_ratio_float": 0.00929,
+  "primary_change_rms_codes": 0.89,
+  "oracle_change_rms_codes": 8.799,
+  "inference": "Overall conservative prediction; causes not identified. No posthoc gain/lambda tuning.",
+  "delivery_detail_summary_sha256": "2c5bf7ab40b73a88f05d3e8169c02cd436408038fa3fa613828053edfa9a5e76",
+  "science": {
+    "status": "SUBMITTED_ONCE_REASONING_VISIBLE",
+    "url": "https://chatgpt.com/c/6aa671d6-b060-83ec-a9f6-6234e76b72c0",
+    "browser_id": "1",
+    "tab_id": "3",
+    "cua_binding": "shrinkTab",
+    "send_count": 1,
+    "copy_count": 0,
+    "preflight": "READY",
+    "visible_model": "6 Pro",
+    "observed_user_turns": 1,
+    "live_control": "Stop answering",
+    "packet_sha256": "7c659d8eaac9a8bc7de51d928bb5c91e5bd9d6db06391cbbf2ff1b0da93c6dc7",
+    "next": "ETA previous6Pro~17min; use sleep; same tab only, copy response exactly once when completed. Never response DOM extraction or resubmit."
+  }
+}
