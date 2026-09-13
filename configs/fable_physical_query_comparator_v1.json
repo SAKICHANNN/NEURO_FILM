@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "sources_config": "configs\\fable_reference_photometry_sources_v1.json",
+  "sources_sha256": "7d7059b2355a8127bfbdbd0ca23ba1910b7ab6ba9b505e20de089aa0ed14e1d7",
+  "query_indices": [
+    8,
+    9,
+    10,
+    11
+  ],
+  "profile": {
+    "path": "outputs/experiments/u6_p4hk_bounded_photographic_profile_bundle_v1/run_a/profile.json",
+    "sha256": "539fef07a7c659db035928ee4d9c7e6405da5e0baa07852f4f9a4b50fa1247b8",
+    "bundle_sha256": "8d20ce2874036befe78657b059ffafeb24e43d2e5bc1000512092a753e1e75df"
+  },
+  "output": "outputs/fable_physical_query_comparator_v1",
+  "arms": [
+    "source",
+    "matched_scanner_only",
+    "generic_density_copula_and_scanner"
+  ],
+  "source_index_rule": "original frozen query index for deterministic per-source field seeds",
+  "no_fitting": true,
+  "domain": "encoded sRGB decode to relative display-linear; no RAW calibration",
+  "purpose": "Full-frame physical baseline on same four photometry query photos; separate from synthetic identification gates"
+}

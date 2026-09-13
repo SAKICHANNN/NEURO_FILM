@@ -1,0 +1,117 @@
+{
+  "status": "ALIGNED_FULL_FRAME_PHYSICAL_COMPARATOR_UNPROMOTED",
+  "report_sha256": "dc05340fb7667afa2712f5ef4e4d3f4cf5e4f78bb2f80c688ddcb545ddccab67",
+  "source_alignment": "Exact same hashes as photometry queries8..11; all full frames rendered; four overviews and four native center crops actually viewed.",
+  "rows": [
+    {
+      "query": 8,
+      "wall_seconds": 29.987205299999914,
+      "note": "Overview nearly unchanged; native wall/TV boundary softened.",
+      "physical_vs_scanner_linear_rmse": 0.001674937742958305,
+      "arms": {
+        "source": {
+          "linear_rmse": 0.0,
+          "code_rmse": 0.0,
+          "png_sha256": "e5460d5b2f11ffc8207ef1c4383db2aa7fc7d5a1ad15e808321391b3d5aeafcb",
+          "npy_sha256": "5bf7ca38627522b3858aa755dfbbf0683f5affa03ae9bf9156a4edc10527f647"
+        },
+        "matched_scanner_only": {
+          "linear_rmse": 0.0052174799620892534,
+          "code_rmse": 1.4824064730992974,
+          "png_sha256": "caa4923ba8d6dbc1a8b28bb64bb9dd4afeb81272ca6b8c1a289f12fd35761dac",
+          "npy_sha256": "051c59766f7f89a1ee3cdad0cf5777fbb5a6e33514b84c4080076d409d9dd47b"
+        },
+        "generic_density_copula_and_scanner": {
+          "linear_rmse": 0.005481178406625986,
+          "code_rmse": 1.5214567986956908,
+          "png_sha256": "3424e8787f5a47a28ab0e35439445e846916ef4870c58fd8ec0176a28cb3255f",
+          "npy_sha256": "70e75a04babacdf060f1956652e4877caf5692f415d781ee1ea9c5cc9e047c08"
+        }
+      }
+    },
+    {
+      "query": 9,
+      "wall_seconds": 26.976312300001155,
+      "note": "Overview nearly unchanged; railing and wood edges visibly softer.",
+      "physical_vs_scanner_linear_rmse": 0.0038285009357051534,
+      "arms": {
+        "source": {
+          "linear_rmse": 0.0,
+          "code_rmse": 0.0,
+          "png_sha256": "04160a1531374dd1dfa21a530f58f59b11d4bdeb89b04276511c5dfc18b27c2c",
+          "npy_sha256": "52be6108f1e1950bdba0c52641b6b9824e29ad9080078b02fb6cb57a76df355c"
+        },
+        "matched_scanner_only": {
+          "linear_rmse": 0.015732493794004945,
+          "code_rmse": 4.647697213187931,
+          "png_sha256": "06c26e3397a8a9a092e7280adc0726b6bb88c6669c4ba68089f53194ff10662c",
+          "npy_sha256": "c94643b4a4366dde8f5a6ab02d1f22af693b10f09053c9331800f6975c3024b9"
+        },
+        "generic_density_copula_and_scanner": {
+          "linear_rmse": 0.016196783632040024,
+          "code_rmse": 4.696099591508956,
+          "png_sha256": "08feac5e032f80e4d654e1d90c01234af100484b25c2c06363f5523c5bda0db6",
+          "npy_sha256": "52b6fd2c69a949773d29bae5230ddba3143fd5b362769ba451363a17e9b8405d"
+        }
+      }
+    },
+    {
+      "query": 10,
+      "wall_seconds": 22.48470610000004,
+      "note": "Overview nearly unchanged; already blurred metal remains soft.",
+      "physical_vs_scanner_linear_rmse": 0.0010565166741501142,
+      "arms": {
+        "source": {
+          "linear_rmse": 0.0,
+          "code_rmse": 0.0,
+          "png_sha256": "9b300cec9c79ae2832d4d61b6f13c0b7eb9e6b662b367d0d9e895e8495d35362",
+          "npy_sha256": "16f63a5aad3c39a3205ec22e07042c61a3f5d1bdc52580d8c3aa68e9dcb78ba7"
+        },
+        "matched_scanner_only": {
+          "linear_rmse": 0.0030727572232796506,
+          "code_rmse": 1.0660904476603252,
+          "png_sha256": "fe3c2e1546d806d1b8e673ee10457cc8b4ab2f29c6be06a221561e04fa9e945c",
+          "npy_sha256": "86e85db199799cb64c075d41106cb5a2cb8f1e9db292ba6b30e6241b695522a6"
+        },
+        "generic_density_copula_and_scanner": {
+          "linear_rmse": 0.0032557358499616385,
+          "code_rmse": 1.0949549711695403,
+          "png_sha256": "32867f69a224f15dd8f239f6c86365589d9ff6e84a9b1abe1aca780639c30099",
+          "npy_sha256": "cda8adf9cf2259de33771472b40d102100aa796cb24398591ffbbbca0807dd7e"
+        }
+      }
+    },
+    {
+      "query": 11,
+      "wall_seconds": 26.616333400001167,
+      "note": "Overview nearly unchanged; existing magenta cast persists; railing softened.",
+      "physical_vs_scanner_linear_rmse": 0.002805109244686945,
+      "arms": {
+        "source": {
+          "linear_rmse": 0.0,
+          "code_rmse": 0.0,
+          "png_sha256": "e9c60612c9e2f0a82ef81a3cc826edb30b083b39364e788c67988aa9288ffff5",
+          "npy_sha256": "f88110d2d46144067d51ab2a9ecdb6a85950d21b84ae56faf7ad286743ecc803"
+        },
+        "matched_scanner_only": {
+          "linear_rmse": 0.005178932863291652,
+          "code_rmse": 1.3963067582954258,
+          "png_sha256": "8dc465b5f0ba414adf99e9acfdd9acdf74070c57d8d8f948ef8dbf945c8637a4",
+          "npy_sha256": "a884eedcba8d975349b36d2b2a3b90076a555e717b7768a89d55aac0dc68840d"
+        },
+        "generic_density_copula_and_scanner": {
+          "linear_rmse": 0.005881292279809713,
+          "code_rmse": 1.4844502778146418,
+          "png_sha256": "75328f63e0196c3eeb6f2c1a9b5ff8450f36010ea94e5c186da1e80dad71a7f3",
+          "npy_sha256": "dbd607f73b25472bd20142a7cada04c9f7a57756f30058e6b4bf5e216218f8a2"
+        }
+      }
+    }
+  ],
+  "limits": [
+    "No face/text independence or full-frame native visual audit",
+    "Generic physical-inspired profile, no stock-specific calibration",
+    "Not a photometry identification competitor: texture baseline has no reference conditioning"
+  ],
+  "conclusion": "No visually rich colour change. Mostly scanner smoothing; texture marginal against scanner-only. Do not substitute texture for learned photometry."
+}
