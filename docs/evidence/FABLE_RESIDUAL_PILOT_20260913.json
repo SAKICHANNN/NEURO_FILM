@@ -1,0 +1,14 @@
+{
+  "status": "EXTRACTOR_SENSITIVITY_DEMONSTRATED_NOT_GRAIN_GROUND_TRUTH",
+  "report_sha256": "54f19634873fb53af245b0c20ea81f74661bd17d09e44bc82322af2b56965ac2",
+  "sources": 8,
+  "patches": 72,
+  "rms_sigma2_over_sigma1": {
+    "min": 1.3294937275515315,
+    "median": 1.4519403126500967,
+    "max": 1.7559021966108939
+  },
+  "tests": "5 passed; initial test assumption about two-pixel stripes and median3 was incorrect and corrected before real run; one-pixel stripe control added",
+  "conclusion": "Simple residuals depend on extractor and contain clean structural signal; no claim stronger denoisers fail; no model admitted",
+  "next": "Compare a suitable stronger denoiser under same clean/injected controls and a bounded natural-scan sample; reference-colour learning remains required separately"
+}

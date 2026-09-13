@@ -50,13 +50,13 @@
     },
     {
       "step": "scientific specification and prior implementation reuse audit",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "science_url": "https://chatgpt.com/c/6aa65406-2f70-83ec-ba65-3e7f337015ae",
-      "note": "packet was sent before user pivot; its preserve96 preference is superseded, scientific counterexamples remain relevant"
+      "note": "6Pro report archived, mathematical/data constraints accepted; previous fixed96 priority rejected as superseded by user."
     },
     {
       "step": "freeze residual-identification pilot with contamination controls and physical baseline",
-      "status": "NOT_STARTED",
+      "status": "DONE",
       "purpose": "Identify whether extracted residuals support a learnable texture model; no model training first",
       "requirements": [
         "retain native RGB precision; treat IR separately",
@@ -64,7 +64,10 @@
         "clean structured-image negative controls and denoiser sensitivity",
         "whole-image/roll-aware holdout rather than random patch split",
         "no exposure-density curve inferred from four medium-density scans"
-      ]
+      ],
+      "config": "configs\\fable_scan_residual_pilot_v1.json",
+      "scope": "Simple filter residual sensitivity on all8 scans/9 fixed crops each plus known-clean/injected-noise controls; diagnostic only, not claim BM3D or learned extraction validated.",
+      "result": "docs/evidence/FABLE_RESIDUAL_PILOT_20260913.json"
     },
     {
       "step": "reference-conditioned photometry and explicit optics baseline",
@@ -88,7 +91,8 @@
     }
   ],
   "rollback": "Stop new route if evidence fails; preserve pilot and old results. Returning to old96 requires explicit later decision, never automatic.",
-  "goal_tool_state": "none",
+  "goal_tool_state": "active_user_requested_20260913",
   "training_admitted": false,
-  "claims_proven": []
+  "claims_proven": [],
+  "next": "Stronger denoiser controls plus bounded BlueNeg intact-source audit; no direct residual training"
 }

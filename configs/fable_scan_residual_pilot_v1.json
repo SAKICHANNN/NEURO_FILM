@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "purpose": "Extractor sensitivity diagnostic, not grain truth or training admission",
+  "source_inventory": "outputs/fable_layered_pivot_v1/source_inventory.json",
+  "source_inventory_sha256": "a69dec0ccb3de0058f7eef87c00fd669bee14b54a275c963df3343a8ec0be284",
+  "output": "outputs/fable_scan_residual_pilot_v1",
+  "patch_side": 256,
+  "grid_fractions": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "methods": [
+    "gaussian_sigma1",
+    "gaussian_sigma2",
+    "median_size3"
+  ],
+  "seed": 20260913,
+  "synthetic_noise_rms": 0.01,
+  "source_channels": [
+    0,
+    1,
+    2
+  ],
+  "alpha_policy": "ignore IR channel; never premultiply RGB",
+  "frequency_unit": "cycles per scanner pixel",
+  "amplitude_unit": "normalized uint16 scanner code; not optical density",
+  "decision_rule": "Report all extractor-dependent differences and known-clean leakage; no post-hoc acceptance threshold, no grain training admission",
+  "maximum_sources": 8
+}
