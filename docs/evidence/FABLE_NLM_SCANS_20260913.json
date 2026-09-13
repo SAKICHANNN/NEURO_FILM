@@ -1,0 +1,48 @@
+{
+  "status": "REAL_SCAN_SENSITIVITY_NOT_GRAIN_TRUTH",
+  "report_sha256": "24ad2f61c702d54609f77f2f9514906ec51e6bc5c57015483d706659ca91e7cd",
+  "summary": {
+    "channel_median_rms": {
+      "gaussian_sigma1": [
+        0.023386707124919595,
+        0.015789279518689216,
+        0.028990971414342093
+      ],
+      "gaussian_sigma2": [
+        0.03443761222013103,
+        0.02306439053567648,
+        0.041683875243172144
+      ],
+      "median_size3": [
+        0.022743668064645,
+        0.015433115600375757,
+        0.02850672794589945
+      ],
+      "nlm_h0.01": [
+        0.0005007487902720814,
+        0.0003801294779923291,
+        0.0005469254052006964
+      ],
+      "nlm_h0.02": [
+        0.014902120181217449,
+        0.01099147964924832,
+        0.015669398594846423
+      ]
+    },
+    "h02_over_h01_rms_min_median_max": [
+      1.4274054363641233,
+      39.56618996442194,
+      185329000464672.22
+    ]
+  },
+  "integrity": "72 exact prior boxes; three baseline method records unchanged; all source hashes verified",
+  "absolute_delta_rgb_median": [
+    0.00960613443611444,
+    0.00703628234897152,
+    0.010349342165457343
+  ],
+  "low_residual_min": 1.0626287561514085e-17,
+  "ratio_caveat": "Huge maximum ratio is caused by near-zero denominator, not a physically meaningful grain amplification factor. Interpret absolute RMS alongside ratios.",
+  "decision": "No extracted grain training admission. NLM known-signal success does not establish stable real-scan supervision. Need native natural-image contamination test and physical/procedural baseline.",
+  "runtime_seconds": 16.42364379999708
+}

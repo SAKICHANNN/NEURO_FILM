@@ -94,5 +94,6 @@
   "goal_tool_state": "active_user_requested_20260913",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Stronger denoiser controls plus bounded BlueNeg intact-source audit; no direct residual training"
+  "next": "Resolve BlueNeg prior local splits before bounded native natural-image residual test; audit reference photometry reuse. NLM real-scan sensitivity completed with no training admission.",
+  "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json"
 }

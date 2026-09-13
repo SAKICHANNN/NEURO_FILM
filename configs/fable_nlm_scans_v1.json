@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "purpose": "Fixed native-scan NLM sensitivity, no grain truth",
+  "base_entry_sha256": "4e2494bca9949972004c696052958190e5b422880cdc8ae6e1de8f264c6f1096",
+  "side": 128,
+  "seed": 20260913,
+  "noise_rms": 0.01,
+  "nlm_h": [
+    0.01,
+    0.02
+  ],
+  "patch_size": 5,
+  "patch_distance": 6,
+  "sigma": 0,
+  "fast_mode": true,
+  "output": "outputs/fable_nlm_scans_v1",
+  "decision": "Report all controls; no tuning or grain-training admission. Compare to Gaussian sigma1/sigma2 and median3 on exactly same signals.",
+  "previous_report": "outputs/fable_scan_residual_pilot_v1/report.json",
+  "source_inventory": "outputs/fable_layered_pivot_v1/source_inventory.json",
+  "previous_report_sha256": "54f19634873fb53af245b0c20ea81f74661bd17d09e44bc82322af2b56965ac2",
+  "source_inventory_sha256": "a69dec0ccb3de0058f7eef87c00fd669bee14b54a275c963df3343a8ec0be284"
+}
