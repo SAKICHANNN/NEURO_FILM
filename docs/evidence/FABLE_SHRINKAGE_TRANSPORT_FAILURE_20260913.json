@@ -1,0 +1,29 @@
+{
+  "status": "COMPLETED_ANSWER_NOT_RETRIEVED",
+  "transport": {
+    "status": "ANSWER_COMPLETE_COPY_UNCHANGED_STOPPED",
+    "url": "https://chatgpt.com/c/6aa671d6-b060-83ec-a9f6-6234e76b72c0",
+    "browser_id": "1",
+    "tab_id": "3",
+    "cua_binding": "shrinkTab",
+    "send_count": 1,
+    "copy_count": 1,
+    "preflight": "READY",
+    "visible_model": "6 Pro",
+    "observed_user_turns": 1,
+    "live_control": "none: answer completed; previous Stop answering observation historical",
+    "packet_sha256": "7c659d8eaac9a8bc7de51d928bb5c91e5bd9d6db06391cbbf2ff1b0da93c6dc7",
+    "next": "Await user exception for single readonly DOM extraction of this completed answer. Do not copy again, reread clipboard, or resubmit.",
+    "stop_count": 0,
+    "copy_response_count": 1,
+    "clipboard_changed": false,
+    "clipboard_characters": 8620,
+    "clipboard_content": "Original request, not answer; not accepted as result",
+    "recovery_adjudication": "Subagent confirms old one-answer DOM exception does not cover this response; fresh limited exception required"
+  },
+  "transport_sha256": "10811f1c866ad93c9e72790fcf4736969061ae6a0c13ce5f41f2f8785f0cfd97",
+  "authorization": "No new explicit user exception received. Automatic Goal continuation is not authorization.",
+  "adoption": "No scientific answer available locally; no claims or implementation adopted.",
+  "blocked_audit_occurrences": 2,
+  "preserved_work": "Frozen head/assessment and aligned physical comparator unchanged."
+}
