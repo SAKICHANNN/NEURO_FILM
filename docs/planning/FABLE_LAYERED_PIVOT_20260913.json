@@ -94,6 +94,7 @@
   "goal_tool_state": "active_user_requested_20260913",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Resolve BlueNeg prior local splits before bounded native natural-image residual test; audit reference photometry reuse. NLM real-scan sensitivity completed with no training admission.",
-  "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json"
+  "next": "Three BlueNeg native development files verified. Run fixed native crops on explicitly selected LINEAR_RAW RGB series, preserve two validation rolls. Continue reference photometry reuse audit.",
+  "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
+  "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json"
 }

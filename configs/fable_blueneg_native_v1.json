@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "purpose": "Native natural-scan extraction diagnostic, not calibrated stock training",
+  "repo_id": "ttgroup/blueneg-release",
+  "revision": "b038a1ae68f42067ff12b5e79ddbe62919b7af23",
+  "required_credit": "Copyrighted by Tien-Tsin Wong",
+  "output_root": "data/raw/fable_blueneg_native_v1",
+  "selection": "Fuji 100 blue-intact only; exclude entire official test rolls and all four old operator rolls; SHA256 seed20260913 order rolls and frames, one per roll; first3 development, last2 sealed",
+  "files": [
+    {
+      "roll_id": "19941221D",
+      "filename": "19941221D-25-kyoto",
+      "remote_path": "negative-16bit/blue-intact/19941221D-25-kyoto.dng",
+      "size": 564177778,
+      "sha256": "158b317edef93cd90e27a13d30fae7c00dc033d5c80498be974588eca1593a04",
+      "role": "development"
+    },
+    {
+      "roll_id": "19941222D",
+      "filename": "19941222D-32-kyoto",
+      "remote_path": "negative-16bit/blue-intact/19941222D-32-kyoto.dng",
+      "size": 564177780,
+      "sha256": "4033157f7ccd0ae3705542024cecb60cab050a21715932ecf8a70794ce2f4ebe",
+      "role": "development"
+    },
+    {
+      "roll_id": "19941217A",
+      "filename": "19941217A-15-tokyo",
+      "remote_path": "negative-16bit/blue-intact/19941217A-15-tokyo.dng",
+      "size": 554422196,
+      "sha256": "a39c7ef8d34a48ad96a45b72903f97846b7897866c1382269c164bad421365f8",
+      "role": "development"
+    },
+    {
+      "roll_id": "19960101",
+      "filename": "19960101-09",
+      "remote_path": "negative-16bit/blue-intact/19960101-09.dng",
+      "size": 559603446,
+      "sha256": "0d3b4175b634ef56e6dc83c8de07fbc959cece6da8b851f8b051960cf9c96549",
+      "role": "sealed_validation"
+    },
+    {
+      "roll_id": "19941220D",
+      "filename": "19941220D-19-kamakura",
+      "remote_path": "negative-16bit/blue-intact/19941220D-19-kamakura.dng",
+      "size": 565484812,
+      "sha256": "86f42e288651d343bdea710ee323034781574dba6eb40fd826e878202bc07037",
+      "role": "sealed_validation"
+    }
+  ],
+  "download_roles": [
+    "development"
+  ],
+  "metadata_sha256": "643be7f59102258a34ea14ed40476c9fac95151535fb51740b0c592f24df4078",
+  "inventory_sha256": "cb8193eb58ee53209b1a24f02e30fdfc33e3fa02e4b81134100d7fcbfc467482",
+  "historical_exclusions": [
+    "19960816G",
+    "19960816H",
+    "19960817H",
+    "19970620C"
+  ],
+  "additional_excluded_stock_pilot_labels": [
+    "Kodak GA 100 5095",
+    "Konica Super XG 100",
+    "Kodak Gold 100-5",
+    "Fuji NPH400"
+  ],
+  "decision": "No denoiser tuning on sealed scans; no semantic/physical grain truth claim"
+}

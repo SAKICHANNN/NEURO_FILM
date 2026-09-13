@@ -1,0 +1,87 @@
+{
+  "status": "THREE_NATIVE_FILES_VERIFIED_NO_PIXELS_DECODED",
+  "config_sha256": "97af0abe220e042cad2a81a6bf4f0dc15df474a58f67b4d62e893ddb73b64706",
+  "prior_split_sources": [
+    "configs/roll2film_blueneg_acquisition_decision.json",
+    "configs/roll2film_blueneg_evaluator.json",
+    "configs/real_film_stock_pilot_acquisition_decision.json"
+  ],
+  "development_rolls": [
+    "19941221D",
+    "19941222D",
+    "19941217A"
+  ],
+  "sealed_rolls": [
+    "19960101",
+    "19941220D"
+  ],
+  "planned_download_bytes": 1682777754,
+  "native_format_first_file": {
+    "series_shapes": [
+      [
+        170,
+        256,
+        3
+      ],
+      [
+        6792,
+        10200,
+        3
+      ],
+      [
+        999,
+        1500,
+        3
+      ],
+      [
+        6792,
+        10200
+      ]
+    ],
+    "dtype": "uint16",
+    "decoded": false,
+    "next_reader_rule": "Select maximum-area 3-channel uint16 series explicitly; page0 is thumbnail. Separate scalar series is not automatically an opacity channel."
+  },
+  "claim_ceiling": "Natural-scene contamination diagnostic only, not paired grain ground truth or stock calibration.",
+  "formats": [
+    {
+      "roll_id": "19941221D",
+      "native_series_index": 1,
+      "shape": [
+        6792,
+        10200,
+        3
+      ],
+      "axes": "YXS",
+      "memmappable": true,
+      "photometric": 34892
+    },
+    {
+      "roll_id": "19941222D",
+      "native_series_index": 1,
+      "shape": [
+        6792,
+        10200,
+        3
+      ],
+      "axes": "YXS",
+      "memmappable": true,
+      "photometric": 34892
+    },
+    {
+      "roll_id": "19941217A",
+      "native_series_index": 1,
+      "shape": [
+        6768,
+        10056,
+        3
+      ],
+      "axes": "YXS",
+      "memmappable": true,
+      "photometric": 34892
+    }
+  ],
+  "download_report_sha256": "2feca896bc97c27d865c229a64cf1ae291342ef613b7a1f5589bc2c43c8a2dc4",
+  "verified_bytes": 1682777754,
+  "sealed_files_absent": true
+}
