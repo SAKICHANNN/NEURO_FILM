@@ -147,5 +147,10 @@
     "camera_models": 32,
     "models_with_four_or_more": 25,
     "status": "CAPACITY_ONLY_NOT_ASSIGNMENT"
+  },
+  "query_content_witnesses": {
+    "path": "outputs/fable_source_population_bridge_v1/comparisons/query_content_witnesses_v1.json",
+    "sha256": "0dbfb3e7ef5da5631d65306b5ae1855d797c78f5d28e5284210c7da4dad8e669",
+    "status": "NOT_QUERY_SELECTION"
   }
 }
