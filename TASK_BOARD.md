@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: fixed36 RAW pilot fetched,340515740 body bytes; resume rehashed all files without new requests. Caps/retry counts reconciled. Partial-read accounting fixed with conservative reservation/terminal state, Windows exclusive runner lock tested. NEXT camera/RAW structure/rendering/native ROI validation, no training. Root transport file reservation released.
+
+CURRENT FILE RESERVATION: codex root owns scripts/fetch_fable_fivek_raw_pilot.py for bounded pilot transport.
+
 CURRENT 2026-09-14: Stage A provisional324 manifest and fixed36 RAW pilot frozen. Rehashed publisher index/licenses/file lists; all324 selected IDs, history exclusions, previews and review sheets reconciled. License split173 AdobeMIT/151 Adobe, research-only. NEXT bounded pilot acquisition64MiB/object3GiB total2attempts, fixed IDs no replacement; raw camera/renderer/native ROIs pending. No RAW downloaded or training started.
 
 CURRENT 2026-09-14:220 query masks actually inspected; v11 selected a1461/a2251/a3707/a1405 all inspected, combined mask15. Preview certificate validates324 unique components and camera constraints. Lex-min under fixed preview labels certified; native content remains unverified. NEXT final Stage A provenance/license reconciliation and provisional manifest freeze before36 RAW pilot. No RAW/training yet.

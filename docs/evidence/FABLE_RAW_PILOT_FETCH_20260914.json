@@ -1,0 +1,17 @@
+{
+  "status": "RAW_PILOT_FETCH_COMPLETE_NOT_DECODE_VALIDATED",
+  "fetched": 36,
+  "body_bytes": 340515740,
+  "attempts": 36,
+  "pins": {
+    "raw_pilot/ledger.json": "686296d3a8002e0612f25ed3b0636bf11e19d1852eb96e8386dd9a77fb1245f6",
+    "raw_pilot_manifest_v1.json": "6050bf587497f0e31c5c4f1f504c8962d198a8d3e85b5a534f41ec7c682ceac1",
+    "raw_transport_smoke_v1.json": "34ad219a713b32cced77000831362086b77bd0ee4cc1ab95528f0a3fea249042",
+    "raw_transport_uncertain_smoke_v1.json": "b9587fe4fd26124a52d3c7004973849433bc0a99e65d59f77e72538d60eb0346"
+  },
+  "script_sha256": "b4bd70cd838478b8f0034e5a2f45715914a8be8f64cfc91ce57f4c42bf9a3ab8",
+  "limits": [
+    "Container header checked only; camera/decode/renderer/native ROIs pending",
+    "No training readiness"
+  ]
+}
