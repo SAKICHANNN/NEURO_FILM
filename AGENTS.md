@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review151/1024 (indices0..150), each candidate+10neighbors viewed. Candidate148 blurred preview insufficient for scene identity; neighbor7 unresolved, not duplicate proof. Four unresolved relations total. NEXT index151; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review135/1024 (indices0..134), each candidate+10neighbors actually viewed. Candidate133/history neighbor1 park linkage unresolved; now three unresolved links retained. NEXT index135; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review119/1024 (indices0..118), each candidate+10neighbors actually viewed. No new specific scene linkage in103..118; two unresolved prior candidate links retained. NEXT index119; whole-cohort/provenance gate pending, no admission/RAW/training.
