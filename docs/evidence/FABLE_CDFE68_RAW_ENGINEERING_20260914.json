@@ -1,0 +1,50 @@
+{
+  "status": "TWO_CONSUMED_FIXTURES_VERIFIED_GENERAL_ADMISSION_NOT_READY",
+  "files": {
+    "src/preprocess/fable_canonical_raw.py": "d4c3c5a164958617579dbcbc5b9268a22ab3904a8987749353b7de606c5a6931",
+    "configs/fable_cdfe68_raw_v1.json": "79ae13715464a2dc63fcf5b64f01044f10b6b5dbfbe89ce6a9243e6fb305385d",
+    "scripts/audit_fable_cdfe68_raw.py": "7bb05c3e13204df0dfe1e7f6b3152b46bd72ea89901034c0920351b47d318d65",
+    "tests/test_fable_canonical_raw.py": "233a8734d9565530bb5b2fab47ec0ef2c38096aac5a71abe0627301346a21bf1"
+  },
+  "artifacts": {
+    "outputs\\fable_cdfe68_renderer_v1\\consumed_audit\\report.json": "b5a46f90776dac32b4aa1eff9182c8c39490c1f2a132acd8ed9a510227e3cd71",
+    "outputs\\fable_cdfe68_renderer_v1\\consumed_audit\\native_adapter_check.json": "0a7fffe86bec997f3629eee6f829606cb3e02fe7b6d5b1f4a44dfb5f89b05124",
+    "outputs\\fable_cdfe68_renderer_v1\\libraw_source_tree.json": "0087f8d44a6e08ad84c2fa3992320d23085e0d7ab30c53f09fffd9fce3f3e560",
+    "outputs\\fable_cdfe68_renderer_v1\\dcraw_process.cpp": "2be911c0e2dbe85514d350e02dd62bebe1ca343ca0185fc77fefec0335eae6da",
+    "outputs\\fable_cdfe68_renderer_v1\\mem_image.cpp": "0bbf23cda1101c11a4cc9cc5da31230fa7d0f8c6f00ac196489386fd66c0b54c",
+    "outputs\\fable_cdfe68_renderer_v1\\postprocessing_aux.cpp": "d614292a81c62d837303003397bbe5e07a21179eba93b7141f459e11a69c8c0c",
+    "outputs\\fable_cdfe68_renderer_v1\\postprocessing_utils.cpp": "e8f9e4eba7c473eb19ab271bd149e6110fef0eb55a601e9a2db6466a20675ebf",
+    "outputs\\fable_cdfe68_renderer_v1\\postprocessing_utils_dcrdefs.cpp": "335761c5d3ce3c6150e09e7114dd9669323112c792651a7d70b34586bf4876ea"
+  },
+  "upstream_libraw_commit": "0b56545a4f828743f28a4345cdfdd4c49f9f9a2a",
+  "official_parameters_source": "https://www.libraw.org/docs/API-datastruct.html",
+  "tests": {
+    "passed": 14,
+    "seconds": 3.85,
+    "cpu_threads": 4
+  },
+  "radiometric_check": {
+    "zero_black_nikon_half_ratio": 0.49945805332755255,
+    "auto_bright_control_ratio": 0.998780487804878,
+    "scope": "Median interior-channel response on one zero-black consumed fixture only."
+  },
+  "visual_review": {
+    "viewed": [
+      "a0005-jn_2007_05_10__564",
+      "a0064-_DSC7889"
+    ],
+    "scope": "Downscaled overview actually viewed, portrait arch/street and landscape shop scene; no obvious gross rendering corruption seen. Not native semantic/comfort verification."
+  },
+  "independent_review": "Astra medium cdfe68_adoption_review accepted two-fixture engineering evidence and listed broader admission gaps.",
+  "open_readiness_items": [
+    "Scientific runner must enforce sealed runtime binary/config hashes and versions.",
+    "Specify supported DNG black/delta rational representations and validate effective range and camera conversion metadata.",
+    "Pinned LibRaw may perform decoder-required zero repairs even with optional repair/NR disabled; declare this canonical boundary or prove admitted decoder paths avoid it.",
+    "Source snippets and two fixture dimensions do not exhaustively prove all decoder geometry/black behavior.",
+    "Whole-history exposure join, new role solver, metrics/control locks and prospective data admission remain pending."
+  ],
+  "no_optimizer_steps": true,
+  "no_new_photo_acquisition": true,
+  "next": "Freeze technical eligibility/runtime guard; join whole history exposure ledger before prospective admission.",
+  "claim_ceiling": "Reproducible declared generic RAW rendering and native CNN interface, not learned transfer, sensor calibration, film authenticity or broad content guarantee."
+}

@@ -1,0 +1,40 @@
+{
+  "status": "CONSUMED_ENGINEERING_ONLY",
+  "renderer": "CDFE68-M1 rawpy0.26.1 LibRaw0.22.0 metadata-driven generic linear-sRGB",
+  "params": {
+    "demosaic_algorithm": "AHD",
+    "half_size": false,
+    "four_color_rgb": false,
+    "use_camera_wb": false,
+    "use_auto_wb": false,
+    "no_auto_bright": true,
+    "adjust_maximum_thr": 0,
+    "no_auto_scale": false,
+    "output_color": "sRGB",
+    "output_bps": 16,
+    "gamma": [1, 1],
+    "bright": 1,
+    "highlight_mode": "Clip",
+    "exp_shift": null,
+    "exp_preserve_highlights": 0,
+    "noise_thr": null,
+    "median_filter_passes": 0,
+    "fbdd_noise_reduction": "Off",
+    "dcb_iterations": 0,
+    "dcb_enhance": false,
+    "chromatic_aberration": null,
+    "bad_pixels_path": null,
+    "user_black": null,
+    "user_cblack": null,
+    "user_sat": null
+  },
+  "dynamic_metadata_params": {
+    "user_wb": "inverse DNG AsShotNeutral, divide by minimumRGBgain; second green copies first green; no camera/autoWB branch",
+    "user_flip": "recorded supported decoder orientation0/3/5/6"
+  },
+  "black_white_contract": "Explicit DNG WhiteLevel must match decoder; preserve pinned LibRaw metadata black subtraction including its handling of DNG deltas; disable frame-maximum adjustment. No claim of exact physical sensor calibration.",
+  "color_contract": "Pinned generic LibRaw camera-to-linear-sRGB conversion and uint16 clipping; record rgb_xyz_matrix. Not calibrated scene radiance or vendor-matched rendering.",
+  "q8_contract": "uint16/65535 float64; explicit piecewise sRGB; floor(255*x+.5)",
+  "geometry_contract": "Full DNG ActiveArea matching LibRaw visible area; orientation only, no inset/user crop; reject output dimension change",
+  "threads": 4
+}
