@@ -1,0 +1,24 @@
+{
+  "status": "FIVEK_AVAILABILITY_RECORD_STALE_NOT_ADMITTED",
+  "pins": {
+    "data/raw/dataset_status.json": "d72bb01b40a5259e503d416b36553f2338db95c626bb2d948058e35af17e6143",
+    "data/raw/fivek/legal/LicenseAdobeMIT.txt": "69f73c481140c40d3a02a15a739da76073de35646108a70bb1dfffadb182af3d",
+    "docs/data/DATA_LICENSE_BOUNDARIES.md": "3243c53b198414907bca88991206a9c79869fe8138efbaf338c4a679b1d7cb6a"
+  },
+  "missing_recorded_paths": [
+    "data/raw/fivek/fivek_dataset.tar",
+    "data/raw/fivek/expert_tiff/c"
+  ],
+  "verified_existing_historical_raw": {
+    "path": "outputs/fivek_auto_optimize/freeze_v1/gold64_original_samples/raw",
+    "files": 64,
+    "bytes": 595764438,
+    "consumed": true
+  },
+  "local_fivek_metadata": "data/raw/fivek containslegal/index/pathlists;official_20260730 containsindex only",
+  "limits": [
+    "Not exhaustive physicaldisk search; does not claim everyFiveKRAW removed.",
+    "Legal files specify research-only noncommercial purpose; no new legal conclusion or productweights clearance.",
+    "Officialpage webfetch timed out today; downloadavailability not currently confirmed."
+  ]
+}

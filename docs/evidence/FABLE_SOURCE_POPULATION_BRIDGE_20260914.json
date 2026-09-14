@@ -1,0 +1,24 @@
+{
+  "status": "SOURCE_POPULATION_RECONSIDERATION_SUBMITTED",
+  "transport": {
+    "status": "SUBMITTED_STOP_ANSWERING_VERIFIED",
+    "sends": 1,
+    "copies": 0,
+    "doctor": "READY",
+    "consent": "READY",
+    "browser": "1",
+    "tab": "3",
+    "model": "Latest selected; Pro 5 of 5; composer 6 Pro",
+    "retrieval": "DOM authorized by user",
+    "url": "https://chatgpt.com/c/6aa7a6c7-88f8-83ec-917b-56271a951553",
+    "checked_utc": "2026-09-14T07:49:58.602775+00:00",
+    "wait_basis": "Prior response 26 minutes; sleep in <=60second blocks, no resend",
+    "packet_sha256": "03e76e90bfb8d08c729b0a137963c60277f41d1a97395ff5d6b7ef5ff4b5100e"
+  },
+  "local_preflight": "docs/evidence/FABLE_SOURCE_POPULATION_PREFLIGHT_20260914.json",
+  "limitations": [
+    "No reply retrieved or adopted",
+    "No source admitted or training launched",
+    "Previous rawpixls-only bounded failure retained"
+  ]
+}
