@@ -1,3 +1,5 @@
+CURRENT 2026-09-15: load_query_counts implemented and executed on4locked query inputs; native/crop/mask SHA, exact crop pixels, bounds/binary/count checks passed for9regions. query_counts_check.json records input-only coverage, no model outcomes. Cache9500 verifiedLIVE with6more donors. NEXT fixed assessment plan/CLI and seal, pinned cache untouched.
+
 CURRENT 2026-09-15: assessment_gates combines fixed1024x4 case photometry, donor controls, per-query named ROI accuracy and per-case saturation conjunction; always retains visual_review_required. Synthetic aggregation test1passed1.15s confirms good photometry cannot hide failed controls. No real assessment opened. NEXT query/mask loader and sealed assessment CLI.
 
 CURRENT 2026-09-15: native assessment_predictions streams fixed32donors x32T, verifies native SHA/order, saves destandardized predicted canonical stats and actual AFTER mu/s. Synthetic target-poison test1pass3.74s confirms model path uses input tensor only and preserves T-aligned measurements. No actual assessment opened. NEXT assemble query counts/ROIs and assessment gate runner before sealing.
