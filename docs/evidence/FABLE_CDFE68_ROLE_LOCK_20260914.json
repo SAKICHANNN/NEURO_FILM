@@ -1,0 +1,28 @@
+{
+  "status": "ROLE_ALLOCATION_LOCKED_NOT_TRAINING_READY",
+  "role_lock": "outputs\\fable_cdfe68_exposure_v1\\role_lock.json",
+  "sha256": "859fbf8943ff36fcfcae05ff83d14e5e0ebe382eda9fef5bd71e8af23e7cb3d3",
+  "certificate": {
+    "status": "ROLE_CONSTRAINTS_PASS_CONDITIONAL_ON_BOUND_INVENTORY",
+    "fit_captures": 256,
+    "fit_components": 143,
+    "fresh_components": 68,
+    "query_coverage": [
+      "colored_illumination",
+      "face",
+      "highlight",
+      "object",
+      "shadow",
+      "text"
+    ],
+    "limits": "Certificate checks supplied evidence flags and components; it does not independently establish provenance or native ROI readability."
+  },
+  "pending": [
+    "treatment manifests and Q8/dequantization order",
+    "fitting-only target standardization and degenerate-scale rule",
+    "optimizer sampling seed checkpoint and resource lock",
+    "validation and assessment/control/ROI/saturation metric contract",
+    "fixed64case comfort panel",
+    "consumed-only end-to-end engineering verification"
+  ]
+}
