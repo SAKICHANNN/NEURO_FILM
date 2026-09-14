@@ -1,0 +1,161 @@
+{
+  "status": "CANONICAL_PRIOR_NUMERIC_ENGINEERING_SMOKE_PASS_ONLY",
+  "result_sha256": "9e091086ccf7c99c58375533da41f8946e8f53270e5a683cd67fe4f328944817",
+  "adoption_sha256": "4a653a9e79a288dd9cc0144a30c6c4eb5b036aec3d399af90984168376441ed0",
+  "report_sha256": "4c9c6ae46a485074e5faff54f29ea883ca80823148a9fd80cc5a24e8886c1056",
+  "report": {
+    "status": "HISTORICAL_ENGINEERING_SMOKE_ONLY",
+    "config_sha256": "7844c66db84857dc91e25d1f7499a026be7d3e946df96585ef1e3d68452e3ed5",
+    "entry_sha256": "e0e9bcfe1377dfc2fac59daa4303bcee726b6623343b752916537de0f0f31cda",
+    "pins": {
+      "outputs/fable_paired_contrast_v1/fresh_features/features.npz": "ecb28bf5baeeb49e6427b4ec6c7b1b1086afa4f6e64afb9173e48ab6c55eb368",
+      "outputs/fable_reference_photometry_v1/draws.json": "8e761a85fcf94ad43d7480fffd46df5fde09e86e21fd4bb9e82f5c771ae0d675",
+      "configs/fable_reference_photometry_sources_v1.json": "7d7059b2355a8127bfbdbd0ca23ba1910b7ab6ba9b505e20de089aa0ed14e1d7",
+      "src/eval/fable_reference_photometry.py": "cc91c171c7a876ec1a6785fe8e9bdb45e1e4163c80d9ba974e46e5b91f8526c4",
+      "src/eval/fable_canonical_prior.py": "42dee95e98388ce739cc0bd30278b8aa6e13cc7ef0ac88d0e0b0ae86ace63acd",
+      "outputs/fable_after_identifiability_bridge_v1/result.md": "9e091086ccf7c99c58375533da41f8946e8f53270e5a683cd67fe4f328944817"
+    },
+    "reference_rows": 320,
+    "cases": 1280,
+    "gate": {
+      "accuracy": {
+        "pooled": {
+          "D": 125.39059244985204,
+          "E": 0.33523614050031736,
+          "relative_rms_error": 0.05170623775954482,
+          "passed": true
+        },
+        "per_donor": {
+          "0": {
+            "D": 125.39059244985202,
+            "E": 0.024195672457803755,
+            "relative_rms_error": 0.013891091474044073,
+            "passed": true
+          },
+          "1": {
+            "D": 125.39059244985202,
+            "E": 0.20033443345948415,
+            "relative_rms_error": 0.03997102855759531,
+            "passed": true
+          },
+          "2": {
+            "D": 125.39059244985202,
+            "E": 0.07548456507217133,
+            "relative_rms_error": 0.024535595398986147,
+            "passed": true
+          },
+          "3": {
+            "D": 125.39059244985202,
+            "E": 0.06782869005838668,
+            "relative_rms_error": 0.02325810022865773,
+            "passed": true
+          },
+          "4": {
+            "D": 125.39059244985202,
+            "E": 0.004011934498368634,
+            "relative_rms_error": 0.005656456345288804,
+            "passed": true
+          },
+          "5": {
+            "D": 125.39059244985202,
+            "E": 1.1476866483956798,
+            "relative_rms_error": 0.09567075196030406,
+            "passed": true
+          },
+          "12": {
+            "D": 125.39059244985202,
+            "E": 0.32932591931056493,
+            "relative_rms_error": 0.051248419846128546,
+            "passed": true
+          },
+          "13": {
+            "D": 125.39059244985202,
+            "E": 0.6308911249540277,
+            "relative_rms_error": 0.07093241263649501,
+            "passed": true
+          },
+          "14": {
+            "D": 125.39059244985202,
+            "E": 0.1823363966550942,
+            "relative_rms_error": 0.03813328390606268,
+            "passed": true
+          },
+          "15": {
+            "D": 125.39059244985202,
+            "E": 0.6902660201415927,
+            "relative_rms_error": 0.0741951932316964,
+            "passed": true
+          }
+        }
+      },
+      "strength": {
+        "pooled": {
+          "P": 123.46868875698809,
+          "rms_code": 11.111646536719393,
+          "passed": true
+        },
+        "per_query": {
+          "8": {
+            "P": 111.1228393449237,
+            "rms_code": 10.541481838191617,
+            "passed": true
+          },
+          "9": {
+            "P": 120.34454556139917,
+            "rms_code": 10.970166159242948,
+            "passed": true
+          },
+          "10": {
+            "P": 91.43413173177083,
+            "rms_code": 9.56211962546855,
+            "passed": true
+          },
+          "11": {
+            "P": 170.97323838985864,
+            "rms_code": 13.075673534845485,
+            "passed": true
+          }
+        }
+      },
+      "per_query_improvement_over_identity": {
+        "8": 112.53918497408058,
+        "9": 122.46222950916066,
+        "10": 93.29432179832176,
+        "11": 171.92568895584387
+      },
+      "passed": true,
+      "scope": "ENGINEERING_CONDITIONS_ONLY_NOT_THE_FOUR_SIGN_TESTS"
+    },
+    "summary": {
+      "parameter_mse": 0.0013937007752116402,
+      "raw_parameter_mse": 0.001396029618627528,
+      "invariant_mse": 0.0011667902811390608,
+      "clamp_fraction": 0.003062121073404948,
+      "scale_floored": 0.0,
+      "tensor_clipping_fraction": 2.9691060384114586e-05,
+      "parameter_clipping_fraction": 0.00078125
+    },
+    "artifacts": {
+      "paired_diagnostic.npz": "21c44284321a565f875a6f1f2883b0b5d7547e1c13773abae8a1fdcf08e849d5",
+      "rows.json": "96f120196cd8872cedce09b7ad86853c06709ad3db8373e1a158c55144dab316",
+      "cases.json": "7f571ef83a5179622710007d8a67e6b2f4917bd0194b73cb103e90bfa7d78dce"
+    },
+    "next": "METADATA_LINEAGE_PREFLIGHT_ONLY",
+    "claim_ceiling": "Consumed historical scenes and engineering transforms; not independent validation, learned inference, film calibration, or content proof."
+  },
+  "tests": {
+    "passed": 5,
+    "scope": "continuous theoretical equivalence/inversion, Q8noninvariance, endpoint/floor/clipping and rounding boundaries"
+  },
+  "scope": "Pure numerical diagnostic only; no network or new scene validation.324scene metadata admission remains incomplete.",
+  "model_policy": "User most recent rootlight/complexAstra medium/scienceweb6Pro; usercomfort audit cannot be replaced by assistant.",
+  "independent_medium_review": {
+    "status": "NO_MATERIAL_FINDING",
+    "checks": "Reaggregated1280savedcases gateexact;artifacthashesmatch;Q8canonical/dequant/pairedboundary correct",
+    "added_import_hashes": {
+      "src/eval/fable_photometry_metrics.py": "a2fd41ac6c0512928b9b28bf06d6db53206235df66bf6ea0a00e1eb4a4219176",
+      "src/eval/fable_paired_contrast.py": "9753db6e9740c6ca250b4e82baf0cb92d180f041e9f1d040aec48eb2cdad2b41"
+    },
+    "scope": "Historicalengineering only; future CNN deployment isolation not tested."
+  }
+}

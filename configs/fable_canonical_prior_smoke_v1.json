@@ -1,0 +1,39 @@
+{
+  "status": "ENGINEERING_SMOKE_ONLY_FROZEN_BEFORE_RUN",
+  "output": "outputs/fable_canonical_prior_smoke_v1",
+  "epsilon": 0.00196078431372549,
+  "scale_floor": 0.001,
+  "tensor_limit": 8,
+  "slope_limit": 1.25,
+  "offset_limit": 0.35,
+  "draw_rule": "original32fit draws sign-preserved magnitude .25+.75*abs(u); deterministic no redraw; historicalengineering only, not protocolvalidation orthant sample",
+  "dequantization_seeds": {
+    "0": 2026091500,
+    "1": 2026091501,
+    "2": 2026091502,
+    "3": 2026091503,
+    "4": 2026091504,
+    "5": 2026091505,
+    "12": 2026091812,
+    "13": 2026091813,
+    "14": 2026091814,
+    "15": 2026091815
+  },
+  "pins": {
+    "outputs/fable_paired_contrast_v1/fresh_features/features.npz": "ecb28bf5baeeb49e6427b4ec6c7b1b1086afa4f6e64afb9173e48ab6c55eb368",
+    "outputs/fable_reference_photometry_v1/draws.json": "8e761a85fcf94ad43d7480fffd46df5fde09e86e21fd4bb9e82f5c771ae0d675",
+    "configs/fable_reference_photometry_sources_v1.json": "7d7059b2355a8127bfbdbd0ca23ba1910b7ab6ba9b505e20de089aa0ed14e1d7",
+    "src/eval/fable_reference_photometry.py": "cc91c171c7a876ec1a6785fe8e9bdb45e1e4163c80d9ba974e46e5b91f8526c4",
+    "src/eval/fable_canonical_prior.py": "42dee95e98388ce739cc0bd30278b8aa6e13cc7ef0ac88d0e0b0ae86ace63acd",
+    "outputs/fable_after_identifiability_bridge_v1/result.md": "9e091086ccf7c99c58375533da41f8946e8f53270e5a683cd67fe4f328944817"
+  },
+  "queries": [
+    8,
+    9,
+    10,
+    11
+  ],
+  "no_training": true,
+  "no_independent_validation_claim": true,
+  "failure_rule": "If historical paired-statistics engineering gate fails, stop bulk acquisition; do not tune epsilon/floor/clip/sample."
+}
