@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review87/1024 (indices0..86), each candidate+10neighbors viewed. Added unresolved plush-hippo link a0899/a2840 outside nominated neighbors; prior banquet link remains. Historical rawpixls8562/8563 same patio scene recorded separately. NEXT index87; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review63/1024 (indices0..62) candidate+10neighbors actually viewed. Existing unresolved banquet link7-33 retained; no new links in43..62. NEXT index63; whole-cohort and direct-provenance review pending. No candidate admission, RAW acquisition or training.
 
 CURRENT 2026-09-14: visualreview43/1024 (indices0..42) actualcandidate+10neighbors. Additional crosscandidate unresolvedlink7(a4651)-33(a4774),possiblebanquet event outside10neighbors; recordedadditional_lineage_edges.jsonl,neitheradmitted. NEXTindex43; global/directprovenancegraph pending. No worker/RAW/training.
