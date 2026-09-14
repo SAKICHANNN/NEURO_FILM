@@ -1,0 +1,27 @@
+{
+  "status": "CACHED_INDEX_AND_NAMED_HISTORY_VERIFIED_NOT_CANDIDATE_FREEZE",
+  "pins": {
+    "index_audit.json": "846f84e09e71812159ea4bb67c12e8beea27c70fdf0e8b39126baeede3d6cc45",
+    "index_audit_v2.json": "4a67d33fd8344a409a3ac1efd18fdf7ef4871a02ab0f0455352c96b4e94c7edd",
+    "known_history_closure.json": "b631b88a059563a752bb4ea3bf8f1275d41b5fe89c11a3a0e54b98f56bba576d"
+  },
+  "script_sha256": "57c546fbe1ba5a37d1e393cfae2f242c1ccf2f632504eca4de2c2e42d88f5e9d",
+  "indexed_ids": 5000,
+  "license_counts": {
+    "Adobe": 2690,
+    "AdobeMIT": 2310
+  },
+  "known_excluded_ids": 768,
+  "all_known_exclusions_in_index": true,
+  "unparsed_camera_labels": 48,
+  "corrections": [
+    "License lines preserve spaces in filenames",
+    "Camera labels parse with focal-length or aperture delimiter;48remainUNKNOWN"
+  ],
+  "limits": [
+    "Named historical batch closure only, not exhaustive historical completeness",
+    "Cached publisher metadata, no current preview or RAW availability",
+    "Camera aliases and lineage review not completed",
+    "No candidate freeze/download/training"
+  ]
+}
