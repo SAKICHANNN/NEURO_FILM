@@ -168,5 +168,17 @@
     "groups": 14,
     "path": "outputs/fable_source_population_bridge_v1/comparisons/filename_explicit_date_reviews_v1.json",
     "sha256": "4cb0b3d907c445de87f9b6dd744ae87b87bfee141d1fef5db2da8878f8c90aa4"
+  },
+  "allocation_work": {
+    "status": "OPTIMISTIC_QUERY_REFINEMENT_IN_PROGRESS",
+    "tests": "17 passed; includes exhaustive tiny assignment comparisons",
+    "pins": {
+      "assignment_input_optimistic_v1.json": "6fdfc8237fcdb8c05832e2c664d1417686ac6145cc6eb9d2b3fdb9893c42dd19",
+      "assignment_optimistic_v1.json": "1c47b6637b324b6d8741c90b00e70a5b843b0d6120640ef83f47e6bc3f6dbd51",
+      "query_mask_review_01.json": "930b723f070538616388fd83e49d12ffb38bb582637807aeb48f1dc7d1e58257",
+      "assignment_input_optimistic_v2.json": "84011f7b8fa031d2f145114319c3b4bfb81cb0bf40d165b14736f8fd3f40e529",
+      "assignment_optimistic_v2.json": "f17a2d2ad68daba731ce0a10e28a3c519024d37ba019649887a40835bce230bf"
+    },
+    "next": "Inspect v2 selected queries; final content certificate and Stage A admission not established"
   }
 }
