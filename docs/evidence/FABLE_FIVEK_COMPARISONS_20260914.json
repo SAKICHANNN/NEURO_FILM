@@ -208,5 +208,19 @@
       "assignment_preview_certificate_v1.json": "7870e6f01dfdb4dc21b303296993155725d4becb8d92b964f77e095db5478222"
     },
     "next": "Final Stage A provenance/license reconciliation and pin complete provisional manifest before RAW pilot"
+  },
+  "stage_a": {
+    "status": "PROVISIONAL_MANIFEST_FROZEN",
+    "assigned": 324,
+    "pilot": 36,
+    "pins": {
+      "provisional_manifest_v1.json": "3cf0d68adb3de6382c2344c85fdbc7acc30a85de702116be1b6d795e1eef4566",
+      "raw_pilot_manifest_v1.json": "6050bf587497f0e31c5c4f1f504c8962d198a8d3e85b5a534f41ec7c682ceac1"
+    },
+    "verified": "Cached index and both license texts/lists rehashed; selected identity/history exclusions and all selected preview/sheet hashes reconciled",
+    "limits": [
+      "RAW validation pending",
+      "Research-only source boundary retained"
+    ]
   }
 }
