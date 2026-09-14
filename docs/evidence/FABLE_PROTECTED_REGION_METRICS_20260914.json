@@ -1,0 +1,21 @@
+{
+  "status": "PURE_PROTECTED_REGION_ACCURACY_READY_NOT_ASSESSMENT",
+  "pins": {
+    "src/eval/fable_protected_regions.py": "5c524e397e74bf06d72f2ab06a93ba6e20d806f12fab8a2cc21ea61a5f595bdd",
+    "tests/test_fable_protected_regions.py": "8c7d73527cbc170b5a2ac39e279f1853e496f350d7554a9d4d0973064f64639f"
+  },
+  "tests": "15 passed: new ROI and existing photometry metrics",
+  "review": "Astra medium read-only review: no material issue; legacy metric/assessment files unchanged",
+  "behavior": [
+    "Independent native boolean masks; no background/other-region pooling",
+    "Equal-case pooling within each region",
+    "E<=.25D includes exact zero-error rule when D=0",
+    "Exact channelwise Q8 histograms checked against native pixels"
+  ],
+  "deferred": [
+    "New source/annotation admission and hash-bound runner",
+    "Saturation denominator and per-case gate integration",
+    "Spatial optics and arbitrary rendered-image metrics",
+    "Real content/semantic evidence"
+  ]
+}
