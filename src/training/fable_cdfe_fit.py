@@ -36,6 +36,9 @@ def fit_final_model(model: torch.nn.Module, inputs: np.ndarray, targets: np.ndar
         if any(p.grad is None or not torch.isfinite(p.grad).all() for p in parameters):
             raise FloatingPointError('missing or nonfinite gradient; stop without update')
         optimizer.step()
+        if any(isinstance(value, torch.Tensor) and not torch.isfinite(value).all()
+               for state in optimizer.state.values() for value in state.values()):
+            raise FloatingPointError('nonfinite optimizer state; stop without checkpoint')
         if any(not torch.isfinite(p).all() for p in parameters):
             raise FloatingPointError('nonfinite updated parameter; stop without checkpoint')
         losses.append(float(loss.detach()))

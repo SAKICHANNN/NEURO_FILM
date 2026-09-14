@@ -8,7 +8,8 @@ from src.data.fable_cdfe_cache import load_completed_donor
 from src.data.fable_cdfe_preprocessing import fitting_target_normalizer
 
 
-def load_fitting_cache(directory: Path, plan_path: Path, *, locked_fitting_ids: list[str]) -> dict:
+def load_fitting_cache(directory: Path, plan_path: Path, *, locked_fitting_ids: list[str],
+                      receipt_sha256: dict[str, str]) -> dict:
     blob = plan_path.read_bytes()
     contract = hashlib.sha256(blob).hexdigest()
     plan = json.loads(blob)
@@ -20,9 +21,14 @@ def load_fitting_cache(directory: Path, plan_path: Path, *, locked_fitting_ids: 
         raise ValueError('complete fitting cache certificate required')
     if len(plan['treatment_ids']) != 32 or len(set(plan['treatment_ids'])) != 32:
         raise ValueError('32 unique fixed treatment identities required')
+    if set(receipt_sha256) != set(identities):
+        raise ValueError('all fitting receipts must be bound by training seal')
     inputs = np.empty((256, 32, 3, 128, 128), dtype=np.float32)
     targets = np.empty((256, 4), dtype=np.float64)
     for j, identity in enumerate(identities):
+        stem = hashlib.sha256(identity.encode()).hexdigest()
+        if hashlib.sha256((directory / (stem + '.json')).read_bytes()).hexdigest() != receipt_sha256[identity]:
+            raise ValueError('fitting receipt differs from training seal')
         record = load_completed_donor(directory, identity, contract)
         if record is None or record['treatments'] != plan['treatment_ids']:
             raise ValueError('missing or reordered donor treatments')
