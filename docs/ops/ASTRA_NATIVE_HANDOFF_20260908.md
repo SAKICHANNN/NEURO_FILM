@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: donorcache primitive src/data/fable_cdfe_cache.py atomicpayload thenreceipt, fullorderedT/targetconsistency checks, existingreceipt identity/contract/contenthash reuse.2tests passed3.88s corruption/protocolchange/overwrite/partial rejection. Caller stillmust enforce singlewriter, fitID lock and hardmemorycap; no fullcache run. NEXT runner/resource guard.
+
 CURRENT 2026-09-14: nativepreprocess smoke a0487(2844x4284)2fitT passed shape/finite/targetidentity;16.961s peakworking set3058589696bytes,0optimizer,session79684exit0. Not fullresource guarantee. NEXT resumable per-donor fitcache with locks/hash/resourcecap; full CPU preprocessing hours. Evidence docs/evidence/FABLE_CDFE68_NATIVE_PREPROCESS_SMOKE_20260914.json.
 
 CURRENT 2026-09-14: src/data/fable_cdfe_preprocessing.py implemented nativeQ8target -> donor-shareddequant ->T->Q8 -> fullmeasure ->areaC input; fittingnormalizer exactorderedIDs ddof0 degenerate-stop.2tests passed10.11s session31972exit0(synthetic only). No realtargets/cache/optimizer. NEXT locked-fit-only cache runner resource guards and consumednative check; fullmetric contract stillpending.
