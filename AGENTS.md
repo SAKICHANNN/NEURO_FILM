@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review1003/1024 (indices0..1002), all ten neighbors viewed. 25 unresolved and seven historical same-scene links retained. NEXT index1003; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review987/1024 (indices0..986), all ten neighbors viewed. 25 unresolved and seven historical same-scene links retained. NEXT index987; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review971/1024 (indices0..970), all ten neighbors viewed. 25 unresolved and seven historical same-scene links retained. NEXT index971; no admission/RAW/training.
