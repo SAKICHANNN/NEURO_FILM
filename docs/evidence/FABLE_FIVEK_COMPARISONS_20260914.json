@@ -170,7 +170,7 @@
     "sha256": "4cb0b3d907c445de87f9b6dd744ae87b87bfee141d1fef5db2da8878f8c90aa4"
   },
   "allocation_work": {
-    "status": "OPTIMISTIC_QUERY_REFINEMENT_IN_PROGRESS",
+    "status": "PREVIEW_COVERAGE_CERTIFIED_STAGE_A_RECONCILIATION_PENDING",
     "tests": "17 passed; includes exhaustive tiny assignment comparisons",
     "pins": {
       "assignment_input_optimistic_v1.json": "6fdfc8237fcdb8c05832e2c664d1417686ac6145cc6eb9d2b3fdb9893c42dd19",
@@ -201,8 +201,12 @@
       "assignment_optimistic_v9.json": "60bee50d8511e16b91de729f9e9775a2bc505efc6d59b1e4ccc056505015cae1",
       "query_mask_review_09.json": "90ff7f9f8ab59da8c8b595f99fda98484538b101b2d6f4ec46ceb1728ff03983",
       "assignment_input_optimistic_v10.json": "52855cfc7f2bab8d6ab253345302c946d854bad1f5d945fda4f6f438233a64ee",
-      "assignment_optimistic_v10.json": "691cbbabb07974cb33aed1923e0523a8e7f6ce0b3917cc443992bf0b24c2b178"
+      "assignment_optimistic_v10.json": "691cbbabb07974cb33aed1923e0523a8e7f6ce0b3917cc443992bf0b24c2b178",
+      "query_mask_review_10.json": "06e7e265039570e0f7f3f0c72bbfb85b802e94bff3d1576e4f352cf379b35a2c",
+      "assignment_input_optimistic_v11.json": "e41fd6718ccefee3e65bde7d506442f6f86c127d15246fb984cbffa9795709f9",
+      "assignment_optimistic_v11.json": "8c39d20ccb2129cedaed83c8430572832a3ed594874845dff441bba81110dbc2",
+      "assignment_preview_certificate_v1.json": "7870e6f01dfdb4dc21b303296993155725d4becb8d92b964f77e095db5478222"
     },
-    "next": "Inspect v10 queries;196 actual mask labels now bound"
+    "next": "Final Stage A provenance/license reconciliation and pin complete provisional manifest before RAW pilot"
   }
 }
