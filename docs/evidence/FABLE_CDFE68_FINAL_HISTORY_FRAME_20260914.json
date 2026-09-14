@@ -1,0 +1,12 @@
+{
+  "status": "FINAL68HISTORY_REVIEW_FRAME_FIXED",
+  "rows": 68,
+  "source_models_available_for_all32_raw_model_missing": true,
+  "explicit_candidate_exclusions": {
+    "fivek/a3132-dvf_050": "Missing-date M8history: exclude allpotentialsamecamera/day",
+    "fivek/a4446-dvf_074": "Missing-date M8history: exclude allpotentialsamecamera/day",
+    "fivek/a1684-kme_299": "Own date andAsShotNeutral missing"
+  },
+  "artifact_sha256": "82831539495c415b8255d23e57994c7a02fa463842cc3970cc2d3016bc126678",
+  "next": "One final bounded case-based relationreview, thenstrictrole decision; no general missingmetadata=globalfailure assumption."
+}
