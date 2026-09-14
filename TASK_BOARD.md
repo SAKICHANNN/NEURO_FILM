@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review715/1024 (indices0..714), all ten neighbors viewed. Nineteen unresolved and five historical same-scene links retained. NEXT index715; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review699/1024 (indices0..698), all ten neighbors viewed. Sunset691/neighbor10 reconfirms existing unresolved pair; nineteen unresolved and five historical same-scene links retained. NEXT index699; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review683/1024 (indices0..682), all ten neighbors viewed. Nineteen unresolved and five historical same-scene links retained. NEXT index683; no admission/RAW/training.
