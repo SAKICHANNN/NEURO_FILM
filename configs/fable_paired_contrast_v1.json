@@ -1,10 +1,10 @@
 {
   "schema": 1,
-  "status": "DRAFT_PENDING_NEW_DONOR_ADMISSION_AND_MODULE_REVIEW",
+  "status": "FROZEN_BEFORE_FIT",
   "question": "Can paired contrast training recover strong correct after-only photometry on new donor scenes with a fixed training identity mean?",
   "output": "outputs/fable_paired_contrast_v1",
-  "source_config": null,
-  "source_config_sha256": null,
+  "source_config": "configs\\fable_paired_contrast_sources_v1.json",
+  "source_config_sha256": "0ec7e468ae61681c6c9c1bbd3fcb2d646945961c0f3a2be3bf5c19eae2653931",
   "frozen_inputs": {
     "configs\\fable_reference_photometry_v1.json": "630582e28eca32b653465878c83424c11260228ce72f3b9c120f7a277d74a7fa",
     "configs\\fable_reference_photometry_sources_v1.json": "7d7059b2355a8127bfbdbd0ca23ba1910b7ab6ba9b505e20de089aa0ed14e1d7",
@@ -114,7 +114,19 @@
     "dequantization_repeats": 1,
     "dequantization_rule": "one fixed per-donor seed shared across edits; same canonical/Q8 pipeline as original",
     "new_after_feature_rows": 320,
-    "new_identity_feature_rows": 4
+    "new_identity_feature_rows": 4,
+    "dequantization_seeds": {
+      "0": 2026091500,
+      "1": 2026091501,
+      "2": 2026091502,
+      "3": 2026091503,
+      "4": 2026091504,
+      "5": 2026091505,
+      "12": 2026091812,
+      "13": 2026091813,
+      "14": 2026091814,
+      "15": 2026091815
+    }
   },
   "assessment": {
     "primary_precision": "delivered Q8 code squared error; floor-half-up",
@@ -168,5 +180,6 @@
     "paired success cannot satisfy primary",
     "oldfixed96remains paused",
     "no film calibration or semantic guarantee"
-  ]
+  ],
+  "decoder_module_sha256": "9753db6e9740c6ca250b4e82baf0cb92d180f041e9f1d040aec48eb2cdad2b41"
 }

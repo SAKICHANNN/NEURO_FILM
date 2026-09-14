@@ -1,0 +1,11 @@
+{
+  "status": "SOURCE_PROTOCOL_MODEL_AND_FRESH_DRAWS_LOCKED",
+  "config_sha256": "c9300d4358e164b19505d6c4d7e97c7e76952957ffe29fed43744c690ed75c43",
+  "model_sha256": "e0cc4b567dcddc12b1f11e3bd48eccbdf13d32ab233cbc21f9f115f9616aa283",
+  "fresh_draws_sha256": "bd24fc34745d09467962005a92ce7f40878f5ee4c1618637c13dca0541cebf59",
+  "selected_ridge": 0.0001,
+  "paired_cv_mse": 0.06875746249588784,
+  "source_config_sha256": "0ec7e468ae61681c6c9c1bbd3fcb2d646945961c0f3a2be3bf5c19eae2653931",
+  "claim": "Paired-CV only, not AFTER-only prospective evidence; no assessmentfeatures/predictions/renderingyet.",
+  "next": "Extract320fresh refs plus4newidentities, predict paired/afteronly/frozen head, score512primary768secondary then32blindedvisualcases."
+}

@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "status": "ADMITTED_BEFORE_FIT_AND_FRESH_EDITS",
+  "sources": [
+    {
+      "index": 12,
+      "role": "new_donor",
+      "repository_id": 7750,
+      "path": "outputs\\fable_contrast_source_preparation_v1\\decoded\\7750.jpg",
+      "sha256": "6076fa9fa6a7c0421f6fac2d3275a688501aa24e166aad0ae7ada5af86f662b2",
+      "size": [
+        1600,
+        1071
+      ],
+      "raw_path": "data\\raw\\fable_contrast_donors_v1\\7750.RAF",
+      "raw_sha256": "af853b753bb91d40a0881978229f872cdafd8860794885366e9313b605221461",
+      "source_url": "https://raw.pixls.us/getfile.php/7750/nice/Fujifilm%20-%20X-M5%20-%2014bit%20compressed%20%2816%3A9%29.RAF",
+      "license": "CC0/Public Domain",
+      "dequantization_seed": 2026091812
+    },
+    {
+      "index": 13,
+      "role": "new_donor",
+      "repository_id": 7689,
+      "path": "outputs\\fable_contrast_source_preparation_v1\\decoded\\7689.jpg",
+      "sha256": "7b2e3b5b1cb9824e79092580fad03aa78afcef2036f0424c4b21e15f8b43303b",
+      "size": [
+        1600,
+        1201
+      ],
+      "raw_path": "data\\raw\\fable_contrast_donors_v1\\7689.NRW",
+      "raw_sha256": "706840f7a36c3852092d4aad0465e75920e04f1aa653adf31626c0c05ab41258",
+      "source_url": "https://raw.pixls.us/getfile.php/7689/nice/Nikon%20-%20Coolpix%20P1100%20-%2012bit%20uncompressed%20%284%3A3%29.NRW",
+      "license": "CC0/Public Domain",
+      "dequantization_seed": 2026091813
+    },
+    {
+      "index": 14,
+      "role": "new_donor",
+      "repository_id": 7540,
+      "path": "outputs\\fable_contrast_source_preparation_v1\\decoded\\7540.jpg",
+      "sha256": "897c867725eb47736365cbfa52eba0d2b65767cfcda9d4ff50e5cc654db7ba64",
+      "size": [
+        1600,
+        1069
+      ],
+      "raw_path": "data\\raw\\fable_contrast_donors_v1\\7540.ARW",
+      "raw_sha256": "b67055a69dc7adffbcd2d62fc438300f0a3ec219bd778cbd87994288eb2de7c5",
+      "source_url": "https://raw.pixls.us/getfile.php/7540/nice/Sony%20-%20UMC-R10C%20-%2012bit%20%283%3A2%29.arw",
+      "license": "CC0/Public Domain",
+      "dequantization_seed": 2026091814
+    },
+    {
+      "index": 15,
+      "role": "new_donor",
+      "repository_id": 7252,
+      "path": "outputs\\fable_contrast_source_preparation_v1\\decoded\\7252.jpg",
+      "sha256": "e6236cdf6003fa72667878fbd65e3d2b37591e183d42d877385da55d2ad37285",
+      "size": [
+        1600,
+        1201
+      ],
+      "raw_path": "data\\raw\\fable_contrast_donors_v1\\7252.RW2",
+      "raw_sha256": "c7cb71d84567b0a966eda0a76d941ad89940e64d8baddb3ad92a289a8626ec77",
+      "source_url": "https://raw.pixls.us/getfile.php/7252/nice/Panasonic%20-%20DC-TZ95D%20-%204%3A3.RW2",
+      "license": "CC0/Public Domain",
+      "dequantization_seed": 2026091815
+    }
+  ],
+  "history_index_sha256": "879e21ce41b0eb826c5c74d89d7aa8856e1ba39a9812bd61711a076df53212c6",
+  "similarity_sha256": "db87594aeef0d051fc5350de414bf01dabf1774595936ba10e715a9ae927d169",
+  "source_checks_sha256": "a038c9317aa469ba7d4188c170014adfc6cd73fdd202107fe491df27310f47ff",
+  "admission": "All4sourcepreviews + nearest3historypercase viewed, scene-distinct. Minimum crop dHash10, full13>4. Hashesverified. No treatment outputs used.",
+  "limits": "Bounded historical provenance:270previews218RAWs; missing-provenance orphan sources cannot be ruled out. Fourdonors are narrow fixedscene cohort, not representative population."
+}
