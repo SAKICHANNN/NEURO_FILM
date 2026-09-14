@@ -1,0 +1,23 @@
+{
+  "status": "EXPOSURE_JOIN_ONLY_NO_SOURCE_ADMISSION",
+  "ledger": "outputs\\fable_cdfe68_exposure_v1\\ledger.json",
+  "ledger_sha256": "38156737d20fe7304b10cf16e7951709b7016aa9a79fd0348f05781ec80b3be0",
+  "counts": {
+    "ADMISSION_ONLY_NOT_YET_FRESH_CERTIFIED": 988,
+    "SUBSTANTIVE_DEVELOPMENT": 768,
+    "QUARANTINED_OLD_PILOT": 36,
+    "UNKNOWN_HISTORY_NOT_FRESH": 238
+  },
+  "identities": 2030,
+  "representations": 2082,
+  "preserved_lineage_edges": 278,
+  "missing_history_metadata": 430,
+  "validation": "Repeated deterministic build equals saved ledger; identities, representation coverage, edge endpoints and count partitions checked.",
+  "limits": [
+    "Recorded representation hashes preserved, assets not rehashed by this join.",
+    "Missing metadata is not evidence of no prior exposure.",
+    "Freshness needs complete lineage and technical admission; no roles allocated.",
+    "Missing-history list is diagnostic, not the frozen acquisition list M.",
+    "Camera/day unions and pilot metadata join remain pending."
+  ]
+}
