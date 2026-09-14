@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: all108nativeoverviews actuallyviewed;4native768x768crops viewed, boxes+hashes recorded. Face identifiable; bus text crop clipped; candle crop missesface and has baselineclipping; aquarium motionsoftness. No finalquerycoverage. NEXT correct/complete ROIs and strict camera/component role assignment. Evidence docs/evidence/FABLE_CDFE68_NATIVE_VISUAL_REVIEW_20260914.json.
+
 CURRENT 2026-09-14: native114render COMPLETE process64777 exit0:108passed6rejected(activearea/whitelevelcontract). All outputhashes/nativeuint16/shapes and framecoverageverified. Sixoverview sheets generated; ONLY sheet00actuallyviewed, nativeROI stillpending. Evidence docs/evidence/FABLE_CDFE68_NATIVE_RENDER_COMPLETE_20260914.json. NEXT overview01..05 then exactnativequeryROI and strictroles; no training/admission.
 
 CURRENT 2026-09-14: native114 render qualification LIVE session64777; snapshot44 records. Fixed frame and sealed RAW renderer, native uint16 NPY plus display-only JPEG. No retries/replacements. NEXT wait same live process, inspect terminal results and native query coverage; no role admission. Runner scripts/render_fable_cdfe_candidates.py.

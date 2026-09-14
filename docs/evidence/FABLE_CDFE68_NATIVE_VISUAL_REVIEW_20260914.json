@@ -1,0 +1,13 @@
+{
+  "status": "ALL108_NATIVE_OVERVIEWS_AND_FIRST4_NATIVE_CROPS_VIEWED",
+  "overview_manifest_sha256": "61cca91f0f1fa90465ad13c76bff2b8afbc71803c0158c248b64c2425344c6de",
+  "crop_review_sha256": "2384338d2b6fd82fcc01f08d06eacced04ffacb66c48366bb0fa10537337642b",
+  "crop_review": "outputs\\fable_cdfe68_native_candidates_v1\\query_crops\\review.json",
+  "limitations": [
+    "Visible BUS and partial SCHOOL text; crop clips closest label. Reposition before freezing text ROI. Native noise and distant text softness present.",
+    "Warm illuminated skin and necklace; candle cores already clipped. Crop misses face despite provisional label. Requires separate face crop; do not credit this as face coverage.",
+    "People, bags and tunnel edges visible under cool/green cast; motion softness and bright hair already present. Lighting category remains visual interpretation, not measured illuminant.",
+    "Eyes, eyebrows, nose and mouth visibly identifiable; slight softness/noise. This crop supports face-detail review, not toy/object coverage."
+  ],
+  "next": "Correct text/face boxes, add object/shadow/highlight ROIs, bind category evidence and camera/component constraints before role selection."
+}
