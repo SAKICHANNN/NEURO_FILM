@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: saturation helper COMPLETE in isolated protected-region module;17testsPASS. Eachcase excess uses source-interior channel denominator, <=.005 via exactinteger comparison; no averaging, zeroeligible explicit. Not integrated into assessment; source/annotation admission pending. Evidence FABLE_PROTECTED_REGION_METRICS_20260914.json updated. No activeworker/agent; sourceTab6Pro still pending.
+
 CURRENT 2026-09-14: pure protected-ROI accuracy module COMPLETE;15new+legacy metrics testsPASS,medium readonlyreview no materialissue. Each region separately pooled across cases,E<=.25D with D0/E0; old scoring unchanged. docs/evidence/FABLE_PROTECTED_REGION_METRICS_20260914.json. No annotations/source admission or semanticproof; saturation/runner deferred. Root files unlocked,agent complete. Source-population6Pro same tab3 pending; no resend.
 
 CURRENT ROI PREPARATION: root owns src/eval/fable_protected_regions.py and tests/test_fable_protected_regions.py only; medium read-only adjudication complete. Pure native-mask/channel-table scoring, no source admission or frozen assessment edits. Science sourceTab still pending.

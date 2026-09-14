@@ -1,11 +1,11 @@
 {
   "status": "PURE_PROTECTED_REGION_ACCURACY_READY_NOT_ASSESSMENT",
   "pins": {
-    "src/eval/fable_protected_regions.py": "5c524e397e74bf06d72f2ab06a93ba6e20d806f12fab8a2cc21ea61a5f595bdd",
-    "tests/test_fable_protected_regions.py": "8c7d73527cbc170b5a2ac39e279f1853e496f350d7554a9d4d0973064f64639f"
+    "src/eval/fable_protected_regions.py": "bde87b2bb7a9fcf8e3a573ace05248d76be8f758378440a635f75a9849270297",
+    "tests/test_fable_protected_regions.py": "bd79c7137c093b61fa56fd37c837a50350821e14241dcaae4c3b7f4d34fc87b9"
   },
-  "tests": "15 passed: new ROI and existing photometry metrics",
-  "review": "Astra medium read-only review: no material issue; legacy metric/assessment files unchanged",
+  "tests": "17 passed: native ROI + saturation and existing photometry metrics",
+  "review": "Astra medium reviewed ROI accuracy only with no material issue; saturation helper root implemented and tested from prior medium adjudication and science wording",
   "behavior": [
     "Independent native boolean masks; no background/other-region pooling",
     "Equal-case pooling within each region",
@@ -14,8 +14,19 @@
   ],
   "deferred": [
     "New source/annotation admission and hash-bound runner",
-    "Saturation denominator and per-case gate integration",
     "Spatial optics and arbitrary rendered-image metrics",
     "Real content/semantic evidence"
-  ]
+  ],
+  "saturation": {
+    "denominator": "previously interior source channel values",
+    "maximum_excess": 0.005,
+    "comparison": "per-case integer comparison 200*(candidate_count-oracle_count)<=eligible",
+    "zero_eligible": "ratio None; no possible new saturation; passes",
+    "tests": [
+      "Exact .005 passes; one eligible value more fails",
+      "Nine good cases cannot dilute one failed case",
+      "Existing endpoints excluded from denominator",
+      "No-eligible case explicit"
+    ]
+  }
 }

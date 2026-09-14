@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from src.eval.fable_protected_regions import protected_region_counts, protected_region_accuracy
+from src.eval.fable_protected_regions import protected_region_counts, protected_region_accuracy, saturation_excess
 
 
 def identity():
@@ -60,3 +60,40 @@ def test_masked_histograms_equal_native_rounding_and_endpoints():
 def test_invalid_regions_are_rejected(mask):
     with pytest.raises(ValueError):
         protected_region_counts(np.ones((2, 2, 3), np.uint8), {'region': mask})
+
+
+def test_saturation_exact_boundary_and_case_failure_not_diluted():
+    counts = np.zeros((3, 256), dtype=np.int64)
+    counts[:, 100:102] = 1
+    counts[:, 128] = 198
+    base = identity()
+    boundary = base.copy()
+    boundary[100] = 0
+    bad = boundary.copy()
+    bad[101, 0] = 1
+    result = saturation_excess(counts, boundary[None], base[None])
+    assert result['passed']
+    assert result['cases'][0]['candidate_count'] == 3
+    assert result['cases'][0]['excess_fraction_of_eligible'] == .005
+    result = saturation_excess(counts, np.stack([bad] + [base] * 9), np.stack([base] * 10))
+    assert not result['passed']
+    assert result['cases'][0]['candidate_count'] == 4
+    assert not result['cases'][0]['passed']
+    assert all(c['passed'] for c in result['cases'][1:])
+    assert saturation_excess(counts, bad[None], bad[None])['passed']
+
+
+def test_saturation_uses_eligible_denominator_and_excludes_existing_endpoints():
+    counts = np.zeros((3, 256), dtype=np.int64)
+    counts[:, [0, 255]] = 1000
+    counts[:, 128] = 1
+    base, bad = identity(), identity()
+    bad[128] = 0
+    result = saturation_excess(counts, bad[None], base[None])
+    assert not result['passed']
+    assert result['cases'][0]['excess_fraction_of_eligible'] == 1
+    counts[:, 128] = 0
+    result = saturation_excess(counts, bad[None], base[None])
+    assert result['passed'] and not result['cases'][0]['applicable']
+    assert result['cases'][0]['candidate_count'] == 0
+    assert result['cases'][0]['excess_fraction_of_eligible'] is None
