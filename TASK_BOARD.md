@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review923/1024 (indices0..922), all ten neighbors viewed. 25 unresolved and six historical same-scene links retained. NEXT index923; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review907/1024 (indices0..906), all ten neighbors viewed. 25 unresolved and six historical same-scene links retained. NEXT index907; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review891/1024 (indices0..890), all ten neighbors viewed. Vintage-car887/neighbor6 reconfirms existing unresolved link; 25 unresolved and six historical same-scene links retained. NEXT index891; no admission/RAW/training.
