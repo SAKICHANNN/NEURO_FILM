@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: first-pass visual review1024/1024 complete, all ten neighbors viewed. 27 unresolved links, seven historical same-scene links, and one candidate-history same-scene link (1022/neighbor1). NEXT whole-cohort lineage/provenance and frozen assignment feasibility; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review1003/1024 (indices0..1002), all ten neighbors viewed. 25 unresolved and seven historical same-scene links retained. NEXT index1003; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review987/1024 (indices0..986), all ten neighbors viewed. 25 unresolved and seven historical same-scene links retained. NEXT index987; no admission/RAW/training.

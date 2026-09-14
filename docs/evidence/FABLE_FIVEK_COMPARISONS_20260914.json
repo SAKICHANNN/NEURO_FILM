@@ -1,15 +1,15 @@
 {
-  "status": "VISUAL_REVIEW_IN_PROGRESS",
+  "status": "FIRST_PASS_COMPLETE_LINEAGE_AND_PROVENANCE_PENDING",
   "descriptor_rows": 2082,
   "history_capture_count": 1006,
   "candidate_count": 1024,
-  "viewed_candidates": 1003,
+  "viewed_candidates": 1024,
   "pins": {
     "descriptors.jsonl": "903acab124ef6579d2cb0b942f33c0bb98e542cb2729db43d3cb10d25f5d3e8f",
     "neighbors.json": "f7163740a7e40a84d11880e514232910566204a984fa7c9dbef07f17798e850d",
     "cache_binding.json": "332240dd30d331233d947d5e3fb85a43f6f8375d7bacb5571260dd13113d93f0",
-    "visual_reviews.jsonl": "8cce3bfa96e5863de2b734d38a30378c8fee14a9c04a4132538e747d99fa293a",
-    "additional_lineage_edges.jsonl": "6d6d569cd0f065cb1b45fc3ef276ac5ea06665897a4b429ba3b40d853a162f79"
+    "visual_reviews.jsonl": "fe3b8869a63c6a7ef013083f41b22c811cd7a6a9b74bae1a90d39343ba5a77bf",
+    "additional_lineage_edges.jsonl": "5ef2b60fd0719666c2ecc22957b65006bb817a8bccd6c1b829966d000444de5b"
   },
   "verification": [
     "Medium reviewed six-viewhash and neighbor ranking",
@@ -18,13 +18,14 @@
     "199..214 batch initially omitted scene206; failed count check caught error. Corrected all16 scene labels and reverified ordered215 records and sheet hashes before final report."
   ],
   "limits": [
-    "1003of1024candidate comparison sets actually viewed",
+    "1024of1024candidate comparison sets actually viewed",
     "No candidate admission/RAW/training",
     "Bounded history coverage not globally complete"
   ],
-  "additional_unresolved_links": 25,
+  "additional_unresolved_links": 27,
   "additional_history_same_scene_links": 7,
   "insufficient_scene_preview_indices": [
     148
-  ]
+  ],
+  "additional_candidate_history_same_scene_links": 1
 }
