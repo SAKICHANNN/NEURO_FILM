@@ -1,3 +1,5 @@
+CURRENT 2026-09-14:36 RAWs decoded rawpy0.26.1/LibRaw0.22, camera labels all match, ordinary Bayer and RGB as-shot WB present. Two shared-camera/date pairs actually viewed and distinct on available evidence. Metadata report retained; cross-history metadata and frozen full renderer/native ROI checks pending. No training.
+
 CURRENT 2026-09-14: fixed36 RAW pilot fetched,340515740 body bytes; resume rehashed all files without new requests. Caps/retry counts reconciled. Partial-read accounting fixed with conservative reservation/terminal state, Windows exclusive runner lock tested. NEXT camera/RAW structure/rendering/native ROI validation, no training. Root transport file reservation released.
 
 CURRENT FILE RESERVATION: codex root owns scripts/fetch_fable_fivek_raw_pilot.py for bounded pilot transport.

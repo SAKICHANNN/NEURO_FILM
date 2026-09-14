@@ -1,3 +1,5 @@
+CURRENT 2026-09-14:36 RAWs decoded rawpy0.26.1/LibRaw0.22, camera labels all match, ordinary Bayer and RGB as-shot WB present. Two shared-camera/date pairs actually viewed and distinct on available evidence. Metadata report retained; cross-history metadata and frozen full renderer/native ROI checks pending. No training.
+
 CURRENT 2026-09-14: fixed36 RAW pilot fetched,340515740 body bytes; resume rehashed all files without new requests. Caps/retry counts reconciled. Partial-read accounting fixed with conservative reservation/terminal state, Windows exclusive runner lock tested. NEXT camera/RAW structure/rendering/native ROI validation, no training. Root transport file reservation released.
 
 CURRENT 2026-09-14: Stage A provisional324 manifest and fixed36 RAW pilot frozen. Rehashed publisher index/licenses/file lists; all324 selected IDs, history exclusions, previews and review sheets reconciled. License split173 AdobeMIT/151 Adobe, research-only. NEXT bounded pilot acquisition64MiB/object3GiB total2attempts, fixed IDs no replacement; raw camera/renderer/native ROIs pending. No RAW downloaded or training started.

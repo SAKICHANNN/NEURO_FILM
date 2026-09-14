@@ -1,0 +1,13 @@
+{
+  "status": "RAW_DECODE_AND_CAMERA_CHECKS_PASS_NOT_RENDERED",
+  "objects": 36,
+  "failures": 0,
+  "pins": {
+    "raw_pilot_metadata_v1.json": "fa77acebf293ce7c2e6341c0c68109ba9666467e398be5ba83903cb3592cbfcf",
+    "raw_date_link_inspection_v1.json": "94e28597e7bfc22c5f47d7153f7e5ab25be8c1cab06cff29aba88137642ba49b"
+  },
+  "limits": [
+    "Native render and ROI checks pending",
+    "Further available history metadata links must reconcile"
+  ]
+}
