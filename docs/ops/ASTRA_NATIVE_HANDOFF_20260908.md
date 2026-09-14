@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: integrated cache runner scripts/cache_fable_cdfe_fit.py started --one-donor LIVE session76645. v2plan updates code hashes before firstcache; guard10GiB beforeheavyimports,4threads,exactfit/T/source/runtime checks,exclusivewriter,atomicreceipt resume. Expectedminutes for32T firstdonor. NEXT sleep sameprocess then receiptvalidation and fullresume (samecode/plan); no optimizer.
+
 CURRENT 2026-09-14: Windows hardprocess committedmemory guard implemented via existingpywin32 JobObject; childtest64MiB rejects128MiB allocation withMemoryError,1testpass0.54s. Guard handle must remainlive forworker; cache10GiB intended, notGPUcap. NEXT integrate cache runner before imports/allocation, native firstdonor and full resumableCPU run.
 
 CURRENT 2026-09-14: cache writer uses Windows nonblocking byte lock (persistentlockfile, OSrelease);3cachetests pass0.52s exclusion/release/corruption. computation_v1/fit_cache_plan.json binds exactly256fit natives,32T,8192examples,source/runtime hashes; no heldinputs. NOTexecuted pending hard10GiB cap+runner. NEXT resource guard and integrated firstdonor/full resumable run.
