@@ -1,0 +1,9 @@
+{
+  "protocol": "CDFE68-M1",
+  "identity_rank_prefix": "CDFE68-M1-allocation-v1:",
+  "camera_rank_prefix": "CDFE68-M1-allocation-v1:camera:",
+  "rank_hash": "sha256",
+  "smoke_ids": [],
+  "optimizer_smoke_status": "NONE_EXECUTED_IN_THIS_PROTOCOL",
+  "boundary": "Frozen before strict allocation and model outcomes. Any later optimizer smoke must update this record and revalidate camera exclusion before allocation lock."
+}

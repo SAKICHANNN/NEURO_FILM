@@ -5,6 +5,9 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+from src.eval.fable_cdfe_assignment import REQUIRED_COVERAGE
+from src.preprocess.fable_canonical_raw import linear16_to_q8
+
 
 def build(root: Path) -> dict:
     hashes = {}
@@ -25,6 +28,12 @@ def build(root: Path) -> dict:
             verify_file(root / relative, expected)
 
     ledger = read('outputs/fable_cdfe68_exposure_v1/ledger.json')
+    allocation = read('configs/fable_cdfe68_allocation_v1.json')
+    if allocation['rank_hash'] != 'sha256':
+        raise ValueError('unsupported frozen rank hash')
+    identities = [r['identity'] for r in ledger['rows']]
+    if len(identities) != 2030 or len(set(identities)) != 2030:
+        raise ValueError('complete unique exposure ledger required')
     prefilter = read('outputs/fable_cdfe68_exposure_v1/strict_metadata_prefilter.json')
     graph = read('outputs/fable_cdfe68_exposure_v1/expanded_metadata_graph.json')
     masks = read('outputs/fable_cdfe68_native_candidates_v1/query_masks_v1/manifest.json')
@@ -58,9 +67,15 @@ def build(root: Path) -> dict:
         raise ValueError('components must partition the complete ledger')
     components = {i: c for c, members in prefilter['components'].items() for i in members}
     candidates = {r['identity']: r for r in prefilter['rows']}
+    if any(r['component'] != components[r['identity']] for r in prefilter['rows']):
+        raise ValueError('prefilter component differs from partition')
     coverage = {}
     for roi in masks['rows']:
         identity = roi['identity']
+        if (renders[identity]['status'] != 'LOCKED_NATIVE_RENDER_PASSED_NOT_ROLE_ADMISSION'
+                or roi['component'] != components[identity]
+                or graph['metadata'][identity]['models'] != [roi['camera']]):
+            raise ValueError('ROI camera component or rendering qualification differs')
         if roi['native_sha256'] != renders[identity].get('native_sha256') or roi['reviewed'] is not True:
             raise ValueError('query evidence does not bind native render')
         blob = Path(roi['mask_path']).read_bytes()
@@ -74,8 +89,11 @@ def build(root: Path) -> dict:
         if (not 0 <= x0 < x1 <= native.shape[1] or not 0 <= y0 < y1 <= native.shape[0]
                 or mask.shape != (y1-y0, x1-x0) or crop.size != (x1-x0, y1-y0)
                 or not np.isin(mask, [0, 1]).all() or not mask.any()
+                or roi['category'] not in REQUIRED_COVERAGE
                 or roi['category'] not in roi['observed_categories']):
             raise ValueError('invalid query region or category binding')
+        if not np.array_equal(np.asarray(crop), linear16_to_q8(native[y0:y1, x0:x1])):
+            raise ValueError('reviewed crop pixels differ from native coordinates')
         coverage.setdefault(identity, set()).add(roi['category'])
     rows = []
     for source in ledger['rows']:
@@ -87,7 +105,7 @@ def build(root: Path) -> dict:
                     and len(models) == 1)
         rows.append({'identity': identity, 'exposure': source['exposure'],
                      'component': components[identity], 'camera': camera,
-                     'candidate_rank': hashlib.sha256(('CDFE68-M1-allocation-v1:' + identity).encode()).hexdigest(),
+                     'candidate_rank': hashlib.sha256((allocation['identity_rank_prefix'] + identity).encode()).hexdigest(),
                      'technical_eligible': eligible,
                      'history_separation_established': candidates.get(identity, {}).get('metadata_prefilter_pass') is True,
                      'query_coverage_reviewed': identity in coverage,
@@ -95,8 +113,8 @@ def build(root: Path) -> dict:
                      'native_sha256': rendered.get('native_sha256')})
     return {'status': 'STRICT_INVENTORY_PENDING_ALLOCATION', 'source_sha256': hashes,
             'rank_rule': 'SHA256 UTF8 CDFE68-M1-allocation-v1: plus identity; camera uses camera: prefix. Frozen without model outcomes.',
-            'rows': rows, 'smoke_ids': [],
-            'camera_ranks': {c: hashlib.sha256(('CDFE68-M1-allocation-v1:camera:' + c).encode()).hexdigest()
+            'rows': rows, 'smoke_ids': allocation['smoke_ids'],
+            'camera_ranks': {c: hashlib.sha256((allocation['camera_rank_prefix'] + c).encode()).hexdigest()
                              for c in sorted({r['camera'] for r in rows})}}
 
 
