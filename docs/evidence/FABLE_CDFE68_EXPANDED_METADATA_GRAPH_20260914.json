@@ -1,0 +1,17 @@
+{
+  "status": "EXPANDED_METADATA_GRAPH_NOT_FINAL_SEPARATION",
+  "artifact_sha256": "7a516fbf9c66b554ea8e71c7094a812034cb174099f352523b88df89bd101004",
+  "final_local_sha256": "8841fa384aff3e56019f2aba6dd7baef018ca9f68dc5aaa9784018fa8d5eaaa3",
+  "final_local_count": 19,
+  "metadata_identities": 1298,
+  "components": 1409,
+  "prefix_history_linked": 137,
+  "prefix_missing_unique_camera_day": 1,
+  "validation": "Rebuildmatches;all2030identities retained;19localoriginalSHA matched selectedframe.",
+  "next": "Review bounded remaining history/alias uncertainties and component/camera capacity, then rolefeasibility. No source expansion.",
+  "limits": [
+    "Literal normalized unknown camera labels used only for conservative exact grouping, not certified alias equivalence.",
+    "Underlying metadata warnings/evidence limitations remain; cross-date and unbounded historical relations still require disposition.",
+    "No remaining candidate automatically admitted from absence of edges."
+  ]
+}
