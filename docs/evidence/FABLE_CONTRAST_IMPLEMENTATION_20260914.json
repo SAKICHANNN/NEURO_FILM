@@ -1,0 +1,11 @@
+{
+  "status": "IMPLEMENTATION_VERIFIED_PROTOCOL_NOT_YET_FROZEN",
+  "tests": "Root pytest paired_contrast + original ridge:12passed in1.21s",
+  "module_sha256": "9753db6e9740c6ca250b4e82baf0cb92d180f041e9f1d040aec48eb2cdad2b41",
+  "draft_config_sha256": "4ea08f0e9206aa9849f9fdc80723ee167489f98e8c6eb8806fdaf2395646e97f",
+  "fit_entry_sha256": "0ec53021435711ddea6f5d57d7c9ad942ef3887157299f0503e03505d664b6b8",
+  "guard_check": "Real entry rejected draft protocol before output directory or training, as intended",
+  "fit_head_exists": false,
+  "remaining": "Four genuinely unused donor sources not admitted. Metadata audit excludes Canon EOSR6III and flags SonyILCE7M5/NikonZfc historical usage. Source agent read-only audit active.",
+  "claim": "Unit tests verify numerical and interface contracts only; no new transfer result."
+}

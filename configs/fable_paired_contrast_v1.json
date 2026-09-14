@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "status": "DRAFT_PENDING_NEW_DONOR_ADMISSION_AND_MODULE_REVIEW",
+  "question": "Can paired contrast training recover strong correct after-only photometry on new donor scenes with a fixed training identity mean?",
+  "output": "outputs/fable_paired_contrast_v1",
+  "source_config": null,
+  "source_config_sha256": null,
+  "frozen_inputs": {
+    "configs\\fable_reference_photometry_v1.json": "630582e28eca32b653465878c83424c11260228ce72f3b9c120f7a277d74a7fa",
+    "configs\\fable_reference_photometry_sources_v1.json": "7d7059b2355a8127bfbdbd0ca23ba1910b7ab6ba9b505e20de089aa0ed14e1d7",
+    "outputs\\fable_reference_photometry_v1\\fit_features\\features.npz": "797ae0f9688ebc211b4de1427427c01fbb25bb0b79f62fe937904dfa105152b7",
+    "outputs\\fable_reference_photometry_v1\\fit_head\\model.json": "fbd239f57ad900cbdd1dd0203615bd1589256a2cf74a5be987bcd10f8621ab31",
+    "outputs\\fable_reference_photometry_v1\\assessment\\report.json": "6de5eb793aee995468a74b0f96e1690d459f869ad46692ddeadbb44f20057773",
+    "outputs\\fable_reference_photometry_v1\\draws.json": "8e761a85fcf94ad43d7480fffd46df5fde09e86e21fd4bb9e82f5c771ae0d675",
+    "outputs\\fable_paired_contrast_v1\\fit_identities\\features.npz": "ad0aa4771729f0ac99397d177e3c9fb991a8314de0acc37a2a51f8fedf3f13c1",
+    "src\\eval\\fable_reference_photometry.py": "cc91c171c7a876ec1a6785fe8e9bdb45e1e4163c80d9ba974e46e5b91f8526c4",
+    "src\\eval\\tst_reference_response.py": "7730b237e912c414119049b6b263a55732e3b3461f7551ad520c67711fa9742a",
+    "outputs\\fable_shrinkage_science_bridge_v1\\result.md": "ec19b8e4ca27e814b96e15d286c8b104ab130f0b5cb4982692ec2c9907963d8c"
+  },
+  "descriptor": {
+    "stats_dimensions": 30,
+    "deep_dimensions": 3968,
+    "canonical_side": 128,
+    "float32_descriptor_entry": true,
+    "normalization_dtype": "float64",
+    "cpu_threads": 4
+  },
+  "normalizer": {
+    "fold_raw_rows": "64 training AFTER plus4 unique training donor identities, equally weighted per row",
+    "final_raw_rows": "192 training AFTER plus6 unique identities",
+    "validation_rows_excluded": true,
+    "constant_features": "training ptp>0 and std>0",
+    "block_balance": "divide each standardized block by sqrt(active dimension)",
+    "contrast_restandardization": false,
+    "identities_are_regression_rows": false
+  },
+  "training": {
+    "regression_rows": 192,
+    "donor_groups": [
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "pair_groups": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    ],
+    "ridge_grid": [
+      1e-06,
+      1e-05,
+      0.0001,
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "ridge_system": "XXT+n*lambda*I; intercept unpenalized",
+    "selection": "mean sixfold clipped paired-control normalized-parameter MSE; exact ties larger lambda",
+    "clip_range": [
+      -1,
+      1
+    ],
+    "candidate_count": 1
+  },
+  "inference": {
+    "after_only": "raw AFTER features plus frozen model only; frozen mean of6 standardized identity references",
+    "paired_control": "same decoder with actual identity feature; diagnostic only and violates deployment input",
+    "same_reference_same_u_all_queries": true
+  },
+  "prospective": {
+    "generate_seed_only_after_protocol_and_model_lock": true,
+    "sampler": "PCG64;16 independent uniform[-1,1]^4 rows and negatives interleaved;32 edits",
+    "fresh_seed": null,
+    "redraws_allowed": false,
+    "primary_new_donors": 4,
+    "secondary_old_fit_donors": 6,
+    "queries": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "primary_cases": 512,
+    "secondary_cases": 768,
+    "dequantization_repeats": 1,
+    "dequantization_rule": "one fixed per-donor seed shared across edits; same canonical/Q8 pipeline as original",
+    "new_after_feature_rows": 320,
+    "new_identity_feature_rows": 4
+  },
+  "assessment": {
+    "primary_precision": "delivered Q8 code squared error; floor-half-up",
+    "secondary_precision": "float",
+    "arms": [
+      "after_only",
+      "paired_control",
+      "frozen_combined",
+      "identity",
+      "mean_render",
+      "wrong_after_only",
+      "oracle"
+    ],
+    "wrong_reference": "same donor/seed draw_id XOR1; correct target unchanged",
+    "mean_render_code": "Q8(mean(Q8(original32fit transforms)))",
+    "case_weight": "equal cases; equal channel pixels within each query",
+    "D": "mean square oracle minus source",
+    "E": "mean square prediction minus oracle",
+    "P": "mean square prediction minus source",
+    "accuracy": "D>0 and E<=.25D pooled and every new donor",
+    "strength": "P>=16 pooled and every query",
+    "query_improvement": "E<D every query",
+    "block_unit": "16 antithetic pairs; average signs/donors/queries",
+    "block_margins": [
+      ".25D-E_after",
+      "E_frozen-E_after",
+      "E_mean-E_after",
+      "E_wrong-E_after"
+    ],
+    "sign_test": "n fixed16; ties nonwins; one-sided binomial upper tail; mean>0 and p<=.05; all4conjunctive",
+    "paired_works": "same engineering accuracy/strength/query improvement; no substitution for primarycomparisons",
+    "secondary_cell": "report same gate family only for diagnosis; not primary admission"
+  },
+  "visual": {
+    "pair_id": 0,
+    "new_donors": "all4",
+    "queries": "all4",
+    "cases": 32,
+    "blind_candidate_oracle": true,
+    "notes_before_key": true,
+    "scope": "overview plus native center crops; not full semantic proof",
+    "separate_notes": [
+      "weakness",
+      "strong wrong colour",
+      "target discomfort"
+    ]
+  },
+  "stop_rule": "One assessment. Primary practical failure closes this fixed-descriptor linear-decoding route; no gain/lambda/seed/donor rescue. Success only admits real2gradesx4freshscene calibration, not product.",
+  "exclusions": [
+    "old consumed assessment not training or selection",
+    "paired success cannot satisfy primary",
+    "oldfixed96remains paused",
+    "no film calibration or semantic guarantee"
+  ]
+}
