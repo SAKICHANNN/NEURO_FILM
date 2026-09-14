@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review603/1024 (indices0..602), all ten neighbors viewed. Eighteen unresolved and five historical same-scene links retained. NEXT index603; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review587/1024 (indices0..586), all ten neighbors viewed. Added unresolved bridge-wedding relation580/neighbor1of435; eighteen unresolved and five historical same-scene links retained. NEXT index587; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review571/1024 (indices0..570), all ten neighbors viewed. Added unresolved outdoor performance relation558/560; seventeen unresolved and five historical same-scene links retained. NEXT index571; no admission/RAW/training.
