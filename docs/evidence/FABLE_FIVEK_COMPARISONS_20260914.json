@@ -3,12 +3,12 @@
   "descriptor_rows": 2082,
   "history_capture_count": 1006,
   "candidate_count": 1024,
-  "viewed_candidates": 1,
+  "viewed_candidates": 23,
   "pins": {
     "descriptors.jsonl": "903acab124ef6579d2cb0b942f33c0bb98e542cb2729db43d3cb10d25f5d3e8f",
     "neighbors.json": "f7163740a7e40a84d11880e514232910566204a984fa7c9dbef07f17798e850d",
     "cache_binding.json": "332240dd30d331233d947d5e3fb85a43f6f8375d7bacb5571260dd13113d93f0",
-    "visual_reviews.jsonl": "93a9f1592ef704341548a7812f373d1e3d50d8c129ab9412fe257e88d33a32e4"
+    "visual_reviews.jsonl": "1f36fa1a44bd546fb58231327bc0b6359191981874ed39f717c46ed91ecdc6b9"
   },
   "verification": [
     "Medium reviewed six-viewhash and neighbor ranking",
@@ -16,7 +16,7 @@
     "Rerun rehashed every input and reconciled identity/pool before cache reuse"
   ],
   "limits": [
-    "Only1of1024candidate comparison sheets actuallyviewed",
+    "23of1024candidate comparison sets actuallyviewed",
     "No candidate admission/RAW/training",
     "Bounded history coverage not globally complete"
   ]
