@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from src.data.fable_windows_memory import limit_current_process_committed_memory
+from src.training.fable_source_closure import local_import_closure
 
 
 def main():
@@ -29,6 +30,9 @@ def main():
              'fable_photometry_metrics', 'fable_protected_regions', 'fable_paired_contrast']]})
     if not required.issubset(seal['source_sha256']):
         raise ValueError('validation dependency bindings incomplete')
+    for relative, expected in local_import_closure(root, ['scripts/validate_fable_cdfe.py']).items():
+        if seal['source_sha256'].get(relative) != expected:
+            raise ValueError(f'unbound evaluation import: {relative}')
     cache_plan = json.loads((root / seal['cache_plan']).read_text())
     plan = json.loads((root / seal['validation_plan']).read_text())
     dependency_plans = [cache_plan, plan]

@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from src.data.fable_windows_memory import limit_current_process_committed_memory
+from src.training.fable_source_closure import local_import_closure
 
 
 def digest(path):
@@ -28,6 +29,9 @@ def main():
         'src/data/fable_windows_memory.py', seal['training_config'], seal['cache_plan']}
     if not required.issubset(seal['source_sha256']):
         raise ValueError('training source bindings incomplete')
+    for relative, expected in local_import_closure(root, ['scripts/train_fable_cdfe.py']).items():
+        if seal['source_sha256'].get(relative) != expected:
+            raise ValueError(f'unbound training import: {relative}')
     cache_plan = json.loads((root / seal['cache_plan']).read_text())
     for relative, expected in cache_plan['source_sha256'].items():
         if seal['source_sha256'].get(relative) != expected:
