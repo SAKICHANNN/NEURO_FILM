@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review359/1024 (indices0..358), all ten neighbors viewed. Twelve unresolved and four historical same-scene links retained. NEXT index359; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review343/1024 (indices0..342). Added dining-room relation342/247; twelve unresolved and four historical same-scene links retained. NEXT index343; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review327/1024 (indices0..326), all ten neighbors viewed. Eleven unresolved and four historical same-scene links retained. NEXT index327; no admission/RAW/training.
