@@ -1,0 +1,17 @@
+{
+  "status": "FOUR_SOURCES_DOWNLOADED_DECODED_NOT_YET_ADMITTED",
+  "candidate_config": "configs/fable_contrast_donor_candidates_v1.json",
+  "candidate_config_sha256": "f7586f12d8773ef2b36c31012daee667b955bf2df463cc37b0d4291de55151e7",
+  "entry": "scripts/prepare_fable_contrast_donors.py",
+  "source_checks_sha256": "a038c9317aa469ba7d4188c170014adfc6cd73fdd202107fe491df27310f47ff",
+  "raw_ids": [
+    7750,
+    7689,
+    7540,
+    7252
+  ],
+  "checks": "All4RAW SHA verified;4neutral1600px previews actually viewed; nonemptycolour; minimum dHash old12=18,within4=18, above duplicate threshold4.",
+  "remaining": "Historical rawpixls source-preview numeric/crop comparison pending. Do not freeze/admit/fit until complete.",
+  "source_auditor": "medium read-only history exclusion complete; now owns only ignored historical_preview_paths.json list",
+  "no_treatment_outputs": true
+}
