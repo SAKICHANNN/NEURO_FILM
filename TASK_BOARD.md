@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: locatorv2 nowmatches all430historyidentities using49existingfiles. Fixeddownload_urlschema,knownfreezeCSV,andexactID existingrepositorysnapshot. Rebuildverified;v1preserved. No newrequests orfreshnessclaim. NEXT metadata/source-hash reconciliation and430dispositions tofreezeM. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_HISTORY_LOCATORS_V2_20260914.json.
+
+CURRENT 2026-09-14: root reserves scripts/join_fable_cdfe_history_locators.py for existing schema correction(download_url), freezeCSV andknownrepository snapshot selected-ID join. Preserve v1locator evidence. No requests.
+
 CURRENT 2026-09-14:217local historyfiles hashed for199identities; all recordedSHA match.430slots preserved.189file reads returned metadata,28unsupported; TIFFwarnings meanfieldsprovisional,143identities have DateTimeOriginalfield. Nofreshness/unionclaim. NEXT reliablemetadata reconciliation/unmatchedexistingrecords beforeMfreeze. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_LOCAL_HISTORY_AUDIT_20260914.json.
 
 CURRENT 2026-09-14: root reserves scripts/audit_fable_cdfe_local_history.py. Hash-reconcile recordedlocal RAW andread boundedTIFFmetadata; unsupportedformats remainunresolved. No downloads/rendering.

@@ -1,0 +1,14 @@
+{
+  "status": "ALL430HISTORY_IDENTITIES_HAVE_EXISTING_RECORD_LEADS",
+  "artifact": "outputs\\fable_cdfe68_exposure_v1\\history_locators_v2.json",
+  "sha256": "08392aacb78dbf3930129629c20164d46370b9ebb3e64461d02bc797e6f936c9",
+  "source_files": 49,
+  "identities": 430,
+  "validation": "Rebuild equality, all430identities matched. v1evidence preserved.",
+  "changes": "Recognize download_url; read known freezeCSV; exactrepositoryID lookup in preexisting snapshot. No search/download.",
+  "limits": [
+    "CSV tar member is a locator, not proof archive is available.",
+    "Repository snapshot URL/hash does not prove local file match or capture independence.",
+    "Mnotyetfrozen;metadata and bounded linkage disposition still required."
+  ]
+}
