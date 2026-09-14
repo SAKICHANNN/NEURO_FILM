@@ -1,0 +1,16 @@
+{
+  "status": "CORRECTED_NATIVE_ROIS_REVIEWED_NOT_ROLE_ALLOCATION",
+  "source": "outputs\\fable_cdfe68_native_candidates_v1\\query_crops_v2\\review.json",
+  "sha256": "1c059bf2cfa38579381a38662bd833b4ede448642091f3c4472eb00b3823ae88",
+  "observed_categories": [
+    "text",
+    "face",
+    "shadow"
+  ],
+  "notes": [
+    "Text crop corrected to complete SCHOOL BUS label.",
+    "Candle face corrected; old misnamed chest/highlight crop remains preserved.",
+    "Wood shadow contains visible low-contrast structure; not empty black."
+  ],
+  "remaining": "Bind object/highlight/colored illumination evidence and all selected query camera/component constraints; no role locked."
+}
