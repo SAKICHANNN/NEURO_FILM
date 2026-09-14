@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review263/1024 (indices0..262). Added decorated-room relation83/neighbor10of261; ten unresolved and three historical same-scene links retained. NEXT index263; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review247/1024 (indices0..246). Added unresolved outdoor food-preparation link243/136; nine unresolved and three historical same-scene links retained. NEXT index247; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review231/1024 (indices0..230), each candidate+10neighbors viewed. No new specific relations in215..230; eight unresolved and three historical same-scene links retained. NEXT index231; no admission/RAW/training.
