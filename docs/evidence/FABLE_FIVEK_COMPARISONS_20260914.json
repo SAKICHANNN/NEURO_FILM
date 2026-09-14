@@ -177,8 +177,11 @@
       "assignment_optimistic_v1.json": "1c47b6637b324b6d8741c90b00e70a5b843b0d6120640ef83f47e6bc3f6dbd51",
       "query_mask_review_01.json": "930b723f070538616388fd83e49d12ffb38bb582637807aeb48f1dc7d1e58257",
       "assignment_input_optimistic_v2.json": "84011f7b8fa031d2f145114319c3b4bfb81cb0bf40d165b14736f8fd3f40e529",
-      "assignment_optimistic_v2.json": "f17a2d2ad68daba731ce0a10e28a3c519024d37ba019649887a40835bce230bf"
+      "assignment_optimistic_v2.json": "f17a2d2ad68daba731ce0a10e28a3c519024d37ba019649887a40835bce230bf",
+      "query_mask_review_02.json": "be0b6310c31dc8f31c43882952629429ca9dea900f80eb94dbe2843cd1d8d32a",
+      "assignment_input_optimistic_v3.json": "f4881a1b434469045d47ff1d24cff9abdc851d5d7d3a2f94c67af4823b26c9d6",
+      "assignment_optimistic_v3.json": "afc1ef9058fbe1daf9fc5172c8c47164664f51ec93e3713e0b071e87b0ca7f8b"
     },
-    "next": "Inspect v2 selected queries; final content certificate and Stage A admission not established"
+    "next": "Inspect v3 selected queries; 28 masks actually inspected, colored illumination still requires selected witness"
   }
 }

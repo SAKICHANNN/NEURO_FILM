@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: query refinement now28 actually inspected masks; batch24 added text and face evidence but no colored-light credit for painted objects/glass. Optimistic v3 assignment generated, not accepted. NEXT inspect v3 query set/next ranked uninspected candidates. No RAW/training.
+
 CURRENT 2026-09-14: exact role solver implemented; root rerun17 tests passed. Bound930 singleton candidate rows; optimistic full324 solve succeeds. First4 query previews lack confirmed text/colored-light coverage; masks recorded and v2 optimistic assignment generated. NEXT inspect v2 queries, refine within frozen cohort until certificate or infeasible. No accepted manifest/RAW/training. Solver file reservation released.
 
 CURRENT 2026-09-14: reviewed14 additional explicit-date-format groups; no cross-identity exact preview-byte duplicates. Recorded graph excludes94 candidates, leaves930. Camera capacity must refresh. Solver implementation delegated to reserved files; lazy optimistic query-mask certificate independently accepted, final selected masks must actually cover requirements. No RAW/training.
