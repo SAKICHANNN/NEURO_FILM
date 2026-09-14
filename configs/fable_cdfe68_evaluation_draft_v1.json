@@ -57,5 +57,26 @@
   "D_scope_evidence": [
     "outputs/fable_after_identifiability_bridge_v1/packet.md:25",
     "src/eval/fable_paired_contrast.py:joint_code_engineering_gate"
-  ]
+  ],
+  "paired_oracle_engineering": {
+    "implementation": "src/eval/fable_paired_contrast.py::joint_code_engineering_gate",
+    "conditions": [
+      "pooled/per-donor D>0 and E<=0.25D",
+      "pooled/per-query P>=16",
+      "per-query E<D"
+    ],
+    "failure": "ENGINEERING_INVALIDITY",
+    "comfort": "separate fixed64 review; >=52 comfortable and clearly changed; observed fact loss veto",
+    "not_extra_hard_gates": [
+      "camera/orthant slices",
+      "ROI",
+      "saturation",
+      "learned-v-control sign tests"
+    ],
+    "evidence": [
+      "outputs/fable_after_identifiability_bridge_v1/result.md:230",
+      "outputs/fable_after_identifiability_bridge_v1/packet.md:25",
+      "outputs/fable_development_reuse_bridge_v1/result.md:133,143-144,163"
+    ]
+  }
 }

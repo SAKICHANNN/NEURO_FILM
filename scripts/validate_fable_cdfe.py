@@ -26,7 +26,7 @@ def main():
         required.update({seal['assessment_plan'], *['src/eval/'+name+'.py' for name in
             ['fable_cdfe_assessment', 'fable_cdfe_assessment_predictions', 'fable_cdfe_controls',
              'fable_cdfe_query_counts', 'fable_cdfe_case_metrics', 'fable_cdfe_assessment_gates',
-             'fable_photometry_metrics', 'fable_protected_regions']]})
+             'fable_photometry_metrics', 'fable_protected_regions', 'fable_paired_contrast']]})
     if not required.issubset(seal['source_sha256']):
         raise ValueError('validation dependency bindings incomplete')
     cache_plan = json.loads((root / seal['cache_plan']).read_text())

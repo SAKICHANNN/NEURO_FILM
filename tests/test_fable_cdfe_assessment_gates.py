@@ -7,7 +7,7 @@ def test_good_photometry_cannot_hide_failed_controls():
     identity = np.repeat((np.arange(256)/255)[:, None], 3, axis=1)
     tables = np.broadcast_to(identity, (1024, 256, 3))
     methods = {name: {'E': np.ones((1024, 4)), 'P': np.full((1024, 4), 25.), 'tables': tables}
-               for name in ['learned', 'constant', 'shuffled']}
+               for name in ['learned', 'constant', 'shuffled', 'paired_oracle']}
     counts = np.ones((3, 256), dtype=np.int64)
     result = assessment_gates({'D': np.full((1024, 4), 100.), 'methods': methods,
         'oracle_tables': tables}, donor_ids=[str(j) for j in range(32)],
@@ -18,3 +18,5 @@ def test_good_photometry_cannot_hide_failed_controls():
     assert not result['controls']['passed']
     assert not result['numeric_passed']
     assert result['visual_review_required']
+    assert result['paired_oracle_engineering']['passed']
+    assert not result['engineering_invalidity']

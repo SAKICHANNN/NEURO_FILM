@@ -2,6 +2,7 @@ import numpy as np
 
 from src.eval.fable_cdfe_gates import donor_control_gates, stratified_photometry_gates
 from src.eval.fable_protected_regions import protected_region_accuracy, saturation_excess
+from src.eval.fable_paired_contrast import joint_code_engineering_gate
 
 
 def assessment_gates(cases: dict, *, donor_ids: list[str], query_ids: list[str],
@@ -10,7 +11,7 @@ def assessment_gates(cases: dict, *, donor_ids: list[str], query_ids: list[str],
     if len(query_counts) != 4 or len(query_regions) != 4 or any(not r for r in query_regions):
         raise ValueError('four query histograms with named regions required')
     methods = cases['methods']
-    if any(name not in methods for name in ['learned', 'constant', 'shuffled']):
+    if any(name not in methods for name in ['learned', 'constant', 'shuffled', 'paired_oracle']):
         raise ValueError('all fixed comparison methods required')
     if np.asarray(cases['D']).shape != (1024, 4):
         raise ValueError('complete donor-major treatment-minor cases required')
@@ -20,16 +21,20 @@ def assessment_gates(cases: dict, *, donor_ids: list[str], query_ids: list[str],
         methods['learned']['P'].reshape(32, 32, 4), donor_ids=donor_ids, query_ids=query_ids,
         donor_cameras=donor_cameras, treatment_regions=treatment_regions)
     controls = donor_control_gates(e['learned'], e['constant'], e['shuffled'], d)
+    oracle = joint_code_engineering_gate(d.ravel(), methods['paired_oracle']['E'].ravel(),
+        methods['paired_oracle']['P'].ravel(), np.repeat(donor_ids, 32*4), np.tile(query_ids, 32*32))
     regions, saturation = {}, {}
     for j, identity in enumerate(query_ids):
         regions[identity] = protected_region_accuracy(query_regions[j],
             methods['learned']['tables'], cases['oracle_tables'])
         saturation[identity] = saturation_excess(query_counts[j],
             methods['learned']['tables'], cases['oracle_tables'])
-    numeric_passed = (photometry['photometry_passed'] and controls['passed']
+    numeric_passed = (oracle['passed'] and photometry['photometry_passed'] and controls['passed']
         and all(r['passed'] for r in regions.values())
         and all(r['passed'] for r in saturation.values()))
     return {'photometry': photometry, 'controls': controls, 'regions': regions,
+            'paired_oracle_engineering': oracle,
+            'engineering_invalidity': not oracle['passed'],
             'saturation': saturation, 'numeric_passed': numeric_passed,
             'visual_review_required': True,
             'limits': 'Numerical gates do not establish visual comfort or preservation of semantic facts.'}
