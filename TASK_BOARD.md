@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review731/1024 (indices0..730), all ten neighbors viewed. Vintage-car719/neighbor7 and church-wedding727/neighbor2 unresolved; 21 unresolved and five historical same-scene links retained. NEXT index731; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review715/1024 (indices0..714), all ten neighbors viewed. Nineteen unresolved and five historical same-scene links retained. NEXT index715; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review699/1024 (indices0..698), all ten neighbors viewed. Sunset691/neighbor10 reconfirms existing unresolved pair; nineteen unresolved and five historical same-scene links retained. NEXT index699; no admission/RAW/training.
