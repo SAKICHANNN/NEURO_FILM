@@ -1,0 +1,84 @@
+{
+  "status": "CONTENT_VALIDATION_GAP_CONFIRMED",
+  "scope": "Focused live audit of two existing native content cohorts and current Fable evidence; not exhaustive repository inventory",
+  "source_contract_hashes": {
+    "configs/u6_p8bk_native_standard_content_stress_v1.json": "6b2910a7d23807aa94c303f52d469494bb80dd549dcad3a2502f69ffd46bb088",
+    "configs/u6_p8bk_native_standard_content_stress_decision_v1.json": "64d5033325d196fcc44b077475e181fb0d4613da66625a64f0d449127bd416e7",
+    "outputs/salut_g0_content_preflight_v1/inputs.json": "a4c166a482371baa3a210ad0b86468cb034e3388e34b7290a435b612700d9df6",
+    "docs/evidence/SA_LUT_NATIVE_CONTENT_REVIEW_20260908.json": "07bf9fed484fc2026a69232e0daabba652a9d08fc7759705e6ec8681e5ea7f6a",
+    "docs/evidence/FABLE_PHOTOMETRY_ASSESSMENT_20260913.json": "00fc9ed2397ab0b096d54ffcb1731e49a6e723e054f56a5be8b033e4a195432d",
+    "docs/evidence/FABLE_PHYSICAL_QUERY_COMPARATOR_20260913.json": "beda6e1282c160cf22c49e34f6cffb5c42062844b85ec1a165147e03f4512ec7"
+  },
+  "rows": [
+    {
+      "id": "mairi-portrait",
+      "raw_path": "data\\external\\pixls_mairi_v1\\mairi.orf",
+      "exists": true,
+      "sha256_match": true,
+      "known_prior_use": "consumed development / prior operator visual evaluation; not a fresh independent test",
+      "allowed_use": "internal_noncommercial_artifact_and_appearance_evaluation_only"
+    },
+    {
+      "id": "sony-nex5-people-text",
+      "raw_path": "data\\external\\rawpixls_ai1_v1\\raw\\sony_nex5_12bit.arw",
+      "exists": true,
+      "sha256_match": true,
+      "known_prior_use": "consumed development / prior operator visual evaluation; not a fresh independent test",
+      "allowed_use": "internal_independent_digital_ood_evaluation"
+    },
+    {
+      "id": "canon-7d-warm-text",
+      "raw_path": "data\\external\\rawpixls_ai1_v1\\raw\\canon_eos7d_mraw.cr2",
+      "exists": true,
+      "sha256_match": true,
+      "known_prior_use": "consumed development / prior operator visual evaluation; not a fresh independent test",
+      "allowed_use": "internal_independent_digital_ood_evaluation"
+    },
+    {
+      "id": "samsung-snow-highlight",
+      "raw_path": "data\\external\\rawpixls_ai1_v1\\raw\\samsung_smg930a.dng",
+      "exists": true,
+      "sha256_match": true,
+      "known_prior_use": "consumed development / prior operator visual evaluation; not a fresh independent test",
+      "allowed_use": "internal_independent_digital_ood_evaluation"
+    },
+    {
+      "id": "father_baby",
+      "raw_path": "outputs\\fivek_auto_optimize\\freeze_v1\\gold64_original_samples\\raw\\a0239-_MG_1622.dng",
+      "exists": true,
+      "sha256_match": true,
+      "known_prior_use": "consumed development / prior operator visual evaluation; not a fresh independent test",
+      "allowed_use": "historical development evaluation; verify source-specific rights before any reuse"
+    },
+    {
+      "id": "birthday",
+      "raw_path": "outputs\\fivek_auto_optimize\\freeze_v1\\gold64_original_samples\\raw\\a0372-WP_CRW_6207.dng",
+      "exists": true,
+      "sha256_match": true,
+      "known_prior_use": "consumed development / prior operator visual evaluation; not a fresh independent test",
+      "allowed_use": "historical development evaluation; verify source-specific rights before any reuse"
+    },
+    {
+      "id": "text_card",
+      "raw_path": "data\\rawpixls_cache\\Olympus_E-M5_Olympus_-_E-M5_-_16bit_4_3_.orf",
+      "exists": true,
+      "sha256_match": true,
+      "known_prior_use": "consumed development / prior operator visual evaluation; not a fresh independent test",
+      "allowed_use": "historical development evaluation; verify source-specific rights before any reuse"
+    }
+  ],
+  "findings": [
+    "Seven existing native face/text/geometry sources are previously consumed; none newly admitted as fresh holdout.",
+    "P8BK text/architecture observation was sheet-scale, only portrait explicitly full-resolution; no transcribed OCR ground truth, object-count or landmark annotation in inspected contract.",
+    "SA-LUT report covers 3 consumed sources and5nativecrop pairs; exact4096interpolation samples prove interpolation only.",
+    "Current Fable query/physical evidence explicitly lacks independent face/text and full-frame semantic coverage."
+  ],
+  "future_required_evidence": [
+    "Before candidate evaluation: source provenance and historical overlap screen; scene-level train/development/test roles frozen.",
+    "Original-resolution annotations for readable text, object counts and edge/landmark locations in preregistered ROIs; no output-driven ROI selection.",
+    "Same input, same reference, all baseline/learned/physical arms; preserve outputs and failures at delivered precision.",
+    "Assess strong colour correctness separately from factual content preservation; no deterministic or nonnegative operator shortcut."
+  ],
+  "no_training_or_holdout_consumption": true,
+  "rights_note": "Mairi CC-BY-NC-SA remains internal noncommercial evaluation-only. No new public rights verification performed."
+}
