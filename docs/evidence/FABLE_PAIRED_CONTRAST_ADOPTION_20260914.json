@@ -1,0 +1,29 @@
+{
+  "status": "ACCEPTED_FOR_ONE_PROSPECTIVE_DIAGNOSTIC",
+  "result_sha256": "ec19b8e4ca27e814b96e15d286c8b104ab130f0b5cb4982692ec2c9907963d8c",
+  "accepted": [
+    "one paired-contrast decoder with same frozen descriptors",
+    "64after+4uniqueidentity normalizer per fold;192+6 final; identity not regression rows",
+    "no restandardization of contrasts",
+    "after-only vs diagnostic paired-control separate interfaces",
+    "four genuinelyunused donors plus fresh antithetic edits after model lock",
+    "joint code accuracy/strength gate; fixed16 sign-test ties nonwins",
+    "one attempt; practical failure closes this fixed-descriptor linear route"
+  ],
+  "rejected": [
+    "posthoc gain or lambda changes to old model",
+    "paired success substituted for after-only",
+    "consumed held donors reused as fresh"
+  ],
+  "deferred": [
+    "real2gradesx4scenes until primary prospective gate passes",
+    "texture training remains contamination-blocked"
+  ],
+  "local_evidence": [
+    "src/eval/fable_photometry_ridge.py:fit_head would restandardize delta; do not reuse",
+    "src/eval/fable_photometry_ridge.py:crossed_folds reusable",
+    "scripts/prepare_fable_photometry_fit.py:canonical_bases stored",
+    "src/eval/fable_photometry_metrics.py:exact_sign_test excludes ties; new helper required"
+  ],
+  "implementation": "Medium owns only src/eval/fable_paired_contrast.py and tests/test_fable_paired_contrast.py. Root owns config/data/runner. No realfit launched."
+}

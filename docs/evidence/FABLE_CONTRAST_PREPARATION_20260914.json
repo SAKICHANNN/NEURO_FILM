@@ -1,0 +1,19 @@
+{
+  "status": "IMPLEMENTATION_AND_SOURCE_PREPARATION",
+  "adoption": "docs/evidence/FABLE_PAIRED_CONTRAST_ADOPTION_20260914.json",
+  "source_candidates_sha256": "a05a3cd75af487e7711139aad45b157e37a27aa55275b0213ad64dab217a79a2",
+  "source_candidates_admitted": 0,
+  "identity_receipt": {
+    "status": "SIX_CANONICAL_IDENTITIES_EXTRACTED_NO_FIT",
+    "fit_features_sha256": "797ae0f9688ebc211b4de1427427c01fbb25bb0b79f62fe937904dfa105152b7",
+    "descriptor_sha256": "7730b237e912c414119049b6b263a55732e3b3461f7551ad520c67711fa9742a",
+    "entry_sha256": "2b92dcd5530ed6ddba41d1cf633bf23a495aa923b66ca15acd6345f20fb71c49",
+    "features_sha256": "ad0aa4771729f0ac99397d177e3c9fb991a8314de0acc37a2a51f8fedf3f13c1",
+    "identity_rule": "Use frozen canonical Q8 bases, not native JPEG descriptors; no regression labels."
+  },
+  "medium_owns": [
+    "src/eval/fable_paired_contrast.py",
+    "tests/test_fable_paired_contrast.py"
+  ],
+  "next": "Review medium module/tests; finalize independent sources and freeze full prospective protocol before fitting. Fresh edits only after model lock."
+}
