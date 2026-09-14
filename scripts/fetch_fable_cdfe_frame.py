@@ -1,6 +1,7 @@
 import argparse
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -44,9 +45,32 @@ def validate_resume(ledger, plan, cap):
                     raise ValueError('retained original hash mismatch')
 
 
+def local_reuse(root, plan):
+    wanted = {r['identity'].split('/', 1)[1] + '.dng': r for r in plan if r['identity'].startswith('fivek/')}
+    roots = [root / 'data', root / 'outputs/fivek_auto_optimize/freeze_v1/gold64_original_samples']
+    command = ['rg', '--files', '--no-ignore', '-g', '*.dng', '-g', '*.DNG', *[str(p) for p in roots if p.exists()]]
+    listing = subprocess.run(command, capture_output=True, text=True, encoding='utf-8', check=True)
+    matches = {}
+    for name in sorted(listing.stdout.splitlines()):
+        path = Path(name)
+        if path.name not in wanted:
+            continue
+        row = wanted[path.name]
+        with path.open('rb') as stream:
+            digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+        if row.get('expected_raw_sha256') and digest != row['expected_raw_sha256']:
+            raise ValueError('local original conflicts with recorded digest')
+        if row['identity'] in matches and matches[row['identity']]['sha256'] != digest:
+            raise ValueError('same local identity has conflicting bytes')
+        matches[row['identity']] = {'identity': row['identity'], 'url': row['url'],
+            'status': 'LOCAL_REUSED', 'path': str(path), 'sha256': digest, 'charged_bytes': 0}
+    return matches
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--execute', action='store_true')
+    parser.add_argument('--prepare', action='store_true')
     args = parser.parse_args()
     blob = (ROOT / FRAME).read_bytes()
     if hashlib.sha256(blob).hexdigest() != FRAME_SHA:
@@ -54,19 +78,22 @@ def main():
     frame = json.loads(blob)
     plan = entries(frame)
     output = ROOT / 'outputs/fable_cdfe68_acquisition_v1'
-    if not args.execute:
+    if not args.execute and not args.prepare:
         print(json.dumps({'status': 'DRY_RUN', 'remote_frame': len(plan), 'cap': frame['combined_new_transfer_ceiling_bytes']}))
         return
-    raise RuntimeError('Execution remains disabled pending local-reuse inventory and integration checks')
     output.mkdir(exist_ok=True)
     lock = output / 'runner.lock'
     handle = lock.open('x')
     try:
         ledger_path = output / 'ledger.json'
         ledger = json.loads(ledger_path.read_bytes()) if ledger_path.exists() else {
-            'frame_sha256': FRAME_SHA, 'entries': plan, 'objects': {}, 'charged_body_bytes': 0}
+            'frame_sha256': FRAME_SHA, 'entries': plan, 'objects': local_reuse(ROOT, plan), 'charged_body_bytes': 0}
         cap = frame['combined_new_transfer_ceiling_bytes']
         validate_resume(ledger, plan, cap)
+        save_ledger(ledger_path, ledger)
+        if not args.execute:
+            print(json.dumps({'status': 'PREPARED', 'local_reused': len(ledger['objects']), 'entries': len(plan)}))
+            return
         with requests.Session() as session:
             for entry in plan:
                 fetch_once(entry, session=session, directory=output, ledger_path=ledger_path, ledger=ledger, cap=cap)

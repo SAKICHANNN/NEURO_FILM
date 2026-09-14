@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: fixedCDFE acquisitionRUNNING execsession62226.7tests passed1.18s; localreuse scan0/452. Snapshot27FETCHED+1STARTED,255773850chargedincludingreservation,0failures. Sameprocessmustcontinue; no restart. NEXT sleep/liveledgercheck thenmetadataonly fixedframeclosure. Root code reservationreleased. Evidence docs/evidence/FABLE_CDFE68_ACQUISITION_STARTED_20260914.json.
+
+CURRENT 2026-09-14: root reserves scripts/fetch_fable_cdfe_frame.py and tests/test_fable_cdfe_frame.py. Add fixedlocalreuse snapshot/resumechecks beforeexecution.
+
 CURRENT 2026-09-14: framedrunner dryrun verifies452entries/8GiB;liveexecution disabledpendinglocalreuse+integration. Mediumreview fixedHTTPfailure overcharge;5mocktests pass. Windowsexclusivelock closesbeforeunlink. No requests. NEXT localreuse snapshot+runnerchecks thenenablefixedpass. Root reservationsreleased. Evidence docs/evidence/FABLE_CDFE68_TRANSPORT_REVIEW_20260914.json.
 
 CURRENT 2026-09-14: root reserves scripts/fetch_fable_cdfe_frame.py and tests/test_fable_cdfe_frame.py; mediumreviews primitive. Dryrun default,exactframeSHA,exclusivewriter,resumehash/budget checks. No livecalls yet.

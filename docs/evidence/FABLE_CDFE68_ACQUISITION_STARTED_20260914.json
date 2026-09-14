@@ -1,0 +1,12 @@
+{
+  "status": "BOUNDED_ACQUISITION_RUNNING",
+  "session_id": 62226,
+  "ledger": "outputs/fable_cdfe68_acquisition_v1/ledger.json",
+  "tests": "7passed1.18s;fixedprepare452entries found0reusableDNG indata+gold64roots",
+  "snapshot": {
+    "fetched": 27,
+    "started": 1,
+    "charged_including_reservation": 255773850
+  },
+  "next": "Continue same running session; use sleep and sparse ledger checks. Do not restart whileSTARTED. Aftercompletion metadata-only fixedframe processing."
+}

@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: fixedCDFE acquisitionRUNNING execsession62226.7tests passed1.18s; localreuse scan0/452. Snapshot27FETCHED+1STARTED,255773850chargedincludingreservation,0failures. Sameprocessmustcontinue; no restart. NEXT sleep/liveledgercheck thenmetadataonly fixedframeclosure. Root code reservationreleased. Evidence docs/evidence/FABLE_CDFE68_ACQUISITION_STARTED_20260914.json.
+
 CURRENT 2026-09-14: framedrunner dryrun verifies452entries/8GiB;liveexecution disabledpendinglocalreuse+integration. Mediumreview fixedHTTPfailure overcharge;5mocktests pass. Windowsexclusivelock closesbeforeunlink. No requests. NEXT localreuse snapshot+runnerchecks thenenablefixedpass. Root reservationsreleased. Evidence docs/evidence/FABLE_CDFE68_TRANSPORT_REVIEW_20260914.json.
 
 CURRENT 2026-09-14: boundedfetch primitive implemented;3mocktests pass success/resume,partialfailure reservation,uncertainSTARTED restartblock. No livecalls. NOTREADY runner/framepins/exclusivelock/resumehash andtransportreview pending. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_BOUNDED_FETCH_20260914.json.
