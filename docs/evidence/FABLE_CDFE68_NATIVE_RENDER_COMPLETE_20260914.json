@@ -1,0 +1,52 @@
+{
+  "status": "NATIVE_RENDER_PASS_COMPLETE_NOT_ROLE_ADMISSION",
+  "count": 114,
+  "passed": 108,
+  "rejected": 6,
+  "verification": "All 114 identities equal fixed frame in order; completion SHA checked; every native and preview file rehashed; all native dtype uint16 and shapes match rendered metadata. Process64777 exit0.",
+  "source_sha256": {
+    "frame.json": "adfd2cb24c96bd27c873122f5bd8bba78c71ae5350c83c566dcc44e1475d7fbb",
+    "renders.jsonl": "2d9d73746269a4baece292a524439f1d6de6bd035e7518ab9a7c253bc6296bb5",
+    "complete.json": "90824b4cc2f441486a43b3552c0022e4b9f1aeca1d64834bb3c671d8e7aafef5"
+  },
+  "rejections": [
+    {
+      "identity": "fivek/a4247-20090414_at_23h20m23__MG_1373",
+      "reason": "decoder active area or white level differs from DNG metadata"
+    },
+    {
+      "identity": "fivek/a4830-20090419_at_17h05m59__MG_2226",
+      "reason": "decoder active area or white level differs from DNG metadata"
+    },
+    {
+      "identity": "fivek/a4767-kme_2719",
+      "reason": "decoder active area or white level differs from DNG metadata"
+    },
+    {
+      "identity": "fivek/a2948-kme_511",
+      "reason": "decoder active area or white level differs from DNG metadata"
+    },
+    {
+      "identity": "fivek/a4874-20090320_at_19h15m51__MG_0126",
+      "reason": "decoder active area or white level differs from DNG metadata"
+    },
+    {
+      "identity": "fivek/a4652-20090426_at_13h41m51__MG_0472",
+      "reason": "decoder active area or white level differs from DNG metadata"
+    }
+  ],
+  "visual_review": {
+    "actually_viewed": [
+      "overview/sheet_00.jpg"
+    ],
+    "not_yet_viewed": [
+      "overview/sheet_01.jpg",
+      "overview/sheet_02.jpg",
+      "overview/sheet_03.jpg",
+      "overview/sheet_04.jpg",
+      "overview/sheet_05.jpg"
+    ],
+    "notes": "First overview contains face, signage, shadow and highlight candidates. No native ROI qualification yet."
+  },
+  "next": "Review remaining native overviews and exact pixel crops, freeze six-category query evidence then strict role assignment."
+}
