@@ -1,0 +1,15 @@
+{
+  "status": "BOUNDED_HISTORY_IDENTITY_INDEX_COMPLETE",
+  "index": "outputs/fable_source_population_bridge_v1/historical_fivek_index.json",
+  "sha256": "94f22a68da741c6a1afd64294b4dc607d0a5d8761f2b4e2a48072243337148f7",
+  "raw_count": 64,
+  "expert_c_count": 64,
+  "matched_source_ids": 64,
+  "total_bytes": 3706128758,
+  "limits": [
+    "Bounded historical directory only, not all FiveK history",
+    "ID/hash exclusions do not establish scene independence across crops/re-encodings",
+    "No new source admission"
+  ],
+  "scientific_admission": false
+}
