@@ -1,0 +1,14 @@
+{
+  "status": "ALL_PUBLISHER_CAMERA_LABELS_PARSED",
+  "index_count": 5000,
+  "distinct_labels": 35,
+  "unresolved": 0,
+  "camera_audit_sha256": "2daefd839e1126c4f53a67bd5baf595e0b65bcfb4c33243edc576cda2a438d73",
+  "mapping_sha256": "f97c40363b89b7a88aff6689b0046f9823dfaa556134fa229540698ad26cbe71",
+  "known_history_exclusions": 768,
+  "limits": [
+    "Dataset publisher camera labels, not RAW validation",
+    "Other observed labels retained verbatim; no camera body/photographer independence claim",
+    "No role assignment"
+  ]
+}
