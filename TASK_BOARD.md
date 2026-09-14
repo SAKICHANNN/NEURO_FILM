@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: framedrunner dryrun verifies452entries/8GiB;liveexecution disabledpendinglocalreuse+integration. Mediumreview fixedHTTPfailure overcharge;5mocktests pass. Windowsexclusivelock closesbeforeunlink. No requests. NEXT localreuse snapshot+runnerchecks thenenablefixedpass. Root reservationsreleased. Evidence docs/evidence/FABLE_CDFE68_TRANSPORT_REVIEW_20260914.json.
+
+CURRENT 2026-09-14: root reserves scripts/fetch_fable_cdfe_frame.py and tests/test_fable_cdfe_frame.py; mediumreviews primitive. Dryrun default,exactframeSHA,exclusivewriter,resumehash/budget checks. No livecalls yet.
+
 CURRENT 2026-09-14: boundedfetch primitive implemented;3mocktests pass success/resume,partialfailure reservation,uncertainSTARTED restartblock. No livecalls. NOTREADY runner/framepins/exclusivelock/resumehash andtransportreview pending. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_BOUNDED_FETCH_20260914.json.
 
 CURRENT 2026-09-14: root reserves src/data/fable_bounded_fetch.py and tests/test_fable_bounded_fetch.py. Oneattempt transport with persistent reservation/identitybinding; no livecalls untilintegrationtested.

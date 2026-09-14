@@ -1,0 +1,12 @@
+{
+  "status": "FRAME_RUNNER_DRY_RUN_ONLY",
+  "plan_entries": 452,
+  "cap": 8589934592,
+  "tests": "5mocktests passed0.52s;dryrun reconcilesfixedframeSHA and452uniqueURLs",
+  "review_fix": "Medium identified HTTPfailure fullbudgetcharge. Normal failures now settle consumed+inflightread;crashSTARTED remainsreserved andblocked.",
+  "remaining": [
+    "Localreuseinventory beforelivefetch",
+    "Fullrunnerintegrationtests andexecutionseal"
+  ],
+  "live_requests": 0
+}

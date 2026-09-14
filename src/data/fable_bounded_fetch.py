@@ -27,6 +27,7 @@ def fetch_once(entry: dict, *, session, directory: Path, ledger_path: Path, ledg
     ledger['charged_body_bytes'] += remaining
     save_ledger(ledger_path, ledger)
     consumed = 0
+    pending_read = 0
     allowance = remaining
     part = directory / (hashlib.sha256(identity.encode()).hexdigest() + '.part')
     try:
@@ -46,7 +47,9 @@ def fetch_once(entry: dict, *, session, directory: Path, ledger_path: Path, ledg
             digest = hashlib.sha256()
             with part.open('xb') as stream:
                 while consumed < allowance:
-                    block = response.raw.read(min(1024 * 1024, allowance - consumed))
+                    pending_read = min(1024 * 1024, allowance - consumed)
+                    block = response.raw.read(pending_read)
+                    pending_read = 0
                     if not block:
                         break
                     consumed += len(block)
@@ -67,8 +70,11 @@ def fetch_once(entry: dict, *, session, directory: Path, ledger_path: Path, ledg
             ledger['charged_body_bytes'] -= record['charged_bytes'] - consumed
             record['charged_bytes'] = consumed
     except Exception as error:
+        charge = consumed + pending_read
+        ledger['charged_body_bytes'] -= record['charged_bytes'] - charge
+        record['charged_bytes'] = charge
         record.update(status='FAILED_NO_RETRY', error=f'{type(error).__name__}: {error}',
-                      accounting='Full reserved response allowance retained after failure, including uncertain reads')
+                      accounting='Application body bytes plus in-flight read allowance; not TCP/TLS wire bytes')
     record['bytes_returned_to_caller'] = consumed
     save_ledger(ledger_path, ledger)
     return record

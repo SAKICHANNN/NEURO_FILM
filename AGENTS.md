@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: framedrunner dryrun verifies452entries/8GiB;liveexecution disabledpendinglocalreuse+integration. Mediumreview fixedHTTPfailure overcharge;5mocktests pass. Windowsexclusivelock closesbeforeunlink. No requests. NEXT localreuse snapshot+runnerchecks thenenablefixedpass. Root reservationsreleased. Evidence docs/evidence/FABLE_CDFE68_TRANSPORT_REVIEW_20260914.json.
+
 CURRENT 2026-09-14: boundedfetch primitive implemented;3mocktests pass success/resume,partialfailure reservation,uncertainSTARTED restartblock. No livecalls. NOTREADY runner/framepins/exclusivelock/resumehash andtransportreview pending. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_BOUNDED_FETCH_20260914.json.
 
 CURRENT 2026-09-14: metadata actionframe FROZEN:196remoteonce+19localonce(M215),194completedlocalreuse+21recordedEXIFreuse;430historyslots+fixed256candidateprefix,shared8GiB. Rebuild andzero-refetchcompleted checks pass. No requests. NEXT boundedtransport implementation/execution thenfinalrelation/roleclosure; noexpansion. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_METADATA_ACTION_FRAME_20260914.json.
