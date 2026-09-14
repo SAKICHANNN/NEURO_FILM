@@ -1,0 +1,17 @@
+{
+  "status": "LATE_LINEAGE_RECONCILIATION_PENDING",
+  "history_raws_read": 576,
+  "camera_date_clues": 89,
+  "viewed_groups": 5,
+  "total_groups": 20,
+  "possible_late_link": "fivek/a1021-IMG_5051 to same-date household history",
+  "pins": {
+    "raw_history_metadata_clues_v1.json": "efae09fa7b8ef8e346f7b7212d00b9b8933ae59b2a6aa5320f2ced8287b04228",
+    "raw_history_comparison_groups_v1.json": "79f2393304213c5cd46d50ec6a208c27f4ff6df52faea85a636d17ae10ad1d14",
+    "raw_history_review_v1.json": "cbc20d52281d999690763b0e44ecf45f8cfef2bad734aecbd4dacc24c4d6308a"
+  },
+  "limits": [
+    "Metadata read only; no full history RAW rehash",
+    "Possible link not yet definitive; no replacement or rendering"
+  ]
+}
