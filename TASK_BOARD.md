@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: all24 exact filename collision groups actually viewed, pairwise distinct on preview evidence; two cross-group possible scene links added (arena and beach dog). Unresolved edges29, total37. Prior47/977 graph diagnostic superseded; recompute after remaining direct provenance checks. No admission/RAW/training.
+
 CURRENT 2026-09-14: verified all10240 comparison identities and1024 sheet hashes; transitive recorded-lineage diagnostic excludes47 candidates, leaves977 provenance-pending (not admitted). NEXT direct provenance-link assessment under frozen protocol; no second all-pairs review, no RAW/training.
 
 CURRENT 2026-09-14: first-pass visual review1024/1024 complete, all ten neighbors viewed. 27 unresolved links, seven historical same-scene links, and one candidate-history same-scene link (1022/neighbor1). NEXT whole-cohort lineage/provenance and frozen assignment feasibility; no admission/RAW/training.

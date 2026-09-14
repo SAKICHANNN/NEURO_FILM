@@ -9,7 +9,7 @@
     "neighbors.json": "f7163740a7e40a84d11880e514232910566204a984fa7c9dbef07f17798e850d",
     "cache_binding.json": "332240dd30d331233d947d5e3fb85a43f6f8375d7bacb5571260dd13113d93f0",
     "visual_reviews.jsonl": "fe3b8869a63c6a7ef013083f41b22c811cd7a6a9b74bae1a90d39343ba5a77bf",
-    "additional_lineage_edges.jsonl": "5ef2b60fd0719666c2ecc22957b65006bb817a8bccd6c1b829966d000444de5b"
+    "additional_lineage_edges.jsonl": "172a065fba6d230f700dd0b355f44b767b9a71c05c444e7b3b88405d4da49401"
   },
   "verification": [
     "Medium reviewed six-viewhash and neighbor ranking",
@@ -22,7 +22,7 @@
     "No candidate admission/RAW/training",
     "Bounded history coverage not globally complete"
   ],
-  "additional_unresolved_links": 27,
+  "additional_unresolved_links": 29,
   "additional_history_same_scene_links": 7,
   "insufficient_scene_preview_indices": [
     148
@@ -33,6 +33,11 @@
     "sha256": "7107cb36ff6b9b2d97f4f748d3a6c69e89a76734712d57d84901bf8fb39dc959",
     "excluded_candidates": 47,
     "provenance_pending_candidates": 977,
-    "status": "DIAGNOSTIC_NOT_ADMISSION"
+    "status": "SUPERSEDED_BY_TWO_ADDITIONAL_EDGES_RECOMPUTE_REQUIRED"
+  },
+  "filename_collision_review": {
+    "groups": 24,
+    "path": "outputs/fable_source_population_bridge_v1/comparisons/filename_collision_reviews_v1.json",
+    "sha256": "8447536bc4373684bdd56043ebc5eeeea062c416a178d22a3e366dcd58b2c5d7"
   }
 }
