@@ -1,0 +1,10 @@
+{
+  "status": "BOUNDED_FETCH_PRIMITIVE_ENGINEERING_ONLY",
+  "tests": "3passed0.50s success+resume no repeat,partial read keepsreservation,uncertain STARTED blocks restart",
+  "limits": [
+    "No frame runner or concurrent-writer lock yet; do not call live.",
+    "Failure retains full reserved allowance conservatively; transport review required before execution.",
+    "Resume existing-file rehash and frame/entry pins belong to pending runner."
+  ],
+  "network_requests": 0
+}
