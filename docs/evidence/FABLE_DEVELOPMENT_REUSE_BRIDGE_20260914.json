@@ -1,0 +1,16 @@
+{
+  "status": "VERIFIED_WAIT_NOT_PROTOCOL_ADOPTION",
+  "observed_at": "2026-09-14T12:28:02.757193+00:00",
+  "url": "https://chatgpt.com/c/6aa7e40b-d108-83ec-b9d8-f95e826c3d4d",
+  "live_ui": "Stop answering remains present; latest status Our systems are thinking a bit more about this request before responding. Same tab4, no blocker/failure shown.",
+  "send_count": 1,
+  "result_extracted": false,
+  "artifacts": {
+    "outputs\\fable_development_reuse_bridge_v1\\packet.md": "bf1a7da79b32d6ecaf24a99c9f52a182cf48885b122adabd042082c319f0046d",
+    "outputs\\fable_development_reuse_bridge_v1\\request.txt": "072295da3f8e9839647abe8be8b16a6dfa63f0dc480bd3f7b7fd25bb4cb3665b",
+    "outputs\\fable_development_reuse_bridge_v1\\transport_state.json": "3943c218dc0b8a4da22500bc7fcab64e8b99e931420aa4955ae63f1c375e5017",
+    "outputs\\fable_development_reuse_bridge_v1\\existing_development_inventory.json": "c42adade5f7079fbce2c83b1d3c08c745ae8a2819e168a4f8114371338221ede"
+  },
+  "local_progress": "CNN completed previous turn. Existing576metadata records inventoried:29raw camera strings,8missing dates,0nonemptyserials; camera/date groups are clues only, not independent scenes.",
+  "next": "Wait via sleep, inspect same live tab; extract completed result via user-authorized DOM; validate pair then local adoption. No new source or training while pending."
+}
