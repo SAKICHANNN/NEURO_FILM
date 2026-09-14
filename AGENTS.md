@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: actual68historypreview inventory viewed4sheets. Same-scenehistory8769/8771redrocks and8963/8964porch recorded;987garbleduninterpretable. NEXT fixed116candidate overviewandboundedplausiblecomparisons; noadmissionfromoverview. Evidence docs/evidence/FABLE_CDFE68_HISTORY_VISUAL_INVENTORY_20260914.json.
+
 CURRENT 2026-09-14: final68historyreviewframe fixed withexistingmodels/sourcebindings/edges. All32raw-model-missing haveunique repositorymodeldeclarations (notRAWverified). Conservativelyexclude M8a3132/a4446 andmissingtechnical/datea1684. NEXT oneboundedcasebasedrelationship review thenstrictrole decision; no newread/search. Evidence docs/evidence/FABLE_CDFE68_FINAL_HISTORY_FRAME_20260914.json.
 
 CURRENT 2026-09-14: remaining119captures100components,7cameras>=4components. Optimistic relaxedrolesolver886rows FEASIBLE (notadmission;allquery/technical/separationassumed).8substantive+60otherhistory missingunique camera/day remain. NEXT mediumboundedhistoryclosure adjudication andrealeligibility; nooptimisticroleadoption. Evidence docs/evidence/FABLE_CDFE68_OPTIMISTIC_CAPACITY_20260914.json.

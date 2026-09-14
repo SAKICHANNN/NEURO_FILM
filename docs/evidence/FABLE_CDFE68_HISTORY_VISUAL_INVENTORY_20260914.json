@@ -1,0 +1,8 @@
+{
+  "status": "HISTORY68_VISUAL_INVENTORY_ACTUALLY_VIEWED",
+  "artifact_sha256": "42f3b7aa2d44dd358fcd78387249eefe2736699afabc415e199835fefc4ed311",
+  "images_viewed": 68,
+  "history_same_scene_pairs": 2,
+  "uninterpretable": 1,
+  "next": "Fixed116candidate overview+specificplausiblecomparisons within10/candidate; preserveuninterpretable boundary."
+}
