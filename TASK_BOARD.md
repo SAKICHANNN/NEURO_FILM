@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: query-content labels196 actually inspected; optimistic v10 remains pending actual selected coverage. NEXT inspect v10 unknowns. No RAW/training.
+
 CURRENT 2026-09-14: query-content labels172 actually inspected; optimistic v9 remains pending actual selected coverage. NEXT inspect v9 unknowns. No RAW/training.
 
 CURRENT 2026-09-14: query-content labels148 actually inspected; optimistic v8 generated and remains unaccepted until actual selected masks cover15. NEXT inspect v8 unknowns. No RAW/training.
