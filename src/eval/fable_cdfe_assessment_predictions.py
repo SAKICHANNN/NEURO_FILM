@@ -25,6 +25,7 @@ def assessment_predictions(model: torch.nn.Module, rows: list[dict], treatments:
             or not np.isfinite(scale).all() or np.any(scale <= 1e-12)):
         raise ValueError('valid fitting normalization required')
     predicted = np.empty((32, 32, 4), dtype=np.float64)
+    canonical_targets = np.empty((32, 32, 4), dtype=np.float64)
     mu = np.empty((32, 32, 3), dtype=np.float64)
     after_scale = np.empty((32, 32), dtype=np.float64)
     for j, row in enumerate(rows):
@@ -41,9 +42,11 @@ def assessment_predictions(model: torch.nn.Module, rows: list[dict], treatments:
         if output.shape != (32, 4) or not torch.isfinite(output).all():
             raise ValueError('finite assessment predictions required')
         predicted[j] = output.cpu().numpy().astype(np.float64)*scale+mean
+        canonical_targets[j] = np.stack([e['target'] for e in examples])
         mu[j] = np.stack([e['after_mu'] for e in examples])
         after_scale[j] = [e['after_scale'] for e in examples]
         progress({'identity': row['identity'], 'completed_donors': j+1})
         del linear, examples, inputs, output
-    return {'predicted_canonical': predicted, 'after_mu': mu, 'after_scale': after_scale,
+    return {'predicted_canonical': predicted, 'canonical_targets': canonical_targets,
+            'after_mu': mu, 'after_scale': after_scale,
             'identities': identities, 'treatment_ids': locked_treatment_ids}
