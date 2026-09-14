@@ -1,0 +1,24 @@
+{
+  "status": "RATIONAL_READER_DISCREPANCY_RESOLVED_NOT_FULL_ADMISSION",
+  "artifact": "outputs\\fable_cdfe68_renderer_v1\\numeric_metadata_check_v2.json",
+  "sha256": "f28093a676a525ae4690a56f32075790145fc6dc971fbace48b3f4e1328894dd",
+  "cause": "Installed tifffile read_numpy branch for count>1024 reads count scalar integers for SRATIONAL instead of count pairs; physical Canon payload has4696 integers for2348 values.",
+  "library_source_sha256": "f8d79fe79803adfbeb27436a45be75265766faa7bef2902800c29509da3f4f53",
+  "fix": "Project-local exact rational payload reads with count, denominator, finite checks and file position restoration. No dependency or locked renderer changes.",
+  "validation": "12tests passed1.73s; little/big endian and count1/1024/1025/2348. Both consumed fixtures now pass numeric screen.",
+  "black_bounds": {
+    "a0005-jn_2007_05_10__564": [
+      127.19140625,
+      128.6328125
+    ],
+    "a0064-_DSC7889": [
+      0.0,
+      0.0
+    ]
+  },
+  "remaining": [
+    "decoder matrix numeric validity",
+    "multiple IFD neutral reconciliation",
+    "complete admission wrapper and protocol binding"
+  ]
+}

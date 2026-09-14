@@ -2,8 +2,21 @@ import numpy as np
 import tifffile
 
 
-def tag_numbers(tag) -> np.ndarray:
-    values = np.asarray(tag.value, dtype=np.float64).reshape(-1)
+def tag_numbers(tag, tiff=None) -> np.ndarray:
+    if int(tag.dtype) in (5, 10) and tiff is not None:
+        handle = tiff.filehandle
+        position = handle.tell()
+        try:
+            handle.seek(tag.valueoffset)
+            encoded = handle.read(tag.count * 8)
+        finally:
+            handle.seek(position)
+        if len(encoded) != tag.count * 8:
+            raise ValueError(f'truncated rational payload: {tag.name}')
+        dtype = tiff.byteorder + ('u4' if int(tag.dtype) == 5 else 'i4')
+        values = np.frombuffer(encoded, dtype=dtype).astype(np.float64)
+    else:
+        values = np.asarray(tag.value, dtype=np.float64).reshape(-1)
     if int(tag.dtype) in (5, 10):
         if len(values) != 2 * tag.count or np.any(values[1::2] == 0):
             raise ValueError(f'invalid rational encoding: {tag.name}')
@@ -23,7 +36,7 @@ def inspect_numeric_metadata(path) -> dict:
                 planes.append(page)
             for name in ('ColorMatrix1', 'ColorMatrix2'):
                 if name in page.tags:
-                    values = tag_numbers(page.tags[name])
+                    values = tag_numbers(page.tags[name], tiff)
                     if values.size != 9 or np.linalg.matrix_rank(values.reshape(3, 3)) != 3:
                         raise ValueError('finite full-rank 3x3 DNG color matrix required')
                     matrices.append({'tag': name, 'values': values.tolist()})
@@ -35,7 +48,7 @@ def inspect_numeric_metadata(path) -> dict:
         required = ('BlackLevel', 'WhiteLevel', 'ActiveArea', 'BlackLevelRepeatDim', 'SamplesPerPixel')
         if any(name not in tags for name in required):
             raise ValueError('explicit black/white/area/repeat/sample metadata required')
-        black, white, area, repeat, samples = [tag_numbers(tags[name]) for name in required]
+        black, white, area, repeat, samples = [tag_numbers(tags[name], tiff) for name in required]
         if white.size != 1 or white[0] != int(white[0]) or not 0 < white[0] <= 65535:
             raise ValueError('integer white level in uint16 range required')
         if area.size != 4 or np.any(area != np.floor(area)) or np.any(area < 0):
@@ -47,7 +60,7 @@ def inspect_numeric_metadata(path) -> dict:
             raise ValueError('black repeat dimensions disagree with black values')
         deltas, arrays = {}, {}
         for name, count in [('BlackLevelDeltaH', width), ('BlackLevelDeltaV', height)]:
-            values = tag_numbers(tags[name]) if name in tags else np.zeros(1)
+            values = tag_numbers(tags[name], tiff) if name in tags else np.zeros(1)
             if name in tags and values.size != count:
                 raise ValueError('black delta dimension disagrees with active area')
             deltas[name] = {'present': name in tags, 'count': values.size, 'minimum': float(values.min()), 'maximum': float(values.max())}
