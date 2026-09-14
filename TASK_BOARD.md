@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: scripts/train_fable_cdfe.py now connects sealed-source/runtime checks, hard memory cap, locked complete fitting cache, fixed CPU deterministic init/sampling, exclusive single-run claim, update log and final-only SHA checkpoint. Draft subprocess rejection test1passed0.53s. Entry NOT admitted/executed; full source closure/engineering/evaluation seal still pending. Root entry reservation released. NEXT independent entry review and consumed end-to-end verification; no held outcomes.
+
+CURRENT 2026-09-14: root reserves scripts/train_fable_cdfe.py and tests/test_train_fable_cdfe_entry.py for sealed-only entry integration. No production training invocation.
+
 CURRENT 2026-09-14: final checkpoint persistence/verified loading implemented; exclusive claim, complete-step guard, finite model/history/normalizer, atomic payload then SHA receipt, weights_only load of same verified bytes. Synthetic serialization test passed2.62s incl incomplete-step rejection, overwrite denial, wrong contract and corruption. No real model trained. Root checkpoint reservation released. NEXT CLI training admission/source-runtime seal and consumed end-to-end engineering; cache9500 pinned sources untouched.
 
 CURRENT 2026-09-14: root reserves src/training/fable_cdfe_checkpoint.py and tests/test_fable_cdfe_checkpoint.py for final-only checkpoint persistence and verification; synthetic fixtures only.
