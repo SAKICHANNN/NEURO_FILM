@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: date-clue review27/27 complete; all existing selected sheets actually viewed and hashed. Recorded graph excludes83 candidates; 941 not yet admitted. Total255 edges, unresolved247. NEXT final provenance reconciliation/query eligibility and frozen324 assignment feasibility. No RAW/training.
+
 CURRENT 2026-09-14: direct filename date-clue review12/27 groups completed; remaining groups12..26. Total lineage edges50, unresolved42. Date tokens not verified capture/session identities; exclude unresolved visual components. Prior50/974 diagnostic superseded. No admission/RAW/training.
 
 CURRENT 2026-09-14: reviewed21 numbered-suffix variant groups; one possible performance-session link added. Total38 edges/30 unresolved. Current recorded graph excludes50 candidates; 974 remain provenance-pending. NEXT remaining explicit filename session clues, then query eligibility and324-role feasibility. No RAW/training.
