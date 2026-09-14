@@ -1,0 +1,210 @@
+{
+  "status": "SCREENED_RENDER_NOT_SCIENTIFIC_SOURCE_ADMISSION",
+  "linear_sha256": "86ae04c48e9d36dc0e902e1d4bc2fb8c5239b4cc82551ced21c960a377a6c8d8",
+  "shape": [
+    3522,
+    2348,
+    3
+  ],
+  "same_as_prior_locked_render": true,
+  "screen_seal_sha256": "4ed8f79863d1c6fb54845af61bccec9f8b809b27f18b5bb036a195e86bb88cfe",
+  "tests": "23 passed3.09s",
+  "metadata": {
+    "status": "SCREENED_RENDER_NOT_SCIENTIFIC_SOURCE_ADMISSION",
+    "raw_sha256": "585986c44427917d54f47abc5b870abd819809f073d17baa075fd0aabf315ac4",
+    "numeric": {
+      "status": "NUMERIC_METADATA_SCREEN_ONLY",
+      "black_values": [
+        0.0
+      ],
+      "black_repeat": [
+        1.0,
+        1.0
+      ],
+      "black_plus_delta_bounds": [
+        127.19140625,
+        128.6328125
+      ],
+      "deltas": {
+        "BlackLevelDeltaH": {
+          "present": false,
+          "count": 1,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "BlackLevelDeltaV": {
+          "present": true,
+          "count": 2348,
+          "minimum": 127.19140625,
+          "maximum": 128.6328125
+        }
+      },
+      "white": 3398.0,
+      "color_matrices": [
+        {
+          "tag": "ColorMatrix1",
+          "values": [
+            0.7162,
+            -0.134,
+            -0.0464,
+            -0.6462,
+            1.3802,
+            0.2944,
+            -0.0838,
+            0.1147,
+            0.7183
+          ]
+        },
+        {
+          "tag": "ColorMatrix2",
+          "values": [
+            0.6256,
+            -0.0303,
+            -0.1,
+            -0.7879,
+            1.5621,
+            0.2396,
+            -0.1713,
+            0.1905,
+            0.7047
+          ]
+        }
+      ],
+      "as_shot_neutral": [
+        0.487387,
+        1.0,
+        0.729345
+      ],
+      "neutral_sources": [
+        {
+          "ifd_offset": 8,
+          "values": [
+            0.487387,
+            1.0,
+            0.729345
+          ]
+        }
+      ],
+      "limits": [
+        "Numeric screening does not prove physical calibration or decoder matrix selection.",
+        "Black range is a protocol support restriction; no source is admitted by this check alone.",
+        "Decoder numeric screening is separate; source independence and rendering contract remain required."
+      ]
+    },
+    "decoder": {
+      "rgb_xyz_matrix": [
+        [
+          0.6256999969482422,
+          -0.030300000682473183,
+          -0.10000000149011612
+        ],
+        [
+          -0.7879999876022339,
+          1.5621000528335571,
+          0.23960000276565552
+        ],
+        [
+          -0.17139999568462372,
+          0.19040000438690186,
+          0.7045999765396118
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "rgb_singular_values": [
+        1.8358957032824625,
+        0.6680865681940528,
+        0.515912632688873
+      ],
+      "decoder_black": [
+        127.0,
+        128.0,
+        127.0,
+        127.0
+      ],
+      "rank_rule": "float64 eps * max(shape) * largest singular value",
+      "limits": "Numerical validity only; does not establish matrix source or physical accuracy."
+    },
+    "rendered": {
+      "as_shot_neutral": [
+        0.487387,
+        1.0,
+        0.729345
+      ],
+      "user_wb": [
+        2.0517576381807476,
+        1.0,
+        1.3710932411958674,
+        1.0
+      ],
+      "white_level": 3398,
+      "active_area": [
+        12,
+        74,
+        2360,
+        3596
+      ],
+      "black_level_tag": [
+        0,
+        256
+      ],
+      "black_delta_h_present": false,
+      "black_delta_v_present": true,
+      "black_level_per_channel": [
+        127,
+        128,
+        127,
+        127
+      ],
+      "raw_pattern": [
+        [
+          0,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "flip": 5,
+      "rgb_xyz_matrix": [
+        [
+          0.6256999969482422,
+          -0.030300000682473183,
+          -0.10000000149011612
+        ],
+        [
+          -0.7879999876022339,
+          1.5621000528335571,
+          0.23960000276565552
+        ],
+        [
+          -0.17139999568462372,
+          0.19040000438690186,
+          0.7045999765396118
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "rawpy_version": "0.26.1",
+      "libraw_version": [
+        0,
+        22,
+        0
+      ],
+      "diagnostic_raw_scale": 1.0,
+      "shape": [
+        3522,
+        2348,
+        3
+      ]
+    },
+    "limits": "Requires trusted caller-bound screen seal and separate exposure/role admission. Not physical calibration."
+  }
+}

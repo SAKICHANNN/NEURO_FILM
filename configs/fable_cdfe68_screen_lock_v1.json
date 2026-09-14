@@ -1,0 +1,10 @@
+{
+  "status": "SCREENED_RENDER_ENGINEERING_SEAL",
+  "render_lock": "configs/fable_cdfe68_render_lock_v1.json",
+  "project_files": {
+    "src/preprocess/fable_raw_eligibility.py": "87e2d58344f53a9fd26499d0ea5c3bc8955196674b373545220a3ec5c8b9dcea",
+    "src/preprocess/fable_screened_render.py": "a523f7ef2e6fcb5ca8388daaa9501ccd5bf236a45918e16532f2976cf1bb167e",
+    "configs/fable_cdfe68_render_lock_v1.json": "a488eb737d9c8c6d6b8c39c71456376db3e24828e703626ea13c62fa27c3652e"
+  },
+  "boundary": "Trusted caller must bind this seal digest. Does not grant fitting or evaluation roles."
+}
