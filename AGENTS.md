@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: strictinventory builder prepared/compilepass scripts/build_fable_cdfe_strict_inventory.py; notexecuted until nativefit complete. Terminalframe guards, actualrender eligibility, all2030history components, querymask/nativebindings, deterministic outcome-independent ranks. Still LIVE fitrender session12840; NEXT sleep/poll sameprocess, complete verification then review/run builder+solver.
+
 CURRENT 2026-09-14: consumedfit768 sealedrender LIVE session12840, first4passed. Same locked renderer, --consumed-fit validates exact consumed identity set, output native_fit_v1 separate. No optimizer. NEXT sleep and poll same process, verify terminal frame/output hashes then jointstrictroles. Do not restart live runner.
 
 CURRENT 2026-09-14: all768consumedfit RAW paths exist and hashed into consumed_fit_raw_inventory.json (session44928exit0). No missing acquisition needed, NOT renderqualified.9querymasks shape/nonempty/hash verified; highlightoverlay actuallyviewed selects10626transitionpixels excludeswhitecore. NEXT sealedfitrender qualification then jointstrictsolver. Evidence docs/evidence/FABLE_CDFE68_FIT_FRAME_AND_MASK_CHECK_20260914.json.
