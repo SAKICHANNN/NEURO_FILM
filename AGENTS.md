@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review103/1024 (indices0..102), each candidate+10neighbors viewed. No new suspected links in87..102; candidate96 shop also compared with prior10 and visually different. Two unresolved extra candidate links retained. NEXT index103; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review87/1024 (indices0..86), each candidate+10neighbors viewed. Added unresolved plush-hippo link a0899/a2840 outside nominated neighbors; prior banquet link remains. Historical rawpixls8562/8563 same patio scene recorded separately. NEXT index87; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review63/1024 (indices0..62) candidate+10neighbors actually viewed. Existing unresolved banquet link7-33 retained; no new links in43..62. NEXT index63; whole-cohort and direct-provenance review pending. No candidate admission, RAW acquisition or training.
