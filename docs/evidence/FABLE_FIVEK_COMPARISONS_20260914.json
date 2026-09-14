@@ -3,12 +3,12 @@
   "descriptor_rows": 2082,
   "history_capture_count": 1006,
   "candidate_count": 1024,
-  "viewed_candidates": 523,
+  "viewed_candidates": 539,
   "pins": {
     "descriptors.jsonl": "903acab124ef6579d2cb0b942f33c0bb98e542cb2729db43d3cb10d25f5d3e8f",
     "neighbors.json": "f7163740a7e40a84d11880e514232910566204a984fa7c9dbef07f17798e850d",
     "cache_binding.json": "332240dd30d331233d947d5e3fb85a43f6f8375d7bacb5571260dd13113d93f0",
-    "visual_reviews.jsonl": "a0763016bea9a8d7f505b439fa7cd39f7d16de515fec3c5416f0ffc5dcd75fbf",
+    "visual_reviews.jsonl": "c33c1056424c2274ebbd564615a90691e130c71f0f1d6547e54db9d91a3d85f9",
     "additional_lineage_edges.jsonl": "4a7984ec903dc270e4024bd97cc50aa13150e52d6f9879a40fb467039b35ea8b"
   },
   "verification": [
@@ -18,7 +18,7 @@
     "199..214 batch initially omitted scene206; failed count check caught error. Corrected all16 scene labels and reverified ordered215 records and sheet hashes before final report."
   ],
   "limits": [
-    "523of1024candidate comparison sets actually viewed",
+    "539of1024candidate comparison sets actually viewed",
     "No candidate admission/RAW/training",
     "Bounded history coverage not globally complete"
   ],

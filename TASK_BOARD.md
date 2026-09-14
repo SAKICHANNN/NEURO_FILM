@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review539/1024 (indices0..538), all ten neighbors viewed. Sixteen unresolved and five historical same-scene links retained. NEXT index539; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review523/1024 (indices0..522), all ten neighbors viewed. Added unresolved blue interior relation508/neighbor2; sixteen unresolved and five historical same-scene links retained. NEXT index523; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review507/1024 (indices0..506), all ten neighbors viewed. Added historical porch-rendition relation; fifteen unresolved and five historical same-scene links retained. NEXT index507; no admission/RAW/training.
