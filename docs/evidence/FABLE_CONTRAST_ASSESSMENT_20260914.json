@@ -80,5 +80,17 @@
     "Paired control has BEFORE information absent from user deployment contract.",
     "Four fixed new donors are a narrow prospective cohort.",
     "All previous failures remain frozen; no gain/lambda/donor/seed rescue."
-  ]
+  ],
+  "posthoc_interface_bias_audit": {
+    "path": "outputs/fable_paired_contrast_v1/assessment/interface_bias_audit.json",
+    "sha256": "26fb35ae1a0baaa658e082ffb5b1f0716125ab2f4f6c8f7616ef0e81de4d82a1",
+    "scope": "Algebraic validation of saved model/features/predictions only; no new experiment or corrective inference."
+  },
+  "next_science_packet": {
+    "path": "outputs\\fable_after_identifiability_bridge_v1\\packet.md",
+    "sha256": "640e20c22eeda1a6d1d30a1051485f496685ebde035a5ebf58ef7ede88fbc562",
+    "status": "VALIDATED_PREPARED_NOT_SUBMITTED",
+    "approx_tokens": 1998,
+    "sends": 0
+  }
 }
