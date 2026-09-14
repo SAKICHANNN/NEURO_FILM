@@ -1,0 +1,40 @@
+{
+  "status": "DRAFT_NOT_TRAINING_AUTHORIZATION",
+  "protocol": "CDFE68-M1",
+  "role_lock": "outputs/fable_cdfe68_exposure_v1/role_lock.json",
+  "model_config": "configs/fable_canonical_cnn_v1.json",
+  "native_measurement_config": "configs/fable_cdfe68_native_v1.json",
+  "training": {
+    "unique_originals": 256,
+    "transforms_per_original": 32,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "betas": [0.9, 0.999],
+    "epsilon": 1e-8,
+    "batch_size": 32,
+    "steps": 4000,
+    "checkpoint": "final_step_only",
+    "scheduler": "constant_learning_rate",
+    "cpu_threads": 4,
+    "allocation_limit_bytes": 10737418240
+  },
+  "proposed_target_standardization": {
+    "population": "256 unique fitting original native Q8 canonical targets only",
+    "dtype": "float64",
+    "ddof": 0,
+    "degenerate_rule": "Stop if any target standard deviation is nonfinite or <=1e-12; no dimension deletion or replacement",
+    "mse": "Equal weight to each of four standardized target coordinates and each original/treatment"
+  },
+  "unresolved_before_seal": [
+    "Exact orthant partition and deterministic transform manifest",
+    "Native Q8/dequantization ordering and donor seed binding",
+    "Training initialization and batch sampling seed/algorithm",
+    "Explicit precision, device and resource enforcement",
+    "Validation opening and complete assessment metric definitions",
+    "Within-camera control donor derangements",
+    "64-case comfort panel and fixed rubric",
+    "Consumed-only end-to-end checks"
+  ],
+  "limits": "No treatment generation, target fitting, optimizer steps or fresh metric opening authorized by this draft. Existing engineering configs remain historical and unmodified."
+}
