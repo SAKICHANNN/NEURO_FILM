@@ -79,6 +79,7 @@ def main():
     if args.assessment:
         from src.eval.fable_cdfe_gates import validation_gate
         from src.eval.fable_cdfe_assessment import evaluate_assessment
+        from src.eval.fable_cdfe_visual_panel import render_comfort_panel
 
         validation = json.loads((output / 'validation.json').read_text())
         if (validation['contract_sha256'] != contract or validation['checkpoint_sha256'] != checkpoint_sha
@@ -111,6 +112,8 @@ def main():
             json.dump(report, stream, indent=2)
             stream.flush()
             os.fsync(stream.fileno())
+        if report['gates']['numeric_passed']:
+            render_comfort_panel(output / 'comfort', assessment_plan, report, result['arrays'])
         print(json.dumps({'numeric_passed': report['gates']['numeric_passed'],
                           'visual_review_required': True}), flush=True)
         return
