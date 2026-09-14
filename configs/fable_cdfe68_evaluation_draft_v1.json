@@ -38,7 +38,11 @@
     },
     "roi": "For each named mask, pool equal cases over references/treatments then require E<=0.25D; conjunction across masks; D=0 requires E=0",
     "saturation": "Eligible source channel codes1..254. Per case count predicted endpoint channels minus ideal-treatment endpoint channels; require200*excess<=eligible. No cross-case averaging.",
-    "zero_eligible_saturation": "Report not applicable, fractions null, integer inequality0<=0; never claim preserved absent eligible detail."
+    "zero_eligible_saturation": "Report not applicable, fractions null, integer inequality0<=0; never claim preserved absent eligible detail.",
+    "D_gt_0": [
+      "pooled",
+      "per_donor"
+    ]
   },
   "validation": {
     "open": "Only after final4000-step checkpoint hash fixed",
@@ -47,8 +51,11 @@
     "pass": "Learned MSE <=0.8*constant MSE; zero constant MSE is degenerate stop"
   },
   "unresolved": [
-    "Explicit scope of D>0 gate must reconcile retained contract",
     "Machine-readable per-case/stratum aggregation implementation and consumed tests",
     "Final hash seal with training resource contract"
+  ],
+  "D_scope_evidence": [
+    "outputs/fable_after_identifiability_bridge_v1/packet.md:25",
+    "src/eval/fable_paired_contrast.py:joint_code_engineering_gate"
   ]
 }

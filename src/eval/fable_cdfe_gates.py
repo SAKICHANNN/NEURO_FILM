@@ -23,8 +23,10 @@ def stratified_photometry_gates(error: np.ndarray, ideal_change: np.ndarray, out
 
     pooled = accuracy(error, ideal_change)
     pooled['P'] = float(output_change.mean())
-    pooled['passed'] = pooled['passed'] and pooled['P'] >= 16
+    pooled['passed'] = pooled['passed'] and pooled['P'] >= 16 and pooled['D'] > 0
     donors = {i: accuracy(error[j], ideal_change[j]) for j, i in enumerate(donor_ids)}
+    for donor in donors.values():
+        donor['passed'] = donor['passed'] and donor['D'] > 0
     cameras = {}
     for camera in sorted(set(donor_cameras)):
         selected = np.array([c == camera for c in donor_cameras])
@@ -40,7 +42,7 @@ def stratified_photometry_gates(error: np.ndarray, ideal_change: np.ndarray, out
     groups = [donors, cameras, regions, queries]
     return {'pooled': pooled, 'donors': donors, 'cameras': cameras, 'regions': regions, 'queries': queries,
             'photometry_passed': pooled['passed'] and all(r['passed'] for group in groups for r in group.values()),
-            'limits': 'Photometry subgates only; D-positive protocol scope, controls, ROI, saturation and comfort remain separate.'}
+            'limits': 'D>0 enforced pooled and per donor; controls, ROI, saturation and comfort remain separate.'}
 
 
 def validation_gate(predicted: np.ndarray, targets: np.ndarray, constant: np.ndarray) -> dict:

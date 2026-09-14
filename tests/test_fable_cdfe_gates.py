@@ -38,3 +38,18 @@ def test_local_donor_failure_cannot_hide_in_pooled_mean():
     assert not result['photometry_passed']
     e[:] = 25
     assert stratified_photometry_gates(e, np.full_like(e, 100), np.full_like(e, 16), **labels)['photometry_passed']
+
+
+def test_zero_change_donor_fails_but_zero_region_can_pass():
+    d = np.full((32,32,4), 100.)
+    e = np.zeros_like(d)
+    p = np.full_like(d, 16.)
+    labels = dict(donor_ids=[str(i) for i in range(32)], query_ids=list('abcd'),
+                  donor_cameras=['camera']*32, treatment_regions=[str(i//8) for i in range(32)])
+    d[:, :8] = 0
+    result = stratified_photometry_gates(e, d, p, **labels)
+    assert result['regions']['0']['passed'] and result['photometry_passed']
+    d[0] = 0
+    result = stratified_photometry_gates(e, d, p, **labels)
+    assert result['pooled']['passed'] and not result['donors']['0']['passed']
+    assert not result['photometry_passed']

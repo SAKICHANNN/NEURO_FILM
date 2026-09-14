@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: D>0scope resolved from after_identifiability packet25+retainedjointgate: pooled/perdonor only; perqueryE<D implicit; zeroROI/region allowedifE0. Config+stratifiedgate updated;4tests pass0.53s inclzero-donor fail/zero-region pass. Cache9500 confirmedLIVE with3additionaldonors137-150s each,4totalinclinitial; no optimizer. NEXT trainingentry + endtoend engineering, cache sparsewait.
+
 CURRENT 2026-09-14: stratified_photometry_gates implemented fixed32x32x4 E/D/P pooled,donor,camera,4region,query subgates equalcase.3gatetests pass0.53s incl pooledpass/localdonorfail. D>0scope pending medium existingprotocol audit; fullacceptance stillseparatecontrols/ROI/saturation/comfort. Cache9500 lastknownlive untouched. NEXT Dscope resolution/trainingentry.
 
 CURRENT 2026-09-14: independent eval gates src/eval/fable_cdfe_gates.py added fixedvalidation32x8x4 standardizedMSE and donorcontrol32x32x4 sign+strictmargin;2tests pass0.56s (22fails23passes,tiesnonwins,equalitymarginfails,zero-baselinefails). Syntheticonly noheldtargets. Cache session9500 lastknownlive; pinnedcachecode unchanged. NEXT fullaggregate metrics/runner while sparse ETA-based cache checks.
