@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: existing21historicalEXIF records reconciled rows/protocol/repositoryhashchain andRAWsha/URL bindings;4availablelocaltimestamps agree. Historicalscript didnotpersistresponsebodies, so no bodyrehashclaim. No requests/admission. NEXT remaininghistory dispositions/Mfreeze withexplicit evidencelevels. Evidence docs/evidence/FABLE_CDFE68_RECORDED_METADATA_CHAIN_20260914.json.
+
 CURRENT 2026-09-14: locatorv2 nowmatches all430historyidentities using49existingfiles. Fixeddownload_urlschema,knownfreezeCSV,andexactID existingrepositorysnapshot. Rebuildverified;v1preserved. No newrequests orfreshnessclaim. NEXT metadata/source-hash reconciliation and430dispositions tofreezeM. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_HISTORY_LOCATORS_V2_20260914.json.
 
 CURRENT 2026-09-14: root reserves scripts/join_fable_cdfe_history_locators.py for existing schema correction(download_url), freezeCSV andknownrepository snapshot selected-ID join. Preserve v1locator evidence. No requests.

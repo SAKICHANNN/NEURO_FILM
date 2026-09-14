@@ -1,0 +1,374 @@
+{
+  "status": "RECORDED_METADATA_CHAIN_RECONCILED_BODY_NOT_RETAINED",
+  "rows": [
+    {
+      "identity": "rawpixls/771",
+      "recorded_raw_sha256": "ec069b178b9383d80c72f8cdc1b79bd54ca451e7c20793b109d8ad73bef6bdf6",
+      "recorded_metadata_sha256": "4ea571d1fdebbc33ef1ba016e239fb365749e95ba03accf05b57f1893138f9e2",
+      "fields": {
+        "Exif.Image.ImageWidth": "5760",
+        "Exif.Image.ImageLength": "3840",
+        "Exif.Image.Make": "Canon",
+        "Exif.Image.Model": "Canon EOS 5D Mark III",
+        "Exif.Image.DateTime": "2017:01:05 13:52:55",
+        "Exif.Photo.DateTimeOriginal": "2017:01:05 13:52:55",
+        "Exif.Photo.DateTimeDigitized": "2017:01:05 13:52:55"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/773",
+      "recorded_raw_sha256": "a79065e78a6c5bdbc8726e786ade02d54a7d496cc3cb4504d804c924a3d999da",
+      "recorded_metadata_sha256": "4b5ed4517fee5cf22020f4ed183b204336a906867da3ff8b238287faf9b44d0e",
+      "fields": {
+        "Exif.Image.ImageWidth": "5760",
+        "Exif.Image.ImageLength": "3840",
+        "Exif.Image.Make": "Canon",
+        "Exif.Image.Model": "Canon EOS 5D Mark III",
+        "Exif.Image.DateTime": "2017:01:05 13:54:01",
+        "Exif.Photo.DateTimeOriginal": "2017:01:05 13:54:01",
+        "Exif.Photo.DateTimeDigitized": "2017:01:05 13:54:01"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/883",
+      "recorded_raw_sha256": "94993fefdac13a68a40f0c4f47479256ff53790d8af8ad01ecf6b78d7d2b553f",
+      "recorded_metadata_sha256": "1ea7eeceb17f717b17d0c215aac9352f7324f5d0c0b9750eae76c2d82a513660",
+      "fields": {
+        "Exif.Image.ImageWidth": "256",
+        "Exif.Image.ImageLength": "171",
+        "Exif.Image.Make": "Canon",
+        "Exif.Image.Model": "Canon EOS 5D Mark III",
+        "Exif.Image.DateTime": "2017:01:14 16:51:19",
+        "Exif.Photo.DateTimeOriginal": "2017:01:05 13:52:55",
+        "Exif.Photo.DateTimeDigitized": "2017:01:05 13:52:55"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/2649",
+      "recorded_raw_sha256": "bc29ac8a37c800346749b9a5a1adc2722357f7f0e49df05a7104454881604b92",
+      "recorded_metadata_sha256": "139592ef9b2b8d44fc5a57a648382ea04de564aa74eee581a3fad6373f7b65b8",
+      "fields": {
+        "Exif.Image.ImageWidth": "256",
+        "Exif.Image.ImageLength": "143",
+        "Exif.Image.Make": "Canon",
+        "Exif.Image.Model": "Canon EOS 5D Mark III",
+        "Exif.Image.DateTime": "2018:06:24 12:14:49",
+        "Exif.Photo.DateTimeOriginal": "2018:06:24 12:14:49",
+        "Exif.Photo.DateTimeDigitized": "2018:06:24 12:14:49"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/2348",
+      "recorded_raw_sha256": "16282357ce0143ff7d36737f82074662db7aa0790ecd309196f406baf0f586a7",
+      "recorded_metadata_sha256": "4604523adb5c0bc78e4cce6770bb1a26e25f75ecf8f974075ff6791022889b7e",
+      "fields": {
+        "Exif.Photo.DateTimeOriginal": "2018:02:21 21:41:11",
+        "Exif.Photo.DateTimeDigitized": "2018:02:21 21:41:11",
+        "Exif.Image.Make": "Panasonic",
+        "Exif.Image.Model": "DC-G9",
+        "Exif.Image.DateTime": "2018:02:21 21:41:11"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/2584",
+      "recorded_raw_sha256": "7c24fefb1f73ad45c42a0be0078e15b7e91deab1d623efceebfc3c4d0d06135c",
+      "recorded_metadata_sha256": "6aea5a8f656df941d9cd68b5a6c4e2989c8ce477a4557462e795cf2a945ec5a8",
+      "fields": {
+        "Exif.Photo.DateTimeOriginal": "2018:05:17 11:50:52",
+        "Exif.Photo.DateTimeDigitized": "2018:05:17 11:50:52",
+        "Exif.Image.Make": "Panasonic",
+        "Exif.Image.Model": "DC-G9",
+        "Exif.Image.DateTime": "2018:05:17 11:50:52"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/3216",
+      "recorded_raw_sha256": "fc2d9cc7f821a8e7bd332ae99251b3aec4778c99fe468f00539d56cf8b1c8dd8",
+      "recorded_metadata_sha256": "57b9ad19ed18f72d8312aed87479f7f0a0ed074a327ae9fa30a8e246fdc488fb",
+      "fields": {
+        "Exif.Photo.DateTimeOriginal": "2019:06:18 08:20:22",
+        "Exif.Photo.DateTimeDigitized": "2019:06:18 08:20:22",
+        "Exif.Image.Make": "Panasonic",
+        "Exif.Image.Model": "DC-G9",
+        "Exif.Image.DateTime": "2019:06:18 08:20:22"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/3219",
+      "recorded_raw_sha256": "cfb015a89d7af92306328868e6d87ac7974c427612608016821dfb336e8e3faa",
+      "recorded_metadata_sha256": "d0b5879e595219ed1cf2c495aec1591dbe05c55cbf76dab277b07b99b387184a",
+      "fields": {
+        "Exif.Photo.DateTimeOriginal": "2019:06:18 08:21:09",
+        "Exif.Photo.DateTimeDigitized": "2019:06:18 08:21:09",
+        "Exif.Image.Make": "Panasonic",
+        "Exif.Image.Model": "DC-G9",
+        "Exif.Image.DateTime": "2019:06:18 08:21:09"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/4812",
+      "recorded_raw_sha256": "4099ecc46ebaca26e2a66a96a8313fed5e8c707b3836ccf0e77a134844b041c1",
+      "recorded_metadata_sha256": "b40ef5e959778a8b033d9c77e4b7180f16b1d3f5d2b5c0c9837a9116dd7f8927",
+      "fields": {
+        "Exif.Image.ImageWidth": "160",
+        "Exif.Image.ImageLength": "120",
+        "Exif.Image.Make": "NIKON CORPORATION",
+        "Exif.Image.Model": "NIKON Z fc",
+        "Exif.Image.DateTime": "2021:07:30 16:55:52",
+        "Exif.Photo.DateTimeOriginal": "2021:07:30 16:55:52",
+        "Exif.Photo.DateTimeDigitized": "2021:07:30 16:55:52"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/4813",
+      "recorded_raw_sha256": "e4cabbeaf818eaa77719158ca2f480fbbf413e694f3714b44f01d588bc7a9863",
+      "recorded_metadata_sha256": "b345a33776b0bcbf5cba09d87994a5ed814069016a6a3bb4640a58903751babe",
+      "fields": {
+        "Exif.Image.ImageWidth": "160",
+        "Exif.Image.ImageLength": "120",
+        "Exif.Image.Make": "NIKON CORPORATION",
+        "Exif.Image.Model": "NIKON Z fc",
+        "Exif.Image.DateTime": "2021:07:31 09:15:49",
+        "Exif.Photo.DateTimeOriginal": "2021:07:31 09:15:49",
+        "Exif.Photo.DateTimeDigitized": "2021:07:31 09:15:49"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/8562",
+      "recorded_raw_sha256": "038995c5108899cfa3f54d99364752fe761bb0accb8b26a21ac274d107a85d05",
+      "recorded_metadata_sha256": "f87e119a58f7ff35155273b529bced215ae3ba68571928e159936afebe2ac504",
+      "fields": {
+        "Exif.Image.ImageWidth": "160",
+        "Exif.Image.ImageLength": "120",
+        "Exif.Image.Make": "NIKON CORPORATION",
+        "Exif.Image.Model": "NIKON Z fc",
+        "Exif.Image.DateTime": "2025:09:05 18:14:56",
+        "Exif.Photo.DateTimeOriginal": "2025:09:05 18:14:56",
+        "Exif.Photo.DateTimeDigitized": "2025:09:05 18:14:56"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/8563",
+      "recorded_raw_sha256": "18cbb59cb9ab9deaad835080b3e9dc41d61e50fed9c24f9fe6891673b1e21d2c",
+      "recorded_metadata_sha256": "6d2ee6a2cced74b64575ad73ef5824f766db00e9514b4683ce33c12e27dbe2f6",
+      "fields": {
+        "Exif.Image.ImageWidth": "160",
+        "Exif.Image.ImageLength": "120",
+        "Exif.Image.Make": "NIKON CORPORATION",
+        "Exif.Image.Model": "NIKON Z fc",
+        "Exif.Image.DateTime": "2025:09:05 18:17:19",
+        "Exif.Photo.DateTimeOriginal": "2025:09:05 18:17:19",
+        "Exif.Photo.DateTimeDigitized": "2025:09:05 18:17:19"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/8566",
+      "recorded_raw_sha256": "8ff63bbe2a55aa682112662674b302e50a650a671a3022c68f787672961a0683",
+      "recorded_metadata_sha256": "546b4f0ce3b8f8ba79cf6c8bf8ba2182d5b1cb32cb297af18456b031b094ee79",
+      "fields": {
+        "Exif.Image.ImageWidth": "160",
+        "Exif.Image.ImageLength": "120",
+        "Exif.Image.Make": "NIKON CORPORATION",
+        "Exif.Image.Model": "NIKON Z fc",
+        "Exif.Image.DateTime": "2025:09:05 18:17:31",
+        "Exif.Photo.DateTimeOriginal": "2025:09:05 18:17:31",
+        "Exif.Photo.DateTimeDigitized": "2025:09:05 18:17:31"
+      },
+      "local_datetimes": [
+        "2025:09:05 18:17:31"
+      ],
+      "date_comparison": "AGREES",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/8185",
+      "recorded_raw_sha256": "2dc0bbdf04c93ca62c914604f644c735286037912d6fba609d0cb78d00acd097",
+      "recorded_metadata_sha256": "9f9031ea98ba4e72b410edf63988b9ccb9de64094d7f9651454a1432701b8649",
+      "fields": {
+        "Exif.Image.ImageWidth": "6000",
+        "Exif.Image.ImageLength": "4000",
+        "Exif.Image.Make": "Canon",
+        "Exif.Image.Model": "Canon EOS R10",
+        "Exif.Image.DateTime": "2025:05:05 17:15:08",
+        "Exif.Photo.DateTimeOriginal": "2025:05:05 17:15:08",
+        "Exif.Photo.DateTimeDigitized": "2025:05:05 17:15:08"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/3345",
+      "recorded_raw_sha256": "190d5878675f4de07d246271ba411b152f3317b2d2a0e27b9c827fe7343b28ea",
+      "recorded_metadata_sha256": "641d68e3b2d2b8cc5086a7af822668c97d3ddf786329415880e177990db5033a",
+      "fields": {
+        "Exif.Image.ImageWidth": "160",
+        "Exif.Image.ImageLength": "120",
+        "Exif.Image.Make": "RICOH IMAGING COMPANY, LTD.",
+        "Exif.Image.Model": "PENTAX K-1 Mark II",
+        "Exif.Image.DateTime": "2019:08:20 17:30:25",
+        "Exif.Photo.DateTimeOriginal": "2019:08:20 17:30:25",
+        "Exif.Photo.DateTimeDigitized": "2019:08:20 17:30:25"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/3353",
+      "recorded_raw_sha256": "2b643794410ebc02b0742e84f43414c015143ee33d4ffe535c039c5969147f8e",
+      "recorded_metadata_sha256": "5d8925f7e0d165a1380d69c5078a0cde997f52906c3480a722895f2d339d1628",
+      "fields": {
+        "Exif.Image.ImageWidth": "7392",
+        "Exif.Image.ImageLength": "4950",
+        "Exif.Image.Make": "RICOH IMAGING COMPANY, LTD.",
+        "Exif.Image.Model": "PENTAX K-1 Mark II",
+        "Exif.Image.DateTime": "2019:08:20 17:35:29",
+        "Exif.Photo.DateTimeOriginal": "2019:08:20 17:35:29",
+        "Exif.Photo.DateTimeDigitized": "2019:08:20 17:35:29"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/7125",
+      "recorded_raw_sha256": "05b0ecfeddfdf404b5a5831763c3aa77bbf9f5b7b9ad502bb93ff5d68887b9e7",
+      "recorded_metadata_sha256": "a2d1804281b32d04f5e3056db210f96ec129afe548e407e77f34e50de9e761bb",
+      "fields": {
+        "Exif.Image.ImageWidth": "160",
+        "Exif.Image.ImageLength": "120",
+        "Exif.Image.Make": "RICOH IMAGING COMPANY, LTD.",
+        "Exif.Image.Model": "PENTAX K-1 Mark II",
+        "Exif.Image.DateTime": "2023:12:25 12:10:01",
+        "Exif.Photo.DateTimeOriginal": "2023:12:25 12:10:01",
+        "Exif.Photo.DateTimeDigitized": "2023:12:25 12:10:01"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/7133",
+      "recorded_raw_sha256": "fe2330254c5313d4dde97cbd01e2987f6f1137f1c9c687d30e951f4668979381",
+      "recorded_metadata_sha256": "be309aa94db8b481cb1e90f1dc6cd21e4682d0ee6416fa2078c90f727b9b3341",
+      "fields": {
+        "Exif.Image.ImageWidth": "4832",
+        "Exif.Image.ImageLength": "3238",
+        "Exif.Image.Make": "RICOH IMAGING COMPANY, LTD.",
+        "Exif.Image.Model": "PENTAX K-1 Mark II",
+        "Exif.Image.DateTime": "2023:12:25 12:14:10",
+        "Exif.Photo.DateTimeOriginal": "2023:12:25 12:14:10",
+        "Exif.Photo.DateTimeDigitized": "2023:12:25 12:14:10"
+      },
+      "local_datetimes": [],
+      "date_comparison": "NO_LOCAL_COMPARISON",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/7134",
+      "recorded_raw_sha256": "8ba36273780d810cbd25e847b6bfa2d22861b8bfda486bc81a8b3648f505cbb2",
+      "recorded_metadata_sha256": "df994717c45fef174ddd1ea54a3b644b60b5df3cb28cb3d190fb902cd247531b",
+      "fields": {
+        "Exif.Image.ImageWidth": "160",
+        "Exif.Image.ImageLength": "120",
+        "Exif.Image.Make": "RICOH IMAGING COMPANY, LTD.",
+        "Exif.Image.Model": "PENTAX K-1 Mark II",
+        "Exif.Image.DateTime": "2023:12:25 12:14:34",
+        "Exif.Photo.DateTimeOriginal": "2023:12:25 12:14:34",
+        "Exif.Photo.DateTimeDigitized": "2023:12:25 12:14:34"
+      },
+      "local_datetimes": [
+        "2023:12:25 12:14:34"
+      ],
+      "date_comparison": "AGREES",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/5832",
+      "recorded_raw_sha256": "29714bc4cc754a81d2ab154a4ecf1eb5fa125d3901b10f3bd88d731c674f69c4",
+      "recorded_metadata_sha256": "e2e8fc8d6d5063a559b6b2ae8a31364434cd5830aea50a0dab3579ac9867ec08",
+      "fields": {
+        "Exif.Image.ImageWidth": "6304",
+        "Exif.Image.ImageLength": "4224",
+        "Exif.Image.Make": "RICOH IMAGING COMPANY, LTD.",
+        "Exif.Image.Model": "PENTAX K-3 Mark III",
+        "Exif.Image.DateTime": "2022:08:03 20:56:05",
+        "Exif.Photo.DateTimeOriginal": "2022:08:03 20:56:05",
+        "Exif.Photo.DateTimeDigitized": "2022:08:03 20:56:05"
+      },
+      "local_datetimes": [
+        "2022:08:03 20:56:05"
+      ],
+      "date_comparison": "AGREES",
+      "body_rehash_available": false
+    },
+    {
+      "identity": "rawpixls/130",
+      "recorded_raw_sha256": "25c746a58363e910e6046a96cf2915fff45fe2995676eb2c97842d0c156d03a7",
+      "recorded_metadata_sha256": "9c509c5685cf217b463e57eb35fbaf88f89a6dc444956676d82f0d6f538f59de",
+      "fields": {
+        "Exif.Image.ImageWidth": "5184",
+        "Exif.Image.ImageLength": "3456",
+        "Exif.Image.Make": "Canon",
+        "Exif.Image.Model": "Canon EOS 7D",
+        "Exif.Image.DateTime": "2016:12:22 20:01:55",
+        "Exif.Photo.DateTimeOriginal": "2016:12:22 20:01:55",
+        "Exif.Photo.DateTimeDigitized": "2016:12:22 20:01:55"
+      },
+      "local_datetimes": [
+        "2016:12:22 20:01:55"
+      ],
+      "date_comparison": "AGREES",
+      "body_rehash_available": false
+    }
+  ],
+  "validated": [
+    "rowsSHA matches historical report",
+    "protocolSHA matches historical report",
+    "repository snapshotSHA matches protocol",
+    "21RAWsha/exifURL pairs match protocol",
+    "4local timestamp comparisons agree"
+  ],
+  "limits": [
+    "Original EXIF response bodies were not persisted by historical fetch script; recorded body digest cannot be independently rechecked.",
+    "No camera/date graph update or fresh admission from this report."
+  ],
+  "next": "Use recorded metadata at declared evidence level; complete remaining history disposition and missing metadata request list without duplicate RAW retrieval."
+}
