@@ -1,5 +1,5 @@
 {
-  "status": "FIRST_PASS_COMPLETE_LINEAGE_AND_PROVENANCE_PENDING",
+  "status": "SOURCE_REQUIREMENTS_NOT_ESTABLISHED_WITHIN_BOUNDED_AUDIT",
   "descriptor_rows": 2082,
   "history_capture_count": 1006,
   "candidate_count": 1024,
@@ -221,6 +221,12 @@
     "limits": [
       "RAW validation pending",
       "Research-only source boundary retained"
-    ]
+    ],
+    "current_validity": "INVALIDATED_BY_PILOT_LINEAGE_RECONCILIATION"
+  },
+  "termination": {
+    "path": "outputs/fable_source_population_bridge_v1/termination_v1.json",
+    "sha256": "209a63dc645f8804ed67d4c7e4db6ab911ac0c5758d9bc6f6cffc8194ebd8158",
+    "reason": "LATE_UNRESOLVED_HISTORY_ACQUISITION_LINK"
   }
 }

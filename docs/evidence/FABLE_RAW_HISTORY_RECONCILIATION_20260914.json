@@ -1,5 +1,5 @@
 {
-  "status": "LATE_LINEAGE_RECONCILIATION_PENDING",
+  "status": "TERMINAL_LATE_UNRESOLVED_HISTORY_ACQUISITION_LINK",
   "history_raws_read": 576,
   "camera_date_clues": 89,
   "viewed_groups": 5,
@@ -13,5 +13,7 @@
   "limits": [
     "Metadata read only; no full history RAW rehash",
     "Possible link not yet definitive; no replacement or rendering"
-  ]
+  ],
+  "termination_sha256": "209a63dc645f8804ed67d4c7e4db6ab911ac0c5758d9bc6f6cffc8194ebd8158",
+  "guard_verification": "Downloader rejected execution before network; terminal evidence retained"
 }

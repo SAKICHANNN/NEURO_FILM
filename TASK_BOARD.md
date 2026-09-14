@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: frozen FiveK attempt TERMINAL SOURCE_REQUIREMENTS_NOT_ESTABLISHED_WITHIN_BOUNDED_AUDIT / LATE_UNRESOLVED_HISTORY_ACQUISITION_LINK. Pilot a1021 hallway plausibly linked to consumed house-tour photos across15m29s; root+medium agree unresolved, not confirmed duplicate. No replacement/reallocation/further RAW/training under this manifest. Preserve36 RAWs/all evidence; next reconsider validation protocol separately from terminated attempt. Overall project goal remains active.
+
 CURRENT 2026-09-14: read576 local history RAW metadata;89 camera/date clues grouped20 pilots. Viewed groups0..4. Group4 a1021 hallway versus household-history interiors/exteriors is unresolved; medium assignment_solver_design adjudicating late-attempt rule. No replacement/render/training pending decision.
 
 CURRENT 2026-09-14:36 RAWs decoded rawpy0.26.1/LibRaw0.22, camera labels all match, ordinary Bayer and RGB as-shot WB present. Two shared-camera/date pairs actually viewed and distinct on available evidence. Metadata report retained; cross-history metadata and frozen full renderer/native ROI checks pending. No training.

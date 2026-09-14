@@ -26,6 +26,8 @@ def run():
     manifest_path = BASE / 'raw_pilot_manifest_v1.json'
     manifest = json.loads(manifest_path.read_text())
     evidence = json.loads((ROOT / 'docs/evidence/FABLE_FIVEK_COMPARISONS_20260914.json').read_text())
+    if (BASE / 'termination_v1.json').exists() or evidence.get('status') == 'SOURCE_REQUIREMENTS_NOT_ESTABLISHED_WITHIN_BOUNDED_AUDIT':
+        raise ValueError('source attempt terminated; no further acquisition')
     manifest_sha = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
     if manifest_sha != evidence['stage_a']['pins'][manifest_path.name]:
         raise ValueError('pilot pin mismatch')
