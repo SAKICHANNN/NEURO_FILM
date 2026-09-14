@@ -9,7 +9,7 @@
     "neighbors.json": "f7163740a7e40a84d11880e514232910566204a984fa7c9dbef07f17798e850d",
     "cache_binding.json": "332240dd30d331233d947d5e3fb85a43f6f8375d7bacb5571260dd13113d93f0",
     "visual_reviews.jsonl": "fe3b8869a63c6a7ef013083f41b22c811cd7a6a9b74bae1a90d39343ba5a77bf",
-    "additional_lineage_edges.jsonl": "37dc7fa38b4bb65c9b020b217e8650f8ec84823046063bf7d473efe9ba1bd155"
+    "additional_lineage_edges.jsonl": "eb90cb73abadc5cf5ea189da7414c1bec698a1330acf34db5d18131390f4d861"
   },
   "verification": [
     "Medium reviewed six-viewhash and neighbor ranking",
@@ -22,7 +22,7 @@
     "No candidate admission/RAW/training",
     "Bounded history coverage not globally complete"
   ],
-  "additional_unresolved_links": 30,
+  "additional_unresolved_links": 42,
   "additional_history_same_scene_links": 7,
   "insufficient_scene_preview_indices": [
     148
@@ -48,7 +48,7 @@
   "current_recorded_edge_exclusions": {
     "excluded_candidates": 50,
     "provenance_pending": 974,
-    "status": "DIAGNOSTIC_NOT_ADMISSION",
+    "status": "SUPERSEDED_RECOMPUTE_AFTER_DATE_REVIEW",
     "candidate_ids": [
       "fivek/a0268-_DSC0059",
       "fivek/a0269-JI2E4569",
@@ -101,5 +101,11 @@
       "fivek/a4916-DSC_0069",
       "fivek/a4928-Duggan_090127_4793"
     ]
+  },
+  "filename_date_review": {
+    "viewed_groups": 12,
+    "total_groups": 27,
+    "path": "outputs/fable_source_population_bridge_v1/comparisons/filename_date_reviews_v1.json",
+    "sha256": "6444d5a8d44adb71dea0236e29e423d52c25b29d7178b30d72b0fcc4a1462e80"
   }
 }

@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: direct filename date-clue review12/27 groups completed; remaining groups12..26. Total lineage edges50, unresolved42. Date tokens not verified capture/session identities; exclude unresolved visual components. Prior50/974 diagnostic superseded. No admission/RAW/training.
+
 CURRENT 2026-09-14: reviewed21 numbered-suffix variant groups; one possible performance-session link added. Total38 edges/30 unresolved. Current recorded graph excludes50 candidates; 974 remain provenance-pending. NEXT remaining explicit filename session clues, then query eligibility and324-role feasibility. No RAW/training.
 
 CURRENT 2026-09-14: all24 exact filename collision groups actually viewed, pairwise distinct on preview evidence; two cross-group possible scene links added (arena and beach dog). Unresolved edges29, total37. Prior47/977 graph diagnostic superseded; recompute after remaining direct provenance checks. No admission/RAW/training.
