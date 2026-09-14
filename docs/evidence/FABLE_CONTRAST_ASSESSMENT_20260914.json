@@ -1,0 +1,84 @@
+{
+  "status": "TERMINAL_FIXED_DESCRIPTOR_LINEAR_ROUTE_FAILED",
+  "assessment_sha256": "435c4fb44f4ae209cf0a364bdd56fe97ca1debe5888b0d50eea1998a6c21b6b6",
+  "feature_receipt": {
+    "status": "FRESH_FEATURES_FROZEN_NO_REFIT",
+    "config_sha256": "c9300d4358e164b19505d6c4d7e97c7e76952957ffe29fed43744c690ed75c43",
+    "model_sha256": "e0cc4b567dcddc12b1f11e3bd48eccbdf13d32ab233cbc21f9f115f9616aa283",
+    "fresh_draws_sha256": "bd24fc34745d09467962005a92ce7f40878f5ee4c1618637c13dca0541cebf59",
+    "features_sha256": "ecb28bf5baeeb49e6427b4ec6c7b1b1086afa4f6e64afb9173e48ab6c55eb368",
+    "entry_sha256": "8995c831eef0fabe901083882f3942c2bc16be9059bf22fbf264db3d24791d11",
+    "after_rows": 320,
+    "new_identity_rows": 4,
+    "wall_seconds": 11.550727199999528
+  },
+  "prediction_receipt": {
+    "status": "FRESH_PREDICTIONS_FROZEN_NO_REFIT",
+    "config_sha256": "c9300d4358e164b19505d6c4d7e97c7e76952957ffe29fed43744c690ed75c43",
+    "model_sha256": "e0cc4b567dcddc12b1f11e3bd48eccbdf13d32ab233cbc21f9f115f9616aa283",
+    "fresh_draws_sha256": "bd24fc34745d09467962005a92ce7f40878f5ee4c1618637c13dca0541cebf59",
+    "features_sha256": "ecb28bf5baeeb49e6427b4ec6c7b1b1086afa4f6e64afb9173e48ab6c55eb368",
+    "entry_sha256": "8995c831eef0fabe901083882f3942c2bc16be9059bf22fbf264db3d24791d11",
+    "after_rows": 320,
+    "new_identity_rows": 4,
+    "wall_seconds": 11.735153799999352,
+    "predictions_sha256": "73befcc365b0cb978ae323147038a267dae558c6848757dc1f44ba9a1a7897f1"
+  },
+  "visual_revealed_sha256": "2900a74d2ef12bf200eef26435a900a51ced8169ffe09307b9c4d38a57c727f7",
+  "visual_blind_sha256": "5c21c580ba97a96dd36be664edba5a1ac9bc18255e68477e0182bc8c41de5fcd",
+  "primary_cases": 512,
+  "secondary_cases": 768,
+  "primary_pooled": {
+    "after_only": {
+      "float_E": 0.004614389352017481,
+      "code_E": 300.6921268247498,
+      "float_P": 0.004512970319307896,
+      "code_P": 294.0425778034417,
+      "float_D": 0.001416502340672162,
+      "code_D": 92.23073356211238
+    },
+    "paired_control": {
+      "float_E": 5.978835512293814e-05,
+      "code_E": 4.046829749444651,
+      "float_P": 0.0013342892899650006,
+      "code_P": 86.89049213349873,
+      "float_D": 0.001416502340672162,
+      "code_D": 92.23073356211238
+    },
+    "frozen_combined": {
+      "float_E": 0.0013375250360103575,
+      "code_E": 87.00111395736067,
+      "float_P": 1.215326142582177e-05,
+      "code_P": 0.8700765719979628,
+      "float_D": 0.001416502340672162,
+      "code_D": 92.23073356211238
+    },
+    "identity": {
+      "float_E": 0.001416502340672162,
+      "code_E": 92.23073356211238,
+      "float_P": 0.0,
+      "code_P": 0.0,
+      "float_D": 0.001416502340672162,
+      "code_D": 92.23073356211238
+    }
+  },
+  "after_error_over_identity": 3.2602161471723523,
+  "branch": {
+    "action": "CLOSE_FIXED_DESCRIPTOR_LINEAR_DECODING_ROUTE",
+    "reason": "PAIRED_WORKS_REUSED_AFTER_COMPLETE_GATE_FAILS",
+    "no_rescue_refit_gain_seed_donor_change": true,
+    "real_calibration_admitted": false,
+    "claim": "This decoder/prior route failed; no AFTER-only impossibility claim."
+  },
+  "tests": {
+    "decoder_ridge_transform": 16,
+    "scoring_metrics": 13,
+    "all_passed": true
+  },
+  "limits": [
+    "Synthetic bounded global photometry diagnostic; not true film emulation.",
+    "Paired control has BEFORE information absent from user deployment contract.",
+    "Four fixed new donors are a narrow prospective cohort.",
+    "All previous failures remain frozen; no gain/lambda/donor/seed rescue."
+  ]
+}
