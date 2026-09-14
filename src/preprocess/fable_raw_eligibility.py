@@ -2,6 +2,42 @@ import numpy as np
 import tifffile
 
 
+def reconcile_neutrals(records) -> list:
+    if not records:
+        raise ValueError('explicit AsShotNeutral required')
+    values = [np.asarray(record['values'], dtype=np.float64) for record in records]
+    if any(v.shape != (3,) or not np.isfinite(v).all() or np.any(v <= 0) for v in values):
+        raise ValueError('positive finite RGB neutral required')
+    if any(not np.array_equal(v, values[0]) for v in values[1:]):
+        raise ValueError('conflicting AsShotNeutral values across IFDs')
+    return values[0].tolist()
+
+
+def matrix_singular_values(matrix, shape) -> list:
+    matrix = np.asarray(matrix, dtype=np.float64)
+    if matrix.shape != shape or not np.isfinite(matrix).all():
+        raise ValueError('invalid color matrix shape or values')
+    singular = np.linalg.svd(matrix, compute_uv=False)
+    tolerance = max(shape) * np.finfo(np.float64).eps * singular[0]
+    if np.count_nonzero(singular > tolerance) != 3:
+        raise ValueError('color matrix numerical rank must be three')
+    return singular.tolist()
+
+
+def inspect_decoder_numeric(raw, metadata) -> dict:
+    if raw.color_desc != b'RGBG':
+        raise ValueError('RGBG decoder channel order required')
+    xyz = np.asarray(raw.rgb_xyz_matrix, dtype=np.float64)
+    matrix_singular_values(xyz, (4, 3))
+    singular = matrix_singular_values(xyz[:3], (3, 3))
+    black = np.asarray(raw.black_level_per_channel, dtype=np.float64)
+    if black.shape != (4,) or not np.isfinite(black).all() or np.any(black < 0) or np.any(black >= metadata['white']):
+        raise ValueError('decoder black outside supported range')
+    return {'rgb_xyz_matrix': xyz.tolist(), 'rgb_singular_values': singular,
+            'decoder_black': black.tolist(), 'rank_rule': 'float64 eps * max(shape) * largest singular value',
+            'limits': 'Numerical validity only; does not establish matrix source or physical accuracy.'}
+
+
 def tag_numbers(tag, tiff=None) -> np.ndarray:
     if int(tag.dtype) in (5, 10) and tiff is not None:
         handle = tiff.filehandle
@@ -29,21 +65,25 @@ def tag_numbers(tag, tiff=None) -> np.ndarray:
 def inspect_numeric_metadata(path) -> dict:
     with tifffile.TiffFile(path) as tiff:
         queue = list(tiff.pages)
-        planes, matrices = [], []
+        planes, matrices, neutrals = [], [], []
         while queue:
             page = queue.pop(0)
+            if 'AsShotNeutral' in page.tags:
+                neutrals.append({'ifd_offset': page.offset, 'values': tag_numbers(page.tags['AsShotNeutral'], tiff).tolist()})
             if int(page.photometric) == 32803:
                 planes.append(page)
             for name in ('ColorMatrix1', 'ColorMatrix2'):
                 if name in page.tags:
                     values = tag_numbers(page.tags[name], tiff)
-                    if values.size != 9 or np.linalg.matrix_rank(values.reshape(3, 3)) != 3:
+                    if values.size != 9:
                         raise ValueError('finite full-rank 3x3 DNG color matrix required')
+                    matrix_singular_values(values.reshape(3, 3), (3, 3))
                     matrices.append({'tag': name, 'values': values.tolist()})
             if page.pages is not None:
                 queue.extend(page.pages)
         if len(planes) != 1 or not matrices:
             raise ValueError('one CFA plane and explicit color matrix required')
+        neutral = reconcile_neutrals(neutrals)
         tags = planes[0].tags
         required = ('BlackLevel', 'WhiteLevel', 'ActiveArea', 'BlackLevelRepeatDim', 'SamplesPerPixel')
         if any(name not in tags for name in required):
@@ -80,6 +120,7 @@ def inspect_numeric_metadata(path) -> dict:
         return {'status': 'NUMERIC_METADATA_SCREEN_ONLY', 'black_values': black.tolist(),
                 'black_repeat': repeat.tolist(), 'black_plus_delta_bounds': [lower, upper],
                 'deltas': deltas, 'white': float(white[0]), 'color_matrices': matrices,
+                'as_shot_neutral': neutral, 'neutral_sources': neutrals,
                 'limits': ['Numeric screening does not prove physical calibration or decoder matrix selection.',
                            'Black range is a protocol support restriction; no source is admitted by this check alone.',
-                           'Decoder matrix checks and multiple-IFD neutral reconciliation remain pending.']}
+                           'Decoder numeric screening is separate; source independence and rendering contract remain required.']}

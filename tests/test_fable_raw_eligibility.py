@@ -4,7 +4,27 @@ import numpy as np
 import pytest
 import tifffile
 
-from src.preprocess.fable_raw_eligibility import tag_numbers
+from src.preprocess.fable_raw_eligibility import tag_numbers, reconcile_neutrals, matrix_singular_values, inspect_decoder_numeric
+
+
+def test_conflicting_neutral_is_not_last_ifd_wins():
+    with pytest.raises(ValueError, match='conflicting'):
+        reconcile_neutrals([{'values': [1, 1, 1]}, {'values': [.5, 1, 1]}])
+    assert reconcile_neutrals([{'values': [1, 1, 1]}] * 2) == [1, 1, 1]
+
+
+def test_decoder_negative_coefficients_and_zero_fourth_row_allowed():
+    raw = SimpleNamespace(color_desc=b'RGBG', rgb_xyz_matrix=[[1, -.2, 0], [0, 1, 0], [0, 0, 1], [0, 0, 0]], black_level_per_channel=[0, 1, 2, 3])
+    assert len(inspect_decoder_numeric(raw, {'white': 100})['rgb_singular_values']) == 3
+    raw.black_level_per_channel = [0, 1, 2, 100]
+    with pytest.raises(ValueError, match='black'):
+        inspect_decoder_numeric(raw, {'white': 100})
+
+
+@pytest.mark.parametrize('matrix', [np.zeros((3, 3)), np.full((3, 3), np.nan), np.ones((4, 3))])
+def test_degenerate_color_matrix_rejected(matrix):
+    with pytest.raises(ValueError):
+        matrix_singular_values(matrix, (3, 3))
 
 
 def test_signed_and_unsigned_rational_decoding():

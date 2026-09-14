@@ -1,0 +1,243 @@
+{
+  "status": "NUMERIC_AND_NEUTRAL_SCREEN_VERIFIED_NOT_SOURCE_ADMISSION",
+  "fixtures": {
+    "a0005-jn_2007_05_10__564": {
+      "metadata": {
+        "status": "NUMERIC_METADATA_SCREEN_ONLY",
+        "black_values": [
+          0.0
+        ],
+        "black_repeat": [
+          1.0,
+          1.0
+        ],
+        "black_plus_delta_bounds": [
+          127.19140625,
+          128.6328125
+        ],
+        "deltas": {
+          "BlackLevelDeltaH": {
+            "present": false,
+            "count": 1,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "BlackLevelDeltaV": {
+            "present": true,
+            "count": 2348,
+            "minimum": 127.19140625,
+            "maximum": 128.6328125
+          }
+        },
+        "white": 3398.0,
+        "color_matrices": [
+          {
+            "tag": "ColorMatrix1",
+            "values": [
+              0.7162,
+              -0.134,
+              -0.0464,
+              -0.6462,
+              1.3802,
+              0.2944,
+              -0.0838,
+              0.1147,
+              0.7183
+            ]
+          },
+          {
+            "tag": "ColorMatrix2",
+            "values": [
+              0.6256,
+              -0.0303,
+              -0.1,
+              -0.7879,
+              1.5621,
+              0.2396,
+              -0.1713,
+              0.1905,
+              0.7047
+            ]
+          }
+        ],
+        "as_shot_neutral": [
+          0.487387,
+          1.0,
+          0.729345
+        ],
+        "neutral_sources": [
+          {
+            "ifd_offset": 8,
+            "values": [
+              0.487387,
+              1.0,
+              0.729345
+            ]
+          }
+        ],
+        "limits": [
+          "Numeric screening does not prove physical calibration or decoder matrix selection.",
+          "Black range is a protocol support restriction; no source is admitted by this check alone.",
+          "Decoder numeric screening is separate; source independence and rendering contract remain required."
+        ]
+      },
+      "decoder": {
+        "rgb_xyz_matrix": [
+          [
+            0.6256999969482422,
+            -0.030300000682473183,
+            -0.10000000149011612
+          ],
+          [
+            -0.7879999876022339,
+            1.5621000528335571,
+            0.23960000276565552
+          ],
+          [
+            -0.17139999568462372,
+            0.19040000438690186,
+            0.7045999765396118
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "rgb_singular_values": [
+          1.8358957032824625,
+          0.6680865681940528,
+          0.515912632688873
+        ],
+        "decoder_black": [
+          127.0,
+          128.0,
+          127.0,
+          127.0
+        ],
+        "rank_rule": "float64 eps * max(shape) * largest singular value",
+        "limits": "Numerical validity only; does not establish matrix source or physical accuracy."
+      }
+    },
+    "a0064-_DSC7889": {
+      "metadata": {
+        "status": "NUMERIC_METADATA_SCREEN_ONLY",
+        "black_values": [
+          0.0
+        ],
+        "black_repeat": [
+          1.0,
+          1.0
+        ],
+        "black_plus_delta_bounds": [
+          0.0,
+          0.0
+        ],
+        "deltas": {
+          "BlackLevelDeltaH": {
+            "present": false,
+            "count": 1,
+            "minimum": 0.0,
+            "maximum": 0.0
+          },
+          "BlackLevelDeltaV": {
+            "present": false,
+            "count": 1,
+            "minimum": 0.0,
+            "maximum": 0.0
+          }
+        },
+        "white": 15892.0,
+        "color_matrices": [
+          {
+            "tag": "ColorMatrix1",
+            "values": [
+              0.9336,
+              -0.3405,
+              0.0014,
+              -0.732,
+              1.4779,
+              0.2763,
+              -0.0914,
+              0.1171,
+              0.8248
+            ]
+          },
+          {
+            "tag": "ColorMatrix2",
+            "values": [
+              0.8139,
+              -0.2171,
+              -0.0663,
+              -0.8747,
+              1.6541,
+              0.2295,
+              -0.1925,
+              0.2008,
+              0.8093
+            ]
+          }
+        ],
+        "as_shot_neutral": [
+          0.490421,
+          1.0,
+          0.853333
+        ],
+        "neutral_sources": [
+          {
+            "ifd_offset": 8,
+            "values": [
+              0.490421,
+              1.0,
+              0.853333
+            ]
+          }
+        ],
+        "limits": [
+          "Numeric screening does not prove physical calibration or decoder matrix selection.",
+          "Black range is a protocol support restriction; no source is admitted by this check alone.",
+          "Decoder numeric screening is separate; source independence and rendering contract remain required."
+        ]
+      },
+      "decoder": {
+        "rgb_xyz_matrix": [
+          [
+            0.8138999938964844,
+            -0.21709999442100525,
+            -0.06629999727010727
+          ],
+          [
+            -0.8747000098228455,
+            1.654099941253662,
+            0.22949999570846558
+          ],
+          [
+            -0.19249999523162842,
+            0.20080000162124634,
+            0.8093000054359436
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "rgb_singular_values": [
+          2.0202501942381814,
+          0.7578481078358167,
+          0.5868364796892785
+        ],
+        "decoder_black": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rank_rule": "float64 eps * max(shape) * largest singular value",
+        "limits": "Numerical validity only; does not establish matrix source or physical accuracy."
+      }
+    }
+  },
+  "tests": "17passed1.81s",
+  "remaining": "Bind independent screen before locked renderer; bind code and protocol hashes, then source admission readiness."
+}

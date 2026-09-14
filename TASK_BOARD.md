@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: neutral IFD conflicts reject; decoder RGBXYZ finite shape/rank andblack range screened.17tests passed1.81s; both consumedfixtures pass numeric/neutral/decoder checks. Negative matrixcoefficients andzero fourthrow allowed; no physicalcalibrationclaim. Existing rendererlock preserved. NEXT bind screen beforelocked renderer andseal admissionprotocol. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_NEUTRAL_MATRIX_20260914.json.
+
+CURRENT 2026-09-14: root reserves src/preprocess/fable_raw_eligibility.py and tests/test_fable_raw_eligibility.py for neutral reconciliation and decoder numeric checks. Preserve existing locked renderer.
+
 CURRENT 2026-09-14: Canon DeltaV discrepancy resolved as installedtifffile >1024 SRATIONAL array-read truncation; physicalpayload complete4696integers/2348rationals. Project-local exact payload parser fixed,12tests passed1.73s includingendianness/threshold. Both consumedfixtures numericpass; oldfailureevidence retained. No dependency/renderer/lockchanges. NEXT decoder matrix andneutral reconciliation thenadmissionbinding. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_RATIONAL_FIX_20260914.json.
 
 CURRENT 2026-09-14: root reserves src/preprocess/fable_raw_eligibility.py and tests/test_fable_raw_eligibility.py. Fix local rational reads using complete declared bytes; tifffile >1024 rational branch truncates returned elements. Preserve old failed evidence; no dependency edits.
