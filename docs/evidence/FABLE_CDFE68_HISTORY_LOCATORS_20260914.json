@@ -1,0 +1,24 @@
+{
+  "status": "EXISTING_RECORD_LOCATORS_NOT_RESOLVED_HISTORY",
+  "artifact": "outputs\\fable_cdfe68_exposure_v1\\history_locators.json",
+  "sha256": "cc90db09565579acb48bc222c5a215de5beac6b8b409415b38314c4ea52c1111",
+  "counts": {
+    "fivek": {
+      "total": 192,
+      "matched": 128,
+      "local_path_present": 0
+    },
+    "rawpixls": {
+      "total": 238,
+      "matched": 215,
+      "local_path_present": 199
+    }
+  },
+  "validation": "Repeated deterministic join equals saved artifact;430identity disposition slots preserved.",
+  "next": "Reconcile original digests and existing metadata, inspect87unmatched records without external source expansion; freezeM onlyafterdisposition.",
+  "limits": [
+    "Existing metadata records are leads pending source/hash reconciliation.",
+    "Repository dates are not assumed capture timestamps; no freshness conclusions.",
+    "One bounded pass through representation-parent manifests/rows and recorded FiveK batches; no external requests."
+  ]
+}

@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: bounded existing-record join47files matches343/430missinghistory identities;87remainunmatched. Slotsall430preserved,rebuildmatches; metadata/locators areleads notlineageseparation. No requests. NEXT reconcilelocaloriginal hashes/metadata andunmatched existingrecords beforeMfreeze. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_HISTORY_LOCATORS_20260914.json.
+
+CURRENT 2026-09-14: root reserves scripts/join_fable_cdfe_history_locators.py. Bounded existing representation-parent manifests/metadata and recorded FiveK batchmanifest join; no external search or requests.
+
 CURRENT 2026-09-14: fixedCDFE256 ID-onlyprefix frozen;6 knownlinked entries retainedwithoutreplacement. Rebuild matches. Medium Mreview: all430historygaps needbounded existing-record disposition; Mselected bylinkresolutionneed notavailability. No requests. NEXT existingmanifest/rawlocators join192FiveK+238rawpixls thenfreezeM. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_CANDIDATE_PREFIX_20260914.json.
 
 CURRENT 2026-09-14: root reserves scripts/freeze_fable_cdfe_prefix.py. Freeze ID-only256candidateprefix with oldpilot exclusion; graph conflicts marked, never replaced. M scope under medium review. No requests.
