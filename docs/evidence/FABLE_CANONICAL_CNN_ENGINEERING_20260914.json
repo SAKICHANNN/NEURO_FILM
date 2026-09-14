@@ -24,5 +24,13 @@
     "128px already-canonicalized input yields4x4 after five stride2 padding1 convolutions; no implicit native resizing.",
     "GELU hidden layer; no batch normalization/dropout/pretrained features."
   ],
-  "next": "Retrieve and locally adjudicate fable-development-reuse-20260914-v1; preserve terminal old source attempt."
+  "next": "Retrieve and locally adjudicate fable-development-reuse-20260914-v1; preserve terminal old source attempt.",
+  "consumed_image_check": {
+    "path": "outputs\\fable_canonical_cnn_engineering_v1\\report.json",
+    "sha256": "a60741bab8935343077527ce7abe03b555bdf922a0030bcfc81571e8cbce7deb",
+    "images": 10,
+    "batch_single_max_raw_delta": 1.1489778017903518e-08,
+    "optimizer_steps": 0,
+    "quality_metrics_computed": false
+  }
 }
