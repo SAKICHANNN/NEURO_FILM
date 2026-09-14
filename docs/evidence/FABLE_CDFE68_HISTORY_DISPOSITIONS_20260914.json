@@ -1,0 +1,13 @@
+{
+  "status": "HISTORY_DISPOSITION_DRAFT_NOT_FROZEN_M",
+  "artifact": "outputs\\fable_cdfe68_exposure_v1\\history_dispositions_draft.json",
+  "sha256": "fa64d6a07c0312acde1ce7b8a0df5e530cca3d23808b1d7308ee61d32a986f8f",
+  "counts": {
+    "KNOWN_ORIGINAL_REMOTE_PENDING_M": 212,
+    "LOCAL_REUSE_NO_REFETCH": 218
+  },
+  "checks": "All430slots;deterministicrebuild;cachedpublisherindex+license source hashes verified.",
+  "medium_decision": "No newbridge. Freeze430frame+Msubset+peridentitydisposition; reusecompletedreads, neverrefetchunsupportedlocalRAW. Exactlyoneboundedexecution thenrelations/roleclosure, nosecondhistorysearch.",
+  "next": "Select existingmetadata/localpending/remoteonce/unresolved statuses and freeze M with256prefix+8GiB sharedcap.",
+  "requests": 0
+}
