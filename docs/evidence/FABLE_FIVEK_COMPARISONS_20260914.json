@@ -3,13 +3,13 @@
   "descriptor_rows": 2082,
   "history_capture_count": 1006,
   "candidate_count": 1024,
-  "viewed_candidates": 119,
+  "viewed_candidates": 135,
   "pins": {
     "descriptors.jsonl": "903acab124ef6579d2cb0b942f33c0bb98e542cb2729db43d3cb10d25f5d3e8f",
     "neighbors.json": "f7163740a7e40a84d11880e514232910566204a984fa7c9dbef07f17798e850d",
     "cache_binding.json": "332240dd30d331233d947d5e3fb85a43f6f8375d7bacb5571260dd13113d93f0",
-    "visual_reviews.jsonl": "e955196b179a02859bbd5e91e4d27ed6ff877c38b12551c70169cac89c82d642",
-    "additional_lineage_edges.jsonl": "aefbb9477138d7f203fa9480aaae3488204e91dbfdfd3a6f0b5e71b4d3da7578"
+    "visual_reviews.jsonl": "9d5ca037dfe58cebd8221787f341459d4b6ad90d7eb4bd29b61887766f7cb23f",
+    "additional_lineage_edges.jsonl": "e92354abc4656eca5722490f91d3c6c716ee9b6af81ee471cb3aeac5fd262653"
   },
   "verification": [
     "Medium reviewed six-viewhash and neighbor ranking",
@@ -17,10 +17,10 @@
     "Rerun rehashed every input and reconciled identity/pool before cache reuse"
   ],
   "limits": [
-    "119of1024candidate comparison sets actually viewed",
+    "135of1024candidate comparison sets actually viewed",
     "No candidate admission/RAW/training",
     "Bounded history coverage not globally complete"
   ],
-  "additional_unresolved_links": 2,
+  "additional_unresolved_links": 3,
   "additional_history_same_scene_links": 1
 }
