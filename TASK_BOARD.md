@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: reviewed14 additional explicit-date-format groups; no cross-identity exact preview-byte duplicates. Recorded graph excludes94 candidates, leaves930. Camera capacity must refresh. Solver implementation delegated to reserved files; lazy optimistic query-mask certificate independently accepted, final selected masks must actually cover requirements. No RAW/training.
+
+CURRENT FILE RESERVATION 2026-09-14: codex subagent assignment_solver_design owns src/eval/fable_role_assignment.py and tests/test_fable_role_assignment.py for exact allocation implementation; root will not edit these until release.
+
 CURRENT 2026-09-14: inspected12 query-content witnesses; face/skin, text candidates, colored illumination and shadow/highlight all observed. Nonexhaustive witnesses do not define query pool or assignment. Medium assignment_solver_design independently checking exact lexicographic feasibility algorithm. NEXT implement full constrained allocation and bind provisional query roles; native readability remains unverified.
 
 CURRENT 2026-09-14: camera capacity audited using separately parsed camera_label_audit plus frozen aliases (cohort camera fields include nulls). Remaining941 across32 models,25 models with>=4 captures. Capacity only, no complete assignment or source admission. NEXT query-content eligibility and lexicographic324-role solver.

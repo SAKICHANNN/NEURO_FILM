@@ -9,7 +9,7 @@
     "neighbors.json": "f7163740a7e40a84d11880e514232910566204a984fa7c9dbef07f17798e850d",
     "cache_binding.json": "332240dd30d331233d947d5e3fb85a43f6f8375d7bacb5571260dd13113d93f0",
     "visual_reviews.jsonl": "fe3b8869a63c6a7ef013083f41b22c811cd7a6a9b74bae1a90d39343ba5a77bf",
-    "additional_lineage_edges.jsonl": "ea7a6c52f3995bdd8c0213fbaf056440dc164c919af5e9fdf1af59bb5ce2c7e7"
+    "additional_lineage_edges.jsonl": "61a235df00587fadf7c3e1ae90de1c0c498e8d8a4fec4a4fa268c7e01338e85b"
   },
   "verification": [
     "Medium reviewed six-viewhash and neighbor ranking",
@@ -22,7 +22,7 @@
     "No candidate admission/RAW/training",
     "Bounded history coverage not globally complete"
   ],
-  "additional_unresolved_links": 247,
+  "additional_unresolved_links": 255,
   "additional_history_same_scene_links": 7,
   "insufficient_scene_preview_indices": [
     148
@@ -46,35 +46,46 @@
     "sha256": "90e9247cb5d42d1c783ba2158e1e8e678a169865fb6f51c2ca1c46196977ba7c"
   },
   "current_recorded_edge_exclusions": {
-    "excluded_candidates": 83,
-    "provenance_pending": 941,
+    "excluded_candidates": 94,
+    "provenance_pending": 930,
     "status": "DIAGNOSTIC_NOT_ADMISSION",
     "candidate_ids": [
+      "fivek/a0144-07-11-20-at-16h38m08s-_MG_5725",
       "fivek/a0201-MB_20030906_073",
       "fivek/a0232-MB_20030906_040",
       "fivek/a0268-_DSC0059",
       "fivek/a0269-JI2E4569",
       "fivek/a0414-IMG_7164",
+      "fivek/a0454-08-05-25-at-12h33m47s-_MG_9489",
       "fivek/a0563-IMG_0286",
       "fivek/a0581-jn_2007_12_10__BU_CRUISE_009",
       "fivek/a0764-MB_070908_088",
       "fivek/a0803-20081226_at_17h04m14__MG_3930",
       "fivek/a0866-IMG_0019",
       "fivek/a0899-_MG_1099",
+      "fivek/a0919-07-10-06-at-17h40m18s-_MG_3916",
       "fivek/a1006-_MG_7950",
       "fivek/a1014-IMG_3957",
       "fivek/a1046-NKIM_MG_8348",
+      "fivek/a1076-07-11-20-at-07h21m04s-_MG_5402",
       "fivek/a1228-_78U7657",
       "fivek/a1361-jn_20080803_0525",
+      "fivek/a1392-08-05-25-at-15h08m39s-_MG_9578",
       "fivek/a1472-jn_20071207_Xmas_House_0125",
       "fivek/a1500-IMG_3940",
       "fivek/a1564-MB_080329_054",
+      "fivek/a1577-07-06-28-at-12h42m19s-_MG_1822",
       "fivek/a1593-_MG_3087",
       "fivek/a1623-MB_20030906_099",
       "fivek/a1654-MB_20030906_053",
+      "fivek/a1732-07-11-11-at-12h06m55s-_MG_4594",
+      "fivek/a1734-07-11-11-at-11h44m17s-_MG_4537",
       "fivek/a1742-IMG_0057",
+      "fivek/a1790-07-06-28-at-12h47m57s-_MG_1831",
+      "fivek/a1818-07-06-28-at-13h38m34s-_MG_1888",
       "fivek/a1897-MB_20030906_094",
       "fivek/a1959-JI2E4641",
+      "fivek/a1996-07-10-06-at-15h02m12s-_MG_3767",
       "fivek/a2149-WP_CRW_8554",
       "fivek/a2157-kme_230",
       "fivek/a2224-MB_070908_032",
@@ -146,11 +157,16 @@
     "sha256": "e7c342d702edcfda9f7a6cb856a0c4bfa2d9a376152c9eb91a5fccc6a97e8774",
     "camera_models": 32,
     "models_with_four_or_more": 25,
-    "status": "CAPACITY_ONLY_NOT_ASSIGNMENT"
+    "status": "SUPERSEDED_BY_NEW_EXCLUSIONS"
   },
   "query_content_witnesses": {
     "path": "outputs/fable_source_population_bridge_v1/comparisons/query_content_witnesses_v1.json",
     "sha256": "0dbfb3e7ef5da5631d65306b5ae1855d797c78f5d28e5284210c7da4dad8e669",
     "status": "NOT_QUERY_SELECTION"
+  },
+  "explicit_date_review": {
+    "groups": 14,
+    "path": "outputs/fable_source_population_bridge_v1/comparisons/filename_explicit_date_reviews_v1.json",
+    "sha256": "4cb0b3d907c445de87f9b6dd744ae87b87bfee141d1fef5db2da8878f8c90aa4"
   }
 }
