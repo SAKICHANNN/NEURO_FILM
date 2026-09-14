@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: query-content labels100 actually inspected. Night street and illuminated water add colored-light witnesses. Optimistic v6 generated, no accepted content certificate yet. NEXT inspect v6 selected unknowns/next ranked uninspected candidates. No RAW/training.
+
 CURRENT 2026-09-14: query mask review76 images complete, including warm artificial illumination witness a3113. Optimistic v5 generated; acceptance still requires selected queries actual-mask coverage. No RAW/training.
 
 CURRENT 2026-09-14: query refinement now28 actually inspected masks; batch24 added text and face evidence but no colored-light credit for painted objects/glass. Optimistic v3 assignment generated, not accepted. NEXT inspect v3 query set/next ranked uninspected candidates. No RAW/training.

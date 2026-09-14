@@ -186,8 +186,11 @@
       "assignment_input_optimistic_v4.json": "aca8fb0aa92b0288a6f02d6d91105b93a101f2e4c1be622bd1f7e6cc9cb6a167",
       "assignment_optimistic_v4.json": "a98c2eddcd7b96635e1d9e844bbf96568b47cff86574e550bed74eec7825f473",
       "assignment_input_optimistic_v5.json": "42d2540e06dfe46708e361053f3517fd47e71b060a21c76765ba4e39991c787f",
-      "assignment_optimistic_v5.json": "90bc166db32c0f2ab351bcb0e4750864074fd827649db919e6d8e1743a89ba67"
+      "assignment_optimistic_v5.json": "90bc166db32c0f2ab351bcb0e4750864074fd827649db919e6d8e1743a89ba67",
+      "query_mask_review_05.json": "74ec5e46c3c4176865e1224dfc20833675535a4e39a82f1b8b428aa55accd395",
+      "assignment_input_optimistic_v6.json": "7f98ece172377a01726bebe46aade4ae1ba366d3011817027dd6c6273cc1fb14",
+      "assignment_optimistic_v6.json": "8a813cc46a0dde97f9e8fcb8d6842689ac584a1f05b5d5d87763edb6ed76bf53"
     },
-    "next": "Inspect v5 queries;76 actual mask labels now bound"
+    "next": "Inspect v6 queries;100 actual mask labels now bound"
   }
 }
