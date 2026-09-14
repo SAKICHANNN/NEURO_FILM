@@ -1,0 +1,89 @@
+{
+  "status": "SOURCE_REQUIREMENTS_NOT_ESTABLISHED_WITHIN_BOUNDED_AUDIT",
+  "metadata_report_sha256": "6470856bf83fddd0245e80ce81671a6029db29d51ddf421eed02e1af216dcb40",
+  "timing_history_sha256": "c848fc79ae5260abcffa6f52ac9c486adb808fdae9449740d4e36b9be631e0bd",
+  "witness_review": {
+    "status": "SOURCE_REQUIREMENTS_NOT_ESTABLISHED_WITHIN_BOUNDED_AUDIT",
+    "reviewed_images": 16,
+    "views": "All4fixed contact sheets each showing all4embeddedpreviews; no treatment outputs",
+    "observations": [
+      {
+        "camera": "Canon EOS5DMarkIII",
+        "same_scene_groups": [
+          [
+            771,
+            773,
+            883
+          ],
+          [
+            2649
+          ]
+        ],
+        "note": "Three bathroom hairdryer views and one outdoor weight/concrete view; not4scenes."
+      },
+      {
+        "camera": "Panasonic DC-G9",
+        "same_scene_groups": [
+          [
+            2348
+          ],
+          [
+            3219,
+            3216
+          ],
+          [
+            2584
+          ]
+        ],
+        "note": "Jacket torso, duplicated colorchart, foliage; only3apparentgroups, no confirmed usable face/skin query."
+      },
+      {
+        "camera": "Nikon Zfc",
+        "same_scene_groups": [
+          [
+            4812,
+            4813
+          ],
+          [
+            8563,
+            8562
+          ]
+        ],
+        "note": "Planter and flower closeup from same scene; two matching bins/wateringcan frames. Conservative related-scene grouping, not4independent scenes."
+      },
+      {
+        "camera": "Pentax K1MarkII",
+        "same_scene_groups": [
+          [
+            3345,
+            3353
+          ],
+          [
+            7133,
+            7125
+          ]
+        ],
+        "note": "Repeated rail/buildings view and same tree different framing; not4scenes."
+      }
+    ],
+    "decision": "Stop this rawpixls-only acquisition branch. No second cohort or replacement. Request explicit population/protocol source reconsideration before training.",
+    "limits": [
+      "Bounded16image audit does not prove no suitable images exist anywhere in repository.",
+      "Groups are source visual observations, not admitted324scene manifest or calibratedcanonicalimages.",
+      "No full RAWpostprocess, no modeltraining, no new independentvalidation consumption."
+    ],
+    "pins": {
+      "witness_protocol.json": "8390d807c2f237f86bf10b2df403e65135fcc6481e48c5d03423aa6e75f3a5e1",
+      "witness\\report.json": "18548050ec6eda00df23486f36a518bb52e12ff9fb7202647b18220fd7c2f7ca",
+      "witness\\camera0.png": "0641f0dc60874ada00fc37d836f010cf182595d0e07ee6b646746517f824c581",
+      "witness\\camera1.png": "04327b8a84d0ebd8c4c62ae6f8a38511f259e01dcade8bd8c565f1ab8c517730",
+      "witness\\camera2.png": "5ae34ffa8fce85d3998c0f14a9a54104f7bb486dbfbd661b6e044e36f59cc58f",
+      "witness\\camera3.png": "7bc1bda84ed95fe6b59c9b00ad18bc303c96cdbac0a4a5f6d8f11543086eeb48"
+    }
+  },
+  "witness_review_sha256": "d640bfe29bbc96431e30d222fbd1367b9ac3fd42c05b8770d1949c60acae35e5",
+  "raw_bytes_verified": 697466508,
+  "source_page_verified": "https://raw.pixls.us/",
+  "source_page_finding": "Requests RAWformat/crop/bitdepth variants; discourages people photos. Per-rowCC0selection retained.",
+  "next": "Scientificpopulation change decision needed; do not silently substitute FiveK or claim localfilesfresh."
+}
