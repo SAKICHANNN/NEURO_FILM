@@ -1,0 +1,21 @@
+{
+  "status": "ALL_FIXED_PREVIEWS_FETCHED_AND_REHASHED_NOT_VISUALLY_ADMITTED",
+  "ledger_sha256": "53c34f768e0517b55ac6779f17cf2bc22845ce9e4fc5adb04f4d28f29ca9df5d",
+  "objects": 1152,
+  "candidates": 1024,
+  "history_restore": 128,
+  "body_bytes": 29755741,
+  "failed": 0,
+  "script_sha256": "0867a28c2ecf7e63ef4e6d61c0885da6dd4b1617fd3ce681f5386a8f0897fab7",
+  "validation": [
+    "Every1152actualfileSHA matchesledger",
+    "Attempt-byte sums match29755741",
+    "Completed rerun made no new requests or byte changes"
+  ],
+  "review": "Medium reviewed transport; trailing failure streak across resume fixed after completed continuous run",
+  "limits": [
+    "Body-byte budget, not full network-wire traffic accounting",
+    "No preview visual/lineage admission yet",
+    "No new RAW or training"
+  ]
+}
