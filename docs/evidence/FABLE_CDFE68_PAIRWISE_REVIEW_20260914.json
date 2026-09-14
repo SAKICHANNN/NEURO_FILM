@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-14",
+  "status": "BOUNDED_HISTORY_VISUAL_REVIEW_COMPLETE_NOT_ROLE_ADMISSION",
+  "artifact": "outputs\\fable_cdfe68_exposure_v1\\final_relation_sheets\\pairwise_review.json",
+  "sha256": "4d85048b4fc4040e8f12077337fd45b1253387b7e64c09dbcbc29aeab785f71d",
+  "pair_count": 9,
+  "candidate_count": 4,
+  "adjudication": {
+    "reviewer": "cdfe68_adoption_review (Astra medium)",
+    "decision": "PROCEED_TO_STRICT_TECHNICAL_AND_ROLE_SCREENING",
+    "basis": "No specific acquisition correspondence in nominated pairs. rawpixls/987 remains visually uninterpretable, but source identity/hash and declared SJCAM M20 have no prefix same-model or concrete cross-camera relation. Abstract possibilities alone do not force global failure.",
+    "claim_ceiling": "Bounded evidence review only, not proven session independence, technical eligibility, role admission or model quality."
+  },
+  "supersedes_pending_next_steps": [
+    "FABLE_CDFE68_HISTORY_VISUAL_INVENTORY_20260914.json",
+    "FABLE_CDFE68_CANDIDATE_VISUAL_INVENTORY_20260914.json"
+  ],
+  "next": "Apply strict technical evidence and real query/native ROI coverage before role admission. Preserve existing exclusions and add recorded historical same-scene edges."
+}

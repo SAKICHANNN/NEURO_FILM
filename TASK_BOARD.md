@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: 9 nominated visual pairs actually reviewed; no specific acquisition match. Medium allows bounded history review closure and strict technical/role screening. rawpixls987 remains uninterpretable with documented source/model limits. NOT role admission. Prior overview pending next-steps superseded by docs/evidence/FABLE_CDFE68_PAIRWISE_REVIEW_20260914.json. NEXT strict technical/native ROI eligibility and recorded history edges; no source expansion.
+
 CURRENT 2026-09-14: actual116candidateoverviews viewed6sheets;no explicit same-scenehistorymatch observed.4candidates nominated9pairchecks(desert/sunset/stream),max3/candidate;notadmission. NEXT nominatedpairs+medium finalhistoryjudgment, preserve987uninterpretable. Evidence docs/evidence/FABLE_CDFE68_CANDIDATE_VISUAL_INVENTORY_20260914.json.
 
 CURRENT 2026-09-14: actual68historypreview inventory viewed4sheets. Same-scenehistory8769/8771redrocks and8963/8964porch recorded;987garbleduninterpretable. NEXT fixed116candidate overviewandboundedplausiblecomparisons; noadmissionfromoverview. Evidence docs/evidence/FABLE_CDFE68_HISTORY_VISUAL_INVENTORY_20260914.json.
