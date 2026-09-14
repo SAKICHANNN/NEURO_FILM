@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visualreview43/1024 (indices0..42) actualcandidate+10neighbors. Additional crosscandidate unresolvedlink7(a4651)-33(a4774),possiblebanquet event outside10neighbors; recordedadditional_lineage_edges.jsonl,neitheradmitted. NEXTindex43; global/directprovenancegraph pending. No worker/RAW/training.
+
 CURRENT 2026-09-14: visual lineage review23/1024 complete (indices0..22); candidate+10neighbors eachactuallyviewed, current sets distinct_on_available_evidence, no finaladmission. Notes+sheetSHA outputs/fable_source_population_bridge_v1/comparisons/visual_reviews.jsonl. NEXT index23 onward, plusglobal/directprovenancegraph before roles. No new RAW/training/worker.
 
 CURRENT 2026-09-14: comparisonsREADY1024candidates/1006historycaptures/2082descriptorrows. Medium review+fullinputrehash rerunPASS;cache bound sourceidentity/pool/hash+config/Pillow/hashfunction. Firstsheetreview_0000 actuallyviewed candidatea1412nightstatue,10neighborsdistinct_on_available_evidence;1/1024reviewed,noneadmitted. outputs/fable_source_population_bridge_v1/comparisons visual_reviews.jsonl. NEXTremaining1023actualcomparisonreviews+provenancegraph. No worker/agent/RAW/training.
