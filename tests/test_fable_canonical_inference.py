@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 import torch
 
-from src.eval.fable_canonical_inference import AfterOnlyCanonicalPredictor
+from src.eval.fable_canonical_inference import AfterOnlyCanonicalPredictor, native_canonical_input
 from src.eval.fable_canonical_prior import canonical_measure, decode_canonical_prior
 from src.models.canonical_photometry import CanonicalPhotometryCNN
 
@@ -93,3 +93,48 @@ def test_nonfinite_predictions_are_rejected(setup):
         net.head[-1].bias.fill_(float('nan'))
     with pytest.raises(ValueError, match='four finite standardized'):
         predictor.predict(images)
+
+
+def test_native_statistics_precede_resize(setup):
+    config, _, _, _ = setup
+    image = np.random.default_rng(21).integers(0, 256, (256, 384, 3)) / 255
+    full = canonical_measure(image, **config['measurement'])
+    native = native_canonical_input(image, input_size=128, **config['measurement'])
+    expected = full['tensor'].astype(np.float32).reshape(128, 2, 128, 3, 3).mean(axis=(1, 3))
+    np.testing.assert_allclose(native['tensor'], expected.transpose(2, 0, 1), atol=3e-7)
+    np.testing.assert_array_equal(native['target'], full['target'])
+    np.testing.assert_array_equal(native['mu'], full['mu'])
+    assert native['scale'] == full['scale']
+    resized_rgb = image.reshape(128, 2, 128, 3, 3).mean(axis=(1, 3))
+    wrong = canonical_measure(resized_rgb, **config['measurement'])
+    assert abs(wrong['scale'] - native['scale']) > .1
+    assert native['measurement_shape'] == image.shape
+
+
+def test_native_variable_shapes_decode_with_full_after_statistics(setup):
+    config, net, predictor, _ = setup
+    with torch.no_grad():
+        for p in net.parameters():
+            p.zero_()
+    rng = np.random.default_rng(15)
+    images = [rng.integers(0, 256, (h, w, 3)) / 255 for h, w in [(140, 193), (256, 384)]]
+    actual = predictor.predict_native(images, input_size=128)
+    for i, image in enumerate(images):
+        full = canonical_measure(image, **config['measurement'])
+        expected = decode_canonical_prior(full, predictor.target_mean, **config['operator'])
+        np.testing.assert_allclose(actual[i]['raw'], expected['raw'])
+        assert actual[i]['measurement_shape'] == image.shape
+        single = predictor.predict_native([image], input_size=128)[0]
+        np.testing.assert_array_equal(actual[i]['raw'], single['raw'])
+
+
+def test_binding_scale_floor_is_not_invariant():
+    from src.eval.fable_reference_photometry import transform
+    image = np.full((8, 8, 3), .5)
+    image[0, 0] += .0001
+    before = canonical_measure(image, epsilon=0, scale_floor=.001, tensor_limit=8)
+    after = canonical_measure(transform(image, np.array([1., 0., 0., 0.]),
+                                        slope_limit=1.25, offset_limit=.35),
+                              epsilon=0, scale_floor=.001, tensor_limit=8)
+    assert before['scale_floored'] and after['scale_floored']
+    assert not np.allclose(before['tensor'], after['tensor'])

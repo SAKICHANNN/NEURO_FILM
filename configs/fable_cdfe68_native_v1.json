@@ -1,0 +1,27 @@
+{
+  "status": "CONSUMED_ENGINEERING_ONLY_NOT_SOURCE_ADMISSION",
+  "protocol": "CDFE68-M1",
+  "input": "Canonical full-active-area Q8 RGB normalized to [0,1]; RAW rendering contract remains pending",
+  "measurement": {
+    "epsilon": 0.00196078431372549,
+    "scale_floor": 0.001,
+    "tensor_limit": 8
+  },
+  "order": [
+    "Measure full-native RGB in float64: channel mu and shared s",
+    "Normalize full-native logit RGB by its own mu/s and clip C",
+    "Cast C to float32; resize only C using torch area to128x128",
+    "Predict standardized canonical statistics; undo fitting-only target normalization",
+    "Decode using unchanged full-native AFTER mu/s"
+  ],
+  "resize": {
+    "input_size": 128,
+    "mode": "area",
+    "antialias": "not a separate option for area mode",
+    "dtype": "float32",
+    "crop": false,
+    "quantize_resized_C": false
+  },
+  "exact_invariance_claim": "Only continuous interior values with nonbinding scale floor/clamps/clipping; Q8 and binding floors may break invariance",
+  "no_training_entry": true
+}
