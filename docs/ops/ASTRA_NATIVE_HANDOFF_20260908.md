@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review651/1024 (indices0..650), all ten neighbors viewed. Nineteen unresolved and five historical same-scene links retained. NEXT index651; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review635/1024 (indices0..634), all ten neighbors viewed. Nineteen unresolved and five historical same-scene links retained. NEXT index635; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review619/1024 (indices0..618), all ten neighbors viewed. Added unresolved dock-dog relation618/neighbor9; nineteen unresolved and five historical same-scene links retained. NEXT index619; no admission/RAW/training.
