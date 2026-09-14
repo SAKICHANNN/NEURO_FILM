@@ -180,8 +180,14 @@
       "assignment_optimistic_v2.json": "f17a2d2ad68daba731ce0a10e28a3c519024d37ba019649887a40835bce230bf",
       "query_mask_review_02.json": "be0b6310c31dc8f31c43882952629429ca9dea900f80eb94dbe2843cd1d8d32a",
       "assignment_input_optimistic_v3.json": "f4881a1b434469045d47ff1d24cff9abdc851d5d7d3a2f94c67af4823b26c9d6",
-      "assignment_optimistic_v3.json": "afc1ef9058fbe1daf9fc5172c8c47164664f51ec93e3713e0b071e87b0ca7f8b"
+      "assignment_optimistic_v3.json": "afc1ef9058fbe1daf9fc5172c8c47164664f51ec93e3713e0b071e87b0ca7f8b",
+      "query_mask_review_03.json": "474707c1976eadf7ff2896633bbdaacd2801709d444e92547835f5f9b3e4d1d0",
+      "query_mask_review_04.json": "4eb3b999dcd0db87c7c0b0089d8118aacceda0c0e59b5d879b7b7fecbea2a644",
+      "assignment_input_optimistic_v4.json": "aca8fb0aa92b0288a6f02d6d91105b93a101f2e4c1be622bd1f7e6cc9cb6a167",
+      "assignment_optimistic_v4.json": "a98c2eddcd7b96635e1d9e844bbf96568b47cff86574e550bed74eec7825f473",
+      "assignment_input_optimistic_v5.json": "42d2540e06dfe46708e361053f3517fd47e71b060a21c76765ba4e39991c787f",
+      "assignment_optimistic_v5.json": "90bc166db32c0f2ab351bcb0e4750864074fd827649db919e6d8e1743a89ba67"
     },
-    "next": "Inspect v3 selected queries; 28 masks actually inspected, colored illumination still requires selected witness"
+    "next": "Inspect v5 queries;76 actual mask labels now bound"
   }
 }
