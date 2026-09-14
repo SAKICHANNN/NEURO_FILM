@@ -189,8 +189,11 @@
       "assignment_optimistic_v5.json": "90bc166db32c0f2ab351bcb0e4750864074fd827649db919e6d8e1743a89ba67",
       "query_mask_review_05.json": "74ec5e46c3c4176865e1224dfc20833675535a4e39a82f1b8b428aa55accd395",
       "assignment_input_optimistic_v6.json": "7f98ece172377a01726bebe46aade4ae1ba366d3011817027dd6c6273cc1fb14",
-      "assignment_optimistic_v6.json": "8a813cc46a0dde97f9e8fcb8d6842689ac584a1f05b5d5d87763edb6ed76bf53"
+      "assignment_optimistic_v6.json": "8a813cc46a0dde97f9e8fcb8d6842689ac584a1f05b5d5d87763edb6ed76bf53",
+      "query_mask_review_06.json": "cdec9c05930e0b8890895b47d6fa91876d592dad98499c876b16b4cc1a442935",
+      "assignment_input_optimistic_v7.json": "a6f0df4711b61512010575186fa17bf05c050dedebb7a44737c584b3b41d822f",
+      "assignment_optimistic_v7.json": "6d231535edf8a7a1f08169e541c11678dffe6869e6799978112f180d84dbe393"
     },
-    "next": "Inspect v6 queries;100 actual mask labels now bound"
+    "next": "Inspect v7 queries;124 actual mask labels now bound"
   }
 }

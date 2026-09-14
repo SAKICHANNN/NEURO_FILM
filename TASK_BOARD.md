@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: query-content labels124 actually inspected. Additional readable carnival lettering witness; optimistic v7 remains pending actual selected coverage. NEXT inspect v7 selected unknowns. No RAW/training.
+
 CURRENT 2026-09-14: query-content labels100 actually inspected. Night street and illuminated water add colored-light witnesses. Optimistic v6 generated, no accepted content certificate yet. NEXT inspect v6 selected unknowns/next ranked uninspected candidates. No RAW/training.
 
 CURRENT 2026-09-14: query mask review76 images complete, including warm artificial illumination witness a3113. Optimistic v5 generated; acceptance still requires selected queries actual-mask coverage. No RAW/training.
