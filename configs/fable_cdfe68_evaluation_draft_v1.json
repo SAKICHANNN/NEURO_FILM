@@ -1,5 +1,5 @@
 {
-  "status": "EVALUATION_CONTRACT_DRAFT_BEFORE_OUTCOMES",
+  "status": "IMPLEMENTED_AWAITING_FINAL_SEAL_AND_TRAINING",
   "protocol": "CDFE68-M1",
   "source_sha256": {
     "src/eval/fable_photometry_metrics.py": "a2fd41ac6c0512928b9b28bf06d6db53206235df66bf6ea0a00e1eb4a4219176",
@@ -51,8 +51,7 @@
     "pass": "Learned MSE <=0.8*constant MSE; zero constant MSE is degenerate stop"
   },
   "unresolved": [
-    "Machine-readable per-case/stratum aggregation implementation and consumed tests",
-    "Final hash seal with training resource contract"
+    "Final computation seal after complete fitting cache"
   ],
   "D_scope_evidence": [
     "outputs/fable_after_identifiability_bridge_v1/packet.md:25",

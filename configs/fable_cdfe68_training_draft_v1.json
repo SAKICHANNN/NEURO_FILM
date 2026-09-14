@@ -1,5 +1,5 @@
 {
-  "status": "DRAFT_NOT_TRAINING_AUTHORIZATION",
+  "status": "IMPLEMENTED_AWAITING_COMPLETE_CACHE_AND_FINAL_SEAL",
   "protocol": "CDFE68-M1",
   "role_lock": "outputs/fable_cdfe68_exposure_v1/role_lock.json",
   "model_config": "configs/fable_canonical_cnn_v1.json",
@@ -43,11 +43,9 @@
     "mse": "Equal weight to each of four standardized target coordinates and each original/treatment"
   },
   "unresolved_before_seal": [
-    "Runnable training entry and complete source/runtime seal",
-    "Validation opening and full assessment runner integration",
-    "Consumed-only end-to-end checks"
+    "Complete cache array/normalizer validation and hash binding"
   ],
-  "limits": "No treatment generation, target fitting, optimizer steps or fresh metric opening authorized by this draft. Existing engineering configs remain historical and unmodified.",
+  "limits": "Configuration alone cannot authorize execution; train entry requires verified final seal. One fixed4000-step run; no held outcomes yet.",
   "resolved_manifests": {
     "treatments": "outputs/fable_cdfe68_computation_v1/treatments.json",
     "randomness_controls_panel": "outputs/fable_cdfe68_computation_v1/randomness_controls_panel.json",
