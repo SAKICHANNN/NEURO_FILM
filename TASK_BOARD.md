@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: acquisition+metadata COMPLETE sessions62226/53069 exit0.452fetched0fail,4481464068bodybytes;allrehash/accountingpass.443metadataread9unresolved;candidate251read5unresolved. No rendering/training/admission. NEXT fixed19localreads thenwholehistorygraph/roleclosure; no more remoteattempts. Evidence docs/evidence/FABLE_CDFE68_ACQUISITION_COMPLETE_20260914.json.
+
 CURRENT 2026-09-14: acquisitionLIVE session62226 snapshot221FETCHED+1STARTED,0failed,2200634546chargedwithreservation. Metadataentry prepared/compilepass,terminaltransportguard andhash/warningcapture;notexecutedyet. NEXT sameprocesssleep thenonce-onlymetadata. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_ACQUISITION_PROGRESS_20260914.json.
 
 CURRENT 2026-09-14: root reserves scripts/audit_fable_cdfe_acquired_metadata.py. Prepare once-only metadata audit gated on completed transport; exacthashes,structuredreaderwarnings, no rendering/targets. Downloadsession62226 continues.

@@ -1,0 +1,21 @@
+{
+  "status": "BOUNDED_TRANSPORT_AND_METADATA_PASS_COMPLETE_NO_ADMISSION",
+  "fetched": 452,
+  "failed_fetch": 0,
+  "charged_body_bytes": 4481464068,
+  "metadata_counts": {
+    "METADATA_READ_NOT_RELATION_ADMISSION": 443,
+    "METADATA_UNRESOLVED_NO_RETRY": 9
+  },
+  "candidate_metadata_counts": {
+    "METADATA_READ_NOT_RELATION_ADMISSION": 251,
+    "METADATA_UNRESOLVED_NO_RETRY": 5
+  },
+  "artifacts": {
+    "ledger.json": "8016e17bbd92848bb6f4a5f4a978f150e297070e48943dc821f8f30ec0e47ff6",
+    "metadata.jsonl": "451ffabfb4797f591f492f28f45cb3526e41513727097b052983095d3b1f0395"
+  },
+  "verification": "All452files rehashed via validate_resume;accounting sum/8GiB/frame identities reconciled. Metadata entry completed exit0.",
+  "next": "19fixedlocalreads plusmetadata/wholehistorygraph reconciliation andboundedrolefeasibility. No more remoteattempts.",
+  "limits": "Numeric/metadata pass is not lineage independence or content/quality evidence."
+}
