@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: camera capacity audited using separately parsed camera_label_audit plus frozen aliases (cohort camera fields include nulls). Remaining941 across32 models,25 models with>=4 captures. Capacity only, no complete assignment or source admission. NEXT query-content eligibility and lexicographic324-role solver.
+
 CURRENT 2026-09-14: date-clue review27/27 complete; all existing selected sheets actually viewed and hashed. Recorded graph excludes83 candidates; 941 not yet admitted. Total255 edges, unresolved247. NEXT final provenance reconciliation/query eligibility and frozen324 assignment feasibility. No RAW/training.
 
 CURRENT 2026-09-14: direct filename date-clue review12/27 groups completed; remaining groups12..26. Total lineage edges50, unresolved42. Date tokens not verified capture/session identities; exclude unresolved visual components. Prior50/974 diagnostic superseded. No admission/RAW/training.

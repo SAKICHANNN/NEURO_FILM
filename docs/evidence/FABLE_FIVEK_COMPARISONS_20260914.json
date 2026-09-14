@@ -140,5 +140,12 @@
     "total_groups": 27,
     "path": "outputs/fable_source_population_bridge_v1/comparisons/filename_date_reviews_v1.json",
     "sha256": "61e2e4b4a5320158a6c5eb439b51feb957bcbaa7f82d7908d97fcc0fe4780041"
+  },
+  "camera_capacity": {
+    "path": "outputs/fable_source_population_bridge_v1/camera_capacity_v1.json",
+    "sha256": "e7c342d702edcfda9f7a6cb856a0c4bfa2d9a376152c9eb91a5fccc6a97e8774",
+    "camera_models": 32,
+    "models_with_four_or_more": 25,
+    "status": "CAPACITY_ONLY_NOT_ASSIGNMENT"
   }
 }
