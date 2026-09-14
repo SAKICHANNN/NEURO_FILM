@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review779/1024 (indices0..778), all ten neighbors viewed. Historical courtyard764/neighbors2and4 observed again; 22 unresolved and 5 historical same-scene links retained. NEXT index779; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review763/1024 (indices0..762), all ten neighbors viewed. Toy-car751/199 relation retained; 22 unresolved and five historical same-scene links retained. NEXT index763; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review747/1024 (indices0..746), all ten neighbors viewed. Water-dog734/neighbor6 and floor-meal738/414 unresolved; 22 unresolved and five historical same-scene links retained. NEXT index747; no admission/RAW/training.
