@@ -1,0 +1,75 @@
+{
+  "status": "PARTIAL_NUMERIC_SCREEN_NOT_ADMISSION",
+  "fixtures": {
+    "a0005-jn_2007_05_10__564": {
+      "status": "REJECTED_PENDING_ENCODING_INVESTIGATION",
+      "error": "invalid rational encoding: BlackLevelDeltaV"
+    },
+    "a0064-_DSC7889": {
+      "status": "NUMERIC_METADATA_SCREEN_ONLY",
+      "black_values": [
+        0.0
+      ],
+      "black_repeat": [
+        1.0,
+        1.0
+      ],
+      "black_plus_delta_bounds": [
+        0.0,
+        0.0
+      ],
+      "deltas": {
+        "BlackLevelDeltaH": {
+          "present": false,
+          "count": 1,
+          "minimum": 0.0,
+          "maximum": 0.0
+        },
+        "BlackLevelDeltaV": {
+          "present": false,
+          "count": 1,
+          "minimum": 0.0,
+          "maximum": 0.0
+        }
+      },
+      "white": 15892.0,
+      "color_matrices": [
+        {
+          "tag": "ColorMatrix1",
+          "values": [
+            0.9336,
+            -0.3405,
+            0.0014,
+            -0.732,
+            1.4779,
+            0.2763,
+            -0.0914,
+            0.1171,
+            0.8248
+          ]
+        },
+        {
+          "tag": "ColorMatrix2",
+          "values": [
+            0.8139,
+            -0.2171,
+            -0.0663,
+            -0.8747,
+            1.6541,
+            0.2295,
+            -0.1925,
+            0.2008,
+            0.8093
+          ]
+        }
+      ],
+      "limits": [
+        "Numeric screening does not prove physical calibration or decoder matrix selection.",
+        "Black range is a protocol support restriction; no source is admitted by this check alone.",
+        "Decoder matrix checks and multiple-IFD neutral reconciliation remain pending."
+      ]
+    }
+  },
+  "tests": "4 rational parsing tests passed2.27s",
+  "next": "Investigate Canon DeltaV tag count versus returned values; then decoder matrices and neutral reconciliation. Do not relax the check from successful rendering."
+}
