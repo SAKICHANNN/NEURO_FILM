@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review443/1024 (indices0..442), all ten neighbors viewed. Fourteen unresolved and four historical same-scene links retained. NEXT index443; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review427/1024 (indices0..426), all ten neighbors viewed. Added unresolved shared-meal relation414/neighbor7of365; fourteen unresolved and four historical same-scene links retained. NEXT index427; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review411/1024 (indices0..410), all ten neighbors viewed. Added unresolved wedding bouquet relation398/376; thirteen unresolved and four historical same-scene links retained. NEXT index411; no admission/RAW/training.
