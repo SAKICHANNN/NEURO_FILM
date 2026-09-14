@@ -1,0 +1,28 @@
+{
+  "status": "ENGINEERING_ONLY_NO_TRAINING_OR_LEARNED_QUALITY_EVIDENCE",
+  "parameters": 507812,
+  "tests": {
+    "passed": 10,
+    "seconds": 1.48,
+    "files": [
+      "tests/test_fable_canonical_inference.py",
+      "tests/test_fable_canonical_prior.py"
+    ],
+    "cpu_threads": 4,
+    "torch": "2.11.0+cu128"
+  },
+  "files": {
+    "src/models/canonical_photometry.py": "11cf8b00303d2ca69cf6798fed0c57d80345cb97ed293151a804d075bfe32fe3",
+    "src/eval/fable_canonical_inference.py": "26a9d0764de4e54511a1504f60508b22550b0cd6fa9fb514cde6881661dc8a7f",
+    "tests/test_fable_canonical_inference.py": "1c81fdc6480440b7df3c6cd5a0199df10e12327f4ad56d09d140a6a9de063d77",
+    "configs/fable_canonical_cnn_v1.json": "aaed3a72b63918d75b111a516b76e207df01406cda4964aec1ddfbb6608ab076"
+  },
+  "claim_ceiling": "Synthetic forward/backward without optimizer; serialization, batch independence, canonical-only network input and target destandardization verified. No fitted weights, RAW preprocessing, source admission, or scientific evaluation.",
+  "training_entry": "absent until separate admitted protocol",
+  "compatibility": "Existing canonical_measure/decode module untouched; old smoke pins preserved.",
+  "implementation_choices": [
+    "128px already-canonicalized input yields4x4 after five stride2 padding1 convolutions; no implicit native resizing.",
+    "GELU hidden layer; no batch normalization/dropout/pretrained features."
+  ],
+  "next": "Retrieve and locally adjudicate fable-development-reuse-20260914-v1; preserve terminal old source attempt."
+}

@@ -1,0 +1,24 @@
+{
+  "status": "ENGINEERING_ONLY_NO_TRAINING_ADMISSION",
+  "architecture": {
+    "channels": [16, 32, 64, 128, 128],
+    "hidden": 128,
+    "input_size": 128,
+    "kernel_size": 3,
+    "stride": 2,
+    "padding": 1
+  },
+  "measurement": {
+    "epsilon": 0.00196078431372549,
+    "scale_floor": 0.001,
+    "tensor_limit": 8
+  },
+  "operator": {
+    "slope_limit": 1.25,
+    "offset_limit": 0.35
+  },
+  "input_contract": "BHWC finite Q8 RGB [0,1], already canonicalized to 128x128; no implicit resize or quantization",
+  "target_contract": "Standardized muRGB,log(shared_scale); normalization must be fitted once on unique admitted fitting originals only",
+  "preprocessing_status": "Native RAW-to-128px recipe awaits separately adopted protocol; predictor cannot admit data",
+  "no_training_entry": true
+}
