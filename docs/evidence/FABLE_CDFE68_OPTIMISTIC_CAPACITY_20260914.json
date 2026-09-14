@@ -1,0 +1,20 @@
+{
+  "status": "OPTIMISTIC_DIAGNOSTIC_ONLY_NOT_ROLE_ADMISSION",
+  "artifact_sha256": "8d3d7a7de23c99861820ff8f2c1169cb45b04cbfcf280a590d3361906c1c5169",
+  "remaining_captures": 119,
+  "remaining_components": 100,
+  "camera_models_with_at_least4components": 7,
+  "diagnostic_feasible": true,
+  "unknown_camera_day_history": {
+    "substantive": 8,
+    "other_history": 60
+  },
+  "limits": [
+    "Technicaleligibility presumed true",
+    "Remaininghistoryseparation presumed true",
+    "All six querycategories presumed reviewed/present",
+    "No optimizer-smoke restrictions (none run)",
+    "Diagnostic SHA(identity) ranks not frozen scientificallocation ranks"
+  ],
+  "next": "Bound final history uncertainties and realquery/technicaleligibility; never adopt optimistic diagnostic assignment."
+}

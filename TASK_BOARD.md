@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: remaining119captures100components,7cameras>=4components. Optimistic relaxedrolesolver886rows FEASIBLE (notadmission;allquery/technical/separationassumed).8substantive+60otherhistory missingunique camera/day remain. NEXT mediumboundedhistoryclosure adjudication andrealeligibility; nooptimisticroleadoption. Evidence docs/evidence/FABLE_CDFE68_OPTIMISTIC_CAPACITY_20260914.json.
+
 CURRENT 2026-09-14: final19localreads completehashmatched. Expandedmetadata graph1298identities/1409components;137of256prefix linkedtohistory,1missingunique camera/day. Rebuild2030coverageverified. No finalseparation/admission. NEXT boundedremaininghistory/alias disposition+camera/component feasibility; no more acquisition. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_EXPANDED_METADATA_GRAPH_20260914.json.
 
 CURRENT 2026-09-14: root reserves scripts/merge_fable_cdfe_metadata_graph.py. Join fixedmetadata outputs preserving conflicts/missingfields; samecamera/day conservativeedges only.19localreads completed.
