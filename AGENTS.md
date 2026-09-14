@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: Windows hardprocess committedmemory guard implemented via existingpywin32 JobObject; childtest64MiB rejects128MiB allocation withMemoryError,1testpass0.54s. Guard handle must remainlive forworker; cache10GiB intended, notGPUcap. NEXT integrate cache runner before imports/allocation, native firstdonor and full resumableCPU run.
+
 CURRENT 2026-09-14: cache writer uses Windows nonblocking byte lock (persistentlockfile, OSrelease);3cachetests pass0.52s exclusion/release/corruption. computation_v1/fit_cache_plan.json binds exactly256fit natives,32T,8192examples,source/runtime hashes; no heldinputs. NOTexecuted pending hard10GiB cap+runner. NEXT resource guard and integrated firstdonor/full resumable run.
 
 CURRENT 2026-09-14: donorcache primitive src/data/fable_cdfe_cache.py atomicpayload thenreceipt, fullorderedT/targetconsistency checks, existingreceipt identity/contract/contenthash reuse.2tests passed3.88s corruption/protocolchange/overwrite/partial rejection. Caller stillmust enforce singlewriter, fitID lock and hardmemorycap; no fullcache run. NEXT runner/resource guard.
