@@ -1,0 +1,16 @@
+{
+  "status": "FIT_RENDER_COMPLETE_STRICT_INVENTORY_BUILT",
+  "count": 768,
+  "passed": 709,
+  "rejected": 59,
+  "render_process_exit": 0,
+  "inventory_process_exit": 0,
+  "verification": "Strict builder completed dependency hashes, successful native file rehash, full partition and exact query crop checks.",
+  "files": {
+    "outputs\\fable_cdfe68_native_fit_v1\\frame.json": "daeb46bb30b608499a61bd5d9627f79ca8cd6124b351ce22868d616fd14efb5d",
+    "outputs\\fable_cdfe68_native_fit_v1\\renders.jsonl": "ecd61596cefae2c27a50f046300ba448d953928a948082bbb0f4e7051f17f362",
+    "outputs\\fable_cdfe68_native_fit_v1\\complete.json": "c5ce9bda0b6acbe33227fcb6973bec7f5cafc1de2d7e8c3332a09be7a905b6bf",
+    "outputs\\fable_cdfe68_exposure_v1\\strict_role_inventory.json": "4331becb250d9a4a701a7d9b191de01d766f12c129f0be173b6cbc3576fffb6b"
+  },
+  "next": "Strict solver running session80536. No optimizer or allocation lock yet."
+}
