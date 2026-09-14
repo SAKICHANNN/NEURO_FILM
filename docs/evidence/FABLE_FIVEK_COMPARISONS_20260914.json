@@ -3,13 +3,13 @@
   "descriptor_rows": 2082,
   "history_capture_count": 1006,
   "candidate_count": 1024,
-  "viewed_candidates": 843,
+  "viewed_candidates": 859,
   "pins": {
     "descriptors.jsonl": "903acab124ef6579d2cb0b942f33c0bb98e542cb2729db43d3cb10d25f5d3e8f",
     "neighbors.json": "f7163740a7e40a84d11880e514232910566204a984fa7c9dbef07f17798e850d",
     "cache_binding.json": "332240dd30d331233d947d5e3fb85a43f6f8375d7bacb5571260dd13113d93f0",
-    "visual_reviews.jsonl": "1253afca87601515984e04c68bef8c6f1b632c029c14dc79ae24dfa3178cdab9",
-    "additional_lineage_edges.jsonl": "4dce5fa8ef44aad3bf31d42732bad70e87203e9b871b361c5e0facc703058e15"
+    "visual_reviews.jsonl": "e36d611ddc959c2cba269d213352484056cd93c8a0ce31f2c80210c1275a5042",
+    "additional_lineage_edges.jsonl": "ce0c5b802a4df7cec9a3ca7ec206afb4fc7087dbdea5f3edda89121770236450"
   },
   "verification": [
     "Medium reviewed six-viewhash and neighbor ranking",
@@ -18,11 +18,11 @@
     "199..214 batch initially omitted scene206; failed count check caught error. Corrected all16 scene labels and reverified ordered215 records and sheet hashes before final report."
   ],
   "limits": [
-    "843of1024candidate comparison sets actually viewed",
+    "859of1024candidate comparison sets actually viewed",
     "No candidate admission/RAW/training",
     "Bounded history coverage not globally complete"
   ],
-  "additional_unresolved_links": 24,
+  "additional_unresolved_links": 25,
   "additional_history_same_scene_links": 6,
   "insufficient_scene_preview_indices": [
     148
