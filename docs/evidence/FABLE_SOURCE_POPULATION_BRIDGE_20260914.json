@@ -1,24 +1,37 @@
 {
-  "status": "SOURCE_POPULATION_RECONSIDERATION_SUBMITTED",
-  "transport": {
-    "status": "SUBMITTED_STOP_ANSWERING_VERIFIED",
-    "sends": 1,
-    "copies": 0,
-    "doctor": "READY",
-    "consent": "READY",
-    "browser": "1",
-    "tab": "3",
-    "model": "Latest selected; Pro 5 of 5; composer 6 Pro",
-    "retrieval": "DOM authorized by user",
-    "url": "https://chatgpt.com/c/6aa7a6c7-88f8-83ec-917b-56271a951553",
-    "checked_utc": "2026-09-14T07:49:58.602775+00:00",
-    "wait_basis": "Prior response 26 minutes; sleep in <=60second blocks, no resend",
-    "packet_sha256": "03e76e90bfb8d08c729b0a137963c60277f41d1a97395ff5d6b7ef5ff4b5100e"
+  "status": "SCIENCE_RETRIEVED_METADATA_PREPARATION_ADOPTED",
+  "result_sha256": "cd6f3eea9a804739fc9beb0df3f38db99fc1280a2def931c770819ed328d5824",
+  "pair_validation": "passed",
+  "receipt": "valid incomplete",
+  "adoption": {
+    "status": "METADATA_PREPARATION_ONLY_ADOPTED",
+    "accepted": [
+      "FiveK original DNG fixed-render source proposal; no Expert C canonical targets",
+      "Metadata parsing and license mapping verification",
+      "History closure before fixed1024candidate universe",
+      "Retain324lineages and4heldcamera layout; no algorithm/gate relaxation"
+    ],
+    "rejected": [
+      "64-only history as complete",
+      "Existing full-tar downloader for Stage A",
+      "Source proposal as download availability or training readiness"
+    ],
+    "deferred": [
+      "Candidate freeze until704knownsource IDs and unresolved empirical-prior history resolved",
+      "Preview cohort and complete324assignment",
+      "RAW pilot and canonical renderer",
+      "Training and final assessment"
+    ],
+    "local_evidence": [
+      "data/raw/fivek/fivek_index.html",
+      "data/raw/fivek/legal/filesAdobe.txt",
+      "data/raw/fivek/legal/filesAdobeMIT.txt",
+      "scripts/download_data.py",
+      "expanded_history_discovery.json",
+      "configs/reference_match_cfsm_empirical_prior_v1.json"
+    ]
   },
-  "local_preflight": "docs/evidence/FABLE_SOURCE_POPULATION_PREFLIGHT_20260914.json",
-  "limitations": [
-    "No reply retrieved or adopted",
-    "No source admitted or training launched",
-    "Previous rawpixls-only bounded failure retained"
-  ]
+  "expanded_history_sha256": "f7c35427b9d74f88a5bf6c486ecd663295822a1480a684cc753e2bd9efa22539",
+  "history_unique_source_names": 704,
+  "live_official_fetch": "web direct page fetch timeout, not binary availability evidence"
 }
