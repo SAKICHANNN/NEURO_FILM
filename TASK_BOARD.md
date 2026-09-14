@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: final checkpoint persistence/verified loading implemented; exclusive claim, complete-step guard, finite model/history/normalizer, atomic payload then SHA receipt, weights_only load of same verified bytes. Synthetic serialization test passed2.62s incl incomplete-step rejection, overwrite denial, wrong contract and corruption. No real model trained. Root checkpoint reservation released. NEXT CLI training admission/source-runtime seal and consumed end-to-end engineering; cache9500 pinned sources untouched.
+
+CURRENT 2026-09-14: root reserves src/training/fable_cdfe_checkpoint.py and tests/test_fable_cdfe_checkpoint.py for final-only checkpoint persistence and verification; synthetic fixtures only.
+
 CURRENT 2026-09-14: fit_final_model CPU float32 deterministic AdamW loop implemented; exact-update count, shape/no-broadcast and nonfinite loss/gradient/parameter guards. Synthetic toy replay and injected-NaN-gradient tests2passed4.18s; sampler+loop prior3passed14.66s. No real CNN optimizer updates or fresh outcomes. Root fit-loop reservations released. NEXT CLI admission/source-runtime seal, final-only checkpoint persistence, consumed engineering; cache9500 continues unchanged.
 
 CURRENT 2026-09-14: root reserves src/training/fable_cdfe_fit.py and tests/test_fable_cdfe_fit.py for fixed-update optimizer loop. Unit tests synthetic only; no protocol model training.
