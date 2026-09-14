@@ -1,0 +1,12 @@
+{
+  "status": "FIRST_DONOR_VERIFIED_FULL_CACHE_RUNNING",
+  "first_donor": "fivek/a0487-_DSC5455",
+  "first_donor_seconds": 136.5681931,
+  "first_donor_examples": 32,
+  "verification": "Receipt contract and payload SHA; finite32x3x128x128 inputs and4target shape checked.",
+  "execution_frame_sha256": "e41339452330e2014ef017c6e66398734f5e131e358acb8a1bc32de688e5789f",
+  "first_session_exit": 0,
+  "full_cache_session": 9500,
+  "estimate": "About10hours if first-donor speed generalizes; not a completion deadline.",
+  "optimizer_steps": 0
+}
