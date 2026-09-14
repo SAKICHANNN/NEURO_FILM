@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review295/1024 (indices0..294). Added historical patio-rendition same-scene link; ten unresolved and four historical same-scene links retained. NEXT index295; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review279/1024 (indices0..278), all ten neighbors viewed. No new specific relations in263..278; ten unresolved and three historical same-scene links retained. NEXT index279; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review263/1024 (indices0..262). Added decorated-room relation83/neighbor10of261; ten unresolved and three historical same-scene links retained. NEXT index263; no admission/RAW/training.
