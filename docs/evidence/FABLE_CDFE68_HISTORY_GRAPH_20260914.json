@@ -1,0 +1,32 @@
+{
+  "status": "PARTIAL_HISTORY_GRAPH_NO_ADMISSION",
+  "artifact": "outputs\\fable_cdfe68_exposure_v1\\history_graph.json",
+  "sha256": "4b35ccbc925433b690d475f5abf82e63a4d4d21b490173b6ab79d80bf6cae694",
+  "metadata_count": 612,
+  "unusable_camera_day": [
+    "fivek/a0787-kme_306",
+    "fivek/a1012-kme_280",
+    "fivek/a1107-kme_291",
+    "fivek/a1719-kme_283",
+    "fivek/a1741-kme_305",
+    "fivek/a2800-kme_281",
+    "fivek/a3088-kme_286",
+    "fivek/a3127-kme_304"
+  ],
+  "camera_day_groups": 115,
+  "edges": 554,
+  "components": 1679,
+  "restricted_candidates": 30,
+  "validation": [
+    "3 targeted tests passed in0.51s",
+    "Deterministic rebuild equals stored graph",
+    "All2030identities represented exactly once",
+    "Known terminated hallway/house-tour link retained transitively"
+  ],
+  "limits": [
+    "Same camera/day is a conservative blocking rule, not evidence of same physical camera or session.",
+    "Missing metadata and unreviewed links remain unresolved; unlinked candidates are not certified fresh.",
+    "No new roles inherited from the terminated pilot; all pilot identities remain quarantine.",
+    "Recorded metadata only; no RAW asset or capture timestamp authenticity revalidation."
+  ]
+}
