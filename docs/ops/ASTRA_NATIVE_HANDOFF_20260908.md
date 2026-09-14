@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review811/1024 (indices0..810), all ten neighbors viewed. Martial-arts806/779neighbor8 unresolved; 23 unresolved and five historical same-scene links retained. NEXT index811; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review795/1024 (indices0..794), all ten neighbors viewed. 22 unresolved and five historical same-scene links retained. NEXT index795; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review779/1024 (indices0..778), all ten neighbors viewed. Historical courtyard764/neighbors2and4 observed again; 22 unresolved and 5 historical same-scene links retained. NEXT index779; no admission/RAW/training.
