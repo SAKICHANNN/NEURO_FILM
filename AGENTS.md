@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: consumedfit768 sealedrender LIVE session12840, first4passed. Same locked renderer, --consumed-fit validates exact consumed identity set, output native_fit_v1 separate. No optimizer. NEXT sleep and poll same process, verify terminal frame/output hashes then jointstrictroles. Do not restart live runner.
+
 CURRENT 2026-09-14: all768consumedfit RAW paths exist and hashed into consumed_fit_raw_inventory.json (session44928exit0). No missing acquisition needed, NOT renderqualified.9querymasks shape/nonempty/hash verified; highlightoverlay actuallyviewed selects10626transitionpixels excludeswhitecore. NEXT sealedfitrender qualification then jointstrictsolver. Evidence docs/evidence/FABLE_CDFE68_FIT_FRAME_AND_MASK_CHECK_20260914.json.
 
 CURRENT 2026-09-14: medium accepts sixcategory query evidence incl candlehighlight transition, excludes whitecore detailclaim. Named nonempty crop-local masks created with nativebox/hash; pending visualmaskcheck and finalbinding.4queries4components; actualfitrender qualification remains required before jointsolver. Evidence docs/evidence/FABLE_CDFE68_QUERY_MASKS_20260914.json.

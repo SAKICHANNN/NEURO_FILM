@@ -1,5 +1,6 @@
 import hashlib
 import json
+import argparse
 from pathlib import Path
 
 import numpy as np
@@ -12,17 +13,31 @@ from src.preprocess.fable_render_lock import verify_render_lock
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--consumed-fit', action='store_true')
+    args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    relative = ['outputs/fable_cdfe68_exposure_v1/strict_metadata_prefilter.json',
+    inventory = ('consumed_fit_raw_inventory.json' if args.consumed_fit else 'strict_metadata_prefilter.json')
+    relative = ['outputs/fable_cdfe68_exposure_v1/' + inventory,
                 'outputs/fable_cdfe68_acquisition_v1/ledger.json',
                 'configs/fable_cdfe68_screen_lock_v1.json']
     blobs = [(root / name).read_bytes() for name in relative]
     prefilter, acquisition, seal = map(json.loads, blobs)
     verify_render_lock(root, json.loads((root / seal['render_lock']).read_text()))
-    selected = [r for r in prefilter['rows'] if r['metadata_prefilter_pass'] is True]
-    if len(selected) != 114 or len({r['identity'] for r in selected}) != 114:
-        raise ValueError('fixed 114-candidate frame changed')
-    output = root / 'outputs/fable_cdfe68_native_candidates_v1'
+    if args.consumed_fit:
+        selected = prefilter['rows']
+        if any(r['status'] != 'LOCAL_RAW_BOUND_NOT_TECHNICALLY_QUALIFIED' for r in selected):
+            raise ValueError('consumed RAW inventory incomplete')
+        ledger = json.loads((root / 'outputs/fable_cdfe68_exposure_v1/ledger.json').read_text())
+        consumed = {r['identity'] for r in ledger['rows'] if r['exposure'] == 'SUBSTANTIVE_DEVELOPMENT'}
+        if {r['identity'] for r in selected} != consumed:
+            raise ValueError('fit frame differs from consumed history')
+    else:
+        selected = [r for r in prefilter['rows'] if r['metadata_prefilter_pass'] is True]
+    expected_count = 768 if args.consumed_fit else 114
+    if len(selected) != expected_count or len({r['identity'] for r in selected}) != expected_count:
+        raise ValueError('fixed render frame changed')
+    output = root / ('outputs/fable_cdfe68_native_fit_v1' if args.consumed_fit else 'outputs/fable_cdfe68_native_candidates_v1')
     output.mkdir(exist_ok=False)
     frame = {'status': 'NATIVE_RENDER_QUALIFICATION_NOT_ROLE_ADMISSION',
              'source_sha256': {n: hashlib.sha256(b).hexdigest() for n, b in zip(relative, blobs)},
@@ -32,7 +47,8 @@ def main():
     with (output / 'renders.jsonl').open('x', encoding='utf-8') as stream:
         for candidate in selected:
             identity = candidate['identity']
-            source = acquisition['objects'][identity]
+            source = ({'path': candidate['path'], 'sha256': candidate['raw_sha256']}
+                      if args.consumed_fit else acquisition['objects'][identity])
             if source['sha256'] != candidate['raw_sha256']:
                 raise ValueError('prefilter and transport RAW binding differ')
             record = {'identity': identity, 'raw_sha256': source['sha256']}
