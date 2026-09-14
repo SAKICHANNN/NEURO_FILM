@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: fit_final_model CPU float32 deterministic AdamW loop implemented; exact-update count, shape/no-broadcast and nonfinite loss/gradient/parameter guards. Synthetic toy replay and injected-NaN-gradient tests2passed4.18s; sampler+loop prior3passed14.66s. No real CNN optimizer updates or fresh outcomes. Root fit-loop reservations released. NEXT CLI admission/source-runtime seal, final-only checkpoint persistence, consumed engineering; cache9500 continues unchanged.
+
+CURRENT 2026-09-14: root reserves src/training/fable_cdfe_fit.py and tests/test_fable_cdfe_fit.py for fixed-update optimizer loop. Unit tests synthetic only; no protocol model training.
+
 CURRENT 2026-09-14: fitting-cache loader and deterministic PCG64 epoch sampler implemented;3 tests pass5.01s. Medium accepted CPU float32/deterministic execution and separate fixed init/batch streams; training draft now specifies15 epochs+160 batches, no seed trials. Cache9500 verifiedLIVE with4 additional donor receipts; pinned code unchanged. Root loader/sampler reservations released. NEXT training entry, source/runtime seal and consumed engineering; no optimizer or held outcomes.
 
 CURRENT 2026-09-14: root reserves src/data/fable_cdfe_training_data.py, tests/test_fable_cdfe_training_data.py, src/training/fable_cdfe_batches.py, tests/test_fable_cdfe_batches.py for fitting loader and deterministic sampling. Cache9500 LIVE; pinned cache sources unchanged. No optimizer.
