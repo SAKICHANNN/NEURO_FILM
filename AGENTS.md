@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: medium accepts sixcategory query evidence incl candlehighlight transition, excludes whitecore detailclaim. Named nonempty crop-local masks created with nativebox/hash; pending visualmaskcheck and finalbinding.4queries4components; actualfitrender qualification remains required before jointsolver. Evidence docs/evidence/FABLE_CDFE68_QUERY_MASKS_20260914.json.
+
 CURRENT 2026-09-14: corrected3nativeROIs actuallyviewed: completeSCHOOL BUStext, candleface, darkwoodtexture. Exact768pixel boxes/hash bindings in native_candidates_v1/query_crops_v2/review.json. Baseline noise retained. NEXT object/highlight/coloredillumination evidence bindings and camera/component role constraints. Evidence docs/evidence/FABLE_CDFE68_CORRECTED_ROIS_20260914.json.
 
 CURRENT 2026-09-14: all108nativeoverviews actuallyviewed;4native768x768crops viewed, boxes+hashes recorded. Face identifiable; bus text crop clipped; candle crop missesface and has baselineclipping; aquarium motionsoftness. No finalquerycoverage. NEXT correct/complete ROIs and strict camera/component role assignment. Evidence docs/evidence/FABLE_CDFE68_NATIVE_VISUAL_REVIEW_20260914.json.

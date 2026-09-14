@@ -1,0 +1,16 @@
+{
+  "status": "NAMED_NONEMPTY_QUERY_MASKS_PENDING_FINAL_BINDING",
+  "manifest": "outputs\\fable_cdfe68_native_candidates_v1\\query_masks_v1\\manifest.json",
+  "sha256": "101b3f32db8c2809c059b18f1d08c785c1f2da16e9bd09ee5331d1fcdfcfec3f",
+  "masks": 9,
+  "queries": 4,
+  "coverage": [
+    "colored_illumination",
+    "face",
+    "highlight",
+    "object",
+    "shadow",
+    "text"
+  ],
+  "next": "Verify masks visually, then strict fitting qualification and joint allocation."
+}
