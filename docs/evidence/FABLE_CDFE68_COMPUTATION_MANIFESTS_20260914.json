@@ -1,0 +1,21 @@
+{
+  "status": "PRE_FIT_COMPUTATION_MANIFESTS_PARTIALLY_FIXED",
+  "files": {
+    "outputs\\fable_cdfe68_computation_v1\\treatments.json": "5246cdefd0369e8d368606bc68b3a0c88cd33218a217bca7156daaca1722b543",
+    "outputs\\fable_cdfe68_computation_v1\\randomness_controls_panel.json": "db4bc641a02bc5ef8b9e6577105f1504f144daacebcf4a4da2cb271f125f8f73"
+  },
+  "checks": [
+    "32/8/32 transforms; exact antithetic members",
+    "5/1/2 disjoint orthant pairs; magnitudes [0.25,1)",
+    "320 unique donor seeds",
+    "32 donor within-camera no-self bijection",
+    "64 unique panel cases;2 per donor;16 per query and16 per held orthant"
+  ],
+  "not_done": [
+    "complete metric and resource contract",
+    "normalizer fitting",
+    "training preprocessing and entry",
+    "consumed-only end-to-end tests"
+  ],
+  "model_outputs_seen": false
+}
