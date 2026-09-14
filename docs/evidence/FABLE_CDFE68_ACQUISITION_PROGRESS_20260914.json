@@ -1,0 +1,13 @@
+{
+  "status": "ACQUISITION_RUNNING_METADATA_ENTRY_PREPARED",
+  "session_id": 62226,
+  "snapshot": {
+    "fetched": 221,
+    "started": 1,
+    "charged_including_reservation": 2200634546,
+    "failures": 0
+  },
+  "metadata_entry": "scripts/audit_fable_cdfe_acquired_metadata.py",
+  "checks": "Python compile passed; refuses nonterminaltransport;fixedledger hashes;structuredTIFFwarnings;noimageoutputs",
+  "next": "Wait same session62226,then execute metadata entry once; no transportrestart."
+}

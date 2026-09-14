@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: acquisitionLIVE session62226 snapshot221FETCHED+1STARTED,0failed,2200634546chargedwithreservation. Metadataentry prepared/compilepass,terminaltransportguard andhash/warningcapture;notexecutedyet. NEXT sameprocesssleep thenonce-onlymetadata. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_ACQUISITION_PROGRESS_20260914.json.
+
+CURRENT 2026-09-14: root reserves scripts/audit_fable_cdfe_acquired_metadata.py. Prepare once-only metadata audit gated on completed transport; exacthashes,structuredreaderwarnings, no rendering/targets. Downloadsession62226 continues.
+
 CURRENT 2026-09-14: fixedCDFE acquisitionRUNNING execsession62226.7tests passed1.18s; localreuse scan0/452. Snapshot27FETCHED+1STARTED,255773850chargedincludingreservation,0failures. Sameprocessmustcontinue; no restart. NEXT sleep/liveledgercheck thenmetadataonly fixedframeclosure. Root code reservationreleased. Evidence docs/evidence/FABLE_CDFE68_ACQUISITION_STARTED_20260914.json.
 
 CURRENT 2026-09-14: root reserves scripts/fetch_fable_cdfe_frame.py and tests/test_fable_cdfe_frame.py. Add fixedlocalreuse snapshot/resumechecks beforeexecution.
