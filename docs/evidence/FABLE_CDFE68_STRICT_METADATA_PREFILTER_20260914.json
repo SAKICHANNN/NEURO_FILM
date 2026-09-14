@@ -1,0 +1,36 @@
+{
+  "status": "STRICT_METADATA_PREFILTER_NOT_FULL_TECHNICAL_ADMISSION",
+  "artifact": "outputs\\fable_cdfe68_exposure_v1\\strict_metadata_prefilter.json",
+  "sha256": "10ea1ebd95ee1fcc1e404628729873bc78a28e24c9ef59f2f508e3baa689427a",
+  "counts": {
+    "prefix": 256,
+    "prefilter_pass": 114,
+    "excluded": 142
+  },
+  "reason_counts": {
+    "HISTORY_COMPONENT": 137,
+    "PREVIOUS_CONSERVATIVE_EXCLUSION": 3,
+    "NUMERIC_METADATA_UNRESOLVED": 5,
+    "CAMERA_DAY_UNRESOLVED": 1
+  },
+  "added_history_edges": [
+    {
+      "left": "rawpixls/8769",
+      "right": "rawpixls/8771",
+      "decision": "VISUAL_SAME_SCENE_HISTORY",
+      "source": "final_relation_sheets/history_inventory_review.json"
+    },
+    {
+      "left": "rawpixls/8963",
+      "right": "rawpixls/8964",
+      "decision": "VISUAL_SAME_SCENE_HISTORY",
+      "source": "final_relation_sheets/history_inventory_review.json"
+    }
+  ],
+  "limits": [
+    "No new RAW reads or renders. Reuses once-only numeric evidence.",
+    "All technical_eligible and query_coverage_reviewed remain false until complete evidence.",
+    "No replacement of excluded prefix identities."
+  ],
+  "next": "Native locked renderer qualification for remaining candidates, then genuine six-category query ROI coverage and strict role assignment."
+}
