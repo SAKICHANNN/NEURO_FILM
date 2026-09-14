@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review183/1024 (indices0..182), all ten neighbors viewed. Added unresolved amphitheater167/112 and sunset177/neighbor6 relations; seven unresolved total. NEXT index183; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review167/1024 (indices0..166), each candidate+10neighbors viewed. Added candidate160/history conical-building potential shared-location link from earlier sheet118; five unresolved relations total. NEXT index167; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review151/1024 (indices0..150), each candidate+10neighbors viewed. Candidate148 blurred preview insufficient for scene identity; neighbor7 unresolved, not duplicate proof. Four unresolved relations total. NEXT index151; no admission/RAW/training.
