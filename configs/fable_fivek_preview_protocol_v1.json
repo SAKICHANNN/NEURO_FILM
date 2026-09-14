@@ -1,0 +1,50 @@
+{
+  "status": "FROZEN_BEFORE_PREVIEW_ACQUISITION",
+  "packet_id": "fable-source-population-20260914-v1",
+  "cohort": "outputs/fable_source_population_bridge_v1/preview_cohort_v1.json",
+  "cohort_sha256": "d6c613f665f9e55aead85e0f453143e4bc95ca46bb135bab39c0089b1a543abc",
+  "pins": {
+    "index_audit_v2.json": "4a67d33fd8344a409a3ac1efd18fdf7ef4871a02ab0f0455352c96b4e94c7edd",
+    "known_history_closure.json": "b631b88a059563a752bb4ea3bf8f1275d41b5fe89c11a3a0e54b98f56bba576d",
+    "camera_label_audit.json": "2daefd839e1126c4f53a67bd5baf595e0b65bcfb4c33243edc576cda2a438d73"
+  },
+  "candidate_count": 1024,
+  "history_restore_count": 128,
+  "history_known_exclusions": 768,
+  "max_preview_bytes_including_retries": 536870912,
+  "max_attempts_per_object": 2,
+  "max_distinct_preview_objects": 1152,
+  "urls": "only existing publisher-linked thumbnail; no substitutes",
+  "comparison": {
+    "pillow_version": "12.1.1",
+    "hash": "grayscale9x8LANCZOS adjacent horizontal >;row-major64bit",
+    "views": "full plus80percent crops four corners+center;floor dimensions and offsets",
+    "distance": "minimum Hamming across36combinations;full distance retained",
+    "neighbors": "top5distincthistorycaptures+top5othercandidates;fill spare from other pool only if pool<5;max10",
+    "ties": "cropdistance,fulldistance,stableidentity",
+    "review_flag_max_distance": 4,
+    "nonmatch_is_independence": false,
+    "all_candidates_require_visual_review": true,
+    "unresolved": "exclude; no new IDs"
+  },
+  "roles": {
+    "fit": 256,
+    "validation": 32,
+    "represented_assessment": 16,
+    "held_cameras": 4,
+    "assessment_per_held_camera": 4,
+    "queries": 4
+  },
+  "assignment_order": [
+    "four held camera ranks",
+    "fit component ranks",
+    "validation component ranks",
+    "represented assessment ranks",
+    "held assessment ranks by camera",
+    "query ranks"
+  ],
+  "assignment_rule": "lexicographically first complete feasible assignment; no greedy fill without lookahead",
+  "camera_rank_salt": "fable-source-population-20260914-v1/camera/",
+  "history_rule": "768knownFiveK captures excluded; restore128missing previews; include existing other-source history index before admission; no claim globally complete",
+  "gate": "NoRAW before complete324provisionalassignment+viewedpreviews+resolvedhistory. No training. Failed objects get no replacement."
+}

@@ -1,0 +1,14 @@
+{
+  "status": "PREVIEW_COHORT_FROZEN_NOT_FETCHED",
+  "protocol_sha256": "1243f941c7d7c8af6516dc68f6b777808fee8ebb4a8d47f3f5ada25f98cd2465",
+  "cohort_sha256": "d6c613f665f9e55aead85e0f453143e4bc95ca46bb135bab39c0089b1a543abc",
+  "candidate_count": 1024,
+  "history_restore_count": 128,
+  "review": "Astra medium bounded comparison/restoration adjudication completed",
+  "limits": [
+    "No previews viewed or sources admitted",
+    "768knownidentity exclusion is not global history completeness",
+    "Other-source historical descriptors must be pinned before candidate admission",
+    "Camera and complete324role feasibility pending"
+  ]
+}
