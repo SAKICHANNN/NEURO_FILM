@@ -1,0 +1,15 @@
+{
+  "status": "CONSUMED_NATIVE_PREPROCESS_ENGINEERING_ONLY",
+  "artifact": "outputs\\fable_cdfe68_computation_v1\\native_preprocess_smoke.json",
+  "sha256": "a7f25464a842533a4a95d59beb47783be78b91d5ff8d8f003a3559bd53204976",
+  "shape": [
+    2844,
+    4284,
+    3
+  ],
+  "elapsed_seconds": 16.961041499998828,
+  "peak_working_set_bytes": 3058589696,
+  "optimizer_steps": 0,
+  "limits": "One consumed image and two treatments; not full-dataset resource bound or throughput guarantee.",
+  "next": "Fit-only resumable per-donor cache with evidence validation and resource cap before full preprocessing."
+}
