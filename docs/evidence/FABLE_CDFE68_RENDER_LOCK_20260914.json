@@ -1,0 +1,23 @@
+{
+  "status": "RENDER_RUNTIME_LOCK_VERIFIED_NOT_GENERAL_ADMISSION",
+  "tests": {
+    "passed": 5,
+    "seconds": 2.62,
+    "checks": [
+      "Live runtime and file lock",
+      "Version, binary and config drift rejected before RAW open",
+      "Explicit linear16 to Q8 encoding"
+    ]
+  },
+  "locked_entry_check": {
+    "path": "outputs\\fable_cdfe68_renderer_v1\\locked_entry_check.json",
+    "sha256": "9a0fbf39e7d3fabf3ac3892cd11918f740f5e7f088b28ff7e2625dd638ce23ec"
+  },
+  "boundary": "Prospective runner must also bind the lock artifact hash through its sealed manifest; this function validates the supplied trusted lock, not data admission. Pinned decoder-required repairs are part of the declared generic canonical renderer.",
+  "remaining": [
+    "Black/delta and camera-conversion technical eligibility",
+    "Whole-history exposure ledger",
+    "New role solver and evaluation seal",
+    "Training and independent quality evaluation"
+  ]
+}
