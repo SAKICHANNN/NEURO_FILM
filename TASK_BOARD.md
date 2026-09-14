@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: CDFE jointMILP solver implemented separately fromoldsolver;14tests pass including feasible sharedfit, freshcollision/smoke infeasibility andrank/reorderedinput stability. Independentcertificate validates returnedallocation. No liveadmission ortraining. NEXT boundedsource manifest andfullprotocol seals/nativeROI evidence. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_JOINT_SOLVER_20260914.json.
+
+CURRENT 2026-09-14: root reserves src/eval/fable_cdfe_solver.py and tests/test_fable_cdfe_solver.py. Implement joint exact MILP with CDFE exposure/component/camera/coverage constraints; preserve oldsolver.
+
 CURRENT 2026-09-14: independent CDFE rolecertificate implemented;10 synthetic tests pass including sharedfitcomponents and9invalidallocations. Medium confirms validation/query fitrepresented andrep minimum2;6 explicit reviewed categories retaincoloredillumination. No liveallocation/sourceadmission. NEXT exactCDFE solver andinput provenance/nativeROIseals. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_ROLE_CERTIFICATE_20260914.json.
 
 CURRENT 2026-09-14: root reserves src/eval/fable_cdfe_assignment.py and tests/test_fable_cdfe_assignment.py for independent CDFE68 certificate checks. Medium read-only solver review. No live role allocation.

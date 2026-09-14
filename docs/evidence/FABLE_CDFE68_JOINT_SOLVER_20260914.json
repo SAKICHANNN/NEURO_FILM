@@ -1,0 +1,11 @@
+{
+  "status": "CDFE_JOINT_SOLVER_ENGINEERING_ONLY",
+  "implementation": "Fixed324-role mixed integer constraints, capture-level fit eligibility, whole-history component exclusion,68 unique fresh components, fit-represented validation/queries, held-camera smoke exclusion, represented minimum2, reviewed six-category coverage.",
+  "selection": "Exact integer objective bounds and fixed block lexicographic choice inherited from preserved historical solver; held cameras thenfit/validation/represented/helddonors/queries.",
+  "validation": "14tests passed; joint feasible, component collision infeasible, smoke held infeasible, extra fitting choice rank and reordered input stability; independent certificate called on returned allocation.",
+  "limits": [
+    "No live source roles allocated",
+    "Synthetic constraints do not establish dataset feasibility",
+    "Complete inventory and source/protocol binding still pending"
+  ]
+}
