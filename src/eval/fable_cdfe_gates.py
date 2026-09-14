@@ -3,6 +3,46 @@ import math
 import numpy as np
 
 
+def stratified_photometry_gates(error: np.ndarray, ideal_change: np.ndarray, output_change: np.ndarray,
+                                *, donor_ids: list[str], query_ids: list[str],
+                                donor_cameras: list[str], treatment_regions: list[str]) -> dict:
+    error, ideal_change, output_change = [np.asarray(x, dtype=np.float64)
+                                         for x in (error, ideal_change, output_change)]
+    if any(x.shape != (32, 32, 4) or not np.isfinite(x).all() or np.any(x < 0)
+           for x in (error, ideal_change, output_change)):
+        raise ValueError('finite nonnegative32x32x4 case metrics required')
+    if (len(donor_ids) != 32 or len(set(donor_ids)) != 32 or len(query_ids) != 4
+            or len(set(query_ids)) != 4 or len(donor_cameras) != 32
+            or len(treatment_regions) != 32 or len(set(treatment_regions)) != 4
+            or any(not isinstance(x, str) or not x for x in donor_ids+query_ids+donor_cameras+treatment_regions)):
+        raise ValueError('complete donor/query/camera/four-region labels required')
+
+    def accuracy(e, d):
+        e, d = float(np.mean(e)), float(np.mean(d))
+        return {'E': e, 'D': d, 'passed': e <= .25*d}
+
+    pooled = accuracy(error, ideal_change)
+    pooled['P'] = float(output_change.mean())
+    pooled['passed'] = pooled['passed'] and pooled['P'] >= 16
+    donors = {i: accuracy(error[j], ideal_change[j]) for j, i in enumerate(donor_ids)}
+    cameras = {}
+    for camera in sorted(set(donor_cameras)):
+        selected = np.array([c == camera for c in donor_cameras])
+        cameras[camera] = accuracy(error[selected], ideal_change[selected])
+    regions = {}
+    for region in sorted(set(treatment_regions)):
+        selected = np.array([r == region for r in treatment_regions])
+        regions[region] = accuracy(error[:, selected], ideal_change[:, selected])
+    queries = {}
+    for j, identity in enumerate(query_ids):
+        e, d, p = [float(x[:, :, j].mean()) for x in (error, ideal_change, output_change)]
+        queries[identity] = {'E': e, 'D': d, 'P': p, 'passed': e < d and p >= 16}
+    groups = [donors, cameras, regions, queries]
+    return {'pooled': pooled, 'donors': donors, 'cameras': cameras, 'regions': regions, 'queries': queries,
+            'photometry_passed': pooled['passed'] and all(r['passed'] for group in groups for r in group.values()),
+            'limits': 'Photometry subgates only; D-positive protocol scope, controls, ROI, saturation and comfort remain separate.'}
+
+
 def validation_gate(predicted: np.ndarray, targets: np.ndarray, constant: np.ndarray) -> dict:
     predicted, targets, constant = [np.asarray(x, dtype=np.float64) for x in (predicted, targets, constant)]
     if (predicted.shape != (32, 8, 4) or targets.shape != predicted.shape or constant.shape != (4,)

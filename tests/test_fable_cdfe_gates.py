@@ -1,6 +1,7 @@
 import numpy as np
 
 from src.eval.fable_cdfe_gates import donor_control_gates, validation_gate
+from src.eval.fable_cdfe_gates import stratified_photometry_gates
 
 
 def test_sign_boundary_ties_and_strict_margin():
@@ -24,3 +25,16 @@ def test_validation_zero_baseline_cannot_pass():
     target[:] = 1
     assert validation_gate(target, target, np.zeros(4))['passed']
     assert not validation_gate(np.zeros_like(target), target, np.zeros(4))['passed']
+
+
+def test_local_donor_failure_cannot_hide_in_pooled_mean():
+    e = np.ones((32,32,4))
+    e[0] = 30
+    labels = dict(donor_ids=[str(i) for i in range(32)], query_ids=list('abcd'),
+                  donor_cameras=['camera']*32, treatment_regions=[str(i//8) for i in range(32)])
+    result = stratified_photometry_gates(e, np.full_like(e, 100), np.full_like(e, 16), **labels)
+    assert result['pooled']['passed']
+    assert not result['donors']['0']['passed']
+    assert not result['photometry_passed']
+    e[:] = 25
+    assert stratified_photometry_gates(e, np.full_like(e, 100), np.full_like(e, 16), **labels)['photometry_passed']
