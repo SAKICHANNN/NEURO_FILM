@@ -1,0 +1,20 @@
+{
+  "status": "FIT_RAW_FRAME_BOUND_AND_QUERY_MASKS_VERIFIED",
+  "fit_inventory": "outputs\\fable_cdfe68_exposure_v1\\consumed_fit_raw_inventory.json",
+  "fit_inventory_sha256": "d32f6bf12fda843a1ef29847d8763431144b0da6215db5075acf6b4a35cebea9",
+  "fit_counts": {
+    "LOCAL_RAW_BOUND_NOT_TECHNICALLY_QUALIFIED": 768
+  },
+  "query_mask_check": {
+    "count": 9,
+    "all_nonempty_shape_hash_checks": true,
+    "highlight_overlay_actually_viewed": true,
+    "highlight_mask_pixels": 10626,
+    "observation": "Overlay follows colored bright flame transitions, leaves near-white cores unselected. Other masks are full previously viewed crop rectangles."
+  },
+  "limits": [
+    "768 bound local RAW originals do not imply rendering eligibility.",
+    "No fitting samples allocated or optimizer run."
+  ],
+  "next": "Execute sealed render qualification over bound consumed-fit inventory; then joint strict role solve using actual eligible sources."
+}
