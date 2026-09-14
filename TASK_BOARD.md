@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: independent CDFE rolecertificate implemented;10 synthetic tests pass including sharedfitcomponents and9invalidallocations. Medium confirms validation/query fitrepresented andrep minimum2;6 explicit reviewed categories retaincoloredillumination. No liveallocation/sourceadmission. NEXT exactCDFE solver andinput provenance/nativeROIseals. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_ROLE_CERTIFICATE_20260914.json.
+
+CURRENT 2026-09-14: root reserves src/eval/fable_cdfe_assignment.py and tests/test_fable_cdfe_assignment.py for independent CDFE68 certificate checks. Medium read-only solver review. No live role allocation.
+
 CURRENT 2026-09-14: screened RAW entry binds numeric code/renderlock andexpected RAW SHA, checks metadata/decoder beforelockedrender andRAW digestafter.23tests passed3.09s; actualCanon fullrender SHA exactlymatches priorlockedoutput. Screen seal mustbe caller-bound; not scientific sourceadmission. NEXT CDFE-specific rolesolver/evaluation seals andboundedsource readiness. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_SCREENED_RENDER_20260914.json.
 
 CURRENT 2026-09-14: root reserves src/preprocess/fable_screened_render.py, tests/test_fable_screened_render.py, configs/fable_cdfe68_screen_lock_v1.json. Bind numeric screen and locked renderer to expected RAW digest; verify before processing and after render. No scientific role admission.
