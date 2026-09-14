@@ -1,9 +1,32 @@
 import hashlib
 import json
 import os
+from contextlib import contextmanager
 from pathlib import Path
 
 import numpy as np
+
+
+@contextmanager
+def exclusive_cache_writer(directory: Path):
+    import msvcrt
+
+    directory.mkdir(parents=True, exist_ok=True)
+    with (directory / 'writer.lock').open('a+b') as stream:
+        stream.seek(0, 2)
+        if stream.tell() == 0:
+            stream.write(b'0')
+            stream.flush()
+        stream.seek(0)
+        try:
+            msvcrt.locking(stream.fileno(), msvcrt.LK_NBLCK, 1)
+        except OSError as error:
+            raise RuntimeError('another cache writer holds this directory') from error
+        try:
+            yield
+        finally:
+            stream.seek(0)
+            msvcrt.locking(stream.fileno(), msvcrt.LK_UNLCK, 1)
 
 
 def load_completed_donor(directory: Path, identity: str, contract_sha256: str) -> dict | None:

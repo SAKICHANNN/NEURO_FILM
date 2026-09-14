@@ -2,6 +2,7 @@ import numpy as np
 import pytest
 
 from src.data.fable_cdfe_cache import load_completed_donor, save_completed_donor
+from src.data.fable_cdfe_cache import exclusive_cache_writer
 
 
 def test_cache_receipt_reuse_and_corruption_detection(tmp_path):
@@ -24,3 +25,12 @@ def test_partial_file_is_not_completed(tmp_path):
     assert load_completed_donor(tmp_path, 'fit/a', 'contract') is None
     with pytest.raises(ValueError, match='ordered'):
         save_completed_donor(tmp_path, 'fit/a', 'contract', [], ['t0'])
+
+
+def test_writer_exclusion_and_release(tmp_path):
+    with exclusive_cache_writer(tmp_path):
+        with pytest.raises(RuntimeError, match='another cache writer'):
+            with exclusive_cache_writer(tmp_path):
+                raise AssertionError('second writer entered')
+    with exclusive_cache_writer(tmp_path):
+        assert (tmp_path / 'writer.lock').is_file()
