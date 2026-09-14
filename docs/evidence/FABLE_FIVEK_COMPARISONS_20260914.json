@@ -27,5 +27,12 @@
   "insufficient_scene_preview_indices": [
     148
   ],
-  "additional_candidate_history_same_scene_links": 1
+  "additional_candidate_history_same_scene_links": 1,
+  "lineage_diagnostic": {
+    "path": "outputs/fable_source_population_bridge_v1/comparisons/lineage_graph_diagnostic_v1.json",
+    "sha256": "7107cb36ff6b9b2d97f4f748d3a6c69e89a76734712d57d84901bf8fb39dc959",
+    "excluded_candidates": 47,
+    "provenance_pending_candidates": 977,
+    "status": "DIAGNOSTIC_NOT_ADMISSION"
+  }
 }

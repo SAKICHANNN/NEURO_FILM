@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: verified all10240 comparison identities and1024 sheet hashes; transitive recorded-lineage diagnostic excludes47 candidates, leaves977 provenance-pending (not admitted). NEXT direct provenance-link assessment under frozen protocol; no second all-pairs review, no RAW/training.
+
 CURRENT 2026-09-14: first-pass visual review1024/1024 complete, all ten neighbors viewed. 27 unresolved links, seven historical same-scene links, and one candidate-history same-scene link (1022/neighbor1). NEXT whole-cohort lineage/provenance and frozen assignment feasibility; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review1003/1024 (indices0..1002), all ten neighbors viewed. 25 unresolved and seven historical same-scene links retained. NEXT index1003; no admission/RAW/training.
