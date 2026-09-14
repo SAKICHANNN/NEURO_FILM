@@ -1,3 +1,7 @@
+CURRENT 2026-09-14:217local historyfiles hashed for199identities; all recordedSHA match.430slots preserved.189file reads returned metadata,28unsupported; TIFFwarnings meanfieldsprovisional,143identities have DateTimeOriginalfield. Nofreshness/unionclaim. NEXT reliablemetadata reconciliation/unmatchedexistingrecords beforeMfreeze. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_LOCAL_HISTORY_AUDIT_20260914.json.
+
+CURRENT 2026-09-14: root reserves scripts/audit_fable_cdfe_local_history.py. Hash-reconcile recordedlocal RAW andread boundedTIFFmetadata; unsupportedformats remainunresolved. No downloads/rendering.
+
 CURRENT 2026-09-14: bounded existing-record join47files matches343/430missinghistory identities;87remainunmatched. Slotsall430preserved,rebuildmatches; metadata/locators areleads notlineageseparation. No requests. NEXT reconcilelocaloriginal hashes/metadata andunmatched existingrecords beforeMfreeze. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_HISTORY_LOCATORS_20260914.json.
 
 CURRENT 2026-09-14: root reserves scripts/join_fable_cdfe_history_locators.py. Bounded existing representation-parent manifests/metadata and recorded FiveK batchmanifest join; no external search or requests.

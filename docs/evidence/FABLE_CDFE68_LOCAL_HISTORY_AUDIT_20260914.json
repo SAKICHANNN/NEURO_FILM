@@ -1,0 +1,18 @@
+{
+  "status": "LOCAL_HASH_RECONCILIATION_METADATA_PROVISIONAL",
+  "artifact": "outputs\\fable_cdfe68_exposure_v1\\local_history_audit.jsonl",
+  "sha256": "31c4b0d2507bd773b0df2f6fa964570f13d88489c97e9920917831fe377bc1bf",
+  "identity_slots": 430,
+  "unique_local_files": 217,
+  "file_status": {
+    "HASH_MATCH_METADATA_READ": 189,
+    "HASH_MATCH_METADATA_UNSUPPORTED": 28
+  },
+  "identities_with_datetimeoriginal_field": 143,
+  "limits": [
+    "TIFF reader emitted unsupported-format and structural warnings; returned fields not independently validated.",
+    "217files represent199historicalidentities; no new source acquisition.",
+    "No date normalization, camera/day union or freshness admission from these provisional fields."
+  ],
+  "next": "Reconcile trusted existing sidecars/source records for metadata and87unmatched identities; preserve unsupported originals without assuming independence."
+}
