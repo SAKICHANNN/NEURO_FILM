@@ -7,6 +7,7 @@ from pathlib import Path
 
 from src.data.fable_windows_memory import limit_current_process_committed_memory
 from src.training.fable_source_closure import local_import_closure
+from src.training.fable_runtime import computation_runtime
 
 
 def main():
@@ -19,6 +20,8 @@ def main():
     seal = json.loads(blob)
     if seal.get('status') != 'SEALED_FOR_SINGLE_FITTING_RUN':
         raise ValueError('sealed training contract required before validation')
+    if seal['computation_runtime'] != computation_runtime():
+        raise ValueError('computation environment differs from seal')
     required = {'scripts/validate_fable_cdfe.py', 'src/eval/fable_cdfe_validation.py',
         'src/eval/fable_cdfe_gates.py', 'src/training/fable_cdfe_checkpoint.py',
         'src/models/canonical_photometry.py', 'src/data/fable_windows_memory.py',
