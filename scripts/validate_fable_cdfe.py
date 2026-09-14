@@ -11,6 +11,7 @@ from src.data.fable_windows_memory import limit_current_process_committed_memory
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--contract', required=True, type=Path)
+    parser.add_argument('--assessment', action='store_true')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     blob = args.contract.read_bytes()
@@ -21,11 +22,19 @@ def main():
         'src/eval/fable_cdfe_gates.py', 'src/training/fable_cdfe_checkpoint.py',
         'src/models/canonical_photometry.py', 'src/data/fable_windows_memory.py',
         seal['training_config'], seal['validation_plan'], seal['cache_plan']}
+    if args.assessment:
+        required.update({seal['assessment_plan'], *['src/eval/'+name+'.py' for name in
+            ['fable_cdfe_assessment', 'fable_cdfe_assessment_predictions', 'fable_cdfe_controls',
+             'fable_cdfe_query_counts', 'fable_cdfe_case_metrics', 'fable_cdfe_assessment_gates',
+             'fable_photometry_metrics', 'fable_protected_regions']]})
     if not required.issubset(seal['source_sha256']):
         raise ValueError('validation dependency bindings incomplete')
     cache_plan = json.loads((root / seal['cache_plan']).read_text())
     plan = json.loads((root / seal['validation_plan']).read_text())
-    for dependency_plan in [cache_plan, plan]:
+    dependency_plans = [cache_plan, plan]
+    if args.assessment:
+        dependency_plans.append(json.loads((root / seal['assessment_plan']).read_text()))
+    for dependency_plan in dependency_plans:
         for relative, expected in dependency_plan['source_sha256'].items():
             if seal['source_sha256'].get(relative) != expected:
                 raise ValueError('computation bindings differ')
@@ -59,6 +68,45 @@ def main():
     lock = json.loads((root / config['role_lock']).read_text())
     plan = json.loads((root / seal['validation_plan']).read_text())
     native = json.loads((root / config['native_measurement_config']).read_text())
+    checkpoint_sha = hashlib.sha256((output / 'final.pt').read_bytes()).hexdigest()
+    if args.assessment:
+        from src.eval.fable_cdfe_gates import validation_gate
+        from src.eval.fable_cdfe_assessment import evaluate_assessment
+
+        validation = json.loads((output / 'validation.json').read_text())
+        if (validation['contract_sha256'] != contract or validation['checkpoint_sha256'] != checkpoint_sha
+                or validation['identities'] != lock['assignment']['validation']
+                or validation['treatment_ids'] != plan['treatment_ids']):
+            raise ValueError('validation provenance differs from final checkpoint')
+        if hashlib.sha256((output / 'validation.npz').read_bytes()).hexdigest() != validation['arrays_sha256']:
+            raise ValueError('validation arrays changed')
+        with np.load(output / 'validation.npz', allow_pickle=False) as values:
+            gate = validation_gate(values['predicted'], values['targets'], np.zeros(4))
+        if not gate['passed'] or gate != validation['gate']:
+            raise ValueError('fixed validation gate failed or report differs')
+        with (output / 'assessment.claim').open('x') as stream:
+            json.dump({'contract_sha256': contract, 'checkpoint_sha256': checkpoint_sha}, stream)
+            stream.flush()
+            os.fsync(stream.fileno())
+        assessment_plan = dependency_plans[-1]
+        result = evaluate_assessment(model, assessment_plan, assignment=lock['assignment'],
+            normalizer={k: v.numpy() for k, v in checkpoint['normalizer'].items()},
+            native_config=native, progress=lambda row: print(json.dumps(row), flush=True))
+        with (output / 'assessment.npz.partial').open('xb') as stream:
+            np.savez(stream, **result['arrays'])
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(output / 'assessment.npz.partial', output / 'assessment.npz')
+        report = {k: v for k, v in result.items() if k != 'arrays'}
+        report.update(contract_sha256=contract, checkpoint_sha256=checkpoint_sha,
+            arrays_sha256=hashlib.sha256((output / 'assessment.npz').read_bytes()).hexdigest())
+        with (output / 'assessment.json').open('x') as stream:
+            json.dump(report, stream, indent=2)
+            stream.flush()
+            os.fsync(stream.fileno())
+        print(json.dumps({'numeric_passed': report['gates']['numeric_passed'],
+                          'visual_review_required': True}), flush=True)
+        return
     with (output / 'validation.claim').open('x') as stream:
         json.dump({'contract_sha256': contract,
                    'checkpoint_sha256': hashlib.sha256((output / 'final.pt').read_bytes()).hexdigest()}, stream)
@@ -74,7 +122,7 @@ def main():
         os.fsync(stream.fileno())
     os.replace(temporary, output / 'validation.npz')
     report = {k: v for k, v in result.items() if k not in ['predicted', 'targets']}
-    report.update(contract_sha256=contract,
+    report.update(contract_sha256=contract, checkpoint_sha256=checkpoint_sha,
         arrays_sha256=hashlib.sha256((output / 'validation.npz').read_bytes()).hexdigest())
     with (output / 'validation.json').open('x') as stream:
         json.dump(report, stream, indent=2)
