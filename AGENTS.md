@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: medium strictinventory review found evidencebinding gaps; fixed dependencySHA/prefix-frame equality/componentpartition/nativeasset rehash/querycrop-maskbounds checks; compilepass only.14existing solver tests passed4.93s and incompletefit guard observed. Remaining ledgerunique/prefiltercomponent/ROIcamera-category consistency + frozenrank/zerooptimizer record binding beforeexecution. Fit session12840live.
+
 CURRENT 2026-09-14: strictinventory builder prepared/compilepass scripts/build_fable_cdfe_strict_inventory.py; notexecuted until nativefit complete. Terminalframe guards, actualrender eligibility, all2030history components, querymask/nativebindings, deterministic outcome-independent ranks. Still LIVE fitrender session12840; NEXT sleep/poll sameprocess, complete verification then review/run builder+solver.
 
 CURRENT 2026-09-14: consumedfit768 sealedrender LIVE session12840, first4passed. Same locked renderer, --consumed-fit validates exact consumed identity set, output native_fit_v1 separate. No optimizer. NEXT sleep and poll same process, verify terminal frame/output hashes then jointstrictroles. Do not restart live runner.
