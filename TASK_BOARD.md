@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: fixedCDFE256 ID-onlyprefix frozen;6 knownlinked entries retainedwithoutreplacement. Rebuild matches. Medium Mreview: all430historygaps needbounded existing-record disposition; Mselected bylinkresolutionneed notavailability. No requests. NEXT existingmanifest/rawlocators join192FiveK+238rawpixls thenfreezeM. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_CANDIDATE_PREFIX_20260914.json.
+
+CURRENT 2026-09-14: root reserves scripts/freeze_fable_cdfe_prefix.py. Freeze ID-only256candidateprefix with oldpilot exclusion; graph conflicts marked, never replaced. M scope under medium review. No requests.
+
 CURRENT 2026-09-14: CDFE jointMILP solver implemented separately fromoldsolver;14tests pass including feasible sharedfit, freshcollision/smoke infeasibility andrank/reorderedinput stability. Independentcertificate validates returnedallocation. No liveadmission ortraining. NEXT boundedsource manifest andfullprotocol seals/nativeROI evidence. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_JOINT_SOLVER_20260914.json.
 
 CURRENT 2026-09-14: root reserves src/eval/fable_cdfe_solver.py and tests/test_fable_cdfe_solver.py. Implement joint exact MILP with CDFE exposure/component/camera/coverage constraints; preserve oldsolver.

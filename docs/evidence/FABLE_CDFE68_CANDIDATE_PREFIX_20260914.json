@@ -1,0 +1,16 @@
+{
+  "status": "PREFIX_FROZEN_NOT_EXECUTABLE_ACQUISITION_MANIFEST",
+  "artifact": "outputs\\fable_cdfe68_exposure_v1\\candidate_prefix.json",
+  "sha256": "6df969914e72ee2e6a812421ec8125b39457aa5cb4692335a72b407541837dd6",
+  "count": 256,
+  "known_linked_retained": 6,
+  "validation": "Deterministic rebuild matches; historical order and unique count enforced; only substantive/pilot IDs excluded beforeprefix.",
+  "historical_gap_review": {
+    "missing": 430,
+    "fivek": 192,
+    "rawpixls": 238,
+    "decision": "One bounded existing-record locator pass for all430. M means metadata needed to resolve potential links, not merely downloadable or all missing by default. Unknown unbounded history must not be inferred fresh."
+  },
+  "next": "Join existing original source records to430 dispositions; freezeM before any acquisition.",
+  "requests_sent": 0
+}
