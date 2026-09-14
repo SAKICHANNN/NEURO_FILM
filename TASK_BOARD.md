@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review843/1024 (indices0..842), all ten neighbors viewed. 24 unresolved and six historical same-scene links retained. NEXT index843; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review827/1024 (indices0..826), all ten neighbors viewed. Snowboard821/neighbor6 unresolved; patio812/neighbors1,2,5 linked. 24 unresolved and 6 historical same-scene links retained. NEXT index827; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review811/1024 (indices0..810), all ten neighbors viewed. Martial-arts806/779neighbor8 unresolved; 23 unresolved and five historical same-scene links retained. NEXT index811; no admission/RAW/training.
