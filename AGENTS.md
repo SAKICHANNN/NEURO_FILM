@@ -1,3 +1,5 @@
+CURRENT 2026-09-14: visual review215/1024 (indices0..214). Added toy-car candidate relation unresolved, and two historical same-scene rendition links (tree, hair dryers). Totals eight unresolved and three historical same-scene links. NEXT index215; no admission/RAW/training.
+
 CURRENT 2026-09-14: visual review199/1024 (indices0..198), all ten neighbors actually viewed. No additional specific scene links in183..198; seven unresolved prior relations retained. NEXT index199; no admission/RAW/training.
 
 CURRENT 2026-09-14: visual review183/1024 (indices0..182), all ten neighbors viewed. Added unresolved amphitheater167/112 and sunset177/neighbor6 relations; seven unresolved total. NEXT index183; no admission/RAW/training.
