@@ -1,0 +1,15 @@
+{
+  "status": "FROZEN_METADATA_ACTION_FRAME_TRANSPORT_IMPLEMENTATION_PENDING",
+  "artifact": "outputs\\fable_cdfe68_exposure_v1\\metadata_action_frame.json",
+  "sha256": "a84e0cf89b46236da39e82dd37b56e850e8066d0ff3d0792704a488aba2831d5",
+  "counts": {
+    "REMOTE_ONCE_PENDING": 196,
+    "COMPLETED_LOCAL_READ_NO_FURTHER_READ": 194,
+    "LOCAL_READ_ONCE_PENDING": 19,
+    "EXISTING_RECORDED_METADATA_REUSE": 21
+  },
+  "M_count": 215,
+  "validation": "Deterministic rebuild,430history+256prefix,215M,zero network allowance for completed local reads. Encoding-equivalent recordedURLs normalized bycomparison, no guessedURL.",
+  "next": "Implement bounded resumable transport counting all failurebytes, then execute fixed frame andsettle relations/roles.",
+  "network_requests": 0
+}

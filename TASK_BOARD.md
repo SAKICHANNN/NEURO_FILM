@@ -1,3 +1,7 @@
+CURRENT 2026-09-14: metadata actionframe FROZEN:196remoteonce+19localonce(M215),194completedlocalreuse+21recordedEXIFreuse;430historyslots+fixed256candidateprefix,shared8GiB. Rebuild andzero-refetchcompleted checks pass. No requests. NEXT boundedtransport implementation/execution thenfinalrelation/roleclosure; noexpansion. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_METADATA_ACTION_FRAME_20260914.json.
+
+CURRENT 2026-09-14: root reserves scripts/freeze_fable_cdfe_metadata_frame.py. Freeze history actions andM withcandidateprefix; exact URL encoding-equivalence only, completedreadsneverrefetch. No transport yet.
+
 CURRENT 2026-09-14:430historytransportdispositions assembled218localreuse/212remotependingM; cachedFiveKindex exactjoinverified. Medium finalizesboundedclosure: reusecompletedreads,no unsupportedrefetch,no newbridge;freezeMthenoneexecutionandterminalrelation/roledecision. No requests. NEXT peridentitymetadata statuses+M freeze; no furtherhistorysearch. Root reservationreleased. Evidence docs/evidence/FABLE_CDFE68_HISTORY_DISPOSITIONS_20260914.json.
 
 CURRENT 2026-09-14: root reserves scripts/prepare_fable_cdfe_history_dispositions.py. Assemble430existing-record dispositions with exactsource URLs andlocalreuse classification; draftnotfetchauthorization.
