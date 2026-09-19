@@ -100,7 +100,7 @@
   "goal_tool_state": "active_corrected_goal_created_20260920",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Review high implementation and inspect one fixed real-reference four-source photometry comparison; reject weak or severe results, prefer nested simpler model if adequate. No sweeps.",
+  "next": "Outside-view mainline decision after conditional reference transfer stops; no strength sweep, reference swap or grain masking to rescue this candidate.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -114,10 +114,10 @@
   "goal_alignment_evidence": "docs/evidence/FABLE_GOAL_ALIGNMENT_20260920.json",
   "next_before_20260920": "Medium implementing assess_fable_photometry.py and matching test; review then run exact512primary query cases and parameterdiagnostics.16visualoutputs still required.",
   "next_milestone": {
-    "status": "SCIENCE_RETRIEVED_HIGH_ADOPTION_IMPLEMENTATION",
+    "status": "FIRST_REAL_REFERENCE_COMPARISON_DONE_CANDIDATE_STOPPED",
     "deliverable": "One real reference and four source rows; original, nested simple photometry, full conditional photometry and tone-only, native crops and toggles. Optics/texture deferred until photometry earns continuation.",
     "selection": "Reuse development identities; no CDFE validation/assessment consumption or selection on held outcomes. Film-stock labels require provenance; otherwise label uncalibrated/reference appearance.",
-    "unresolved": "One conditional chroma-quantile response proposed; same Astra high agent critically reviews and implements one bounded run. Not promoted.",
+    "unresolved": "Next mainline assumption/action under high review. Goal not achieved; independent generalization not admitted.",
     "decision": "Reject near-identity or harsh/distorting results; retain failures in the audit record while the user selection view shows only visually admitted candidates. No new optimization just to inflate difference.",
     "cdfe_relation": "Optional retained mechanism evidence. Completing its cache is neither a prerequisite for designing this milestone nor a reason to keep the whole project centered on it.",
     "input_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
@@ -134,7 +134,17 @@
       "scope": "Frozen five-parameter negative control. New nested comparator must share candidate tone/targets/gamut prospectively; do not force candidate to reuse visually failed historical gamut composition.",
       "evidence": "docs/evidence/FABLE_REAL_REFERENCE_BASELINE_20260920.json"
     },
-    "science_result": "outputs/fable_real_reference_science_v1/result.md"
+    "science_result": "outputs/fable_real_reference_science_v1/result.md",
+    "conditional_candidate": {
+      "status": "STOP_FIXED_CANDIDATE_NO_PROMOTION",
+      "evidence": "docs/evidence/FABLE_REAL_REFERENCE_CONDITIONAL_20260920.json",
+      "full_wins": 0,
+      "required_wins": 3,
+      "simple_all_four_pass": false,
+      "solver_calls": 12,
+      "solver_restarts": 0,
+      "optics_texture": "off"
+    }
   },
   "goal_tool_observation_note": "New Goal successfully created after get_goal returned null; prior pause revoked for corrected mainline. CDFE and fixed96 remain deferred."
 }

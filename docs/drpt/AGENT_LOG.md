@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-20 - Stop conditional candidate after actual four-source review
+
+- One fixed run: 12 valid solvers, zero restarts; 16 full PNGs, 36 crops and 16 float arrays verified. Prefit ICC timestamp admission failure retained; zero solvers before repair. Six focused tests pass; preceding combined21 pass. Root checked code/config source bindings.
+- Root and same Astra high agree STOP: full adds no clear source-level win over nested simple; both pale the orange flowers and fail requested richness. Other scenes show gentler colors and retained inspected distinctions, not enough for whole-method admission. No old severe posterization observed. No human preference or generalization claim.
+- Comparison viewer loads all53images across four unique rows; original toggle/empty/missing-result behavior verified. Default excludes unadmitted outputs. User changes preserved. Next is one high outside-view mainline decision, not another fitting sweep. Evidence: docs/evidence/FABLE_REAL_REFERENCE_CONDITIONAL_20260920.json.
+
 ## 2026-09-20 - Real baseline rejected; science reply retrieved
 
 - Four automatic baseline fits produced 26 full/crop PNGs with exact replay; agent reports 20 focused tests passed. Root inspected all full frames and paired native face/bokeh crops: severe new color patches veto this configuration. No refit or promotion.

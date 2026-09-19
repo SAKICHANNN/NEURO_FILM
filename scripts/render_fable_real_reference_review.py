@@ -19,6 +19,7 @@ def render_review(manifest_path: Path, destination: Path) -> None:
     decisions = {row["source_index"]: row.get("methods", {}) for row in review.get("rows", [])}
     labels = {"simple": "简化颜色拟合", "full": "分组颜色拟合", "tone_only": "仅明暗调整"}
     scenes = ["01 · 咖啡馆：人脸与招牌", "02 · 车内：暖光下的皮肤", "03 · 花卉：花瓣与叶缘", "04 · 夜景：灯光与湿地反射"]
+    crop_labels = {"visible_sign": "招牌上可读的字", "left_face": "左侧人脸", "right_face": "右侧人脸与玻璃反光", "face_warm_light": "暖光下的人脸", "hand_and_fabric": "手部与衣料", "petal_detail": "花瓣纹理", "leaf_edges": "叶片边缘", "reflected_color_and_ripples": "水面反射与波纹", "bokeh_highlights": "灯光与光斑"}
     manifest = {"reference": {**inputs["reference"], "path": report["reference"]["path"], "label": "Kodak Portra 400 · 参考照片外观"}, "rows": []}
     for result in report["rows"]:
         index = result["source_index"]
@@ -30,7 +31,7 @@ def render_review(manifest_path: Path, destination: Path) -> None:
             paths = {"original": crop["path"]}
             for arm in labels:
                 paths[arm] = next((c["path"] for c in arms.get(arm, {}).get("crops", []) if c["label"] == crop["label"]), None)
-            crops.append({"label": crop["label"], "paths": paths})
+            crops.append({"label": crop_labels.get(crop["label"], crop["label"]), "paths": paths})
         manifest["rows"].append({"source_index": index, "label": scenes[index], "size_wh": result["size_wh"], "original": original, "methods": methods, "crops": crops})
     rows = manifest["rows"]
     if len(rows) != 4 or len({row["source_index"] for row in rows}) != 4:

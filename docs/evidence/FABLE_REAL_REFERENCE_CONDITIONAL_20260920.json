@@ -1,0 +1,206 @@
+{
+  "date": "2026-09-20",
+  "status": "STOP_FIXED_CANDIDATE_NO_PROMOTION",
+  "visual_review": {
+    "status": "STOP_FIXED_CANDIDATE_NO_PROMOTION",
+    "reviewers": [
+      "root",
+      "Astra high real_reference_adoption_high"
+    ],
+    "evidence_kind": "Model-based visual development review, not human preference or independent generalization",
+    "report_sha256": "29541ecdf6026f89004cffd00d4173c38a75305ac9d6201b199ae2025d33bada",
+    "scope": "Reference, original/simple/full/tone-only overview across all four scenes; root separately viewed native full outputs and all nine corresponding native-crop strips. High viewed all16fullframes and36crops.",
+    "full_clear_whole_image_wins_over_simple": 0,
+    "full_required_wins": 3,
+    "simpler_all_four_pass": false,
+    "terminal_reason": "Flower richness fails for both fitted versions; full complexity does not earn three-of-four improvement. Tone-only control shows color branch active, not beneficial.",
+    "rows": [
+      {
+        "source_index": 0,
+        "methods": {
+          "simple": "rejected",
+          "full": "rejected",
+          "tone_only": "rejected"
+        },
+        "comment": "Visible gentler skin/red signage; existing readable ASHIER and partial Chinese characters, faces and glass reflections retained in inspected crops. Full has no clear whole-image advantage over simple.",
+        "severe_new_artifact_observed_in_fixed_crops": false,
+        "appearance_gate": "partial_subdued_variant_not_method_admission"
+      },
+      {
+        "source_index": 1,
+        "methods": {
+          "simple": "rejected",
+          "full": "rejected",
+          "tone_only": "rejected"
+        },
+        "comment": "Original strong yellow light becomes gentler/less saturated; face, hair, hand, watch and fabric distinctions remain. Full approximately simple, mainly neutralization rather than distinctive richer reference appearance.",
+        "severe_new_artifact_observed_in_fixed_crops": false,
+        "appearance_gate": "partial_subdued_variant_not_method_admission"
+      },
+      {
+        "source_index": 2,
+        "methods": {
+          "simple": "rejected",
+          "full": "rejected",
+          "tone_only": "rejected"
+        },
+        "comment": "Original luminous orange/yellow petals become pale tan/cream. Veins/dots and leaf boundaries remain, but both simple and full fail requested richness. Reference relationship is mainly generic muting.",
+        "severe_new_artifact_observed_in_fixed_crops": false,
+        "appearance_gate": "fail_richness"
+      },
+      {
+        "source_index": 3,
+        "methods": {
+          "simple": "rejected",
+          "full": "rejected",
+          "tone_only": "rejected"
+        },
+        "comment": "Night atmosphere, water ripples and existing bokeh rings remain. No old jagged color patches. Orange glow and cyan reflections are subdued; full shows no clear added value over simple.",
+        "severe_new_artifact_observed_in_fixed_crops": false,
+        "appearance_gate": "partial_subdued_variant_not_method_admission"
+      }
+    ],
+    "followup_policy": "No rerun, parameter rescue, reference swap or added texture for this candidate. Retain partial visual improvements and numerical results. Reconsider next mainline independently."
+  },
+  "verification": {
+    "status": "VERIFIED",
+    "full_pngs": 16,
+    "crop_pngs": 36,
+    "float_arrays": 16,
+    "source_fit_pipelines": 4,
+    "solver_calls": 12,
+    "restarted_solvers": 0,
+    "tests": "6focusedpassed1.64s; earlier combined21passed2.62s before ICC-only repair",
+    "probes": "gray/hue_chroma ramps actually viewed; extreme-L first-exit and analytic-gradient tests passed",
+    "prefit_incident": "ICC timestamp admission failure preserved separately; zero solvers before repair",
+    "report_sha256": "29541ecdf6026f89004cffd00d4173c38a75305ac9d6201b199ae2025d33bada",
+    "summary": [
+      {
+        "source": 0,
+        "support": 7,
+        "support_fraction": 0.63055419921875,
+        "neutral_bands": [
+          0,
+          1,
+          2
+        ],
+        "objectives": {
+          "tone_solver": 1.2254897297569443,
+          "simple_solver": 0.5816855849471112,
+          "full_solver": 0.4935391403801441
+        },
+        "full_change": {
+          "change_median": 0.03986312589113035,
+          "change_p90": 0.06670736759740996,
+          "change_fraction_gt_002": 0.9242952674897119
+        },
+        "full_gamut": {
+          "pre_gamut_outside_fraction": 0.1247582304526749,
+          "compressed_fraction": 0.16084876543209878,
+          "in_gamut_compressed_fraction": 0.03609053497942387,
+          "mean_chroma_reduction": 0.0003821157732517918,
+          "minimum_chroma_ratio": 0.0,
+          "mean_chroma_ratio": 0.9894450983477512,
+          "maximum_roundoff_clamp": 0.0,
+          "roundoff_clipped_channel_fraction": 0.0
+        }
+      },
+      {
+        "source": 1,
+        "support": 7,
+        "support_fraction": 0.59674072265625,
+        "neutral_bands": [
+          0,
+          1,
+          2
+        ],
+        "objectives": {
+          "tone_solver": 0.6440184340397934,
+          "simple_solver": 0.6290918671624299,
+          "full_solver": 0.4796995459894242
+        },
+        "full_change": {
+          "change_median": 0.04740483694195236,
+          "change_p90": 0.06007591725800187,
+          "change_fraction_gt_002": 0.9357716049382716
+        },
+        "full_gamut": {
+          "pre_gamut_outside_fraction": 0.02418724279835391,
+          "compressed_fraction": 0.02941358024691358,
+          "in_gamut_compressed_fraction": 0.0052263374485596705,
+          "mean_chroma_reduction": 7.229536994018302e-05,
+          "minimum_chroma_ratio": 0.0,
+          "mean_chroma_ratio": 0.9947104940056625,
+          "maximum_roundoff_clamp": 0.0,
+          "roundoff_clipped_channel_fraction": 0.0
+        }
+      },
+      {
+        "source": 2,
+        "support": 13,
+        "support_fraction": 0.831634521484375,
+        "neutral_bands": [
+          0
+        ],
+        "objectives": {
+          "tone_solver": 1.4048118896497215,
+          "simple_solver": 0.6491456776916058,
+          "full_solver": 0.5886785580600562
+        },
+        "full_change": {
+          "change_median": 0.047484914333448626,
+          "change_p90": 0.07311785111284384,
+          "change_fraction_gt_002": 0.9571459709985316
+        },
+        "full_gamut": {
+          "pre_gamut_outside_fraction": 0.0035620870044052863,
+          "compressed_fraction": 0.007888502661527167,
+          "in_gamut_compressed_fraction": 0.00432641565712188,
+          "mean_chroma_reduction": 2.11050675927639e-05,
+          "minimum_chroma_ratio": 0.279111278686393,
+          "mean_chroma_ratio": 0.9990295559464851,
+          "maximum_roundoff_clamp": 0.0,
+          "roundoff_clipped_channel_fraction": 0.0
+        }
+      },
+      {
+        "source": 3,
+        "support": 6,
+        "support_fraction": 0.16717529296875,
+        "neutral_bands": [
+          0,
+          1,
+          2
+        ],
+        "objectives": {
+          "tone_solver": 5.951055878775634,
+          "simple_solver": 0.5127016424365065,
+          "full_solver": 0.474657430909762
+        },
+        "full_change": {
+          "change_median": 0.028579824064085317,
+          "change_p90": 0.06755652402066781,
+          "change_fraction_gt_002": 0.6894729245555348
+        },
+        "full_gamut": {
+          "pre_gamut_outside_fraction": 0.20196931619432512,
+          "compressed_fraction": 0.20865921787709496,
+          "in_gamut_compressed_fraction": 0.006689901682769863,
+          "mean_chroma_reduction": 0.0013511488514826588,
+          "minimum_chroma_ratio": 0.0,
+          "mean_chroma_ratio": 0.9265156345813175,
+          "maximum_roundoff_clamp": 0.0,
+          "roundoff_clipped_channel_fraction": 0.0
+        }
+      }
+    ]
+  },
+  "adoption_sha256": "7e4e130ca6f4a13841861b92cb405528b6f0cbdbe7b1c86095639830a24fb0ce",
+  "source_bindings_verified_by_root": true,
+  "claim_limit": "Development policy failure only; no claim that all reference transfer, physical pipelines or simpler algorithms fail. No calibrated Portra400 or human preference evidence.",
+  "science": "outputs/fable_real_reference_science_v1/result.md",
+  "report": "outputs/fable_real_reference_conditional_v1/report.json",
+  "comparison_page": "outputs/fable_real_reference_review_v1/index.html",
+  "comparison_default": "No admitted candidates; complete experiment available only in audit mode",
+  "next": "Same high agent outside-view mainline decision, no new fits or science call yet."
+}
