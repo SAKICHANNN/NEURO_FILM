@@ -97,7 +97,7 @@
     }
   ],
   "rollback": "Stop new route if evidence fails; preserve pilot and old results. Returning to old96 requires explicit later decision, never automatic.",
-  "goal_tool_state": "active_corrected_goal_created_20260920",
+  "goal_tool_state": "blocked_waiting_for_treatment_example",
   "training_admitted": false,
   "claims_proven": [],
   "next": "Await owned/licensed aligned preferred before/after development example or existing approved paired-source pointer. No new fitting/source carousel. Single AFTER-reference product inference goal remains unchanged.",
@@ -146,5 +146,5 @@
       "optics_texture": "off"
     }
   },
-  "goal_tool_observation_note": "Goal remains ACTIVE and unachieved; user has not requested pause. First occurrence of missing treatment-example condition, not eligible for blocked status under tool recurrence rule."
+  "goal_tool_observation_note": "update_goal returned BLOCKED after the same missing treatment-example condition persisted across three consecutive goal turns. Objective unachieved; no new user material or evidence-supported autonomous next action. Resume requires user input or relevant external-state change."
 }
