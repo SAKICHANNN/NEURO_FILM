@@ -100,7 +100,7 @@
   "goal_tool_state": "active_corrected_goal_created_20260920",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Choose one concrete real-reference photometry candidate using existing development materials and retained failures, then implement and render the bounded multi-source layered comparison. Do not auto-resume CDFE.",
+  "next": "Review high implementation and inspect one fixed real-reference four-source photometry comparison; reject weak or severe results, prefer nested simpler model if adequate. No sweeps.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -114,15 +114,27 @@
   "goal_alignment_evidence": "docs/evidence/FABLE_GOAL_ALIGNMENT_20260920.json",
   "next_before_20260920": "Medium implementing assess_fable_photometry.py and matching test; review then run exact512primary query cases and parameterdiagnostics.16visualoutputs still required.",
   "next_milestone": {
-    "status": "WAITING_FOR_6PRO_METHOD_SELECTION",
-    "deliverable": "One real target reference across four existing development source scenes, compared at overview and native detail; original, available same-input historical/control output, photometry-only candidate, and layered candidate with per-layer contribution shown. This is a development feasibility milestone, not generalization or stock-calibration proof.",
+    "status": "SCIENCE_RETRIEVED_HIGH_ADOPTION_IMPLEMENTATION",
+    "deliverable": "One real reference and four source rows; original, nested simple photometry, full conditional photometry and tone-only, native crops and toggles. Optics/texture deferred until photometry earns continuation.",
     "selection": "Reuse development identities; no CDFE validation/assessment consumption or selection on held outcomes. Film-stock labels require provenance; otherwise label uncalibrated/reference appearance.",
-    "unresolved": "Concrete real-reference photometric fitting method is not yet selected or admitted by this audit. Before compute, use retained evidence to choose one bounded candidate and explain which product decision it resolves; deep formulation uses existing 6 Pro policy if needed.",
+    "unresolved": "One conditional chroma-quantile response proposed; same Astra high agent critically reviews and implements one bounded run. Not promoted.",
     "decision": "Reject near-identity or harsh/distorting results; retain failures in the audit record while the user selection view shows only visually admitted candidates. No new optimization just to inflate difference.",
     "cdfe_relation": "Optional retained mechanism evidence. Completing its cache is neither a prerequisite for designing this milestone nor a reason to keep the whole project centered on it.",
     "input_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
     "input_evidence": "docs/evidence/FABLE_REAL_REFERENCE_INPUTS_20260920.json",
-    "science_transport": "outputs/fable_real_reference_science_v1/transport_state.json"
+    "science_transport": "outputs/fable_real_reference_science_v1/transport_state.json",
+    "parallel_baseline": {
+      "status": "DONE_REJECTED_SEVERE_VISUAL_ARTIFACTS",
+      "owner": "real_reference_adoption_high",
+      "files": [
+        "scripts/run_fable_real_reference.py",
+        "configs/fable_real_reference_baseline_v1.json"
+      ],
+      "output": "outputs/fable_real_reference_baseline_v1",
+      "scope": "Frozen five-parameter negative control. New nested comparator must share candidate tone/targets/gamut prospectively; do not force candidate to reuse visually failed historical gamut composition.",
+      "evidence": "docs/evidence/FABLE_REAL_REFERENCE_BASELINE_20260920.json"
+    },
+    "science_result": "outputs/fable_real_reference_science_v1/result.md"
   },
   "goal_tool_observation_note": "New Goal successfully created after get_goal returned null; prior pause revoked for corrected mainline. CDFE and fixed96 remain deferred."
 }

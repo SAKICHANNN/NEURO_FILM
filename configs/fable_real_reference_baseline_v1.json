@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "input_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
+  "input_manifest_sha256": "bce2b1a3b8db40d9524dc4186308aa85394636222a2992607cca467bc182ef93",
+  "review_boxes": "outputs/fable_real_reference_development_v1/review_boxes.json",
+  "review_boxes_sha256": "7534659d76ed75cadd257e2d7b6b2ae2874e3d438761f8a4070a06f19949daa9",
+  "output": "outputs/fable_real_reference_baseline_v1",
+  "samples": 4096,
+  "sampling": "np.linspace(0, pixel_count - 1, 4096, dtype=np.int64) on row-major full-image linear RGB, separately for source and reference",
+  "fit": "existing fit_joint_basic_adjustment; unpaired summary-vector loss; unchanged five parameter bounds and max_nfev=100; exactly one fit per source",
+  "gamut_policy": "D65 CIELAB source-to-target segment compression into linear_srgb, then measured numerical roundoff clamp only; apply same final policy to later candidates",
+  "gamut_iterations": 24,
+  "roundoff_tolerance": 0.000002,
+  "claim": "baseline-only on previously consumed RGB8 display development assets; no semantic safety, preference, reference fidelity, stock calibration or generalization established"
+}

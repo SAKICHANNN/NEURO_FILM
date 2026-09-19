@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-20",
+  "baseline": {
+    "status": "REJECTED_SEVERE_VISUAL_ARTIFACTS",
+    "reviewer": "root model visual review; not human preference",
+    "report_sha256": "9b5dd003a6741c330f831221852d253bb148035c754ea9ac33b9b646a85315aa",
+    "viewed": "All four full frames; original/baseline native car-face and night-bokeh crop pairs",
+    "observations": {
+      "cafe": "Orange/yellow flat patches at upper arm/window, washed face/background.",
+      "car_portrait": "Severe segmented yellow patches on face/chest/arm; native face pair confirms unnatural hard boundaries.",
+      "flowers": "Pale washed petals relative to saturated source; visible change does not establish rich comfortable reference appearance.",
+      "night": "Severe peach-orange flat patches inside originally smooth orange bokeh; new jagged outlines confirmed in native pair. Original optical bokeh rings pre-existed and are not themselves counted as new artifacts."
+    },
+    "decision": "Retain this five-parameter plus source-segment gamut configuration as negative control. No rescue/refit. Numerical mechanics do not override visual veto.",
+    "claim_limit": "Cause not isolated between unconstrained affine response and gamut composition; no general failure claim about all simple adjustment or gamut algorithms."
+  },
+  "science_transport": {
+    "packet_id": "neuro-film-real-reference-photometry-20260920-v1",
+    "status": "RETRIEVED_VALIDATED_LOCAL_ADOPTION_IN_PROGRESS",
+    "browser_id": "1",
+    "tab_id": "2",
+    "sends": 1,
+    "retrievals": 1,
+    "model": "Latest / Pro 5 of 5",
+    "model_verified_in_ui": true,
+    "doctor": "READY",
+    "consent": "READY",
+    "user_retrieval_policy": "Any available reply retrieval authorized, including DOM; no authentication/private endpoint bypass.",
+    "packet_sha256": "2ec4a41a4da25ce6dbcbf24cbab44b3c996a9ee3ce469a52c0324fb1764cae58",
+    "request_sha256": "bc8cfe01221f57223af5057e084aaa4521fc61014ef17bd9c651b455522d6e61",
+    "validation": "packet/result pair PASS",
+    "privacy": "Bounded technical summary, public reference provenance only; no images, credentials, personal information or unrelated files transmitted",
+    "eta_policy": "Historical Pro responses roughly12-26min; check once after productive local work or ETA sleep, not frequent UI polling.",
+    "conversation_url": "https://chatgpt.com/c/6aaec88f-02a8-83ec-9235-3183986cc933",
+    "submitted_verified_utc": "2026-09-19T17:38:42Z",
+    "next_response_check_not_before_utc": null,
+    "ui_evidence": "Initial post-send Stop answering; later submitted user packet visible, status text Refined the baseline then Balanced specificity and stability; no final result. Composer has an unrelated draft; preserve it. Latest selected, Pro5/5 before send, composer6Pro.",
+    "retrieval_policy": "User permits any reply retrieval; use DOM when complete. No resubmission, private endpoints, or auth-state access.",
+    "result_sha256": "efd31e6f712088abe26c4e3ef30bde8fb94bd45a0323e68f0c35e9bb2cbd0446",
+    "retrieval_method": "Read-only rendered DOM; data-math-source equations retained; formatting whitespace normalized in local Markdown",
+    "retrieved_utc": "2026-09-19T17:58:00Z",
+    "postflight": "Same conversation URL; Worked for 13m44s, END_REASONING_RESULT, response actions, composer 6 Pro; unrelated draft preserved",
+    "copy_attempt": "Response copied UI but clipboard returned stale request; rejected. DOM used. Page export unsupported."
+  },
+  "next": "Same Astra high agent adjudicates and implements conditional chroma-transfer photometry with prospective nested baseline and tone-only comparison. No optics/texture masking, no CDFE restart."
+}

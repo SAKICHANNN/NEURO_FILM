@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-20 - Real baseline rejected; science reply retrieved
+
+- Four automatic baseline fits produced 26 full/crop PNGs with exact replay; agent reports 20 focused tests passed. Root inspected all full frames and paired native face/bokeh crops: severe new color patches veto this configuration. No refit or promotion.
+- Copy UI returned stale request text; rejected. DOM retrieval preserved the completed reply and formulas; pair validation passed. No resend, no unrelated composer draft changed.
+- Same Astra high agent continues critical adoption/implementation of one conditional chroma-quantile response, with a fair nested simpler comparator and tone-only ablation. Root handles comparison presentation and actual-image verdict. Evidence: docs/evidence/FABLE_REAL_REFERENCE_BASELINE_20260920.json.
+
 ## 2026-09-20 - User starts corrected Goal and updates delegation
 
 - User deleted the old Goal and explicitly authorized creating the corrected
