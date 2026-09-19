@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "date": "2026-09-20",
+  "status": "ALIGNMENT_CORRECTED_RESEARCH_REMAINS_PAUSED",
+  "scope": "User requested critical project/goal alignment audit; no permission to restart paused computation inferred.",
+  "authoritative_checkout": "C:\\Users\\hhvrf\\Documents\\neuro_film",
+  "reviewed_head": "e9a18689e",
+  "reviewer": "root plus independent Astra medium goal_alignment_review_20260920",
+  "goal_tool_snapshot": {
+    "objective": "推进 neuro_film 的参考图驱动物理分层路线：以单张调色后的参考图和 N 张待处理照片为输入，由 AI 学习并迁移关键色彩与光度特征，以显式物理光学算子处理光晕和成像响应，并研究受约束的条件随机纹理层；比较物理颗粒与学习生成颗粒，以证据决定是否需要生成模型。输出应明显区别于原图、浓郁而舒服，并通过人物、文字、物体、边缘与几何的独立样本及实际分辨率评估证明内容保持，不宣称确定性、非负卷积或低频约束自动保证语义事实。先验证已有扫描的颗粒/场景/扫描噪声分离与标定边界，建立可复现的数据、训练、对照和评价；在相同输入上与原图、简单调节、旧算法及物理基线比较，证明参考条件学习及纹理模块的贡献后才集成。保留历史负结果，旧 fixed96 筛选保持暂停，不作为新路线前置条件。当前 chat medium 负责常规代码与证据裁定，仅在必要的复杂或独立复核任务使用 high subagent；深入科学、算法和文献研究通过 bridge 使用网页 6 Pro。遇阻先由 subagent 判断替代路线；等待使用 sleep。",
+    "status": "paused"
+  },
+  "goal_tool_action": "Read only. Did not complete, delete, replace or resume a goal. Existing-objective edit is unsupported; corrected text is recorded in the project plan. Final read returned no goal, so do not claim the built-in goal remains paused.",
+  "corrected_objective": "实现单张目标参考图驱动的批量胶片外观处理：在同一批原图上产生明显不同、浓郁但舒服、人物文字物体及几何内容可接受保留的结果，并支持按有证据的胶片类型、算法和原图比较。采用 Fable 分层方向，以可解释的色彩与光度成像算子为骨架，结合显式光学处理和受约束的纹理；通过数据拟合或学习获得可迁移参数，不以逐图手调方案作为交付。优先探索非简单 LUT 路线，具体表示方式由同输入效果与成本证据决定。分别证明参考条件、光学和纹理的贡献；学习颗粒仅在监督可用且优于物理基线时采用。真实照片上的可见效果、舒适度、参考一致性和内容检查共同决定进展；合成参数识别只提供限定的机制证据，不能代替胶片效果、型号标定或产品验收。保留历史负结果和冻结评估，每个研究分支须说明它将改变哪项产品决策及何时停止。",
+  "findings": [
+    {
+      "finding": "Product direction retained; execution focus drifted toward synthetic inverse-photometry diagnosis.",
+      "evidence": [
+        "docs/planning/FABLE_LAYERED_PIVOT_20260913.json",
+        "src/data/fable_cdfe_preprocessing.py",
+        "src/eval/fable_canonical_prior.py"
+      ],
+      "decision": "Preserve single AFTER reference plus N inputs. Do not substitute stock-only simulation or treat four-parameter prediction as full film photometry."
+    },
+    {
+      "finding": "CDFE is one isolated prior-dependent synthetic diagnostic, not a demonstrated universal prerequisite.",
+      "evidence": [
+        "outputs/fable_after_identifiability_bridge_v1/result.md:75-81",
+        "outputs/fable_after_identifiability_bridge_v1/result.md:216-222",
+        "outputs/fable_after_identifiability_bridge_v1/result.md:274"
+      ],
+      "decision": "Keep frozen and paused, not failed. Remove unconditional cache-first recovery as the top-level next action. A specifically resumed CDFE run must keep its original single-run terminal rule; pass does not authorize integration or another rescue branch."
+    },
+    {
+      "finding": "Earlier statistical improvement did not provide the user's required visible effect.",
+      "evidence": [
+        "docs/evidence/FABLE_PHOTOMETRY_ASSESSMENT_20260913.json",
+        "docs/evidence/FABLE_CONTRAST_ASSESSMENT_20260914.json"
+      ],
+      "decision": "Recorded first-pair visual subset was 16/16 weak; later fixed-descriptor decoder had 3.2602 times identity error. Preserve scope: neither outcome proves all reference conditioning impossible. Thresholds from synthetic tests are not product success thresholds."
+    },
+    {
+      "finding": "Physical primitives and rendered comparisons already exist, but no rich stock-calibrated candidate has been established by the reviewed comparator.",
+      "evidence": [
+        "src/filmfx/boolean_grain.py",
+        "src/filmfx/staged_density.py",
+        "src/filmfx/halation_dag.py",
+        "src/filmfx/tiled_grain.py",
+        "docs/evidence/FABLE_PHYSICAL_QUERY_COMPARATOR_20260913.json"
+      ],
+      "decision": "Reuse verified primitives as experimental building blocks; preserve severe historical composition failures. Existing comparator is generic/scanner-dominated, not evidence all physics routes fail or a calibrated film product exists."
+    },
+    {
+      "finding": "Available real-scan residuals are not admissible pure-grain targets.",
+      "evidence": [
+        "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
+        "docs/evidence/FABLE_NLM_SCANS_20260913.json"
+      ],
+      "decision": "Retain the learned-texture data gate only on that branch. Do not block photometry/optics development or restart an open-ended data search."
+    },
+    {
+      "finding": "Goal embeds stale model routing and sequencing, while planning next steps remained stale.",
+      "evidence": [
+        "goal_tool_snapshot",
+        "docs/planning/FABLE_LAYERED_PIVOT_20260913.json"
+      ],
+      "decision": "Keep execution policy separate from stable outcome: root current setting/Astra light; complex local adjudication Astra medium; deep scientific formulation via web 6 Pro bridge. No new scientific theory was proposed or submitted during this local audit."
+    }
+  ],
+  "next_milestone": {
+    "status": "DEFERRED_WHILE_USER_PAUSED",
+    "deliverable": "One real target reference across four existing development source scenes, compared at overview and native detail; original, available same-input historical/control output, photometry-only candidate, and layered candidate with per-layer contribution shown. This is a development feasibility milestone, not generalization or stock-calibration proof.",
+    "selection": "Reuse development identities; no CDFE validation/assessment consumption or selection on held outcomes. Film-stock labels require provenance; otherwise label uncalibrated/reference appearance.",
+    "unresolved": "Concrete real-reference photometric fitting method is not yet selected or admitted by this audit. Before compute, use retained evidence to choose one bounded candidate and explain which product decision it resolves; deep formulation uses existing 6 Pro policy if needed.",
+    "decision": "Reject near-identity or harsh/distorting results; retain failures in the audit record while the user selection view shows only visually admitted candidates. No new optimization just to inflate difference.",
+    "cdfe_relation": "Optional retained mechanism evidence. Completing its cache is neither a prerequisite for designing this milestone nor a reason to keep the whole project centered on it."
+  },
+  "live_verification": {
+    "goal_status": "initially_paused_final_read_null",
+    "cache_train_validation_processes": "None matched in Win32_Process read",
+    "shutdown_receipts_recorded": 54,
+    "total_required": 256,
+    "cache_files_not_rehashed_this_audit": true,
+    "final_training_seal_exists": false,
+    "no_training_claim": "No evidence of formal optimizer execution; engineering backward and mocked CLI checks are not learned-model outcomes.",
+    "unchanged": "No cache, code, config, frozen protocol, training data, held predictions or product default modified.",
+    "research_execution_status": "User pause retained; this audit did not resume any computation."
+  },
+  "verification_plan": [
+    "Parse updated JSON; inspect scoped documentation diff and whitespace.",
+    "Verify goal remains paused and unrelated git changes remain untouched."
+  ],
+  "rollback": "Revert only this documentation correction commit; retain all prior evidence and user pause. Reverting docs does not authorize a run.",
+  "goal_tool_final_observation": {
+    "goal": null,
+    "note": "Initial audit read returned the paused goal; final read returned null. This audit made no goal mutations. Cause of state change not established."
+  },
+  "verification_result": "JSON parsed, objective matches main plan, current handoff precedence checked, no final training seal, documentation diff/whitespace checked, no tracked src/config diff. Final get_goal returned null after initial paused snapshot."
+}

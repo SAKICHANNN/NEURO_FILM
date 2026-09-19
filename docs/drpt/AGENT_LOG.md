@@ -1,5 +1,25 @@
 # Project Agent Log
 
+## 2026-09-20 - Correct goal alignment while preserving pause
+
+- User requested an outside-view correction and Goal accuracy review. AI/ML
+  workflow owns the audit; plan/tracker and log disciplines preserve decisions.
+  Independent Astra medium review confirmed AFTER+N is an adopted requirement,
+  and CDFE is a bounded synthetic diagnostic with a terminal stop even on pass.
+- Updated the existing Fable plan and current AGENTS/board/handoff entries;
+  removed unconditional cache-first recovery as the project priority. Retained
+  all frozen protocols, failures and 54/256 saved-cache progress. The next
+  development milestone targets a real reference across multiple source scenes;
+  no concrete new fitting method or run is admitted by this review.
+- Evidence: docs/evidence/FABLE_GOAL_ALIGNMENT_20260920.json records the exact
+  paused Goal snapshot, source paths, claim limits and local process checks.
+  The tool cannot edit the existing objective, so revised text is in the plan;
+  the old built-in Goal was not completed, replaced or resumed by this audit.
+  Final tool read returned no Goal after an initial paused snapshot; cause not
+  established. Research remains user-paused, with no automatic Goal creation. No code/config,
+  cache payload, held assessment or product change. Documentation-only checks
+  cover JSON parsing and scoped diff/whitespace; no model-quality claim.
+
 ## 2026-09-07 - VCG stage diagnosis and fixed NCC ablation
 
 - AI/ML primary, Mode A/L2. Added one CPU stage-gain diagnostic and one fixed
