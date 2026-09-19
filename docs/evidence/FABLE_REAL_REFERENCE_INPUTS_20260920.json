@@ -1,0 +1,74 @@
+{
+  "date": "2026-09-20",
+  "status": "REAL_REFERENCE_INPUTS_READY_SCIENCE_PENDING",
+  "input_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
+  "input_manifest_sha256": "bce2b1a3b8db40d9524dc4186308aa85394636222a2992607cca467bc182ef93",
+  "reference": {
+    "path": "data/ai_film_references/italy_2024_v1/03.jpg",
+    "sha256": "05b31798121d9a89a284215a193685210ff470c275a1058e7db2cb62eaaefe6c",
+    "size_wh": [
+      1024,
+      683
+    ],
+    "author": "Nick Rudzicz",
+    "source_page": "https://nicknicknicknick.net/notes/2025/01/28/italy-on-film.html",
+    "license": "CC-BY-4.0",
+    "stock_label": "Kodak Portra 400 - author-reported scan appearance, not calibrated stock response",
+    "source_html_sha256": "c54b1a5e64df5a27245b02dc8e7074a5cbe1e7fe8a2b3872d273fe0e0e63ab16",
+    "observation": "Root viewed: Tiber river/bridge, sunlit warm foliage/stone and cooler dark foliage/water, pale sky, visible texture. Scene color occupancy must not be blindly imposed on skin or flowers.",
+    "previous_use": "NLUT reference development; reuse as development reference only, no fresh-reference claim"
+  },
+  "sources": [
+    {
+      "path": "outputs/tst_crossed_probe_native_v2/fit_01_native.png",
+      "sha256": "f95e44eac06da84cc218ffa21230cc236ac59e0a31b504bcf0146df7b8720c5e",
+      "size_wh": [
+        360,
+        540
+      ],
+      "observation": "Actually viewed by root: two faces through cafe glass; existing reflections and occlusion. Red sign has visible ASHIER letters and partial Chinese characters. Preserve what is visible; do not invent occluded strokes."
+    },
+    {
+      "path": "outputs/tst_crossed_probe_native_v2/fit_05_native.png",
+      "sha256": "1b693343784ca6f55e761fb6523da5ec0900deb809ea95a35d8eae4898b15ea2",
+      "size_wh": [
+        540,
+        360
+      ],
+      "observation": "Actually viewed by root: seated woman in car, strong preexisting warm/yellow illumination, skin and fabric folds; no established readable-text target."
+    },
+    {
+      "path": "outputs/tst_crossed_probe_native_v2/fit_00_native.png",
+      "sha256": "dde78a0a0a8bfb37f5a96825149b1173bd54bb6a7909c6632ee7d7710b2bff60",
+      "size_wh": [
+        1024,
+        681
+      ],
+      "observation": "Actually viewed by root: orange and yellow lilies, green leaves, fine petal structure, already vivid; stronger saturation alone is not the desired change."
+    },
+    {
+      "path": "outputs/tst_crossed_probe_native_v2/fit_04_native.png",
+      "sha256": "17a5db0554e350c9ff5fef150723878cdb4c90df4895af4b38e555cd420fc361",
+      "size_wh": [
+        1880,
+        1253
+      ],
+      "observation": "Actually viewed by root: dark wet pavement, orange bokeh and cyan reflections; intentionally shallow focus. Do not classify source blur or specular highlights as new output damage."
+    }
+  ],
+  "model_routing": "Root ordinary work; Astra high complex adjudication/implementation; 6 Pro extreme scoped scientific reasoning; reuse agents; no frequent polling",
+  "bridge": {
+    "path": "outputs/fable_real_reference_science_v1",
+    "url": "https://chatgpt.com/c/6aaec88f-02a8-83ec-9235-3183986cc933",
+    "status": "SUBMITTED_ONCE_REPLY_PENDING",
+    "model_ui": "Latest / Pro5of5, composer6Pro",
+    "retrieval": "Any available reply retrieval authorized, prefer DOM; no private endpoint/auth bypass",
+    "next_check_not_before_utc": "2026-09-19T17:53:42Z"
+  },
+  "execution": "No photometry fitting/rendering or held assessment run; one reference plus four existing fit scenes fixed before results",
+  "limitations": [
+    "Public author-reported Portra400 appearance, not calibrated stock response",
+    "Four prior-consumed sRGB development assets; not independent validation or original sensor resolution",
+    "Exact metadata overlap check only; no comprehensive perceptual deduplication"
+  ]
+}

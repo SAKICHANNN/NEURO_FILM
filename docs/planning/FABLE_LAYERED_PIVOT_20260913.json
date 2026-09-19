@@ -1,7 +1,7 @@
 {
   "date": "2026-09-13",
-  "status": "DIRECTION_RETAINED_EXECUTION_REALIGNED_USER_PAUSED",
-  "authority": "User adopted Fable direction, later requested Goal, paused for shutdown, and requested this alignment correction; no computation resumed.",
+  "status": "ACTIVE_USER_REQUESTED_REAL_REFERENCE_MILESTONE",
+  "authority": "User explicitly deleted old Goal, authorized creation of corrected Goal and execution on 2026-09-20.",
   "objective": "实现单张目标参考图驱动的批量胶片外观处理：在同一批原图上产生明显不同、浓郁但舒服、人物文字物体及几何内容可接受保留的结果，并支持按有证据的胶片类型、算法和原图比较。采用 Fable 分层方向，以可解释的色彩与光度成像算子为骨架，结合显式光学处理和受约束的纹理；通过数据拟合或学习获得可迁移参数，不以逐图手调方案作为交付。优先探索非简单 LUT 路线，具体表示方式由同输入效果与成本证据决定。分别证明参考条件、光学和纹理的贡献；学习颗粒仅在监督可用且优于物理基线时采用。真实照片上的可见效果、舒适度、参考一致性和内容检查共同决定进展；合成参数识别只提供限定的机制证据，不能代替胶片效果、型号标定或产品验收。保留历史负结果和冻结评估，每个研究分支须说明它将改变哪项产品决策及何时停止。",
   "architecture": {
     "photometry": "Reference-conditioned learned photometric/colour operators constrained by physical response structure; LUT is optional implementation, not mandatory architecture",
@@ -71,7 +71,7 @@
     },
     {
       "step": "reference-conditioned photometry and explicit optics baseline",
-      "status": "DEFERRED",
+      "status": "IN_PROGRESS",
       "requirements": [
         "same-reference multi-source visible/comfortable evaluation",
         "original/simple-adjustment/old-algorithm controls",
@@ -83,7 +83,7 @@
         "docs/evidence/FABLE_PHOTOMETRY_ASSESSMENT_20260913.json",
         "docs/evidence/FABLE_CONTRAST_ASSESSMENT_20260914.json"
       ],
-      "state": "Separate components and synthetic pilots exist, but no admitted full real-reference layered candidate; paused. Historical NOT_STARTED was stale."
+      "state": "Real-reference candidate and input selection resumed; existing synthetic diagnostics and generic physical comparator remain unpromoted."
     },
     {
       "step": "conditional texture learner only after usable supervision demonstrated",
@@ -97,16 +97,16 @@
     }
   ],
   "rollback": "Stop new route if evidence fails; preserve pilot and old results. Returning to old96 requires explicit later decision, never automatic.",
-  "goal_tool_state": "none_on_final_audit_read_no_goal_mutations_by_agent",
+  "goal_tool_state": "active_corrected_goal_created_20260920",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Remain paused. On project resume prioritize the real-reference multi-source development milestone in next_milestone; decide one concrete photometry candidate using retained evidence. Do not automatically restart CDFE. A separately resumed CDFE keeps its frozen single-run protocol and terminal stop, with synthetic-only claims.",
+  "next": "Choose one concrete real-reference photometry candidate using existing development materials and retained failures, then implement and render the bounded multi-source layered comparison. Do not auto-resume CDFE.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
   "reference_reuse_evidence": "docs/evidence/FABLE_REFERENCE_REUSE_20260913.json",
   "physical_comparator_evidence": "docs/evidence/FABLE_PHYSICAL_COMPARATOR_20260913.json",
-  "model_policy_current": "root current setting/Astra light; complex local adjudication Astra medium; deep science web 6 Pro bridge; policy is separate from stable goal outcome",
+  "model_policy_current": "Root current setting for ordinary work; Astra high for complex adjudication and implementation; web 6 Pro for extreme scientific/algorithmic reasoning without full repository context. Reuse existing agents when suitable; do not restart for routine follow-ups. Wait according to ETA with sleep and avoid meaningless polling. Reassess each leaf against visibly changed, rich comfortable, content-preserving film appearance. User permits any available6Pro reply retrieval includingDOM, without authentication or private-endpoint bypass.",
   "photometry_fit_evidence": "docs/evidence/FABLE_PHOTOMETRY_FIT_20260913.json",
   "photometry_held_evidence": "docs/evidence/FABLE_PHOTOMETRY_HELD_20260913.json",
   "last_reviewed": "2026-09-20",
@@ -114,12 +114,15 @@
   "goal_alignment_evidence": "docs/evidence/FABLE_GOAL_ALIGNMENT_20260920.json",
   "next_before_20260920": "Medium implementing assess_fable_photometry.py and matching test; review then run exact512primary query cases and parameterdiagnostics.16visualoutputs still required.",
   "next_milestone": {
-    "status": "DEFERRED_WHILE_USER_PAUSED",
+    "status": "WAITING_FOR_6PRO_METHOD_SELECTION",
     "deliverable": "One real target reference across four existing development source scenes, compared at overview and native detail; original, available same-input historical/control output, photometry-only candidate, and layered candidate with per-layer contribution shown. This is a development feasibility milestone, not generalization or stock-calibration proof.",
     "selection": "Reuse development identities; no CDFE validation/assessment consumption or selection on held outcomes. Film-stock labels require provenance; otherwise label uncalibrated/reference appearance.",
     "unresolved": "Concrete real-reference photometric fitting method is not yet selected or admitted by this audit. Before compute, use retained evidence to choose one bounded candidate and explain which product decision it resolves; deep formulation uses existing 6 Pro policy if needed.",
     "decision": "Reject near-identity or harsh/distorting results; retain failures in the audit record while the user selection view shows only visually admitted candidates. No new optimization just to inflate difference.",
-    "cdfe_relation": "Optional retained mechanism evidence. Completing its cache is neither a prerequisite for designing this milestone nor a reason to keep the whole project centered on it."
+    "cdfe_relation": "Optional retained mechanism evidence. Completing its cache is neither a prerequisite for designing this milestone nor a reason to keep the whole project centered on it.",
+    "input_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
+    "input_evidence": "docs/evidence/FABLE_REAL_REFERENCE_INPUTS_20260920.json",
+    "science_transport": "outputs/fable_real_reference_science_v1/transport_state.json"
   },
-  "goal_tool_observation_note": "Initial read was paused; final read returned null. This audit did not change Goal. Research remains user-paused; do not auto-create or resume."
+  "goal_tool_observation_note": "New Goal successfully created after get_goal returned null; prior pause revoked for corrected mainline. CDFE and fixed96 remain deferred."
 }

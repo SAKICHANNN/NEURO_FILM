@@ -1,5 +1,23 @@
 # Project Agent Log
 
+## 2026-09-20 - User starts corrected Goal and updates delegation
+
+- User deleted the old Goal and explicitly authorized creating the corrected
+  outcome-oriented Goal and proceeding; create_goal returned ACTIVE. Prior
+  global pause is revoked, while CDFE and fixed96 remain deferred.
+- Complex adjudication/implementation now uses Astra high; extreme scoped
+  scientific reasoning uses web 6 Pro. Existing medium inventory finishes
+  without restart. Reuse agents and wait by ETA with sleep.
+- Real-reference candidate/input selection is IN_PROGRESS. Bridge installation
+  and versioned consent checks return READY. No new algorithm selected or
+  training/render run yet; preserve prior failures and protected assessments.
+
+- Input inventory now fixed and actually viewed: one public Portra400 reference
+  and four already-consumed fit scenes; manifest/hashes/provenance in
+  docs/evidence/FABLE_REAL_REFERENCE_INPUTS_20260920.json. One6Pro method
+  request submitted; Latest/Pro5of5 verified, live progress observed, no final
+  result. ETA-based retrieval via user-authorized DOM; no new fit/render yet.
+
 ## 2026-09-20 - Correct goal alignment while preserving pause
 
 - User requested an outside-view correction and Goal accuracy review. AI/ML
