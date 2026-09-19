@@ -202,5 +202,28 @@
   "report": "outputs/fable_real_reference_conditional_v1/report.json",
   "comparison_page": "outputs/fable_real_reference_review_v1/index.html",
   "comparison_default": "No admitted candidates; complete experiment available only in audit mode",
-  "next": "Same high agent outside-view mainline decision, no new fits or science call yet."
+  "next": "WAITING_FOR_TREATMENT_EXAMPLE: same Astra high confirms no autonomous alternative supported by known new evidence. Need one owned/licensed aligned preferred before/after pair or identification of approved paired source for next bounded treatment-supervision experiment; not sufficient generalization proof. Product AFTER-only inference goal unchanged.",
+  "post_stop_source_checks": {
+    "spektrafilm": {
+      "decision": "STOP_NO_RENDER",
+      "evidence": "docs/evidence/U5_R2CHAM9_SPEKTRAFILM_AUTHOR_BASELINE_D1_RESULT.json",
+      "reason": "Existing predictive-chart closure, unlicensed publisher-shared payload boundary, RAW/linear-ProPhoto chart-specific entry rather than ready RGB8-photo treatment. Not a proven positive control.",
+      "compute_executed": false
+    },
+    "filmset": {
+      "decision": "NOT_NEW_INDEPENDENT_TREATMENT_SUPERVISION",
+      "evidence": [
+        "docs/ROLL2FILM_FILMSET_EVIDENCE_FREEZE.md",
+        "docs/U5_R2W2F0_FILMSET_RECIPE_GLOBAL_EXPLAINABILITY_RESULTS.md",
+        "docs/evidence/U5_R2CHAM3_FILMSET_SPATIAL_OPERATOR_D1_RESULT.json"
+      ],
+      "facts": "Local records establish aligned Capture One recipe pairs and internal-research-only use, unresolved per-image release rights; previous global/output-only/spatial mechanisms have explicit bounded failures. Not new calibrated film supervision.",
+      "payloads_opened": 0,
+      "held_inputs_opened": 0,
+      "downloads": 0,
+      "fits": 0
+    },
+    "principle": "Do not cycle unverified resources or revive closed operators by renaming them. AFTER color occupancy is not a specified treatment."
+  },
+  "agent_final_disposition": "停止轮换现有资源；推进这条处理监督路线前，需要一组用户拥有或获准使用且效果满意的对齐前后图，或指出已有已批准来源。"
 }
