@@ -100,7 +100,7 @@
   "goal_tool_state": "blocked_waiting_for_treatment_example",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Obtain user feedback on visibly changed fixed external photometry control; independently inspect shadow/skin limitations before any integration. This is not full Fable or stock calibration.",
+  "next": "User direction feedback on existing four-image artifact now determines retention versus rejection. Do not infer acceptance from elapsed time, resume parameter sweeps or add texture to conceal shadow loss. Full goal remains unachieved.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -271,6 +271,26 @@
     "new_hard_clipping_fraction": 0,
     "goal_complete": false,
     "content_preservation_pass": false,
-    "night_failure": "Background rails approach disappearance; dark-reflection detail compressed. Show whole batch honestly for direction feedback only."
+    "night_failure": "Background rails approach disappearance; dark-reflection detail compressed. Show whole batch honestly for direction feedback only.",
+    "shadow_diagnostic": "outputs/fable_ektar_external_control_v1_run3/shadow_diagnostic.json",
+    "user_vote_observation": "No selected choices visible on four-scene page at start of current continuation; no acceptance inferred."
+  },
+  "stage_attribution": {
+    "status": "COMPLETE_STOP_NO_DOMAIN_BUG_IDENTIFIED",
+    "question": "Where does fixed chain lose dark-tone differences: exposure endpoint interpolation, negative/print response, or final scanning/gamut mapping?",
+    "scope": "Fixed256neutralcodes plus predetermined adjacent float probes; existing stage taps; encoded/linear equivalence. No photo reads, retuning, exposure sweep, new photo candidates or spatial layers.",
+    "owner": "retained Astra high",
+    "maximum_minutes": 15,
+    "stop_rule": "One report only. Fix only a demonstrated implementation/domain bug; if intrinsic response, retain adaptation limitation and do not automatically sweep strength.",
+    "output": "outputs/fable_ektar_stage_diagnostic_v1",
+    "runtime_seconds": 6.9144534,
+    "report": "outputs/fable_ektar_stage_diagnostic_v1/report.json",
+    "analysis": "outputs/fable_ektar_stage_diagnostic_v1/analysis.json",
+    "verification": "outputs/fable_ektar_stage_diagnostic_v1/root_verification.json",
+    "conclusion": "Neutral dark-tone compression belongs to combined fixed negative/print response; encoded-linear equivalence exact, final gamut map negligible in dark neutral path, only black endpoint clipped. Not a diagnosis of all colored photo pixels.",
+    "photo_reads": 0,
+    "photo_renders": 0,
+    "parameter_searches": 0,
+    "scientific_scope_closed": true
   }
 }

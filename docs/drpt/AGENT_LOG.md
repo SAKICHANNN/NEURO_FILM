@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-20 - Neutral dark-response attribution closed
+
+- Existing float photo outputs already suppress lowest fixed encoded-luma-bin adjacent differences to2.2percent on night; not merely PNG quantization. No new photo processed.
+- One fixed256neutralcode plus1e-6 neighbour diagnostic6.91s, five stage encoded/linear equivalence errors exactly0;49arrays hash/finiteness checked and root independently recomputed derivatives. Negative endpoint hits onlyzero, no paper endpoint hits; dark-neutral gamut slope ratio about1. Combined fixed negative/print low slopes explain neutral dark compression. No implementation-domain bug demonstrated; colored-night attribution remains limited.
+- Closed diagnostic without parameter search or photo rerender. Existing4photo viewer remains complete with explicit content failure. User direction feedback requested; no acceptance inferred and no blocked/complete goal claim. Evidence outputs/fable_ektar_stage_diagnostic_v1/{report,analysis,root_verification}.json.
+
 ## 2026-09-20 - Fixed Ektar comparison actually rendered
 
 - First successful CPU batch23.05s: four native images and synthetic smoke, fixed original parameters.26PNG and8floatNPY rehashed/roundtrip verified; original RGB preserved. No clipping numerically.
