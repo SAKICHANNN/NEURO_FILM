@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-20 - Verify inputs and correct optical interface before adoption
+
+- Existing four source hashes and all nine crop RGB hashes reverified in input_recheck.json; no held outcomes or generated candidates. Kodak250D PDF/graph/trace/compiled-prior hashes reverified in source_recheck.json under outputs/fable_negative_positive_science_v1.
+- Same high inventory and root code check correct the handoff premise: existing physical_halation_layer emits heuristic display screen composition, not exposure arrays. Forward scatter accepts exposure but is not red backscatter. Recorded local_premise_corrections.json; future adoption must correct this without resubmitting the pending request.
+- The proposed generic prototype is intermediate; it does not replace the full goal of recognizable film-type choices, user acceptance and independent generalization. Await existing6Pro handle after retained ETA.
+
 ## 2026-09-20 - Bounded density-to-positive science submitted
 
 - Reused Astra high selected one generic manufacturer-informed negative/positive prototype; rejected simply appending grain/blur to the failed color matcher. Measured Status-M density and dye-layer density cannot be silently connected.

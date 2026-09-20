@@ -172,6 +172,11 @@
     "science_transport": "outputs\\fable_negative_positive_science_v1\\transport_state.json",
     "scientific_gap": "Status-M densitometry is not dye-layer density; full inverse may cancel tonal response",
     "implementation_started": false,
-    "compute": "CPU or local GPU expected sufficient; no present GCP requirement"
+    "compute": "CPU or local GPU expected sufficient; no present GCP requirement",
+    "input_recheck": "outputs/fable_negative_positive_science_v1/input_recheck.json",
+    "manufacturer_source_recheck": "outputs/fable_negative_positive_science_v1/source_recheck.json",
+    "local_premise_corrections": "outputs/fable_negative_positive_science_v1/local_premise_corrections.json",
+    "completion_boundary": "One generic prototype is an intermediate experiment, not completion of multiple film-type comparisons, user acceptance or independent-sample generalization.",
+    "interface_correction": "Existing physical_halation_layer returns screen FilmLayer, not exposure. Do not reuse as exposure-domain halation. Scanner-convolved grain must not receive double scanner blur or unexamined pixel-scale transfer."
   }
 }
