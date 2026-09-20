@@ -100,7 +100,7 @@
   "goal_tool_state": "blocked_waiting_for_treatment_example",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Retained high: bounded20min read-only current FilmDamageSimulator/BlueNeg asset and direct admission audit; select one genuinely different data evidence action, no held pixel access or training.",
+  "next": "Obtain user feedback on visibly changed fixed external photometry control; independently inspect shadow/skin limitations before any integration. This is not full Fable or stock calibration.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -233,5 +233,44 @@
       "docs/evidence/AI_NLUT_REFERENCE_DEVELOPMENT_20260907.json",
       "docs/evidence/AI_SINGLE_REFERENCE_BATCH_DEVELOPMENT_20260908.json"
     ]
+  },
+  "external_positive_control": {
+    "status": "RENDERED_VISIBLE_CHANGE_PENDING_USER_PREFERENCE",
+    "authority": "Existing explicit promotion for isolated future comparison, retained high confirms current use",
+    "config": "configs/real_film_spektrafilm_external_control_v1.json",
+    "decision": "configs/real_film_spektrafilm_external_control_decision_v1.json",
+    "external_revision": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+    "profile": "kodak_ektar_100",
+    "print": "kodak_portra_endura",
+    "policy": "fixed_e0",
+    "input_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
+    "run_scope": "Four existing development sources once; direct spectral photometry, no LUTs, no optics/grain, no fitting, no old held pixels",
+    "claim": "Isolated external comparison only; not calibrated stock or product integration",
+    "output": "outputs/fable_ektar_external_control_v1_run3",
+    "source_restore_correction": {
+      "cause": "Git core.autocrlf=true changed archive line endings; initial admission failed before imports/renderer",
+      "failed_receipt": "outputs/fable_ektar_external_control_v1/report.json",
+      "corrected_source": "data/physical_reference/spektrafilm_fixed_3bb2c2d_lf",
+      "verified_git_blobs": 428,
+      "mismatches": 0,
+      "restore_setting": "command-local core.autocrlf=false",
+      "scientific_reruns": 0
+    },
+    "wrapper_dependency_correction": {
+      "failed_receipt": "outputs/fable_ektar_external_control_v1_run1/report.json",
+      "cause": "Project package initialization imported absent cv2 in isolated renderer runtime",
+      "fix": "Read existing pinned ICC data only, do not install cv2 or import unrelated project packages",
+      "renderer_calls_before_failure": 0
+    },
+    "review": "outputs/fable_ektar_external_control_v1_run3/visual_review.json",
+    "runtime_seconds": 23.05309230001876,
+    "actual_photo_forwards": 4,
+    "synthetic_smoke_forwards": 1,
+    "external_blob_count": 428,
+    "wrapper_clipping_fraction": 0,
+    "new_hard_clipping_fraction": 0,
+    "goal_complete": false,
+    "content_preservation_pass": false,
+    "night_failure": "Background rails approach disappearance; dark-reflection detail compressed. Show whole batch honestly for direction feedback only."
   }
 }

@@ -1,5 +1,18 @@
 # Project Agent Log
 
+## 2026-09-20 - Fixed Ektar comparison actually rendered
+
+- First successful CPU batch23.05s: four native images and synthetic smoke, fixed original parameters.26PNG and8floatNPY rehashed/roundtrip verified; original RGB preserved. No clipping numerically.
+- Root and independent high viewed4fullpairs+9nativecrops. All have visible warmer/richer changes; night loses significant background rails and lowtone reflection readability. User direction feedback admitted, content preservation NOT passed; no post-view tuning. No optical/grain layer or calibrated stock claim.
+- Viewer26/26loaded, toggles and details verified; four unselected voting groups, local persistence implemented but not exercised to avoid fake votes. Explicit night failure displayed.
+- Source restoration CRLF, unrelated cv2 import and absent installed dist-info caused only preparation failures, all preserved with zero simulate calls; exact428sourceblobs and0.3.4 module origin verified before successful run3.
+
+## 2026-09-20 - Correct external-control failure boundary
+
+- Root reopened exact RF2.C0 decision: Ektar100 negative-to-PortraEndura fixedEV0 was explicitly retained for future external comparison, with prior natural-photo evidence. Portra publisher-parameter single-chart prediction failure does not negate this different fixed control. Retained high concurs. No calibrated stock or complete Fable claim.
+- Authoritative source revision3bb2c2d2801ff68b92019cf1dbcbb133d60832bc restored from existing local Git objects to ignored data/physical_reference/spektrafilm_fixed_3bb2c2d, without modifying current dev checkout. Old temp source is absent.
+- One native four-current-development-source CPU comparison approved: direct spectral path/couplers, EV0, no autoexposure/LUTs/optics/grain, no fitting/held input access. High implements wrapper/config/output; root prepares paired original/candidate viewer. Run result and visual verdict pending.
+
 ## 2026-09-20 - Existing real-scan source audit and compute routing
 
 - FilmSet paired pilot withdrawn after metadata-only admission and existing role conflict confirmed. No paired target decode or training.

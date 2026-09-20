@@ -1,0 +1,61 @@
+{
+  "schema": "fable_ektar_external_control_v1",
+  "scope": "isolated external spectral-prior development comparison; not calibrated stock, full Fable, teacher supervision or product integration",
+  "output": "outputs/fable_ektar_external_control_v1_run3",
+  "runtime_python": "data/physical_reference/spektrafilm_dev_runtime_py31314/embed/python/python.exe",
+  "python_version": "3.13.14",
+  "external_root": "data/physical_reference/spektrafilm_fixed_3bb2c2d_lf",
+  "external_git_objects": "data/physical_reference/spektrafilm_dev_2026_v1",
+  "external_revision": "3bb2c2d2801ff68b92019cf1dbcbb133d60832bc",
+  "configure_source": {
+    "path": "outputs/external_controls/spektrafilm_v1/runner.py",
+    "sha256": "1edf53680b6b8421b70749480ba5ec416dd2c4eecfb1c14f04e3fc9996c89027"
+  },
+  "original_config": {
+    "path": "configs/real_film_spektrafilm_external_control_v1.json",
+    "sha256": "c859b74d4fa9e1ce0b0ae412090193cb75ee5765feb22c9196d9b04444829125"
+  },
+  "original_admission": {
+    "path": "configs/real_film_spektrafilm_external_control_decision_v1.json",
+    "sha256": "51dedfa31d075647f73d9e681c78cf5d2f9dfb785f090c63e00dafde71d88b30"
+  },
+  "inputs": {
+    "path": "outputs/fable_real_reference_development_v1/input_manifest.json",
+    "sha256": "bce2b1a3b8db40d9524dc4186308aa85394636222a2992607cca467bc182ef93"
+  },
+  "review_boxes": {
+    "path": "outputs/fable_real_reference_development_v1/review_boxes.json",
+    "sha256": "7534659d76ed75cadd257e2d7b6b2ae2874e3d438761f8a4070a06f19949daa9"
+  },
+  "profile": {
+    "film": "kodak_ektar_100",
+    "print": "kodak_portra_endura",
+    "interpretation": "negative_to_print"
+  },
+  "policy": {
+    "policy_id": "fixed_e0",
+    "auto_exposure": false,
+    "exposure_compensation_ev": 0.0
+  },
+  "seed": 20260717,
+  "threads": 4,
+  "resize": false,
+  "input": "encoded sRGB RGB8 normalized to [0,1]; renderer performs the sole decoding",
+  "output_domain": "renderer-returned encoded sRGB float64; quantize round(clip(rgb,0,1)*255), tagged pinned ICC",
+  "new_hard_clipping_epsilon": 0.00196078431372549,
+  "external_rights": "GPL-3.0-or-later code and CC-BY-SA-4.0 profiles remain isolated; no tracked copies, training or public distribution",
+  "attempt": "one synthetic smoke and four CPU full-frame renders; no tuning or retry",
+  "external_git_safe_directory": "P:/neuro_film_storage/data/physical_reference/spektrafilm_dev_2026_v1",
+  "untagged_srgb_source_sha256": "17a5db0554e350c9ff5fef150723878cdb4c90df4895af4b38e555cd420fc361",
+  "prelaunch_engineering_notes": [
+    "Initial syntax check and interpreter attempt both failed at parsing an unclosed dict; zero imports, claims or renderer forwards; corrected before actual attempt.",
+    "Command-local Git safe.directory for verified project storage junction; no global configuration edit.",
+    "First source admission failed on archive CRLF conversion before external import or any renderer forward. Original failure preserved in outputs/fable_ektar_external_control_v1. Root re-exported same revision with command-local core.autocrlf=false into _lf and independently verified 428 blobs. This is first renderer batch after environment repair; photometric parameters unchanged.",
+    "Run1 imported external renderer but stopped before any simulate call because broad project ICC package initialization required absent cv2. Preserved run1. Read the identical pinned ICC constant as data from its AST, hash checked, without package execution or new dependencies; first smoke/photos use run2.",
+    "Run2 verified all428 external blobs and source module paths, then version reporting incorrectly expected installed Spektrafilm distribution metadata although loaded directly from restored source. Zero simulate calls. Run2 preserved; version reporting now reads verified source pyproject and records unavailable optional distribution metadata without claiming installation. First renderer batch uses run3."
+  ],
+  "icc_source": {
+    "path": "src/color_match/srgb_icc_profile.py",
+    "sha256": "8c89d50e8e54d71087295d0d89a501f9e08d2788eb7aead0d2462b2a28decaf7"
+  }
+}
