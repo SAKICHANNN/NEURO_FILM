@@ -100,7 +100,7 @@
   "goal_tool_state": "blocked_waiting_for_treatment_example",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Metadata-only eligibility adjudication of proposed FilmSet supervised proxy: existing source/target training pools are disjoint and paired-dev is evaluator-only. No hidden counterpart access or role reassignment; no training admission. Reject ineligible proposal without declaring entire goal blocked.",
+  "next": "Retained high: bounded20min read-only current FilmDamageSimulator/BlueNeg asset and direct admission audit; select one genuinely different data evidence action, no held pixel access or training.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -158,7 +158,15 @@
     "authority": "User explicitly authorizes local GPU if available and adequate; otherwise GCP.",
     "selection": "Check local availability, workload memory/runtime needs and environment first; use GCP when local is unavailable or insufficient.",
     "preserve_other_work": true,
-    "launch_status": "No new workload launched by this policy update."
+    "launch_status": "No new workload launched by this policy update.",
+    "latest_local_observation": {
+      "date": "2026-09-20",
+      "gpu": "RTX 5070 Ti Laptop",
+      "total_mib": 12227,
+      "used_mib": 11246,
+      "utilization_percent": 98,
+      "decision": "Do not append training to occupied local GPU; recheck at actual run and use authorized GCP fallback if still unavailable."
+    }
   },
   "complete_candidate": {
     "status": "STOP_FIXED_CANDIDATE_APPEARANCE_FAILURE",
@@ -202,10 +210,28 @@
     "preserve_outputs": true
   },
   "supervised_proxy_proposal": {
-    "status": "NOT_ADOPTED_ELIGIBILITY_REVIEW",
+    "status": "WITHDRAWN_EXISTING_TRAINING_ROLE_CONFLICT",
     "proposer": "retained Astra high",
     "role_risk": "source_train input-only, target_train target-only, internal paired-dev evaluator-only; cannot silently unblind/reassign",
     "claim_risk": "CaptureOne digital appearance is not real-film evidence; proxy must serve explicit transfer decision rather than replace full goal",
-    "training_launched": false
+    "training_launched": false,
+    "eligibility_conclusion": "Existing FilmSet paired supervision admission is metadata-only, training_allowed=false. Prior configurations do not renew training admission. Retained high withdrew proposal."
+  },
+  "real_scan_corpus_audit": {
+    "status": "STOP_EXISTING_CORPUS_RETRAINING_PROPOSAL",
+    "evidence": "outputs/fable_real_scan_corpus_admission_v1/asset_audit.json",
+    "source": "Nick Rudzicz Italy on film",
+    "count": 19,
+    "role": "Existing development references, unchanged",
+    "all_hashes_match": true,
+    "claim_ceiling": "Author-reported Portra400 published JPEG appearance, not native grain, optical calibration, independent held-out set or identifiable stock response.",
+    "root_visual_observation": "Source-order contact sheet: predominantly river/bridge/building/foliage and sunset street scenes; small people but no close portrait or night-light coverage.",
+    "new_training_started": false,
+    "decision": "Retained high confirms all19 RGB distribution learning, VGG statistics, structural photometry, NLUT, single-reference transfer and texture extraction have existing adverse conclusions; withdraw new-corpus/training proposal. No new render or training.",
+    "prior_use_evidence": [
+      "docs/ops/AI_RECOVERY_20260907.md:681",
+      "docs/evidence/AI_NLUT_REFERENCE_DEVELOPMENT_20260907.json",
+      "docs/evidence/AI_SINGLE_REFERENCE_BATCH_DEVELOPMENT_20260908.json"
+    ]
   }
 }

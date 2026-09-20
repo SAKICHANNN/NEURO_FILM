@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-20 - Existing real-scan source audit and compute routing
+
+- FilmSet paired pilot withdrawn after metadata-only admission and existing role conflict confirmed. No paired target decode or training.
+- Italy19 existing reference hashes and sizes all reverified; current page restates Portra400/NikonFM2 and works CC-BY4.0. Root viewed all19 in source order. Published1024-long-edge JPEGs, unknown scanner/process/roll and limited scene coverage cannot become native grain/MTF or calibrated stock truth. Retained-high prior-use review confirms RGB distribution weakness, VGG false contours, structural weakness, NLUT artifacts, nongeneral single-reference transfer and contaminated texture; proposal to retrain this19 corpus withdrawn. No new training admission. Evidence outputs/fable_real_scan_corpus_admission_v1/asset_audit.json.
+- Local GPU now11246/12227MiB,98percent busy, unlike earlier idle snapshot. Preserve running workloads, use CPU for audit; recheck at actual run and use explicitly authorized GCP fallback if needed. No remote resource launched.
+
 ## 2026-09-20 - Supervised proxy proposal not yet admitted
 
 - High proposes a learned coordinate-free photometric transfer baseline on FilmSet ClassNeg. Root identifies role conflict from current evidence freeze: source_train input-only and target_train target-only are disjoint; paired-dev is evaluator-only. No paired training authorization inferred from availability of counterpart files.
