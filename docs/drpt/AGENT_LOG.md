@@ -1,5 +1,10 @@
 # Project Agent Log
 
+## 2026-09-20 - Direction feedback gate
+
+- Same direction-feedback condition present through delivery, completed stage attribution, and current live recheck. All four DOM vote groups empty, no textual answer. No further refit or repeated polling. Retained high previously recommends user feedback after bounded attribution; independent work complete for current candidate.
+- Goal blocked pending direction decision, not complete and not a claim of global scientific impossibility or universal paired-data need. Current fixed Ektar content failure remains unchanged.
+
 ## 2026-09-20 - Neutral dark-response attribution closed
 
 - Existing float photo outputs already suppress lowest fixed encoded-luma-bin adjacent differences to2.2percent on night; not merely PNG quantization. No new photo processed.
