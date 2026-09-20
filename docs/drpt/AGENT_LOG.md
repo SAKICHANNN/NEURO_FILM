@@ -1,5 +1,10 @@
 # Project Agent Log
 
+## 2026-09-20 - Local GPU first, GCP fallback authorized
+
+- User explicitly authorizes local GPU when available and sufficient, otherwise GCP. Persisted selection policy in the active Fable plan; choose resources after workload sizing and preserve unrelated processes.
+- Live local check: RTX 5070 Ti Laptop, 12227 MiB total, 3064 MiB used and 5% utilization in nvidia-smi snapshot. PyTorch 2.11.0+cu128 reports CUDA available; a 1024-element CUDA sum returned the expected 523776. No training or GCP instance launched; this verifies basic execution, not workload fit.
+
 ## 2026-09-20 - User rejects all options; corrected Goal active
 
 - Actual user feedback: "这些option全都差别太小，看起来根本没抓住那个胶片特性。" This is an overall rejection of current A/B/C, not fabricated per-scene votes. Existing images, numerical reports and model reviews remain unchanged.

@@ -153,5 +153,11 @@
   },
   "goal_tool_observation_note": "User deleted old blocked Goal; corrected Goal created ACTIVE with explicit continuation authorization. Paired examples are not a universal prerequisite.",
   "user_correction": "User asks to vote on generated results rather than supply paired examples. Added neutral vote mode with four scene rows, A/B/C/original/none choices and local saved votes; all53images loaded, zero votes preselected. Existing numerical evidence unchanged.",
-  "objective_before_latest_user_rejection": "实现单张目标参考图驱动的批量胶片外观处理：在同一批原图上产生明显不同、浓郁但舒服、人物文字物体及几何内容可接受保留的结果，并支持按有证据的胶片类型、算法和原图比较。采用 Fable 分层方向，以可解释的色彩与光度成像算子为骨架，结合显式光学处理和受约束的纹理；通过数据拟合或学习获得可迁移参数，不以逐图手调方案作为交付。优先探索非简单 LUT 路线，具体表示方式由同输入效果与成本证据决定。分别证明参考条件、光学和纹理的贡献；学习颗粒仅在监督可用且优于物理基线时采用。真实照片上的可见效果、舒适度、参考一致性和内容检查共同决定进展；合成参数识别只提供限定的机制证据，不能代替胶片效果、型号标定或产品验收。保留历史负结果和冻结评估，每个研究分支须说明它将改变哪项产品决策及何时停止。"
+  "objective_before_latest_user_rejection": "实现单张目标参考图驱动的批量胶片外观处理：在同一批原图上产生明显不同、浓郁但舒服、人物文字物体及几何内容可接受保留的结果，并支持按有证据的胶片类型、算法和原图比较。采用 Fable 分层方向，以可解释的色彩与光度成像算子为骨架，结合显式光学处理和受约束的纹理；通过数据拟合或学习获得可迁移参数，不以逐图手调方案作为交付。优先探索非简单 LUT 路线，具体表示方式由同输入效果与成本证据决定。分别证明参考条件、光学和纹理的贡献；学习颗粒仅在监督可用且优于物理基线时采用。真实照片上的可见效果、舒适度、参考一致性和内容检查共同决定进展；合成参数识别只提供限定的机制证据，不能代替胶片效果、型号标定或产品验收。保留历史负结果和冻结评估，每个研究分支须说明它将改变哪项产品决策及何时停止。",
+  "compute_policy": {
+    "authority": "User explicitly authorizes local GPU if available and adequate; otherwise GCP.",
+    "selection": "Check local availability, workload memory/runtime needs and environment first; use GCP when local is unavailable or insufficient.",
+    "preserve_other_work": true,
+    "launch_status": "No new workload launched by this policy update."
+  }
 }
