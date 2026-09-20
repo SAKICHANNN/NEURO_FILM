@@ -1,10 +1,10 @@
 {
   "date": "2026-09-13",
-  "status": "ACTIVE_USER_REQUESTED_REAL_REFERENCE_MILESTONE",
+  "status": "ACTIVE_COMPLETE_FILM_APPEARANCE_CORRECTION",
   "authority": "User explicitly deleted old Goal, authorized creation of corrected Goal and execution on 2026-09-20.",
-  "objective": "实现单张目标参考图驱动的批量胶片外观处理：在同一批原图上产生明显不同、浓郁但舒服、人物文字物体及几何内容可接受保留的结果，并支持按有证据的胶片类型、算法和原图比较。采用 Fable 分层方向，以可解释的色彩与光度成像算子为骨架，结合显式光学处理和受约束的纹理；通过数据拟合或学习获得可迁移参数，不以逐图手调方案作为交付。优先探索非简单 LUT 路线，具体表示方式由同输入效果与成本证据决定。分别证明参考条件、光学和纹理的贡献；学习颗粒仅在监督可用且优于物理基线时采用。真实照片上的可见效果、舒适度、参考一致性和内容检查共同决定进展；合成参数识别只提供限定的机制证据，不能代替胶片效果、型号标定或产品验收。保留历史负结果和冻结评估，每个研究分支须说明它将改变哪项产品决策及何时停止。",
+  "objective": "实现无需逐图手调、保留人物文字物体和几何内容、具有鲜明且浓郁舒服的胶片特性的批量图像处理。沿 Fable 色彩与光度、显式光学、受约束纹理的分层方向，以真实胶片证据拟合或学习可迁移参数；参考图可作为条件，不把单张照片颜色统计匹配当作胶片还原。优先探索非简单 LUT 路线，表示选择由同输入效果和成本证据决定。先在同批原图上产生有依据、可辨识的完整候选，按胶片类型、算法和原图展示，由用户评价是否抓住胶片特性，再检验独立样本泛化。拒绝近似原图、刺眼失真或内容破坏；当前 real_reference_v1 A/B/C 已被用户全部否决，保留失败记录，不继续无依据强度扫描。成对样本不是项目推进的通用前置；学习颗粒须有可用监督且证据优于物理基线。保留 CDFE68 与旧 fixed96 现状，不默认重启。每项研究须改变明确实际决策，避免无边界诊断或工程准备。复杂裁定和操作复用 Astra high subagent；无需完整项目上下文的深入科学问题用 bridge 6 Pro，允许任意回复取回。等待按 ETA 使用 sleep，避免无意义轮询。",
   "architecture": {
-    "photometry": "Reference-conditioned learned photometric/colour operators constrained by physical response structure; LUT is optional implementation, not mandatory architecture",
+    "photometry": "Evidence-grounded photometric and colour formation operators, fitted or learned; reference conditioning optional. Do not equate single-photo colour occupancy matching with film response.",
     "optics": "Explicit exposure-domain halation and appropriate MTF/scan model; order and calibration reviewed scientifically, deterministic does not imply semantic safety",
     "texture": "Conditional stochastic grain/material layer with measurable constraints; compare learned generator against existing Boolean/Poisson physical baseline before asserting learned advantage"
   },
@@ -100,7 +100,7 @@
   "goal_tool_state": "blocked_waiting_for_treatment_example",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Collect user votes on existing four-source original/simple/full/tone-only outputs. An owned before/after pair is optional for a particular supervised experiment, not a prerequisite for project progress or preference evaluation.",
+  "next": "Bounded outside-view adjudication of one evidence-grounded complete layered experiment; no refit or strength sweep of rejected A/B/C.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -114,10 +114,10 @@
   "goal_alignment_evidence": "docs/evidence/FABLE_GOAL_ALIGNMENT_20260920.json",
   "next_before_20260920": "Medium implementing assess_fable_photometry.py and matching test; review then run exact512primary query cases and parameterdiagnostics.16visualoutputs still required.",
   "next_milestone": {
-    "status": "USER_VOTE_ON_EXISTING_OUTPUTS",
-    "deliverable": "One real reference and four source rows; original, nested simple photometry, full conditional photometry and tone-only, native crops and toggles. Optics/texture deferred until photometry earns continuation.",
+    "status": "USER_REJECTED_ALL_OPTIONS",
+    "deliverable": "Completed original/A/B/C four-source comparison, rejected by user. This photometry-only experiment is not a full Fable test.",
     "selection": "Reuse development identities; no CDFE validation/assessment consumption or selection on held outcomes. Film-stock labels require provenance; otherwise label uncalibrated/reference appearance.",
-    "unresolved": "Human preference not yet collected. Prior model visual rejection is retained as model judgment; do not substitute it for user aesthetic preference.",
+    "unresolved": "Next complete candidate not yet selected. Human rejection is recorded; prior model judgments remain separate.",
     "decision": "Reject near-identity or harsh/distorting results; retain failures in the audit record while the user selection view shows only visually admitted candidates. No new optimization just to inflate difference.",
     "cdfe_relation": "Optional retained mechanism evidence. Completing its cache is neither a prerequisite for designing this milestone nor a reason to keep the whole project centered on it.",
     "input_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
@@ -144,8 +144,14 @@
       "solver_calls": 12,
       "solver_restarts": 0,
       "optics_texture": "off"
+    },
+    "human_feedback": {
+      "quote": "这些option全都差别太小，看起来根本没抓住那个胶片特性。",
+      "scope": "All displayed options, overall verbal feedback; no invented per-scene numeric ratings",
+      "decision": "Stop this candidate family; preserve outputs and metrics"
     }
   },
-  "goal_tool_observation_note": "update_goal returned BLOCKED after the same missing treatment-example condition persisted across three consecutive goal turns. Objective unachieved; no new user material or evidence-supported autonomous next action. Resume requires user input or relevant external-state change.",
-  "user_correction": "User asks to vote on generated results rather than supply paired examples. Added neutral vote mode with four scene rows, A/B/C/original/none choices and local saved votes; all53images loaded, zero votes preselected. Existing numerical evidence unchanged."
+  "goal_tool_observation_note": "User deleted old blocked Goal; corrected Goal created ACTIVE with explicit continuation authorization. Paired examples are not a universal prerequisite.",
+  "user_correction": "User asks to vote on generated results rather than supply paired examples. Added neutral vote mode with four scene rows, A/B/C/original/none choices and local saved votes; all53images loaded, zero votes preselected. Existing numerical evidence unchanged.",
+  "objective_before_latest_user_rejection": "实现单张目标参考图驱动的批量胶片外观处理：在同一批原图上产生明显不同、浓郁但舒服、人物文字物体及几何内容可接受保留的结果，并支持按有证据的胶片类型、算法和原图比较。采用 Fable 分层方向，以可解释的色彩与光度成像算子为骨架，结合显式光学处理和受约束的纹理；通过数据拟合或学习获得可迁移参数，不以逐图手调方案作为交付。优先探索非简单 LUT 路线，具体表示方式由同输入效果与成本证据决定。分别证明参考条件、光学和纹理的贡献；学习颗粒仅在监督可用且优于物理基线时采用。真实照片上的可见效果、舒适度、参考一致性和内容检查共同决定进展；合成参数识别只提供限定的机制证据，不能代替胶片效果、型号标定或产品验收。保留历史负结果和冻结评估，每个研究分支须说明它将改变哪项产品决策及何时停止。"
 }

@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-20 - User rejects all options; corrected Goal active
+
+- Actual user feedback: "这些option全都差别太小，看起来根本没抓住那个胶片特性。" This is an overall rejection of current A/B/C, not fabricated per-scene votes. Existing images, numerical reports and model reviews remain unchanged.
+- User deleted the old Goal and authorized replacement/continuation. New Goal is ACTIVE: automatic rich comfortable recognizable film appearance with content checks and full Fable layers. Single-reference statistical matching is a hypothesis, not the purpose. Missing paired data is not a universal blocker.
+- AI/ML harness owns experiment validity; existing plan and log updated. Same Astra high agent re-engaged for a bounded read-only next-experiment decision. No refit, strength sweep, CDFE restart, held-data opening or model promotion. Next select one complete candidate with evidence-linked parameters and truthful claim scope.
+
 ## User correction - preference voting before new data requests
 
 - User correctly challenged mandatory paired-data gate. It applied only to a proposed supervised route, not the full goal. Existing results are sufficient for direct preference feedback.
