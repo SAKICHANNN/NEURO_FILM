@@ -1,5 +1,10 @@
 # Project Agent Log
 
+## 2026-09-20 - Supervised proxy proposal not yet admitted
+
+- High proposes a learned coordinate-free photometric transfer baseline on FilmSet ClassNeg. Root identifies role conflict from current evidence freeze: source_train input-only and target_train target-only are disjoint; paired-dev is evaluator-only. No paired training authorization inferred from availability of counterpart files.
+- Retained high assigned metadata-only eligibility check. No hidden counterpart payload access, role reassignment, held reading, download or training. CaptureOne targets remain digital proxy evidence, not a replacement for true-film objective.
+
 ## 2026-09-20 - Fixed Status-M prototype rendered and rejected
 
 -6Pro result retrieved with authorized DOM math preservation after stale clipboard rejected; pair/receipt validation passed. Local high accepts only an interim curve+highlightredistribution test, rejects iid uniform noise as filmgrain.

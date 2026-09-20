@@ -100,7 +100,7 @@
   "goal_tool_state": "blocked_waiting_for_treatment_example",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Select bounded evidence-fitted/learned transferable photometry next step with retained high agent; do not tune failed generic curves or require user paired data as universal prerequisite.",
+  "next": "Metadata-only eligibility adjudication of proposed FilmSet supervised proxy: existing source/target training pools are disjoint and paired-dev is evaluator-only. No hidden counterpart access or role reassignment; no training admission. Reject ineligible proposal without declaring entire goal blocked.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -200,5 +200,12 @@
     "result": "docs/evidence/FABLE_STATUS_M_POSITIVE_20260920.json",
     "human_vote": "Not collected for this candidate; model reviews separate.",
     "preserve_outputs": true
+  },
+  "supervised_proxy_proposal": {
+    "status": "NOT_ADOPTED_ELIGIBILITY_REVIEW",
+    "proposer": "retained Astra high",
+    "role_risk": "source_train input-only, target_train target-only, internal paired-dev evaluator-only; cannot silently unblind/reassign",
+    "claim_risk": "CaptureOne digital appearance is not real-film evidence; proxy must serve explicit transfer decision rather than replace full goal",
+    "training_launched": false
   }
 }
