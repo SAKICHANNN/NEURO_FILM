@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-20 - Bounded density-to-positive science submitted
+
+- Reused Astra high selected one generic manufacturer-informed negative/positive prototype; rejected simply appending grain/blur to the failed color matcher. Measured Status-M density and dye-layer density cannot be silently connected.
+- Bridge skill Doctor/consent READY; visible Latest and Pro5/5 verified. Validated packet (~1321tokens) submitted once; actual user turn, stable conversation URL and Pro thinking observed. Packet/request/transport retained in outputs/fable_negative_positive_science_v1.
+- Next response inspection after2026-09-20T01:09:00Z, ETA/sleep, no resubmit. Local adoption precedes implementation. Proposed arms original/photometry-only/complete-layered; no calibrated stock or quality claim.
+
 ## 2026-09-20 - Local GPU first, GCP fallback authorized
 
 - User explicitly authorizes local GPU when available and sufficient, otherwise GCP. Persisted selection policy in the active Fable plan; choose resources after workload sizing and preserve unrelated processes.

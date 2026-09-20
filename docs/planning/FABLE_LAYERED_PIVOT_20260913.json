@@ -100,7 +100,7 @@
   "goal_tool_state": "blocked_waiting_for_treatment_example",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Bounded outside-view adjudication of one evidence-grounded complete layered experiment; no refit or strength sweep of rejected A/B/C.",
+  "next": "Retrieve single submitted 6 Pro density-to-positive adjudication after ETA, adopt locally, then implement one fixed manufacturer-informed layered candidate if scientifically defensible.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -159,5 +159,19 @@
     "selection": "Check local availability, workload memory/runtime needs and environment first; use GCP when local is unavailable or insufficient.",
     "preserve_other_work": true,
     "launch_status": "No new workload launched by this policy update."
+  },
+  "complete_candidate": {
+    "status": "WAITING_SCIENCE",
+    "scope": "Generic manufacturer-informed negative/positive appearance prototype; no calibrated stock claim",
+    "arms": [
+      "original",
+      "photometry_only",
+      "complete_layered"
+    ],
+    "source_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
+    "science_transport": "outputs\\fable_negative_positive_science_v1\\transport_state.json",
+    "scientific_gap": "Status-M densitometry is not dye-layer density; full inverse may cancel tonal response",
+    "implementation_started": false,
+    "compute": "CPU or local GPU expected sufficient; no present GCP requirement"
   }
 }
