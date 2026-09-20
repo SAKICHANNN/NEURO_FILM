@@ -1,0 +1,67 @@
+{
+  "schema": "fable_status_m_positive_v1",
+  "scope": "manufacturer-informed generic interim development falsification; not stock reproduction or full Fable",
+  "output": "outputs/fable_status_m_positive_v1",
+  "prior": {
+    "path": "outputs/u6_p2q_kodak_250d_characteristic_prior/bundle_run1.json",
+    "sha256": "087e67544f737401fa697b21f06215a31827189e0648b8d60da666b92113caaa"
+  },
+  "inputs": {
+    "path": "outputs/fable_real_reference_development_v1/input_manifest.json",
+    "sha256": "bce2b1a3b8db40d9524dc4186308aa85394636222a2992607cca467bc182ef93"
+  },
+  "review_boxes": {
+    "path": "outputs/fable_real_reference_development_v1/review_boxes.json",
+    "sha256": "7534659d76ed75cadd257e2d7b6b2ae2874e3d438761f8a4070a06f19949daa9"
+  },
+  "science": {
+    "path": "outputs/fable_negative_positive_science_v1/result.md",
+    "sha256": "d9b8aa3e4b95c85b0b4273d86f545a3bcbf3305fd90d071269ff88c5543ebdb7"
+  },
+  "source_recheck": {
+    "path": "outputs/fable_negative_positive_science_v1/source_recheck.json",
+    "sha256": "673af903bc86cea016fe4dfa4dbd58ce8cee75e522dfeb0601b96f49e421d93a"
+  },
+  "parameters": {
+    "pseudo_stops": 8,
+    "gray": 0.18,
+    "contrast": 1.15,
+    "alpha_bounds": [
+      0.5,
+      4
+    ],
+    "optics": {
+      "threshold_linear": 0.75,
+      "channel_weights": [
+        0.02,
+        0.005,
+        0.001
+      ],
+      "minimum_sigma_pixels": 0.6,
+      "sigma_min_dimension_fraction": 0.003,
+      "truncate": 4.0
+    }
+  },
+  "arms": [
+    "original",
+    "photometry",
+    "photometry_optics_proxy"
+  ],
+  "numerics": {
+    "anchor_tolerance": 1e-12,
+    "slope_tolerance": 1e-07,
+    "float32_tolerance": 1e-05,
+    "monotonic_tolerance": 1e-14,
+    "mass_tolerance": 1e-10,
+    "ramp_samples": 65537
+  },
+  "adoption": [
+    "Status-M direct generic positive; no dye or paper interpretation",
+    "iid uniform noise rejected; no texture in this run",
+    "existing display-screen halation API not an exposure operator; new bounded redistribution is a hypothetical design prior",
+    "identity scanner; no gamut clipping or refit",
+    "diagonal pseudo-exposure, eight-stop ingress, gray and contrast are design assumptions",
+    "input ICC accepts pinned sRGB byte identity except creation timestamp bytes24:36",
+    "one claimed batch only; numerical or photo failure retained; no rescue"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "status": "STOP_FIXED_CANDIDATE_APPEARANCE_FAILURE",
+  "report": "outputs\\fable_status_m_positive_v1\\report.json",
+  "report_sha256": "fe20f0cbf7d8ce6eb56c200bef1d85298da3e88c80ef32754a6c3e2a5cd4eacb",
+  "visual_review": "outputs\\fable_status_m_positive_v1\\visual_review.json",
+  "visual_review_sha256": "76025cc5ba3d2cc34027999876fb08f976741034c0670d91a4112965a158eb0a",
+  "root_verification": "outputs\\fable_status_m_positive_v1\\root_verification.json",
+  "preflight_passed": true,
+  "tests": "2 focused tests passed in4.18s",
+  "artifacts": "12fullPNG+27cropPNG+12floatNPY",
+  "runtime_seconds": 5.5,
+  "claim_ceiling": "Generic design-prior photometry+highlightredistribution test, not physical stock reconstruction; appearance failed.",
+  "next": "Return toward data-fitted photometry with retained high agent; no paired-user-data universal blocker."
+}

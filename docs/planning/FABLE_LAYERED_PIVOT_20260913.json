@@ -100,7 +100,7 @@
   "goal_tool_state": "blocked_waiting_for_treatment_example",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Retrieve single submitted 6 Pro density-to-positive adjudication after ETA, adopt locally, then implement one fixed manufacturer-informed layered candidate if scientifically defensible.",
+  "next": "Select bounded evidence-fitted/learned transferable photometry next step with retained high agent; do not tune failed generic curves or require user paired data as universal prerequisite.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -161,22 +161,44 @@
     "launch_status": "No new workload launched by this policy update."
   },
   "complete_candidate": {
-    "status": "WAITING_SCIENCE",
+    "status": "STOP_FIXED_CANDIDATE_APPEARANCE_FAILURE",
     "scope": "Generic manufacturer-informed negative/positive appearance prototype; no calibrated stock claim",
     "arms": [
       "original",
-      "photometry_only",
-      "complete_layered"
+      "photometry",
+      "photometry_optics_proxy"
     ],
     "source_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
     "science_transport": "outputs\\fable_negative_positive_science_v1\\transport_state.json",
     "scientific_gap": "Status-M densitometry is not dye-layer density; full inverse may cancel tonal response",
-    "implementation_started": false,
+    "implementation_started": true,
     "compute": "CPU or local GPU expected sufficient; no present GCP requirement",
     "input_recheck": "outputs/fable_negative_positive_science_v1/input_recheck.json",
     "manufacturer_source_recheck": "outputs/fable_negative_positive_science_v1/source_recheck.json",
     "local_premise_corrections": "outputs/fable_negative_positive_science_v1/local_premise_corrections.json",
     "completion_boundary": "One generic prototype is an intermediate experiment, not completion of multiple film-type comparisons, user acceptance or independent-sample generalization.",
-    "interface_correction": "Existing physical_halation_layer returns screen FilmLayer, not exposure. Do not reuse as exposure-domain halation. Scanner-convolved grain must not receive double scanner blur or unexamined pixel-scale transfer."
+    "interface_correction": "Existing physical_halation_layer returns screen FilmLayer, not exposure. Do not reuse as exposure-domain halation. Scanner-convolved grain must not receive double scanner blur or unexamined pixel-scale transfer.",
+    "adoption": {
+      "accepted": [
+        "Status-M generic positive fixed mapping",
+        "declared highlight redistribution proxy",
+        "identity scanner",
+        "synthetic curve attribution control"
+      ],
+      "rejected": [
+        "iid uniform density noise as film grain",
+        "Status-M as dye coefficients",
+        "claim of complete Fable or calibrated stock"
+      ],
+      "derived_alpha_rgb": [
+        1.2108192637,
+        1.2598935814,
+        1.1564349301
+      ],
+      "known_risk": "Between-anchor green cast on synthetic neutrals. No corrective tuning after viewing."
+    },
+    "result": "docs/evidence/FABLE_STATUS_M_POSITIVE_20260920.json",
+    "human_vote": "Not collected for this candidate; model reviews separate.",
+    "preserve_outputs": true
   }
 }

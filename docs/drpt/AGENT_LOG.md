@@ -1,5 +1,12 @@
 # Project Agent Log
 
+## 2026-09-20 - Fixed Status-M prototype rendered and rejected
+
+-6Pro result retrieved with authorized DOM math preservation after stale clipboard rejected; pair/receipt validation passed. Local high accepts only an interim curve+highlightredistribution test, rejects iid uniform noise as filmgrain.
+- New model/config/runner/tests and39image review renderer implemented. One CPU batch5.50s,2tests pass4.18s and numericalpreflight pass;12fullPNG/27cropPNG/12NPY roundtrip verified. Root rehashed39PNGs and confirmed originals unchanged.
+- Root viewed12fullframes+9nativecroptriplets; independent high concurs after8original/photometry fullframes+9triplets: harsh car skin, reduced night shadow/reflection separation, no convincing added film character. Optics leaves98.87–99.88percent of pixels identical to photometry. No tuning/rescue. Evidence docs/evidence/FABLE_STATUS_M_POSITIVE_20260920.json.
+- Browser shows39/39images,4source rows, working originaltoggle/details and explicit failurearchive label. Not delivered as recommended choices. Goal remains active; high selecting a bounded data-fitted photometry continuation.
+
 ## 2026-09-20 - Verify inputs and correct optical interface before adoption
 
 - Existing four source hashes and all nine crop RGB hashes reverified in input_recheck.json; no held outcomes or generated candidates. Kodak250D PDF/graph/trace/compiled-prior hashes reverified in source_recheck.json under outputs/fable_negative_positive_science_v1.
