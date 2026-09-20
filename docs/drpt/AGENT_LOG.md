@@ -1,5 +1,10 @@
 # Project Agent Log
 
+## User correction - preference voting before new data requests
+
+- User correctly challenged mandatory paired-data gate. It applied only to a proposed supervised route, not the full goal. Existing results are sufficient for direct preference feedback.
+- Added neutral vote mode to the existing four-scene comparison, with original/A/B/C/none choices, local persistence and export. Actual browser confirms all53images loaded and four radio groups with no selected votes. User-facing tab kept open. No generated pixels or previous model evidence altered.
+
 ## 2026-09-20 - Bound next-source checks and identify real input gap
 
 - Same high agent proposed one existing authored treatment; root found CHAM9 predictive-chart closure and RAW/ProPhoto-specific entry, so no render occurred. One FilmSet metadata/history check confirmed Capture One recipe pairs and prior closed mechanisms, not new independent film treatment evidence. No downloads, extra fits, payload/held image reads.

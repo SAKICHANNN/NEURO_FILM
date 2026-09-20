@@ -100,7 +100,7 @@
   "goal_tool_state": "blocked_waiting_for_treatment_example",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Await owned/licensed aligned preferred before/after development example or existing approved paired-source pointer. No new fitting/source carousel. Single AFTER-reference product inference goal remains unchanged.",
+  "next": "Collect user votes on existing four-source original/simple/full/tone-only outputs. An owned before/after pair is optional for a particular supervised experiment, not a prerequisite for project progress or preference evaluation.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -114,10 +114,10 @@
   "goal_alignment_evidence": "docs/evidence/FABLE_GOAL_ALIGNMENT_20260920.json",
   "next_before_20260920": "Medium implementing assess_fable_photometry.py and matching test; review then run exact512primary query cases and parameterdiagnostics.16visualoutputs still required.",
   "next_milestone": {
-    "status": "CANDIDATE_STOPPED_NEXT_EXPERIMENT_NEEDS_TREATMENT_EXAMPLE",
+    "status": "USER_VOTE_ON_EXISTING_OUTPUTS",
     "deliverable": "One real reference and four source rows; original, nested simple photometry, full conditional photometry and tone-only, native crops and toggles. Optics/texture deferred until photometry earns continuation.",
     "selection": "Reuse development identities; no CDFE validation/assessment consumption or selection on held outcomes. Film-stock labels require provenance; otherwise label uncalibrated/reference appearance.",
-    "unresolved": "Treatment-level supervision for a materially different bounded experiment. Same high agent exhausted two concrete local source checks; no further autonomous route justified by known new evidence.",
+    "unresolved": "Human preference not yet collected. Prior model visual rejection is retained as model judgment; do not substitute it for user aesthetic preference.",
     "decision": "Reject near-identity or harsh/distorting results; retain failures in the audit record while the user selection view shows only visually admitted candidates. No new optimization just to inflate difference.",
     "cdfe_relation": "Optional retained mechanism evidence. Completing its cache is neither a prerequisite for designing this milestone nor a reason to keep the whole project centered on it.",
     "input_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
@@ -146,5 +146,6 @@
       "optics_texture": "off"
     }
   },
-  "goal_tool_observation_note": "update_goal returned BLOCKED after the same missing treatment-example condition persisted across three consecutive goal turns. Objective unachieved; no new user material or evidence-supported autonomous next action. Resume requires user input or relevant external-state change."
+  "goal_tool_observation_note": "update_goal returned BLOCKED after the same missing treatment-example condition persisted across three consecutive goal turns. Objective unachieved; no new user material or evidence-supported autonomous next action. Resume requires user input or relevant external-state change.",
+  "user_correction": "User asks to vote on generated results rather than supply paired examples. Added neutral vote mode with four scene rows, A/B/C/original/none choices and local saved votes; all53images loaded, zero votes preselected. Existing numerical evidence unchanged."
 }

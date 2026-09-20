@@ -112,13 +112,29 @@ def render_review(manifest_path: Path, destination: Path) -> None:
         content.append('</details></section>')
     content.append('''<script>
 const audit=document.getElementById('audit'),toggle=document.getElementById('toggle');
-audit.checked=new URLSearchParams(location.search).get('audit')==='1';
-const names={original:'原图',accepted:'通过模型视觉筛选，尚非人类偏好结论',rejected:'失败记录 · 不推荐',pending:'待审 · 不推荐'};
+const query=new URLSearchParams(location.search),voting=query.get('vote')==='1';
+audit.checked=voting||query.get('audit')==='1';
+const names=voting?{original:'原图',accepted:'待你评价',rejected:'待你评价',pending:'待你评价'}:{original:'原图',accepted:'通过模型视觉筛选，尚非人类偏好结论',rejected:'失败记录 · 不推荐',pending:'待审 · 不推荐'};
 function filter(){let count=0;document.querySelectorAll('section').forEach(row=>{
  const accepted=row.querySelector('figure[data-status="accepted"]');row.hidden=!audit.checked&&!accepted;
  if(!row.hidden)count++;row.querySelectorAll('figure').forEach(f=>{f.hidden=!audit.checked&&!['original','accepted'].includes(f.dataset.status);f.querySelector('.state').textContent=names[f.dataset.status]||'未判定';});
 });document.getElementById('empty').hidden=count>0;document.getElementById('count').textContent=count+' / 4 张原图';}
 audit.addEventListener('change',filter);filter();
+if(voting){
+ audit.parentElement.hidden=true;
+ document.querySelector('h1').textContent='胶片外观 · 由你投票';
+ document.querySelector('h1+p').textContent='每行是同一张照片：原图、A 简化版、B 分组版、C 仅明暗。先选你更喜欢的，再看细节；选择会保存在本机浏览器。';
+ const key='fable-real-reference-v1-votes';let votes={};try{votes=JSON.parse(localStorage.getItem(key)||'{}');}catch{}
+ const choiceLabels=['原图更好','A · 简化版','B · 分组版','C · 仅明暗','都不喜欢／差别太小'];
+ document.querySelectorAll('section').forEach(row=>{
+  row.querySelectorAll('.grid').forEach(grid=>grid.querySelectorAll('figcaption').forEach((c,i)=>{c.textContent=['原图','A · 简化版','B · 分组版','C · 仅明暗'][i];}));
+  const field=document.createElement('fieldset');field.style.cssText='margin-top:16px;border:1px solid #777;padding:12px;display:flex;gap:16px;flex-wrap:wrap';
+  const legend=document.createElement('legend');legend.textContent='这一张，你选哪个？';field.append(legend);
+  choiceLabels.forEach((name,i)=>{const label=document.createElement('label'),input=document.createElement('input');input.type='radio';input.name='vote-'+row.dataset.row;input.value=String(i);input.checked=votes[row.dataset.row]===i;input.addEventListener('change',()=>{votes[row.dataset.row]=i;localStorage.setItem(key,JSON.stringify(votes));});label.append(input,document.createTextNode(name));field.append(label);});
+  row.append(field);
+ });
+ const exportButton=document.createElement('button');exportButton.textContent='下载我的投票';exportButton.type='button';exportButton.addEventListener('click',()=>{const blob=new Blob([JSON.stringify({comparison:'fable_real_reference_conditional_v1',choices:choiceLabels,votes},null,2)],{type:'application/json'});const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='film-appearance-votes.json';link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);});document.querySelector('.controls').append(exportButton);
+}
 toggle.addEventListener('click',()=>{const before=toggle.getAttribute('aria-pressed')!=='true';toggle.setAttribute('aria-pressed',String(before));toggle.textContent=before?'恢复算法结果':'全部切换为原图';document.querySelectorAll('img[data-after]').forEach(img=>{img.src=before?img.dataset.before:img.dataset.after;img.parentElement.href=img.src;});});
 const images=[...document.images];let settled=0,failed=0;
 function loaded(ok){settled++;if(!ok)failed++;const status=document.getElementById('load-status');status.textContent=failed?'有 '+failed+' 张图片加载失败，请勿据此作比较。':settled===images.length?'全部 '+images.length+' 张参考、结果和细节图片已加载。':'正在加载图片…';status.className=failed?'error':'';}
