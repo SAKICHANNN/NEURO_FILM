@@ -385,13 +385,13 @@
     "browser_qa": "outputs/own_ai_recovery_20260921/preference_review/browser_qa.json"
   },
   "current_operational_state": {
-    "execution": "resumed_by_user_for_new_content_adaptive_direction",
-    "goal_tool": "blocked",
+    "execution": "resumed",
+    "goal_tool": "active",
     "achieved": false,
     "fresh_blocked_audit_count": 0
   },
   "content_adaptive_direction": {
-    "status": "SCOPED_LOCAL_CORRESPONDENCE_SCIENCE_SUBMITTED",
+    "status": "PREOUTPUT_AMENDMENT_ADMITTED_IMPLEMENTATION",
     "user_evidence": [
       "User rejects fixed LUT plus global statistical strength scheme35.",
       "User prefers more customized and says continue."
@@ -404,9 +404,10 @@
       "Are geometry/text/faces preserved and halo/patch artifacts absent on reviewed sources?"
     ],
     "old_scheme35": "Rejected as mainline by user; historical evidence retained.",
-    "owner": "retained Astra high read-only experiment adjudication; root requirement recording",
+    "owner": "retained Astra high implementation; root evidence and viewer",
     "training_started": false,
-    "goal_tool_status": "blocked; user authorized continuation but status-only tool cannot resume",
-    "transport": "outputs/own_ai_local_context_20260921/bridge_science/transport_state.json"
+    "goal_tool_status": "active confirmed after user resumed UI",
+    "transport": "outputs/own_ai_local_context_20260921/bridge_science/transport_state.json",
+    "adoption": "outputs/own_ai_local_context_20260921/local_adoption.json"
   }
 }

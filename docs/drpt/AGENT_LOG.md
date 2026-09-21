@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-21 - Local-context full-appearance pilot admitted
+
+- Goal confirmed active.6Pro completed reply retrieved by authorized DOM; raw saved, formula order caveat preserved; structural pair valid. No claim exact math copy.
+- Local high/root reject unrequested no-hue/no-median restriction before outcomes. Admit one bounded12coefficient local cross-channel log-odds empirical pilot with content-matched reference quantiles and L/G/GM/Mcontrols. Fix VGG normalization mismatch using actual pinned source.
+- Evidence: outputs/own_ai_local_context_20260921/local_adoption.json. High owns new operator/config/runner/tests/pilot directory as taskboard lists. No new rendered outputs or training claimed yet; root owns final review.
+
 ## 2026-09-21 - User rejects global-gain LUT; resumes customized direction
 
 - New user evidence rejects scheme35 mainline and requests customized automatic processing. Local-content adaptation is the working interpretation, not mandatory segmentation or hallucinated semantic edits.
