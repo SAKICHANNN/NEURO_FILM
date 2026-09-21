@@ -439,7 +439,14 @@
       "confirmation_access": false,
       "decision": "No concrete own-film integration justified luminance-only component; do not implement or train it.",
       "evidence": "src/models/color_lut/conditioned_triangular.py uses AdaptiveAvgPool2d(1) and one Bx3x12 global parameter set; this is not a spatial predictor test.",
-      "claim_ceiling": "FilmSet paired digital recipes are not calibrated physical film stock; old failures and split boundaries remain binding."
+      "claim_ceiling": "FilmSet paired digital recipes are not calibrated physical film stock; old failures and split boundaries remain binding.",
+      "full_color_prior_recheck": {
+        "report": "outputs/ai_conditioned_rgb_lut_v1/run/report.json",
+        "verified_sha256": "2c14e1f3e23015c85fffa994b7b4c2e49bb7e47d9aa965b18d5d4591e6c62436",
+        "conditional_median_gain_vs_global": -0.06849892581468009,
+        "interpretation": "A flexible image-global conditioned RGB LUT has already been trained and failed to improve over shared style LUT; triangular-only account was incomplete. Spatial prediction remains distinct but is not justified by overlooking this result.",
+        "oracle_scope": "Separate capacity oracle fitted one LUT per input-target pair with target access; cannot be interpreted as a shared universal LUT or a source-only predictor."
+      }
     }
   }
 }

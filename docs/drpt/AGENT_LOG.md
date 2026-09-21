@@ -24842,3 +24842,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Changed: high/root reject component before any new model, tests, image reads or training; reserved paths released. No successful own-film response supports proposed downstream ablation, and scalar luminance adaptation is insufficient for requested color customization.
 - Evidence: root read ConditionedTriangular code: global pooling followed by one36parameter image operator. Old global conditional failure does not empirically test a spatial full-color model. FilmSet manifest explicitly labels digital recipes, not physicalfilm.
 - Next: retained high read-only adjudication of joint full-color model and whether strong global LUT capacity makes spatial learning unjustified. Keep old failed/evaluation artifacts untouched.
+
+## 2026-09-21 - Full-color prior evidence recheck
+
+- Changed: correct incomplete triangular-only history before any new local model admission. ConditionedRGBLUT already trained; conditional median gain against global was -0.0684989258.
+- Evidence: live report SHA2c14e1f3e23015c85fffa994b7b4c2e49bb7e47d9aa965b18d5d4591e6c62436 matches retained record; root read both predictors and per-pair oracle implementation. Oracle is target-reading, not an automatic source-only solution.
+- Next: retained high adjudicates spatial full-color value with both negative and capacity evidence. No new model/run or evaluation access.
