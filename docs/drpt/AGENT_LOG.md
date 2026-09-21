@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-21 - Historical learned appearance preference panel
+
+- High corrected earlier no-output-action verdict: bounded preference elicitation is justified. Original versus historical35 across six already-consumed scenes; no new renders/training, authored algorithms excluded from selectable proposals.
+- Root viewed screening sheet; near-identity31 excluded. Twelve final assets hash verified; browser12/12loaded, all votes blank. Existing8771listener absent, restarted local-only preview server. Export interaction not yet exercised.
+- Artifact: outputs/own_ai_recovery_20260921/preference_review/index.html. This asks whether35is the earlier result user meant; cannot identify best historical model or establish real-film learning. No-feedback/negativefeedback is not a whole-goal blocker. Optional email remains unsent.
+
 ## 2026-09-21 - Science adoption and stale-state correction
 
 - Adopted current LoC64 fitting stop; rejected immediate36-frame commission and premature spline/threshold implementation. Fixed-chain measurements cannot guarantee attractive rendering.

@@ -365,5 +365,22 @@
     "model_observed": "6 Pro",
     "training_allowed": false,
     "adoption": "outputs/own_ai_recovery_20260921/science_adoption.json"
+  },
+  "historical_preference_panel": {
+    "status": "DELIVERED_NO_USER_VOTES",
+    "path": "outputs/own_ai_recovery_20260921/preference_review/index.html",
+    "purpose": "Identify whether historical learned35 is the earlier appearance user meant; not choose all historical algorithms or admit new training.",
+    "scenes": [
+      "01",
+      "05",
+      "03",
+      "10",
+      "09",
+      "17"
+    ],
+    "method": "SepLUT distillation from authored teacher, not learned real-film measurements",
+    "evidence": "12 payload hashes verified; browser loaded12/12,30radio options unselected; root viewed six-scene five-arm screening sheet. Export interaction not exercised.",
+    "whole_project_gate": false,
+    "new_model": false
   }
 }
