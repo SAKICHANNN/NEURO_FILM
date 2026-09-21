@@ -24873,3 +24873,14 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Independenthigh verification agrees pilot rejection; stop treating recipefidelity alone as desiredcustomization supervision. Do not force spatialvariance.
 - Sent one sanitized1806token packet via approvedbridge; Doctor/consentREADY,LatestPro selected, actualuserpacket andStopanswering observed. Conversation6ab0e604-6d9c-83ec-a25d-7bd25c09b6b9,tab8.
 - Next: ETA20min sleep then retrieve one reply (DOM authorized); retainedhigh adoption, no automaticmodelrun. Transport timestamp records exactnextcheck. Fullgoal active/unachieved.
+
+## 2026-09-21 - User pause and project network stop
+
+- Goal paused;6Pro response cancelled and allproject browser tabs closed. Owned8771 HTTPserver stopped; no localtrainingactive. Existing results preserved.
+- Foreignproject Pythonjobs left intact. Resume requires userrequest; saved conversation6ab0e604-6d9c-83ec-a25d-7bd25c09b6b9 must be inspected before retrying science.
+
+## 2026-09-21 - User resume and recovered complete science reply
+
+- Goal activeverified; Doctor/consentREADY. Reopened savedconversation and foundcompleteProreply despite priorstop. Onecopyreturnedempty; authorizedDOMretrieval via browserclipboard saved rawresult and headingrestoredtranscription. Pairvalidationpassed, formulasstillrequirelayout-aware interpretation. No retransmission.
+- Proposed sourceprep withRGBgain/channelbalance plus separatelyanchoredsharedresponse is unadopted. Samehigh checks expertselection/colorspace/roles and wholefilmutility protocol before anyimplementation.128confirmationheld.
+- Existingfailedoutputs and unrelatedchanges preserved; HTTPserver remainsstopped untilreviewneeded.
