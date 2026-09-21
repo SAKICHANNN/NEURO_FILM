@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-21 - Actual local-adaptive outputs rejected
+
+- V2 reference-only calibration frozen before outcomes: tau.3915459215641022,775/912finite reference scores. Code4e3783c5e;9tests passed. Actual run16fits6144updates74.031s, support30/16/12/24of48centers, peakreserved713031680bytes.
+- Root viewed4x5contactsheet, nativecafeface andcarL; retainedhigh independently viewedall20fullimages. Both reject bleaching/cyanbands/yellowgreenskin/coloredbackgroundpatches; local adaptation did not yield photographic value or requiredcontrolsuperiority.
+- Rootchecked16image+floatSHA/nativegeometry/finitearrays. Evidence outputs/own_ai_local_context_20260921/pilot_v2_visual_decision.json and pilot_v2/root_verification.json. No newuserpreferencequestion, strengthrescue or promotion. Full goal remains unachieved; V1supportfailure andV2appearancefailure kept distinct.
+
 ## 2026-09-21 - Data-derived matching calibration correction
 
 - One diagnostic2.547s isolates0.2cap: closest source/ref distances.27956/.29136/.31390/.21390, referenceQ90=.333704; reciprocity alone admits290/265/319/312pairs. Originalfailure preserved; selfmatch passed. Diagnostic committed44832b472.

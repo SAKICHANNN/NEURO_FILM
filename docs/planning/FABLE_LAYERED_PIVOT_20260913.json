@@ -391,7 +391,7 @@
     "fresh_blocked_audit_count": 0
   },
   "content_adaptive_direction": {
-    "status": "REFERENCE_ONLY_CALIBRATION_CORRECTION_IMPLEMENTING",
+    "status": "V2_REJECTED_ROOT_AND_INDEPENDENT_VISUAL_REVIEW",
     "user_evidence": [
       "User rejects fixed LUT plus global statistical strength scheme35.",
       "User prefers more customized and says continue."
@@ -410,7 +410,7 @@
     "transport": "outputs/own_ai_local_context_20260921/bridge_science/transport_state.json",
     "adoption": "outputs/own_ai_local_context_20260921/local_adoption.json",
     "pilot_decision": "outputs/own_ai_local_context_20260921/pilot_decision.json",
-    "actual_updates": 0,
+    "actual_updates": 6144,
     "matcher_attribution": {
       "status": "ONE_DIAGNOSTIC_ADMITTED",
       "reason": "Calibrated nearest-other-file statistic differs from3distinctfile+reciprocal admission; original log omits rawdistance/rejectionstage.",
@@ -419,6 +419,8 @@
       "owner": "retained high",
       "output": "outputs/own_ai_local_context_20260921/matcher_diagnostic_v1"
     },
-    "calibration_correction": "outputs/own_ai_local_context_20260921/calibration_correction_adoption.json"
+    "calibration_correction": "outputs/own_ai_local_context_20260921/calibration_correction_adoption.json",
+    "visual_decision": "outputs/own_ai_local_context_20260921/pilot_v2_visual_decision.json",
+    "per_input_optimization_completed": true
   }
 }
