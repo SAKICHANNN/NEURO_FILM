@@ -24867,3 +24867,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Execution:4x600updates322.375s,0.256GiBpeakreserved. Primarygain -6.398percent against sharedglobal. No meaningful learned spatialadaptation; wrongpositioncontrol outputmaxdifference1.3113e-6.
 - Verification: root verified120PNG/floatpairs hashes/nativegeometry/finitegamut/exactquantization; viewed fixed8sources x3styles allarms contact sheets and native cafe/car/night. No worthwhile localbenefit; harsh Velvia warm skin. Evidence run/root_verification.json and immutable reportSHAa26679e3e85f5996bedfa89c30e1dc16208b860feb4d58ab175827b1899077b6.
 - Decision: reject exactpilot, no retune or votinggallery; release implementationlocks. Goal unachieved. Retained high completes independentreview and outside-view nextsupervision/science adjudication. Not an impossibilityclaim about allcontentadaptation.
+
+## 2026-09-21 - Joint adaptation factorization science request
+
+- Independenthigh verification agrees pilot rejection; stop treating recipefidelity alone as desiredcustomization supervision. Do not force spatialvariance.
+- Sent one sanitized1806token packet via approvedbridge; Doctor/consentREADY,LatestPro selected, actualuserpacket andStopanswering observed. Conversation6ab0e604-6d9c-83ec-a25d-7bd25c09b6b9,tab8.
+- Next: ETA20min sleep then retrieve one reply (DOM authorized); retainedhigh adoption, no automaticmodelrun. Transport timestamp records exactnextcheck. Fullgoal active/unachieved.
