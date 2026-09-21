@@ -385,10 +385,28 @@
     "browser_qa": "outputs/own_ai_recovery_20260921/preference_review/browser_qa.json"
   },
   "current_operational_state": {
-    "goal": "blocked",
+    "execution": "resumed_by_user_for_new_content_adaptive_direction",
+    "goal_tool": "blocked",
     "achieved": false,
-    "evidence": "outputs/own_ai_recovery_20260921/current_impasse.json",
-    "reason": "No currently justified executable next learning experiment after retained-high review and three consecutive impasse turns.",
-    "not_universal_paired_data_gate": true
+    "fresh_blocked_audit_count": 0
+  },
+  "content_adaptive_direction": {
+    "status": "SCOPED_LOCAL_CORRESPONDENCE_SCIENCE_SUBMITTED",
+    "user_evidence": [
+      "User rejects fixed LUT plus global statistical strength scheme35.",
+      "User prefers more customized and says continue."
+    ],
+    "working_interpretation": "Automatic image and local-context conditioned photometry, coherent film identity, content-preserving explicit output; no per-photo human tuning.",
+    "interpretation_not_proven": "Semantic segmentation is not explicitly required; representation remains undecided.",
+    "acceptance_questions": [
+      "Does local context change the transform beyond global gain or one global RGB mapping?",
+      "Does adaptation improve photographic appeal over a matched context-removed control?",
+      "Are geometry/text/faces preserved and halo/patch artifacts absent on reviewed sources?"
+    ],
+    "old_scheme35": "Rejected as mainline by user; historical evidence retained.",
+    "owner": "retained Astra high read-only experiment adjudication; root requirement recording",
+    "training_started": false,
+    "goal_tool_status": "blocked; user authorized continuation but status-only tool cannot resume",
+    "transport": "outputs/own_ai_local_context_20260921/bridge_science/transport_state.json"
   }
 }

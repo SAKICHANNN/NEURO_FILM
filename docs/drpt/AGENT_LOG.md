@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-21 - User rejects global-gain LUT; resumes customized direction
+
+- New user evidence rejects scheme35 mainline and requests customized automatic processing. Local-content adaptation is the working interpretation, not mandatory segmentation or hallucinated semantic edits.
+- Retained high rejected perturb-and-recover mismatch and generic bilateral-grid repetition. One local correspondence supervision decision submitted to6Pro; Latest/Pro5of5verified, singleSend/userpacket/stop-button confirmed. Transport outputs/own_ai_local_context_20260921/bridge_science/transport_state.json; first recheck after10minutes, ETA-based sleep. No new training admitted; old stop evidence preserved.
+- Plan content_adaptive_direction records explicit mechanism and photo-value questions. Goal tool remains blocked and cannot be resumed through available status-only API; user continuation authorization is recorded separately.
+
 ## 2026-09-21 - Operational impasse; automatic continuation stopped
 
 - Goal tool confirmed blocked after three consecutive impasse turns following completed panel QA. Retained high found no justified next algorithm task from admitted existing signals. No experiment is running or being polled.
