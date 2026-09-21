@@ -24884,3 +24884,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Goal activeverified; Doctor/consentREADY. Reopened savedconversation and foundcompleteProreply despite priorstop. Onecopyreturnedempty; authorizedDOMretrieval via browserclipboard saved rawresult and headingrestoredtranscription. Pairvalidationpassed, formulasstillrequirelayout-aware interpretation. No retransmission.
 - Proposed sourceprep withRGBgain/channelbalance plus separatelyanchoredsharedresponse is unadopted. Samehigh checks expertselection/colorspace/roles and wholefilmutility protocol before anyimplementation.128confirmationheld.
 - Existingfailedoutputs and unrelatedchanges preserved; HTTPserver remainsstopped untilreviewneeded.
+
+## 2026-09-21 - Adopt one source-preparation composition experiment
+
+- High locallyverified ExpertC alignedsource RGB domain and381developmentroles; rootindependentlyhashed FiveKmanifest d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20 andsharedcheckpoint795c0565734ad6a7b57869563d2ddb661f2550e2f536bd37c8e5b98f17822a62.
+- Accept directexpert+identityanchored fullRGBgain/channelbalance preparation andmatchedglobal/meanfield controls. Amend Pro: reusefixedF,not600refit;128sealeduntilhumanfeedback;optics/textureidentity,notfullFableclaim.
+- Highimplementsonnewpaths only; freezeprotocol/tests/code before rootone-runlaunchadmission. Wholephoto benefit,notFiveKerror,decides continuation.

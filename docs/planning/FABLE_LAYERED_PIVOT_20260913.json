@@ -491,7 +491,7 @@
       "result": "Shared global best; local weights spatial range at most7.27177e-6 over saved panel, misalignment float difference at most1.3113e-6. Actual photos show no worthwhile customization; Velvia warm skin oversaturation. Root verified120native PNG/float pairs."
     },
     "adaptation_factorization_science": {
-      "status": "RETRIEVED_ADOPTION_IN_PROGRESS",
+      "status": "ADOPTED_WITH_LOCAL_AMENDMENTS",
       "packet": "outputs\\own_ai_adaptation_factorization_20260921\\bridge_science\\packet.md",
       "transport": "outputs\\own_ai_adaptation_factorization_20260921\\bridge_science\\transport_state.json",
       "question": "Where does useful adaptation belong and which joint supervision/anchoring prevents arbitrary cancellation while learning complete film appearance?",
@@ -499,6 +499,42 @@
       "result": "outputs/own_ai_adaptation_factorization_20260921/bridge_science/result_transcribed.md",
       "retrieval_limit": "DOM formulas fragmented; not exactMarkdown. Visible result complete; pair validatorpass.",
       "next": "Retainedhigh checks FiveKexpert/colorspace/roles and fullfilm integration before any newtraining.128confirmation stayssealed."
+    },
+    "source_preparation_pilot": {
+      "status": "IMPLEMENTATION_ADMITTED_RUN_PENDING",
+      "owner": "retainedhigh own_ai_recovery_adjudication",
+      "paths": [
+        "src/models/source_preparation_v1.py",
+        "configs/source_preparation_v1.json",
+        "scripts/run_source_preparation_v1.py",
+        "tests/test_source_preparation_v1.py",
+        "outputs/own_ai_adaptation_factorization_20260921/pilot_v1"
+      ],
+      "question": "Does expert-supervised source-only localRGB preparation transfer to comfortable distinctive complete color outputs beyond globalpreparation and meanfield?",
+      "frozen_response": "outputs/own_ai_spatial_response_20260921/pilot_v1/run/shared_global.pt",
+      "frozen_response_sha256": "795c0565734ad6a7b57869563d2ddb661f2550e2f536bd37c8e5b98f17822a62",
+      "fivek_manifest": "outputs/u5_r2bq0s2_fivek_casebank_normalization_v1/run_a_formal/manifest.json",
+      "fivek_manifest_sha256": "d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20",
+      "data": "Only381development source_path/aligned_expert_path, encoded sRGB16 ExpertC; target_path forbidden;128confirmation remainssealed",
+      "operator": "g=exp(a+b);P=g*x/(1+(g-1)*x),16x16constrainedfield;abs(a)<=1,abs(b_c)<=.25,sum(b)=0",
+      "loss": "expertRGBL1+.25expertidentityL1+.001fieldsmooth+.0001fieldsize;noFgrad/no composedtargetloss",
+      "budget": "Two1200step matchedlocal/global models,batch4,192longside,onefixedsampling,30min8GiBcap",
+      "controls": [
+        "F(x)",
+        "F(Pglobal(x))",
+        "F(Plocal(x))",
+        "F(meanfield_constrained_coefficients(x))",
+        "P alone",
+        "original"
+      ],
+      "review": "All4consumedchallengeoriginals xall3styles/nativeprotectedcrops;fullphoto benefitoverallcontrols +distinctcomfortableappearance+severeartifactveto;no rescue.Qualifiedoutputsforhumanfeedback beforeanysealedassessment.",
+      "amendments": [
+        "Reuse exact48fit600step response instead of600redundantupdates;document old192square andregularizers.",
+        "Modular transfer,notendtoendjointtraining.",
+        "Optics/textureidentity inthisdevelopmentcomparison;notfullFable orrealstockclaim."
+      ],
+      "next": "Freeze config/manifest/code andmeaningfultests,rootreadinessreview beforeoneactualrun",
+      "rollback": "Isolatednewpaths;preservepriorrunsandforeignchanges;no productionintegration"
     }
   }
 }
