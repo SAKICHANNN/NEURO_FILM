@@ -391,7 +391,7 @@
     "fresh_blocked_audit_count": 0
   },
   "content_adaptive_direction": {
-    "status": "FIRST_LOCAL_MATCHING_PILOT_STOPPED_NO_SUPPORT",
+    "status": "REFERENCE_ONLY_CALIBRATION_CORRECTION_IMPLEMENTING",
     "user_evidence": [
       "User rejects fixed LUT plus global statistical strength scheme35.",
       "User prefers more customized and says continue."
@@ -418,6 +418,7 @@
       "forbidden": "No thresholdscan, optimizer, newcandidate or originalpilot rewrite",
       "owner": "retained high",
       "output": "outputs/own_ai_local_context_20260921/matcher_diagnostic_v1"
-    }
+    },
+    "calibration_correction": "outputs/own_ai_local_context_20260921/calibration_correction_adoption.json"
   }
 }

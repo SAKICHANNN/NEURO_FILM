@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-21 - Data-derived matching calibration correction
+
+- One diagnostic2.547s isolates0.2cap: closest source/ref distances.27956/.29136/.31390/.21390, referenceQ90=.333704; reciprocity alone admits290/265/319/312pairs. Originalfailure preserved; selfmatch passed. Diagnostic committed44832b472.
+- Admit one reference-only leave-file-out third-reciprocal-distanceQ90 gate, no arbitrarycap or sourceacceptance/visualselection. Same cached descriptors/operator/loss/fitbudget, newversioned paths, no V1edits.
+- Evidence outputs/own_ai_local_context_20260921/calibration_correction_adoption.json. Calibration measures engineering coverage, not semantic truth; localappearance still untested. High owns implementation and fixedrun afterfreeze.
+
 ## 2026-09-21 - Bounded matcher attribution admitted
 
 - Correct earlier overly broad stop inference:0support tests the fixedjoint rule, not generalcorrespondence. Code has no detected arithmetic/index bug; calibration nearest-other-file statistic does not match3-file+reciprocal admission. Tau0.2 was capped; raw calibration value unlogged.
