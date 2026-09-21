@@ -449,7 +449,7 @@
       }
     },
     "spatial_response_pilot": {
-      "status": "SINGLE_RUN_ADMITTED",
+      "status": "COMPLETED_REJECTED",
       "owner": "own_ai_recovery_adjudication",
       "question": "Can source-local mixture of jointly learned full-color responses deliver useful automatic content adaptation beyond matched global responses?",
       "model": "Four learned9cube RGB response bases per FilmSet style with source-only smooth spatial mixing",
@@ -470,14 +470,8 @@
       },
       "decision": "At least5percent per-source aggregated error improvement over strongest global comparator AND worthwhile visible adaptation on fixed all-style panel; severe face/text/falsecontour/lighting artifacts veto. No style rescue or retuning.",
       "claim": "FilmSet digital recipe looks; no physicalstock calibration or production promotion",
-      "verification": [
-        "synthetic identity/bounds/gradient/spatial-vs-pooled behavior",
-        "group disjointness and exact source hashes before pixels",
-        "ICC conversion preserved",
-        "native output dimensions and hashes",
-        "root and high actual fullimage/crop review"
-      ],
-      "next": "High launches once and returns livehandle/ETA; root and high independently inspect actual outputs",
+      "verification": "outputs/own_ai_spatial_response_20260921/pilot_v1/run/root_verification.json",
+      "next": "Retained high completes independent review and outside-view supervision/science decision; no tweak or retuning of this pilot.",
       "rollback": "New isolated paths only; keep negative outputs and revert scoped code if necessary",
       "paths": [
         "src/models/color_lut/spatial_response_mixture_v1.py",
@@ -490,7 +484,11 @@
       "manifest_sha256": "acbfb28f2d49f6546bbd055473bb91c49f424d91aabd3c168adab5416402fb9e",
       "config_sha256": "f519f9dc401caff6f3181f7ce5689a3ba690e704d96177939dfa5d74328af98e",
       "tests": "6passed3.73s; root inspected tests and implementation and independently verified all bound hashes/48-16split/no existingrun",
-      "resource_preflight": "9383MiBfree/12227MiBtotal6percentutil; runner enforces8GiB cap"
+      "resource_preflight": "9383MiBfree/12227MiBtotal6percentutil; runner enforces8GiB cap",
+      "elapsed_seconds": 322.375,
+      "optimizer_updates": 2400,
+      "primary_gain": -0.0639817127736444,
+      "result": "Shared global best; local weights spatial range at most7.27177e-6 over saved panel, misalignment float difference at most1.3113e-6. Actual photos show no worthwhile customization; Velvia warm skin oversaturation. Root verified120native PNG/float pairs."
     }
   }
 }

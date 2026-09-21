@@ -24861,3 +24861,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Evidence: high implementation b7efd32b1,6tests passed3.73s; root read runner/model/tests and verified frozen manifest acbfb28f2d49f6546bbd055473bb91c49f424d91aabd3c168adab5416402fb9e plus config/code bindings, disjoint48/16roles and no preexistingrun. GPU9383MiBfree.
 - Decision: one exact fixed-budget local run admitted; same high owns launch, no duplication or rescue. No quality claim from engineering checks.
 - Next: retain process handle and wait ETA; independently inspect complete fixed all-style photos and protected crops. Goal remains active.
+
+## 2026-09-21 - Reject completed spatial full-color candidate
+
+- Execution:4x600updates322.375s,0.256GiBpeakreserved. Primarygain -6.398percent against sharedglobal. No meaningful learned spatialadaptation; wrongpositioncontrol outputmaxdifference1.3113e-6.
+- Verification: root verified120PNG/floatpairs hashes/nativegeometry/finitegamut/exactquantization; viewed fixed8sources x3styles allarms contact sheets and native cafe/car/night. No worthwhile localbenefit; harsh Velvia warm skin. Evidence run/root_verification.json and immutable reportSHAa26679e3e85f5996bedfa89c30e1dc16208b860feb4d58ab175827b1899077b6.
+- Decision: reject exactpilot, no retune or votinggallery; release implementationlocks. Goal unachieved. Retained high completes independentreview and outside-view nextsupervision/science adjudication. Not an impossibilityclaim about allcontentadaptation.
