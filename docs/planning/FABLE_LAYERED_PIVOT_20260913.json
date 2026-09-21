@@ -410,6 +410,14 @@
     "transport": "outputs/own_ai_local_context_20260921/bridge_science/transport_state.json",
     "adoption": "outputs/own_ai_local_context_20260921/local_adoption.json",
     "pilot_decision": "outputs/own_ai_local_context_20260921/pilot_decision.json",
-    "actual_updates": 0
+    "actual_updates": 0,
+    "matcher_attribution": {
+      "status": "ONE_DIAGNOSTIC_ADMITTED",
+      "reason": "Calibrated nearest-other-file statistic differs from3distinctfile+reciprocal admission; original log omits rawdistance/rejectionstage.",
+      "scope": "Same descriptors/config/files, save raw distances, counts at existingtau only and selfmatch positivecontrol",
+      "forbidden": "No thresholdscan, optimizer, newcandidate or originalpilot rewrite",
+      "owner": "retained high",
+      "output": "outputs/own_ai_local_context_20260921/matcher_diagnostic_v1"
+    }
   }
 }

@@ -1,5 +1,10 @@
 # Project Agent Log
 
+## 2026-09-21 - Bounded matcher attribution admitted
+
+- Correct earlier overly broad stop inference:0support tests the fixedjoint rule, not generalcorrespondence. Code has no detected arithmetic/index bug; calibration nearest-other-file statistic does not match3-file+reciprocal admission. Tau0.2 was capped; raw calibration value unlogged.
+- Admit one unchanged extraction to save features/distances, separate filters at existingtau, and selfmatch control. No thresholdsweep, newphotooutput, optimization or modification of failedpilot. High owns diagnostic script/output; see taskboard.
+
 ## 2026-09-21 - Local matching pilot terminal no-support result
 
 - Fixed run completed7.422s: four sources each0/48accepted centers,16identity receipts, zero optimizer updates. Peakreserved874512384bytes. Root inspected report; no learned candidate produced.
