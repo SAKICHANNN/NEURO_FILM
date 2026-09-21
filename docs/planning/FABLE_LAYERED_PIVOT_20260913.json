@@ -1,6 +1,6 @@
 {
   "date": "2026-09-13",
-  "status": "BLOCKED_PENDING_USER_DIRECTION",
+  "status": "ACTIVE_OWN_AI_RECOVERY_AND_ADJUDICATION",
   "authority": "User explicitly deleted old Goal, authorized creation of corrected Goal and execution on 2026-09-20.",
   "objective": "实现无需逐图手调、保留人物文字物体和几何内容、具有鲜明且浓郁舒服的胶片特性的批量图像处理。沿 Fable 色彩与光度、显式光学、受约束纹理的分层方向，以真实胶片证据拟合或学习可迁移参数；参考图可作为条件，不把单张照片颜色统计匹配当作胶片还原。优先探索非简单 LUT 路线，表示选择由同输入效果和成本证据决定。先在同批原图上产生有依据、可辨识的完整候选，按胶片类型、算法和原图展示，由用户评价是否抓住胶片特性，再检验独立样本泛化。拒绝近似原图、刺眼失真或内容破坏；当前 real_reference_v1 A/B/C 已被用户全部否决，保留失败记录，不继续无依据强度扫描。成对样本不是项目推进的通用前置；学习颗粒须有可用监督且证据优于物理基线。保留 CDFE68 与旧 fixed96 现状，不默认重启。每项研究须改变明确实际决策，避免无边界诊断或工程准备。复杂裁定和操作复用 Astra high subagent；无需完整项目上下文的深入科学问题用 bridge 6 Pro，允许任意回复取回。等待按 ETA 使用 sleep，避免无意义轮询。",
   "architecture": {
@@ -97,10 +97,10 @@
     }
   ],
   "rollback": "Stop new route if evidence fails; preserve pilot and old results. Returning to old96 requires explicit later decision, never automatic.",
-  "goal_tool_state": "blocked_waiting_for_treatment_example",
+  "goal_tool_state": "active",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Resume from user direction feedback; preserve all outputs and do not repeatedly poll or refit current photos.",
+  "next": "Recover historical own-model generation chains and common-input controls; independent Astra high adjudicates one evidence-supported learned mainline milestone. External gallery expansion cancelled.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -109,7 +109,7 @@
   "model_policy_current": "Root current setting for ordinary work; Astra high for complex adjudication and implementation; web 6 Pro for extreme scientific/algorithmic reasoning without full repository context. Reuse existing agents when suitable; do not restart for routine follow-ups. Wait according to ETA with sleep and avoid meaningless polling. Reassess each leaf against visibly changed, rich comfortable, content-preserving film appearance. User permits any available6Pro reply retrieval includingDOM, without authentication or private-endpoint bypass.",
   "photometry_fit_evidence": "docs/evidence/FABLE_PHOTOMETRY_FIT_20260913.json",
   "photometry_held_evidence": "docs/evidence/FABLE_PHOTOMETRY_HELD_20260913.json",
-  "last_reviewed": "2026-09-20",
+  "last_reviewed": "2026-09-21",
   "objective_before_20260920": "Single after-only graded reference plus N sources; AI learns transferable appearance, rich and comfortable, protected-content evaluation at native resolution",
   "goal_alignment_evidence": "docs/evidence/FABLE_GOAL_ALIGNMENT_20260920.json",
   "next_before_20260920": "Medium implementing assess_fable_photometry.py and matching test; review then run exact512primary query cases and parameterdiagnostics.16visualoutputs still required.",
@@ -294,7 +294,7 @@
     "scientific_scope_closed": true
   },
   "feedback_gate": {
-    "status": "BLOCKED_PENDING_USER_DIRECTION",
+    "status": "WITHDRAWN_INVALID_WHOLE_PROJECT_DEPENDENCY",
     "same_condition_consecutive_goal_turns": 3,
     "observations": [
       "Four-image Ektar comparison delivered; no user direction decision.",
@@ -307,6 +307,46 @@
       "Whole project scientifically impossible",
       "Paired data universally required",
       "Current candidate accepted or full goal complete"
-    ]
+    ],
+    "correction": "External-control preference is useful feedback but cannot block independent own-AI development. No user acceptance inferred."
+  },
+  "multi_stock_review": {
+    "status": "CANCELLED_USER_REASSERTED_OWN_DEVELOPMENT",
+    "authority": "User asks for more cases and more film types; no acceptance of old Ektar implied",
+    "scope": "Target12development scenes x6fixed spectral film profiles, same inputs each, no per-image tuning; max1200longedge review previews; preserve originals and old results.",
+    "renderer_owner": "real_reference_adoption_high",
+    "viewer_owner": "root",
+    "output": "outputs/fable_multi_stock_review_v1",
+    "presentation": "film type and model selection plus original-centered same-scene comparison; numerical and visual caveats distinct",
+    "cancellation_reason": "External deterministic gallery expansion is not progress toward the own learned mainline."
+  },
+  "mainline_contract": {
+    "self_developed_ai": "Learned transferable appearance must contribute measurable photographic value; wrapping external software or distilling an authored preset is not evidence of learned real-film response.",
+    "historical_baseline": "Recover earlier in-house generation chains and compare on identical development inputs. Historical preference is unspecified; do not invent winning IDs.",
+    "evaluation_order": "Agent screens visible difference, comfort and content on diverse development scenes before user voting. Reserved independent evaluation remains sealed until a candidate/protocol is frozen.",
+    "correction_triggers": [
+      "Before selecting a new algorithm or spending training compute",
+      "After each photographic batch or user rejection",
+      "When two consecutive actions only improve diagnostics, wrappers or presentation"
+    ],
+    "correction_questions": [
+      "Does this produce or improve our own automatic film images?",
+      "What evidence changes the next action?",
+      "Is a stronger historical baseline being ignored?",
+      "Should this branch stop?"
+    ],
+    "preserved": "Full Fable layered objective, film-type/algorithm/original comparison, rejected candidates, CDFE/fixed96 deferral and data-role boundaries remain unchanged.",
+    "goal_tool_note": "Live objective cannot be edited with available status-only update_goal; this contract clarifies execution without replacing or completing the active goal."
+  },
+  "own_ai_recovery": {
+    "status": "FINITE_ASSET_INVENTORY_COMPLETE_PRODUCER_COMPARISON_PENDING",
+    "evidence": "outputs/own_ai_recovery_20260921/historical_inventory.json",
+    "historical_pairs": 200,
+    "unique_assets_verified": 320,
+    "missing": 0,
+    "same_decoded_source_groups_with_at_least_five_schemes": 20,
+    "caveat": "60 distinct original RGB payloads across200rows: numbering alone is not same-input proof. Only one scene/three images visually reviewed this turn. No preferred model identified.",
+    "teacher_lineage": "A/B/C metrics hashes live verified; all teacher_root film_response_v1_s1p0.",
+    "decision": "No new training yet; finite existing producer/common-input comparison next, then bounded new supervision acquisition if required. Do not rerun closed recovery or equate authored distillation with learned film evidence."
   }
 }

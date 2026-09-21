@@ -1,5 +1,13 @@
 # Project Agent Log
 
+## 2026-09-21 - Own-AI mainline correction
+
+- Completed finite historical inventory: 200 pairs / 320 unique assets, zero missing, byte and decoded RGB hashes; 20 original groups span at least five schemes. 60 distinct originals overall prevent naive numeric-row comparisons. A/B/C teacher metrics hashes verified live. Evidence `outputs/own_ai_recovery_20260921/historical_inventory.json`; no rendering/training.
+- High adjudication completed read-only: no new learner admitted on existing failed signals. Next finite producer comparison then bounded genuinely new supervision evidence; no universal human-input gate. Snow original/01/25 actually viewed, no model promotion or preferred-ID inference.
+- Corrected contradictory active plan states: external multi-stock expansion cancelled; external direction feedback no longer blocks the project. Active goal remains unachieved; no replacement goal or training launch.
+- Early catalog/maps recovered. 56 numbered entries are scheme/version/strength combinations, not stocks. Existing course_correction_matrix_v4 identifies A/B/C distillation from authored film_response_v1; lineage still requires live verification.
+- Root recovers common-input historical evidence while Astra high own_ai_recovery_adjudication independently selects the next learned milestone. Prior agent handles absent in live inventory; one replacement spawned. Skills: AI/ML primary, plan-tracker and project-agent-log supporting checks. No unrelated dirty work changed.
+
 ## 2026-09-20 - Direction feedback gate
 
 - Same direction-feedback condition present through delivery, completed stage attribution, and current live recheck. All four DOM vote groups empty, no textual answer. No further refit or repeated polling. Retained high previously recommends user feedback after bounded attribution; independent work complete for current candidate.
