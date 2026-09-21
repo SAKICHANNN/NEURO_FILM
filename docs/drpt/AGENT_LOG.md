@@ -24855,3 +24855,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Protocol:64already-consumed paired_fit groups split48/16 secondarydevelopment; four600-step arms,30min8GiB cap, final checkpoints only. At least5percent source-aggregated gain against strongest global comparator plus worthwhile actual visual adaptation; severe-artifact veto, no retuning.
 - Boundaries: internal FilmSet digital recipes, not calibrated stock; old evaluation/test/confirmation and failures unchanged. No real run until config/manifest/code frozen and readiness checked.
 - Next: high implementation and meaningful checks; root adoption/actual visualreview. Goal active, not completed.
+
+## 2026-09-21 - Spatial full-color one-run admission
+
+- Evidence: high implementation b7efd32b1,6tests passed3.73s; root read runner/model/tests and verified frozen manifest acbfb28f2d49f6546bbd055473bb91c49f424d91aabd3c168adab5416402fb9e plus config/code bindings, disjoint48/16roles and no preexistingrun. GPU9383MiBfree.
+- Decision: one exact fixed-budget local run admitted; same high owns launch, no duplication or rescue. No quality claim from engineering checks.
+- Next: retain process handle and wait ETA; independently inspect complete fixed all-style photos and protected crops. Goal remains active.

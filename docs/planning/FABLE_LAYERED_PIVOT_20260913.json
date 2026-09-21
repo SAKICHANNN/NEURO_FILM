@@ -449,7 +449,7 @@
       }
     },
     "spatial_response_pilot": {
-      "status": "IMPLEMENTATION_ADMITTED_RUN_PENDING_PREFLIGHT",
+      "status": "SINGLE_RUN_ADMITTED",
       "owner": "own_ai_recovery_adjudication",
       "question": "Can source-local mixture of jointly learned full-color responses deliver useful automatic content adaptation beyond matched global responses?",
       "model": "Four learned9cube RGB response bases per FilmSet style with source-only smooth spatial mixing",
@@ -477,7 +477,7 @@
         "native output dimensions and hashes",
         "root and high actual fullimage/crop review"
       ],
-      "next": "High prepares new implementation/config/frozen manifest and commits; root checks readiness before one run",
+      "next": "High launches once and returns livehandle/ETA; root and high independently inspect actual outputs",
       "rollback": "New isolated paths only; keep negative outputs and revert scoped code if necessary",
       "paths": [
         "src/models/color_lut/spatial_response_mixture_v1.py",
@@ -485,7 +485,12 @@
         "scripts/run_spatial_response_mixture_v1.py",
         "tests/test_spatial_response_mixture_v1.py",
         "outputs/own_ai_spatial_response_20260921/pilot_v1"
-      ]
+      ],
+      "code_commit": "b7efd32b1",
+      "manifest_sha256": "acbfb28f2d49f6546bbd055473bb91c49f424d91aabd3c168adab5416402fb9e",
+      "config_sha256": "f519f9dc401caff6f3181f7ce5689a3ba690e704d96177939dfa5d74328af98e",
+      "tests": "6passed3.73s; root inspected tests and implementation and independently verified all bound hashes/48-16split/no existingrun",
+      "resource_preflight": "9383MiBfree/12227MiBtotal6percentutil; runner enforces8GiB cap"
     }
   }
 }
