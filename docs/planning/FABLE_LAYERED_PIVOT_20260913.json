@@ -424,7 +424,7 @@
     "visual_decision": "outputs/own_ai_local_context_20260921/pilot_v2_visual_decision.json",
     "per_input_optimization_completed": true,
     "paired_supervision_review": {
-      "status": "BOUNDED_REVIEW_IN_PROGRESS",
+      "status": "PROTOCOL_PREPARATION_NO_TRAINING_ADMISSION",
       "facts": [
         "Existing separately admitted paired64fit/16dev experiment exists.",
         "Conditional vs global median gain.0701676 missed frozen.10criterion; styles remained similar/insufficientfilmlook.",
@@ -432,7 +432,17 @@
       ],
       "unresolved": "Whether eligible training-only data contains local/content-dependent appearance signal adequate for a different concrete experiment.",
       "new_training": false,
-      "held_access": false
+      "held_access": false,
+      "next_decision": "Require fixed source-only local/global/control experiment plus concrete full-film integration decision before training.",
+      "owned_paths": [
+        "src/models/local_exposure_component_v1.py",
+        "configs/local_exposure_component_v1.json",
+        "scripts/run_local_exposure_component_v1.py",
+        "tests/test_local_exposure_component_v1.py",
+        "outputs/own_ai_local_exposure_20260921/component_v1"
+      ],
+      "owner": "retained high own_ai_recovery_adjudication",
+      "confirmation_access": false
     }
   }
 }

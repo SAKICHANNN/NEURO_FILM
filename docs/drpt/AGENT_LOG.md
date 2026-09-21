@@ -24830,3 +24830,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
   calibrated stock response/physical-film reproduction. Velvia 50, Portra 400
   and Ektar 100 remain `film-inspired / Look Approximation`; generic B&W
   remains severe-artifact blocked. No push.
+
+## 2026-09-21 - Source-driven component integration gate
+
+- Changed: reserve new component paths for retained high; training is not yet admitted. Root requires a named downstream film response and a whole-film decision before local-exposure experimentation.
+- Evidence: goal active; high handle running; authoritative checkout HEAD0900e01c2 and unrelated work preserved. Previous user-question turn was status-only, not experimental progress.
+- Next: review metadata-only protocol and group split; keep128confirmation sealed and preserve terminal local-reference failures. AI/ML, tracker and project-log skills applied.
