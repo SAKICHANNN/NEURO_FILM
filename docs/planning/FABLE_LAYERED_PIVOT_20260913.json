@@ -495,13 +495,13 @@
       "packet": "outputs\\own_ai_adaptation_factorization_20260921\\bridge_science\\packet.md",
       "transport": "outputs\\own_ai_adaptation_factorization_20260921\\bridge_science\\transport_state.json",
       "question": "Where does useful adaptation belong and which joint supervision/anchoring prevents arbitrary cancellation while learning complete film appearance?",
-      "adoption": "Pending retainedhigh localreview after reply; no new training authorized",
+      "adoption": "Separately expert-anchored preparation with frozen shared response tested once; rejected for full-photo utility.",
       "result": "outputs/own_ai_adaptation_factorization_20260921/bridge_science/result_transcribed.md",
       "retrieval_limit": "DOM formulas fragmented; not exactMarkdown. Visible result complete; pair validatorpass.",
-      "next": "Retainedhigh checks FiveKexpert/colorspace/roles and fullfilm integration before any newtraining.128confirmation stayssealed."
+      "next": "No further preparation tuning from this report."
     },
     "source_preparation_pilot": {
-      "status": "RUNNING_FIXED_PILOT",
+      "status": "REJECTED_COMPLETE_OUTPUT_UTILITY",
       "owner": "retainedhigh own_ai_recovery_adjudication",
       "paths": [
         "src/models/source_preparation_v1.py",
@@ -533,12 +533,17 @@
         "Modular transfer,notendtoendjointtraining.",
         "Optics/textureidentity inthisdevelopmentcomparison;notfullFable orrealstockclaim."
       ],
-      "next": "Complete single run then independent whole-photo/crop review; no promotion from training alone",
+      "next": "Stop preparation tweaks around weak fixed response; identify already-recovered materially different aesthetic references, explicitly labelled.",
       "rollback": "Isolatednewpaths;preservepriorrunsandforeignchanges;no productionintegration",
       "code_commit": "b9a11b33912262e7ca6ada34e66e27a91008213d",
       "manifest_sha256": "55609289c70a255bfd9abccdc5c93045d20c8da57529e2e3b1ff9df27db17064",
       "config_sha256": "3d77f21c2d2c6c79e230bdf581ab5c31726508636d75fb0a1da556246a698add",
-      "tests": "7 passed; valid-frame coordinate correction before freezing"
+      "tests": "7 passed; valid-frame coordinate correction before freezing",
+      "elapsed_seconds": 41.953,
+      "optimizer_updates": 2400,
+      "peak_reserved_bytes": 759169024,
+      "result": "Noncollapsed local fields but no worthwhile wholephoto advantage over global/meanfield; warm skin problem persists. Root/high independently verified64PNG-float outputs and reviewed all wholephotos/crops. No rescue or promotion.",
+      "verification": "outputs/own_ai_adaptation_factorization_20260921/pilot_v1/run/root_verification.json"
     }
   }
 }

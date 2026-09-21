@@ -24896,3 +24896,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - Root found padded-to-native coordinate mismatch before training; high removed adaptive pooling and sampled stride8 raw predictions over valid image rectangle before constraints/pooling. Seven tests pass, including portrait/landscape ramps.
 - Root independently verified frozen config/manifest hashes and inspected runner. Commit b9a11b339; single matched local/global run dispatched, no confirmation assets or response refit. Actual PID57324; durable pilot_v1/run_console.log. Full-photo utility remains unproven.
+
+
+## 2026-09-21 - Source preparation composition rejected
+
+- Fixed pilot completed41.953s/2400updates/759169024B peak. Root/high verified64PNG-float pairs and reviewed all4sources x3styles and fixed crops; high verified12fields/checkpoints. Fields nonconstant, but no worthwhile full-photo benefit over global/meanfield; inherited yellow/orange skin remains.
+- No rescue, vote request or promotion.128confirmation sealed. Stop preparation tweaks around weak frozen response. Existing materially different examples may ground aesthetic direction, explicitly labelled references rather than qualified own-AI output. Goal active/unachieved.
