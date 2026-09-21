@@ -24902,3 +24902,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - Fixed pilot completed41.953s/2400updates/759169024B peak. Root/high verified64PNG-float pairs and reviewed all4sources x3styles and fixed crops; high verified12fields/checkpoints. Fields nonconstant, but no worthwhile full-photo benefit over global/meanfield; inherited yellow/orange skin remains.
 - No rescue, vote request or promotion.128confirmation sealed. Stop preparation tweaks around weak frozen response. Existing materially different examples may ground aesthetic direction, explicitly labelled references rather than qualified own-AI output. Goal active/unachieved.
+
+
+## 2026-09-21 - Repeated historical preference gate withdrawn
+
+- Root live inventory audit confirmed distinct01/25 are authored controls and35/43/48 share authored teacher ancestry. Existing35 preference panel was already presented and mechanism rejected. High upheld objection to its own proposed vote gate.
+- No repackaged authored gallery, forced vote or new training. This correction preserves user no-hand-tuned requirement; full goal unchanged. Evidence pilot_v1/next_action_adjudication.json.
