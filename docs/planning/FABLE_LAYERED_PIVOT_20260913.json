@@ -379,8 +379,9 @@
       "17"
     ],
     "method": "SepLUT distillation from authored teacher, not learned real-film measurements",
-    "evidence": "12 payload hashes verified; browser loaded12/12,30radio options unselected; root viewed six-scene five-arm screening sheet. Export interaction not exercised.",
+    "evidence": "12 payload hashes verified; browser12/12loaded; isolated synthetic selection/export/reload passed; production votes blank. No human votes inferred.",
     "whole_project_gate": false,
-    "new_model": false
+    "new_model": false,
+    "browser_qa": "outputs/own_ai_recovery_20260921/preference_review/browser_qa.json"
   }
 }
