@@ -336,7 +336,8 @@
       "Should this branch stop?"
     ],
     "preserved": "Full Fable layered objective, film-type/algorithm/original comparison, rejected candidates, CDFE/fixed96 deferral and data-role boundaries remain unchanged.",
-    "goal_tool_note": "Live objective cannot be edited with available status-only update_goal; this contract clarifies execution without replacing or completing the active goal."
+    "goal_tool_note": "Live objective cannot be edited with available status-only update_goal; this contract clarifies execution without replacing or completing the active goal.",
+    "priority": "Produce our own automatically learned/fitted, visibly rich comfortable photographic results; physical calibration and acquisition must serve this outcome, not become indefinite prerequisites."
   },
   "own_ai_recovery": {
     "status": "FINITE_RECOVERY_CLOSED",
@@ -347,7 +348,7 @@
     "same_decoded_source_groups_with_at_least_five_schemes": 20,
     "caveat": "60 distinct original RGB payloads across200rows: numbering alone is not same-input proof. Only one scene/three images visually reviewed this turn. No preferred model identified.",
     "teacher_lineage": "A/B/C metrics hashes live verified; all teacher_root film_response_v1_s1p0.",
-    "decision": "No new training yet; finite existing producer/common-input comparison next, then bounded new supervision acquisition if required. Do not rerun closed recovery or equate authored distillation with learned film evidence.",
+    "decision": "Finite historical recovery is closed. No rerun, model promotion or authored-teacher equivalence to real-film learning. Optional existing-measurement inquiry is prepared but unsent; not a whole-project dependency.",
     "closure": "outputs/own_ai_recovery_20260921/finite_recovery_closure.json"
   },
   "loc_support_intake": {
@@ -358,10 +359,11 @@
     "scope": "Existing consumed64pilot only; full Phase-C integrity failure preserved; archive appearance not calibrated stock."
   },
   "own_ai_science": {
-    "status": "SUBMITTED_GENERATING",
+    "status": "LOCAL_ADOPTION_COMPLETE_NO_TRAINING_ADMISSION",
     "transport": "outputs\\own_ai_recovery_20260921\\bridge_science\\transport_state.json",
     "packet": "outputs\\own_ai_recovery_20260921\\bridge_science\\packet.md",
     "model_observed": "6 Pro",
-    "training_allowed": false
+    "training_allowed": false,
+    "adoption": "outputs/own_ai_recovery_20260921/science_adoption.json"
   }
 }

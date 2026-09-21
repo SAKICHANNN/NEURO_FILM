@@ -1,5 +1,12 @@
 # Project Agent Log
 
+## 2026-09-21 - Science adoption and stale-state correction
+
+- Adopted current LoC64 fitting stop; rejected immediate36-frame commission and premature spline/threshold implementation. Fixed-chain measurements cannot guarantee attractive rendering.
+- Evidence: outputs/own_ai_recovery_20260921/science_adoption.json and bridge_science/retrieval_note.json. Retrieved prose includes normalized mathematics; structural validation is not exact-copy proof. No new training or candidate.
+- High recheck complete: no justified new candidate identified from examined admitted signals. Next experiment requires a new testable learning signal or mechanism. FilmMatch research-only existing-data inquiry is prepared, unsent and optional; requires explicit external-message authorization, not a whole-goal data gate. Plan/board no longer report Pro generating.
+
+
 ## 2026-09-21 - One bounded own-AI science request submitted
 
 - Bridge Doctor and consent READY; visible Latest selected, Pro5of5 and6Pro composer verified. Packet1727tokens validated and oneSend issued. Userpacket visible and Stopanswering confirmed; conversation6ab09e3d-57bc-83ec-ba82-5a0985e219c8, IAB1/tab2 kept for handoff.
