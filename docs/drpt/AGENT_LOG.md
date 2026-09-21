@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-21 - Local matching pilot terminal no-support result
+
+- Fixed run completed7.422s: four sources each0/48accepted centers,16identity receipts, zero optimizer updates. Peakreserved874512384bytes. Root inspected report; no learned candidate produced.
+- Evidence outputs/own_ai_local_context_20260921/pilot_decision.json. Six operator/descriptor tests passed but did not establish correspondence coverage. Do not present identity outputs for preference voting or call these trained fits.
+- Exact pilot closed without threshold/reference/strength rescue. Local-adaptation objective remains; no universaldata/methodimpossibility inference. High finishes payload verification and concrete next-signal adjudication.
+
 ## 2026-09-21 - Local-context full-appearance pilot admitted
 
 - Goal confirmed active.6Pro completed reply retrieved by authorized DOM; raw saved, formula order caveat preserved; structural pair valid. No claim exact math copy.

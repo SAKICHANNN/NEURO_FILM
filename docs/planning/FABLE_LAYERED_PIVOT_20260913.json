@@ -391,7 +391,7 @@
     "fresh_blocked_audit_count": 0
   },
   "content_adaptive_direction": {
-    "status": "PREOUTPUT_AMENDMENT_ADMITTED_IMPLEMENTATION",
+    "status": "FIRST_LOCAL_MATCHING_PILOT_STOPPED_NO_SUPPORT",
     "user_evidence": [
       "User rejects fixed LUT plus global statistical strength scheme35.",
       "User prefers more customized and says continue."
@@ -408,6 +408,8 @@
     "training_started": false,
     "goal_tool_status": "active confirmed after user resumed UI",
     "transport": "outputs/own_ai_local_context_20260921/bridge_science/transport_state.json",
-    "adoption": "outputs/own_ai_local_context_20260921/local_adoption.json"
+    "adoption": "outputs/own_ai_local_context_20260921/local_adoption.json",
+    "pilot_decision": "outputs/own_ai_local_context_20260921/pilot_decision.json",
+    "actual_updates": 0
   }
 }
