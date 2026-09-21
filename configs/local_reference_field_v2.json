@@ -1,0 +1,155 @@
+{
+  "schema": "local-reference-field-v2-reference-calibrated-gate",
+  "question": "Can locally matched film-reference color distributions support visibly rich, comfortable source-adaptive appearance beyond the same global operator and a global operator with the same support mask?",
+  "claim_ceiling": "Single development-only reference-informed local appearance pilot; automatic per-input coefficient fitting, not an amortized generalizer, calibrated film response, independent validation or a guarantee of preserved factual content.",
+  "amendment": "Before any new outcome, replace Pro's hue/median-preserving enhancement with full cross-channel log-odds photometry and local projected RGB quantiles. Remove source-reference brightness and hue compatibility vetoes. Reference mismatch is an empirical risk. Retain reciprocal distinct-reference support and explicit controls. Use the pinned VGG's embedded preprocessing, never ImageNet normalization. V2 changes only the admission threshold calibration: reference-only leave-one-file-out third-order reciprocal distances, uncapped Q90. Original V1 and its no-support outcome remain unchanged. This is not a visual strength/loss/reference rescue. Cached descriptors are consumed without extraction.",
+  "input_manifest": "outputs/fable_real_reference_development_v1/input_manifest.json",
+  "reference_manifest": "data/ai_film_references/italy_2024_v1/manifest.json",
+  "reference_manifest_sha256": "7a7cf18824151f656cdd94e82abcdd4e4186c2167f273dbd32d27bd61da8ff06",
+  "vgg_source": "data/ai_models/nlut_feature_v1/net.py",
+  "vgg_source_sha256": "b3c6df287b20210b8d471431c18dfda52fe26079cf0a86632b6705a6a91b1e20",
+  "vgg_weights": "data/ai_models/nlut_feature_v1/models/vgg_normalised.pth",
+  "vgg_weights_sha256": "804ca2835ecf7539f0cd2a7ac3c18ce81e6f8468969ae7117ac0c148d286bb4a",
+  "output": "outputs/own_ai_local_context_20260921/pilot_v2",
+  "roles": "All four source images and all 19 Italy references already consumed development-only. No held-set access. Italy is one author/travel/scan group, not 19 independent film-response samples.",
+  "arms": [
+    "L",
+    "G",
+    "GM",
+    "M"
+  ],
+  "working_long_edge": 512,
+  "grid_spacing": 64,
+  "descriptor_patch": 128,
+  "statistic_patch": 64,
+  "statistic_samples": 16,
+  "descriptor_layers": [
+    26,
+    39
+  ],
+  "descriptor_batch": 8,
+  "grayscale_center": 0.5,
+  "grayscale_scale": 0.6,
+  "grayscale_spread_floor": 0.06,
+  "distance_quantile": 0.9,
+  "reciprocal_k": 3,
+  "minimum_reference_files": 3,
+  "maximum_reference_files": 5,
+  "support_exponent": 4.0,
+  "support_radius": 64.0,
+  "bias_bound": 2.0,
+  "matrix_row_l1_bound": 1.0,
+  "projection_directions": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      -1,
+      0
+    ],
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      -1
+    ],
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      1,
+      -1
+    ],
+    [
+      1,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      -1
+    ],
+    [
+      1,
+      -1,
+      1
+    ],
+    [
+      -1,
+      1,
+      1
+    ]
+  ],
+  "quantiles": [
+    0.1,
+    0.25,
+    0.5,
+    0.75,
+    0.9
+  ],
+  "quantile_scale": 0.1,
+  "regularization": {
+    "coefficient": 0.002,
+    "spatial": 0.01,
+    "edge": 0.2,
+    "shadow": 0.05
+  },
+  "edge_threshold": 0.04,
+  "edge_gain_limits": [
+    0.4,
+    2.5
+  ],
+  "shadow_encoded_threshold": 0.15,
+  "shadow_linear_gain_limits": [
+    0.25,
+    4.0
+  ],
+  "seed": 210921,
+  "steps": 384,
+  "learning_rate": 0.03,
+  "adam_betas": [
+    0.9,
+    0.999
+  ],
+  "gradient_clip": 1.0,
+  "wall_time_seconds": 2700,
+  "peak_process_gib": 8.0,
+  "minimum_free_gib": 8.0,
+  "stopping_rule": "Exactly one reference-calibrated V2 batch: four sources x four arms, unchanged 384 updates per supported fit and 45-minute/8-GiB caps. No further threshold/strength/loss/reference changes. Empty support explicitly remains identity. Original V1 stays a no-support result.",
+  "decision_rule": "Engineering checks are not photographic success. Retain only if L visibly changes all four images into comfortable rich appearances without consequential loss of visible objects, faces or text; L must beat G and GM on at least three of four with no consequential regression on the fourth and beat M on at least three of four. Numerical mechanism probes alone never promote. Reject/no-support outcomes close this exact pilot without tuning matches, references, strength or budgets. Independent visual judgment remains pending until actual outputs are inspected.",
+  "operator": "At each pixel y=x*exp(delta)/(1-x+x*exp(delta)), delta=b+A(2*x-1). Nodes have abs(b)<=2 and each A row L1<=1; positive partition-of-unity cubic B-spline interpolation and scalar support preserve these bounds. Original zero/one endpoints are exact. For a FROZEN field, the residual logit Jacobian infinity norm is <=0.5; input-dependent retrieval/field construction and spatial derivatives are outside this statement.",
+  "control_definition": "L uses local 12-coefficient nodes with support. G uses one global 12-coefficient vector without support. GM uses the same global vector with identical support. M uses local nodes/support but cyclically permutes complete target bundles among supported source centers using the nonzero cyclic shift with maximum summed squared center distance; confidence and source descriptors stay fixed. If fewer than two supported centers, M is explicitly non-discriminating.",
+  "calibrated_distance_threshold": 0.3915459215641022,
+  "calibration_receipt": "outputs/own_ai_local_context_20260921/matcher_calibration_v2/calibration.json",
+  "calibration_receipt_sha256": "761342a9303620e81e8fcf341634519685dafca0465b70df6bd4026a595538cf",
+  "frozen_descriptor_archive": "outputs/own_ai_local_context_20260921/matcher_diagnostic_v1/frozen_descriptors_and_distances.npz",
+  "frozen_descriptor_archive_sha256": "a450a5ccc80a23e0b244e733f080d1ae99adbe17282d47bbdf57d76f26fc9a01",
+  "frozen_input_manifest_sha256": "bce2b1a3b8db40d9524dc4186308aa85394636222a2992607cca467bc182ef93",
+  "frozen_extractor_sha256": "86c06883a1990a196e589db1e76b8960d571acd9c24f23a2b35f3961ce8d61f6"
+}
