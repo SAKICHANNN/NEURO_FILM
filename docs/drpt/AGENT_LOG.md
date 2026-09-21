@@ -24890,3 +24890,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - High locallyverified ExpertC alignedsource RGB domain and381developmentroles; rootindependentlyhashed FiveKmanifest d07ace3173198e9902ebe7c8bbf2de5ecb4342ec67f1b640aa54d9edee903a20 andsharedcheckpoint795c0565734ad6a7b57869563d2ddb661f2550e2f536bd37c8e5b98f17822a62.
 - Accept directexpert+identityanchored fullRGBgain/channelbalance preparation andmatchedglobal/meanfield controls. Amend Pro: reusefixedF,not600refit;128sealeduntilhumanfeedback;optics/textureidentity,notfullFableclaim.
 - Highimplementsonnewpaths only; freezeprotocol/tests/code before rootone-runlaunchadmission. Wholephoto benefit,notFiveKerror,decides continuation.
+
+
+## 2026-09-21 - Source preparation single run admitted
+
+- Root found padded-to-native coordinate mismatch before training; high removed adaptive pooling and sampled stride8 raw predictions over valid image rectangle before constraints/pooling. Seven tests pass, including portrait/landscape ramps.
+- Root independently verified frozen config/manifest hashes and inspected runner. Commit b9a11b339; single matched local/global run dispatched, no confirmation assets or response refit. Actual PID57324; durable pilot_v1/run_console.log. Full-photo utility remains unproven.
