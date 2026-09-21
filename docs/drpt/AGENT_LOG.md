@@ -24836,3 +24836,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Changed: reserve new component paths for retained high; training is not yet admitted. Root requires a named downstream film response and a whole-film decision before local-exposure experimentation.
 - Evidence: goal active; high handle running; authoritative checkout HEAD0900e01c2 and unrelated work preserved. Previous user-question turn was status-only, not experimental progress.
 - Next: review metadata-only protocol and group split; keep128confirmation sealed and preserve terminal local-reference failures. AI/ML, tracker and project-log skills applied.
+
+## 2026-09-21 - Withdraw luminance-only leaf
+
+- Changed: high/root reject component before any new model, tests, image reads or training; reserved paths released. No successful own-film response supports proposed downstream ablation, and scalar luminance adaptation is insufficient for requested color customization.
+- Evidence: root read ConditionedTriangular code: global pooling followed by one36parameter image operator. Old global conditional failure does not empirically test a spatial full-color model. FilmSet manifest explicitly labels digital recipes, not physicalfilm.
+- Next: retained high read-only adjudication of joint full-color model and whether strong global LUT capacity makes spatial learning unjustified. Keep old failed/evaluation artifacts untouched.

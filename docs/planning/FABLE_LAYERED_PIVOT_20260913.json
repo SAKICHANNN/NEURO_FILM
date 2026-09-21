@@ -424,7 +424,7 @@
     "visual_decision": "outputs/own_ai_local_context_20260921/pilot_v2_visual_decision.json",
     "per_input_optimization_completed": true,
     "paired_supervision_review": {
-      "status": "PROTOCOL_PREPARATION_NO_TRAINING_ADMISSION",
+      "status": "LUMINANCE_LEAF_WITHDRAWN_FULL_COLOR_REVIEW",
       "facts": [
         "Existing separately admitted paired64fit/16dev experiment exists.",
         "Conditional vs global median gain.0701676 missed frozen.10criterion; styles remained similar/insufficientfilmlook.",
@@ -433,16 +433,13 @@
       "unresolved": "Whether eligible training-only data contains local/content-dependent appearance signal adequate for a different concrete experiment.",
       "new_training": false,
       "held_access": false,
-      "next_decision": "Require fixed source-only local/global/control experiment plus concrete full-film integration decision before training.",
-      "owned_paths": [
-        "src/models/local_exposure_component_v1.py",
-        "configs/local_exposure_component_v1.json",
-        "scripts/run_local_exposure_component_v1.py",
-        "tests/test_local_exposure_component_v1.py",
-        "outputs/own_ai_local_exposure_20260921/component_v1"
-      ],
+      "next_decision": "Retained high reviews one joint source-conditioned full-color spatial candidate against old globally pooled CNN and strong global LUT oracle evidence.",
+      "owned_paths": [],
       "owner": "retained high own_ai_recovery_adjudication",
-      "confirmation_access": false
+      "confirmation_access": false,
+      "decision": "No concrete own-film integration justified luminance-only component; do not implement or train it.",
+      "evidence": "src/models/color_lut/conditioned_triangular.py uses AdaptiveAvgPool2d(1) and one Bx3x12 global parameter set; this is not a spatial predictor test.",
+      "claim_ceiling": "FilmSet paired digital recipes are not calibrated physical film stock; old failures and split boundaries remain binding."
     }
   }
 }
