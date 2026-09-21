@@ -100,7 +100,7 @@
   "goal_tool_state": "active",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Recover historical own-model generation chains and common-input controls; independent Astra high adjudicates one evidence-supported learned mainline milestone. External gallery expansion cancelled.",
+  "next": "Bounded scientific design of content-conditioned real archive supervision: account for nuisance and target ambiguity before any training. Historical recovery closed; no more old replay.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -339,7 +339,7 @@
     "goal_tool_note": "Live objective cannot be edited with available status-only update_goal; this contract clarifies execution without replacing or completing the active goal."
   },
   "own_ai_recovery": {
-    "status": "FINITE_ASSET_INVENTORY_COMPLETE_PRODUCER_COMPARISON_PENDING",
+    "status": "FINITE_RECOVERY_CLOSED",
     "evidence": "outputs/own_ai_recovery_20260921/historical_inventory.json",
     "historical_pairs": 200,
     "unique_assets_verified": 320,
@@ -347,6 +347,14 @@
     "same_decoded_source_groups_with_at_least_five_schemes": 20,
     "caveat": "60 distinct original RGB payloads across200rows: numbering alone is not same-input proof. Only one scene/three images visually reviewed this turn. No preferred model identified.",
     "teacher_lineage": "A/B/C metrics hashes live verified; all teacher_root film_response_v1_s1p0.",
-    "decision": "No new training yet; finite existing producer/common-input comparison next, then bounded new supervision acquisition if required. Do not rerun closed recovery or equate authored distillation with learned film evidence."
+    "decision": "No new training yet; finite existing producer/common-input comparison next, then bounded new supervision acquisition if required. Do not rerun closed recovery or equate authored distillation with learned film evidence.",
+    "closure": "outputs/own_ai_recovery_20260921/finite_recovery_closure.json"
+  },
+  "loc_support_intake": {
+    "status": "CONTENT_SUPPORT_PRESENT_APPEARANCE_SUPERVISION_UNPROVEN",
+    "protocol": "outputs\\own_ai_recovery_20260921\\loc_support_protocol.json",
+    "review": "outputs\\own_ai_recovery_20260921\\loc_content_support_review.json",
+    "training_allowed": false,
+    "scope": "Existing consumed64pilot only; full Phase-C integrity failure preserved; archive appearance not calibrated stock."
   }
 }

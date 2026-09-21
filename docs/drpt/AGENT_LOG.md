@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-21 - Finite recovery closed; real-scan content support reviewed
+
+- Exact preprocessing confirmed60/60 A/B/C originals equal recorded768Lanczos of historical originals. Two scenes visually compared across families; authored teacher traced through actual producer. No new model promotion. Closure outputs/own_ai_recovery_20260921/finite_recovery_closure.json.
+- High selected existing consumed LoC64pilot only. Two content classes frozen before new pixel review; all64contact-sheet entries annotated, six native examples reviewed,64payload hashes verified. Cross-creator content support exists, but desirable shared appearance remains unproven amid casts/age/scan/exposure. Evidence loc_support_protocol.json and loc_content_support_review.json in same output directory.
+- No downloads, training, held pixels or Phase-C expansion. Next is one bounded scientific target/supervision design, not more historic replay or descriptor engineering. Full own-AI goal remains active/unachieved.
+
 ## 2026-09-21 - Own-AI mainline correction
 
 - Completed finite historical inventory: 200 pairs / 320 unique assets, zero missing, byte and decoded RGB hashes; 20 original groups span at least five schemes. 60 distinct originals overall prevent naive numeric-row comparisons. A/B/C teacher metrics hashes verified live. Evidence `outputs/own_ai_recovery_20260921/historical_inventory.json`; no rendering/training.
