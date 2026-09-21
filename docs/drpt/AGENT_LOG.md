@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-21 - One bounded own-AI science request submitted
+
+- Bridge Doctor and consent READY; visible Latest selected, Pro5of5 and6Pro composer verified. Packet1727tokens validated and oneSend issued. Userpacket visible and Stopanswering confirmed; conversation6ab09e3d-57bc-83ec-ba82-5a0985e219c8, IAB1/tab2 kept for handoff.
+- Packet asks one implementable learning experiment or one bounded alternative; explicitly includes heterogeneous LoC appearance, prior failed signals, own deterministic controls, content preservation and full layered/multi-stock goal. No trainingadmission.
+- Persisted transport/packet under outputs/own_ai_recovery_20260921/bridge_science. Firstresponsecheck no earlier than2026-09-21T03:09:35Z; use sleep, no resend. Retrieval by DOM explicitly userauthorized; local high adoption required before changes.
+
 ## 2026-09-21 - Finite recovery closed; real-scan content support reviewed
 
 - Exact preprocessing confirmed60/60 A/B/C originals equal recorded768Lanczos of historical originals. Two scenes visually compared across families; authored teacher traced through actual producer. No new model promotion. Closure outputs/own_ai_recovery_20260921/finite_recovery_closure.json.

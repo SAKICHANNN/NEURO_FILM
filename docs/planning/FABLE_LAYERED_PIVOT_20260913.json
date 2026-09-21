@@ -100,7 +100,7 @@
   "goal_tool_state": "active",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Bounded scientific design of content-conditioned real archive supervision: account for nuisance and target ambiguity before any training. Historical recovery closed; no more old replay.",
+  "next": "Wait until persisted ETA for the one submitted6Pro reply; retrieve and validate, then high local adoption. Do not resubmit or starttraining.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
@@ -356,5 +356,12 @@
     "review": "outputs\\own_ai_recovery_20260921\\loc_content_support_review.json",
     "training_allowed": false,
     "scope": "Existing consumed64pilot only; full Phase-C integrity failure preserved; archive appearance not calibrated stock."
+  },
+  "own_ai_science": {
+    "status": "SUBMITTED_GENERATING",
+    "transport": "outputs\\own_ai_recovery_20260921\\bridge_science\\transport_state.json",
+    "packet": "outputs\\own_ai_recovery_20260921\\bridge_science\\packet.md",
+    "model_observed": "6 Pro",
+    "training_allowed": false
   }
 }
