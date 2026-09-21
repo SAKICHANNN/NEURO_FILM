@@ -215,7 +215,8 @@
     "role_risk": "source_train input-only, target_train target-only, internal paired-dev evaluator-only; cannot silently unblind/reassign",
     "claim_risk": "CaptureOne digital appearance is not real-film evidence; proxy must serve explicit transfer decision rather than replace full goal",
     "training_launched": false,
-    "eligibility_conclusion": "Existing FilmSet paired supervision admission is metadata-only, training_allowed=false. Prior configurations do not renew training admission. Retained high withdrew proposal."
+    "eligibility_conclusion": "Existing FilmSet paired supervision admission is metadata-only, training_allowed=false. Prior configurations do not renew training admission. Retained high withdrew proposal.",
+    "scope_correction": "The withdrawal applies to that proposed data-role use, not all paired training. docs/ops/AI_RECOVERY_20260907.md records a separately frozen 64-fit/16-development paired digital-recipe experiment with explicit exposure accounting. Its failed conditional preference rule and weak film appearance remain unchanged; no new training or evaluation access granted."
   },
   "real_scan_corpus_audit": {
     "status": "STOP_EXISTING_CORPUS_RETRAINING_PROPOSAL",
@@ -421,6 +422,17 @@
     },
     "calibration_correction": "outputs/own_ai_local_context_20260921/calibration_correction_adoption.json",
     "visual_decision": "outputs/own_ai_local_context_20260921/pilot_v2_visual_decision.json",
-    "per_input_optimization_completed": true
+    "per_input_optimization_completed": true,
+    "paired_supervision_review": {
+      "status": "BOUNDED_REVIEW_IN_PROGRESS",
+      "facts": [
+        "Existing separately admitted paired64fit/16dev experiment exists.",
+        "Conditional vs global median gain.0701676 missed frozen.10criterion; styles remained similar/insufficientfilmlook.",
+        "Supervised training from expertoutputs is not equivalent to per-photo human tuning at deployment."
+      ],
+      "unresolved": "Whether eligible training-only data contains local/content-dependent appearance signal adequate for a different concrete experiment.",
+      "new_training": false,
+      "held_access": false
+    }
   }
 }

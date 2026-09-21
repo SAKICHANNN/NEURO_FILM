@@ -1,5 +1,11 @@
 # Project Agent Log
 
+## 2026-09-21 - Paired-supervision restriction scope corrected
+
+- Existing separate64-fit/16-dev digital-recipe experiment proves that withdrawal of one FilmSet proposal is not a global paired-training ban. Original role files/evaluation boundaries remain unchanged; expert-supervised training differs from per-input manualdeployment tuning.
+- Old conditional median gain.0701676 missed frozen.10rule and reviewedtransferlook remained weak; no reinterpretation as success or newtrainingpermission. Evidence docs/ops/AI_RECOVERY_20260907.md pairedrecipe sections.
+- Plan scope corrected only. Retainedhigh final bounded metadata adjudication pending; no newpixels, training, heldsetaccess or experiment launched.
+
 ## 2026-09-21 - Actual local-adaptive outputs rejected
 
 - V2 reference-only calibration frozen before outcomes: tau.3915459215641022,775/912finite reference scores. Code4e3783c5e;9tests passed. Actual run16fits6144updates74.031s, support30/16/12/24of48centers, peakreserved713031680bytes.
