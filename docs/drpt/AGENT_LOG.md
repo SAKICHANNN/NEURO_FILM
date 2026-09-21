@@ -24848,3 +24848,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Changed: correct incomplete triangular-only history before any new local model admission. ConditionedRGBLUT already trained; conditional median gain against global was -0.0684989258.
 - Evidence: live report SHA2c14e1f3e23015c85fffa994b7b4c2e49bb7e47d9aa965b18d5d4591e6c62436 matches retained record; root read both predictors and per-pair oracle implementation. Oracle is target-reading, not an automatic source-only solution.
 - Next: retained high adjudicates spatial full-color value with both negative and capacity evidence. No new model/run or evaluation access.
+
+## 2026-09-21 - Admit direct spatial full-color pilot implementation
+
+- Decision: high recommends one jointly learned response-mixture model, directly learning full appearance rather than an unintegrated luminance component. Root adopts and adds parameter-matched pooled-mixture control.
+- Protocol:64already-consumed paired_fit groups split48/16 secondarydevelopment; four600-step arms,30min8GiB cap, final checkpoints only. At least5percent source-aggregated gain against strongest global comparator plus worthwhile actual visual adaptation; severe-artifact veto, no retuning.
+- Boundaries: internal FilmSet digital recipes, not calibrated stock; old evaluation/test/confirmation and failures unchanged. No real run until config/manifest/code frozen and readiness checked.
+- Next: high implementation and meaningful checks; root adoption/actual visualreview. Goal active, not completed.

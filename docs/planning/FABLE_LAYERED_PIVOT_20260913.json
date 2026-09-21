@@ -447,6 +447,45 @@
         "interpretation": "A flexible image-global conditioned RGB LUT has already been trained and failed to improve over shared style LUT; triangular-only account was incomplete. Spatial prediction remains distinct but is not justified by overlooking this result.",
         "oracle_scope": "Separate capacity oracle fitted one LUT per input-target pair with target access; cannot be interpreted as a shared universal LUT or a source-only predictor."
       }
+    },
+    "spatial_response_pilot": {
+      "status": "IMPLEMENTATION_ADMITTED_RUN_PENDING_PREFLIGHT",
+      "owner": "own_ai_recovery_adjudication",
+      "question": "Can source-local mixture of jointly learned full-color responses deliver useful automatic content adaptation beyond matched global responses?",
+      "model": "Four learned9cube RGB response bases per FilmSet style with source-only smooth spatial mixing",
+      "split": "Only64paired_fit groups, hash split48fit16secondarydevelopment; historically consumed data, not independent confirmation",
+      "controls": [
+        "same four-basis model with spatially pooled weights",
+        "image-conditioned full9cube RGB LUT",
+        "shared-style9cube RGB LUT",
+        "misaligned spatial weights at inference"
+      ],
+      "budget": {
+        "steps_per_arm": 600,
+        "training_arms": 4,
+        "batch": 4,
+        "size": 192,
+        "max_seconds": 1800,
+        "max_reserved_gib": 8
+      },
+      "decision": "At least5percent per-source aggregated error improvement over strongest global comparator AND worthwhile visible adaptation on fixed all-style panel; severe face/text/falsecontour/lighting artifacts veto. No style rescue or retuning.",
+      "claim": "FilmSet digital recipe looks; no physicalstock calibration or production promotion",
+      "verification": [
+        "synthetic identity/bounds/gradient/spatial-vs-pooled behavior",
+        "group disjointness and exact source hashes before pixels",
+        "ICC conversion preserved",
+        "native output dimensions and hashes",
+        "root and high actual fullimage/crop review"
+      ],
+      "next": "High prepares new implementation/config/frozen manifest and commits; root checks readiness before one run",
+      "rollback": "New isolated paths only; keep negative outputs and revert scoped code if necessary",
+      "paths": [
+        "src/models/color_lut/spatial_response_mixture_v1.py",
+        "configs/spatial_response_mixture_v1.json",
+        "scripts/run_spatial_response_mixture_v1.py",
+        "tests/test_spatial_response_mixture_v1.py",
+        "outputs/own_ai_spatial_response_20260921/pilot_v1"
+      ]
     }
   }
 }
