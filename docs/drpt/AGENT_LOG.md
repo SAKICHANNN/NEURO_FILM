@@ -24930,3 +24930,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Four1200step arms completed55.734s; root/high verified actual nearidentity outputs. Evidence outputs/own_ai_source_intake_20260922/restoration_probe_v1. No promotion, retune or uservote.
 - Fablehigh independently reviewed mechanism; adoption rejects unsupported identity/impossibility proofs and new universal paired-data gate. Retained high reviews one materiallydifferent next executable route.
 - Skills: AI/ML harness primary; Claude independent adjudication; existing plan/log maintained. Full Goal remains active and unachieved; no training/Claude job running.
+
+
+## 2026-09-22 - Fixed real portrait appearance intake
+
+- Refreshed parentCC0/Ektar/author and24fixedmetadata; selectedfirst12distinctMODEL beforepixels.12AVIFs1,026,824bytes verified. Source https://ordinals.com/inscription/daddyplease.
+- Root actualcontact review: rich theatrical portraits, heavy makeup andbackgroundconfounds; useful appearance references only. No calibration or trainingadmission. Existing128/Luminant untouched.
+- Evidence outputs/own_ai_source_intake_20260922/parker12_v1/intake_review.json. Retained high examines one concrete content-aware learning mechanism; no new job.
