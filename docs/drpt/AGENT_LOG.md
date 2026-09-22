@@ -24937,3 +24937,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Refreshed parentCC0/Ektar/author and24fixedmetadata; selectedfirst12distinctMODEL beforepixels.12AVIFs1,026,824bytes verified. Source https://ordinals.com/inscription/daddyplease.
 - Root actualcontact review: rich theatrical portraits, heavy makeup andbackgroundconfounds; useful appearance references only. No calibration or trainingadmission. Existing128/Luminant untouched.
 - Evidence outputs/own_ai_source_intake_20260922/parker12_v1/intake_review.json. Retained high examines one concrete content-aware learning mechanism; no new job.
+
+
+## 2026-09-22 - Direct real-appearance learning prototype admitted for implementation
+
+- Distinct objective: content-conditioned adversarial photometry, not a DINO substitution in old nearestpatch quantile fitting. FrozenDINO + trainable12coefficient localrenderer, matched conditional/unconditionedcritic controls.
+- Fixed existing38realreferences,381developmentExpertC,4consumedchallenges; no newintake or paireddata prerequisite. Root reverified19Italy hashes,4embeddedICCs.
+- High implementation/cache/tests/freeze only, no trainingadmission. Fullvisualutility required; author/makeup/lighting confounds explicitly limitclaim. Newfiles isolated for rollback. Plan semantic_adversarial_prototype_20260922 defines controls/budget/readiness.
