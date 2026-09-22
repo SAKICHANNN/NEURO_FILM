@@ -97,10 +97,10 @@
     }
   ],
   "rollback": "Stop new route if evidence fails; preserve pilot and old results. Returning to old96 requires explicit later decision, never automatic.",
-  "goal_tool_state": "blocked",
+  "goal_tool_state": "paused",
   "training_admitted": false,
   "claims_proven": [],
-  "next": "Inland7 appearance-only intake closed; two Fable plans reviewed, no new training admitted because scene-confounded controls/overbroad conclusions. Retain development-iteration correction and define a valid supervision/control question before next experiment. Email optional.",
+  "next": "User-authorized timedresume executed; Claude call works. Resolve content/author matching and complete-output utility before self-supervisedfilm-restoration test; domain dependence alone insufficient. Goal UIresume required for automaticgoal scheduling.",
   "nlm_real_scan_evidence": "docs/evidence/FABLE_NLM_SCANS_20260913.json",
   "native_acquisition_evidence": "docs\\evidence\\FABLE_BLUENEG_NATIVE_20260913.json",
   "natural_residual_evidence": "docs/evidence/FABLE_BLUENEG_RESIDUAL_20260913.json",
