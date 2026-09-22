@@ -24992,3 +24992,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Fable5.1 read-only next-route review saved verbatim with root adoption limits under outputs/own_ai_source_intake_20260922/claude_plan/chroma_v2_next_route_fable.
 - v3 changes only the reference distribution (38 frozen SHA-selected digital sources); initial states hash-matched to v2 arm A; 3 new tests plus 9 v2 tests pass; manifest fa297473637fecd224e7127c11402951dbd427a6994e64bf387f2142e9eb5c44.
 - Pre-registered quiet/drifting null rule; one 2x1200 run admitted. Goal ACTIVE/unachieved.
+
+
+## 2026-09-22 - Null-domain control drifts; adversarial-unpaired line closed as configured
+
+- One frozen 2x1200 null run (38 same-domain digital pseudo-references) completed 270.4s; outputs, copied v2 renders and initial-state equality verified.
+- Both null seeds drift (local face split; broad casts); lift of neutral grey reproduced without a domain gap, so the lift is instrument-made. Only negative hue rotation distinguishes film-trained A from null (descriptive).
+- Pre-registered rule closes this critic+generator instrument. Full pytest: 8461 passed, 426 failed, 5 errors, all sampled failures reproduce identically at pre-session commit c8cd6627d (environment/dirty-scope/frozen-hash issues, not this work). Goal ACTIVE/unachieved.
