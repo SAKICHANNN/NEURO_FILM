@@ -24978,3 +24978,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Claude Code (Opus5) acted as root after Codex v2 implementation files were idle; completed scripts/run_chroma_constrained_film_v2.py and tests/test_chroma_constrained_film_v2.py without touching unrelated dirty files.
 - Independent readonly readiness review: NOT READY on first pass (schema overlap abort; float32 recompute roundoff violation 2/1500 real crops; weak minitrain control). Fixed with float64 colour path, roundoff-tolerant gamut trigger (white/near-white nonregular root), float32 regression test, same-arm target test; reviewer repro 0/1500; freeze sweep 4230 frames 0 failures.
 - Frozen manifest f4e7ddf3e2ea4fd888ec6c8e7a19a0a2511d41584ab047d7dcd456345400364c; one 4x1200 run admitted. Blind P-W notes before alias map. Full Goal ACTIVE/unachieved.
+
+
+## 2026-09-22 - Chroma v2 run rejected on blinded visual review
+
+- One frozen 4x1200 run completed 511.3s, peak 1050673152 bytes; 36 PNG/float pairs, 4 checkpoints, 4 complete traces verified.
+- Root blind notes (P-W) saved before alias map. All local fields rejected (skin/hair colour splits, pink/magenta casts; B worst). Narrow-A mean-field controls least bad but not worthwhile-comfortable on all four inputs.
+- Decision REJECT_BOTH_ARMS_NO_ADVANCE at outputs/own_ai_source_intake_20260922/chroma_constrained_film_v2/run/root_visual_decision.json. No rescue. Next bounded Fable readonly next-route review. Goal ACTIVE/unachieved.
