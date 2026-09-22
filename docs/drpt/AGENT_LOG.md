@@ -24908,3 +24908,11 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 
 - Root live inventory audit confirmed distinct01/25 are authored controls and35/43/48 share authored teacher ancestry. Existing35 preference panel was already presented and mechanism rejected. High upheld objection to its own proposed vote gate.
 - No repackaged authored gallery, forced vote or new training. This correction preserves user no-hand-tuned requirement; full goal unchanged. Evidence pilot_v1/next_action_adjudication.json.
+
+
+## 2026-09-22 - Inland7 appearance intake and independent Claude planning
+
+- Seven fixed official Flickr works revalidated per-workCC-BY4.0/author/description; acquired1024displayJPEGs,1,246,572bytes,notnative3130scans. Root viewedall7; attractive landscapes but scene/lightconfounding and no closeface/text support. No newlearner admitted. Attribution and hashes in inland7_v1/acquisition.json and intake_review.json.
+- User explicitlyprefers ClaudeFable independent planning/challenge,Opusfallback. SkillWSLrunner used; actualclaude-fable-5-1verified,terminalsuccess/no permissiondenials.14runner+4modelpolicytests pass. Firstproposal confounded image statistics withresponse and substituted authoredglobalfallback; not adopted. One concrete revision requested, no indefinite debate.
+
+- Fable revision terminalsuccess/modelverified; no permissiondenials orstderr. Revised diagnostic rejected: huehistneighbor is not scenematching, failedpositivecontrol does not identify codebug, and digital/film target contrast cannot rule out allfilmlearning. Neither proposal authorized newtraining. Adoption saved claude_plan/adoption.json. UserFable-first preference honored; no need repeat calls for reassurance.
