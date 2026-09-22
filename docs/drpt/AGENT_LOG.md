@@ -24916,3 +24916,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - User explicitlyprefers ClaudeFable independent planning/challenge,Opusfallback. SkillWSLrunner used; actualclaude-fable-5-1verified,terminalsuccess/no permissiondenials.14runner+4modelpolicytests pass. Firstproposal confounded image statistics withresponse and substituted authoredglobalfallback; not adopted. One concrete revision requested, no indefinite debate.
 
 - Fable revision terminalsuccess/modelverified; no permissiondenials orstderr. Revised diagnostic rejected: huehistneighbor is not scenematching, failedpositivecontrol does not identify codebug, and digital/film target contrast cannot rule out allfilmlearning. Neither proposal authorized newtraining. Adoption saved claude_plan/adoption.json. UserFable-first preference honored; no need repeat calls for reassurance.
+
+
+## 2026-09-22 - Matched implementation for real-target restoration probe
+
+- Goal active reverified after userresume. Root screened381 consumeddevelopment ExpertCpreviews;0confirmation assets. Seven digitalcontrols selected by actual broadscene inspection, not colorhistogram; composition/light/camera/authorconfounds remain explicit. Index211thumbnail misread correctedto220 beforetraining, recorded ratherthan hidden; selectedassetSHAsverified.
+- Admit implementationonly of four matched models: mixedrealfilm7 vsdigital7 targets x2seeds; symmetricphotometriccorruption reconstruction with untouchedactualtargets and reusedgeometrypreservinglocaloperator. NoFilmSetF/authoreddesiredteacher, no causalstockclaim. Bothtargetdomains quantizedsRGB8 thenidentical192preview. Four1200stepmax30min8GiB, rootfreeze/readiness beforelaunch. Full4challengeoutputs+allmeanfieldablations required, no bestseedpromotion.
+- High owns three newconfig/runner/tests files and isolatedoutput; rootowns state/plan. No GPUtraining yet. This is a newbounded learning hypothesis after Fable critique, not endorsement of its invalididentifiability claims.
