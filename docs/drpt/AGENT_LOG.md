@@ -24999,3 +24999,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - One frozen 2x1200 null run (38 same-domain digital pseudo-references) completed 270.4s; outputs, copied v2 renders and initial-state equality verified.
 - Both null seeds drift (local face split; broad casts); lift of neutral grey reproduced without a domain gap, so the lift is instrument-made. Only negative hue rotation distinguishes film-trained A from null (descriptive).
 - Pre-registered rule closes this critic+generator instrument. Full pytest: 8461 passed, 426 failed, 5 errors, all sampled failures reproduce identically at pre-session commit c8cd6627d (environment/dirty-scope/frozen-hash issues, not this work). Goal ACTIVE/unachieved.
+
+
+## 2026-09-22 - Missing user input recorded after null closure
+
+- Fable5.1 read-only outside-view: no remaining legal, evidence-supported, decision-changing local experiment; binding constraint is the unvalidated target and uncalibrated agent veto.
+- Three concrete user questions recorded (reference validation, amplitude/veto calibration on existing labels, missing layer). Autonomous loop stopped; Goal ACTIVE/unachieved.
