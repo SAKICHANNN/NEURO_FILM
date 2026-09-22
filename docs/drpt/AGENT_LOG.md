@@ -24923,3 +24923,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Goal active reverified after userresume. Root screened381 consumeddevelopment ExpertCpreviews;0confirmation assets. Seven digitalcontrols selected by actual broadscene inspection, not colorhistogram; composition/light/camera/authorconfounds remain explicit. Index211thumbnail misread correctedto220 beforetraining, recorded ratherthan hidden; selectedassetSHAsverified.
 - Admit implementationonly of four matched models: mixedrealfilm7 vsdigital7 targets x2seeds; symmetricphotometriccorruption reconstruction with untouchedactualtargets and reusedgeometrypreservinglocaloperator. NoFilmSetF/authoreddesiredteacher, no causalstockclaim. Bothtargetdomains quantizedsRGB8 thenidentical192preview. Four1200stepmax30min8GiB, rootfreeze/readiness beforelaunch. Full4challengeoutputs+allmeanfieldablations required, no bestseedpromotion.
 - High owns three newconfig/runner/tests files and isolatedoutput; rootowns state/plan. No GPUtraining yet. This is a newbounded learning hypothesis after Fable critique, not endorsement of its invalididentifiability claims.
+
+
+## 2026-09-22 - Restoration corpus probe rejected
+
+- Four1200step arms completed55.734s; root/high verified actual nearidentity outputs. Evidence outputs/own_ai_source_intake_20260922/restoration_probe_v1. No promotion, retune or uservote.
+- Fablehigh independently reviewed mechanism; adoption rejects unsupported identity/impossibility proofs and new universal paired-data gate. Retained high reviews one materiallydifferent next executable route.
+- Skills: AI/ML harness primary; Claude independent adjudication; existing plan/log maintained. Full Goal remains active and unachieved; no training/Claude job running.

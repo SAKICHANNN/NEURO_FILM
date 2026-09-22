@@ -1,6 +1,6 @@
 {
   "date": "2026-09-13",
-  "status": "RESTORATION_PROBE_IMPLEMENTATION_ADMITTED",
+  "status": "RESTORATION_PROBE_REJECTED_NEXT_ROUTE_ADJUDICATION",
   "authority": "User explicitly deleted old Goal, authorized creation of corrected Goal and execution on 2026-09-20.",
   "objective": "实现无需逐图手调、保留人物文字物体和几何内容、具有鲜明且浓郁舒服的胶片特性的批量图像处理。沿 Fable 色彩与光度、显式光学、受约束纹理的分层方向，以真实胶片证据拟合或学习可迁移参数；参考图可作为条件，不把单张照片颜色统计匹配当作胶片还原。优先探索非简单 LUT 路线，表示选择由同输入效果和成本证据决定。先在同批原图上产生有依据、可辨识的完整候选，按胶片类型、算法和原图展示，由用户评价是否抓住胶片特性，再检验独立样本泛化。拒绝近似原图、刺眼失真或内容破坏；当前 real_reference_v1 A/B/C 已被用户全部否决，保留失败记录，不继续无依据强度扫描。成对样本不是项目推进的通用前置；学习颗粒须有可用监督且证据优于物理基线。保留 CDFE68 与旧 fixed96 现状，不默认重启。每项研究须改变明确实际决策，避免无边界诊断或工程准备。复杂裁定和操作复用 Astra high subagent；无需完整项目上下文的深入科学问题用 bridge 6 Pro，允许任意回复取回。等待按 ETA 使用 sleep，避免无意义轮询。",
   "architecture": {
@@ -567,5 +567,16 @@
     "mechanism": "Learn to reconstruct untouchedrealfilm/digitaltargets fromsymmetricrandomgainperturbations; no authoreddesiredstyle,Fcheckpoints or referencequantilematching.",
     "review": "Original+4learnedoutputs+meanfieldablations on4consumedchallenges;identity/severeartifactveto; n2seedsdescriptiveonly.",
     "status": "IMPLEMENTATION_ONLY"
+  },
+  "restoration_probe_outcome_20260922": {
+    "status": "REJECT_NEAR_IDENTITY",
+    "elapsed_seconds": 55.734,
+    "updates": 4800,
+    "peak_reserved_bytes": 360710144,
+    "root_verification": "outputs\\own_ai_source_intake_20260922\\restoration_probe_v1\\run\\root_verification.json",
+    "high_verification": "outputs\\own_ai_source_intake_20260922\\restoration_probe_v1\\independent_verification.json",
+    "claim": "Restoration itself barely learned; no universal domainirrelevance conclusion",
+    "claude_adoption": "outputs\\own_ai_source_intake_20260922\\claude_plan\\restoration_failure_fable\\adoption.json",
+    "next": "Retained high bounded next-route adjudication; no run"
   }
 }
