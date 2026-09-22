@@ -24944,3 +24944,9 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Distinct objective: content-conditioned adversarial photometry, not a DINO substitution in old nearestpatch quantile fitting. FrozenDINO + trainable12coefficient localrenderer, matched conditional/unconditionedcritic controls.
 - Fixed existing38realreferences,381developmentExpertC,4consumedchallenges; no newintake or paireddata prerequisite. Root reverified19Italy hashes,4embeddedICCs.
 - High implementation/cache/tests/freeze only, no trainingadmission. Fullvisualutility required; author/makeup/lighting confounds explicitly limitclaim. Newfiles isolated for rollback. Plan semantic_adversarial_prototype_20260922 defines controls/budget/readiness.
+
+
+## 2026-09-22 - Independent adversarial design review integrated
+
+- Fable5.1high completed(success,no permissiondenials), concreteadoption at outputs/own_ai_source_intake_20260922/claude_plan/semantic_adversarial_design_fable/adoption.json. Adopt bothseed/blindedreview/supportdisclosure; reject unsupported auxiliaryreachabilitytest andsingleauthorclustermerge gate.
+- Root inspected initialfullmodel/config/runner: RGBcontext+grayDINO, matchedcluster schedules/init, identicallowpasscritic, bounded12coefficientrenderer. ActualDINOpreprocessing hasno contrastnormalization; claimcorrected. Finaltests/cache/freeze stillpending with retainedhigh; no training.

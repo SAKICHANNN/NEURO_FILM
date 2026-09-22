@@ -624,6 +624,9 @@
       "root": "state/log/independentverification"
     },
     "rollback": "Do not invoke new entrypoint; old artifacts/code unchanged; revert own coherent implementation commits only if needed",
-    "claim_ceiling": "Mixed realfilm artisticappearance development prototype, not identified stockresponse or validated natural-skin transfer"
+    "claim_ceiling": "Mixed realfilm artisticappearance development prototype, not identified stockresponse or validated natural-skin transfer",
+    "fable_design_adoption": "outputs\\own_ai_source_intake_20260922\\claude_plan\\semantic_adversarial_design_fable\\adoption.json",
+    "review_protocol": "Both seeds required for advancing arm; disagreement inconclusive. Condition/seedblind visualnotes beforemap disclosure, all4wholeimages/fixedcrops. No selectingseed. Collection/cluster support disclosed; no stockcausation.",
+    "preprocessing_clarification": "ActualDINOencodedgrayscale+neutralpadding+ImageNetnorm, no contrastinvarianceclaim; predictor also sees downsampledsourceRGB."
   }
 }
