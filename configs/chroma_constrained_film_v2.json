@@ -1,0 +1,30 @@
+{
+  "schema": "chroma-constrained-film-v2",
+  "base_manifest": "outputs/own_ai_source_intake_20260922/semantic_film_adversarial_v1/manifest.json",
+  "base_manifest_sha256": "97f96054b1df03f97b9d77aef9195dfd60574529d423c58c7c27c237b3862a5a",
+  "output": "outputs/own_ai_source_intake_20260922/chroma_constrained_film_v2",
+  "arms": ["A", "B"],
+  "seeds": [220922, 220923],
+  "field_order": ["tone_bias", "tone_slope", "log_chroma_scale", "hue_rotation_radians", "tint_a", "tint_b"],
+  "field_bounds": {
+    "A": [2.0, 1.0, 0.47000362924573563, 0.2617993877991494, 0.03, 0.03],
+    "B": [2.0, 1.0, 1.410010887737207, 0.7853981633974483, 0.09, 0.09]
+  },
+  "regularizer_units": [2.0, 1.0, 0.47000362924573563, 0.2617993877991494, 0.03, 0.03],
+  "cube_root_floor": 1e-12,
+  "gamut_iterations": 32,
+  "gamut_inward_fraction": 0.0000001,
+  "gamut_derivative_floor": 1e-14,
+  "gamut_roundoff_tolerance": 0.000002,
+  "blind_review_seed": 927221,
+  "steps": 1200,
+  "batch_size": 4,
+  "max_seconds": 2700,
+  "max_process_gib": 8.0,
+  "claim_ceiling": "Exploratory comparison of two finite chroma-bound treatments in one new family; not a pure bound-effect causal identification, stock calibration, preservation guarantee or independent validation.",
+  "family": "Six B-spline-interpolated fields. Encoded sRGB decoded to linear RGB, then Oklab. Tone logistic residual on source L, bounds2/1; frozen-field monotone only. Chroma is positive scale times rotation plus source4L(1-L) times additive tint. Tint allows neutral coloration and can reverse the hue of low-chroma colors. Bound multiplier also changes parameter-to-output gradient scaling.",
+  "gamut": "For out-of-gamut candidates, find the first RGB-cube exit along the fixed-output-L radial Oklab chroma ray: stationary-point partition of three cubic RGB coordinates, then bisection. Candidates within the declared roundoff tolerance of the cube (for example exact or near white, whose chroma direction is numerically zero and whose implicit derivative is undefined) are treated as in gamut and retain scale1, then clipped only within that tolerance. The complete decode-Oklab-tone-chroma-gamut-encode path runs in float64 and casts to the input dtype only at the end, so solver trigger and roundoff check see identical values (independent readiness review found a float32 recomputation that raised on 2/1500 real near-identity crops). Custom active-root implicit backward, no detached or straight-through substitute; nonregular active derivative fails explicitly. Inward roundoff margin shared across arms; final RGB clipping is limited to declared numerical tolerance, otherwise fail.",
+  "black_white": "No epsilon added to source color. Cube root uses a positive-branch floor only to keep black derivatives finite; exact source black and white output endpoints preserved. Roundtrip tolerance tested, no claim bit-exact identity for all floating colors.",
+  "regularization": "Same decoded-linear-luminance edge/shadow windows and loss weights as v1. Coefficient/smooth losses use shared physical A units for both arms, not arm-relative units. This is fair within v2 but not numerically equivalent to v1's12-coefficient prior.",
+  "decision": "Blind full photographs and existing crops for both seeds and local/meanfield controls. Both seeds on all four inputs must show worthwhile rich comfortable appearance with no consequential face/object/text/detail defect to advance an arm. Seed disagreement is inconclusive. No saturation threshold, best-seed selection, halving sweep, global strength rescue or automatic promotion. Both failures close this exact prototype only; both successes do not isolate coordinates or tone as the cause."
+}

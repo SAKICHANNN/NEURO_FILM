@@ -24971,3 +24971,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Actual frozen mean-field sends neutral gray to (0.871,0.356,0.800); both local and global failures retained. No critic-exploitation proof.
 - Fable5.1 high terminal success/no denials; root partial adoption excludes hue guarantees, saturation threshold and sweep. AI/ML and Claude skills used; evidence/adoption under claude_plan/chroma_constraint_fable.
 - Same retained high owns isolated v2 design/tests/freeze. Root readiness before any training; no old-output rescue. Full Goal active; no new user gate.
+
+
+## 2026-09-22 - Chroma v2 readiness accepted and single run admitted
+
+- Claude Code (Opus5) acted as root after Codex v2 implementation files were idle; completed scripts/run_chroma_constrained_film_v2.py and tests/test_chroma_constrained_film_v2.py without touching unrelated dirty files.
+- Independent readonly readiness review: NOT READY on first pass (schema overlap abort; float32 recompute roundoff violation 2/1500 real crops; weak minitrain control). Fixed with float64 colour path, roundoff-tolerant gamut trigger (white/near-white nonregular root), float32 regression test, same-arm target test; reviewer repro 0/1500; freeze sweep 4230 frames 0 failures.
+- Frozen manifest f4e7ddf3e2ea4fd888ec6c8e7a19a0a2511d41584ab047d7dcd456345400364c; one 4x1200 run admitted. Blind P-W notes before alias map. Full Goal ACTIVE/unachieved.
