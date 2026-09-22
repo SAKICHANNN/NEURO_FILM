@@ -24964,3 +24964,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - One4x1200 run251.375s/790626304peakbytes. Root/high independently wroteblindnotes beforemap: actualstrongchange but harshskin,falsecolor/spatialcontamination; meanfieldcontrols alsofail. Bothseeds/all4rule unmet, no uservote/promotion.
 - Root verified36PNG/floatSHA/quantization/nativegeometry; high additionally16fields/4checkpoints/traces andCPUrenders. Artifacts under outputs/own_ai_source_intake_20260922/semantic_film_adversarial_v1/run.
 - No restart/retune; currentrun immutable. Retainedhigh boundedreadonly considers evidence-based constraint/supervision correction. GoalACTIVE/unachieved; no liveGPUjob.
+
+
+## 2026-09-22 - Output-chroma hypothesis admitted for implementation
+
+- Actual frozen mean-field sends neutral gray to (0.871,0.356,0.800); both local and global failures retained. No critic-exploitation proof.
+- Fable5.1 high terminal success/no denials; root partial adoption excludes hue guarantees, saturation threshold and sweep. AI/ML and Claude skills used; evidence/adoption under claude_plan/chroma_constraint_fable.
+- Same retained high owns isolated v2 design/tests/freeze. Root readiness before any training; no old-output rescue. Full Goal active; no new user gate.
