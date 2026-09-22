@@ -180,8 +180,6 @@ def run(config: dict, manifest_sha256: str) -> None:
     snapshot = gpu_snapshot()
     if len(snapshot["gpus"]) != 1 or snapshot["gpus"][0][3] < config["minimum_free_gib"] * 1024:
         raise RuntimeError("Insufficient local GPU headroom; no foreign process touched")
-    if snapshot["compute_processes"]:
-        raise RuntimeError("Foreign compute process present; no process touched")
     destination.mkdir()
     started = time.monotonic()
     report = {"status": "RUNNING", "manifest_sha256": manifest_sha256, "pid": os.getpid(), "code_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(), "environment": {"torch": torch.__version__, "numpy": np.__version__, "pillow": PIL.__version__, "tifffile": tifffile.__version__}, "gpu_snapshot": snapshot, "claim_ceiling": config["claim_ceiling"], "models": {}, "targets": {}, "diagnostics": {}, "rows": [], "confirmation_assets_opened": 0}
