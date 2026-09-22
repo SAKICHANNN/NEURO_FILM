@@ -24985,3 +24985,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - One frozen 4x1200 run completed 511.3s, peak 1050673152 bytes; 36 PNG/float pairs, 4 checkpoints, 4 complete traces verified.
 - Root blind notes (P-W) saved before alias map. All local fields rejected (skin/hair colour splits, pink/magenta casts; B worst). Narrow-A mean-field controls least bad but not worthwhile-comfortable on all four inputs.
 - Decision REJECT_BOTH_ARMS_NO_ADVANCE at outputs/own_ai_source_intake_20260922/chroma_constrained_film_v2/run/root_visual_decision.json. No rescue. Next bounded Fable readonly next-route review. Goal ACTIVE/unachieved.
+
+
+## 2026-09-22 - Null-domain instrument control admitted
+
+- Fable5.1 read-only next-route review saved verbatim with root adoption limits under outputs/own_ai_source_intake_20260922/claude_plan/chroma_v2_next_route_fable.
+- v3 changes only the reference distribution (38 frozen SHA-selected digital sources); initial states hash-matched to v2 arm A; 3 new tests plus 9 v2 tests pass; manifest fa297473637fecd224e7127c11402951dbd427a6994e64bf387f2142e9eb5c44.
+- Pre-registered quiet/drifting null rule; one 2x1200 run admitted. Goal ACTIVE/unachieved.

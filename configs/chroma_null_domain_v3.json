@@ -1,0 +1,16 @@
+{
+  "schema": "chroma-null-domain-v3",
+  "base_v2_manifest": "outputs/own_ai_source_intake_20260922/chroma_constrained_film_v2/manifest.json",
+  "base_v2_manifest_sha256": "f4e7ddf3e2ea4fd888ec6c8e7a19a0a2511d41584ab047d7dcd456345400364c",
+  "base_v2_report": "outputs/own_ai_source_intake_20260922/chroma_constrained_film_v2/run/report.json",
+  "output": "outputs/own_ai_source_intake_20260922/chroma_null_domain_v3",
+  "arm": "A",
+  "seeds": [220922, 220923],
+  "null_reference_count": 38,
+  "null_selection": "Sort the 381 development source ids by SHA-256 hex digest of the UTF-8 id string ascending; first 38 are pseudo-references R, the remaining 343 are sources. Pseudo-collection of R member = rank mod 3 (13/13/12). Candidate rows and DINO cluster labels are the existing base source candidate rows of those images; no re-clustering. Schedules rebuilt with the unchanged balanced_schedule code and the same seeds.",
+  "blind_labels": ["J", "K", "L", "M", "N", "X", "Y", "Z"],
+  "blind_review_seed": 927222,
+  "claim_ceiling": "Instrument noise-floor control on consumed development challenges: whether v2 arm A machinery fabricates casts from 38 same-domain digital images. Not film evidence, not causal identification of the v1/v2 direction, not stock calibration.",
+  "decision": "Blinded notes on all 8 labels (4 new null renders + 4 re-aliased existing arm-A renders; root has seen the latter before, so only null labels are decisional) written before the alias map is opened. Quiet null: on every photo, for both seeds, null labels (local and mean-field) show no consequential change in kind vs original (no broad cast, lift, split skin/hair, object hue drift); small change allowed. Drifting null: on any photo, either seed, a null label shows a v1/v2-family defect. Seed disagreement inconclusive, no third seed, no best-seed. Drifting on both seeds closes the adversarial-unpaired line as configured; quiet on both seeds admits only the single follow-on Inland7+Italy19-only data-side run under the same protocol. Mean-field vectors, neutral ramps and sign agreement with A are descriptive only.",
+  "adoption": "outputs/own_ai_source_intake_20260922/claude_plan/chroma_v2_next_route_fable/adoption.json"
+}

@@ -1,6 +1,6 @@
 {
   "date": "2026-09-13",
-  "status": "CHROMA_CONSTRAINT_V2_VISUAL_FAILURE_RECORDED",
+  "status": "CHROMA_NULL_DOMAIN_V3_RUN_ADMITTED",
   "authority": "User explicitly deleted old Goal, authorized creation of corrected Goal and execution on 2026-09-20.",
   "objective": "实现无需逐图手调、保留人物文字物体和几何内容、具有鲜明且浓郁舒服的胶片特性的批量图像处理。沿 Fable 色彩与光度、显式光学、受约束纹理的分层方向，以真实胶片证据拟合或学习可迁移参数；参考图可作为条件，不把单张照片颜色统计匹配当作胶片还原。优先探索非简单 LUT 路线，表示选择由同输入效果和成本证据决定。先在同批原图上产生有依据、可辨识的完整候选，按胶片类型、算法和原图展示，由用户评价是否抓住胶片特性，再检验独立样本泛化。拒绝近似原图、刺眼失真或内容破坏；当前 real_reference_v1 A/B/C 已被用户全部否决，保留失败记录，不继续无依据强度扫描。成对样本不是项目推进的通用前置；学习颗粒须有可用监督且证据优于物理基线。保留 CDFE68 与旧 fixed96 现状，不默认重启。每项研究须改变明确实际决策，避免无边界诊断或工程准备。复杂裁定和操作复用 Astra high subagent；无需完整项目上下文的深入科学问题用 bridge 6 Pro，允许任意回复取回。等待按 ETA 使用 sleep，避免无意义轮询。",
   "architecture": {
@@ -658,5 +658,12 @@
     "run": "outputs/own_ai_source_intake_20260922/chroma_constrained_film_v2/run",
     "result": "REJECT_BOTH_ARMS_NO_ADVANCE; outputs/own_ai_source_intake_20260922/chroma_constrained_film_v2/run/root_visual_decision.json",
     "next": "Bounded Fable readonly next-route review before any implementation"
+  },
+  "chroma_null_domain_20260922": {
+    "review": "outputs/own_ai_source_intake_20260922/claude_plan/chroma_v2_next_route_fable/adoption.json",
+    "scope": "v2 arm A with 38 same-domain digital pseudo-references; instrument noise-floor control",
+    "manifest": "fa297473637fecd224e7127c11402951dbd427a6994e64bf387f2142e9eb5c44",
+    "decision_rule": "quiet null both seeds -> Inland7+Italy19-only follow-on; drifting null both seeds -> close adversarial-unpaired line as configured; disagreement inconclusive",
+    "full_goal": "ACTIVE_UNACHIEVED"
   }
 }
