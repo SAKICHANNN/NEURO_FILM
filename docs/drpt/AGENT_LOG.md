@@ -24957,3 +24957,10 @@ remaining 31 scenes, sampling, pair policy and gates are unchanged.
 - Seven tests passed; explicitEXIF8 fix forItaly10, prior0updatefailure retained. Frozenmanifest97f96054b1df03f97b9d77aef9195dfd60574529d423c58c7c27c237b3862a5a/codef508d3be5 verified.
 - Descriptorprepare13.734s,fullD/R1/Gbackwardcanary0.688s/nooptimizerupdates. Real/fake clustercounts matched; all38references used and376/381sources selected.
 - Rootadmitted one4x1200run onfreshlocalGPU; no foreignprocesschanges. A-Hblindnotes beforemapping/modelmetrics. FullGoal remainsunachieved.
+
+
+## 2026-09-22 - Semantic adversarial complete outputs rejected
+
+- One4x1200 run251.375s/790626304peakbytes. Root/high independently wroteblindnotes beforemap: actualstrongchange but harshskin,falsecolor/spatialcontamination; meanfieldcontrols alsofail. Bothseeds/all4rule unmet, no uservote/promotion.
+- Root verified36PNG/floatSHA/quantization/nativegeometry; high additionally16fields/4checkpoints/traces andCPUrenders. Artifacts under outputs/own_ai_source_intake_20260922/semantic_film_adversarial_v1/run.
+- No restart/retune; currentrun immutable. Retainedhigh boundedreadonly considers evidence-based constraint/supervision correction. GoalACTIVE/unachieved; no liveGPUjob.
